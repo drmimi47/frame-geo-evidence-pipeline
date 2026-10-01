@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Literal
 
 import yaml
-from pydantic import BaseModel, ConfigDict, Field, model_validator
+from pydantic import BaseModel, ConfigDict, Field, ValidationInfo, model_validator
 
 
 class _Cfg(BaseModel):
@@ -78,12 +78,14 @@ class DiscoveryConfig(_Cfg):
     safe_search: Literal["none", "moderate", "strict"] = "moderate"
 
     @model_validator(mode="after")
-    def _hard_date_range(self) -> "DiscoveryConfig":
-        from .scope import HARD_END, HARD_START
+    def _hard_date_range(self, info: ValidationInfo) -> "DiscoveryConfig":
+        # The main library's range, unless validated for another library's scope (context={"scope": Scope}).
+        from .scope import UKRAINE
 
-        if self.published_after < HARD_START or self.published_before > HARD_END:
+        scope = (info.context or {}).get("scope") or UKRAINE
+        if self.published_after < scope.start or self.published_before > scope.end:
             raise ValueError(
-                f"published_after/published_before must stay within the collection's hard range {HARD_START}..{HARD_END}"
+                f"published_after/published_before must stay within the collection's hard range {scope.start}..{scope.end}"
             )
         if self.published_after > self.published_before:
             raise ValueError("published_after is later than published_before")
@@ -108,7 +110,8 @@ class AcquisitionConfig(_Cfg):
     max_height: int = 1080
     max_duration_s: int = 3600  # long-form Ukrainian reportage often runs 30-60 min
     include_audio: bool = True
-    keep_media: bool = True
+    keep_media: bool = Field(default=False, description="Keep the downloaded video after its frames are taken (~200 MB each). "
+                             "Its sha256 is recorded either way, and the frames link to the YouTube timestamp.")
 
 
 class ExtractionConfig(_Cfg):
@@ -125,6 +128,11 @@ class ExtractionConfig(_Cfg):
     drop_black_fraction: float = Field(
         default=0.7, gt=0, le=1,
         description="Drop frames where this fraction of pixels is near-black (credits, title cards, small inset clips).",
+    )
+    keep_originals: bool = Field(
+        default=False,
+        description="Also keep each frame at full resolution (PNG/JPEG, ~1 MB each). Off: the web image (web_max_px) is the largest "
+                    "kept, and the frame's sha256 is of its decoded pixels.",
     )
     original_format: Literal["png", "jpg", "auto"] = Field(
         default="auto", description="auto: PNG (lossless) unless a video yields more than lossless_max_frames, then JPEG."

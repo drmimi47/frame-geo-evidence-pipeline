@@ -26,6 +26,7 @@ LABELS = {
     "similar": "Similar view",
     "angle": "Camera angle",
     "damage": "Damage",
+    "scale": "Scale",
     "color": "Colour",
     "light": "Light",
     "season": "Season cues",
@@ -136,6 +137,20 @@ def by_damage(frames, _emb) -> Sorted:
     )
 
 
+def by_scale(frames, _emb) -> Sorted:
+    """Close-up to aerial: a flower up close first, a whole town from a drone last."""
+    def band(x):
+        return "close-up" if x.scale < 0.2 else "near" if x.scale < 0.4 else "street" if x.scale < 0.6 else "wide" if x.scale < 0.8 else "aerial"
+    missing = [f for f in frames if f.derived.features is not None and f.derived.features.scale is None]
+    rows = _features_last(
+        [f for f in frames if f.derived.features is None or f.derived.features.scale is not None],
+        key=lambda x: x.scale,
+        group=band,
+        note=lambda x: f"Scale: {band(x)} ({round(x.scale * 100)} from close-up 0 to aerial 100, zero-shot)",
+    )
+    return rows + [(f, "none", "Scale not computed yet (run `evidence analyze`)") for f in sorted(missing, key=_time)]
+
+
 def by_color(frames, _emb) -> Sorted:
     def grey(x):
         return x.hue is None or x.saturation < 0.12
@@ -201,6 +216,7 @@ SORTS: dict[str, Callable[[list[FrameRecord], dict], Sorted]] = {
     "similar": by_similarity,
     "angle": by_angle,
     "damage": by_damage,
+    "scale": by_scale,
     "color": by_color,
     "light": by_light,
     "season": by_season,

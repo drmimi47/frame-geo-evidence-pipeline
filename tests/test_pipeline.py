@@ -9,7 +9,7 @@ import pytest
 from image_evidence import acquisition
 from image_evidence.config import Config
 from image_evidence.layout import Library
-from image_evidence.pipeline import Pipeline, reindex
+from image_evidence.pipeline import Pipeline, reindex, slim
 from image_evidence.schema import Acquisition, DiscoveryContext, MediaFile
 from image_evidence.service import EvidenceService
 from image_evidence.store import SQLiteRepository
@@ -54,9 +54,13 @@ def test_ingest_produces_linked_frames(pipeline):
     rec = json.loads(metas[1].read_text())
     assert rec["source"]["youtube_id"] == YID
     assert rec["source"]["timestamped_url"].endswith(f"&t={int(rec['frame']['timestamp_s'])}s")
-    for key in ("original", "web", "thumb"):
+    for key in ("web", "thumb"):
         assert lib.abs(rec["frame"]["files"][key]).exists()
-    assert rec["frame"]["original_format"] == "png"
+    # by default neither the video nor full-resolution frames are kept; the hashes are
+    assert rec["frame"]["files"]["original"] is None and rec["frame"]["sha256_of"] == "pixels" and len(rec["frame"]["sha256"]) == 64
+    assert not list(dirs.media.iterdir()) and not list(dirs.originals.iterdir())
+    assert video["acquisition"]["media"]["sha256"] and "deleted" in video["acquisition"]["reason"]
+    assert EvidenceService(pipeline.repo).frame(rec["frame_id"])["urls"]["original"] is None
     # only the uploader geotag carries coordinates; country and place-name candidates don't
     locs = {loc["provenance"]["method"]: loc for loc in rec["inferred"]["locations"]}
     assert locs["youtube_recording_details_geotag"]["latitude"] == 50.1
@@ -66,6 +70,25 @@ def test_ingest_produces_linked_frames(pipeline):
 
     # second run is a no-op
     assert pipeline.ingest(YID, api_item=API_ITEM, contexts=[ctx]).status == "skipped_existing"
+
+
+def test_kept_originals_and_videos_can_be_slimmed_later(pipeline):
+    pipeline.cfg.acquisition.keep_media = True
+    pipeline.cfg.extraction.keep_originals = True
+    pipeline.ingest(YID, api_item=API_ITEM, contexts=[])
+    lib, dirs = pipeline.lib, pipeline.lib.video(YID)
+    rec = json.loads(sorted(dirs.meta.glob("*.json"))[0].read_text())
+    assert rec["frame"]["original_format"] == "png" and rec["frame"]["sha256_of"] == "original"
+    has = lambda rel: lib.abs(rel).is_file()
+    assert EvidenceService(pipeline.repo, has_file=has).frame(rec["frame_id"])["urls"]["original"]
+    assert slim(lib, pipeline.repo, dry_run=True)[0][1] > 1 and list(dirs.media.iterdir())  # dry run deletes nothing
+    (yid, n, size), = slim(lib, pipeline.repo)
+    assert yid == YID and n > 1 and size > 0
+    assert not list(dirs.media.iterdir()) and not list(dirs.originals.iterdir()) and list(dirs.web.iterdir())
+    # the record keeps where the original was and its hash (the source link is immutable); the site stops linking it
+    assert json.loads(sorted(dirs.meta.glob("*.json"))[0].read_text()) == rec
+    assert EvidenceService(pipeline.repo, has_file=has).frame(rec["frame_id"])["urls"]["original"] is None
+    assert "deleted" in json.loads(dirs.video_json.read_text())["acquisition"]["reason"]
 
 
 def test_out_of_scope_video_writes_nothing(pipeline):

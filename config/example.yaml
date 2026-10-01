@@ -39,7 +39,7 @@ acquisition:
   max_height: 1080
   max_duration_s: 3600
   include_audio: true
-  keep_media: true
+  keep_media: false            # keep the video after its frames are taken (~200 MB each)
 
 extraction:
   interval_s: 10                # at least one frame every N seconds
@@ -48,7 +48,8 @@ extraction:
   max_frames_per_video: 100
   candidate_pool: 500           # previewed + classified; the best max_frames_per_video are kept
   dedup_hamming: 6              # drop near-duplicates (dHash distance)
-  original_format: auto         # png | jpg | auto (PNG unless > lossless_max_frames)
+  keep_originals: false         # full-resolution frames too (~1 MB each); off: web_max_px is the largest kept
+  original_format: auto         # png | jpg | auto (PNG unless > lossless_max_frames), when keep_originals
   lossless_max_frames: 40
   web_max_px: 1600
   thumb_max_px: 400

@@ -86,7 +86,9 @@ def infer_locations(source: SourceVideo, discovery: list[DiscoveryContext], scop
         ))
 
     # Places named in the video's own metadata. A mention is not a capture location: names only.
-    for field, text, conf in (
+    # The gazetteer is Ukraine's, so a library about somewhere else skips it.
+    ukraine = scope is None or scope.scope_name == "Ukraine"
+    for field, text, conf in () if not ukraine else (
         ("title", source.title, CONF_TEXT_PLACE_TITLE),
         ("tags", " | ".join(source.tags), CONF_TEXT_PLACE_OTHER),
         ("description", source.description, CONF_TEXT_PLACE_OTHER),
@@ -107,9 +109,10 @@ def infer_locations(source: SourceVideo, discovery: list[DiscoveryContext], scop
 
     if scope and scope.in_scope:
         out.append(InferredLocation(
-            place_name="Ukraine",
+            place_name=scope.scope_name,
             confidence=scope.confidence,
-            provenance=Provenance(method="scope_check", evidence="Country-level: video judged Ukraine-relevant by the collection scope check."),
+            provenance=Provenance(method="scope_check",
+                                  evidence=f"Country-level: video judged {scope.scope_name}-relevant by the collection scope check."),
         ))
     return sorted(out, key=lambda loc: -loc.confidence)
 

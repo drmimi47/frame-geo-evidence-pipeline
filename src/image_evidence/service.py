@@ -7,7 +7,7 @@ wrapper). It depends only on the Repository interface, never on ingestion code.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Any
+from typing import Any, Callable
 
 from .schema import FrameRecord, VideoRecord
 from .sorting import SORTS, by_query_image, by_study_place
@@ -21,6 +21,7 @@ class EvidenceService:
     _videos: dict[str, VideoRecord | None] = field(default_factory=dict, repr=False)
     query_images: dict[str, Any] = field(default_factory=dict, repr=False)  # id -> embedding of an uploaded image
     study_places: dict[str, tuple[Any, float]] = field(default_factory=dict)  # name -> (place, radius_km): "near:" sorts
+    has_file: Callable[[str], bool] = lambda rel: True  # is this library-relative file still on disk
 
     def _url(self, rel: str) -> str:
         return self.media_base + rel
@@ -120,7 +121,8 @@ class EvidenceService:
         files = f.frame.files
         return {
             **f.model_dump(mode="json"),
-            "urls": {"original": self._url(files.original), "web": self._url(files.web), "thumb": self._url(files.thumb)},
+            # the full-resolution file only while it exists (new frames keep none; `evidence slim` removes old ones)
+            "urls": {"original": self._url(files.original) if files.original and self.has_file(files.original) else None, "web": self._url(files.web), "thumb": self._url(files.thumb)},
             "video": {
                 "video_id": v.video_id,
                 "source": v.source.model_dump(mode="json", exclude={"description"}),

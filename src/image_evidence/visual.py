@@ -35,6 +35,22 @@ VIEW_ORDER = list(VIEWPOINTS)
 VIEW_NAMES = {"top_down": "top-down", "oblique_aerial": "oblique aerial", "elevated": "elevated",
               "street_level": "ground level", "close_up": "close-up"}
 
+# Scale: how much of the world the frame takes in, ordered from a macro shot to a high aerial view. The score is
+# the expected position over these groups (0 close-up .. 1 aerial), so frames between two groups sort between them.
+# Captions tuned on this library's contact sheets: "a whole building seen from across the street" keeps ruined
+# facades out of the close-ups, and "smoke on the horizon" moves distant ground views up to wide.
+SCALE: dict[str, list[str]] = {
+    "detail": ["a macro photo of a flower, an insect or leaves", "a close-up of a small object, stones or soil"],
+    "object": ["a photo of one tree, one car or a doorway up close", "a close-up of part of a wall or a window"],
+    "near": ["a yard, a courtyard or a short stretch of street", "a few metres of a path, a riverbank or bushes"],
+    "street": ["a street with buildings on both sides", "a whole building seen from across the street",
+               "a view across a field or a river to the trees beyond"],
+    "wide": ["a wide landscape stretching to the horizon", "a panorama over a town from a hill",
+             "a view far into the distance, with smoke or buildings on the horizon"],
+    "aerial": ["an aerial photo of a whole town or district from high above", "a high drone view over fields, roads and rivers"],
+}
+SCALE_ORDER = list(SCALE)
+
 DAMAGE: dict[str, list[str]] = {
     "intact": ["intact buildings in good condition", "an undamaged residential street"],
     "damaged": ["buildings with broken windows and shell damage", "a partly damaged building"],
@@ -78,10 +94,11 @@ def features(images: list[Image.Image], classifier=None, emb: np.ndarray | None 
         emb = classifier.embed(images)
     views = classifier.zero_shot(emb, VIEWPOINTS)
     damage = classifier.zero_shot(emb, DAMAGE)
+    scale = classifier.zero_shot(emb, SCALE)
     prov = Provenance(method="siglip_zero_shot", model=classifier.cfg.model,
-                      evidence="camera angle and damage: softmax share over caption groups (visual.py)")
+                      evidence="camera angle, damage and scale: softmax share over caption groups (visual.py)")
     out = []
-    for p, vs, ds in zip(px, views, damage):
+    for p, vs, ds, ss in zip(px, views, damage, scale):
         built = 1.0 - ds["no_buildings"]
         out.append(VisualFeatures(
             **p,
@@ -90,6 +107,8 @@ def features(images: list[Image.Image], classifier=None, emb: np.ndarray | None 
             # expected damage among frames that show buildings: 0 intact .. 1 destroyed
             damage=None if built < 0.35 else round((0.5 * ds["damaged"] + ds["destroyed"]) / built, 3),
             damage_scores=ds,
+            scale=round(sum(i * ss[k] for i, k in enumerate(SCALE_ORDER)) / (len(SCALE_ORDER) - 1), 3),
+            scale_scores=ss,
             provenance=prov,
         ))
     return out, emb

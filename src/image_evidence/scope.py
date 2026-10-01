@@ -3,6 +3,10 @@
 Both rules are hard limits enforced at ingestion (nothing out of scope is
 written to disk) and re-checkable with `evidence rescope`.
 
+The main library is always Ukraine 2022..2026 (`UKRAINE`). Another place or date range gets a library of
+its own (`libraries/<slug>/`, made from the site's Video panel) whose fixed scope is in its `scope.json`
+(`Scope`); its videos pass the same gate against that scope, so the Ukraine collection never mixes with it.
+
 - The date limit applies to the *YouTube publication date* only. Footage published
   in range may show events from before 2022; that is expected and handled as an
   inferred capture-date question (see inference.py), not a scope violation.
@@ -13,8 +17,10 @@ written to disk) and re-checkable with `evidence rescope`.
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass
+import json
+from dataclasses import dataclass, field, replace
 from datetime import date
+from pathlib import Path
 
 from .schema import ScopeCheck, ScopeSignal, SourceVideo
 
@@ -129,12 +135,89 @@ def mentioned_places(text: str) -> list[tuple[str, str]]:
 
 
 def in_ukraine_bbox(lat: float, lon: float) -> bool:
-    lon_min, lat_min, lon_max, lat_max = UKRAINE_BBOX
-    return lat_min <= lat <= lat_max and lon_min <= lon <= lon_max
+    return UKRAINE.in_bbox(lat, lon)
 
 
 def in_date_range(published: date) -> bool:
     return HARD_START <= published <= HARD_END
+
+
+@dataclass(frozen=True)
+class Scope:
+    """A library's fixed scope: the place its videos must be about and their YouTube publication range.
+
+    `spellings` are matched in title, tags and description like the gazetteer (Latin spellings as whole
+    words, others as word-start stems); Ukraine uses the curated GAZETTEER instead. `bbox` (lon_min,
+    lat_min, lon_max, lat_max) rejects geotags outside it; without one a geotag can't reject or support.
+    `made_by` records where the definition came from (the user, or the LLM that wrote the spellings).
+    """
+
+    name: str
+    start: date
+    end: date
+    spellings: tuple[str, ...] = ()
+    bbox: tuple[float, float, float, float] | None = None
+    language: str | None = None
+    made_by: str = "user"
+    patterns: tuple = field(default=(), compare=False, repr=False)
+
+    @property
+    def is_ukraine(self) -> bool:
+        return self.name == "Ukraine"
+
+    @property
+    def slug(self) -> str:
+        base = re.sub(r"[^a-z0-9]+", "-", self.name.lower()).strip("-") or "scope"
+        return f"{base}-{self.start.year}-{self.end.year}"
+
+    def in_bbox(self, lat: float, lon: float) -> bool:
+        lon_min, lat_min, lon_max, lat_max = self.bbox
+        return lat_min <= lat <= lat_max and lon_min <= lon <= lon_max
+
+    def in_range(self, published: date) -> bool:
+        return self.start <= published <= self.end
+
+    def places(self, text: str) -> list[tuple[str, str]]:
+        if self.is_ukraine:
+            return mentioned_places(text)
+        found = []
+        for canonical, pat in self.patterns or _scope_patterns(self):
+            if m := pat.search(text):
+                found.append((canonical, m.group(0)))
+        return found
+
+    def to_json(self) -> dict:
+        return {"name": self.name, "start": self.start.isoformat(), "end": self.end.isoformat(),
+                "spellings": list(self.spellings), "bbox": list(self.bbox) if self.bbox else None,
+                "language": self.language, "made_by": self.made_by}
+
+    @classmethod
+    def from_json(cls, d: dict) -> "Scope":
+        sc = cls(name=d["name"], start=date.fromisoformat(d["start"]), end=date.fromisoformat(d["end"]),
+                 spellings=tuple(d.get("spellings") or ()), bbox=tuple(d["bbox"]) if d.get("bbox") else None,
+                 language=d.get("language"), made_by=d.get("made_by", "user"))
+        if sc.is_ukraine:  # Ukraine over other dates keeps the curated gazetteer, box and language
+            sc = replace(UKRAINE, start=sc.start, end=sc.end)
+        return replace(sc, patterns=tuple(_scope_patterns(sc)))
+
+
+def _scope_patterns(sc: Scope) -> list[tuple[str, re.Pattern]]:
+    out = []
+    for s in dict.fromkeys(x.strip() for x in (sc.name, *sc.spellings) if x and x.strip()):
+        low = s.lower()
+        pat = rf"\b{re.escape(low)}\b" if low.isascii() else rf"(?<!\w){re.escape(low)}"
+        out.append((sc.name if low == sc.name.lower() else s, re.compile(pat, re.IGNORECASE)))
+    return out
+
+
+UKRAINE = Scope(name="Ukraine", start=HARD_START, end=HARD_END, bbox=UKRAINE_BBOX, language="uk", made_by="collection rules")
+SCOPE_FILE = "scope.json"
+
+
+def library_scope(root: Path) -> Scope:
+    """The scope of the library at root: its scope.json, else (the main library) Ukraine 2022..2026."""
+    path = Path(root) / SCOPE_FILE
+    return Scope.from_json(json.loads(path.read_text())) if path.is_file() else UKRAINE
 
 
 @dataclass(frozen=True)
@@ -144,37 +227,42 @@ class Verdict:
     check: ScopeCheck | None
 
 
-def check_scope(source: SourceVideo, min_confidence: float = MIN_CONFIDENCE) -> Verdict:
+def check_scope(source: SourceVideo, min_confidence: float = MIN_CONFIDENCE, scope: Scope = UKRAINE) -> Verdict:
     """Hard scope gate. Call before writing anything for a video."""
     published = source.published_at.date()
-    if not in_date_range(published):
-        return Verdict(False, f"published {published} outside hard range {HARD_START}..{HARD_END}", None)
+    if not scope.in_range(published):
+        return Verdict(False, f"published {published} outside hard range {scope.start}..{scope.end}", None)
 
     signals: list[ScopeSignal] = []
     geo = source.claimed_recording_location
-    if geo and geo.latitude is not None and geo.longitude is not None:
-        inside = in_ukraine_bbox(geo.latitude, geo.longitude)
+    if scope.bbox and geo and geo.latitude is not None and geo.longitude is not None:
+        inside = scope.in_bbox(geo.latitude, geo.longitude)
         signals.append(ScopeSignal(
             kind="geotag", field="recordingDetails.location", match=f"{geo.latitude},{geo.longitude}",
             weight=_WEIGHTS["geotag"] if inside else -1.0,
         ))
     fields = {"title": source.title, "tags": " | ".join(source.tags), "description": source.description}
-    for field, text in fields.items():
-        for canonical, matched in mentioned_places(text):
-            signals.append(ScopeSignal(kind="gazetteer", field=field, match=f"{matched} -> {canonical}", weight=_WEIGHTS[field]))
+    for field_, text in fields.items():
+        for canonical, matched in scope.places(text):
+            signals.append(ScopeSignal(kind="gazetteer", field=field_, match=f"{matched} -> {canonical}", weight=_WEIGHTS[field_]))
     lang = (source.default_language or "").lower()
-    if lang.startswith("uk") or _UK_ONLY.search(source.title) or len(_UK_LETTERS.findall(source.title + source.description)) >= 5:
-        signals.append(ScopeSignal(kind="language", field="language/title", match=lang or "ukrainian letters", weight=_WEIGHTS["language"]))
+    if scope.is_ukraine:
+        if lang.startswith("uk") or _UK_ONLY.search(source.title) or len(_UK_LETTERS.findall(source.title + source.description)) >= 5:
+            signals.append(ScopeSignal(kind="language", field="language/title", match=lang or "ukrainian letters", weight=_WEIGHTS["language"]))
+    elif scope.language and lang.startswith(scope.language.lower()):
+        signals.append(ScopeSignal(kind="language", field="language", match=lang, weight=_WEIGHTS["language"]))
 
     if any(s.weight < 0 for s in signals):
         conf = 0.0
-        reason = "uploader geotag is outside Ukraine"
+        reason = f"uploader geotag is outside {scope.name}"
     else:
         # Noisy-OR over independent signals.
         miss = 1.0
         for s in signals:
             miss *= 1 - s.weight
         conf = round(min(1 - miss, MAX_CONFIDENCE), 3)
-        reason = f"Ukraine relevance {conf:.2f} (min {min_confidence})" if signals else "no Ukraine signal in title, tags, description, language or geotag"
-    check = ScopeCheck(in_scope=conf >= min_confidence, confidence=conf, signals=signals, rules_version=SCOPE_RULES_VERSION)
+        reason = (f"{scope.name} relevance {conf:.2f} (min {min_confidence})" if signals
+                  else f"no {scope.name} signal in title, tags, description, language or geotag")
+    check = ScopeCheck(in_scope=conf >= min_confidence, confidence=conf, signals=signals, rules_version=SCOPE_RULES_VERSION,
+                       scope_name=scope.name)
     return Verdict(check.in_scope, reason, check)

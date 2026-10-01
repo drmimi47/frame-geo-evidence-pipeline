@@ -222,6 +222,21 @@ def cmd_rescope(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_slim(args: argparse.Namespace) -> int:
+    from .layout import Library
+    from .pipeline import slim
+    from .store import SQLiteRepository
+
+    lib = Library(_load(args).library_dir)
+    rows = slim(lib, SQLiteRepository(lib.db_path), originals=not args.keep_originals, dry_run=args.dry_run)
+    for yid, n, size in rows:
+        if n:
+            print(f"  {yid}  {n:>4} files  {size / 1e6:8.1f} MB")
+    total = sum(size for _, _, size in rows)
+    print(f"{'would free' if args.dry_run else 'freed'} {total / 1e9:.2f} GB in {sum(1 for _, n, _ in rows if n)} videos")
+    return 0
+
+
 def cmd_refresh_titles(args: argparse.Namespace) -> int:
     from .discovery import YouTubeClient
     from .layout import Library
@@ -350,6 +365,11 @@ def build_parser() -> argparse.ArgumentParser:
     s = sub.add_parser("rescope", parents=[common], help="re-check stored videos against the Ukraine/2022-2026 scope")
     s.add_argument("--purge", action="store_true", help="delete out-of-scope videos (files + index)")
     s.set_defaults(fn=cmd_rescope)
+
+    s = sub.add_parser("slim", parents=[common], help="delete stored videos' downloads and full-resolution frames (keeps web images)")
+    s.add_argument("--keep-originals", action="store_true", help="delete only the downloaded videos")
+    s.add_argument("--dry-run", action="store_true", help="only show what would be deleted")
+    s.set_defaults(fn=cmd_slim)
 
     s = sub.add_parser("refresh-titles", parents=[common], help="fetch uploader title translations (YouTube localizations)")
     s.set_defaults(fn=cmd_refresh_titles)

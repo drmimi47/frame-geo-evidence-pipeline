@@ -6,3 +6,4 @@ library/
 .env
 .DS_Store
 .playwright-mcp/
+libraries/

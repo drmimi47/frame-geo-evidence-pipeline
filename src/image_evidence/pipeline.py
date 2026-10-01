@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import logging
 import os
@@ -37,10 +38,12 @@ from .schema import (
     utcnow,
     video_id_for,
 )
-from .scope import Verdict, check_scope, in_date_range
+from .scope import Verdict, check_scope, library_scope
 from .store import Repository, SQLiteRepository
 
 log = logging.getLogger(__name__)
+
+MEDIA_DELETED = "media deleted after extraction (keep_media=false); sha256 retained"
 
 
 @dataclass
@@ -62,24 +65,32 @@ class RunReport:
 
 
 class Pipeline:
-    def __init__(self, cfg: Config, repo: Repository | None = None):
+    def __init__(self, cfg: Config, repo: Repository | None = None, api_key: str | None = None):
         self.cfg = cfg
         self.lib = Library(cfg.library_dir).create()
         self.repo = repo or SQLiteRepository(self.lib.db_path)
+        # The library's fixed scope (Ukraine 2022..2026 for the main library); every video is gated against it.
+        self.scope = library_scope(self.lib.root)
+        d = cfg.discovery
+        if d.published_after < self.scope.start or d.published_before > self.scope.end:
+            raise ValueError(f"discovery dates {d.published_after}..{d.published_before} reach outside this library's "
+                             f"scope ({self.scope.name} {self.scope.start}..{self.scope.end})")
+        self.api_key = api_key  # given per run (the site's Video panel); else the environment's
         self.run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
         self._classifier: Classifier | None = None
+        self.classifier_factory = None  # e.g. the server's shared model; loaded only when a video needs it
         self._client: YouTubeClient | None | bool = None
 
     @property
     def classifier(self) -> Classifier:
         if self._classifier is None:
-            self._classifier = make_classifier(self.cfg.classification)
+            self._classifier = (self.classifier_factory or (lambda: make_classifier(self.cfg.classification)))()
         return self._classifier
 
     @property
     def client(self) -> YouTubeClient | None:
         if self._client is None:
-            key = os.environ.get(self.cfg.discovery.api_key_env)
+            key = self.api_key or os.environ.get(self.cfg.discovery.api_key_env)
             self._client = YouTubeClient(key) if key else False
         return self._client or None
 
@@ -126,7 +137,7 @@ class Pipeline:
             if c.rank and (not c.rank.in_area or not c.rank.on_topic or c.rank.score < d.focus.min_score):
                 continue
             s = source_from_api(c.api_item)
-            if not check_scope(s, self.cfg.scope.min_confidence).accepted:  # in memory; ingest checks again
+            if not check_scope(s, self.cfg.scope.min_confidence, self.scope).accepted:  # in memory; ingest checks again
                 continue
             if s.duration_s and s.duration_s > self.cfg.acquisition.max_duration_s:
                 continue
@@ -182,10 +193,10 @@ class Pipeline:
 
     def _ingest(self, yid: str, dirs: VideoDirs, api_item: dict | None, discovery: list[DiscoveryContext], force: bool) -> VideoResult:
         log.info("[%s] metadata", yid)
-        # Scope gate (Ukraine-only, published 2022..2026) runs on in-memory metadata,
+        # Scope gate (the library's: Ukraine-only, published 2022..2026, for the main one) runs on in-memory metadata,
         # before anything is written to disk. Checked on API metadata first to avoid a yt-dlp call.
         source: SourceVideo | None = source_from_api(api_item) if api_item else None
-        verdict = check_scope(source, self.cfg.scope.min_confidence) if source else None
+        verdict = check_scope(source, self.cfg.scope.min_confidence, self.scope) if source else None
         if verdict and not verdict.accepted:
             return self._reject(yid, source, verdict)
 
@@ -201,7 +212,7 @@ class Pipeline:
             if info is None:
                 raise RuntimeError(f"no metadata from YouTube API or yt-dlp: {info_error}")
             source = acquisition.source_from_info(info)
-            verdict = check_scope(source, self.cfg.scope.min_confidence)
+            verdict = check_scope(source, self.cfg.scope.min_confidence, self.scope)
             if not verdict.accepted:
                 return self._reject(yid, source, verdict)
         elif info is not None:
@@ -243,7 +254,7 @@ class Pipeline:
             relocate_video(self.lib, self.repo, dirs.root, video=video, fetch_captions=True, translate_en=True, run_ocr=True)
             if not self.cfg.acquisition.keep_media:
                 media_path.unlink()
-                video.acquisition = video.acquisition.model_copy(update={"reason": "media deleted after extraction (keep_media=false); sha256 retained"})
+                video.acquisition = video.acquisition.model_copy(update={"reason": MEDIA_DELETED})
         video.status = "processed"
         self._save_video(dirs, video)
         log.info("[%s] done: %s, %d frames", yid, video.acquisition.status, len(video.frame_ids))
@@ -285,14 +296,17 @@ class Pipeline:
                      ccfg.min_subject, "/".join(ccfg.prefer), "/".join(ccfg.avoid))
             cands, results, emb = [cands[i] for i in keep], [results[i] for i in keep], emb[keep]
 
-        fmt = original_format(ecfg, len(cands))
+        fmt = original_format(ecfg, len(cands)) if ecfg.keep_originals else None
         inferred = infer(video.source, video.discovery, video.scope)
         pipeline_info = PipelineInfo(version=__version__, config_digest=self.cfg.digest())
         staged: list[tuple[FrameRecord, Image.Image, int]] = []
         for i, ef in frames.decode_frames(media_path, probe, cands):
             labels, scores = results[i]
             fid = frame_id_for(yid, ef.frame_number)
-            orig, sha = write_original(ef.rgb, dirs.originals / fid, fmt, ecfg)
+            if fmt:
+                orig, sha = write_original(ef.rgb, dirs.originals / fid, fmt, ecfg)
+            else:  # no full-resolution file: the hash is of the decoded pixels (width x height x RGB, row-major)
+                orig, sha = None, hashlib.sha256(np.ascontiguousarray(ef.rgb).tobytes()).hexdigest()
             web = dirs.web / f"{fid}.webp"
             thumb = dirs.thumbs / f"{fid}.webp"
             write_derivative(ef.rgb, web, ecfg.web_max_px, ecfg.web_quality)
@@ -307,7 +321,8 @@ class Pipeline:
                 scene_score=ef.scene_score,
                 original_format=fmt,
                 sha256=sha,
-                files=FrameFiles(original=self.lib.rel(orig), web=self.lib.rel(web), thumb=self.lib.rel(thumb)),
+                sha256_of="original" if fmt else "pixels",
+                files=FrameFiles(original=self.lib.rel(orig) if orig else None, web=self.lib.rel(web), thumb=self.lib.rel(thumb)),
             )
             record = FrameRecord(
                 frame_id=fid,
@@ -359,9 +374,10 @@ def reclassify(lib: Library, repo: Repository, classifier: Classifier, youtube_i
 def rescope(lib: Library, repo: Repository, min_confidence: float, purge: bool = False) -> list[tuple[str, bool, str]]:
     """Re-run the scope gate on stored videos; refresh scope + inferred metadata. With purge, delete rejects."""
     results = []
+    scope = library_scope(lib.root)
     for video_json in sorted(lib.videos.glob("*/video.json")):
         video = VideoRecord.model_validate_json(video_json.read_text())
-        verdict = check_scope(video.source, min_confidence)
+        verdict = check_scope(video.source, min_confidence, scope)
         yid = video.source.youtube_id
         if not verdict.accepted:
             if purge:
@@ -376,6 +392,30 @@ def rescope(lib: Library, repo: Repository, min_confidence: float, purge: bool =
         relocate_video(lib, repo, video_json.parent, video=video)  # video-level + stored frame-level clues
         results.append((yid, True, verdict.reason))
     return results
+
+
+def slim(lib: Library, repo: Repository, originals: bool = True, dry_run: bool = False) -> list[tuple[str, int, int]]:
+    """Free space in stored videos: delete the downloaded video (its sha256 stays in video.json) and, with originals, the
+    full-resolution frames (their sha256 stays in each frame's record; the web and thumbnail images stay).
+    Returns (youtube id, files removed, bytes freed) per video."""
+    out = []
+    for video_json in sorted(lib.videos.glob("*/video.json")):
+        dirs = VideoDirs(video_json.parent)
+        files = [p for p in dirs.media.glob("*") if p.is_file()]
+        if originals:
+            files += [p for p in dirs.originals.glob("*") if p.is_file()]
+        size = sum(p.stat().st_size for p in files)
+        if files and not dry_run:
+            video = VideoRecord.model_validate_json(video_json.read_text())
+            for p in files:
+                p.unlink()
+            if video.acquisition and video.acquisition.media and not any(dirs.media.iterdir()):
+                video.acquisition = video.acquisition.model_copy(update={"reason": MEDIA_DELETED})
+                video.updated_at = utcnow()
+                write_json(video_json, video.model_dump(mode="json"))
+                repo.upsert_video(video)
+        out.append((video_json.parent.name, len(files), size))
+    return out
 
 
 def refresh_titles(lib: Library, repo: Repository, client: YouTubeClient) -> list[tuple[str, dict[str, str]]]:
@@ -458,8 +498,10 @@ def relocate_video(lib: Library, repo: Repository, video_dir, *, video: VideoRec
     vc = geo_text.video_clues(video, records, captions)
     base = infer(video.source, video.discovery, video.scope)
     n_clued = 0
+    ukraine = video.scope is None or video.scope.scope_name == "Ukraine"
     for path, rec in zip(metas, records):
         locs, dates = geo_text.frame_clues(vc, rec)
+        locs = locs if ukraine else []  # the place gazetteer is Ukraine's: elsewhere it only finds false matches
         n_clued += bool(locs)
         rec.inferred = base.model_copy(update={
             "locations": geo_text.merge(base.locations, locs),
@@ -478,7 +520,9 @@ def analyze(lib: Library, repo: Repository, classifier: Classifier, youtube_id: 
     for video_dir in sorted(lib.videos.glob(youtube_id or "*")):
         metas = sorted((video_dir / "frames" / "meta").glob("*.json"))
         records = [FrameRecord.model_validate_json(p.read_text()) for p in metas]
-        todo = [(p, r) for p, r in zip(metas, records) if force or r.derived.features is None]
+        # frames analyzed before a feature existed (e.g. scale) are done again; their stored embeddings make it quick
+        stale = lambda r: r.derived.features is None or (hasattr(classifier, "embed") and r.derived.features.scale is None)
+        todo = [(p, r) for p, r in zip(metas, records) if force or stale(r)]
         npz = video_dir / "frames" / "embeddings.npz"
         stored = visual.load_embeddings(npz)[0] if npz.exists() else {}
         for i in range(0, len(todo), 64):
@@ -506,9 +550,11 @@ def reindex(lib: Library, repo: Repository) -> tuple[int, int]:
     Videos without a passing scope check, or published outside the hard range, are skipped.
     """
     n_videos = n_frames = 0
+    scope = library_scope(lib.root)
     for video_json in sorted(lib.videos.glob("*/video.json")):
         video = VideoRecord.model_validate_json(video_json.read_text())
-        if not (video.scope and video.scope.in_scope and in_date_range(video.source.published_at.date())):
+        if not (video.scope and video.scope.in_scope and video.scope.scope_name == scope.name
+                and scope.in_range(video.source.published_at.date())):
             log.warning("skipping %s: not in collection scope (run `evidence rescope`)", video_json.parent.name)
             continue
         repo.upsert_video(video)

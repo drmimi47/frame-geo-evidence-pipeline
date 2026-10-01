@@ -65,3 +65,16 @@ def test_query_image_ranks_by_similarity(pipeline):  # noqa: F811
     target = frames[2]
     rows = by_query_image(frames, emb, emb[target.frame_id] * 3)
     assert rows[0][0].frame_id == target.frame_id and "1.00" in rows[0][2]
+
+
+def test_scale_runs_from_close_up_to_aerial(pipeline):  # noqa: F811
+    from image_evidence.sorting import by_scale
+
+    pipeline.ingest(YID, api_item=API_ITEM, contexts=[])
+    frames = pipeline.repo.get_frames(pipeline.repo.search_frames(FrameQuery(limit=100)).frame_ids)
+    values = [0.95, 0.1, 0.5, None]  # aerial, close-up, street, not computed yet
+    for f, v in zip(frames, values):
+        f.derived.features.scale = v
+    rows = by_scale(frames[:4], {})
+    assert [r[1] for r in rows] == ["close-up", "street", "aerial", "none"]
+    assert "close-up 0 to aerial 100" in rows[0][2] and "evidence analyze" in rows[-1][2]

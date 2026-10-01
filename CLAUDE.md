@@ -1,7 +1,9 @@
 # frame-geo-evidence-pipeline: project guidelines
 
 A research collection of frames from YouTube videos **about Ukraine**, **published 2022–2026**.
-Pipeline: `src/image_evidence/`. Read-only site: `src/image_evidence/web/` (served by `evidence serve`).
+Pipeline: `src/image_evidence/`. Site: `src/image_evidence/web/` (served by `evidence serve`), read-only except
+the Video panel, which adds videos through `/api/jobs` (`jobs.py`), and the Evidence panel (rename a folder, show it
+in the file browser: `/api/folders`).
 
 ## Collection scope (hard rules, never relax silently)
 
@@ -22,6 +24,16 @@ Pipeline: `src/image_evidence/`. Read-only site: `src/image_evidence/web/` (serv
    even temporarily. For offline tests use the synthetic FFmpeg video and stubbed API items in `tests/`,
    and give stubs Ukrainian metadata. Use a scratch `--library` path for anything else.
 
+6. **Evidence folders: one scope each** (decided with the user). Every folder is a library of its own. The main
+   `library/` ("Ukraine collection") is always Ukraine 2022–2026 (`scope.UKRAINE`). Project folders are
+   `libraries/folder-<n>/` (gitignored; named "Evidence folder <n>" until renamed, the name in `folder.json`). A folder's
+   scope is fixed by the job that made it (`scope.json`: `scope.Scope`, name, whole-year range, spellings, optional
+   bounding box and language, `made_by`; read by `scope.library_scope()`); a later job may save into it only for the
+   same place and years within it (`jobs.resolve_folder`, else 400). Every video still passes the gate,
+   against its own library's scope; `ScopeCheck.scope_name` records which. Never put another scope's video in
+   `library/`, and never widen the main library's scope. Elsewhere the Ukrainian place gazetteer isn't used for
+   location clues (it only finds false matches); the country-level candidate is the scope's name.
+
 If a rule seems wrong for a task, ask the user. Don't work around it with flags or edits.
 
 ## Frame selection
@@ -35,13 +47,20 @@ about people or interiors. `pipeline._extract` works in these steps:
    `max_frames_per_video` (100), spread over the timeline (`classify.choose`). `avoid` defaults to people, interior,
    and graphic.
 5. Only the kept frames are decoded at full resolution.
+
+Storage (decided with the user): by default only the WebP web (1600px) and thumbnail (400px) images are kept. The
+downloaded video is deleted once its frames are taken (`acquisition.keep_media`, default false; its sha256 stays in
+`video.json`), and no full-resolution file is written (`extraction.keep_originals`, default false). Then the frame's
+`sha256` is of its decoded RGB pixels (`sha256_of: "pixels"`), and the panel links to the YouTube timestamp instead of
+"Original". `evidence slim` does the same to stored videos. A slimmed frame record still names its removed original
+and that file's hash (the record is immutable); the site links "Original" only while the file exists.
 When tuning, check a contact sheet in a scratch library. Don't guess.
 
 ## Sorting (forensic review)
 
-`sorting.py` orders the grid. The sorts are Place, Similar view, Camera angle, Damage, Colour, Light, Season cues,
-Published, and Detail. They use `derived.features` (`visual.py`: pixel statistics plus SigLIP zero-shot camera angle and
-damage) and SigLIP image embeddings. The embeddings are stored in `frames/embeddings.npz` (canonical) and the
+`sorting.py` orders the grid. The sorts are Place, Similar view, Camera angle, Damage, Scale, Colour, Light, Season cues,
+Published, and Detail. They use `derived.features` (`visual.py`: pixel statistics plus SigLIP zero-shot camera angle,
+damage and scale) and SigLIP image embeddings. The embeddings are stored in `frames/embeddings.npz` (canonical) and the
 `frame_embeddings` table. Ingest computes them. For older frames run `evidence analyze`.
 - Every sort returns a `sort_group` (consecutive runs are laid out as one block, with no labels in the grid) and a
   `sort_note` shown in the panel.
@@ -126,6 +145,7 @@ candidate from its API metadata by how well it can be placed there, and ingests 
 .venv/bin/evidence relocate [--offline]                 # frame-level place clues: OCR, chapters, captions (+ English translation)
 .venv/bin/evidence relocate --refetch-captions          # fetch captions again; --retranslate, --no-translate
 .venv/bin/evidence reindex --fresh
+.venv/bin/evidence slim [--keep-originals] [--dry-run]   # delete stored downloads + full-resolution frames
 .venv/bin/evidence refresh-titles                      # uploader title translations (1 unit / 50 videos)
 .venv/bin/evidence serve                                # http://127.0.0.1:8000
 .venv/bin/pytest -q
@@ -140,13 +160,17 @@ Keep it minimal (loose reference: mos.nyc). No header and no dashboards. The lay
   (one tick per extracted frame, proportional to the video's duration, with a playhead you can scrub),
   frame info, and inferred metadata with notes;
 - a numbered grid on the right, grouped by video. It holds only images and frame numbers: no video titles or other text;
-- Light/Dark, Timeline, Subtitles, Sort & filter, Search and (timeline and subtitles only) a zoom slider fixed at
-  the bottom right, in that order left to right, all at 14px, on one line with equal gaps (no grid density slider).
+- Gallery, Filmstrip, Transcript, Light/Dark, Sort & filter, Search and a zoom slider fixed at the bottom right, in that
+  order left to right, all at 14px, on one line with equal gaps. Gallery, Filmstrip and Transcript are the three views,
+  one button each with exactly one on (the chosen view is remembered per browser; stored as "grid", "timeline" and
+  "subtitles", the names the code uses).
   Sort & filter opens a small panel above it with Sort, Category, Year and Clear all (which also clears the search and
   the image); the button counts what is set ("Sort & filter · 2"). Click outside or Esc closes it. The
-  slider is the same stretch as a pinch (`zoom.js` `stretchBy`), on a log scale over `tlRange()`, and follows pinches and +/-.
+  slider (right is bigger) follows pinches and +/-. In the timeline and subtitles it is the same stretch as a pinch
+  (`zoom.js` `stretchBy`), on a log scale over `tlRange()`; in the gallery it steps through the column counts
+  (`zoom.js` `LEVELS`, `set`), fewest columns on the right, with the same snap glide as a pinch.
   Light/Dark follows the system until clicked, then is remembered per browser (`localStorage.theme`, `data-theme` on `<html>`);
-- Timeline view (toggle, remembered per browser): one row per video like a clip in an editing timeline, with no text, numbers
+- Filmstrip (the timeline view): one row per video like a clip in an editing timeline, with no text, numbers
   or ruler: a filmstrip where each extracted frame starts at a black vertical bar at its timestamp and repeats until the
   next bar. Frames outside the current search or filters leave an empty stretch with no bar. Re-layouts reuse and move
   the existing segment elements (`segEls`) at whole-pixel edges, never rebuild them, or zooming flashes white. All videos
@@ -165,7 +189,7 @@ Keep it minimal (loose reference: mos.nyc). No header and no dashboards. The lay
   video never move at once (`spreadTo`): clicking another frame closes the open one at the usual speed, then opens the
   new one, and while an image is closing its video's other frames can't be clicked open (`closingIn`), so a closing slot
   never pushes a new frame onto another line. While a frame is pinned, the marker under the pointer still thickens
-  (and darkens in Subtitles), showing it can be opened. An opened image's side (`spread.side`) is chosen when it opens and again
+  (and darkens in Transcript), showing it can be opened. An opened image's side (`spread.side`) is chosen when it opens and again
   when a zoom stops, by the same rule (where its marker ended up), never during a zoom; a change of side closes the old
   slot as the new one opens while the image glides in. Where a side has less room than the image needs, it is shown smaller.
   While zooming (pinch, slider or +/-) opened images stay exactly where they are on screen (`holdImages`: fixed, letting
@@ -177,7 +201,7 @@ Keep it minimal (loose reference: mos.nyc). No header and no dashboards. The lay
   Nothing is drawn under the image: words stop before it (`r.holes`), so what was said nearest it stays in view. Only its line grows taller; the
   rest of the strip stays at track height, centred. It closes the same way on unpin. Nothing runs off screen: a video longer than the page
   width wraps onto more lines below, like text. Hover, pin and the panel work as in the grid;
-- Subtitles (a timeline mode; the toggle switches the timeline between images and subtitles): the same lines, time
+- Transcript (the subtitles view): the filmstrip's lines, time
   scale, markers and spread, with the words instead of the images. Every word sits where it is spoken (caption word
   times, `raw/captions.json` `word_times`; `/api/videos/{id}/subtitles`), the English on a grey row below, spread over
   each phrase. A word without room is a dash as long as its room, so zoomed out a video reads as a line of speech with
@@ -203,14 +227,45 @@ Keep it minimal (loose reference: mos.nyc). No header and no dashboards. The lay
 - search by image: drop or paste an image anywhere (no button or file picker) to order the grid by SigLIP similarity
   to it, shown as the sort "Like your image". The upload is only kept in server memory (`/api/query-image`), never
   written to the library;
-- a live count at the bottom left (videos analysed, images; "x of y" when filtered), polling `/api/stats`.
+- the live count, polling `/api/stats`, at the bottom left after Video and Evidence, in italics (it is not a button): "20 uploaded · 1019 images",
+  "120/1019 images" when filtered (the tooltip, in the same wording, has both counts). It stays inside the panel's width, which never grows
+  for it (`--aside`): with too little room it shortens to videos → images ("20 → 1019"; filtered, "10 → 582"), then is
+  cut with an ellipsis; it never reaches the images;
+- Video (bottom left, an upload icon before the word): a form in the panel. It is the panel's resting state: open on
+  load (at once, before the images arrive) and whenever nothing is selected (after a frame is unpinned, or Evidence is closed); there is no intro text.
+  Opening it deselects any frame. Hovering frames (in all three views) shows each in its place, and moving the pointer
+  off the images brings it back as it was (typed text and focus kept; the same for Evidence, except while renaming);
+  clicking a frame pins it, and closing Video (its button, Esc) leaves the panel empty so hovering frames shows them. It keeps what was typed. YouTube links sit in the
+  title's place ("Paste a YouTube link, links"); Search is one line like the other fields (it grows as you type), and its example cycles through ten (`SEARCH_EXAMPLES`, no "e.g.", every `EXAMPLE_MS`): drawn over the field, not as a placeholder, so the old one lifts and fades as the next rises in; under them one grid of settings, all 14px with even rows and no help text: Search, YouTube key,
+  Anthropic key, Remember keys, Place (default Ukraine), Near, Published (whole years only, default 2022 – 2026), Max
+  videos, Licence (Creative Commons only, or any public video) and Save to: New folder (the default, with its name
+  "Evidence folder <n>" in a field below to change) or an existing folder, which fills in its place and years. For an
+  existing folder a faint line says what it holds, and warns when the search doesn't fit it (nothing for a new one). After a job starts, Save to stays on its
+  folder, so further searches add to the same project. Tokens: a YouTube Data API key, required for every job
+  (searching and reading licences); the server has no key of its own for jobs and never falls back to `.env` or the
+  environment. An Anthropic key is optional and not needed for scraping (`jobs.LLM_MODEL`
+  turns the description into up to 5 searches and, for a new library, writes its spellings and box; without it the
+  words are searched as typed). Tokens stay in the browser (this tab, or localStorage when "Remember" is ticked), go
+  with each job, are held only in that job's memory and are blanked out of its log; never write, log or return them.
+  The LLM's answer only steers the search and a new library's scope check; it is never evidence on a frame. Jobs run
+  one at a time on the server and share its SigLIP model with search by image; the panel polls `/api/jobs/{id}`
+  and reloads the grid as videos are added, or links to the folder when it isn't the one shown. A video saved without
+  images (not downloaded) says why;
+- Evidence (beside Video, a folder icon before the word): the evidence folders in the panel (no title above them),
+  held like Video; closing it goes back to Video. Each row:
+  its name, then its live count ("20 videos · 1019 images", refreshed while the list is open) (click the name to show that folder in the grid; the `lib` cookie, so the site shows one folder at a time; with none
+  chosen yet it opens the first folder that holds images, the main one first, and remembers it), its
+  place and years, where it is on disk, then Show in Finder (Open folder elsewhere) and Rename
+  (the name becomes a field: Enter saves, Esc cancels). The page title is the folder's name. `/api/jobs` and
+  `/api/folders` only accept JSON from this site's own origin.
 The panel shows the original title in plain text (no bullet). Everything under it is secondary, in faint italics: the
 uploader's own English title (`source.title_localizations`, from the API `localizations` part) when they set one,
 then the channel and year.
 No machine translation and no click-to-switch. `evidence refresh-titles` backfills stored videos.
+An empty folder (a new project) leaves the grid blank; "No frames match" is only for a search or filter.
 The grid loads every page of `/api/frames` (500 per request); never assume one page holds everything.
 Use the default cursor on tiles. Clicking a tile pins it: the other tiles dim and the panel stays on it until it is
-clicked again, empty space is clicked, or Esc is pressed. Bottom controls are sized to their text so the gaps are equal.
+clicked again, empty space is clicked, or Esc is pressed, which brings back the Video panel. Bottom controls are sized to their text so the gaps are equal.
 Plain HTML/CSS/ES modules in `web/`, no build step. Grid density is `--cols`, set by `zoom.js`:
 during a pinch the grid scales continuously (CSS transform), then on release it snaps to the nearest column count with a
 FLIP glide. Inputs are ctrl+wheel, Safari gesture events, touch, and +/- keys.

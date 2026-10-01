@@ -1,4 +1,4 @@
-import { setupZoom } from "./zoom.js";
+import { LEVELS, setupZoom } from "./zoom.js";
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -18,6 +18,10 @@ let items = [], total = 0, current = -1, facetsLoaded = false;
 let hoverPaused = false, pointerXY = "";
 // A clicked frame is pinned: the panel sticks to it and the other tiles dim, until it's clicked again.
 let pinned = null;          // frame_id
+// The Video and Evidence panels hold the panel like a pin; the library shown is picked by the `lib` cookie.
+let panelMode = null, currentLib = "";  // panelMode: "video" | "evidence"
+// Hovering frames while Video or Evidence is open previews them in its place; leaving the images brings it back.
+let peek = null;            // { nodes, focus } of the Video/Evidence panel while a frame is previewed
 // Clicking the panel title switches every title between the original and YouTube's English title.
 // Timeline view: each video drawn as an editing timeline, with a marker at every extracted frame.
 // Its subtitles mode shows each video's captions instead of the filmstrip.
@@ -68,7 +72,7 @@ async function load() {
   if (pin >= 0) return setPin(pin);
   setPin(-1);
   const again = items.findIndex((it) => it.frame_id === keep);
-  again >= 0 ? select(again) : intro();
+  again >= 0 ? select(again) : (endPeek(), intro());
 }
 
 function detail(id) {
@@ -108,7 +112,8 @@ function render(list) {
   items = [...groups.values()].flat(); // index order == on-screen order
 
   const q = $("q").value.trim();
-  main.innerHTML = items.length ? "" : `<p class="empty">No frames match${q ? ` “${esc(q)}”` : ""}${
+  // an empty folder (a new project) shows nothing at all; "no match" is only for a search or filter
+  main.innerHTML = items.length || !library.frames ? "" : `<p class="empty">No frames match${q ? ` “${esc(q)}”` : ""}${
     $("category").value || $("year").value ? " with these filters" : ""}.</p>`;
   if (timeline) return items.length && renderTimeline(groups);
   let i = 0;
@@ -339,13 +344,28 @@ function layoutTimeline() {
   syncSlider();
 }
 
-// Zoom slider (timeline and subtitles): the same stretch as a pinch, on a log scale over its whole range.
+// Zoom slider, in every view; right is bigger. Timeline and subtitles: the same stretch as a pinch, on a log
+// scale over its whole range. Gallery: one step per column count (zoom.js LEVELS), fewest columns on the right,
+// snapping with the same glide as a pinch.
 const SLIDER_MAX = 1000;
+let gridLevel = 0; // the gallery's column level (zoom.js), kept by its onChange
 function syncSlider() {
+  const el = $("tlzoom");
+  if (!timeline) {
+    el.max = LEVELS.length - 1;
+    el.value = LEVELS.length - 1 - gridLevel;
+    return;
+  }
+  el.max = SLIDER_MAX;
   const [lo, hi] = tlRange(), s = clampScale(tlScale * tlLive);
-  $("tlzoom").value = Math.round(SLIDER_MAX * Math.log(s / lo) / Math.log(hi / lo));
+  el.value = Math.round(SLIDER_MAX * Math.log(s / lo) / Math.log(hi / lo));
 }
 $("tlzoom").addEventListener("input", (e) => {
+  if (!timeline) {
+    const i = LEVELS.length - 1 - +e.target.value;
+    if (i !== zoom.level) zoom.set(i);
+    return;
+  }
   holdImages("slider", 3000); // until it is let go (change)
   const [lo, hi] = tlRange();
   zoom.stretchBy(lo * (hi / lo) ** (e.target.value / SLIDER_MAX) / tlScale);
@@ -528,10 +548,16 @@ function setView(view) {
   drawWords(); // clears the words when leaving the subtitles view
   load();
 }
+// Three views, one button each (exactly one is on): Gallery ("grid"), Filmstrip ("timeline") and Transcript
+// ("subtitles", the filmstrip's lines with the words instead of the images). The stored names stay as they were.
+const currentView = () => (subs ? "subtitles" : timeline ? "timeline" : "grid");
 function showView() {
-  $("tlzoom").hidden = !timeline;
-  $("timeline").classList.toggle("set", timeline && !subs);
-  $("subs").classList.toggle("set", subs);
+  syncSlider();
+  for (const b of document.querySelectorAll("button.view")) {
+    const on = b.dataset.view === currentView();
+    b.classList.toggle("set", on);
+    b.setAttribute("aria-pressed", on);
+  }
 }
 $("tlzoom").addEventListener("change", releaseImages);
 // + / - zoom the timeline (zoom.js); the images hold until the keys have stopped for a moment
@@ -551,9 +577,7 @@ $("theme").onclick = () => {
 };
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => { themeLabel(); drawWords(); });
 themeLabel();
-$("timeline").onclick = () => setView(timeline && !subs ? "grid" : "timeline");
-$("subs").onclick = () => setView(subs ? "timeline" : "subtitles"); // switches the timeline between images and subtitles
-showView();
+for (const b of document.querySelectorAll("button.view")) b.onclick = () => { if (b.dataset.view !== currentView()) setView(b.dataset.view); };
 
 // ---------------------------------------------------------------- subtitles
 // The subtitles view is the timeline with the words instead of the images: every word of a video's
@@ -777,12 +801,9 @@ function showTitle(it) {
   en.hidden = !t;
 }
 
+// With nothing selected the panel shows the Video panel (also on load).
 function intro() {
-  panel.dataset.video = "";
-  panel.innerHTML = `<div class="head"><div>
-    <div class="title">Ukraine image evidence</div>
-    <div class="sub">${items.length === total ? total : `${items.length} of ${total}`} frames · ${videos.size} video${videos.size === 1 ? "" : "s"}</div>
-  </div></div>`;
+  if (!panelMode) openPanel("video");
 }
 
 // Pin frame i (or unpin with -1). Pinning also shows it in the panel.
@@ -804,11 +825,33 @@ function go(i) {
 }
 
 function hover(tile) {
-  if (tile && pinned === null) select(+tile.dataset.i);
+  if (pinned !== null) return;
+  if (!panelMode) { if (tile) select(+tile.dataset.i); return; }
+  if (!tile) return;
+  // not while a folder is being renamed: the field would lose what was typed
+  if (!peek && panel.querySelector(".folders input")) return;
+  if (!peek) {
+    const focus = panel.contains(document.activeElement) ? document.activeElement : null;
+    peek = { nodes: [...panel.childNodes], focus };
+    panel.dataset.video = "";
+  }
+  select(+tile.dataset.i);
+}
+
+// The pointer left the images: show the Video or Evidence panel again, as it was (typed text and focus kept).
+function endPeek() {
+  if (!peek) return;
+  const { nodes, focus } = peek;
+  peek = null;
+  for (const t of main.querySelectorAll(".tile.on")) t.classList.remove("on");
+  current = -1;
+  panel.dataset.video = "";
+  panel.replaceChildren(...nodes);
+  focus?.focus({ preventScroll: true });
 }
 
 function select(i, scroll = false) {
-  if (!items[i]) return;
+  if (!items[i] || (panelMode && !peek)) return;
   if (i === current) {
     if (scroll) main.querySelector(`.tile[data-i="${i}"]`)?.scrollIntoView({ block: "nearest", behavior: "smooth" });
     return;
@@ -859,7 +902,7 @@ function showFrame(it) {
     `<span class="muted">Published on YouTube ${it.published_at.slice(0, 10)}, not the capture date</span>` +
     (it.sort_note ? `<br><span class="sortnote">${esc(it.sort_note)}</span>` : "") +
     (subs ? `<br><span class="muted" id="subsline"></span>` : "");
-  if (subs) loadSubtitles(it.video_id).then((d) => { if ($("subsline")) $("subsline").textContent = `Subtitles: ${subtitleNote(d)}`; }, () => {});
+  if (subs) loadSubtitles(it.video_id).then((d) => { if ($("subsline")) $("subsline").textContent = `Transcript: ${subtitleNote(d)}`; }, () => {});
   showDetails(it);
 }
 
@@ -890,7 +933,7 @@ async function showDetails(it) {
       ${visualFields(f.derived.features)}
     </dl>
     <p class="small"><a href="${f.source.timestamped_url}" target="_blank" rel="noopener">Watch at ${clock(f.frame.timestamp_s)} ↗</a> &nbsp;
-      <a href="${f.urls.original}" target="_blank">Original</a> &nbsp;
+      ${f.urls.original ? `<a href="${f.urls.original}" target="_blank">Original</a> &nbsp;` : ""}
       <a href="/api/frames/${encodeURIComponent(f.frame_id)}" target="_blank">JSON</a></p>
     <p class="small muted">${esc(f.frame_id)}</p>`;
   box.classList.remove("loading");
@@ -943,21 +986,24 @@ window.addEventListener("pointermove", (e) => {
   const xy = `${e.clientX},${e.clientY}`;
   if (xy !== pointerXY && !e.target.closest?.("#track")) hoverPaused = false; // browsers resend the old position after scrolling
   pointerXY = xy;
-  if (!hoverPaused) hover(e.target.closest?.(".tile"));
+  if (!e.target.closest?.("#main")) endPeek();
+  else if (!hoverPaused) hover(e.target.closest?.(".tile"));
 }, { passive: true });
+document.documentElement.addEventListener("pointerleave", endPeek);
 // Click a tile to pin it; click it again (or empty space, or Esc) to unpin and resume hover.
 main.addEventListener("click", (e) => {
   const tile = e.target.closest(".tile");
   if (!tile) return pinned !== null && unpin(null);
   const i = +tile.dataset.i;
+  if (panelMode) { closePanel(); current = -1; } // a frame clicked while the Video or Evidence panel is open: show it
   // in the timeline, a video's frames wait while one of its images is closing (it would push them along)
   if (timeline && items[i].frame_id !== pinned && closingIn(items[i].video_id)) return;
   items[i].frame_id === pinned ? unpin(tile) : setPin(i);
 });
-function unpin(tileUnderPointer) {
+function unpin() {
   setPin(-1);
   current = -1;
-  hover(tileUnderPointer);
+  openPanel("video"); // nothing selected: back to the Video panel
 }
 panel.addEventListener("pointermove", (e) => { if (e.target.closest("#track")) scrub(e); });
 panel.addEventListener("pointerdown", (e) => {
@@ -983,7 +1029,9 @@ function fitControls() {
 }
 document.fonts?.ready.then(fitControls);
 
-// Bottom-left: how much has been analysed, live. Polls so it keeps up while an ingest is running.
+// Bottom left, after Video and Evidence: how much the folder holds, live, kept short so it never reaches the
+// images ("20 uploaded · 1019 images"; "120/1019 images" when filtered; "20 → 1019" when there's too little room). Polls so it keeps up
+// while a job is adding videos.
 let library = { videos: 0, frames: 0 };
 function showStats(list = items) {
   const vids = new Set(list.map((it) => it.video_id)).size;
@@ -992,15 +1040,24 @@ function showStats(list = items) {
   if (near) {
     // how many images the site places at or near the chosen place (it may be none)
     const here = list.filter((it) => it.sort_group === "at" || it.sort_group === "near");
-    $("stats").textContent = here.length
-      ? `${here.length} images near ${near} · ${new Set(here.map((it) => it.video_id)).size} videos`
-      : `No images placed near ${near}`;
+    $("stats").textContent = here.length ? `${here.length} images near ${near}` : `None near ${near}`;
     return;
   }
-  $("stats").textContent = filtered
-    ? `${vids} of ${library.videos} videos · ${list.length} of ${library.frames} images`
-    : `${library.videos} videos analysed · ${library.frames} images`;
+  // filtered, only the images fit beside the buttons; the tooltip has both
+  fitStats(filtered ? `${list.length}/${library.frames} images` : `${library.videos} uploaded · ${library.frames} images`,
+           filtered ? `${vids} → ${list.length}` : `${library.videos} → ${library.frames}`);
+  $("stats").title = filtered ? `${list.length}/${library.frames} images · ${vids}/${library.videos} uploaded`
+                              : `${library.videos} uploaded · ${library.frames} images`;
 }
+// the count's text, or "videos → images" when the window leaves it too little room (it is never cut into the images)
+function fitStats(full, short) {
+  const el = $("stats");
+  el.textContent = full;
+  el.dataset.full = full;
+  el.dataset.short = short;
+  if (el.scrollWidth > el.clientWidth) el.textContent = short;
+}
+addEventListener("resize", () => { const el = $("stats"); if (el.dataset.full) fitStats(el.dataset.full, el.dataset.short); });
 async function pollStats() {
   try {
     const s = await (await fetch("/api/stats")).json();
@@ -1092,7 +1149,9 @@ $("clear").onclick = () => {
 document.addEventListener("keydown", (e) => {
   if (e.target === $("q")) { if (e.key === "Escape") $("q").blur(); return; }
   if (e.key === "Escape" && !$("filterpop").hidden) { openFilters(false); $("filters").focus(); return; }
-  if (e.target.matches?.("select, input, button")) return;
+  if (e.key === "Escape" && panelMode && e.target.matches?.("input, textarea, select")) { e.target.blur(); return; }
+  if (e.key === "Escape" && panelMode) { leavePanel(); return; }
+  if (e.target.matches?.("select, input, button, textarea")) return;
   if (e.key === "/") { e.preventDefault(); $("q").focus(); }
   if (e.key === "Escape" && pinned !== null) unpin(null);
   if (e.key === "ArrowRight") { e.preventDefault(); go(Math.min(items.length - 1, current + 1)); }
@@ -1115,8 +1174,345 @@ const zoom = setupZoom({
       if (holdBy === "pinch") releaseImages(); // the fingers lifted
     },
   },
-  onChange: (i, cols) => document.documentElement.toggleAttribute("data-dense", cols >= 8),
+  onChange: (i, cols) => {
+    document.documentElement.toggleAttribute("data-dense", cols >= 8);
+    gridLevel = i;
+    syncSlider();
+  },
 });
 
-await Promise.all([loadVideos(), pollStats()]);
+// ------------------------------------------------------------ Video and Evidence: the two panel buttons
+
+// Two buttons at the bottom left turn the panel into something other than a frame. Each deselects any frame
+// and keeps the panel until it is clicked again, Esc, or a frame is clicked.
+// - Video: a form. Links to add, a description to search YouTube for (an LLM turns it into searches when
+//   it has a token), the tokens, the search's place and years, and Save to: an evidence folder, new by
+//   default ("Evidence folder <n>", named in the form). Jobs run on the local server (jobs.py); the tokens
+//   are sent with each job and kept only in this browser (this tab, unless "Remember" is ticked).
+// - Evidence: the evidence folders, each its own library on disk: open one in the grid, show it in the
+//   file browser, rename it. The site shows one folder at a time (the `lib` cookie).
+// A folder keeps one place and range of years, set by the job that made it (the scope rules, jobs.py).
+let videoForm = null, jobTimer = null, folders = [], nextFolder = { title: "Evidence folder 1" };
+// Published: whole years, from YouTube's first (2005) to this one; the default is the main library's 2022–2026.
+const DEFAULT_START = 2022, DEFAULT_END = 2026, LAST_YEAR = Math.max(DEFAULT_END, new Date().getFullYear());
+const yearOptions = (sel) => Array.from({ length: LAST_YEAR - 2004 }, (_, k) => 2005 + k)
+  .map((y) => `<option${y === sel ? " selected" : ""}>${y}</option>`).join("");
+const store = (remember) => { try { return remember ? localStorage : sessionStorage; } catch { return null; } };
+const readToken = (k) => { try { return sessionStorage.getItem(k) ?? localStorage.getItem(k) ?? ""; } catch { return ""; } };
+const isMac = /Mac/.test(navigator.platform);
+const post = (url, body) => fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
+  .then(async (r) => { const d = await r.json(); if (!r.ok) throw new Error(d.detail ?? r.status); return d; });
+
+async function loadFolders() {
+  try {
+    const d = await (await fetch("/api/folders")).json();
+    folders = d.folders;
+    nextFolder = d.next;
+    const cur = folders.find((f) => f.current) ?? folders[0];
+    currentLib = cur.slug;
+    // remember the folder the server opened, so a job filling another folder later doesn't switch the page
+    if (!/(^|; )lib=/.test(document.cookie)) setLibCookie(cur.slug);
+    document.title = `${cur.title} · Image Evidence`;
+  } catch {}
+  return folders;
+}
+
+function openPanel(mode) {
+  peek = null;
+  if (pinned !== null) setPin(-1);
+  for (const t of main.querySelectorAll(".tile.on")) t.classList.remove("on");
+  current = -1;
+  panelMode = mode;
+  for (const id of ["video", "evidence"]) {
+    $(id).classList.toggle("set", id === mode);
+    $(id).setAttribute("aria-expanded", id === mode);
+  }
+  panel.dataset.video = "";
+  if (mode === "video") {
+    panel.replaceChildren(videoForm ??= buildVideoForm());
+    refreshVideoForm();
+  } else showEvidence();
+}
+// Closing Evidence goes back to Video; closing Video (its button, Esc) leaves the panel empty, so hovering a
+// frame shows it, until a frame is pinned and let go again. A frame clicked meanwhile just closes it (to the frame).
+function closePanel() {
+  peek = null;
+  panelMode = null;
+  for (const id of ["video", "evidence"]) { $(id).classList.remove("set"); $(id).setAttribute("aria-expanded", "false"); }
+  panel.dataset.video = "";
+  panel.replaceChildren();
+}
+const leavePanel = () => (panelMode === "evidence" ? openPanel("video") : closePanel());
+for (const id of ["video", "evidence"]) $(id).onclick = () => (panelMode === id ? leavePanel() : openPanel(id));
+const setLibCookie = (slug) => { document.cookie = `lib=${encodeURIComponent(slug)}; path=/; max-age=31536000; samesite=strict`; };
+function switchLibrary(slug) {
+  setLibCookie(slug);
+  location.reload();
+}
+
+// ---- Evidence: the folders
+
+async function showEvidence() {
+  if (panelMode !== "evidence" || peek) return;
+  await loadFolders();
+  if (panelMode !== "evidence" || peek) return;
+  const reveal = isMac ? "Show in Finder" : "Open folder";
+  panel.innerHTML = `
+    <ul class="folders">${folders.map((f) => `
+      <li class="${f.current ? "on" : ""}" data-slug="${esc(f.slug)}">
+        <button type="button" class="name" data-act="open" title="${f.current ? "Shown now" : "Show this folder"}">${esc(f.title)}</button>
+        <span class="count">${f.videos} video${f.videos === 1 ? "" : "s"} · ${f.frames} image${f.frames === 1 ? "" : "s"}</span>
+        <span class="meta">${esc(f.scope)}</span>
+        <span class="path">${esc(f.path)}</span>
+        <span class="acts"><button type="button" data-act="reveal">${reveal}</button><button type="button" data-act="rename">Rename</button></span>
+      </li>`).join("")}
+    </ul>`;
+}
+// live: the counts follow jobs while the list is open (not while a name is being edited)
+setInterval(() => { if (panelMode === "evidence" && !panel.querySelector(".folders input")) showEvidence(); }, 10000);
+panel.addEventListener("click", async (e) => {
+  const b = e.target.closest?.(".folders button");
+  if (!b) return;
+  const li = b.closest("li"), slug = li.dataset.slug;
+  if (b.dataset.act === "open") return li.classList.contains("on") ? leavePanel() : switchLibrary(slug);
+  if (b.dataset.act === "reveal") return post("/api/folders/reveal", { slug }).catch(() => {});
+  if (b.dataset.act === "rename") {
+    // the name becomes a field: Enter saves, Esc or leaving it puts the old name back
+    const name = li.querySelector(".name"), old = name.textContent;
+    const input = Object.assign(document.createElement("input"), { value: old, className: "name", spellcheck: false });
+    input.setAttribute("aria-label", "Folder name");
+    name.replaceWith(input);
+    input.select();
+    let done = false;
+    const finish = async (save) => {
+      if (done) return;
+      done = true;
+      const title = input.value.trim();
+      if (save && title && title !== old) {
+        try { await post("/api/folders/rename", { slug, title }); } catch {}
+        if (slug === currentLib) document.title = `${title} · Image Evidence`;
+      }
+      showEvidence();
+    };
+    input.addEventListener("keydown", (k) => {
+      if (k.key === "Enter") { k.preventDefault(); finish(true); }
+      if (k.key === "Escape") { k.preventDefault(); k.stopPropagation(); finish(false); }
+    });
+    input.addEventListener("blur", () => finish(true));
+  }
+});
+
+// ---- Video: the form
+
+// The Search field's placeholder cycles through these while it is empty.
+const SEARCH_EXAMPLES = [
+  "drone footage of the Kakhovka reservoir",
+  "the Dnipro riverbank near Nikopol",
+  "aerial views of Kharkiv after shelling",
+  "bridges over the Irpin river",
+  "the Carpathian mountains from above",
+  "flooded villages in Kherson Oblast",
+  "the Enerhodar shoreline across the river",
+  "sunflower fields in the southern steppe",
+  "the Odesa coastline and port",
+  "Kyiv's left bank at dusk",
+];
+// Drawn over the field rather than as its placeholder, so it can glide: the old example lifts and fades, the next
+// rises into its place. One line like the other fields (cut with an ellipsis); the field grows as you type.
+const EXAMPLE_MS = 6000;
+function cycleExamples(el, ex) {  // the form is built once and kept, so one timer serves it
+  let i = 0;
+  const fit = () => {  // empty, it is one line like the fields below it
+    el.style.height = "";
+    if (el.value) el.style.height = el.scrollHeight + "px";
+    ex.hidden = !!el.value;
+  };
+  el.addEventListener("input", fit);
+  el.setAttribute("aria-label", "Search, for example: " + SEARCH_EXAMPLES[0]);
+  setInterval(() => {
+    if (el.value || !el.isConnected) return;
+    ex.classList.add("out");
+    setTimeout(() => {
+      ex.textContent = SEARCH_EXAMPLES[(i = (i + 1) % SEARCH_EXAMPLES.length)];
+      ex.classList.replace("out", "in");
+      void ex.offsetWidth;  // start the rise from below
+      ex.classList.remove("in");
+    }, 450);
+  }, EXAMPLE_MS);
+}
+
+function buildVideoForm() {
+  const f = document.createElement("form");
+  f.className = "addvideo";
+  f.noValidate = true;
+  f.innerHTML = `
+    <div class="head">
+      <input id="v-url" class="title" type="text" placeholder="Paste a YouTube link, links" aria-label="YouTube links" autocomplete="off" spellcheck="false">
+    </div>
+    <dl class="settings">
+      <dt><label for="v-prompt">Search</label></dt><dd class="prompt"><textarea id="v-prompt" rows="1"></textarea><span class="example" aria-hidden="true">${SEARCH_EXAMPLES[0]}</span></dd>
+      <dt><label for="v-yt">YouTube key</label></dt><dd><input id="v-yt" type="password" placeholder="required" autocomplete="off" spellcheck="false"></dd>
+      <dt><label for="v-llm">Anthropic key</label></dt><dd><input id="v-llm" type="password" placeholder="optional" autocomplete="off" spellcheck="false"></dd>
+      <dt></dt><dd><label class="check"><input id="v-remember" type="checkbox"> Remember keys on this browser</label></dd>
+      <dt><label for="v-country">Place</label></dt><dd><input id="v-country" value="Ukraine" autocomplete="off"></dd>
+      <dt><label for="v-places">Near</label></dt><dd><input id="v-places" placeholder="towns or regions" autocomplete="off"></dd>
+      <dt>Published</dt><dd class="range"><select id="v-start" aria-label="Published from">${yearOptions(DEFAULT_START)}</select><span>–</span><select id="v-end" aria-label="Published until">${yearOptions(DEFAULT_END)}</select></dd>
+      <dt><label for="v-max">Max videos</label></dt><dd><input id="v-max" type="number" min="1" max="25" value="5"></dd>
+      <dt><label for="v-licence">Licence</label></dt><dd><select id="v-licence">
+        <option value="creativeCommon">Creative Commons only</option>
+        <option value="any">Any public video</option></select></dd>
+      <dt class="saveto"><label for="v-folder">Save to</label></dt><dd class="saveto"><select id="v-folder"></select></dd>
+      <dt></dt><dd id="v-name-row"><input id="v-folder-name" aria-label="New folder's name" autocomplete="off" spellcheck="false"></dd>
+    </dl>
+    <p class="small" id="v-scope"></p>
+    <p><button id="v-start-job" type="submit">Start</button></p>
+    <div id="v-job" class="small" aria-live="polite"></div>`;
+  const q = (id) => f.querySelector("#" + id);
+  cycleExamples(q("v-prompt"), f.querySelector(".prompt .example"));
+  q("v-yt").value = readToken("ytKey");
+  q("v-llm").value = readToken("llmKey");
+  try { q("v-remember").checked = !!localStorage.getItem("ytKey") || !!localStorage.getItem("llmKey"); } catch {}
+  const saveTokens = () => {
+    const keep = q("v-remember").checked;
+    for (const [k, id] of [["ytKey", "v-yt"], ["llmKey", "v-llm"]]) {
+      try { localStorage.removeItem(k); sessionStorage.removeItem(k); } catch {}
+      const v = q(id).value.trim();
+      if (v) try { store(keep)?.setItem(k, v); } catch {}
+    }
+  };
+  for (const id of ["v-yt", "v-llm", "v-remember"]) q(id).addEventListener("change", saveTokens);
+  for (const id of ["v-country", "v-folder-name"]) q(id).addEventListener("input", showSaveTo);
+  for (const id of ["v-start", "v-end"]) q(id).addEventListener("change", showSaveTo);
+  // an existing folder keeps one place and range of years: choosing it fills them in
+  q("v-folder").addEventListener("change", () => {
+    const fo = folders.find((x) => x.slug === $("v-folder").value);
+    if (fo) { $("v-country").value = fo.place; $("v-start").value = fo.start; $("v-end").value = fo.end; }
+    showSaveTo();
+  });
+  f.addEventListener("submit", (e) => { e.preventDefault(); startJob(); });
+  return f;
+}
+
+// the two years in order (picking a later "from" than "until" just swaps them)
+function years() {
+  const a = +$("v-start").value, b = +$("v-end").value;
+  return [Math.min(a, b), Math.max(a, b)];
+}
+const sameName = (a, b) => {
+  const u = ["ukraine", "україна", "украина", "ukrajina"], x = a.trim().toLowerCase(), y = b.trim().toLowerCase();
+  return x === y || (u.includes(x) && u.includes(y));
+};
+
+function fillFolders(pick) {
+  const sel = $("v-folder"), keep = pick ?? (sel.options.length ? sel.value : "new"); // new by default ("" is the main library)
+  sel.innerHTML = `<option value="new">New folder</option>` +
+    folders.map((f) => `<option value="${esc(f.slug)}">${esc(f.title)}</option>`).join("");
+  sel.value = [...sel.options].some((o) => o.value === keep) ? keep : "new";
+  if (!$("v-folder-name").dataset.typed) $("v-folder-name").value = nextFolder.title;
+}
+// Save to: what the chosen folder keeps, and whether this search fits it (the server checks it too).
+function showSaveTo() {
+  const name = $("v-folder-name");
+  if (document.activeElement === name) name.dataset.typed = name.value && name.value !== nextFolder.title ? "1" : "";
+  const fo = folders.find((x) => x.slug === $("v-folder").value);
+  const place = $("v-country").value.trim() || "Ukraine", [a, b] = years();
+  $("v-name-row").hidden = !!fo;
+  $("v-name-row").previousElementSibling.hidden = !!fo;
+  const note = $("v-scope");
+  note.classList.remove("warn");
+  if (!fo) {
+    note.textContent = "";
+  } else if (!sameName(place, fo.place) || a < fo.start || b > fo.end) {
+    note.classList.add("warn");
+    note.textContent = `“${fo.title}” keeps only ${fo.scope}. Save this to a new folder instead.`;
+  } else {
+    note.textContent = `Adds to “${fo.title}”: ${fo.scope}, ${fo.videos} video${fo.videos === 1 ? "" : "s"} so far.`;
+  }
+}
+
+let setup = null;
+async function refreshVideoForm() {
+  setup ??= await fetch("/api/ingest/setup").then((r) => r.json()).catch(() => ({}));
+  await loadFolders();
+  fillFolders();
+  showSaveTo();
+  if (!jobTimer) {
+    const last = (await fetch("/api/jobs").then((r) => r.json()).catch(() => [])).at(-1);
+    if (last) showJob(last);
+    if (last && (last.status === "running" || last.status === "queued")) watchJob(last.id);
+  }
+}
+document.addEventListener("click", (e) => {
+  const a = e.target.closest?.("a[data-lib]");
+  if (!a) return;
+  e.preventDefault();
+  switchLibrary(a.dataset.lib);
+});
+
+async function startJob() {
+  const yt = $("v-yt").value.trim(), llm = $("v-llm").value.trim(), [a, b] = years();
+  const body = {
+    urls: $("v-url").value, prompt: $("v-prompt").value, country: $("v-country").value, places: $("v-places").value,
+    start: `${a}-01-01`, end: `${b}-12-31`, max_videos: +$("v-max").value || 5, licence: $("v-licence").value,
+    folder: $("v-folder").value, folder_name: $("v-folder-name").value, youtube_key: yt, llm_key: llm,
+  };
+  if (!body.urls.trim() && !body.prompt.trim() && !body.places.trim()) {
+    $("v-job").textContent = "Paste a link, or describe what to search for.";
+    return $("v-url").focus();
+  }
+  if (!yt) {
+    $("v-job").textContent = "Paste your YouTube Data API key first.";
+    return $("v-yt").focus();
+  }
+  $("v-start-job").disabled = true;
+  try {
+    const job = await post("/api/jobs", body);
+    // the next search goes into the same folder unless another is chosen
+    $("v-folder-name").dataset.typed = "";
+    await loadFolders();
+    fillFolders(job.library);
+    showSaveTo();
+    showJob(job);
+    watchJob(job.id);
+  } catch (err) {
+    $("v-job").textContent = `Couldn't start: ${err.message}`;
+  } finally {
+    $("v-start-job").disabled = false;
+  }
+}
+
+function watchJob(id) {
+  clearInterval(jobTimer);
+  let seen = 0;
+  jobTimer = setInterval(async () => {
+    let job;
+    try { job = await (await fetch(`/api/jobs/${id}`)).json(); } catch { return; }
+    showJob(job);
+    const added = job.results.filter((r) => r.status === "processed").length;
+    if ((added > seen || job.status === "done") && job.library === currentLib) { seen = added; await loadVideos(); load(); }
+    if (job.status === "done" || job.status === "failed") { clearInterval(jobTimer); jobTimer = null; }
+  }, 2000);
+}
+
+const STATUS = { processed: "added", skipped_existing: "already here", rejected: "out of scope", failed: "failed" };
+function showJob(job) {
+  const box = $("v-job");
+  if (!box) return;
+  const head = { queued: "Waiting…", running: "Working…", done: "Done", failed: "Stopped" }[job.status];
+  // a video saved without frames (not downloaded: its licence, or unavailable) says why
+  const rows = job.results.map((r) => {
+    const bare = r.status === "processed" && !r.frames;
+    return `<li>${bare ? "no images" : esc(STATUS[r.status] ?? r.status)}${r.frames ? ` · ${r.frames} frames` : ""} · ${esc((r.title ?? r.youtube_id).slice(0, 70))}` +
+      (r.reason && (bare || r.status !== "processed") ? `<span class="note">${esc(r.reason.slice(0, 160))}</span>` : "") + "</li>";
+  }).join("");
+  const other = job.library !== currentLib && job.results.some((r) => r.status === "processed");
+  box.innerHTML = `<p><b>${head}</b> · ${esc(job.folder || job.scope)}${job.error ? `<span class="note">${esc(job.error)}</span>` : ""}</p>` +
+    (rows ? `<ul class="results">${rows}</ul>` : "") +
+    (other ? `<p><a href="#" data-lib="${esc(job.library)}">Show “${esc(job.folder)}”</a></p>` : "") +
+    (job.status === "done" || job.status === "failed" ? "" : `<pre class="log">${esc(job.log.slice(-6).join("\n"))}</pre>`);
+}
+
+showView(); // here, once the whole module is defined (the slider's range needs the subtitles' constants)
+intro(); // the Video panel shows at once, before the folder's images have loaded
+await Promise.all([loadVideos(), pollStats(), loadFolders()]);
 load();

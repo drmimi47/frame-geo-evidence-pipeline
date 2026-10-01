@@ -164,6 +164,8 @@ class VisualFeatures(Mutable):
     viewpoint_scores: dict[str, float] = Field(default_factory=dict)
     damage: float | None = Field(default=None, description="0 intact .. 1 destroyed, among frames that show buildings.")
     damage_scores: dict[str, float] = Field(default_factory=dict)
+    scale: float | None = Field(default=None, description="How much of the world is in view: 0 close-up .. 1 aerial (visual.SCALE).")
+    scale_scores: dict[str, float] = Field(default_factory=dict)
     provenance: Provenance | None = None
 
 
@@ -242,6 +244,7 @@ class ScopeCheck(Frozen):
     signals: list[ScopeSignal] = Field(default_factory=list)
     rules_version: str
     checked_at: datetime = Field(default_factory=utcnow)
+    scope_name: str = Field(default="Ukraine", description="The library scope checked against (see scope.Scope).")
 
 
 # --------------------------------------------------------------------------
@@ -260,7 +263,8 @@ class FrameSourceLink(Frozen):
 
 
 class FrameFiles(Frozen):
-    original: str
+    original: str | None = Field(default=None, description="Full-resolution file, when kept (extraction.keep_originals). "
+                                 "It may have been removed since (`evidence slim`); its sha256 stays in the record.")
     web: str
     thumb: str
 
@@ -273,8 +277,9 @@ class FrameCore(Frozen):
     height: int
     selection: Literal["scene_change", "interval"]
     scene_score: float | None = None
-    original_format: Literal["png", "jpg"]
-    sha256: str = Field(description="SHA-256 of the original-quality file.")
+    original_format: Literal["png", "jpg"] | None = None
+    sha256: str = Field(description="SHA-256 of the original-quality file, or of the decoded RGB pixels (sha256_of).")
+    sha256_of: Literal["original", "pixels"] = "original"
     files: FrameFiles
 
 

@@ -96,7 +96,7 @@ class SQLiteRepository:
                 (
                     f.frame_id, src.video_id, src.youtube_id, src.source_url, src.published_at.isoformat(),
                     src.published_at.year, core.timestamp_s, core.frame_number, core.width, core.height,
-                    core.files.original, core.files.web, core.files.thumb, core.sha256, f.model_dump_json(),
+                    core.files.original or "", core.files.web, core.files.thumb, core.sha256, f.model_dump_json(),
                 ),
             )
             self.conn.execute("DELETE FROM frame_categories WHERE frame_id=?", (f.frame_id,))

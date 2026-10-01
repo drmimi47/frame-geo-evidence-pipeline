@@ -12,11 +12,16 @@
 <body>
 <aside id="panel" aria-live="polite"></aside>
 <main id="main"></main>
-<div id="stats" aria-live="polite"></div>
+<div id="corner">
+  <button id="video" type="button" aria-expanded="false" title="Add videos: paste a link, or describe what to search YouTube for"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 10.5V2M4.5 5.5 8 2l3.5 3.5M2 9.5V14h12V9.5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>Video</button>
+  <button id="evidence" type="button" aria-expanded="false" title="Your evidence folders: where the scraped images are saved"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M1.7 3h4.4l1.5 1.6h6.7v8.7H1.7z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>Evidence</button>
+  <div id="stats" aria-live="polite"></div>
+</div>
 <footer id="controls">
+  <button class="view" data-view="grid" type="button" title="Gallery: every image in a grid, by video">Gallery</button>
+  <button class="view" data-view="timeline" type="button" title="Filmstrip: each video as an editing timeline, with a marker where each frame was taken">Filmstrip</button>
+  <button class="view" data-view="subtitles" type="button" title="Transcript: what is said in each video, word by word in time, with English below and the places it names">Transcript</button>
   <button id="theme" type="button" title="Switch between light and dark">Dark</button>
-  <button id="timeline" type="button" title="Show each video as an editing timeline, with a marker where each frame was taken">Timeline</button>
-  <button id="subs" type="button" title="Show what is said in each video: its YouTube captions, with English beside them and the places they name">Subtitles</button>
   <div id="filterwrap">
   <button id="filters" type="button" aria-expanded="false" aria-controls="filterpop" title="Order the frames, or show only some of them">Sort &amp; filter</button>
   <div id="filterpop" hidden>
@@ -26,6 +31,7 @@
     <option value="similar">Sort: Similar view</option>
     <option value="angle">Sort: Camera angle</option>
     <option value="damage">Sort: Damage</option>
+    <option value="scale">Sort: Scale</option>
     <option value="color">Sort: Colour</option>
     <option value="light">Sort: Light</option>
     <option value="season">Sort: Season cues</option>
@@ -39,7 +45,7 @@
   </div>
   </div>
   <input type="search" id="q" placeholder="Search" aria-label="Search" autocomplete="off" spellcheck="false">
-  <input type="range" id="tlzoom" min="0" max="1000" step="1" value="0" aria-label="Timeline zoom" title="Zoom the timeline (or pinch, or + / −)" hidden>
+  <input type="range" id="tlzoom" min="0" max="1000" step="1" value="0" aria-label="Zoom" title="Zoom (or pinch, or + / −)">
 </footer>
 </body>
 </html>

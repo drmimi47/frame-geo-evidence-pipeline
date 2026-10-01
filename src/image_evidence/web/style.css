@@ -126,14 +126,80 @@ main.timeline.subtitles .seg::before { z-index: 0; }
 canvas.words { position: absolute; left: 0; z-index: 1; pointer-events: none; }
 
 
-/* ------------------------------------------------- bottom-left live count */
-#stats {
+/* ------------------------------------------------- bottom left: the Video button */
+#corner {
   /* same fade as the bottom-right controls, so panel text scrolling underneath doesn't collide with it */
   position: fixed; left: 0; bottom: 0; width: var(--aside); z-index: 3;
-  padding: 40px var(--pad) 22px; font-size: 14px; line-height: 1.25; color: var(--muted);
-  background: linear-gradient(to bottom, transparent, var(--bg) 55%);
-  font-variant-numeric: tabular-nums; pointer-events: none;
+  padding: 40px var(--pad) 22px; font-size: 14px; line-height: 1.25;
+  background: linear-gradient(to bottom, transparent, var(--bg) 55%); pointer-events: none;
 }
+#corner { display: flex; align-items: baseline; gap: clamp(16px, 2.2vw, 32px); } /* the same gap as the bottom-right controls */
+#corner > button { flex-shrink: 0; white-space: nowrap; }
+@media (min-width: 801px) { #corner { padding-right: 12px; } } /* the count may run to just short of the images */
+#video, #evidence { pointer-events: auto; border: 0; background: none; padding: 0; font: inherit; color: var(--muted); cursor: default; transition: color .15s; }
+#video:hover, #video.set, #evidence:hover, #evidence.set { color: var(--fg); }
+#video svg, #evidence svg { margin-right: .4em; vertical-align: -1px; }
+
+/* ------------------------------------------------- the Evidence panel: one row per folder */
+.folders { list-style: none; margin: 0; padding: 0; font-size: 14px; line-height: 1.35; }
+.folders li { display: grid; gap: 2px; padding: 12px 0; border-top: 1px solid var(--faint); }
+.folders li:last-child { border-bottom: 1px solid var(--faint); }
+.folders li:first-child { border-top: 0; padding-top: 0; } /* the list starts where a title would */
+.folders .name { font: inherit; font-size: 17px; color: var(--muted); text-align: left; border: 0; background: none; padding: 0; cursor: default; transition: color .15s; }
+.folders .name:hover, .folders li.on .name { color: var(--fg); }
+.folders input.name { color: var(--fg); width: 100%; outline: none; border-bottom: 1px solid var(--muted); }
+.folders .count { color: var(--fg); }
+.folders .meta, .folders .path { color: var(--muted); }
+.folders .path { font: 12px/1.4 ui-monospace, Menlo, monospace; overflow-wrap: anywhere; }
+.folders .acts { display: flex; gap: 1.2em; margin-top: 4px; }
+.folders .acts button { font: inherit; color: var(--muted); border: 0; background: none; padding: 0; cursor: default; transition: color .15s; }
+.folders .acts button:hover { color: var(--fg); }
+/* the live count, after Video and Evidence: stays inside the panel's width, cut short rather than reaching the images */
+#stats { font-size: 14px; font-style: italic; color: var(--muted); font-variant-numeric: tabular-nums; pointer-events: auto;
+         min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ------------------------------------------------- the Video panel: add videos to a library */
+/* one grid of settings, all at 14px with even rows: label left, field right, each field a faint underline */
+.addvideo .settings { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 14px 1.2em; align-items: baseline;
+                      margin: 0 0 1.6em; font-size: 14px; line-height: 1.35; }
+.addvideo .settings dt { color: var(--muted); }
+.addvideo .settings dd { margin: 0; min-width: 0; }
+.addvideo input:not([type=checkbox]), .addvideo textarea, .addvideo select {
+  display: block; font: inherit; font-size: 14px; line-height: 1.35; color: inherit; width: 100%; padding: 0 0 3px; margin: 0;
+  background: none; border: 0; border-bottom: 1px solid var(--faint); border-radius: 0; outline: none; transition: border-color .15s;
+}
+.addvideo input:focus, .addvideo textarea:focus, .addvideo select:focus { border-color: var(--muted); }
+.addvideo ::placeholder { color: var(--muted); opacity: 1; }
+.addvideo #v-url { font-size: inherit; }
+.addvideo textarea { resize: none; overflow: hidden; }
+/* Search: its example sits where a placeholder would and glides to the next one */
+.addvideo .prompt { position: relative; }
+.addvideo .prompt .example { position: absolute; left: 0; right: 0; top: 0; color: var(--muted); pointer-events: none;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: opacity .45s ease, transform .45s ease; }
+.addvideo .prompt .example.out { opacity: 0; transform: translateY(-5px); }
+.addvideo .prompt .example.in { opacity: 0; transform: translateY(5px); transition: none; }
+@media (prefers-reduced-motion: reduce) { .addvideo .prompt .example.out, .addvideo .prompt .example.in { transform: none; } }
+.addvideo .check { display: flex; align-items: center; gap: .45em; color: var(--muted); }
+.addvideo .check input { margin: 0; accent-color: var(--fg); }
+.addvideo .range { display: flex; align-items: baseline; gap: .6em; }
+.addvideo .range select { flex: 1; min-width: 0; }
+.addvideo .range span { color: var(--muted); }
+/* selects drawn like the text fields (no native inset), with a small grey chevron */
+.addvideo select { appearance: none; -webkit-appearance: none; padding-right: 16px; cursor: default;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='6'%3E%3Cpath d='M.5.5 4.5 4.5 8.5.5' fill='none' stroke='%238a8a8a'/%3E%3C/svg%3E") right 2px center / 9px 6px no-repeat; }
+.addvideo input[type=number] { -moz-appearance: textfield; }
+.addvideo input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
+#v-scope { color: var(--muted); }
+#v-scope.warn { color: var(--fg); }
+#v-scope:empty { display: none; }
+.addvideo [hidden] { display: none; }
+.addvideo .small { font-size: 14px; }
+#v-start-job { font: inherit; font-size: 14px; color: var(--bg); background: var(--fg); border: 0; border-radius: 2px; padding: 5px 16px; cursor: default; }
+#v-start-job:disabled { opacity: .4; }
+#v-job p { margin: 0 0 .5em; }
+#v-job .results { list-style: none; margin: 0 0 1em; padding: 0; }
+#v-job .results li { margin: 0 0 .35em; }
+#v-job .log { margin: 0 0 1em; font: 11px/1.4 ui-monospace, Menlo, monospace; color: var(--muted); white-space: pre-wrap; overflow-wrap: anywhere; }
 aside .sortnote { color: var(--fg); }
 .swatch { display: inline-block; width: .8em; height: .8em; border-radius: 2px; margin-right: .4em; vertical-align: -1px;
           box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--fg) 15%, transparent); }
@@ -163,10 +229,9 @@ footer select:hover, footer select:focus, footer select.set { color: var(--fg); 
 #clear.on { opacity: 1; }
 #theme { border: 0; background: none; padding: 0; font: inherit; font-size: 14px; color: var(--muted); cursor: default; transition: color .15s; }
 #theme:hover { color: var(--fg); }
-#timeline { border: 0; background: none; padding: 0; font: inherit; font-size: 14px; color: var(--muted); cursor: default; transition: color .15s; }
-#timeline:hover, #timeline.set { color: var(--fg); }
-#subs { border: 0; background: none; padding: 0; font: inherit; font-size: 14px; color: var(--muted); cursor: default; transition: color .15s; }
-#subs:hover, #subs.set { color: var(--fg); }
+/* Gallery, Filmstrip, Transcript: one view on at a time */
+button.view { border: 0; background: none; padding: 0; font: inherit; font-size: 14px; color: var(--muted); cursor: default; transition: color .15s; }
+button.view:hover, button.view.set { color: var(--fg); }
 aside .src { color: var(--muted); border-bottom: 1px dotted var(--faint); }
 #clear.on:hover { color: var(--fg); }
 #q {
@@ -198,7 +263,7 @@ footer > #q { flex-shrink: 1; min-width: var(--rest, 4.2em); } /* opens only as 
   .tile { grid-template-columns: minmax(0, 1fr); }
   .tile .n { display: none; }
   footer { left: 0; padding: 32px 16px 16px; gap: 16px; flex-wrap: wrap; }
-  #stats { position: static; width: auto; margin: 0 0 110px; padding: 0 16px; background: none; }
+  #corner { position: static; width: auto; margin: 0 0 110px; padding: 0 16px; background: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
