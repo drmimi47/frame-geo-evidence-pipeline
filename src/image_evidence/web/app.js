@@ -43,7 +43,7 @@ async function load() {
   if ($("category").value) p.append("category", $("category").value);
   if ($("year").value) p.set("year", $("year").value);
   if (queryImage) { p.set("sort", "image"); p.set("image", queryImage.id); }
-  else if ($("sort").value) p.set("sort", $("sort").value);
+  else if ($("sort").value) p.set("sort", $("sort").value); // (the image sort is the branch above)
   // The API returns at most 500 frames per request: page through all of them, or the grid silently
   // drops whole videos and the numbering stops matching the timeline tally.
   const res = await (await fetch("/api/frames?" + p)).json();
@@ -147,6 +147,8 @@ const segEls = new Map();   // "index:line" -> segment element, reused across re
 const spreads = new Map();  // frame_id -> { p, from, to, start }: how far the timeline is spread open there (0..1)
 const TL_GAP = 10, TL_PAD = 12; // px between lines; room above/below a video for the markers
 const SPREAD_MS = 650;
+const GLIDE_MS = 320;      // an opened image gliding to the line its marker wrapped onto
+const SETTLE_MS = 420;     // an opened image gliding into its slot once a zoom stops
 
 function renderTimeline(groups) {
   tlVideos = [];
@@ -197,30 +199,62 @@ function layoutTimeline() {
   const pin = pinned === null ? -1 : items.findIndex((it) => it.frame_id === pinned);
   const used = new Set();
   tlVideos.forEach((r, v) => {
-    // Where time t sits along the unwrapped strip, in px. An opened frame bends it: its strip gains width
-    // (bend over [t, end]), and if it would break across the edge, the strip before it stretches to push
-    // it to the start of the next line (bend over [previous marker, t]). Both grow with the spread p.
-    const bends = [];
-    const X = (t) => bends.reduce((x, [a, b, e]) => x + e * (b > a ? clamp01((t - a) / (b - a)) : +(t >= b)), t * pps);
-    const opened = []; // [x0, x1, p]
-    r.times.forEach(([id, t], k) => {
+    // Where time t sits along the unwrapped strip, in px. An opened frame's image gets a slot of its own in
+    // the strip that shares a border with its marker, on the marker's line: the image never moves to another
+    // line and the timeline never grows backwards. A frame in the left half of its line opens to the right:
+    // the slot starts at its marker and the strip after it slides on (onto the next line if it has to). One in
+    // the right half (or whose image doesn't fit to the right) opens to the left: its marker stays put, the
+    // slot ends at it, and the strip before it on that line squeezes into the room left of the image, still
+    // in order. Nothing is drawn under the image. The slot grows with the spread p.
+    // The side is chosen when the image opens, and again when a zoom stops (its marker may have moved to the
+    // other half): then the slot on the old side closes as the one on the new side opens (SETTLE_MS) while the
+    // image glides into it (releaseImages). During a zoom the side is kept. Where a side has less room than the
+    // image needs, the image is shown smaller (`fit`).
+    const bends = [], slots = []; // bends: [from t, to t, px] (a ramp over [from, to], then held); slots: [t at the slot's end, px, frame index, p, fit]
+    const settled = new Map();    // frame index -> its image's width and side once any change of side is over
+    const now = performance.now();
+    r.times.forEach(([id, t]) => {
       const s = spreads.get(id), hit = r.shown.get(id);
       if (!s || !hit) return;
-      const end = k + 1 < r.times.length ? r.times[k + 1][1] : r.dur;
       const it = hit[0];
       const fw = Math.min(W, HF * (it.width && it.height ? it.width / it.height : 16 / 9));
-      const x0 = X(t), col = x0 - Math.floor(x0 / W + 1e-6) * W;
-      if (col > 0.5 && col + fw > W) bends.push([k ? r.times[k - 1][1] : 0, t, (W - col) * s.p]);
-      const w = (end - t) * pps;
-      if (fw > w) bends.push([t, end, (fw - w) * s.p]);
-      opened.push([X(t), subs ? Math.min(X(end), X(t) + fw) : X(end), s.p]); // subtitles: the image shows once
+      const x = t * pps, l = Math.floor(x / W + 1e-6), c = x - l * W; // where its marker sits with nothing open
+      const side = c < W / 2 && c + fw <= W ? "right" : "left";
+      if (!s.side) s.side = side;
+      else if (s.rechoose) {
+        s.rechoose = false;
+        if (side !== s.side) Object.assign(s, { side, sideAt: now });
+      }
+      const k = s.sideAt ? easeOut(clamp01((now - s.sideAt) / SETTLE_MS)) : 1; // how far across a change of side (as the image glides)
+      const slot = (side, weight) => {
+        const room = side === "right" ? W - c : c, fit = clamp01(room / fw), g = fw * fit * s.p * weight;
+        if (g <= 0) return;
+        if (side === "right") { // everything after the marker moves on by g
+          bends.push([t + 1e-6, t + 1e-6, g]);
+          slots.push([t + 1e-6, g, hit[1], s.p, fit]);
+        } else { // the line before the marker squeezes by g
+          bends.push([(l * W) / pps, t, -g], [t, t, g]);
+          slots.push([t, g, hit[1], s.p, fit]);
+        }
+      };
+      slot(s.side, k);
+      if (k < 1) slot(s.side === "right" ? "left" : "right", 1 - k);
+      settled.set(hit[1], { width: fw * clamp01((s.side === "right" ? W - c : c) / fw) * s.p, side: s.side });
     });
+    const X = (t) => bends.reduce((x, [a, b, e]) => x + e * (b > a ? clamp01((t - a) / (b - a)) : +(t >= b)), t * pps);
+    // where each image sits, unwrapped: its slots on either side of the marker (both while it changes side)
+    const byFrame = new Map();
+    for (const [at, g, i, p, fit] of slots) {
+      const a = X(at) - g, b = X(at), h = byFrame.get(i);
+      byFrame.set(i, h ? [Math.min(h[0], a), Math.max(h[1], b), i, p, Math.max(h[4], fit)] : [a, b, i, p, fit]);
+    }
+    const holes = [...byFrame.values()].sort((u, v) => u[0] - v[0]);
     const total = X(r.dur);
     const n = Math.max(1, Math.ceil(total / W - 1e-6));
-    Object.assign(r, { X, W, heights: null, sec: null });
-    // An opened frame makes its line taller, shared between two lines while it moves across.
-    const heights = Array.from({ length: n }, (_, l) => Math.round(Math.min(HF, H + (HF - H) * opened.reduce((sum, [a, b, p]) =>
-      sum + p * Math.max(0, Math.min(b, (l + 1) * W) - Math.max(a, l * W)) / Math.max(1, b - a), 0))));
+    Object.assign(r, { X, W, holes, heights: null, sec: null });
+    // An opened frame makes its line taller.
+    const heights = Array.from({ length: n }, (_, l) => Math.round(Math.min(HF, H + (HF - H) * holes.reduce((sum, [a, b, , p, fit]) =>
+      sum + p * fit * Math.max(0, Math.min(b, (l + 1) * W) - Math.max(a, l * W)) / Math.max(1, b - a), 0))));
 
     let sec = wrap.children[v];
     if (!sec) {
@@ -230,9 +264,16 @@ function layoutTimeline() {
     while (sec.children.length > n) sec.lastChild.remove();
     while (sec.children.length < n) sec.append(Object.assign(document.createElement("div"), { className: "tl-track" }));
     for (let l = 0; l < n; l++) {
-      sec.children[l].style.width = `${Math.round(Math.min(W, total - l * W))}px`;
-      sec.children[l].style.height = `${heights[l]}px`;
-      sec.children[l].style.setProperty("--ih", `${Math.max(IH, heights[l])}px`); // images squash only on a thin line
+      const tr = sec.children[l];
+      tr.style.width = `${Math.round(Math.min(W, total - l * W))}px`;
+      // a line's height eases to its target (tlTick), so an opened image moving to another line doesn't
+      // make the lines jump; a new line starts at its height
+      tr.target = heights[l];
+      tr.ih = IH;
+      if (tr.h === undefined || reduced()) tr.h = tr.target;
+      else if (tr.h !== tr.target) { easing.add(tr); tlAnimate(); }
+      tr.style.height = `${tr.h}px`;
+      tr.style.setProperty("--ih", `${Math.max(IH, tr.h)}px`); // images squash only on a thin line
     }
     r.sec = sec;
     r.heights = heights;
@@ -244,7 +285,7 @@ function layoutTimeline() {
       const hit = r.shown.get(id);
       if (!hit) return; // outside the search/filters: an empty stretch, no marker
       const end = k + 1 < r.times.length ? r.times[k + 1][1] : r.dur;
-      const x0 = X(t), x1 = X(end), open = spreads.get(id)?.to === 1;
+      const x0 = X(t), x1 = X(end);
       // A frame's strip runs until the next marker, continuing on the next line if it crosses the edge.
       for (let l = Math.min(n - 1, Math.floor(x0 / W + 1e-6)); l < n && l * W < x1 - 0.01; l++) {
         const a = l * W, left = Math.round(Math.max(x0, a) - a), right = Math.round(Math.min(x1, a + W) - a);
@@ -261,19 +302,54 @@ function layoutTimeline() {
           else thumbs.observe(seg);
           segEls.set(key, seg);
         }
-        if (open) sharpen(seg, hit[0].web_url);
-        seg.className = `tile seg${a > x0 + 0.01 ? " cont" : ""}${open ? " open" : ""}` +
+        seg.className = `tile seg${a > x0 + 0.01 ? " cont" : ""}` +
           `${hit[1] === current ? " on" : ""}${hit[1] === pin ? " pinned" : ""}`;
         seg.style.left = `${left}px`;
         seg.style.width = `${Math.max(0, right - left)}px`;
         if (seg.parentNode !== sec.children[l]) sec.children[l].append(seg);
       }
     });
+    // The opened images, each in its slot (never across two lines: the slot is chosen to fit).
+    for (const [a, b, i] of holes) {
+      const it = items[i], l = Math.min(n - 1, Math.floor((a + b) / 2 / W)), key = `img:${i}`;
+      used.add(key);
+      let el = segEls.get(key);
+      if (!el) {
+        el = Object.assign(document.createElement("div"), { className: "tile seg image" });
+        el.dataset.i = i;
+        el.style.setProperty("--img", `url("${it.thumb_url}")`);
+        sharpen(el, it.web_url);
+        segEls.set(key, el);
+      }
+      el.className = `tile seg image${i === current ? " on" : ""}${i === pin ? " pinned" : ""}`;
+      // its slot moved onto another line (a re-layout other than a zoom): the image glides there (tlTick)
+      if (el.parentNode && el.parentNode !== sec.children[l] && !held.has(el) && !reduced()) {
+        glides.set(el, { from: el.getBoundingClientRect(), start: performance.now(), ms: GLIDE_MS });
+        tlAnimate();
+      }
+      el.slotBox = { left: `${Math.round(a - l * W)}px`, width: `${Math.round(b - a)}px` };
+      el.settled = settled.get(i);
+      if (!held.has(el)) Object.assign(el.style, el.slotBox); // a held image stays where it is on screen (holdImages)
+      if (el.parentNode !== sec.children[l]) sec.children[l].append(el);
+    }
   });
   while (wrap.children.length > tlVideos.length) wrap.lastChild.remove();
   for (const [key, seg] of segEls) if (!used.has(key)) { thumbs.unobserve(seg); seg.remove(); segEls.delete(key); }
   if (subs) drawWords();
+  syncSlider();
 }
+
+// Zoom slider (timeline and subtitles): the same stretch as a pinch, on a log scale over its whole range.
+const SLIDER_MAX = 1000;
+function syncSlider() {
+  const [lo, hi] = tlRange(), s = clampScale(tlScale * tlLive);
+  $("tlzoom").value = Math.round(SLIDER_MAX * Math.log(s / lo) / Math.log(hi / lo));
+}
+$("tlzoom").addEventListener("input", (e) => {
+  holdImages("slider", 3000); // until it is let go (change)
+  const [lo, hi] = tlRange();
+  zoom.stretchBy(lo * (hi / lo) ** (e.target.value / SLIDER_MAX) / tlScale);
+});
 
 // An opened frame swaps its thumbnail for the full image once that has loaded (no blank in between).
 function sharpen(seg, url) {
@@ -284,14 +360,25 @@ function sharpen(seg, url) {
   img.decode().then(() => seg.style.setProperty("--sharp", `url("${url}")`), () => {});
 }
 
-// Open the timeline at frame_id (closing any other), or close it (null).
+// Open the timeline at frame_id (closing any other), or close it (null). Two images in the same video never
+// move at once: each image's slot moves the strip after it, so one still closing would push the new frame
+// along (even onto the next line). The open one closes as usual, and the new one opens once it has; while
+// an image is closing, its video's other frames can't be opened (see the click handler).
+const frameVideo = (fid) => items.find((it) => it.frame_id === fid)?.video_id;
+const closingIn = (v) => [...spreads].some(([key, s]) => s.to === 0 && frameVideo(key) === v);
 function spreadTo(id) {
   const now = performance.now();
-  for (const [key, s] of spreads) if (key !== id && s.to !== 0) Object.assign(s, { from: s.p, to: 0, start: now });
+  const v = id !== null ? frameVideo(id) : null;
+  let wait = 0; // until the other images in this video have closed
+  for (const [key, s] of spreads) {
+    if (key === id) continue;
+    if (s.to !== 0) Object.assign(s, { from: s.p, to: 0, start: now });
+    if (v !== null && frameVideo(key) === v) wait = Math.max(wait, s.start + SPREAD_MS - now);
+  }
   if (id !== null && timeline) {
     const s = spreads.get(id);
-    if (!s) spreads.set(id, { p: 0, from: 0, to: 1, start: now });
-    else if (s.to !== 1) Object.assign(s, { from: s.p, to: 1, start: now, settled: false });
+    if (!s) spreads.set(id, { p: 0, from: 0, to: 1, start: now + wait });
+    else if (s.to !== 1) Object.assign(s, { from: s.p, to: 1, start: now + wait, settled: false });
   }
   layoutTimeline();
   tlAnimate();
@@ -300,8 +387,48 @@ function spreadTo(id) {
 // One animation loop for the timeline: spreads opening/closing and video heights easing to their new
 // size. The video under the pointer (or the pinned one) keeps its place on screen while things move.
 let tlRaf = 0, tlLast = 0;
+const easing = new Set();   // lines easing to a new height
+const glides = new Map();   // opened image -> { from: the box it glides from, start, ms }
+
+// While zooming (pinch, slider or + / -) the opened images stay where they are on screen, while the
+// timeline zooms under them and their slots move with their markers; when the zoom stops, each glides
+// from where it was into its slot. A held image lets the pointer through, so the zoom keeps the frame
+// under the pointer in place, not the image.
+const held = new Map();     // opened image -> its box on screen when the zoom began
+let holdTimer = 0, holdBy = null;
+function holdImages(by, idleMs) {
+  if (!holding() && timeline) {
+    holdBy = by;
+    for (const el of main.querySelectorAll(".seg.image")) {
+      el.style.transform = "";
+      glides.delete(el);
+      const r = el.getBoundingClientRect();
+      held.set(el, r);
+      Object.assign(el.style, { position: "fixed", left: `${r.left}px`, top: `${r.top}px`, width: `${r.width}px`, height: `${r.height}px`, pointerEvents: "none" });
+    }
+    if (!held.size) holdBy = by; // nothing open: still a zoom, so nothing else needs doing
+  }
+  clearTimeout(holdTimer);
+  holdTimer = setTimeout(releaseImages, idleMs); // the end of a zoom with no end event (or one that never came)
+}
+const holding = () => holdBy !== null;
+function releaseImages() {
+  clearTimeout(holdTimer);
+  if (!holding()) return;
+  holdBy = null;
+  for (const s of spreads.values()) if (s.to === 1) s.rechoose = true; // its marker may now be in the other half
+  layoutTimeline();
+  const now = performance.now();
+  for (const [el, r] of held) {
+    Object.assign(el.style, { position: "", top: "", height: "", pointerEvents: "" }, el.slotBox);
+    if (el.isConnected && !reduced()) glides.set(el, { from: r, start: now, ms: SETTLE_MS });
+  }
+  held.clear();
+  tlAnimate();
+}
 const reduced = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 const easeInOut = (x) => (x < 0.5 ? 4 * x * x * x : 1 - (-2 * x + 2) ** 3 / 2);
+const easeOut = (x) => 1 - (1 - x) ** 3; // moves at once and slows into place: no wind-up, no overshoot
 function tlAnimate() {
   if (!tlRaf) tlRaf = requestAnimationFrame(tlTick);
 }
@@ -314,12 +441,20 @@ function tlTick(now) {
     const x = reduced() ? 1 : clamp01((now - s.start) / SPREAD_MS);
     const p = s.from + (s.to - s.from) * easeInOut(x);
     if (p !== s.p) { s.p = p; spreading = true; }
+    if (s.sideAt && now - s.sideAt < SETTLE_MS + 32) { spreading = true; busy = true; } // changing side
     if (x < 1) busy = true;
     else if (s.to === 0) spreads.delete(id);
     else if (!s.settled) { s.settled = true; opened = id; }
   }
   if (spreading) layoutTimeline();
   const k = 1 - Math.exp(-dt / 70);
+  for (const tr of easing) {
+    tr.h = Math.abs(tr.target - tr.h) < 0.5 ? tr.target : tr.h + (tr.target - tr.h) * k;
+    tr.style.height = `${tr.h}px`;
+    tr.style.setProperty("--ih", `${Math.max(tr.ih, tr.h)}px`);
+    if (tr.h === tr.target || !tr.isConnected) easing.delete(tr);
+    else busy = true;
+  }
   for (const sec of main.querySelectorAll(".tl-video")) {
     if (sec.h === sec.target) continue;
     sec.h = Math.abs(sec.target - sec.h) < 0.5 ? sec.target : sec.h + (sec.target - sec.h) * k;
@@ -335,6 +470,25 @@ function tlTick(now) {
     if (pieces.length && (pieces.at(-1).bottom > innerHeight - 110 || pieces[0].top < 0)) {
       scrollBy({ top: pieces[0].top - Math.max(40, (innerHeight - (pieces.at(-1).bottom - pieces[0].top)) / 2), behavior: "smooth" });
     }
+  }
+  // A gliding image blends, every frame, from the box it had on its old line to where it belongs now (which
+  // moves while the lines ease), in place and in size, so it starts exactly where it was and ends in place.
+  for (const [el, g] of glides) {
+    el.style.transform = "";
+    const x = reduced() ? 1 : clamp01((now - g.start) / g.ms);
+    if (x >= 1 || !el.isConnected) { glides.delete(el); el.style.transformOrigin = ""; continue; }
+    // It heads for its final size (not its slot's size part-way through a change of side, which would make it
+    // shrink and grow back), kept against its marker on the side it settles on.
+    const to = el.getBoundingClientRect(), e = 1 - easeOut(x), f = g.from;
+    // Its edge heads straight for its marker (an image left of the marker by its right edge).
+    const fw = el.settled?.width || to.width, fh = el.parentNode.target ?? to.height, byRight = el.settled?.side === "left";
+    const w = fw + (f.width - fw) * e, h = fh + (f.height - fh) * e;
+    const marker = main.querySelector(`.seg:not(.cont):not(.image)[data-i="${el.dataset.i}"]`)?.getBoundingClientRect();
+    const edge = marker ? marker.left : byRight ? to.right : to.left;
+    const dx = byRight ? edge + (f.right - edge) * e - to.right : edge + (f.left - edge) * e - to.left;
+    el.style.transformOrigin = byRight ? "100% 0" : "0 0";
+    el.style.transform = `translate(${dx}px, ${(f.top - to.top) * e}px) scale(${w / Math.max(1, to.width)}, ${h / Math.max(1, to.height)})`;
+    busy = true;
   }
   if (subs && busy) drawWords(false); // lines may have come into view
   tlLast = busy ? now : 0;
@@ -375,9 +529,16 @@ function setView(view) {
   load();
 }
 function showView() {
+  $("tlzoom").hidden = !timeline;
   $("timeline").classList.toggle("set", timeline && !subs);
   $("subs").classList.toggle("set", subs);
 }
+$("tlzoom").addEventListener("change", releaseImages);
+// + / - zoom the timeline (zoom.js); the images hold until the keys have stopped for a moment
+addEventListener("keydown", (e) => {
+  if (timeline && /^[-+=_]$/.test(e.key) && !e.metaKey && !e.ctrlKey && !e.target.matches?.("input, select, textarea")) holdImages("keys", 350);
+}, { capture: true });
+
 // Light/dark: follows the system until chosen here, then remembered per browser. The button names the other one.
 const isDark = () => (document.documentElement.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")) === "dark";
 const themeLabel = () => { $("theme").textContent = isDark() ? "Light" : "Dark"; };
@@ -471,7 +632,7 @@ function drawWords(relayout = true) {
           lineCanvas.set(tr, cv);
         }
         if (cv.parentNode !== tr) tr.append(cv);
-        cv.style.top = `${Math.round((lh - SUB_H) / 2)}px`; // centred in a line grown for an opened frame
+        cv.style.top = `${Math.round(((tr.h ?? lh) - SUB_H) / 2)}px`; // centred in a line grown for an opened frame
         if (cv.v !== wordsVersion && r.subs) {
           cv.v = wordsVersion;
           if (cv.width !== Math.round(r.W * dpr) || cv.height !== SUB_H * dpr) {
@@ -484,7 +645,7 @@ function drawWords(relayout = true) {
           todo.set(l, ctx);
         }
       }
-      y += lh + TL_GAP;
+      y += (tr?.h ?? lh) + TL_GAP;
     });
     if (todo.size && r.subs.words.length) drawLines(r, todo);
     else if (todo.has(0)) noSubtitles(r, todo.get(0));
@@ -500,12 +661,13 @@ function drawWords(relayout = true) {
 // A video without captions says so at the start of its first line, in the shortest wording that fits
 // inside its timeblock (nothing when even that doesn't).
 function noSubtitles(r, ctx) {
-  const room = Math.round(Math.min(r.W, r.X(r.dur))) - 12;
+  const hole = r.holes.find(([a]) => a > r.X(0) - 0.01); // and stops before an opened image
+  const room = Math.round(Math.min(r.W, r.X(r.dur), hole ? hole[0] : Infinity)) - r.X(0) - 12;
   ctx.font = `12px ${getComputedStyle(document.body).fontFamily}`;
   const text = ["No subtitles detected", "No subtitles", "None"].find((t) => ctx.measureText(t).width <= room);
   if (!text) return;
   ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue("--muted").trim();
-  ctx.fillText(text, 6, 26);
+  ctx.fillText(text, r.X(0) + 6, 26);
 }
 
 // Draw a video's words on the given lines (line -> 2d context).
@@ -528,11 +690,15 @@ function drawLines(r, todo) {
     for (let k = 0; k < words.length; k++) {
       const [t, word, flag] = words[k];
       if (/^>+$/.test(word)) continue; // ">>" marks a new speaker in captions
-      const x = r.X(t), l = Math.floor(x / r.W + 1e-6);
+      let x = r.X(t);
+      const inside = r.holes.find(([a, b]) => x >= a - 0.5 && x < b); // said right at an opened frame's marker:
+      if (inside) x = inside[1];                                       // it follows the image
+      const l = Math.floor(x / r.W + 1e-6);
       // the priority pass needs every line of the video (a word can move onto the next line), so that a
       // line looks the same whichever lines are being drawn with it
       if (!todo.has(l) && !WORD_PRIORITY) continue;
-      const room = (k + 1 < words.length ? r.X(words[k + 1][0]) : r.X(r.dur) + WORD_GAP) - x - WORD_GAP;
+      const hole = r.holes.find(([a]) => a > x - 0.01); // an opened image after it: the word stops before it
+      const room = Math.min(k + 1 < words.length ? r.X(words[k + 1][0]) : r.X(r.dur) + WORD_GAP, hole ? hole[0] : Infinity) - x - WORD_GAP;
       const f = kind === "en" ? (flag === 1 ? font.enPlace : font.en) : flag === 1 ? font.place : font.orig, marked = hit(word);
       laid.push({ word, flag, l, lx: x - l * r.W, room, f, tw: width(f, word), marked,
                   strong: flag === 1 || marked, land: flag === 3 });
@@ -555,6 +721,8 @@ function drawLines(r, todo) {
         const last = claims.get(w.l)?.at(-1);
         let at = last && last[1] > w.lx ? last[1] : w.lx;
         if (at + w.tw > end(w.l)) at = end(w.l) - w.tw;
+        const lh = r.holes.map(([a, b]) => [a - w.l * r.W, b - w.l * r.W]);
+        if (lh.some(([a, b]) => at < b && at + w.tw > a)) continue; // it would run under an opened image
         if (at >= 0 && w.lx - at <= NUDGE_PX && at - w.lx <= NUDGE_PX && !(last && at < last[1] - 0.01)) { claim(w, w.l, at); continue; }
         const next = w.l + 1, start = claims.get(next)?.at(-1)?.[1] ?? 0;
         if (next < r.heights.length && r.W - w.lx + start <= NUDGE_PX && start + w.tw <= end(next)) claim(w, next, start);
@@ -782,6 +950,8 @@ main.addEventListener("click", (e) => {
   const tile = e.target.closest(".tile");
   if (!tile) return pinned !== null && unpin(null);
   const i = +tile.dataset.i;
+  // in the timeline, a video's frames wait while one of its images is closing (it would push them along)
+  if (timeline && items[i].frame_id !== pinned && closingIn(items[i].video_id)) return;
   items[i].frame_id === pinned ? unpin(tile) : setPin(i);
 });
 function unpin(tileUnderPointer) {
@@ -850,36 +1020,54 @@ fetch("/api/study-places").then((r) => r.json()).then((list) => {
 
 let t;
 $("q").oninput = () => { clearTimeout(t); t = setTimeout(load, 250); };
-const syncClear = () => $("clear").classList.toggle("on", !!($("q").value || $("category").value || $("year").value || queryImage));
-$("sort").onchange = (e) => { e.target.classList.toggle("set", !!e.target.value); if (queryImage) setQueryImage(null); fitControls(); load(); };
 
-// Search by image: pick, drop or paste an image; the grid is ordered by visual similarity to it.
-// The image is only held in memory by the local server, never added to the library.
-let queryImage = null; // { id, url }
+// Sort & filter: one button opening a small panel with Sort, Category, Year and Clear all. The button
+// says how many of them are set ("Sort & filter · 2").
+function syncFilters() {
+  const n = [$("sort").value || queryImage, $("category").value, $("year").value].filter(Boolean).length;
+  $("filters").textContent = n ? `Sort & filter · ${n}` : "Sort & filter";
+  $("filters").classList.toggle("set", n > 0);
+  $("clear").classList.toggle("on", !!(n || $("q").value));
+}
+function openFilters(open) {
+  $("filterpop").hidden = !open;
+  $("filters").setAttribute("aria-expanded", open);
+}
+$("filters").onclick = () => openFilters($("filterpop").hidden);
+document.addEventListener("pointerdown", (e) => { if (!e.target.closest("#filterwrap")) openFilters(false); });
+$("sort").onchange = (e) => {
+  if (queryImage && e.target.value !== IMAGE_SORT) setQueryImage(null);
+  e.target.classList.toggle("set", !!e.target.value);
+  syncFilters(); fitControls(); load();
+};
+
+// Search by image: drop or paste an image anywhere; the grid is ordered by visual similarity to it, shown
+// as the sort "Like your image" (pick another sort, or Clear all, to stop). The image is only held in
+// memory by the local server, never added to the library.
+const IMAGE_SORT = "__image";
+let queryImage = null; // { id }
 async function useImage(file) {
   if (!file || !file.type.startsWith("image/")) return;
-  const btn = $("byimage");
-  btn.textContent = "Reading image…";
+  $("stats").textContent = "Reading image…";
   try {
     const r = await fetch("/api/query-image", { method: "POST", body: file, headers: { "Content-Type": file.type } });
     if (!r.ok) throw new Error((await r.json()).detail ?? r.status);
-    setQueryImage({ id: (await r.json()).id, url: URL.createObjectURL(file) });
+    setQueryImage({ id: (await r.json()).id });
     load();
   } catch (err) {
-    btn.textContent = "By image";
-    btn.title = `Couldn't use that image: ${err.message}`;
+    $("stats").textContent = `Couldn't use that image: ${err.message}`;
   }
 }
 function setQueryImage(q) {
-  if (queryImage) URL.revokeObjectURL(queryImage.url);
   queryImage = q;
-  const btn = $("byimage");
-  btn.classList.toggle("set", !!q);
-  btn.innerHTML = q ? `<img class="qthumb" src="${q.url}" alt="">Your image ×` : "By image";
-  syncClear();
+  $("sort").querySelector(`option[value="${IMAGE_SORT}"]`)?.remove();
+  if (q) {
+    $("sort").add(new Option("Sort: Like your image", IMAGE_SORT), 1);
+    $("sort").value = IMAGE_SORT;
+  } else if ($("sort").value === IMAGE_SORT || !$("sort").value) $("sort").value = "";
+  $("sort").classList.toggle("set", !!$("sort").value);
+  syncFilters(); fitControls();
 }
-$("byimage").onclick = () => { if (queryImage) { setQueryImage(null); load(); } else $("imgfile").click(); };
-$("imgfile").onchange = (e) => { useImage(e.target.files[0]); e.target.value = ""; };
 window.addEventListener("dragover", (e) => { if ([...e.dataTransfer.items].some((i) => i.type.startsWith("image/"))) e.preventDefault(); });
 window.addEventListener("drop", (e) => {
   const file = [...e.dataTransfer.files].find((f) => f.type.startsWith("image/"));
@@ -890,21 +1078,20 @@ window.addEventListener("paste", (e) => {
   if (file && !e.target.matches?.("input, textarea")) { e.preventDefault(); useImage(file); }
 });
 for (const id of ["category", "year"]) {
-  $(id).onchange = (e) => { e.target.classList.toggle("set", !!e.target.value); fitControls(); syncClear(); load(); };
+  $(id).onchange = (e) => { e.target.classList.toggle("set", !!e.target.value); fitControls(); syncFilters(); load(); };
 }
-$("q").addEventListener("input", syncClear);
+$("q").addEventListener("input", syncFilters);
+// Clear all: sort, filters, search and the image
 $("clear").onclick = () => {
-  $("q").value = $("category").value = $("year").value = "";
+  $("q").value = $("sort").value = $("category").value = $("year").value = "";
+  for (const id of ["sort", "category", "year"]) $(id).classList.remove("set");
   setQueryImage(null);
-  $("category").classList.remove("set");
-  $("year").classList.remove("set");
-  fitControls();
-  syncClear();
   load();
 };
 
 document.addEventListener("keydown", (e) => {
   if (e.target === $("q")) { if (e.key === "Escape") $("q").blur(); return; }
+  if (e.key === "Escape" && !$("filterpop").hidden) { openFilters(false); $("filters").focus(); return; }
   if (e.target.matches?.("select, input, button")) return;
   if (e.key === "/") { e.preventDefault(); $("q").focus(); }
   if (e.key === "Escape" && pinned !== null) unpin(null);
@@ -914,17 +1101,18 @@ document.addEventListener("keydown", (e) => {
 
 // Grid density: pinch or +/- (see zoom.js).
 // In the timeline view a pinch stretches time instead, re-wrapping the timelines as it goes.
-setupZoom({
+const zoom = setupZoom({
   root: main,
   axis: () => (timeline ? "x" : "both"),
   stretch: {
     clamp: (s) => clampScale(tlScale * s) / tlScale,
-    preview: (s) => { tlLive = s; layoutTimeline(); },
+    preview: (s) => { holdImages("pinch", 3000); tlLive = s; layoutTimeline(); },
     commit: (s) => {
       tlScale = clampScale(tlScale * s);
       tlLive = 1;
       try { localStorage.setItem(zoomKey(), tlScale); } catch {}
       layoutTimeline();
+      if (holdBy === "pinch") releaseImages(); // the fingers lifted
     },
   },
   onChange: (i, cols) => document.documentElement.toggleAttribute("data-dense", cols >= 8),

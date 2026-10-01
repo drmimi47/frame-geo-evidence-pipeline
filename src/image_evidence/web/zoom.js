@@ -233,5 +233,6 @@ export function setupZoom({ root, onChange, axis = () => "both", stretch }) {
     else commit(clamp(level + k));
   });
 
-  return { set: (i) => commit(clamp(i)), get level() { return level; } };
+  // stretchBy(factor): a timeline stretch from outside (the zoom slider), keeping the middle of the screen in place
+  return { set: (i) => commit(clamp(i)), get level() { return level; }, stretchBy: (s) => stretchBy(s) };
 }

@@ -140,7 +140,11 @@ Keep it minimal (loose reference: mos.nyc). No header and no dashboards. The lay
   (one tick per extracted frame, proportional to the video's duration, with a playhead you can scrub),
   frame info, and inferred metadata with notes;
 - a numbered grid on the right, grouped by video. It holds only images and frame numbers: no video titles or other text;
-- Light/Dark, Timeline, Subtitles, Sort, Clear all, filters and search fixed at the bottom right, in that order left to right, all at 14px (no density slider).
+- Light/Dark, Timeline, Subtitles, Sort & filter, Search and (timeline and subtitles only) a zoom slider fixed at
+  the bottom right, in that order left to right, all at 14px, on one line with equal gaps (no grid density slider).
+  Sort & filter opens a small panel above it with Sort, Category, Year and Clear all (which also clears the search and
+  the image); the button counts what is set ("Sort & filter · 2"). Click outside or Esc closes it. The
+  slider is the same stretch as a pinch (`zoom.js` `stretchBy`), on a log scale over `tlRange()`, and follows pinches and +/-.
   Light/Dark follows the system until clicked, then is remembered per browser (`localStorage.theme`, `data-theme` on `<html>`);
 - Timeline view (toggle, remembered per browser): one row per video like a clip in an editing timeline, with no text, numbers
   or ruler: a filmstrip where each extracted frame starts at a black vertical bar at its timestamp and repeats until the
@@ -151,10 +155,26 @@ Keep it minimal (loose reference: mos.nyc). No header and no dashboards. The lay
   so short clips with dense frames spread out too. Lines run the full page width so the strip reflows smoothly, and a
   video's height eases (`tlTick`) when it gains or loses a line, with the video under the pointer held in place.
   Strips meet edge to edge with no blur, fade or splice effects. The strip is thin: each image keeps its width at the
-  unsquashed height (`--ih`, `--ar`) but is squashed flat to the line height; a line grown for an opened frame is not squashed. Clicking a frame (pin) pulls the
-  timeline apart there (`tlGeometry`): the rest of the strip slides along to make room (the video grows longer), and the
-  frame lifts out of the strip and glides from its old spot to its opened one, growing to show the image whole and sharp
-  (`web_url`). If it would break across the edge, an empty gap pushes it to the next line. Only its line grows taller; the
+  unsquashed height (`--ih`, `--ar`) but is squashed flat to the line height; a line grown for an opened frame is not squashed. Clicking a frame (pin) opens a slot
+  in the strip for its image, whole and sharp (`web_url`, a `.seg.image` element), on the line its marker is on: the image
+  never moves to another line, and the timeline only grows forward (never backwards, never a line added above). The image always
+  shares a border with its marker. A frame in the left half of its line opens to the right: the slot starts at the
+  marker and the strip after it slides on (onto the next line if it must). One in the right half (or whose image doesn't
+  fit to the right) opens to the left: the marker stays put, the slot ends at it, and the strip before it on that line
+  squeezes into the room left of the image, still in order (words show as dashes until zoomed in). Two images in one
+  video never move at once (`spreadTo`): clicking another frame closes the open one at the usual speed, then opens the
+  new one, and while an image is closing its video's other frames can't be clicked open (`closingIn`), so a closing slot
+  never pushes a new frame onto another line. While a frame is pinned, the marker under the pointer still thickens
+  (and darkens in Subtitles), showing it can be opened. An opened image's side (`spread.side`) is chosen when it opens and again
+  when a zoom stops, by the same rule (where its marker ended up), never during a zoom; a change of side closes the old
+  slot as the new one opens while the image glides in. Where a side has less room than the image needs, it is shown smaller.
+  While zooming (pinch, slider or +/-) opened images stay exactly where they are on screen (`holdImages`: fixed, letting
+  the pointer through so the zoom keeps the frame under it in place) while the timeline zooms under them and their slots
+  move with their markers; when the zoom stops (pinch end, slider let go, keys idle) each glides into its slot, on whichever side of its marker now fits
+  (`releaseImages`, `SETTLE_MS`, ease-out: it starts moving at once and slows into place,
+  no wind-up, bounce or pulse; it heads for its final size, never its slot's in-between size, with its edge going
+  straight to its marker). Lines ease to new heights (`easing`).
+  Nothing is drawn under the image: words stop before it (`r.holes`), so what was said nearest it stays in view. Only its line grows taller; the
   rest of the strip stays at track height, centred. It closes the same way on unpin. Nothing runs off screen: a video longer than the page
   width wraps onto more lines below, like text. Hover, pin and the panel work as in the grid;
 - Subtitles (a timeline mode; the toggle switches the timeline between images and subtitles): the same lines, time
@@ -180,8 +200,9 @@ Keep it minimal (loose reference: mos.nyc). No header and no dashboards. The lay
   kept apart from the images' (`subtitleZoom`) and reaches reading width (`READ_PPS`). An opened frame shows its image
   once. No note above the lines; the panel names each video's source (auto-captions,
   uploader's English, or machine translation);
-- search by image: "By image" (or drop or paste an image) orders the grid by SigLIP similarity to it. The upload is
-  only kept in server memory (`/api/query-image`), never written to the library;
+- search by image: drop or paste an image anywhere (no button or file picker) to order the grid by SigLIP similarity
+  to it, shown as the sort "Like your image". The upload is only kept in server memory (`/api/query-image`), never
+  written to the library;
 - a live count at the bottom left (videos analysed, images; "x of y" when filtered), polling `/api/stats`.
 The panel shows the original title in plain text (no bullet). Everything under it is secondary, in faint italics: the
 uploader's own English title (`source.title_localizations`, from the API `localizations` part) when they set one,

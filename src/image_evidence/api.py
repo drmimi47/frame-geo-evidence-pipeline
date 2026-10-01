@@ -111,6 +111,15 @@ def create_app(library_dir: Path, study_areas: list | None = None) -> FastAPI:
         return {"video_id": video_id, "fetched": captions is not None,
                 **geo_text.subtitles(v, captions, geo_text.english_captions(video_dir, captions))}
 
+    # The site's own files are revalidated on every load (cheap: an ETag check), so after an edit the
+    # browser never mixes a new app.js with a stale cached module.
+    @app.middleware("http")
+    async def revalidate_site(request: Request, call_next):
+        response = await call_next(request)
+        if request.url.path == "/" or request.url.path.startswith("/static/"):
+            response.headers["Cache-Control"] = "no-cache"
+        return response
+
     @app.get("/", include_in_schema=False)
     def index():
         return FileResponse(Path(__file__).parent / "web" / "index.html")

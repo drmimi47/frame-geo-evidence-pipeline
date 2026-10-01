@@ -98,12 +98,15 @@ main.timeline .seg {
   position: absolute; top: 0; height: var(--band, 100%); display: block;
   background: var(--sharp, none) left center / calc(var(--ih) * var(--ar)) 100% repeat-x, var(--img, none) left center / calc(var(--ih) * var(--ar)) 100% repeat-x;
 }
-/* an opened frame is drawn lifted out of the strip (its own slot stays empty underneath) */
-main.timeline .seg.open { z-index: 1; }
-main.timeline .seg.lifted { visibility: hidden; }
+/* an opened frame's image, in a slot of its own in the strip (app.js layoutTimeline): the whole image, sharp
+   once loaded, growing as the slot opens. It is not a marker: the frame's marker stays on its strip. */
+main.timeline .seg.image { z-index: 3; transform-origin: 0 0; background: var(--sharp, none) center / cover no-repeat, var(--img, none) center / cover no-repeat; }
+main.timeline .seg.image::before { display: none; }
 /* the marker: where the frame was taken */
 main.timeline .seg::before { content: ""; position: absolute; left: 0; top: -6px; bottom: -6px; width: 1px; background: var(--fg); z-index: 2; }
 main.timeline .seg.on::before, main.timeline .seg.pinned::before { width: 2px; top: -10px; bottom: -10px; }
+/* while a frame is pinned (hovering doesn't move the panel), the marker under the pointer still shows it can be opened */
+main.timeline.has-pin .seg:hover::before { width: 2px; top: -10px; bottom: -10px; }
 /* the continuation of a strip on the next line has no marker of its own */
 main.timeline .seg.cont::before { display: none; }
 /* a strip fills far more of the page than a grid tile: dim the others less while one is pinned */
@@ -113,16 +116,15 @@ main.timeline.has-pin .seg:not(.pinned):hover { opacity: .75; }
 /* ----------------------------------------------- subtitles view (the timeline, with words for images) */
 /* app.js draws the words on a canvas in each line near the screen; the strips keep their markers (for hover,
    pin and spread) but show no image, except an opened frame. */
-main.timeline.subtitles .seg:not(.open) { background: none; }
-main.timeline.subtitles .seg.open { background-repeat: no-repeat; }
-main.timeline.subtitles .seg.open.cont { background: none; }
+main.timeline.subtitles .seg:not(.image) { background: none; }
 /* the frame markers step back behind the words, except the one shown in the panel */
 main.timeline.subtitles .seg:not(.on):not(.pinned)::before { background: var(--faint); }
+main.timeline.subtitles.has-pin .seg:hover::before { background: var(--fg); }
 /* and run under the words (the canvas, z-index 1), which clear a patch of strip behind each word */
 main.timeline.subtitles .seg::before { z-index: 0; }
 /* each line's words, inside the line: above the empty strips, under an opened frame's image */
 canvas.words { position: absolute; left: 0; z-index: 1; pointer-events: none; }
-main.timeline.subtitles .seg.open { z-index: 3; }
+
 
 /* ------------------------------------------------- bottom-left live count */
 #stats {
@@ -139,29 +141,32 @@ aside .sortnote { color: var(--fg); }
 /* ------------------------------------------------- bottom controls (no header) */
 footer {
   position: fixed; left: var(--aside); right: 0; bottom: 0; z-index: 2;
-  display: flex; justify-content: flex-end; align-items: baseline; gap: 32px;
+  display: flex; justify-content: flex-end; align-items: baseline; gap: clamp(16px, 2.2vw, 32px); /* equal gaps, tighter on narrow screens */
   padding: 40px var(--pad) 22px 0;
   background: linear-gradient(to bottom, transparent, var(--bg) 55%); pointer-events: none;
 }
-footer > * { pointer-events: auto; }
+footer > * { pointer-events: auto; flex-shrink: 0; white-space: nowrap; }
 footer select {
   appearance: none; -webkit-appearance: none; border: 0; background: none; padding: 0; font-size: 14px;
   color: var(--muted); cursor: default; transition: color .15s;
 }
 footer select:hover, footer select:focus, footer select.set { color: var(--fg); outline: none; }
+/* Sort & filter: one button opening a small panel above it with Sort, Category, Year and Clear all */
+#filterwrap { position: relative; }
+#filters { border: 0; background: none; padding: 0; font: inherit; font-size: 14px; color: var(--muted); cursor: default; transition: color .15s; }
+#filters:hover, #filters.set, #filters[aria-expanded="true"] { color: var(--fg); }
+#filterpop { position: absolute; bottom: calc(100% + 12px); left: -14px; display: flex; flex-direction: column; align-items: flex-start;
+             gap: 10px; padding: 12px 14px; background: var(--bg); box-shadow: 0 0 0 1px var(--faint); border-radius: 3px; }
+#filterpop[hidden] { display: none; }
 #clear { border: 0; background: none; padding: 0; font: inherit; font-size: 14px; color: var(--muted); cursor: default;
          opacity: .45; transition: opacity .2s, color .15s; }
 #clear.on { opacity: 1; }
-#byimage { border: 0; background: none; padding: 0; font: inherit; font-size: 14px; color: var(--muted); cursor: default;
-           display: inline-flex; align-items: center; gap: 6px; transition: color .15s; }
-#byimage:hover, #byimage.set { color: var(--fg); }
 #theme { border: 0; background: none; padding: 0; font: inherit; font-size: 14px; color: var(--muted); cursor: default; transition: color .15s; }
 #theme:hover { color: var(--fg); }
 #timeline { border: 0; background: none; padding: 0; font: inherit; font-size: 14px; color: var(--muted); cursor: default; transition: color .15s; }
 #timeline:hover, #timeline.set { color: var(--fg); }
 #subs { border: 0; background: none; padding: 0; font: inherit; font-size: 14px; color: var(--muted); cursor: default; transition: color .15s; }
 #subs:hover, #subs.set { color: var(--fg); }
-#byimage .qthumb { height: 18px; width: auto; border-radius: 2px; }
 aside .src { color: var(--muted); border-bottom: 1px dotted var(--faint); }
 #clear.on:hover { color: var(--fg); }
 #q {
@@ -169,9 +174,18 @@ aside .src { color: var(--muted); border-bottom: 1px dotted var(--faint); }
   width: var(--rest, 4.2em); transition: width .3s var(--ease); cursor: default;
 }
 #q:focus, #q:not(:placeholder-shown) { width: 16em; cursor: text; }
+footer > #q { flex-shrink: 1; min-width: var(--rest, 4.2em); } /* opens only as wide as the room left */
 #q::placeholder { color: var(--fg); opacity: 1; }
 #q:focus::placeholder { color: var(--muted); }
 #q::-webkit-search-cancel-button { display: none; }
+/* timeline zoom slider: a thin line with a small dot, for those who don't pinch */
+#tlzoom { appearance: none; -webkit-appearance: none; width: 96px; height: 14px; margin: 0; background: none; align-self: center; cursor: default; }
+#tlzoom[hidden] { display: none; }
+#tlzoom::-webkit-slider-runnable-track { height: 1px; background: var(--muted); }
+#tlzoom::-moz-range-track { height: 1px; background: var(--muted); }
+#tlzoom::-webkit-slider-thumb { -webkit-appearance: none; width: 9px; height: 9px; margin-top: -4px; border: 0; border-radius: 50%; background: var(--fg); }
+#tlzoom::-moz-range-thumb { width: 9px; height: 9px; border: 0; border-radius: 50%; background: var(--fg); }
+#tlzoom:focus-visible { outline: 1px solid var(--muted); outline-offset: 3px; }
 
 
 /* ------------------------------------------------------------ narrow screens */
