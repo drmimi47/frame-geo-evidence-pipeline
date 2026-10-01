@@ -19,7 +19,6 @@ let hoverPaused = false, pointerXY = "";
 // A clicked frame is pinned: the panel sticks to it and the other tiles dim, until it's clicked again.
 let pinned = null;          // frame_id
 // Clicking the panel title switches every title between the original and YouTube's English title.
-let english = (() => { try { return localStorage.getItem("titleLang") === "en"; } catch { return false; } })();
 // Timeline view: each video drawn as an editing timeline, with a marker at every extracted frame.
 // Its subtitles mode shows each video's captions instead of the filmstrip.
 const savedView = (() => { try { return localStorage.getItem("view"); } catch { return null; } })();
@@ -379,6 +378,18 @@ function showView() {
   $("timeline").classList.toggle("set", timeline && !subs);
   $("subs").classList.toggle("set", subs);
 }
+// Light/dark: follows the system until chosen here, then remembered per browser. The button names the other one.
+const isDark = () => (document.documentElement.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")) === "dark";
+const themeLabel = () => { $("theme").textContent = isDark() ? "Light" : "Dark"; };
+$("theme").onclick = () => {
+  const t = isDark() ? "light" : "dark";
+  document.documentElement.dataset.theme = t;
+  try { localStorage.setItem("theme", t); } catch {}
+  themeLabel();
+  drawWords(); // the subtitles are drawn with the theme's colours
+};
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => { themeLabel(); drawWords(); });
+themeLabel();
 $("timeline").onclick = () => setView(timeline && !subs ? "grid" : "timeline");
 $("subs").onclick = () => setView(subs ? "timeline" : "subtitles"); // switches the timeline between images and subtitles
 showView();
@@ -422,6 +433,9 @@ const WORD_GAP = 5;     // px kept clear after a word before the next one
 // with the plain rule (every word shows only once it fits before the next), run in the browser console:
 //   localStorage.wordPriority = "off"   (and reload; delete it to switch priority back on)
 const WORD_PRIORITY = (() => { try { return localStorage.getItem("wordPriority") !== "off"; } catch { return true; } })();
+// Opacity of words about the land (both rows) and of the English, a step below place names (full),
+// so the places stand out most. An opacity, so light and dark mode drop by the same proportion.
+const SECOND = 0.8;
 const NUDGE_PX = 120;  // how far a priority word may move along to follow the one before it
 const widths = new Map(); // font + word -> px
 // Each line near the screen (a screen's height either side) has its own canvas inside the line, so the
@@ -473,6 +487,7 @@ function drawWords(relayout = true) {
       y += lh + TL_GAP;
     });
     if (todo.size && r.subs.words.length) drawLines(r, todo);
+    else if (todo.has(0)) noSubtitles(r, todo.get(0));
   }
   for (const [tr, cv] of lineCanvas) {
     if (keep.has(tr)) continue;
@@ -482,14 +497,27 @@ function drawWords(relayout = true) {
   }
 }
 
+// A video without captions says so at the start of its first line, in the shortest wording that fits
+// inside its timeblock (nothing when even that doesn't).
+function noSubtitles(r, ctx) {
+  const room = Math.round(Math.min(r.W, r.X(r.dur))) - 12;
+  ctx.font = `12px ${getComputedStyle(document.body).fontFamily}`;
+  const text = ["No subtitles detected", "No subtitles", "None"].find((t) => ctx.measureText(t).width <= room);
+  if (!text) return;
+  ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue("--muted").trim();
+  ctx.fillText(text, 6, 26);
+}
+
 // Draw a video's words on the given lines (line -> 2d context).
 function drawLines(r, todo) {
   const css = getComputedStyle(document.documentElement), family = getComputedStyle(document.body).fontFamily;
   const fg = css.getPropertyValue("--fg").trim(), muted = css.getPropertyValue("--muted").trim();
   const q = $("q").value.trim().split(/\s+/).filter((x) => x.length > 1).map((x) => x.toLowerCase());
   const hit = (word) => q.length > 0 && q.some((x) => word.toLowerCase().includes(x));
-  const font = { orig: `12px ${family}`, place: `bold 12px ${family}`, en: `11px ${family}` };
+  const font = { orig: `12px ${family}`, place: `bold 12px ${family}`, en: `italic 11px ${family}`, enPlace: `italic bold 11px ${family}` };
   const any = todo.values().next().value;
+  // where each line's strip ends: the full width, except the video's last line (as wide as its track)
+  const total = r.X(r.dur), end = (l) => Math.round(Math.min(r.W, total - l * r.W));
   const width = (f, word) => {
     const key = f + "\u0000" + word;
     if (!widths.has(key)) { any.font = f; widths.set(key, any.measureText(word).width); }
@@ -502,14 +530,14 @@ function drawLines(r, todo) {
       if (/^>+$/.test(word)) continue; // ">>" marks a new speaker in captions
       const x = r.X(t), l = Math.floor(x / r.W + 1e-6);
       // the priority pass needs every line of the video (a word can move onto the next line), so that a
-      // line looks the same whichever lines are being drawn with it; the English only needs the lines drawn
-      if (!todo.has(l) && (kind === "en" || !WORD_PRIORITY)) continue;
+      // line looks the same whichever lines are being drawn with it
+      if (!todo.has(l) && !WORD_PRIORITY) continue;
       const room = (k + 1 < words.length ? r.X(words[k + 1][0]) : r.X(r.dur) + WORD_GAP) - x - WORD_GAP;
-      const f = kind === "en" ? font.en : flag === 1 ? font.place : font.orig, marked = hit(word);
+      const f = kind === "en" ? (flag === 1 ? font.enPlace : font.en) : flag === 1 ? font.place : font.orig, marked = hit(word);
       laid.push({ word, flag, l, lx: x - l * r.W, room, f, tw: width(f, word), marked,
                   strong: flag === 1 || marked, land: flag === 3 });
     }
-    // Priority: place names, words about the land and search matches claim room for their text first, in
+    // Priority (each row on its own): place names, words about the land and search matches claim room for their text first, in
     // time order, even over the words said just after them; one that would overlap the priority word before
     // it moves along to just after it (up to NUDGE_PX), so "лівому березі" reads as a phrase. One that
     // would run past the line's end ends there instead, or, if the words before it hold that spot, starts
@@ -521,25 +549,27 @@ function drawLines(r, todo) {
       claims.set(l, taken);
       Object.assign(w, { at, dl: l });
     };
-    if (WORD_PRIORITY && kind === "orig") {
+    if (WORD_PRIORITY) {
       for (const w of laid) {
         if (!w.strong && !w.land) continue;
         const last = claims.get(w.l)?.at(-1);
         let at = last && last[1] > w.lx ? last[1] : w.lx;
-        if (at + w.tw > r.W) at = r.W - w.tw;
+        if (at + w.tw > end(w.l)) at = end(w.l) - w.tw;
         if (at >= 0 && w.lx - at <= NUDGE_PX && at - w.lx <= NUDGE_PX && !(last && at < last[1] - 0.01)) { claim(w, w.l, at); continue; }
         const next = w.l + 1, start = claims.get(next)?.at(-1)?.[1] ?? 0;
-        if (next < r.heights.length && r.W - w.lx + start <= NUDGE_PX && start + w.tw <= r.W) claim(w, next, start);
+        if (next < r.heights.length && r.W - w.lx + start <= NUDGE_PX && start + w.tw <= end(next)) claim(w, next, start);
       }
     }
     // Then every other word in the room left: text if it fits before the next word (or claim), else a dash.
     for (const w of laid) {
       const ctx = todo.get(w.at !== undefined ? w.dl : w.l);
       if (!ctx) continue; // a line not being drawn now
-      const { f, tw, lx, marked, strong, land, flag } = w;
-      // three levels: place names (bold), words about the land (black), the rest of the speech (faint)
-      ctx.fillStyle = kind === "en" || flag === 2 ? muted : fg;
-      ctx.globalAlpha = kind === "en" || strong || land || flag === 2 ? 1 : 0.45;
+      const { f, tw, lx, marked, strong, land, flag } = w, W = end(w.l);
+      // three levels, in both rows: place names (bold), words about the land (black), the rest of the
+      // speech (faint; the English grey and italic); sounds such as "[музика]" / "[music]" are fainter still
+      const noise = flag === 2 || /^\[.*\]$/.test(w.word);
+      ctx.fillStyle = noise || (kind === "en" && !strong && !land) ? muted : fg;
+      ctx.globalAlpha = noise ? 0.5 : strong ? 1 : land || kind === "en" ? SECOND : 0.4;
       const base = kind === "en" ? 34 : 18;
       const text = (px) => {
         if (marked) { ctx.save(); ctx.globalAlpha = 0.14; ctx.fillStyle = fg; ctx.fillRect(px - 2, base - 11, tw + 4, 15); ctx.restore(); }
@@ -552,12 +582,12 @@ function drawLines(r, todo) {
       const next = taken.find(([a]) => a > lx);
       if (next && next[0] - lx < 1) continue;
       const room = next ? Math.min(w.room, next[0] - lx - WORD_GAP) : w.room;
-      if (tw <= room && lx + tw <= r.W) text(lx);
+      if (tw <= room && lx + tw <= W) text(lx);
       else {
         // no room: a dash as long as the room it has (the word's share of the line)
-        const thick = kind === "en" ? 1 : strong ? 3 : land ? 2 : 1.5;
-        if (r.W - lx < 0.5) continue;
-        ctx.fillRect(lx, base - 4 - thick / 2, Math.min(r.W - lx, Math.max(1, Math.min(tw, room, next ? next[0] - lx - 1 : Infinity))), thick);
+        const thick = kind === "en" ? (strong ? 2 : land ? 1.5 : 1) : strong ? 3 : land ? 2 : 1.5;
+        if (W - lx < 0.5) continue;
+        ctx.fillRect(lx, base - 4 - thick / 2, Math.min(W - lx, Math.max(1, Math.min(tw, room, next ? next[0] - lx - 1 : Infinity))), thick);
       }
     }
   };
@@ -568,35 +598,22 @@ function drawLines(r, todo) {
 
 // ------------------------------------------------------------ left panel
 
-// Title as YouTube shows it to an English-language viewer: the uploader's English title when they set
-// one, otherwise the original (YouTube doesn't translate it either). Comes from the YouTube API, no translation here.
+// The original title, with the uploader's own English title below it when they set one (from the
+// YouTube API `localizations`; never a machine translation).
 function showTitle(it) {
-  const v = videos.get(it.video_id), el = $("title"), note = $("titlenote");
+  const v = videos.get(it.video_id), el = $("title"), en = $("title-en");
   if (!el) return;
-  const t = english ? v?.title_en : null;
-  el.textContent = t ? t.text : it.video_title;
-  el.lang = t?.source === "uploader" ? "en" : "";
-  note.textContent = !t ? ""
-    : t.source === "uploader" ? "English title on YouTube, set by the uploader"
-    : "No English title on YouTube, so it shows the original";
+  el.textContent = it.video_title;
+  const t = v?.title_en?.source === "uploader" && v.title_en.text !== it.video_title ? v.title_en.text : "";
+  en.textContent = t;
+  en.hidden = !t;
 }
-
-function toggleTitle() {
-  english = !english;
-  try { localStorage.setItem("titleLang", english ? "en" : "orig"); } catch {}
-  const it = items[current];
-  if (it) showTitle(it);
-}
-panel.addEventListener("click", (e) => { if (e.target.closest("#title")) toggleTitle(); });
-panel.addEventListener("keydown", (e) => {
-  if (e.target.id === "title" && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); toggleTitle(); }
-});
 
 function intro() {
   panel.dataset.video = "";
-  panel.innerHTML = `<div class="head"><span class="dot"></span><div>
+  panel.innerHTML = `<div class="head"><div>
     <div class="title">Ukraine image evidence</div>
-    <div class="muted">${items.length === total ? total : `${items.length} of ${total}`} frames · ${videos.size} video${videos.size === 1 ? "" : "s"}</div>
+    <div class="sub">${items.length === total ? total : `${items.length} of ${total}`} frames · ${videos.size} video${videos.size === 1 ? "" : "s"}</div>
   </div></div>`;
 }
 
@@ -648,10 +665,10 @@ function showFrame(it) {
     panel.dataset.video = it.video_id;
     panel.dur = dur;
     panel.innerHTML = `
-      <div class="head"><span class="dot"></span><div>
-        <div class="title" id="title" role="button" tabindex="0"></div>
-        <div>${esc(it.channel_title ?? "YouTube")}, ${it.published_at.slice(0, 4)}</div>
-        <div class="note" id="titlenote"></div>
+      <div class="head"><div>
+        <div class="title" id="title"></div>
+        <div class="sub" id="title-en" lang="en" hidden></div>
+        <div class="sub">${esc(it.channel_title ?? "YouTube")}, ${it.published_at.slice(0, 4)}</div>
       </div></div>
       <div class="tally" title="Where each extracted frame sits in the video">
         <div class="now"><span id="now"></span></div>

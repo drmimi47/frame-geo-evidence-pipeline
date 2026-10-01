@@ -7,9 +7,11 @@
   font: 17px/1.25 "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
+/* dark follows the system unless the Light/Dark button chose one (data-theme on <html>) */
 @media (prefers-color-scheme: dark) {
-  :root { --bg: #0e0e0e; --fg: #ececec; --muted: #7a7a7a; --faint: #333; color-scheme: dark; }
+  :root:not([data-theme="light"]) { --bg: #0e0e0e; --fg: #ececec; --muted: #7a7a7a; --faint: #333; color-scheme: dark; }
 }
+:root[data-theme="dark"] { --bg: #0e0e0e; --fg: #ececec; --muted: #7a7a7a; --faint: #333; color-scheme: dark; }
 * { box-sizing: border-box; }
 html, body { cursor: default; }
 html { overflow-x: clip; } /* the grid scales past the edges mid-pinch */
@@ -23,12 +25,10 @@ aside {
   padding: var(--pad) calc(var(--pad) * .8) 120px var(--pad);
 }
 aside::-webkit-scrollbar { display: none; }
-.head { display: grid; grid-template-columns: 1.4em 1fr; margin-bottom: 1.3em; }
-.dot { width: .55em; height: .55em; border-radius: 50%; background: var(--fg); margin-top: .35em; }
-.head .title { overflow-wrap: anywhere; cursor: default; border-radius: 2px; transition: opacity .15s; }
-.head .title:hover { text-decoration: underline; text-decoration-color: var(--faint); text-underline-offset: 3px; }
-.head .title:focus-visible { outline: 1px solid var(--muted); outline-offset: 2px; }
-.head .note { font-size: 12px; margin-top: .3em; min-height: 1em; }
+.head { margin-bottom: 1.3em; }
+/* the title plain; everything under it (English title, channel and year) is secondary: italic and faint */
+.head .title { overflow-wrap: anywhere; }
+.head .sub { overflow-wrap: anywhere; font-style: italic; color: var(--muted); }
 .muted, .note { color: var(--muted); }
 aside p { margin: 0 0 1em; }
 aside .fields { font-size: 14px; line-height: 1.35; display: grid; grid-template-columns: max-content 1fr; gap: .45em 1.2em; margin: 0 0 1.4em; }
@@ -118,6 +118,8 @@ main.timeline.subtitles .seg.open { background-repeat: no-repeat; }
 main.timeline.subtitles .seg.open.cont { background: none; }
 /* the frame markers step back behind the words, except the one shown in the panel */
 main.timeline.subtitles .seg:not(.on):not(.pinned)::before { background: var(--faint); }
+/* and run under the words (the canvas, z-index 1), which clear a patch of strip behind each word */
+main.timeline.subtitles .seg::before { z-index: 0; }
 /* each line's words, inside the line: above the empty strips, under an opened frame's image */
 canvas.words { position: absolute; left: 0; z-index: 1; pointer-events: none; }
 main.timeline.subtitles .seg.open { z-index: 3; }
@@ -153,6 +155,8 @@ footer select:hover, footer select:focus, footer select.set { color: var(--fg); 
 #byimage { border: 0; background: none; padding: 0; font: inherit; font-size: 14px; color: var(--muted); cursor: default;
            display: inline-flex; align-items: center; gap: 6px; transition: color .15s; }
 #byimage:hover, #byimage.set { color: var(--fg); }
+#theme { border: 0; background: none; padding: 0; font: inherit; font-size: 14px; color: var(--muted); cursor: default; transition: color .15s; }
+#theme:hover { color: var(--fg); }
 #timeline { border: 0; background: none; padding: 0; font: inherit; font-size: 14px; color: var(--muted); cursor: default; transition: color .15s; }
 #timeline:hover, #timeline.set { color: var(--fg); }
 #subs { border: 0; background: none; padding: 0; font: inherit; font-size: 14px; color: var(--muted); cursor: default; transition: color .15s; }

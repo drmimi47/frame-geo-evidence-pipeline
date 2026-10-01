@@ -6,6 +6,7 @@
 <title>Ukraine Image Evidence</title>
 <link rel="icon" href="data:,">
 <link rel="stylesheet" href="/static/style.css">
+<script>try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch {}</script>
 <script type="module" src="/static/app.js"></script>
 </head>
 <body>
@@ -13,6 +14,7 @@
 <main id="main"></main>
 <div id="stats" aria-live="polite"></div>
 <footer id="controls">
+  <button id="theme" type="button" title="Switch between light and dark">Dark</button>
   <button id="timeline" type="button" title="Show each video as an editing timeline, with a marker where each frame was taken">Timeline</button>
   <button id="subs" type="button" title="Show what is said in each video: its YouTube captions, with English beside them and the places they name">Subtitles</button>
   <select id="sort" aria-label="Sort">

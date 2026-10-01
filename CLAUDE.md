@@ -140,7 +140,8 @@ Keep it minimal (loose reference: mos.nyc). No header and no dashboards. The lay
   (one tick per extracted frame, proportional to the video's duration, with a playhead you can scrub),
   frame info, and inferred metadata with notes;
 - a numbered grid on the right, grouped by video. It holds only images and frame numbers: no video titles or other text;
-- Timeline, Subtitles, Sort, Clear all, filters and search fixed at the bottom right, in that order left to right, all at 14px (no density slider);
+- Light/Dark, Timeline, Subtitles, Sort, Clear all, filters and search fixed at the bottom right, in that order left to right, all at 14px (no density slider).
+  Light/Dark follows the system until clicked, then is remembered per browser (`localStorage.theme`, `data-theme` on `<html>`);
 - Timeline view (toggle, remembered per browser): one row per video like a clip in an editing timeline, with no text, numbers
   or ruler: a filmstrip where each extracted frame starts at a black vertical bar at its timestamp and repeats until the
   next bar. Frames outside the current search or filters leave an empty stretch with no bar. Re-layouts reuse and move
@@ -162,7 +163,10 @@ Keep it minimal (loose reference: mos.nyc). No header and no dashboards. The lay
   each phrase. A word without room is a dash as long as its room, so zoomed out a video reads as a line of speech with
   its pauses and pinching spreads the words until they read. Three levels, so the eye lands on what can place the footage:
   place names bold (heavy dash); words about the land black (medium dash): water, terrain, roads, directions, distances
-  and a number with its unit (`spatial.py`, matched in the original only, about 3% of the words); the rest faint.
+  and a number with its unit (`spatial.py`, about 3% of the words); the rest faint. The English row (italic) gets the
+  same three levels from `spatial.py`'s English list, for reading only: a place is marked there only when the original
+  or the metadata names it (`geo_text.EN_NAMES` holds exonyms and the translation's manglings, e.g. Dnieper, Cahokia),
+  and nothing from the English ever becomes a location clue.
   When a common word lights up too often, remove it from `spatial.py` rather than loosening the endings. Search terms marked.
   Priority (`WORD_PRIORITY`, on by default): place names, land words and search matches show as text first, claiming
   room over the words said just after them (which step aside); a priority word right after another moves along to
@@ -179,9 +183,10 @@ Keep it minimal (loose reference: mos.nyc). No header and no dashboards. The lay
 - search by image: "By image" (or drop or paste an image) orders the grid by SigLIP similarity to it. The upload is
   only kept in server memory (`/api/query-image`), never written to the library;
 - a live count at the bottom left (videos analysed, images; "x of y" when filtered), polling `/api/stats`.
-Clicking the panel title switches all titles between the original and the title YouTube shows an English-language
-viewer. That is the uploader's own English title (`source.title_localizations`, from the API `localizations` part),
-or the original when they set none. No machine translation. `evidence refresh-titles` backfills stored videos.
+The panel shows the original title in plain text (no bullet). Everything under it is secondary, in faint italics: the
+uploader's own English title (`source.title_localizations`, from the API `localizations` part) when they set one,
+then the channel and year.
+No machine translation and no click-to-switch. `evidence refresh-titles` backfills stored videos.
 The grid loads every page of `/api/frames` (500 per request); never assume one page holds everything.
 Use the default cursor on tiles. Clicking a tile pins it: the other tiles dim and the panel stays on it until it is
 clicked again, empty space is clicked, or Esc is pressed. Bottom controls are sized to their text so the gaps are equal.

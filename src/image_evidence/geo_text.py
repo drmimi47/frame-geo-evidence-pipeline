@@ -192,37 +192,74 @@ def timed_words(track: dict | None) -> list[list]:
 NON_SPEECH = re.compile(r"^\[.*\]$|^>>$")  # "[музика]", "[Music]"; ">>" marks a new speaker
 
 
+# English names for places the original names, for marking them in the English row: exonyms, and
+# what the local translation turns them into (it mangles names: "Каховського" -> "Cahokia", "Kachovsky").
+# Used only when the original or the metadata names the place.
+EN_NAMES = {
+    "Dnipro": r"dniep(?:er|r)\w*",
+    "Velykyi Luh": r"(?:great|big)\s+meadows?|luh\w*|lug[ua]?",
+    "Kakhovka": r"ka[ck]?hovk\w*|kachovsk\w*|kakhovsk\w*|cahok\w*",
+    "Zaporizhzhya": r"zaporo[zž]h?\w*",
+    "Zaporizhzhia Oblast": r"zaporo[zž]h?\w*",
+    "Nikopol": r"nicopol\w*",
+    "Dnipropetrovsk Oblast": r"dnipropetrov\w*|dnepropetrov\w*",
+}
+
+
+def _flags(timed: list[list], allow: set[str], english: bool = False) -> tuple[list[int], set[str]]:
+    """Flag each word (see subtitles) and return the place names found. English: a place name is only
+    marked when the original or the video's metadata names that place (a translation never adds one)."""
+    text, offsets = "", []
+    for _, w in timed:
+        offsets.append(len(text) + (1 if text else 0))
+        text += (" " if text else "") + w
+    place, names = [False] * len(timed), set()
+    spans = []
+    for m in find_places(text, allow=allow, speech=True):
+        if english and m.name not in allow:
+            continue
+        names.add(m.name)
+        spans.append((m.start, m.start + len(m.matched)))
+    if english:
+        for name in allow & EN_NAMES.keys():
+            spans += [m.span() for m in re.finditer(rf"\b(?:{EN_NAMES[name]})\b", text, re.IGNORECASE)]
+    for start, stop in spans:
+        for k, a in enumerate(offsets):  # every word the match touches (the whole inflected word)
+            if a < stop and start < a + len(timed[k][1]):
+                place[k] = True
+    flags = [1 if place[k] else 2 if NON_SPEECH.match(w) else 3 if spatial.is_spatial(w, english) else 0
+             for k, (_, w) in enumerate(timed)]
+    for k in range(1, len(timed)):  # "200 метрів", "five kilometres": the number goes with its unit
+        if (flags[k] in (0, 3) and flags[k - 1] == 0 and spatial.is_unit(timed[k][1], english)
+                and spatial.is_number(timed[k - 1][1], english)):
+            flags[k - 1] = flags[k] = 3
+    return flags, names
+
+
 def subtitles(video: VideoRecord, captions: dict | None, english: dict | None) -> dict:
     """A video's subtitles laid out in time, for the timeline: every word of the original with the moment
     it is spoken and a flag (1 = part of a place name, 2 = not speech, e.g. "[музика]", 3 = describes the land:
     water, terrain, roads, directions, distances; see spatial.py), and the English
     words (the uploader's English subtitles, or a local machine translation spread over each phrase).
     Place names are matched in the original, over whole paragraphs (the same matcher as the speech clues;
-    a name split across two cues still matches), never in a translation."""
+    a name split across two cues still matches). The English words get the same flags for reading
+    alongside, but a place is only marked there when the original or the metadata names it: this is
+    display emphasis, never a location clue."""
     meta = {k: english[k] for k in ("lang", "kind", "from", "model") if english and k in english} or None
     if not captions or not captions.get("cues"):
         return {"lang": None, "kind": None, "english": None, "words": [], "en": []}
     allow = video_clues(video, [], None).text_places
     cues, times = captions["cues"], captions.get("word_times") or []
-    words = []
+    words, said = [], set()
     for g in _groups(cues):
         timed = timed_words({"cues": [cues[i] for i in g], "word_times": [times[i] if i < len(times) else [] for i in g]})
-        text, offsets = "", []
-        for _, w in timed:
-            offsets.append(len(text) + (1 if text else 0))
-            text += (" " if text else "") + w
-        place = [False] * len(timed)
-        for m in find_places(text, allow=allow, speech=True):
-            for k, a in enumerate(offsets):  # every word the match touches (the whole inflected word)
-                if a < m.start + len(m.matched) and m.start < a + len(timed[k][1]):
-                    place[k] = True
-        flags = [1 if place[k] else 2 if NON_SPEECH.match(w) else 3 if spatial.is_spatial(w) else 0 for k, (_, w) in enumerate(timed)]
-        for k in range(1, len(timed)):  # "200 метрів", "п'ять кілометрів": the number goes with its unit
-            if flags[k] in (0, 3) and flags[k - 1] == 0 and spatial.is_unit(timed[k][1]) and spatial.is_number(timed[k - 1][1]):
-                flags[k - 1] = flags[k] = 3
+        flags, names = _flags(timed, allow)
+        said |= names
         words += [[t, w, f] for (t, w), f in zip(timed, flags)]
+    en = timed_words(english)
+    en_flags, _ = _flags(en, allow | said, english=True) if en else ([], set())
     return {"lang": captions.get("lang"), "kind": captions.get("kind"), "english": meta,
-            "words": words, "en": timed_words(english)}
+            "words": words, "en": [[t, w, f] for (t, w), f in zip(en, en_flags)]}
 
 
 # ------------------------------------------------------------------ clues

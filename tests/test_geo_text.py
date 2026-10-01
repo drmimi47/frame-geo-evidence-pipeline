@@ -152,7 +152,7 @@ def test_subtitles_place_words_in_time_and_flag_places():
     en = {"lang": "en", "kind": "machine", "model": "m", "cues": [[0, 4, "we drive to Bakhmut"]]}
     d = subtitles(video(), caps, en)
     assert d["words"] == [[0.0, "ми", 0], [0.8, "їдемо", 0], [2.0, "до", 0], [2.4, "Бахмута", 1], [40.0, "[музика]", 2]]
-    assert d["en"] == [[0.0, "we"], [1.0, "drive"], [2.0, "to"], [3.0, "Bakhmut"]]  # spread over the phrase
+    assert d["en"] == [[0.0, "we", 0], [1.0, "drive", 0], [2.0, "to", 0], [3.0, "Bakhmut", 1]]  # spread over the phrase
     assert d["english"] == {"lang": "en", "kind": "machine", "model": "m"}
     # stored before word times were kept: spread over each cue
     old = subtitles(video(), {**caps, "word_times": None}, None)
@@ -181,3 +181,25 @@ def test_spatial_words_are_marked_with_their_case_endings():
     assert flags == {"за": 0, "двісті": 3, "метрів": 3, "на": 0, "лівому": 3, "березі": 3, "вода": 0}
     caps = {"lang": "uk", "kind": "auto", "cues": [[0, 3, "ще 5 м і м"]], "word_times": [[0, 1, 2, 2.5, 2.8]]}
     assert [f for _, _, f in subtitles(video(), caps, None)["words"]] == [0, 3, 3, 0, 0]  # a bare "м" is not a unit
+
+
+def test_english_row_gets_the_same_emphasis_but_never_adds_a_place():
+    from image_evidence.geo_text import subtitles
+    from image_evidence.spatial import is_spatial
+
+    assert all(is_spatial(w, english=True) for w in "river bank, reservoir islands north kilometres".split())
+    assert not any(is_spatial(w, english=True) for w in "water left right channel bottom current".split())
+    caps = {"lang": "uk", "kind": "auto", "cues": [[0, 4, "біля Бахмута"]], "word_times": [[0.0, 1.0]]}
+    en = {"lang": "en", "kind": "machine", "model": "m",
+          "cues": [[0, 4, "near Bakhmut, five kilometres from the river, not Odesa"]]}
+    flags = {w: f for _, w, f in subtitles(video(), caps, en)["en"]}
+    # Bakhmut is said in the original; Odesa only appears in the translation, so it isn't marked
+    en["cues"] = [[0, 4, "the Dnieper near Bakhmut"]]
+    assert [f for _, _, f in subtitles(video(), caps, en)["en"]] == [0, 0, 0, 1]  # Dnipro isn't said
+    caps["cues"] = [[0, 4, "біля Дніпра"]]
+    assert [f for _, _, f in subtitles(video(), caps, en)["en"]] == [0, 1, 0, 0]  # the exonym, once it is
+    en["cues"] = [[0, 4, "near Bakhmut, five kilometres from the river, not Odesa"]]
+    caps["cues"] = [[0, 4, "біля Бахмута"]]
+    flags = {w: f for _, w, f in subtitles(video(), caps, en)["en"]}
+    assert flags == {"near": 0, "Bakhmut,": 1, "five": 3, "kilometres": 3, "from": 0, "the": 0, "river,": 3,
+                     "not": 0, "Odesa": 0}

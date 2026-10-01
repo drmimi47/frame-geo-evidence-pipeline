@@ -5,6 +5,9 @@ curated list of Ukrainian and Russian stems, each allowed only its own case endi
 and "мосту" match but "містить" (contains) doesn't. Words so common they would mark half of every
 transcript ("вода", "місце", "тут") are left out on purpose: when a word lights up too much, remove
 it here rather than loosening the endings.
+
+The English row of the subtitles (uploader's subtitles or a local translation) gets the same weighting
+from a parallel English list (`english=True`), for reading only.
 """
 
 from __future__ import annotations
@@ -44,19 +47,45 @@ _PATTERNS = [
     r"метр" + N, r"метрів", r"кілометр" + N, r"кілометрів", r"километр" + N, r"км", r"гектар" + N, r"гектарів",
 ]
 _WORD = re.compile("|".join(f"(?:{p})" for p in _PATTERNS))
+
+# English, for the English row. Left out as too common or ambiguous: "water", "left"/"right", "channel"
+# (subscribe), "bottom", "current", "plain", "bed", "plant", "lock", "mouth".
+_EN = [
+    # water
+    r"rivers?", r"riverbanks?", r"riverbeds?", r"banks?", r"shores?", r"shoreline", r"coasts?", r"coastline",
+    r"islands?", r"islets?", r"straits?", r"bays?", r"inlets?", r"reservoirs?", r"lakes?", r"estuar(?:y|ies)",
+    r"floodplains?", r"swamps?", r"marsh(?:es)?", r"bogs?", r"wetlands?", r"beach(?:es)?", r"seabed",
+    r"tributar(?:y|ies)", r"backwaters?", r"creeks?", r"ponds?",
+    # terrain
+    r"ravines?", r"gull(?:y|ies)", r"hills?", r"hillsides?", r"slopes?", r"steppes?", r"forests?", r"woods",
+    r"woodlands?", r"groves?", r"meadows?", r"valle(?:y|ys)", r"fields?", r"sands?", r"sandy", r"cliffs?",
+    r"dunes?", r"plains", r"terrain", r"landscape",
+    # built
+    r"bridges?", r"dams?", r"roads?", r"highways?", r"streets?", r"avenues?", r"embankments?", r"piers?",
+    r"ports?", r"harbou?rs?", r"villages?", r"towns?", r"city", r"cities", r"settlements?", r"outskirts",
+    r"districts?", r"factor(?:y|ies)", r"towers?", r"pylons?", r"ruins?",
+    # directions and relative position
+    r"north(?:ern|ward|wards|east|west)?", r"south(?:ern|ward|wards|east|west)?", r"east(?:ern|ward|wards)?",
+    r"west(?:ern|ward|wards)?", r"upstream", r"downstream", r"uphill", r"downhill", r"opposite",
+    # distances and areas
+    r"met(?:er|re)s?", r"kilomet(?:er|re)s?", r"km", r"hectares?", r"miles?",
+]
+_WORD_EN = re.compile("|".join(f"(?:{p})" for p in _EN))
 _EDGE = re.compile(r"^[^\w]+|[^\w']+$")
 _NUMBER = re.compile(r"^\d+([.,]\d+)?$|^(один|два|дві|три|чотири|п'ять|шість|сім|вісім|дев'ять|десять|сто|двісті|триста|сотні|тисяч\w*|кілька|декілька|пару)$")
+_NUMBER_EN = re.compile(r"^\d+([.,]\d+)?$|^(one|two|three|four|five|six|seven|eight|nine|ten|twenty|thirty|fifty|hundreds?|thousands?|several|a few|few)$")
 UNITS = re.compile(r"^(метр|кілометр|километр|км|гектар)|^(м|га)$")  # "м", "га" only right after a number
+UNITS_EN = re.compile(r"^(met(er|re)|kilomet(er|re)|km|hectare|mile)|^(m|ha)$")
 
 
-def is_spatial(word: str) -> bool:
+def is_spatial(word: str, english: bool = False) -> bool:
     w = _EDGE.sub("", word.lower().replace("’", "'"))
-    return bool(w) and _WORD.fullmatch(w) is not None
+    return bool(w) and (_WORD_EN if english else _WORD).fullmatch(w) is not None
 
 
-def is_number(word: str) -> bool:
-    return _NUMBER.match(_EDGE.sub("", word.lower())) is not None
+def is_number(word: str, english: bool = False) -> bool:
+    return (_NUMBER_EN if english else _NUMBER).match(_EDGE.sub("", word.lower())) is not None
 
 
-def is_unit(word: str) -> bool:
-    return UNITS.match(_EDGE.sub("", word.lower())) is not None
+def is_unit(word: str, english: bool = False) -> bool:
+    return (UNITS_EN if english else UNITS).match(_EDGE.sub("", word.lower())) is not None
