@@ -1,0 +1,37 @@
+[project]
+name = "frame-geo-evidence-pipeline"
+version = "0.1.0"
+description = "YouTube visual evidence ingestion: discovery, permitted acquisition, frame extraction, and provenance-preserving metadata."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2.7",
+    "pyyaml>=6.0",
+    "httpx>=0.27",
+    "yt-dlp[default]>=2025.1.1",
+    "opencv-python-headless>=4.9",
+    "numpy>=1.26",
+    "pillow>=10.0",
+]
+
+[project.optional-dependencies]
+# Visual multi-label classification (SigLIP zero-shot) and local subtitle translation (opus-mt). Large download; optional.
+classify = ["torch>=2.2", "transformers>=4.45", "sentencepiece>=0.2", "protobuf>=4"]
+# Read-only HTTP API for the future frontend.
+api = ["fastapi>=0.110", "uvicorn>=0.29"]
+# On-screen text (OCR) for frame-level place clues: Apple Vision on macOS.
+ocr = ["pyobjc-framework-Vision>=10; sys_platform == 'darwin'"]
+dev = ["pytest>=8"]
+
+[project.scripts]
+evidence = "image_evidence.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/image_evidence"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

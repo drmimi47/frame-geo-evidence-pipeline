@@ -1,0 +1,188 @@
+:root {
+  --bg: #fff; --fg: #111; --muted: #8a8a8a; --faint: #d6d6d6;
+  --cols: 3; --gap: calc(96px / var(--cols)); /* gaps tighten as the grid gets denser */
+  --aside: clamp(280px, 30vw, 520px); --pad: clamp(20px, 3vw, 48px);
+  --ease: cubic-bezier(.2, .8, .2, 1);
+  color-scheme: light;
+  font: 17px/1.25 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #0e0e0e; --fg: #ececec; --muted: #7a7a7a; --faint: #333; color-scheme: dark; }
+}
+* { box-sizing: border-box; }
+html, body { cursor: default; }
+html { overflow-x: clip; } /* the grid scales past the edges mid-pinch */
+body { margin: 0; background: var(--bg); color: var(--fg); }
+a { color: inherit; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+input, select { font: inherit; color: inherit; }
+
+/* ------------------------------------------------------------- left panel */
+aside {
+  position: fixed; inset: 0 auto 0 0; z-index: 2; background: var(--bg); width: var(--aside); overflow-y: auto; scrollbar-width: none;
+  padding: var(--pad) calc(var(--pad) * .8) 120px var(--pad);
+}
+aside::-webkit-scrollbar { display: none; }
+.head { display: grid; grid-template-columns: 1.4em 1fr; margin-bottom: 1.3em; }
+.dot { width: .55em; height: .55em; border-radius: 50%; background: var(--fg); margin-top: .35em; }
+.head .title { overflow-wrap: anywhere; cursor: default; border-radius: 2px; transition: opacity .15s; }
+.head .title:hover { text-decoration: underline; text-decoration-color: var(--faint); text-underline-offset: 3px; }
+.head .title:focus-visible { outline: 1px solid var(--muted); outline-offset: 2px; }
+.head .note { font-size: 12px; margin-top: .3em; min-height: 1em; }
+.muted, .note { color: var(--muted); }
+aside p { margin: 0 0 1em; }
+aside .fields { font-size: 14px; line-height: 1.35; display: grid; grid-template-columns: max-content 1fr; gap: .45em 1.2em; margin: 0 0 1.4em; }
+aside .fields dt { color: var(--muted); }
+aside .fields dd { margin: 0; }
+aside .note { font-size: 12px; display: block; margin-top: .2em; }
+aside .small { font-size: 13px; }
+.details { transition: opacity .15s; }
+.details.loading { opacity: .35; }
+
+/* timeline tally: one tick per extracted frame, positioned by timestamp / duration */
+.tally { margin: 0 0 1.4em; font-size: 12px; font-variant-numeric: tabular-nums; }
+.tally .now { position: relative; height: 1.4em; }
+.tally .now span {
+  position: absolute; left: calc(var(--x) * 100%); transform: translateX(calc(var(--x) * -100%));
+  transition: left .22s var(--ease), transform .22s var(--ease);
+}
+.track { position: relative; height: 22px; border-bottom: 1px solid var(--faint); touch-action: none; }
+.track i {
+  position: absolute; bottom: 0; left: calc(var(--x) * 100%); width: 1px; height: 9px; background: var(--muted);
+  transition: height .2s var(--ease), background .2s;
+}
+.track i.here { height: 14px; background: var(--fg); }
+.track .playhead {
+  position: absolute; bottom: -4px; left: calc(var(--x) * 100%); width: 2px; height: 26px; margin-left: -.5px;
+  background: var(--fg); transition: left .22s var(--ease);
+}
+.tally .ends { display: flex; justify-content: space-between; color: var(--muted); margin-top: .35em; }
+
+/* ------------------------------------------------------------------ grid */
+main { margin-left: var(--aside); padding: var(--pad) var(--pad) 140px 0; touch-action: pan-x pan-y; }
+section + section { margin-top: calc(var(--gap) * 2 + 24px); }
+main.sorted section + section { margin-top: calc(var(--gap) * 1.5 + 8px); } /* sort groups sit closer than videos */
+.grid { display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); gap: var(--gap); }
+.tile { margin: 0; display: grid; grid-template-columns: 2.4em minmax(0, 1fr); align-items: start; }
+.tile .n { font-size: 12px; color: var(--muted); line-height: 1; transition: color .15s; font-variant-numeric: tabular-nums; }
+.tile.on .n { color: var(--fg); }
+/* pinned frame: everything else steps back */
+.tile { transition: opacity .3s var(--ease); }
+main.has-pin .tile:not(.pinned) { opacity: .35; }
+main.has-pin .tile:not(.pinned):hover { opacity: .6; }
+.tile img {
+  width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; cursor: default;
+  background: color-mix(in srgb, var(--fg) 6%, transparent); user-select: none; -webkit-user-drag: none;
+  opacity: 0; transition: opacity .4s var(--ease);
+}
+.tile img.loaded { opacity: 1; }
+:root[data-dense] .tile { grid-template-columns: minmax(0, 1fr); }
+:root[data-dense] .tile .n { display: none; }
+.empty { color: var(--muted); }
+
+/* ----------------------------------------------- timeline view (one block per video) */
+/* No text: a filmstrip per video with a black bar where each frame was taken. A video longer than the
+   page width wraps onto further lines, so nothing scrolls sideways. Heights are set by app.js (whole px). */
+.tl { padding-top: 2px; overflow: hidden; }
+/* the height eases when a line is added or removed; overflow hides a new line until it's grown over */
+.tl-video { overflow: hidden; padding: 12px 0; }
+.tl-video + .tl-video { margin-top: 16px; }
+/* the empty track is a band at track height (--band), centred in a line that grew for an opened frame */
+.tl-track { position: relative; min-width: 12px;
+  background: linear-gradient(color-mix(in srgb, var(--fg) 5%, transparent) 0 0) 0 50% / 100% var(--band, 100%) no-repeat; }
+.tl-track + .tl-track { margin-top: 10px; } /* = TL_GAP in app.js */
+/* the full image (--sharp, once loaded for an opened frame) over the thumbnail (--img). Each image keeps
+   the width it has at the unsquashed height --ih (aspect --ar; both set by app.js), so on a thin line it is
+   squashed flat; on a line grown for an opened frame it isn't. */
+main.timeline .seg {
+  position: absolute; top: 0; height: var(--band, 100%); display: block;
+  background: var(--sharp, none) left center / calc(var(--ih) * var(--ar)) 100% repeat-x, var(--img, none) left center / calc(var(--ih) * var(--ar)) 100% repeat-x;
+}
+/* an opened frame is drawn lifted out of the strip (its own slot stays empty underneath) */
+main.timeline .seg.open { z-index: 1; }
+main.timeline .seg.lifted { visibility: hidden; }
+/* the marker: where the frame was taken */
+main.timeline .seg::before { content: ""; position: absolute; left: 0; top: -6px; bottom: -6px; width: 1px; background: var(--fg); z-index: 2; }
+main.timeline .seg.on::before, main.timeline .seg.pinned::before { width: 2px; top: -10px; bottom: -10px; }
+/* the continuation of a strip on the next line has no marker of its own */
+main.timeline .seg.cont::before { display: none; }
+/* a strip fills far more of the page than a grid tile: dim the others less while one is pinned */
+main.timeline.has-pin .seg:not(.pinned) { opacity: .55; }
+main.timeline.has-pin .seg:not(.pinned):hover { opacity: .75; }
+
+/* ----------------------------------------------- subtitles view (the timeline, with words for images) */
+/* app.js draws the words on a canvas in each line near the screen; the strips keep their markers (for hover,
+   pin and spread) but show no image, except an opened frame. */
+main.timeline.subtitles .seg:not(.open) { background: none; }
+main.timeline.subtitles .seg.open { background-repeat: no-repeat; }
+main.timeline.subtitles .seg.open.cont { background: none; }
+/* the frame markers step back behind the words, except the one shown in the panel */
+main.timeline.subtitles .seg:not(.on):not(.pinned)::before { background: var(--faint); }
+/* each line's words, inside the line: above the empty strips, under an opened frame's image */
+canvas.words { position: absolute; left: 0; z-index: 1; pointer-events: none; }
+main.timeline.subtitles .seg.open { z-index: 3; }
+
+/* ------------------------------------------------- bottom-left live count */
+#stats {
+  /* same fade as the bottom-right controls, so panel text scrolling underneath doesn't collide with it */
+  position: fixed; left: 0; bottom: 0; width: var(--aside); z-index: 3;
+  padding: 40px var(--pad) 22px; font-size: 14px; line-height: 1.25; color: var(--muted);
+  background: linear-gradient(to bottom, transparent, var(--bg) 55%);
+  font-variant-numeric: tabular-nums; pointer-events: none;
+}
+aside .sortnote { color: var(--fg); }
+.swatch { display: inline-block; width: .8em; height: .8em; border-radius: 2px; margin-right: .4em; vertical-align: -1px;
+          box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--fg) 15%, transparent); }
+
+/* ------------------------------------------------- bottom controls (no header) */
+footer {
+  position: fixed; left: var(--aside); right: 0; bottom: 0; z-index: 2;
+  display: flex; justify-content: flex-end; align-items: baseline; gap: 32px;
+  padding: 40px var(--pad) 22px 0;
+  background: linear-gradient(to bottom, transparent, var(--bg) 55%); pointer-events: none;
+}
+footer > * { pointer-events: auto; }
+footer select {
+  appearance: none; -webkit-appearance: none; border: 0; background: none; padding: 0; font-size: 14px;
+  color: var(--muted); cursor: default; transition: color .15s;
+}
+footer select:hover, footer select:focus, footer select.set { color: var(--fg); outline: none; }
+#clear { border: 0; background: none; padding: 0; font: inherit; font-size: 14px; color: var(--muted); cursor: default;
+         opacity: .45; transition: opacity .2s, color .15s; }
+#clear.on { opacity: 1; }
+#byimage { border: 0; background: none; padding: 0; font: inherit; font-size: 14px; color: var(--muted); cursor: default;
+           display: inline-flex; align-items: center; gap: 6px; transition: color .15s; }
+#byimage:hover, #byimage.set { color: var(--fg); }
+#timeline { border: 0; background: none; padding: 0; font: inherit; font-size: 14px; color: var(--muted); cursor: default; transition: color .15s; }
+#timeline:hover, #timeline.set { color: var(--fg); }
+#subs { border: 0; background: none; padding: 0; font: inherit; font-size: 14px; color: var(--muted); cursor: default; transition: color .15s; }
+#subs:hover, #subs.set { color: var(--fg); }
+#byimage .qthumb { height: 18px; width: auto; border-radius: 2px; }
+aside .src { color: var(--muted); border-bottom: 1px dotted var(--faint); }
+#clear.on:hover { color: var(--fg); }
+#q {
+  font-size: 14px; border: 0; background: none; padding: 0; outline: none; text-align: right;
+  width: var(--rest, 4.2em); transition: width .3s var(--ease); cursor: default;
+}
+#q:focus, #q:not(:placeholder-shown) { width: 16em; cursor: text; }
+#q::placeholder { color: var(--fg); opacity: 1; }
+#q:focus::placeholder { color: var(--muted); }
+#q::-webkit-search-cancel-button { display: none; }
+
+
+/* ------------------------------------------------------------ narrow screens */
+@media (max-width: 800px) {
+  :root { --aside: 100vw; }
+  aside { position: sticky; top: 0; z-index: 3; width: auto; max-height: 42vh; padding: 16px; background: var(--bg);
+          border-bottom: 1px solid var(--faint); }
+  aside .details { display: none; }
+  main { margin: 0; padding: 16px 16px 120px; }
+  .tile { grid-template-columns: minmax(0, 1fr); }
+  .tile .n { display: none; }
+  footer { left: 0; padding: 32px 16px 16px; gap: 16px; flex-wrap: wrap; }
+  #stats { position: static; width: auto; margin: 0 0 110px; padding: 0 16px; background: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

@@ -1,0 +1,54 @@
+# Drone / aerial / landscape footage of specific Ukrainian places, for spatial (forensic-architecture
+# style) analysis: wide shots with identifiable buildings, streets, infrastructure and terrain.
+# Scope rules still apply: Ukraine only, published 2022-01-01..2026-12-31 (checked per video).
+
+library_dir: library
+
+discovery:
+  api_key_env: YOUTUBE_API_KEY
+  published_after: 2022-01-01
+  published_before: 2026-12-31
+  split_by_year: false          # one search per query over the whole range (keeps quota low)
+  query_template: "{location} {term}"
+  # QUOTA: 6 locations x 2 terms = 12 searches x 100 = ~1,200 units
+  locations:
+    - name: Маріуполь
+    - name: Бахмут
+    - name: Ірпінь
+    - name: Харків
+    - name: Херсон
+    - name: Каховська ГЕС
+  categories:
+    - name: drone
+      terms: ["з дрона", "drone footage"]
+  max_results_per_query: 5
+  max_videos_total: 60          # candidates to review; the best 5 are ingested
+  order: relevance
+  video_license: any            # CC-licensed aerial footage of these places is rare
+  video_duration: any
+  relevance_language: uk
+  safe_search: none
+
+scope:
+  min_confidence: 0.5
+
+acquisition:
+  policy: public                # same policy as the playlist ingests
+  max_height: 1080
+  max_duration_s: 3600
+  include_audio: true
+  keep_media: true
+
+extraction:
+  interval_s: 5                 # drone footage has few hard cuts; sample more densely
+  scene_threshold: 0.3
+  min_gap_s: 1.5
+  max_frames_per_video: 100
+  candidate_pool: 500
+  dedup_hamming: 6
+
+classification:
+  backend: auto
+  prefer: [aerial, drone, architecture, urban, street, infrastructure, industrial, ruins, reconstruction, landscape, wildlife]
+  avoid: [people, interior, graphic]
+  min_subject: 0.4

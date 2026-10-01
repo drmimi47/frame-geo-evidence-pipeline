@@ -1,0 +1,11 @@
+# Single-query test: find "Fourth Summer in Manuk 09/15 new" via the YouTube Data API search.
+library_dir: library
+discovery:
+  split_by_year: false          # one search across 2022..2026 (100 quota units)
+  extra_queries: ["Fourth Summer in Manuk 09/15 new"]
+  max_results_per_query: 5
+  max_videos_total: 5
+  video_license: any            # don't restrict the search; acquisition policy still decides downloads
+  video_duration: any
+acquisition:
+  policy: creative_commons

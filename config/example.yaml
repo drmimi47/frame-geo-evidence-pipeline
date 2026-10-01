@@ -1,0 +1,64 @@
+# image-evidence-pipeline configuration.
+# Every section is optional; omitted keys use the defaults in src/image_evidence/config.py.
+
+library_dir: library            # relative to the working directory
+
+# SCOPE (hard, enforced in code): Ukraine only; YouTube publication date 2022-01-01..2026-12-31.
+# Dates outside that range are refused at config load. Every video must also pass the
+# Ukraine-relevance check (scope.py) before anything is downloaded or stored.
+
+discovery:
+  api_key_env: YOUTUBE_API_KEY  # read from the environment or ./.env
+  published_after: 2022-01-01   # may be narrowed, never widened
+  published_before: 2026-12-31
+  split_by_year: true           # one search per year -> results spread across 2022..2026
+  query_template: "{location} {term}"
+  # QUOTA: each search costs 100 units (10,000/day by default).
+  # searches = years(5) x locations x terms  -> this file: 5 x 2 x 2 = 20 searches = 2,000 units.
+  locations:
+    - name: Kyiv                # English and Ukrainian spellings both work; results differ
+    - name: Харків
+      # latitude/longitude/geo_filter: only restrict the API search; never copied onto frames
+  categories:
+    - name: drone
+      terms: ["drone footage", "з дрона"]
+  extra_queries: []             # literal queries, e.g. "Маріуполь руйнування"
+  max_results_per_query: 3
+  max_videos_total: 10
+  order: relevance
+  video_license: creativeCommon # any | creativeCommon
+  video_duration: medium        # any | short (<4m) | medium (4-20m) | long (>20m)
+  relevance_language: uk        # bias results toward Ukrainian-language videos
+  safe_search: none             # moderate/strict can hide documentary war footage
+
+scope:
+  min_confidence: 0.5           # Ukraine relevance needed to accept a video (language alone = 0.4)
+
+acquisition:
+  policy: creative_commons      # none | creative_commons | public
+  max_height: 1080
+  max_duration_s: 3600
+  include_audio: true
+  keep_media: true
+
+extraction:
+  interval_s: 10                # at least one frame every N seconds
+  scene_threshold: 0.3          # plus every scene change above this FFmpeg scene score
+  min_gap_s: 1.5
+  max_frames_per_video: 100
+  candidate_pool: 500           # previewed + classified; the best max_frames_per_video are kept
+  dedup_hamming: 6              # drop near-duplicates (dHash distance)
+  original_format: auto         # png | jpg | auto (PNG unless > lossless_max_frames)
+  lossless_max_frames: 40
+  web_max_px: 1600
+  thumb_max_px: 400
+
+classification:
+  backend: auto                 # auto | siglip | none
+  model: google/siglip-so400m-patch14-384   # faster/weaker: google/siglip2-base-patch16-224
+  threshold: 0.15               # min softmax share across labels (relative, not calibrated)
+  # labels: { ruins: ["a photo of ruins", "..."], ... }   # override/extend the default label prompts
+  # Which frames are kept: share of `prefer` labels minus share of `avoid` labels must be >= min_subject.
+  prefer: [landscape, architecture, street, urban, aerial, drone, infrastructure, industrial, ruins, reconstruction, wildlife]
+  avoid: [people, interior, graphic]
+  min_subject: 0.4

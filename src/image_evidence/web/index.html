@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ukraine Image Evidence</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="/static/style.css">
+<script type="module" src="/static/app.js"></script>
+</head>
+<body>
+<aside id="panel" aria-live="polite"></aside>
+<main id="main"></main>
+<div id="stats" aria-live="polite"></div>
+<footer id="controls">
+  <button id="timeline" type="button" title="Show each video as an editing timeline, with a marker where each frame was taken">Timeline</button>
+  <button id="subs" type="button" title="Show what is said in each video: its YouTube captions, with English beside them and the places they name">Subtitles</button>
+  <select id="sort" aria-label="Sort">
+    <option value="">Sort</option>
+    <option value="place">Sort: Place</option>
+    <option value="similar">Sort: Similar view</option>
+    <option value="angle">Sort: Camera angle</option>
+    <option value="damage">Sort: Damage</option>
+    <option value="color">Sort: Colour</option>
+    <option value="light">Sort: Light</option>
+    <option value="season">Sort: Season cues</option>
+    <option value="published">Sort: Published</option>
+    <option value="detail">Sort: Detail</option>
+    <optgroup id="near" label="Near a study-area place" hidden></optgroup>
+  </select>
+  <button id="clear" type="button">Clear all</button>
+  <select id="category" aria-label="Category"><option value="">All categories</option></select>
+  <select id="year" aria-label="Year published"><option value="">All years</option></select>
+  <button id="byimage" type="button" title="Find frames that look like an image of yours (or drop / paste one)">By image</button>
+  <input type="file" id="imgfile" accept="image/*" hidden>
+  <input type="search" id="q" placeholder="Search" aria-label="Search" autocomplete="off" spellcheck="false">
+</footer>
+</body>
+</html>
