@@ -1,0 +1,2029 @@
+[
+  {
+    "filename": "1_seek_000105.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 105.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "1_seek_000135.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 135.0,
+    "status": "landmark_identified",
+    "location": "Catherine's Throne (кресло Екатерины), Nenasytets rapid, between Dnipro and Zaporizhzhia (area ±1.5 km)",
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "high_landmark_identity_only",
+    "candidates": [
+      {
+        "place": "Catherine's Throne (кресло Екатерины), Nenasytets rapid, between Dnipro and Zaporizhzhia",
+        "verified": false,
+        "assessment": "landmark_identified"
+      }
+    ],
+    "method_note": "Named by the film itself: the intertitle «кресло Екатерины» directly precedes this shot, inside the sequence introduced by the Nenasytets card. Catherine's Chair was the right-bank crag at the Nenasytets rapid. Flooded in 1932 (about 20 m under the DniproHES reservoir). Earlier \"Rock of Love\" label was wrong: that is 1_seek_000165. Zainali pin contradicted (38.5 km from area centre).",
+    "method": "visual_investigation",
+    "search_status": "google_cloud_completed",
+    "yandex_status": "completed",
+    "evidence_report": "geolocation/area_verification/index.html#1_seek_000135.000s",
+    "baidu_status": "completed",
+    "area": {
+      "latitude": 48.2021,
+      "longitude": 35.189,
+      "radius_m": 1500,
+      "role": "area centre and tolerance; not film camera"
+    },
+    "zainali_check": {
+      "pin": [
+        47.864,
+        35.079
+      ],
+      "place": "Dnieper rapids rock formations, Ukraine",
+      "distance_km": 38.5,
+      "verdict": "contradicted"
+    },
+    "area_sources": [
+      "In-film intertitle 128.3-130.8 s, directly before this shot: «кресло Екатерины» (\"Catherine's Throne\")",
+      "In-film intertitle 87.5-96.5 s: «на полпути между Днепропетровском и Запорожьем в скалах шумит порог „Ненасытец\"» (Nenasytets rapid)",
+      "divingriver.com.ua, «Через пороги на Днепрострой»: Catherine's Chair is the front crag of Monastyrok rock on the right bank at the Nenasytets rapid; the «Пекло» wave at its foot",
+      "uk.wikipedia «Ненаситець (поріг)»: rapid at 48.2021, 35.1890, opposite Vasylivka-na-Dnipri / Mykilske-na-Dnipri; flooded 1932, now ~20 m under the DniproHES reservoir",
+      "Wikimedia Commons «Ненаситець.jpg» (c.1900 navigation map, public domain): Nenasytets rapid by Vasylivka, Varvarivka and the Marino estate",
+      "Yandex (stored): labels «днепровские пороги / скала любви / скала богатырь» list rocks of the same opening sequence; not specific to this shot"
+    ],
+    "intertitle": {
+      "start_s": 128.2,
+      "text": "«кресло Екатерины» \"Catherine's Throne\" (in the Nenasytets rapid section, 87.5 s)",
+      "names_place": true,
+      "rule": "intertitle taken as the answer"
+    }
+  },
+  {
+    "filename": "1_seek_000165.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 165.0,
+    "status": "landmark_identified",
+    "location": "Rock of Love (скала Любви), DniproHES-1 machine-hall site, Kichkas, Zaporizhzhia (area ±1 km)",
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "high_landmark_identity_only",
+    "candidates": [
+      {
+        "place": "Rock of Love (скала Любви), DniproHES-1 machine-hall site, Kichkas, Zaporizhzhia",
+        "verified": false,
+        "assessment": "landmark_identified"
+      }
+    ],
+    "method_note": "Named by the film itself: the intertitle «Скала Любви» directly precedes this shot. The rock stood where the DniproHES-1 machine hall was built and was blasted during construction; the shot shows it being quarried, with rails (MacKay's paired shot); the long low truss bridge behind is not resolved (the Kichkas bridge was a high single arch); Yandex hit is a Kichkas-bridge view of the construction. Zainali pin consistent (0.7 km from area centre).",
+    "method": "visual_investigation",
+    "search_status": "google_cloud_completed",
+    "yandex_status": "completed",
+    "evidence_report": "geolocation/area_verification/index.html#1_seek_000165.000s",
+    "baidu_status": "completed",
+    "area": {
+      "latitude": 47.865,
+      "longitude": 35.089,
+      "radius_m": 1000,
+      "role": "area centre and tolerance; not film camera"
+    },
+    "zainali_check": {
+      "pin": [
+        47.86,
+        35.084
+      ],
+      "place": "Dnieper hydroelectric power station construction site, Zaporizhzhia, Ukraine",
+      "distance_km": 0.7,
+      "verdict": "consistent"
+    },
+    "area_sources": [
+      "In-film intertitle ~157 s, directly before this shot: «„Скала Любви\"» (\"The Cliff of Love\")",
+      "J. MacKay, \"Энергия кино\" (НЛО 2014, №5): shooting route Jun-Nov 1927; opening rocks incl. «скала Любви»; workers breaking the rock at Dniprostroi; flooded villages Kichkas/Einlage",
+      "ru.wikipedia, Днепровский район (Запорожье): «На месте машинного зала ДнепроГЭС-1 находилась и взорванная при строительстве скала Любви»",
+      "Yandex (stored): pastvu «Вид с Кичкасского моста на строительство Днепрогэс»"
+    ],
+    "intertitle": {
+      "start_s": 157.5,
+      "text": "«Скала Любви» \"The Cliff of Love\"",
+      "names_place": true,
+      "rule": "intertitle taken as the answer"
+    }
+  },
+  {
+    "filename": "1_seek_000195.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 195.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "1_seek_000225.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 225.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "1_seek_000255.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 255.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "1_seek_000285.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 285.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "1_seek_000315.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 315.0,
+    "status": "probable_area",
+    "location": "DniproHES construction site, Kichkas, Zaporizhzhia (area ±1.5 km)",
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "medium_area",
+    "candidates": [
+      {
+        "place": "DniproHES construction site, Kichkas, Zaporizhzhia",
+        "verified": false,
+        "assessment": "probable_area"
+      }
+    ],
+    "method_note": "Same quarried rock mound as 1_seek_000165 in the middle ground, river with rocky islands; Yandex label «панорама строительства днепрогэса». Zainali pin consistent (0.8 km from area centre).",
+    "method": "visual_investigation",
+    "search_status": "google_cloud_completed",
+    "yandex_status": "completed",
+    "evidence_report": "geolocation/area_verification/index.html#1_seek_000315.000s",
+    "baidu_status": "completed",
+    "area": {
+      "latitude": 47.8679,
+      "longitude": 35.0858,
+      "radius_m": 1500,
+      "role": "area centre and tolerance; not film camera"
+    },
+    "zainali_check": {
+      "pin": [
+        47.861,
+        35.085
+      ],
+      "place": "Dnieper hydroelectric power station construction site, Zaporizhzhia, Ukraine",
+      "distance_km": 0.8,
+      "verdict": "consistent"
+    },
+    "area_sources": [
+      "J. MacKay, \"Энергия кино\" (НЛО 2014, №5): shooting route Jun-Nov 1927; opening rocks incl. «скала Любви»; workers breaking the rock at Dniprostroi; flooded villages Kichkas/Einlage",
+      "Yandex (stored): label «панорама строительства днепрогэса»"
+    ],
+    "intertitle": {
+      "start_s": 232.8,
+      "text": "«на штурм Днепра» \"Conquering Dniepr\" (names the river only)",
+      "names_place": false,
+      "rule": "no place in intertitle; earlier result kept"
+    }
+  },
+  {
+    "filename": "1_seek_000345.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 345.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "1_seek_000375.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 375.0,
+    "status": "contextual_candidate",
+    "location": "Contextual: DniproHES construction site (area ±2 km)",
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "low_contextual",
+    "candidates": [
+      {
+        "place": "DniproHES construction site (contextual)",
+        "verified": false,
+        "assessment": "contextual_candidate"
+      }
+    ],
+    "method_note": "Rail wagons and excavation without river or landmark; placed by sequence only (adjacent shots are not proof). Zainali pin consistent (0.7 km from area centre).",
+    "method": "visual_investigation",
+    "search_status": "google_cloud_completed",
+    "yandex_status": "completed",
+    "evidence_report": "geolocation/area_verification/index.html#1_seek_000375.000s",
+    "baidu_status": "completed",
+    "area": {
+      "latitude": 47.8679,
+      "longitude": 35.0858,
+      "radius_m": 2000,
+      "role": "area centre and tolerance; not film camera"
+    },
+    "zainali_check": {
+      "pin": [
+        47.862,
+        35.083
+      ],
+      "place": "Dnieper hydroelectric power station, Zaporizhzhia, Ukraine",
+      "distance_km": 0.7,
+      "verdict": "consistent"
+    },
+    "area_sources": [
+      "J. MacKay, \"Энергия кино\" (НЛО 2014, №5): shooting route Jun-Nov 1927; opening rocks incl. «скала Любви»; workers breaking the rock at Dniprostroi; flooded villages Kichkas/Einlage"
+    ],
+    "intertitle": {
+      "start_s": 232.8,
+      "text": "«на штурм Днепра» \"Conquering Dniepr\" (names the river only)",
+      "names_place": false,
+      "rule": "no place in intertitle; earlier result kept"
+    }
+  },
+  {
+    "filename": "1_seek_000405.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 405.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "1_seek_000435.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 435.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "1_seek_000495.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 495.0,
+    "status": "probable_area",
+    "location": "DniproHES construction site, Kichkas, Zaporizhzhia (area ±1.5 km)",
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "medium_area",
+    "candidates": [
+      {
+        "place": "DniproHES construction site, Kichkas, Zaporizhzhia",
+        "verified": false,
+        "assessment": "probable_area"
+      }
+    ],
+    "method_note": "Rock mound being cut with excavator and tracks, same setting as 1_seek_000165/000315. Zainali pin consistent (0.8 km from area centre).",
+    "method": "visual_investigation",
+    "search_status": "google_cloud_completed",
+    "yandex_status": "completed",
+    "evidence_report": "geolocation/area_verification/index.html#1_seek_000495.000s",
+    "baidu_status": "completed",
+    "area": {
+      "latitude": 47.8679,
+      "longitude": 35.0858,
+      "radius_m": 1500,
+      "role": "area centre and tolerance; not film camera"
+    },
+    "zainali_check": {
+      "pin": [
+        47.861,
+        35.084
+      ],
+      "place": "Dnieper hydroelectric power station construction site, Zaporizhzhia, Ukraine",
+      "distance_km": 0.8,
+      "verdict": "consistent"
+    },
+    "area_sources": [
+      "J. MacKay, \"Энергия кино\" (НЛО 2014, №5): shooting route Jun-Nov 1927; opening rocks incl. «скала Любви»; workers breaking the rock at Dniprostroi; flooded villages Kichkas/Einlage"
+    ],
+    "intertitle": {
+      "start_s": 450.8,
+      "text": "«строим» \"We are building\"",
+      "names_place": false,
+      "rule": "no place in intertitle; earlier result kept"
+    }
+  },
+  {
+    "filename": "1_seek_000525.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 525.0,
+    "status": "contextual_candidate",
+    "location": "Contextual: Kichkas reach of the Dnieper, Zaporizhzhia (area ±4 km)",
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "low_contextual",
+    "candidates": [
+      {
+        "place": "Kichkas reach of the Dnieper, Zaporizhzhia",
+        "verified": false,
+        "assessment": "contextual_candidate"
+      }
+    ],
+    "method_note": "Tank roof is not identified, but the background river with granite islands and high far bank matches the rapids/Kichkas reach shown in the same sequence. Zainali pin consistent (0.9 km from area centre).",
+    "method": "visual_investigation",
+    "search_status": "google_cloud_completed",
+    "yandex_status": "completed",
+    "evidence_report": "geolocation/area_verification/index.html#1_seek_000525.000s",
+    "baidu_status": "completed",
+    "area": {
+      "latitude": 47.8679,
+      "longitude": 35.0858,
+      "radius_m": 4000,
+      "role": "area centre and tolerance; not film camera"
+    },
+    "zainali_check": {
+      "pin": [
+        47.86,
+        35.086
+      ],
+      "place": "Dnieper hydroelectric power station construction site, Zaporizhzhia, Ukraine",
+      "distance_km": 0.9,
+      "verdict": "consistent"
+    },
+    "area_sources": [
+      "J. MacKay, \"Энергия кино\" (НЛО 2014, №5): shooting route Jun-Nov 1927; opening rocks incl. «скала Любви»; workers breaking the rock at Dniprostroi; flooded villages Kichkas/Einlage"
+    ],
+    "intertitle": {
+      "start_s": 450.8,
+      "text": "«строим» \"We are building\"",
+      "names_place": false,
+      "rule": "no place in intertitle; earlier result kept"
+    }
+  },
+  {
+    "filename": "1_seek_000555.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 555.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "1_seek_000645.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 645.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "1_seek_000735.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 735.0,
+    "status": "probable_area",
+    "location": "Site of the future DniproHES, Kichkas / Einlage (named by intertitle \"Here will be built...\") (area ±3 km)",
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "medium_area",
+    "candidates": [
+      {
+        "place": "Site of the future DniproHES, Kichkas / Einlage (named by intertitle \"Here will be built...\")",
+        "verified": false,
+        "assessment": "probable_area"
+      }
+    ],
+    "method_note": "The film introduces this sequence with «здесь будет построена величайшая электро-станция в Европе» (here, at the future DniproHES). MacKay: the film shows soon-to-be-flooded settlements (Kichkas, Einlage) without naming them. Building style (gabled two-storey house with gallery on granite slope) matches dated Einlage photos; the specific building is not matched. Zainali pin consistent (1.1 km from area centre).",
+    "method": "visual_investigation",
+    "search_status": "google_cloud_completed",
+    "yandex_status": "completed",
+    "evidence_report": "geolocation/area_verification/index.html#1_seek_000735.000s",
+    "baidu_status": "completed",
+    "area": {
+      "latitude": 47.8679,
+      "longitude": 35.0858,
+      "radius_m": 3000,
+      "role": "area centre and tolerance; not film camera"
+    },
+    "zainali_check": {
+      "pin": [
+        47.87,
+        35.1
+      ],
+      "place": "Village along the Dnieper River, Zaporizhzhia Oblast, Ukraine",
+      "distance_km": 1.1,
+      "verdict": "consistent"
+    },
+    "area_sources": [
+      "In-film intertitles 702-717 s: «здесь… будет построена… величайшая электро-станция в Европе» (\"Here will be built Europe's greatest power station\")",
+      "J. MacKay, \"Энергия кино\" (НЛО 2014, №5): shooting route Jun-Nov 1927; opening rocks incl. «скала Любви»; workers breaking the rock at Dniprostroi; flooded villages Kichkas/Einlage",
+      "pastvu (dated, geotagged) Einlage/Kichkas village: #2039900 (1931) gabled two-storey wooden house with gallery beside granite boulders; #2039901 (1929) village on rocky bank (archival/kichkas_compare.jpg)"
+    ],
+    "intertitle": {
+      "start_s": 702.2,
+      "text": "«здесь будет построена величайшая электро-станция в Европе» \"Here will be built Europe's greatest electro-power station\"",
+      "names_place": true,
+      "rule": "intertitle taken as the answer"
+    }
+  },
+  {
+    "filename": "1_seek_000765.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 765.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "1_seek_000795.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 795.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "1_seek_000855.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 855.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "1_seek_000885.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 885.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "1_seek_000975.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 975.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "1_seek_001155.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 1155.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "1_seek_001785.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 1785.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "unverified",
+    "candidates": [
+      {
+        "place": "Candidates from shooting route: Kamianske works, or Rutchenkove/Lidiivka coke ovens (Donetsk)",
+        "verified": false,
+        "assessment": "unlocated"
+      }
+    ],
+    "method_note": "Chimney, coke/ore and rail; documented route limits candidates but no feature match. Zainali pin unsupported.",
+    "method": "visual_investigation",
+    "search_status": "google_cloud_completed",
+    "yandex_status": "completed",
+    "evidence_report": "geolocation/area_verification/index.html#1_seek_001785.000s",
+    "baidu_status": "completed",
+    "area": null,
+    "zainali_check": {
+      "pin": [
+        47.864,
+        35.081
+      ],
+      "place": "Dnieper hydroelectric power station auxiliary industrial complex, Zaporizhzhia, Ukraine",
+      "distance_km": null,
+      "verdict": "unsupported"
+    },
+    "area_sources": [
+      "J. MacKay, \"Энергия кино\" (НЛО 2014, №5): shooting route Jun-Nov 1927; opening rocks incl. «скала Любви»; workers breaking the rock at Dniprostroi; flooded villages Kichkas/Einlage",
+      "pastvu: no pre-1935 industrial photos for Kamianske works or Rutchenkovo/Lidievka; untested"
+    ],
+    "intertitle": {
+      "start_s": 1717.5,
+      "text": "«под знаменем Ленина» \"Under the banner of Lenin\"",
+      "names_place": false,
+      "rule": "no place in intertitle; earlier result kept"
+    }
+  },
+  {
+    "filename": "1_seek_001995.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 1995.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "1_seek_002145.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 2145.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "unverified",
+    "candidates": [
+      {
+        "place": "No candidate beyond the documented shooting route",
+        "verified": false,
+        "assessment": "unlocated"
+      }
+    ],
+    "method_note": "The intertitle calls this a workers' compound but does not say where; timber stacks and houses are generic. Zainali pin unsupported.",
+    "method": "visual_investigation",
+    "search_status": "google_cloud_completed",
+    "yandex_status": "completed",
+    "evidence_report": "geolocation/area_verification/index.html#1_seek_002145.000s",
+    "baidu_status": "completed",
+    "area": null,
+    "zainali_check": {
+      "pin": [
+        47.863,
+        35.082
+      ],
+      "place": "Dnieper hydroelectric power station construction camp, Zaporizhzhia, Ukraine",
+      "distance_km": null,
+      "verdict": "unsupported"
+    },
+    "area_sources": [
+      "In-film intertitle 2131-2134 s, before this shot: «рабочий посёлок» (\"workers' compound\"); names the kind of place, not where"
+    ],
+    "intertitle": {
+      "start_s": 2131.2,
+      "text": "«рабочий посёлок» \"workers' compound\" (kind of place, not where)",
+      "names_place": false,
+      "rule": "no place in intertitle; earlier result kept"
+    }
+  },
+  {
+    "filename": "1_seek_002205.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 2205.0,
+    "status": "landmark_identified",
+    "location": "Historic mill and power station, Tyvriv, Ukraine",
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "high_landmark_identity_only",
+    "candidates": [],
+    "method_note": "Strong facade match in an independent later photograph: paired round details, staggered arched windows, brick cornice and water-channel arch. Published landmark reference approximately 49.0213, 28.5071; pin accuracy unknown. Film camera position and error radius remain unknown.",
+    "method": "visual_investigation",
+    "evidence_report": "geolocation/area_verification/index.html#1_seek_002205.000s",
+    "landmark_reference": {
+      "latitude": 49.021256,
+      "longitude": 28.507097,
+      "accuracy_m": null,
+      "role": "published site reference; not film camera",
+      "source": "https://archexplorer.wordpress.com/2013/03/30/тиврів-млин-та-гідроелектростанція-в/"
+    },
+    "search_status": "google_cloud_completed",
+    "yandex_status": "completed",
+    "baidu_status": "completed",
+    "area": {
+      "latitude": 49.021256,
+      "longitude": 28.507097,
+      "radius_m": 500,
+      "role": "area centre and tolerance; not film camera"
+    },
+    "zainali_check": {
+      "pin": [
+        50.45,
+        30.52
+      ],
+      "place": "Dnieper River watermill, Kyiv, Ukraine",
+      "distance_km": 214.8,
+      "verdict": "contradicted"
+    },
+    "area_sources": [
+      "Project result (visual_trial): facade match with an independent later photograph published by an architecture historian (archexplorer.wordpress.com, Тиврів млин та гідроелектростанція); landmark reference 49.0213, 28.5071"
+    ],
+    "intertitle": {
+      "start_s": 2183.5,
+      "text": "«строим» \"We build\"",
+      "names_place": false,
+      "rule": "no place in intertitle; earlier result kept"
+    }
+  },
+  {
+    "filename": "1_seek_002655.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 2655.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "1_seek_002805.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 2805.0,
+    "status": "probable_landmark",
+    "location": "Probable Obelisk of Freedom, Tverskaya Square, Moscow",
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "medium_landmark_identity_only",
+    "candidates": [],
+    "method_note": "Adjacent film sequence and museum-sourced 1930 photograph share the obelisk, sculptural figure and flanking supports. Probable landmark identity; exact film camera position unresolved. Alternative monuments have not been exhaustively assessed.",
+    "method": "visual_investigation",
+    "search_status": "google_cloud_completed",
+    "yandex_status": "completed",
+    "evidence_report": "geolocation/area_verification/index.html#1_seek_002805.000s",
+    "baidu_status": "completed",
+    "area": {
+      "latitude": 55.7618,
+      "longitude": 37.6101,
+      "radius_m": 500,
+      "role": "area centre and tolerance; not film camera"
+    },
+    "zainali_check": {
+      "pin": [
+        50.45,
+        30.523
+      ],
+      "place": "Independence Square, Kyiv, Ukraine",
+      "distance_km": 756.0,
+      "verdict": "contradicted"
+    },
+    "area_sources": [
+      "Project result (shortlist_run monument board): adjacent film sequence and Alexander Rodchenko 1930 photograph (MAMM/MDF) share the obelisk, figure and supports; Obelisk of Freedom, Tverskaya (Sovetskaya) Square, demolished 1941"
+    ],
+    "intertitle": {
+      "start_s": 2782.0,
+      "text": "«…второе десятилетие» \"rises … decade\" (slogan)",
+      "names_place": false,
+      "rule": "no place in intertitle; earlier result kept"
+    }
+  },
+  {
+    "filename": "1_seek_002865.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 2865.0,
+    "status": "contextual_candidate",
+    "location": "Contextual: Dnipro metallurgical works, Kamianske (area ±3 km)",
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "low_contextual",
+    "candidates": [
+      {
+        "place": "Dnipro metallurgical works, Kamianske (contextual)",
+        "verified": false,
+        "assessment": "contextual_candidate"
+      }
+    ],
+    "method_note": "Blast-furnace pipework 90 s before the probable Kamianske crane shot; Kamenskoe is on the documented route. Adjacency only. Zainali pin contradicted (82.3 km from area centre).",
+    "method": "visual_investigation",
+    "search_status": "google_cloud_completed",
+    "yandex_status": "completed",
+    "evidence_report": "geolocation/area_verification/index.html#1_seek_002865.000s",
+    "baidu_status": "completed",
+    "area": {
+      "latitude": 48.524,
+      "longitude": 34.6359,
+      "radius_m": 3000,
+      "role": "area centre and tolerance; not film camera"
+    },
+    "zainali_check": {
+      "pin": [
+        47.84,
+        35.06
+      ],
+      "place": "Dnieper steelworks, Zaporizhzhia, Ukraine",
+      "distance_km": 82.3,
+      "verdict": "contradicted"
+    },
+    "area_sources": [
+      "J. MacKay, \"Энергия кино\" (НЛО 2014, №5): shooting route Jun-Nov 1927; opening rocks incl. «скала Любви»; workers breaking the rock at Dniprostroi; flooded villages Kichkas/Einlage",
+      "Project result: 1_seek_002955 = loading crane, Dnipro metallurgical works, Kamianske (probable)",
+      "pastvu: no pre-1935 industrial photos for Kamianske works or Rutchenkovo/Lidievka; untested"
+    ],
+    "intertitle": {
+      "start_s": 2810.8,
+      "text": "«одиннадцатый» \"the eleventh\" (slogan)",
+      "names_place": false,
+      "rule": "no place in intertitle; earlier result kept"
+    }
+  },
+  {
+    "filename": "1_seek_002955.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 2955.0,
+    "status": "probable_landmark",
+    "location": "Probable loading crane, historic Dnipro metallurgical works, Kamianske, Ukraine",
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "medium_landmark_identity_only",
+    "candidates": [
+      {
+        "place": "Loading crane, historic Dnipro metallurgical works, Kamianske",
+        "verified": false,
+        "assessment": "probable_landmark"
+      }
+    ],
+    "method_note": "Wider film views and a historical factory photograph reproduce the paired lattice towers, cantilever girder and vertical-hanger arrangement of an industrial loading crane. A local history source identifies this crane in The Eleventh Year; its accompanying reproduced 1908 description explains the rail-and-beam stockyard operation. Probable landmark identity only; exact crane position and camera coordinates are unresolved. The earlier Kichkas bridge suggestion is superseded. Same-film screenshots are not independent corroboration.",
+    "method": "visual_investigation",
+    "search_status": "google_cloud_completed",
+    "yandex_status": "completed",
+    "evidence_report": "geolocation/area_verification/index.html#1_seek_002955.000s",
+    "baidu_status": "completed",
+    "area": {
+      "latitude": 48.524,
+      "longitude": 34.6359,
+      "radius_m": 2000,
+      "role": "area centre and tolerance; not film camera"
+    },
+    "zainali_check": {
+      "pin": [
+        47.861,
+        35.087
+      ],
+      "place": "Dnieper hydroelectric power station bridge, Zaporizhzhia, Ukraine",
+      "distance_km": 81.0,
+      "verdict": "contradicted"
+    },
+    "area_sources": [
+      "Project result (historical_followup): Kamianske MIC history article identifies the crane in The Eleventh Year; 1908 factory description, Fig. 41 historical photograph",
+      "J. MacKay, \"Энергия кино\" (НЛО 2014, №5): shooting route Jun-Nov 1927; opening rocks incl. «скала Любви»; workers breaking the rock at Dniprostroi; flooded villages Kichkas/Einlage"
+    ],
+    "intertitle": {
+      "start_s": 2810.8,
+      "text": "«одиннадцатый» \"the eleventh\" (slogan)",
+      "names_place": false,
+      "rule": "no place in intertitle; earlier result kept"
+    }
+  },
+  {
+    "filename": "1_seek_003045.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 3045.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "1_seek_003135.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 3135.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_000225.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 225.0,
+    "status": "probable_landmark",
+    "location": "Probable old Dnipro lock, Zaporizhzhia",
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "medium_landmark_identity_only",
+    "candidates": [
+      {
+        "place": "Old Dnipro lock, Zaporizhzhia",
+        "verified": false
+      }
+    ],
+    "method_note": "Adjacent film at 03:55 reveals paired colonnaded towers, framed lower openings and a connecting arch consistent with the old Dnipro lock. Landmark identity probable; exact film camera position unverified. Kakhovka complex not fully excluded. Merged with 3_seek_000195 (same lock sequence, same vessel).",
+    "method": "visual_investigation",
+    "evidence_report": "geolocation/area_verification/index.html#3_seek_000225.000s",
+    "search_status": "google_cloud_completed",
+    "yandex_status": "completed",
+    "baidu_status": "completed",
+    "area": {
+      "latitude": 47.8643,
+      "longitude": 35.0911,
+      "radius_m": 1000,
+      "role": "area centre and tolerance; not film camera"
+    },
+    "zainali_check": {
+      "pin": [
+        47.86,
+        35.088
+      ],
+      "place": "Dnieper hydroelectric power station navigation lock, Zaporizhzhia, Ukraine",
+      "distance_km": 0.5,
+      "verdict": "consistent"
+    },
+    "area_sources": [
+      "Project result (visual_trial/lock_review): paired colonnaded towers, framed openings and connecting arch consistent with the old Dnipro lock; Kakhovka not fully excluded",
+      "Merged frame 3_seek_000195 (03:15), same sequence: chamber walls, gateway and the same two-deck vessel; its Zainali pin (Dnieper HES navigation lock, 0.5 km from area centre) was consistent"
+    ],
+    "merged_frames": [
+      "3_seek_000195.000s.jpg"
+    ]
+  },
+  {
+    "filename": "3_seek_000255.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 255.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_000525.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 525.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_000555.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 555.0,
+    "status": "landmark_identified",
+    "location": "Kozatskyi Shpyl, Buchak, Cherkasy Oblast, Ukraine",
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "high_named_filming_location_only",
+    "candidates": [],
+    "method_note": "Film historian Oleh Chornyi explicitly identifies the kobzar-and-boy shot above the Dnipro as filmed on Kozatskyi Shpyl in Buchak. This matches L038. The exact camera point on the hill is unknown. Earlier Pokrovske–Kapulivka lead and Zainali Kyiv pin are superseded for this shot. Camera estimate (claude/README.md): ~300 m north of the Zatulyviter grave (49.8723, 31.4327), facing ~0-20 deg (N); an earlier 70-130 deg estimate is not supported because its 1950s map layer was offset ~730 m.",
+    "method": "visual_investigation",
+    "search_status": "google_cloud_completed",
+    "yandex_status": "completed",
+    "evidence_report": "geolocation/area_verification/index.html#3_seek_000555.000s",
+    "baidu_status": "completed",
+    "area": {
+      "latitude": 49.8696,
+      "longitude": 31.4341,
+      "radius_m": 500,
+      "role": "area centre and tolerance; not film camera"
+    },
+    "zainali_check": {
+      "pin": [
+        50.35,
+        30.5
+      ],
+      "place": "Dnieper River bank, Kyiv, Ukraine",
+      "distance_km": 85.4,
+      "verdict": "contradicted"
+    },
+    "area_sources": [
+      "Film historian Oleh Chornyi (screenplay.com.ua): kobzar-and-boy shot filmed on Kozatskyi Shpyl, Buchak; Zatulyviter grave (OSM 3993595455) on the hill; 1957 render match puts the camera ~300 m N of the grave facing ~N (claude/README.md)",
+      "golos.com.ua / litgazeta.com.ua: poet Volodymyr Zatulyviter buried on Kozatskyi Shpyl above the Dnipro"
+    ],
+    "camera_estimate": {
+      "latitude": 49.8723,
+      "longitude": 31.4327,
+      "heading_deg": [
+        0,
+        20
+      ],
+      "confidence": "probable",
+      "role": "estimated camera position; 1957 view render match"
+    }
+  },
+  {
+    "filename": "3_seek_000585.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 585.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_000615.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 615.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_000645.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 645.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_000675.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 675.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_000705.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 705.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_000735.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 735.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_000825.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 825.0,
+    "status": "probable_area",
+    "location": "Kakhovka HES construction site, Nova Kakhovka (area ±4 km)",
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "medium_area",
+    "candidates": [
+      {
+        "place": "Kakhovka HES construction site, Nova Kakhovka",
+        "verified": false,
+        "assessment": "probable_area"
+      }
+    ],
+    "method_note": "Formwork pit, lattice tower cranes and a flat steppe horizon match the type and setting of dated 1954 Kakhovka construction photos; DniproHES granite banks do not fit. No single structure matched. Zainali pin contradicted (176.8 km from area centre).",
+    "method": "visual_investigation",
+    "search_status": "google_cloud_completed",
+    "yandex_status": "completed",
+    "evidence_report": "geolocation/area_verification/index.html#3_seek_000825.000s",
+    "baidu_status": "completed",
+    "area": {
+      "latitude": 46.7806,
+      "longitude": 33.3668,
+      "radius_m": 4000,
+      "role": "area centre and tolerance; not film camera"
+    },
+    "zainali_check": {
+      "pin": [
+        47.862,
+        35.086
+      ],
+      "place": "Dnieper hydroelectric power station, Zaporizhzhia, Ukraine",
+      "distance_km": 176.8,
+      "verdict": "contradicted"
+    },
+    "area_sources": [
+      "Poem of the Sea used newsreel of the Kakhovka construction (panorama, Dnieper closure, pit flooding) - NV.ua",
+      "pastvu (dated, geotagged) 1954 Kakhovka HES construction: #456399, #456401 tower cranes over formwork, flat steppe horizon; #2013826 trestle with portal cranes; #1840307 rebar scaffolding (archival/kakhovka_build.jpg)"
+    ]
+  },
+  {
+    "filename": "3_seek_000885.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 885.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_000915.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 915.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_000945.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 945.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_000975.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 975.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_001065.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 1065.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_001095.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 1095.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_001125.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 1125.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_001155.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 1155.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_001305.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 1305.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_001335.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 1335.0,
+    "status": "contextual_candidate",
+    "location": "Contextual: Pokrovske-Kapulivka, Nikopol district (Kakhovka reservoir right bank) (area ±12 km)",
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "low_contextual",
+    "candidates": [
+      {
+        "place": "Pokrovske-Kapulivka, Nikopol district (Kakhovka reservoir right bank)",
+        "verified": false,
+        "assessment": "contextual_candidate"
+      }
+    ],
+    "method_note": "Riders in steppe by water: matches the documented Pokrovske extras shoot and Dovzhenko's Sirko-on-horseback scene; scene-specific confirmation missing. Zainali pin contradicted (75.6 km from area centre).",
+    "method": "visual_investigation",
+    "search_status": "google_cloud_completed",
+    "yandex_status": "completed",
+    "evidence_report": "geolocation/area_verification/index.html#3_seek_001335.000s",
+    "baidu_status": "completed",
+    "area": {
+      "latitude": 47.544,
+      "longitude": 34.188,
+      "radius_m": 12000,
+      "role": "area centre and tolerance; not film camera"
+    },
+    "zainali_check": {
+      "pin": [
+        47.75,
+        35.15
+      ],
+      "place": "Steppe along the lower Dnieper River, Zaporizhzhia, Ukraine",
+      "distance_km": 75.6,
+      "verdict": "contradicted"
+    },
+    "area_sources": [
+      "bizslovo.org (Nikopol history): Solntseva filmed at Pokrovske in 1958; >100 Pokrovske/Kapulivka extras at «Токские курганы»; Dovzhenko planned Sirko-on-horseback vs bulldozers"
+    ]
+  },
+  {
+    "filename": "3_seek_001815.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 1815.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_002115.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2115.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_002145.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2145.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_002235.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2235.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_002325.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2325.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_002355.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2355.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_002385.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2385.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_002445.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2445.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_002595.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2595.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_002625.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2625.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_002685.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2685.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_002745.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2745.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_002805.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2805.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_002835.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2835.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_002925.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2925.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_002955.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2955.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_002985.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2985.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_003045.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 3045.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_003075.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 3075.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_003105.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 3105.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_003135.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 3135.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_003195.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 3195.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_003285.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 3285.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_003345.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 3345.0,
+    "status": "contextual_candidate",
+    "location": "Contextual: Kakhovka HES construction site, Nova Kakhovka (area ±5 km)",
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "low_contextual",
+    "candidates": [
+      {
+        "place": "Kakhovka HES construction site, Nova Kakhovka",
+        "verified": false,
+        "assessment": "contextual_candidate"
+      }
+    ],
+    "method_note": "Earthworks with dump trucks on an excavated bank; construction newsreel source. Zainali pin contradicted (176.8 km from area centre).",
+    "method": "visual_investigation",
+    "search_status": "google_cloud_completed",
+    "yandex_status": "completed",
+    "evidence_report": "geolocation/area_verification/index.html#3_seek_003345.000s",
+    "baidu_status": "completed",
+    "area": {
+      "latitude": 46.7806,
+      "longitude": 33.3668,
+      "radius_m": 5000,
+      "role": "area centre and tolerance; not film camera"
+    },
+    "zainali_check": {
+      "pin": [
+        47.862,
+        35.086
+      ],
+      "place": "Dnieper hydroelectric power station construction site, Zaporizhzhia, Ukraine",
+      "distance_km": 176.8,
+      "verdict": "contradicted"
+    },
+    "area_sources": [
+      "Poem of the Sea used newsreel of the Kakhovka construction (panorama, Dnieper closure, pit flooding) - NV.ua",
+      "pastvu (dated, geotagged) 1954 Kakhovka HES construction: #456399, #456401 tower cranes over formwork, flat steppe horizon; #2013826 trestle with portal cranes; #1840307 rebar scaffolding (archival/kakhovka_build.jpg)"
+    ]
+  },
+  {
+    "filename": "3_seek_003525.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 3525.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_003555.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 3555.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_003585.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 3585.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_003615.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 3615.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_003765.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 3765.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "unverified",
+    "candidates": [
+      {
+        "place": "Candidate: Nova Kakhovka (new builders' town), unverified",
+        "verified": false,
+        "assessment": "unlocated"
+      }
+    ],
+    "method_note": "Sign «НОВОСЕЛИ, живіть і працюйте на щастя вітчизни» (new settlers) names no place; staged scene at the new-village building site, same storyline as L103 (3_seek_001895.5). No landscape in the shot. Zainali pin unsupported.",
+    "method": "visual_investigation",
+    "search_status": "google_cloud_completed",
+    "yandex_status": "completed",
+    "evidence_report": "geolocation/area_verification/index.html#3_seek_003765.000s",
+    "baidu_status": "completed",
+    "area": null,
+    "zainali_check": {
+      "pin": [
+        50.45,
+        30.53
+      ],
+      "place": "Dnieper River bank, Ukraine",
+      "distance_km": null,
+      "verdict": "unsupported"
+    },
+    "area_sources": [
+      "Same storyline as L084 (3_seek_003765, «НОВОСЕЛИ» = new settlers building site); that shot has no landscape and does not narrow the place"
+    ],
+    "story_prototype": {
+      "place": "Hrushivka and Hrushivskyi Kut (flooded 1955-56 by the Kakhovka reservoir; resettled uphill as Leninske, renamed Hrushivka in 2016)",
+      "latitude": 47.5886,
+      "longitude": 34.0125,
+      "radius_m": 3000,
+      "note": "Dovzhenko lived in Leninske (Hrushivka) in 1954-1955 and wrote the screenplay there; 678 households of Hrushivka and Hrushivskyi Kut were moved uphill. The old villages lay lower on the Velykyi Luh floodplain at the Bazavluk mouth and are re-emerging since the 2023 dam breach. The film itself was shot at Buchak in 1957 (Dovzhenko died in 1956).",
+      "sources": [
+        "I. Kocherhin, \"Апостолівський район. Частина 3\", dnipro.libr.dp.ua/Apostolivsky_rayon_3",
+        "uk.wikipedia: Грушівка (Криворізький район), 47°35′19″ N 34°0′45″ E (its claim that the film was shot there is not supported)",
+        "Ukrinform, \"Каховське море: вода зникає, затоплені села з'являються\" (old Hrushivka re-emerging)"
+      ],
+      "role": "story prototype of the film's village; not the filming location"
+    }
+  },
+  {
+    "filename": "3_seek_003975.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 3975.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_004005.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 4005.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_004125.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 4125.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_004155.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 4155.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_004185.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 4185.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_004215.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 4215.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_004275.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 4275.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_004425.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 4425.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_004995.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 4995.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_005745.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 5745.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_005775.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 5775.0,
+    "status": "probable_area",
+    "location": "Kakhovka HES construction site, Nova Kakhovka (area ±4 km)",
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "medium_area",
+    "candidates": [
+      {
+        "place": "Kakhovka HES construction site, Nova Kakhovka",
+        "verified": false,
+        "assessment": "probable_area"
+      }
+    ],
+    "method_note": "Rebar scaffolding towers, gantry crane and rail flats match dated 1954 Kakhovka construction photos in type; no single structure matched. Zainali pin contradicted (176.8 km from area centre).",
+    "method": "visual_investigation",
+    "search_status": "google_cloud_completed",
+    "yandex_status": "completed",
+    "evidence_report": "geolocation/area_verification/index.html#3_seek_005775.000s",
+    "baidu_status": "completed",
+    "area": {
+      "latitude": 46.7806,
+      "longitude": 33.3668,
+      "radius_m": 4000,
+      "role": "area centre and tolerance; not film camera"
+    },
+    "zainali_check": {
+      "pin": [
+        47.862,
+        35.086
+      ],
+      "place": "Dnieper hydroelectric power station, Zaporizhzhia, Ukraine",
+      "distance_km": 176.8,
+      "verdict": "contradicted"
+    },
+    "area_sources": [
+      "Poem of the Sea used newsreel of the Kakhovka construction (panorama, Dnieper closure, pit flooding) - NV.ua",
+      "pastvu (dated, geotagged) 1954 Kakhovka HES construction: #456399, #456401 tower cranes over formwork, flat steppe horizon; #2013826 trestle with portal cranes; #1840307 rebar scaffolding (archival/kakhovka_build.jpg)"
+    ]
+  },
+  {
+    "filename": "3_seek_006045.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 6045.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_006075.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 6075.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_006105.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 6105.0,
+    "status": "contextual_candidate",
+    "location": "Contextual, undecided: Odesa coast (area ±10 km) or Kakhovka reservoir right bank, Pokrovske-Kapulivka (area ±12 km)",
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "low_contextual",
+    "candidates": [
+      {
+        "place": "Undecided: Odesa coast or Kakhovka reservoir near Pokrovske-Kapulivka",
+        "verified": false,
+        "assessment": "contextual_candidate"
+      },
+      {
+        "place": "Kakhovka reservoir right bank, Pokrovske-Kapulivka",
+        "verified": false,
+        "assessment": "alternative"
+      }
+    ],
+    "method_note": "Both are documented locations. No dated Odesa photo matches the headland or cliff; the vertical yellow cliff could equally be Kakhovka-reservoir loess. Pokrovske has no archival coverage. Zainali pin contradicted (355.4 km from area centre).",
+    "method": "visual_investigation",
+    "evidence_report": "geolocation/area_verification/index.html#3_seek_006105.000s",
+    "search_status": "google_cloud_completed",
+    "yandex_status": "completed",
+    "baidu_status": "completed",
+    "area": {
+      "latitude": 46.4318,
+      "longitude": 30.7608,
+      "radius_m": 10000,
+      "role": "area centre and tolerance; not film camera"
+    },
+    "alt_area": {
+      "latitude": 47.544,
+      "longitude": 34.188,
+      "radius_m": 12000,
+      "place": "Kakhovka reservoir right bank, Pokrovske-Kapulivka"
+    },
+    "zainali_check": {
+      "pin": [
+        47.78,
+        35.02
+      ],
+      "place": "Dnieper Reservoir, Zaporizhzhia, Ukraine",
+      "distance_km": 355.4,
+      "verdict": "contradicted"
+    },
+    "area_sources": [
+      "kino-teatr.ru: filming location Odesa (steamship «Крым»)",
+      "Yandex (stored): label «одесса аркадия старые / пляжи ссср» (weak, generic)",
+      "bizslovo.org (Nikopol history): Solntseva filmed at Pokrovske in 1958; >100 Pokrovske/Kapulivka extras at «Токские курганы»; Dovzhenko planned Sirko-on-horseback vs bulldozers",
+      "pastvu: 61 dated Odesa coast photos 1948-61 checked; none shows the smooth flat-topped headland or the vertical yellow cliff (archival/coast_odesa.jpg)",
+      "pastvu: no shoreline photos for Pokrovske-Kapulivka (only Nikopol city), so this candidate is untested"
+    ]
+  },
+  {
+    "filename": "3_seek_006135.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 6135.0,
+    "status": "contextual_candidate",
+    "location": "Contextual, undecided: Odesa coast (area ±10 km) or Kakhovka reservoir right bank, Pokrovske-Kapulivka (area ±12 km)",
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "low_contextual",
+    "candidates": [
+      {
+        "place": "Same coast as 3_seek_006105 (undecided)",
+        "verified": false,
+        "assessment": "contextual_candidate"
+      },
+      {
+        "place": "Kakhovka reservoir right bank, Pokrovske-Kapulivka",
+        "verified": false,
+        "assessment": "alternative"
+      }
+    ],
+    "method_note": "Same cliff/revetment and crowd as the neighbouring coast shot. Zainali pin contradicted (355.4 km from area centre).",
+    "method": "visual_investigation",
+    "search_status": "google_cloud_completed",
+    "yandex_status": "completed",
+    "evidence_report": "geolocation/area_verification/index.html#3_seek_006135.000s",
+    "baidu_status": "completed",
+    "area": {
+      "latitude": 46.4318,
+      "longitude": 30.7608,
+      "radius_m": 10000,
+      "role": "area centre and tolerance; not film camera"
+    },
+    "alt_area": {
+      "latitude": 47.544,
+      "longitude": 34.188,
+      "radius_m": 12000,
+      "place": "Kakhovka reservoir right bank, Pokrovske-Kapulivka"
+    },
+    "zainali_check": {
+      "pin": [
+        47.78,
+        35.02
+      ],
+      "place": "Dnieper Reservoir, Zaporizhzhia, Ukraine",
+      "distance_km": 355.4,
+      "verdict": "contradicted"
+    },
+    "area_sources": [
+      "kino-teatr.ru: filming location Odesa (steamship «Крым»)",
+      "bizslovo.org (Nikopol history): Solntseva filmed at Pokrovske in 1958; >100 Pokrovske/Kapulivka extras at «Токские курганы»; Dovzhenko planned Sirko-on-horseback vs bulldozers",
+      "pastvu: 61 dated Odesa coast photos 1948-61 checked; none shows the smooth flat-topped headland or the vertical yellow cliff (archival/coast_odesa.jpg)",
+      "pastvu: no shoreline photos for Pokrovske-Kapulivka (only Nikopol city), so this candidate is untested"
+    ]
+  },
+  {
+    "filename": "3_seek_006165.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 6165.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_006195.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 6195.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_006225.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 6225.0,
+    "status": "unlocated",
+    "location": null,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "confidence": "none",
+    "candidates": [],
+    "method_note": "No transcript or visual location evidence has been attached."
+  },
+  {
+    "filename": "3_seek_001895.500s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 1895.5,
+    "coordinates": null,
+    "uncertainty_radius_m": null,
+    "search_status": "not_run",
+    "status": "probable_area",
+    "confidence": "medium_area",
+    "location": "New village set on the high right bank, Buchak - Babyna Hora (former Selyshche), Kaniv area, Cherkasy Oblast (area ±2 km)",
+    "candidates": [
+      {
+        "place": "New village set on the high right bank, Buchak - Babyna Hora (former Selyshche), Kaniv area, Cherkasy Oblast",
+        "verified": false,
+        "assessment": "probable_area"
+      }
+    ],
+    "method_note": "House-building shot of the new village (31:35). The documented village set was Buchak and Selyshche below Babyna Hora; the layout test reproduces hilltop, meadow, river and flat forested far bank only when looking E-ESE across the Dnipro from this high bank. Exact hill unresolved (Babyna Hora and the hill north of Buchak score within 0.05). The real Selyshche lowland and part of Babyna Hora were later flooded by the Kaniv reservoir (1972). Zainali pin no_pin.",
+    "method": "visual_investigation",
+    "evidence_report": "geolocation/area_verification/index.html#3_seek_001895.500s",
+    "area": {
+      "latitude": 49.858,
+      "longitude": 31.442,
+      "radius_m": 2000,
+      "role": "area centre and tolerance; not film camera"
+    },
+    "zainali_check": {
+      "pin": null,
+      "place": null,
+      "distance_km": null,
+      "verdict": "no_pin"
+    },
+    "area_sources": [
+      "Film-history source (O. Chornyi, \"Кіноплацдарм на Канівщині\", screenplay.com.ua): as Dovzhenko intended, the film was shot in Buchak and the former neighbouring village of Selyshche below Babyna Hora (Babyna Hora 49.854, 31.446, 2 km S of Buchak)",
+      "Layout test (claude/village/village_view.py): 11,664 renders from DEM + corrected 1950s river plan at 162 hill points around Buchak; best fits on Babyna Hora facing 90-120 deg (0.66, 0.62) and north of Buchak facing 60 deg (0.62); median hill 0.31. Hills not separable, view direction E-ESE across the Dnipro is",
+      "Same storyline as L084 (3_seek_003765, «НОВОСЕЛИ» = new settlers building site); that shot has no landscape and does not narrow the place"
+    ],
+    "story_prototype": {
+      "place": "Hrushivka and Hrushivskyi Kut (flooded 1955-56 by the Kakhovka reservoir; resettled uphill as Leninske, renamed Hrushivka in 2016)",
+      "latitude": 47.5886,
+      "longitude": 34.0125,
+      "radius_m": 3000,
+      "note": "Dovzhenko lived in Leninske (Hrushivka) in 1954-1955 and wrote the screenplay there; 678 households of Hrushivka and Hrushivskyi Kut were moved uphill. The old villages lay lower on the Velykyi Luh floodplain at the Bazavluk mouth and are re-emerging since the 2023 dam breach. The film itself was shot at Buchak in 1957 (Dovzhenko died in 1956).",
+      "sources": [
+        "I. Kocherhin, \"Апостолівський район. Частина 3\", dnipro.libr.dp.ua/Apostolivsky_rayon_3",
+        "uk.wikipedia: Грушівка (Криворізький район), 47°35′19″ N 34°0′45″ E (its claim that the film was shot there is not supported)",
+        "Ukrinform, \"Каховське море: вода зникає, затоплені села з'являються\" (old Hrushivka re-emerging)"
+      ],
+      "role": "story prototype of the film's village; not the filming location"
+    }
+  }
+]

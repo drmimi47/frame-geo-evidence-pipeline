@@ -6,6 +6,8 @@ source link plus location and date clues, and every clue carries a confidence an
 
 Full rules and design notes are in [`CLAUDE.md`](CLAUDE.md).
 
+An independent [historical-film landscape study](studies/dnipro-landscape-films/README.md) preserves the Dnipro film gallery, label editor, and history timeline without adding archival footage to this collection's library.
+
 ## Scope (hard limits)
 
 - **Ukraine only.** `scope.check_scope()` gates every video before anything is written. It checks the uploader

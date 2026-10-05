@@ -7,3 +7,11 @@ library/
 .DS_Store
 .playwright-mcp/
 libraries/
+
+# Historical-film study: local media, model weights, and generated galleries.
+/studies/dnipro-landscape-films/outputs/
+/studies/dnipro-landscape-films/snapshots/
+/studies/dnipro-landscape-films/*.mp4
+/studies/dnipro-landscape-films/models/*.safetensors
+/studies/dnipro-landscape-films/models/*.pth
+/studies/dnipro-landscape-films/.env*

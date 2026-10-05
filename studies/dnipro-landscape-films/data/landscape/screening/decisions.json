@@ -1,0 +1,2864 @@
+[
+  {
+    "screen_id": 1,
+    "filename": "1_seek_000015.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000015.000s.jpg",
+    "include": false,
+    "screening_reason": "Title, credits, or blank frame",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 2,
+    "filename": "1_seek_000045.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000045.000s.jpg",
+    "include": false,
+    "screening_reason": "Title, credits, or blank frame",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 3,
+    "filename": "1_seek_000075.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000075.000s.jpg",
+    "include": false,
+    "screening_reason": "Title, credits, or blank frame",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 4,
+    "filename": "1_seek_000105.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000105.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 5,
+    "filename": "1_seek_000135.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000135.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 6,
+    "filename": "1_seek_000165.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000165.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 7,
+    "filename": "1_seek_000195.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000195.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 8,
+    "filename": "1_seek_000225.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000225.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 9,
+    "filename": "1_seek_000255.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000255.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": true,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 10,
+    "filename": "1_seek_000285.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000285.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": true,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 11,
+    "filename": "1_seek_000315.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000315.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": true,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 12,
+    "filename": "1_seek_000345.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000345.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 13,
+    "filename": "1_seek_000375.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000375.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 14,
+    "filename": "1_seek_000405.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000405.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 15,
+    "filename": "1_seek_000435.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000435.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": true,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 16,
+    "filename": "1_seek_000465.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000465.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 17,
+    "filename": "1_seek_000495.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000495.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 18,
+    "filename": "1_seek_000525.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000525.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 19,
+    "filename": "1_seek_000555.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000555.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 20,
+    "filename": "1_seek_000585.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000585.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 21,
+    "filename": "1_seek_000615.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000615.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 22,
+    "filename": "1_seek_000645.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000645.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 23,
+    "filename": "1_seek_000675.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000675.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 24,
+    "filename": "1_seek_000705.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000705.000s.jpg",
+    "include": false,
+    "screening_reason": "Title, credits, or blank frame",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 25,
+    "filename": "1_seek_000735.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000735.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": true,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 26,
+    "filename": "1_seek_000765.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000765.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 27,
+    "filename": "1_seek_000795.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000795.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": true,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 28,
+    "filename": "1_seek_000825.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000825.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 29,
+    "filename": "1_seek_000855.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000855.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 30,
+    "filename": "1_seek_000885.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000885.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": true,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 31,
+    "filename": "1_seek_000915.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000915.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 32,
+    "filename": "1_seek_000945.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000945.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 33,
+    "filename": "1_seek_000975.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_000975.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 34,
+    "filename": "1_seek_001005.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001005.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 35,
+    "filename": "1_seek_001035.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001035.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 36,
+    "filename": "1_seek_001065.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001065.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 37,
+    "filename": "1_seek_001095.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001095.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 38,
+    "filename": "1_seek_001125.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001125.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 39,
+    "filename": "1_seek_001155.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001155.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 40,
+    "filename": "1_seek_001185.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001185.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 41,
+    "filename": "1_seek_001215.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001215.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 42,
+    "filename": "1_seek_001245.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001245.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 43,
+    "filename": "1_seek_001275.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001275.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 44,
+    "filename": "1_seek_001305.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001305.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 45,
+    "filename": "1_seek_001335.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001335.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 46,
+    "filename": "1_seek_001365.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001365.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 47,
+    "filename": "1_seek_001395.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001395.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 48,
+    "filename": "1_seek_001425.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001425.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 49,
+    "filename": "1_seek_001455.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001455.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 50,
+    "filename": "1_seek_001485.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001485.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 51,
+    "filename": "1_seek_001515.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001515.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 52,
+    "filename": "1_seek_001545.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001545.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 53,
+    "filename": "1_seek_001575.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001575.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 54,
+    "filename": "1_seek_001605.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001605.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 55,
+    "filename": "1_seek_001635.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001635.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 56,
+    "filename": "1_seek_001665.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001665.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 57,
+    "filename": "1_seek_001695.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001695.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 58,
+    "filename": "1_seek_001725.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001725.000s.jpg",
+    "include": false,
+    "screening_reason": "Title, credits, or blank frame",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 59,
+    "filename": "1_seek_001755.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001755.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 60,
+    "filename": "1_seek_001785.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001785.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 61,
+    "filename": "1_seek_001815.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001815.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 62,
+    "filename": "1_seek_001845.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001845.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 63,
+    "filename": "1_seek_001875.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001875.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 64,
+    "filename": "1_seek_001905.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001905.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 65,
+    "filename": "1_seek_001935.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001935.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 66,
+    "filename": "1_seek_001965.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001965.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 67,
+    "filename": "1_seek_001995.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_001995.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 68,
+    "filename": "1_seek_002025.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002025.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 69,
+    "filename": "1_seek_002055.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002055.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 70,
+    "filename": "1_seek_002085.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002085.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 71,
+    "filename": "1_seek_002115.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002115.000s.jpg",
+    "include": false,
+    "screening_reason": "Title, credits, or blank frame",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 72,
+    "filename": "1_seek_002145.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002145.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 73,
+    "filename": "1_seek_002175.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002175.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 74,
+    "filename": "1_seek_002205.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002205.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 75,
+    "filename": "1_seek_002235.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002235.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 76,
+    "filename": "1_seek_002265.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002265.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 77,
+    "filename": "1_seek_002295.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002295.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 78,
+    "filename": "1_seek_002325.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002325.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 79,
+    "filename": "1_seek_002355.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002355.000s.jpg",
+    "include": false,
+    "screening_reason": "Title, credits, or blank frame",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 80,
+    "filename": "1_seek_002385.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002385.000s.jpg",
+    "include": false,
+    "screening_reason": "Sky or flying subjects without landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 81,
+    "filename": "1_seek_002415.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002415.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 82,
+    "filename": "1_seek_002445.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002445.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 83,
+    "filename": "1_seek_002475.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002475.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 84,
+    "filename": "1_seek_002505.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002505.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 85,
+    "filename": "1_seek_002535.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002535.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 86,
+    "filename": "1_seek_002565.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002565.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 87,
+    "filename": "1_seek_002595.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002595.000s.jpg",
+    "include": false,
+    "screening_reason": "Title, credits, or blank frame",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 88,
+    "filename": "1_seek_002625.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002625.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 89,
+    "filename": "1_seek_002655.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002655.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 90,
+    "filename": "1_seek_002685.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002685.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 91,
+    "filename": "1_seek_002715.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002715.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 92,
+    "filename": "1_seek_002745.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002745.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 93,
+    "filename": "1_seek_002775.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002775.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 94,
+    "filename": "1_seek_002805.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002805.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 95,
+    "filename": "1_seek_002835.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002835.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 96,
+    "filename": "1_seek_002865.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002865.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 97,
+    "filename": "1_seek_002895.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002895.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 98,
+    "filename": "1_seek_002925.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002925.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 99,
+    "filename": "1_seek_002955.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002955.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 100,
+    "filename": "1_seek_002985.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_002985.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 101,
+    "filename": "1_seek_003015.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_003015.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 102,
+    "filename": "1_seek_003045.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_003045.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": true,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 103,
+    "filename": "1_seek_003075.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_003075.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 104,
+    "filename": "1_seek_003105.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_003105.000s.jpg",
+    "include": false,
+    "screening_reason": "Sky or flying subjects without landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 105,
+    "filename": "1_seek_003135.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_003135.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": true,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 106,
+    "filename": "1_seek_003165.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_003165.000s.jpg",
+    "include": false,
+    "screening_reason": "Title, credits, or blank frame",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 107,
+    "filename": "1_seek_003195.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_003195.000s.jpg",
+    "include": false,
+    "screening_reason": "Title, credits, or blank frame",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 108,
+    "filename": "1_seek_003225.000s.jpg",
+    "source": "outputs/expanded/frames/1_seek_003225.000s.jpg",
+    "include": false,
+    "screening_reason": "Title, credits, or blank frame",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 109,
+    "filename": "3_seek_000015.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000015.000s.jpg",
+    "include": false,
+    "screening_reason": "Title, credits, or blank frame",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 110,
+    "filename": "3_seek_000045.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000045.000s.jpg",
+    "include": false,
+    "screening_reason": "Title, credits, or blank frame",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 111,
+    "filename": "3_seek_000075.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000075.000s.jpg",
+    "include": false,
+    "screening_reason": "Title, credits, or blank frame",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 112,
+    "filename": "3_seek_000105.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000105.000s.jpg",
+    "include": false,
+    "screening_reason": "Title, credits, or blank frame",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 113,
+    "filename": "3_seek_000135.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000135.000s.jpg",
+    "include": false,
+    "screening_reason": "Title, credits, or blank frame",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 114,
+    "filename": "3_seek_000165.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000165.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 115,
+    "filename": "3_seek_000195.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000195.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 116,
+    "filename": "3_seek_000225.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000225.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 117,
+    "filename": "3_seek_000255.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000255.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 118,
+    "filename": "3_seek_000285.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000285.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 119,
+    "filename": "3_seek_000315.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000315.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 120,
+    "filename": "3_seek_000345.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000345.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 121,
+    "filename": "3_seek_000375.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000375.000s.jpg",
+    "include": false,
+    "screening_reason": "Sky or flying subjects without landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 122,
+    "filename": "3_seek_000405.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000405.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 123,
+    "filename": "3_seek_000435.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000435.000s.jpg",
+    "include": false,
+    "screening_reason": "Sky or flying subjects without landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 124,
+    "filename": "3_seek_000465.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000465.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 125,
+    "filename": "3_seek_000495.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000495.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 126,
+    "filename": "3_seek_000525.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000525.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 127,
+    "filename": "3_seek_000555.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000555.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 128,
+    "filename": "3_seek_000585.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000585.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 129,
+    "filename": "3_seek_000615.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000615.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 130,
+    "filename": "3_seek_000645.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000645.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 131,
+    "filename": "3_seek_000675.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000675.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 132,
+    "filename": "3_seek_000705.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000705.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 133,
+    "filename": "3_seek_000735.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000735.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 134,
+    "filename": "3_seek_000765.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000765.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 135,
+    "filename": "3_seek_000795.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000795.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 136,
+    "filename": "3_seek_000825.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000825.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 137,
+    "filename": "3_seek_000855.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000855.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 138,
+    "filename": "3_seek_000885.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000885.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 139,
+    "filename": "3_seek_000915.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000915.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 140,
+    "filename": "3_seek_000945.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000945.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 141,
+    "filename": "3_seek_000975.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_000975.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": true,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 142,
+    "filename": "3_seek_001005.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001005.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 143,
+    "filename": "3_seek_001035.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001035.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 144,
+    "filename": "3_seek_001065.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001065.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 145,
+    "filename": "3_seek_001095.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001095.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 146,
+    "filename": "3_seek_001125.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001125.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 147,
+    "filename": "3_seek_001155.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001155.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 148,
+    "filename": "3_seek_001185.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001185.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 149,
+    "filename": "3_seek_001215.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001215.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 150,
+    "filename": "3_seek_001245.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001245.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 151,
+    "filename": "3_seek_001275.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001275.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 152,
+    "filename": "3_seek_001305.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001305.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 153,
+    "filename": "3_seek_001335.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001335.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 154,
+    "filename": "3_seek_001365.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001365.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 155,
+    "filename": "3_seek_001395.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001395.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 156,
+    "filename": "3_seek_001425.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001425.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 157,
+    "filename": "3_seek_001455.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001455.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 158,
+    "filename": "3_seek_001485.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001485.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 159,
+    "filename": "3_seek_001515.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001515.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 160,
+    "filename": "3_seek_001545.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001545.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 161,
+    "filename": "3_seek_001575.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001575.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 162,
+    "filename": "3_seek_001605.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001605.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 163,
+    "filename": "3_seek_001635.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001635.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 164,
+    "filename": "3_seek_001665.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001665.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 165,
+    "filename": "3_seek_001695.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001695.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 166,
+    "filename": "3_seek_001725.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001725.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 167,
+    "filename": "3_seek_001755.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001755.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 168,
+    "filename": "3_seek_001785.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001785.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 169,
+    "filename": "3_seek_001815.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001815.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 170,
+    "filename": "3_seek_001845.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001845.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 171,
+    "filename": "3_seek_001875.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001875.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 172,
+    "filename": "3_seek_001905.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001905.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 173,
+    "filename": "3_seek_001935.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001935.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 174,
+    "filename": "3_seek_001965.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001965.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 175,
+    "filename": "3_seek_001995.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_001995.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 176,
+    "filename": "3_seek_002025.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002025.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 177,
+    "filename": "3_seek_002055.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002055.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 178,
+    "filename": "3_seek_002085.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002085.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 179,
+    "filename": "3_seek_002115.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002115.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 180,
+    "filename": "3_seek_002145.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002145.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 181,
+    "filename": "3_seek_002175.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002175.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 182,
+    "filename": "3_seek_002205.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002205.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 183,
+    "filename": "3_seek_002235.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002235.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 184,
+    "filename": "3_seek_002265.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002265.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 185,
+    "filename": "3_seek_002295.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002295.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 186,
+    "filename": "3_seek_002325.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002325.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 187,
+    "filename": "3_seek_002355.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002355.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 188,
+    "filename": "3_seek_002385.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002385.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 189,
+    "filename": "3_seek_002415.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002415.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 190,
+    "filename": "3_seek_002445.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002445.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 191,
+    "filename": "3_seek_002475.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002475.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 192,
+    "filename": "3_seek_002505.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002505.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 193,
+    "filename": "3_seek_002535.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002535.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 194,
+    "filename": "3_seek_002565.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002565.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 195,
+    "filename": "3_seek_002595.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002595.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 196,
+    "filename": "3_seek_002625.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002625.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 197,
+    "filename": "3_seek_002655.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002655.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 198,
+    "filename": "3_seek_002685.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002685.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 199,
+    "filename": "3_seek_002715.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002715.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 200,
+    "filename": "3_seek_002745.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002745.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 201,
+    "filename": "3_seek_002775.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002775.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 202,
+    "filename": "3_seek_002805.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002805.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 203,
+    "filename": "3_seek_002835.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002835.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 204,
+    "filename": "3_seek_002865.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002865.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 205,
+    "filename": "3_seek_002895.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002895.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 206,
+    "filename": "3_seek_002925.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002925.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 207,
+    "filename": "3_seek_002955.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002955.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 208,
+    "filename": "3_seek_002985.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_002985.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 209,
+    "filename": "3_seek_003015.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003015.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 210,
+    "filename": "3_seek_003045.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003045.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 211,
+    "filename": "3_seek_003075.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003075.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": true,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 212,
+    "filename": "3_seek_003105.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003105.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 213,
+    "filename": "3_seek_003135.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003135.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": true,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 214,
+    "filename": "3_seek_003165.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003165.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 215,
+    "filename": "3_seek_003195.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003195.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 216,
+    "filename": "3_seek_003225.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003225.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 217,
+    "filename": "3_seek_003255.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003255.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 218,
+    "filename": "3_seek_003285.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003285.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 219,
+    "filename": "3_seek_003315.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003315.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 220,
+    "filename": "3_seek_003345.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003345.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 221,
+    "filename": "3_seek_003375.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003375.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 222,
+    "filename": "3_seek_003405.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003405.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 223,
+    "filename": "3_seek_003435.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003435.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 224,
+    "filename": "3_seek_003465.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003465.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 225,
+    "filename": "3_seek_003495.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003495.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 226,
+    "filename": "3_seek_003525.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003525.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 227,
+    "filename": "3_seek_003555.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003555.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 228,
+    "filename": "3_seek_003585.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003585.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 229,
+    "filename": "3_seek_003615.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003615.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": true,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 230,
+    "filename": "3_seek_003645.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003645.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 231,
+    "filename": "3_seek_003675.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003675.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 232,
+    "filename": "3_seek_003705.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003705.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 233,
+    "filename": "3_seek_003735.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003735.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 234,
+    "filename": "3_seek_003765.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003765.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 235,
+    "filename": "3_seek_003795.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003795.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 236,
+    "filename": "3_seek_003825.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003825.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 237,
+    "filename": "3_seek_003855.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003855.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 238,
+    "filename": "3_seek_003885.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003885.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 239,
+    "filename": "3_seek_003915.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003915.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 240,
+    "filename": "3_seek_003945.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003945.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 241,
+    "filename": "3_seek_003975.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_003975.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 242,
+    "filename": "3_seek_004005.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004005.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 243,
+    "filename": "3_seek_004035.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004035.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 244,
+    "filename": "3_seek_004065.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004065.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 245,
+    "filename": "3_seek_004095.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004095.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 246,
+    "filename": "3_seek_004125.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004125.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": true,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 247,
+    "filename": "3_seek_004155.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004155.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": true,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 248,
+    "filename": "3_seek_004185.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004185.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": true,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 249,
+    "filename": "3_seek_004215.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004215.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": true,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 250,
+    "filename": "3_seek_004245.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004245.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 251,
+    "filename": "3_seek_004275.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004275.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": true,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 252,
+    "filename": "3_seek_004305.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004305.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 253,
+    "filename": "3_seek_004335.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004335.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 254,
+    "filename": "3_seek_004365.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004365.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 255,
+    "filename": "3_seek_004395.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004395.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 256,
+    "filename": "3_seek_004425.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004425.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": true,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 257,
+    "filename": "3_seek_004455.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004455.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 258,
+    "filename": "3_seek_004485.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004485.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 259,
+    "filename": "3_seek_004515.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004515.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 260,
+    "filename": "3_seek_004545.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004545.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 261,
+    "filename": "3_seek_004575.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004575.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 262,
+    "filename": "3_seek_004605.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004605.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 263,
+    "filename": "3_seek_004635.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004635.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 264,
+    "filename": "3_seek_004665.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004665.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 265,
+    "filename": "3_seek_004695.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004695.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 266,
+    "filename": "3_seek_004725.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004725.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 267,
+    "filename": "3_seek_004755.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004755.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 268,
+    "filename": "3_seek_004785.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004785.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 269,
+    "filename": "3_seek_004815.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004815.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 270,
+    "filename": "3_seek_004845.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004845.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 271,
+    "filename": "3_seek_004875.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004875.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 272,
+    "filename": "3_seek_004905.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004905.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 273,
+    "filename": "3_seek_004935.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004935.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 274,
+    "filename": "3_seek_004965.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004965.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 275,
+    "filename": "3_seek_004995.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_004995.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": true,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 276,
+    "filename": "3_seek_005025.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005025.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 277,
+    "filename": "3_seek_005055.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005055.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 278,
+    "filename": "3_seek_005085.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005085.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 279,
+    "filename": "3_seek_005115.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005115.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 280,
+    "filename": "3_seek_005145.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005145.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 281,
+    "filename": "3_seek_005175.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005175.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 282,
+    "filename": "3_seek_005205.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005205.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 283,
+    "filename": "3_seek_005235.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005235.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 284,
+    "filename": "3_seek_005265.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005265.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 285,
+    "filename": "3_seek_005295.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005295.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 286,
+    "filename": "3_seek_005325.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005325.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 287,
+    "filename": "3_seek_005355.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005355.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 288,
+    "filename": "3_seek_005385.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005385.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 289,
+    "filename": "3_seek_005415.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005415.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 290,
+    "filename": "3_seek_005445.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005445.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 291,
+    "filename": "3_seek_005475.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005475.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 292,
+    "filename": "3_seek_005505.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005505.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 293,
+    "filename": "3_seek_005535.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005535.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 294,
+    "filename": "3_seek_005565.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005565.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 295,
+    "filename": "3_seek_005595.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005595.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 296,
+    "filename": "3_seek_005625.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005625.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 297,
+    "filename": "3_seek_005655.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005655.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 298,
+    "filename": "3_seek_005685.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005685.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 299,
+    "filename": "3_seek_005715.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005715.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 300,
+    "filename": "3_seek_005745.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005745.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 301,
+    "filename": "3_seek_005775.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005775.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 302,
+    "filename": "3_seek_005805.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005805.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 303,
+    "filename": "3_seek_005835.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005835.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 304,
+    "filename": "3_seek_005865.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005865.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 305,
+    "filename": "3_seek_005895.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005895.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 306,
+    "filename": "3_seek_005925.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005925.000s.jpg",
+    "include": false,
+    "screening_reason": "Sky or flying subjects without landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 307,
+    "filename": "3_seek_005955.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005955.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 308,
+    "filename": "3_seek_005985.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_005985.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 309,
+    "filename": "3_seek_006015.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_006015.000s.jpg",
+    "include": false,
+    "screening_reason": "Interior, close-up, or insufficient landscape context",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 310,
+    "filename": "3_seek_006045.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_006045.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 311,
+    "filename": "3_seek_006075.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_006075.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 312,
+    "filename": "3_seek_006105.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_006105.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 313,
+    "filename": "3_seek_006135.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_006135.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 314,
+    "filename": "3_seek_006165.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_006165.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 315,
+    "filename": "3_seek_006195.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_006195.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 316,
+    "filename": "3_seek_006225.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_006225.000s.jpg",
+    "include": true,
+    "screening_reason": "Outdoor scene with visible ground, water, vegetation or surrounding structures",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 317,
+    "filename": "3_seek_006255.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_006255.000s.jpg",
+    "include": false,
+    "screening_reason": "Title, credits, or blank frame",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  },
+  {
+    "screen_id": 318,
+    "filename": "3_seek_006285.000s.jpg",
+    "source": "outputs/expanded/frames/3_seek_006285.000s.jpg",
+    "include": false,
+    "screening_reason": "Title, credits, or blank frame",
+    "quality_review": false,
+    "screening_source": "Assistant visual inspection of all 318 source thumbnails; scene relevance only, not verified ecological labels"
+  }
+]

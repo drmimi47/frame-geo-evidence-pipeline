@@ -1,0 +1,208 @@
+{
+  "1_seek_000195.000s.jpg": {
+    "review_id": "R001",
+    "source": "user",
+    "status": "reviewed",
+    "labels": [
+      "water"
+    ],
+    "scope": "image-level labels; model masks unchanged"
+  },
+  "1_seek_000105.000s.jpg": {
+    "review_id": "R002",
+    "source": "user",
+    "status": "reviewed",
+    "labels": [
+      "water"
+    ],
+    "scope": "image-level labels; model masks unchanged"
+  },
+  "1_seek_000315.000s.jpg": {
+    "review_id": "R003",
+    "source": "user",
+    "status": "reviewed",
+    "labels": [
+      "water",
+      "land",
+      "built surfaces"
+    ],
+    "scope": "image-level labels; model masks unchanged"
+  },
+  "1_seek_001515.000s.jpg": {
+    "review_id": "R004",
+    "source": "user",
+    "status": "reviewed",
+    "labels": [
+      "terrain"
+    ],
+    "scope": "image-level labels; model masks unchanged"
+  },
+  "1_seek_000465.000s.jpg": {
+    "review_id": "R007",
+    "source": "user",
+    "status": "reviewed",
+    "labels": [
+      "built surfaces"
+    ],
+    "scope": "image-level labels; model masks unchanged"
+  },
+  "1_seek_000975.000s.jpg": {
+    "review_id": "R006",
+    "source": "user",
+    "status": "reviewed",
+    "labels": [
+      "terrain",
+      "trees",
+      "built surfaces"
+    ],
+    "scope": "image-level labels; model masks unchanged"
+  },
+  "1_seek_001965.000s.jpg": {
+    "review_id": "R008",
+    "source": "user",
+    "status": "reviewed",
+    "labels": [
+      "built surfaces"
+    ],
+    "scope": "image-level labels; model masks unchanged"
+  },
+  "1_seek_001215.000s.jpg": {
+    "review_id": "R005",
+    "source": "user",
+    "status": "reviewed",
+    "labels": [
+      "built surfaces"
+    ],
+    "scope": "image-level labels; model masks unchanged"
+  },
+  "3_seek_004335.000s.jpg": {
+    "review_id": "R009",
+    "source": "user",
+    "status": "reviewed",
+    "labels": [
+      "water"
+    ],
+    "scope": "image-level labels; model masks unchanged"
+  },
+  "3_seek_003195.000s.jpg": {
+    "review_id": "R010",
+    "source": "user",
+    "status": "reviewed",
+    "labels": [
+      "built surfaces",
+      "terrain"
+    ],
+    "scope": "image-level labels; model masks unchanged"
+  },
+  "3_seek_002115.000s.jpg": {
+    "review_id": "R011",
+    "source": "user",
+    "status": "reviewed",
+    "labels": [
+      "land",
+      "built surfaces"
+    ],
+    "scope": "image-level labels; model masks unchanged"
+  },
+  "3_seek_000705.000s.jpg": {
+    "review_id": "R012",
+    "source": "user",
+    "status": "reviewed",
+    "labels": [
+      "field",
+      "grass",
+      "trees"
+    ],
+    "scope": "image-level labels; model masks unchanged"
+  },
+  "3_seek_000555.000s.jpg": {
+    "review_id": "R013",
+    "source": "user",
+    "status": "reviewed",
+    "labels": [
+      "terrain",
+      "water",
+      "trees"
+    ],
+    "scope": "image-level labels; model masks unchanged"
+  },
+  "3_seek_001815.000s.jpg": {
+    "review_id": "R014",
+    "source": "user",
+    "status": "reviewed",
+    "labels": [
+      "built surfaces",
+      "land",
+      "water"
+    ],
+    "scope": "image-level labels; model masks unchanged"
+  },
+  "3_seek_005925.000s.jpg": {
+    "review_id": "R015",
+    "source": "user",
+    "status": "reviewed",
+    "labels": [
+      "unknown"
+    ],
+    "scope": "image-level labels; model masks unchanged",
+    "original_labels": [
+      "sky"
+    ],
+    "normalization_note": "Sky mapped to unknown at user request."
+  },
+  "3_seek_003735.000s.jpg": {
+    "review_id": "R016",
+    "source": "user",
+    "status": "reviewed",
+    "labels": [
+      "built surfaces",
+      "field",
+      "trees",
+      "grass"
+    ],
+    "scope": "image-level labels; model masks unchanged"
+  },
+  "3_seek_000945.000s.jpg": {
+    "review_id": "R017",
+    "source": "user",
+    "status": "reviewed",
+    "labels": [
+      "field",
+      "water"
+    ],
+    "scope": "image-level labels; model masks unchanged"
+  },
+  "3_seek_002235.000s.jpg": {
+    "review_id": "R018",
+    "source": "user",
+    "status": "reviewed",
+    "labels": [
+      "field",
+      "grass"
+    ],
+    "scope": "image-level labels; model masks unchanged"
+  },
+  "3_seek_003285.000s.jpg": {
+    "review_id": "R019",
+    "source": "user",
+    "status": "reviewed",
+    "labels": [
+      "built surfaces",
+      "grass",
+      "trees"
+    ],
+    "scope": "image-level labels; model masks unchanged"
+  },
+  "3_seek_002355.000s.jpg": {
+    "review_id": "R020",
+    "source": "user",
+    "status": "reviewed",
+    "labels": [
+      "built surfaces",
+      "grass",
+      "trees"
+    ],
+    "scope": "image-level labels; model masks unchanged",
+    "normalization_note": "User spelling tress interpreted as trees."
+  }
+}

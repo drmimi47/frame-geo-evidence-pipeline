@@ -1,0 +1,27 @@
+[
+  {
+    "film": "The Eleventh Year",
+    "subtitle": "Dziga Vertov · filmed 1927 · Video 1",
+    "locations": [
+      {"place": "Catherine’s Throne, Nenasytets rapid", "frames": ["1_seek_000135.000s.jpg"], "evidence": "Named by film intertitle", "note": "Largest Dnipro rapid; submerged by the DniproHES reservoir."},
+      {"place": "Rock of Love, Kichkas", "frames": ["1_seek_000165.000s.jpg"], "evidence": "Named by film intertitle", "note": "Quarried at the later DniproHES machine-hall site."},
+      {"place": "Future DniproHES site, Kichkas / Einlage", "frames": ["1_seek_000735.000s.jpg"], "evidence": "Probable area · ±3 km", "note": "Intertitle announces a power station to be built here."},
+      {"place": "DniproHES construction site, Kichkas", "frames": ["1_seek_000315.000s.jpg", "1_seek_000495.000s.jpg", "1_seek_000375.000s.jpg", "1_seek_000525.000s.jpg"], "evidence": "Probable for L008/L013; contextual for L010/L014", "note": "Construction and river views around the dam project."},
+      {"place": "Historic mill and power station, Tyvriv", "frames": ["1_seek_002205.000s.jpg"], "evidence": "Landmark identified", "note": "Historic industrial facade in Vinnytsia Oblast."},
+      {"place": "Dnipro metallurgical works, Kamianske", "frames": ["1_seek_002955.000s.jpg", "1_seek_002865.000s.jpg"], "evidence": "Probable for L031; contextual for L030", "note": "Historic loading crane and industrial works."},
+      {"place": "Obelisk of Freedom, Tverskaya Square, Moscow", "frames": ["1_seek_002805.000s.jpg"], "evidence": "Probable landmark", "note": "A location outside the Dnipro basin included in the film."}
+    ]
+  },
+  {
+    "film": "Poem of the Sea",
+    "subtitle": "Yuliya Solntseva · filmed 1957 · Video 3",
+    "locations": [
+      {"place": "Kozatskyi Shpyl, Buchak", "frames": ["3_seek_000555.000s.jpg"], "evidence": "Named filming hill; camera estimate", "note": "Kobzar and boy above the pre-reservoir Dnipro."},
+      {"place": "New-village set, Buchak / Babyna Hora", "frames": ["3_seek_001895.500s.jpg"], "evidence": "Probable area · ±2 km", "note": "Hilltop village scene looking across the Dnipro."},
+      {"place": "Kakhovka HPP construction site, Nova Kakhovka", "frames": ["3_seek_000825.000s.jpg", "3_seek_005775.000s.jpg", "3_seek_003345.000s.jpg"], "evidence": "Probable for L045/L095; contextual for L079", "note": "Dam-building and builders’ town scenes."},
+      {"place": "Pokrovske–Kapulivka, reservoir right bank", "frames": ["3_seek_001335.000s.jpg"], "evidence": "Contextual candidate · ±12 km", "note": "A possible area in the flooded lower-Dnipro stretch."},
+      {"place": "Old Dnipro lock, Zaporizhzhia", "frames": ["3_seek_000225.000s.jpg"], "evidence": "Probable landmark", "note": "L035 also represents the merged adjacent 3_seek_000195 shot."},
+      {"place": "Hrushivka and Hrushivskyi Kut", "frames": ["3_seek_001895.500s.jpg", "3_seek_003765.000s.jpg"], "evidence": "Story prototype · not a filming location", "note": "Dovzhenko’s writing location and the model for the displaced village; these frames do not locate the camera there."}
+    ]
+  }
+]

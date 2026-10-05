@@ -1,0 +1,929 @@
+[
+  {
+    "filename": "1_seek_000105.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 105.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_000135.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 135.0,
+    "tier": "possible",
+    "worth_geolocating": true,
+    "reason": "Distinctive rock outcrop silhouette and water setting; historical alteration may prevent modern matching.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_000165.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 165.0,
+    "tier": "possible",
+    "worth_geolocating": true,
+    "reason": "Rock outcrop plus shoreline context; useful if a regional candidate is already known.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_000195.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 195.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_000225.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 225.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_000255.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 255.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_000285.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 285.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_000315.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 315.0,
+    "tier": "possible",
+    "worth_geolocating": true,
+    "reason": "Wide construction layout and riverbank relationship may match archival site photographs.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_000345.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 345.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_000375.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 375.0,
+    "tier": "possible",
+    "worth_geolocating": true,
+    "reason": "Track alignment, elevated structure and excavation geometry provide an archival comparison route.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_000405.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 405.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_000435.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 435.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_000495.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 495.0,
+    "tier": "possible",
+    "worth_geolocating": true,
+    "reason": "Broad construction-site geometry with tracks and river context; temporary structures limit matching.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_000525.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 525.0,
+    "tier": "possible",
+    "worth_geolocating": true,
+    "reason": "Large polygonal industrial roof with riverbank context; needs clearer structural identification.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_000555.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 555.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_000645.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 645.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_000735.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 735.0,
+    "tier": "strong",
+    "worth_geolocating": true,
+    "reason": "Large gabled building, window arrangement and stepped riverbank form a matchable architectural group.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_000765.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 765.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_000795.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 795.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_000855.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 855.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_000885.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 885.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_000975.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 975.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_001155.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 1155.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_001785.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 1785.0,
+    "tier": "possible",
+    "worth_geolocating": true,
+    "reason": "Industrial facade and tall chimney could match a named factory; view is incomplete.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_001995.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 1995.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_002145.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 2145.0,
+    "tier": "possible",
+    "worth_geolocating": true,
+    "reason": "Waterside building group and dock geometry; fairly generic but potentially useful with regional context.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_002205.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 2205.0,
+    "tier": "strong",
+    "worth_geolocating": true,
+    "reason": "Distinctive arched power-station facade; existing Tyvriv landmark identification.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_002655.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 2655.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_002805.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 2805.0,
+    "tier": "strong",
+    "worth_geolocating": true,
+    "reason": "Monument silhouette with surrounding urban facades offers a potentially identifiable landmark.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_002865.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 2865.0,
+    "tier": "possible",
+    "worth_geolocating": true,
+    "reason": "Large pipe and support configuration may identify an industrial facility in archival photographs.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_002955.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 2955.0,
+    "tier": "strong",
+    "worth_geolocating": true,
+    "reason": "Bridge truss geometry and span structure offer a distinctive engineered landmark.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_003045.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 3045.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "1_seek_003135.000s.jpg",
+    "video": "1.mp4",
+    "timestamp_seconds": 3135.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_000195.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 195.0,
+    "tier": "strong",
+    "worth_geolocating": true,
+    "reason": "Lock chamber walls and gateway context; useful companion to the clearer 03:45 frame.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_000225.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 225.0,
+    "tier": "strong",
+    "worth_geolocating": true,
+    "reason": "Paired control towers and connecting arch; existing probable old Dnipro lock match.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_000255.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 255.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_000525.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 525.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_000555.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 555.0,
+    "tier": "possible",
+    "worth_geolocating": true,
+    "reason": "Elevated view of river bend and islands provides geographic geometry; needs regional constraints.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_000585.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 585.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_000615.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 615.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_000645.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 645.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_000675.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 675.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_000705.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 705.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_000735.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 735.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_000825.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 825.0,
+    "tier": "possible",
+    "worth_geolocating": true,
+    "reason": "Wide construction layout with water and opposite bank; archival comparison possible.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_000885.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 885.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_000915.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 915.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_000945.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 945.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_000975.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 975.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_001065.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 1065.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_001095.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 1095.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_001125.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 1125.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_001155.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 1155.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_001305.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 1305.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_001335.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 1335.0,
+    "tier": "possible",
+    "worth_geolocating": true,
+    "reason": "River channels and field-bank arrangement provide context, but lack a unique landmark.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_001815.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 1815.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_002115.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2115.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_002145.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2145.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_002235.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2235.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_002325.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2325.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_002355.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2355.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_002385.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2385.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_002445.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2445.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_002595.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2595.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_002625.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2625.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_002685.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2685.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_002745.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2745.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_002805.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2805.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_002835.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2835.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_002925.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2925.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_002955.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2955.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_002985.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 2985.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_003045.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 3045.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_003075.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 3075.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_003105.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 3105.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_003135.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 3135.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_003195.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 3195.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_003285.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 3285.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_003345.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 3345.0,
+    "tier": "possible",
+    "worth_geolocating": true,
+    "reason": "Distinctive excavated riverbank profile and water relationship; construction may have changed it.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_003525.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 3525.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_003555.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 3555.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_003585.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 3585.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_003615.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 3615.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_003765.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 3765.0,
+    "tier": "possible",
+    "worth_geolocating": true,
+    "reason": "Visible sign and structural context justify an OCR/source-search attempt; sign may be generic or a film prop.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_003975.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 3975.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_004005.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 4005.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_004125.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 4125.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_004155.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 4155.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_004185.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 4185.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_004215.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 4215.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_004275.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 4275.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_004425.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 4425.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_004995.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 4995.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_005745.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 5745.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_005775.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 5775.0,
+    "tier": "possible",
+    "worth_geolocating": true,
+    "reason": "Large construction structure with repeated piers and approach tracks; possible archival match.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_006045.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 6045.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_006075.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 6075.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_006105.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 6105.0,
+    "tier": "possible",
+    "worth_geolocating": true,
+    "reason": "Headland, curving beach and cliff profile justify terrain comparison despite inconclusive previous search.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_006135.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 6135.0,
+    "tier": "possible",
+    "worth_geolocating": true,
+    "reason": "Background masonry structure and rocky waterfront may complement nearby coastal frames; people obscure much of it.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_006165.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 6165.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_006195.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 6195.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_006225.000s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 6225.0,
+    "tier": "low",
+    "worth_geolocating": false,
+    "reason": "No sufficiently distinctive fixed landmark or geographic geometry visible in this frame; generic scenery, transient subjects, obscured background or limited detail.",
+    "assessment_method": "Assistant visual screening of all 102 original-frame contact-sheet previews; not a trained classifier or verified location result."
+  },
+  {
+    "filename": "3_seek_001895.500s.jpg",
+    "video": "3.mp4",
+    "timestamp_seconds": 1895.5,
+    "tier": "strong",
+    "worth_geolocating": true,
+    "reason": "Added on request: new village built on a hilltop above a wide river, floodplain meadow and flat forested far bank; terrain and river layout can be matched.",
+    "assessment_method": "Added by user request from a screenshot (located at 31:35 by frame correlation); not part of the original 30 s sampling."
+  }
+]

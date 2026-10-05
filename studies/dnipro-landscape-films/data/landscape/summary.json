@@ -1,0 +1,15 @@
+{
+  "screened_frames": 318,
+  "selected_frames": 102,
+  "excluded_frames": 216,
+  "by_video": {
+    "1.mp4": 33,
+    "3.mp4": 69
+  },
+  "uncertain_frames": 62,
+  "uncertain_with_existing_human_labels": 29,
+  "frames_with_saved_human_labels": 31,
+  "model": "nvidia/segformer-b0-finetuned-ade-512-512",
+  "taxonomy": "plants_combined_v1",
+  "scope": "30-second samples only; visual screening, image labels and model overlays. Pixel boundaries unverified. No full-video overlay export or area trend claims."
+}

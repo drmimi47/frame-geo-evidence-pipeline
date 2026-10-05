@@ -1,0 +1,59 @@
+{
+  "selected_model": "nvidia/segformer-b0-finetuned-ade-512-512",
+  "local_model_directory": "models",
+  "selection_source": "User selected B0 for now",
+  "taxonomy": "plants_combined_v1",
+  "categories": {
+    "trees": [
+      "tree",
+      "palm"
+    ],
+    "plants": [
+      "grass",
+      "plant",
+      "flower"
+    ],
+    "field": [
+      "field"
+    ],
+    "water": [
+      "water",
+      "river",
+      "sea",
+      "lake",
+      "waterfall",
+      "swimming pool"
+    ],
+    "terrain": [
+      "earth",
+      "sand",
+      "land",
+      "rock",
+      "mountain",
+      "hill",
+      "dirt track"
+    ],
+    "built surfaces": [
+      "building",
+      "house",
+      "road",
+      "bridge",
+      "pier",
+      "skyscraper",
+      "wall",
+      "sidewalk"
+    ],
+    "unknown": "Sky, remaining classes, and pixels below the score threshold"
+  },
+  "pixel_score_cutoff": 0.5,
+  "minimum_image_tag_coverage_percent": 1,
+  "image_unknown_rule": "Use unknown when no selected category qualifies",
+  "analysis_videos": [
+    "1.mp4",
+    "3.mp4"
+  ],
+  "training_reference_video": "2.mp4",
+  "training_status": "Pretrained weights only; no custom training performed",
+  "comparison_results": "outputs/plants_comparison/index.html",
+  "historical_outputs": "Existing diagnostic runs retain their original taxonomy; apply this configuration to future production work."
+}

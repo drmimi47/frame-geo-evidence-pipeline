@@ -1,0 +1,3438 @@
+[
+  {
+    "filename": "1_seek_000105.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 105.0,
+    "model_labels": [
+      "water",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 20.313262939453125,
+      "terrain": 0.0,
+      "built surfaces": 24.021530151367188
+    },
+    "low_score_fraction": 0.541748046875,
+    "possible_landscape_fraction": 0.4857826232910156,
+    "uncertain_landscape_fraction": 0.5818445953904747,
+    "ambiguous_landscape_fraction": 0.3479759707880168,
+    "landscape_id": "L001",
+    "human_labels": [
+      "water"
+    ],
+    "labels": [
+      "water"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "R002",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Competing pixel labels",
+      "Many low-score pixels",
+      "Existing human labels disagree with model; image labels already corrected, mask uncorrected"
+    ]
+  },
+  {
+    "filename": "1_seek_000135.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 135.0,
+    "model_labels": [
+      "terrain",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 3.2379150390625,
+      "built surfaces": 30.865478515625
+    },
+    "low_score_fraction": 0.2502174377441406,
+    "possible_landscape_fraction": 0.09588241577148438,
+    "uncertain_landscape_fraction": 0.6623035607718321,
+    "ambiguous_landscape_fraction": 0.45518201710761885,
+    "landscape_id": "L002",
+    "human_labels": [
+      "water",
+      "terrain",
+      "built surfaces"
+    ],
+    "labels": [
+      "water",
+      "terrain",
+      "built surfaces"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Competing pixel labels",
+      "Existing human labels disagree with model; image labels already corrected, mask uncorrected"
+    ]
+  },
+  {
+    "filename": "1_seek_000165.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 165.0,
+    "model_labels": [
+      "terrain",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.5817413330078125,
+      "terrain": 6.3140869140625,
+      "built surfaces": 51.90849304199219
+    },
+    "low_score_fraction": 0.1446533203125,
+    "possible_landscape_fraction": 0.110321044921875,
+    "uncertain_landscape_fraction": 0.3749308437067773,
+    "ambiguous_landscape_fraction": 0.3758298755186722,
+    "landscape_id": "L003",
+    "human_labels": [],
+    "labels": [
+      "terrain",
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Competing pixel labels",
+      "Small region near image-tag threshold"
+    ]
+  },
+  {
+    "filename": "1_seek_000195.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 195.0,
+    "model_labels": [
+      "water",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 17.5933837890625,
+      "terrain": 0.0,
+      "built surfaces": 21.323776245117188
+    },
+    "low_score_fraction": 0.6074409484863281,
+    "possible_landscape_fraction": 0.595611572265625,
+    "uncertain_landscape_fraction": 0.7046164881897833,
+    "ambiguous_landscape_fraction": 0.2982784239381052,
+    "landscape_id": "L004",
+    "human_labels": [
+      "water"
+    ],
+    "labels": [
+      "water"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "R001",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Competing pixel labels",
+      "Many low-score pixels",
+      "Existing human labels disagree with model; image labels already corrected, mask uncorrected"
+    ]
+  },
+  {
+    "filename": "1_seek_000225.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 225.0,
+    "model_labels": [
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.8106231689453125,
+      "terrain": 0.0,
+      "built surfaces": 50.81901550292969
+    },
+    "low_score_fraction": 0.35265350341796875,
+    "possible_landscape_fraction": 0.028705596923828125,
+    "uncertain_landscape_fraction": 0.717607973421927,
+    "ambiguous_landscape_fraction": 0.49249169435215945,
+    "landscape_id": "L005",
+    "human_labels": [],
+    "labels": [
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Small region near image-tag threshold"
+    ]
+  },
+  {
+    "filename": "1_seek_000255.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 255.0,
+    "model_labels": [
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 0.0,
+      "built surfaces": 86.30409240722656
+    },
+    "low_score_fraction": 0.0909271240234375,
+    "possible_landscape_fraction": 0.0,
+    "uncertain_landscape_fraction": 0,
+    "ambiguous_landscape_fraction": 0,
+    "landscape_id": "L006",
+    "human_labels": [],
+    "labels": [
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Blur, darkness, dust, smoke, or transition warrants visual review"
+    ]
+  },
+  {
+    "filename": "1_seek_000285.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 285.0,
+    "model_labels": [
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 0.0,
+      "built surfaces": 75.50773620605469
+    },
+    "low_score_fraction": 0.13609695434570312,
+    "possible_landscape_fraction": 0.0,
+    "uncertain_landscape_fraction": 0,
+    "ambiguous_landscape_fraction": 0,
+    "landscape_id": "L007",
+    "human_labels": [],
+    "labels": [
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Blur, darkness, dust, smoke, or transition warrants visual review"
+    ]
+  },
+  {
+    "filename": "1_seek_000315.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 315.0,
+    "model_labels": [
+      "water",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 4.998779296875,
+      "terrain": 0.0354766845703125,
+      "built surfaces": 55.26580810546875
+    },
+    "low_score_fraction": 0.3006019592285156,
+    "possible_landscape_fraction": 0.11008453369140625,
+    "uncertain_landscape_fraction": 0.5426918012336267,
+    "ambiguous_landscape_fraction": 0.41080462956545843,
+    "landscape_id": "L008",
+    "human_labels": [
+      "built surfaces",
+      "terrain",
+      "water"
+    ],
+    "labels": [
+      "built surfaces",
+      "terrain",
+      "water"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "R003",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Competing pixel labels",
+      "Blur, darkness, dust, smoke, or transition warrants visual review",
+      "Existing human labels disagree with model; image labels already corrected, mask uncorrected"
+    ]
+  },
+  {
+    "filename": "1_seek_000345.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 345.0,
+    "model_labels": [
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 0.0,
+      "built surfaces": 12.139511108398438
+    },
+    "low_score_fraction": 0.008808135986328125,
+    "possible_landscape_fraction": 0.0,
+    "uncertain_landscape_fraction": 0,
+    "ambiguous_landscape_fraction": 0,
+    "landscape_id": "L009",
+    "human_labels": [],
+    "labels": [
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "1_seek_000375.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 375.0,
+    "model_labels": [
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 0.0003814697265625,
+      "built surfaces": 90.9576416015625
+    },
+    "low_score_fraction": 0.08781051635742188,
+    "possible_landscape_fraction": 0.000896453857421875,
+    "uncertain_landscape_fraction": 0.9957446808510638,
+    "ambiguous_landscape_fraction": 0.5404255319148936,
+    "landscape_id": "L010",
+    "human_labels": [],
+    "labels": [
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "1_seek_000405.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 405.0,
+    "model_labels": [
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 0.0,
+      "built surfaces": 64.09263610839844
+    },
+    "low_score_fraction": 0.33316802978515625,
+    "possible_landscape_fraction": 0.0,
+    "uncertain_landscape_fraction": 0,
+    "ambiguous_landscape_fraction": 0,
+    "landscape_id": "L011",
+    "human_labels": [],
+    "labels": [
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "1_seek_000435.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 435.0,
+    "model_labels": [
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 0.0,
+      "built surfaces": 99.98817443847656
+    },
+    "low_score_fraction": 0.000110626220703125,
+    "possible_landscape_fraction": 0.0,
+    "uncertain_landscape_fraction": 0,
+    "ambiguous_landscape_fraction": 0,
+    "landscape_id": "L012",
+    "human_labels": [],
+    "labels": [
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Blur, darkness, dust, smoke, or transition warrants visual review"
+    ]
+  },
+  {
+    "filename": "1_seek_000495.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 495.0,
+    "model_labels": [
+      "water",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 1.9878387451171875,
+      "terrain": 0.0,
+      "built surfaces": 92.68417358398438
+    },
+    "low_score_fraction": 0.053279876708984375,
+    "possible_landscape_fraction": 0.046436309814453125,
+    "uncertain_landscape_fraction": 0.5719214655384868,
+    "ambiguous_landscape_fraction": 0.3697527314548591,
+    "landscape_id": "L013",
+    "human_labels": [],
+    "labels": [
+      "water",
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Small region near image-tag threshold"
+    ]
+  },
+  {
+    "filename": "1_seek_000525.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 525.0,
+    "model_labels": [
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 0.0,
+      "built surfaces": 63.70964050292969
+    },
+    "low_score_fraction": 0.19130706787109375,
+    "possible_landscape_fraction": 3.814697265625e-05,
+    "uncertain_landscape_fraction": 1.0,
+    "ambiguous_landscape_fraction": 1.0,
+    "landscape_id": "L014",
+    "human_labels": [],
+    "labels": [
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "1_seek_000555.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 555.0,
+    "model_labels": [
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 0.0,
+      "built surfaces": 44.58656311035156
+    },
+    "low_score_fraction": 0.42998504638671875,
+    "possible_landscape_fraction": 0.001068115234375,
+    "uncertain_landscape_fraction": 1.0,
+    "ambiguous_landscape_fraction": 1.0,
+    "landscape_id": "L015",
+    "human_labels": [
+      "built surfaces",
+      "water"
+    ],
+    "labels": [
+      "built surfaces",
+      "water"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "V001",
+    "review_reasons": [
+      "Existing human labels disagree with model; image labels already corrected, mask uncorrected"
+    ]
+  },
+  {
+    "filename": "1_seek_000645.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 645.0,
+    "model_labels": [
+      "terrain",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 35.402679443359375,
+      "built surfaces": 11.142349243164062
+    },
+    "low_score_fraction": 0.053112030029296875,
+    "possible_landscape_fraction": 0.3642005920410156,
+    "uncertain_landscape_fraction": 0.02793459931079991,
+    "ambiguous_landscape_fraction": 0.021377771726037727,
+    "landscape_id": "L016",
+    "human_labels": [
+      "terrain"
+    ],
+    "labels": [
+      "terrain"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "V002",
+    "review_reasons": [
+      "Existing human labels disagree with model; image labels already corrected, mask uncorrected"
+    ]
+  },
+  {
+    "filename": "1_seek_000735.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 735.0,
+    "model_labels": [
+      "trees",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 2.1198272705078125,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 0.0,
+      "built surfaces": 66.82662963867188
+    },
+    "low_score_fraction": 0.1029815673828125,
+    "possible_landscape_fraction": 0.02637481689453125,
+    "uncertain_landscape_fraction": 0.196268440844663,
+    "ambiguous_landscape_fraction": 0.29606595313855943,
+    "landscape_id": "L017",
+    "human_labels": [],
+    "labels": [
+      "trees",
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Blur, darkness, dust, smoke, or transition warrants visual review"
+    ]
+  },
+  {
+    "filename": "1_seek_000765.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 765.0,
+    "model_labels": [
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.3475189208984375,
+      "terrain": 0.0,
+      "built surfaces": 13.959121704101562
+    },
+    "low_score_fraction": 0.137725830078125,
+    "possible_landscape_fraction": 0.012683868408203125,
+    "uncertain_landscape_fraction": 0.726015037593985,
+    "ambiguous_landscape_fraction": 0.6950375939849625,
+    "landscape_id": "L018",
+    "human_labels": [
+      "water"
+    ],
+    "labels": [
+      "water"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "V003",
+    "review_reasons": [
+      "Small region near image-tag threshold",
+      "Existing human labels disagree with model; image labels already corrected, mask uncorrected"
+    ]
+  },
+  {
+    "filename": "1_seek_000795.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 795.0,
+    "model_labels": [
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 0.0,
+      "built surfaces": 29.204940795898438
+    },
+    "low_score_fraction": 0.11766815185546875,
+    "possible_landscape_fraction": 0.0,
+    "uncertain_landscape_fraction": 0,
+    "ambiguous_landscape_fraction": 0,
+    "landscape_id": "L019",
+    "human_labels": [],
+    "labels": [
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Blur, darkness, dust, smoke, or transition warrants visual review"
+    ]
+  },
+  {
+    "filename": "1_seek_000855.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 855.0,
+    "model_labels": [
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 0.0,
+      "built surfaces": 84.74807739257812
+    },
+    "low_score_fraction": 0.13408279418945312,
+    "possible_landscape_fraction": 0.0,
+    "uncertain_landscape_fraction": 0,
+    "ambiguous_landscape_fraction": 0,
+    "landscape_id": "L020",
+    "human_labels": [],
+    "labels": [
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "1_seek_000885.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 885.0,
+    "model_labels": [
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 0.0,
+      "built surfaces": 16.608047485351562
+    },
+    "low_score_fraction": 0.12633132934570312,
+    "possible_landscape_fraction": 0.0,
+    "uncertain_landscape_fraction": 0,
+    "ambiguous_landscape_fraction": 0,
+    "landscape_id": "L021",
+    "human_labels": [],
+    "labels": [
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Blur, darkness, dust, smoke, or transition warrants visual review"
+    ]
+  },
+  {
+    "filename": "1_seek_000975.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 975.0,
+    "model_labels": [
+      "trees",
+      "terrain",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 1.2969970703125,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 2.29949951171875,
+      "built surfaces": 81.17179870605469
+    },
+    "low_score_fraction": 0.15231704711914062,
+    "possible_landscape_fraction": 0.08537673950195312,
+    "uncertain_landscape_fraction": 0.578749832447165,
+    "ambiguous_landscape_fraction": 0.39627362494973417,
+    "landscape_id": "L022",
+    "human_labels": [
+      "built surfaces",
+      "terrain",
+      "trees"
+    ],
+    "labels": [
+      "built surfaces",
+      "terrain",
+      "trees"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "R006",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Competing pixel labels",
+      "Small region near image-tag threshold"
+    ]
+  },
+  {
+    "filename": "1_seek_001155.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 1155.0,
+    "model_labels": [
+      "water",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 1.0345458984375,
+      "terrain": 0.0,
+      "built surfaces": 25.341033935546875
+    },
+    "low_score_fraction": 0.33966827392578125,
+    "possible_landscape_fraction": 0.0347747802734375,
+    "uncertain_landscape_fraction": 0.7025010969723563,
+    "ambiguous_landscape_fraction": 0.28323826239578764,
+    "landscape_id": "L023",
+    "human_labels": [
+      "trees",
+      "plants",
+      "terrain",
+      "built surfaces"
+    ],
+    "labels": [
+      "trees",
+      "plants",
+      "terrain",
+      "built surfaces"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Small region near image-tag threshold",
+      "Existing human labels disagree with model; image labels already corrected, mask uncorrected"
+    ]
+  },
+  {
+    "filename": "1_seek_001785.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 1785.0,
+    "model_labels": [
+      "terrain",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 8.980941772460938,
+      "built surfaces": 28.749847412109375
+    },
+    "low_score_fraction": 0.148406982421875,
+    "possible_landscape_fraction": 0.11215591430664062,
+    "uncertain_landscape_fraction": 0.19924492364205298,
+    "ambiguous_landscape_fraction": 0.142546171898915,
+    "landscape_id": "L024",
+    "human_labels": [],
+    "labels": [
+      "terrain",
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "1_seek_001995.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 1995.0,
+    "model_labels": [
+      "terrain",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.11444091796875,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.13275146484375,
+      "terrain": 21.676254272460938,
+      "built surfaces": 15.54718017578125
+    },
+    "low_score_fraction": 0.1340179443359375,
+    "possible_landscape_fraction": 0.2636299133300781,
+    "uncertain_landscape_fraction": 0.16840064246335498,
+    "ambiguous_landscape_fraction": 0.13307962783429075,
+    "landscape_id": "L025",
+    "human_labels": [],
+    "labels": [
+      "terrain",
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "1_seek_002145.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 2145.0,
+    "model_labels": [
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 0.0,
+      "built surfaces": 34.978485107421875
+    },
+    "low_score_fraction": 0.18047332763671875,
+    "possible_landscape_fraction": 0.00998687744140625,
+    "uncertain_landscape_fraction": 1.0,
+    "ambiguous_landscape_fraction": 1.0,
+    "landscape_id": "L026",
+    "human_labels": [],
+    "labels": [
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "1_seek_002205.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 2205.0,
+    "model_labels": [
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 0.0,
+      "built surfaces": 25.335311889648438
+    },
+    "low_score_fraction": 0.16579437255859375,
+    "possible_landscape_fraction": 3.0517578125e-05,
+    "uncertain_landscape_fraction": 1.0,
+    "ambiguous_landscape_fraction": 1.0,
+    "landscape_id": "L027",
+    "human_labels": [
+      "built surfaces",
+      "water"
+    ],
+    "labels": [
+      "built surfaces",
+      "water"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "V004",
+    "review_reasons": [
+      "Existing human labels disagree with model; image labels already corrected, mask uncorrected"
+    ]
+  },
+  {
+    "filename": "1_seek_002655.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 2655.0,
+    "model_labels": [
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 0.0,
+      "built surfaces": 52.1575927734375
+    },
+    "low_score_fraction": 0.05340576171875,
+    "possible_landscape_fraction": 0.0,
+    "uncertain_landscape_fraction": 0,
+    "ambiguous_landscape_fraction": 0,
+    "landscape_id": "L028",
+    "human_labels": [],
+    "labels": [
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "1_seek_002805.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 2805.0,
+    "model_labels": [
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 0.0,
+      "built surfaces": 40.13023376464844
+    },
+    "low_score_fraction": 0.4308967590332031,
+    "possible_landscape_fraction": 0.0,
+    "uncertain_landscape_fraction": 0,
+    "ambiguous_landscape_fraction": 0,
+    "landscape_id": "L029",
+    "human_labels": [],
+    "labels": [
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "1_seek_002865.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 2865.0,
+    "model_labels": [
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 0.0,
+      "built surfaces": 52.74810791015625
+    },
+    "low_score_fraction": 0.029712677001953125,
+    "possible_landscape_fraction": 0.0,
+    "uncertain_landscape_fraction": 0,
+    "ambiguous_landscape_fraction": 0,
+    "landscape_id": "L030",
+    "human_labels": [
+      "built surfaces"
+    ],
+    "labels": [
+      "built surfaces"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "V005",
+    "review_reasons": []
+  },
+  {
+    "filename": "1_seek_002955.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 2955.0,
+    "model_labels": [
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 0.0,
+      "built surfaces": 3.444671630859375
+    },
+    "low_score_fraction": 0.0147857666015625,
+    "possible_landscape_fraction": 0.0,
+    "uncertain_landscape_fraction": 0,
+    "ambiguous_landscape_fraction": 0,
+    "landscape_id": "L031",
+    "human_labels": [],
+    "labels": [
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "1_seek_003045.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 3045.0,
+    "model_labels": [
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 0.0,
+      "built surfaces": 24.82147216796875
+    },
+    "low_score_fraction": 0.3312797546386719,
+    "possible_landscape_fraction": 0.0,
+    "uncertain_landscape_fraction": 0,
+    "ambiguous_landscape_fraction": 0,
+    "landscape_id": "L032",
+    "human_labels": [],
+    "labels": [
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Blur, darkness, dust, smoke, or transition warrants visual review"
+    ]
+  },
+  {
+    "filename": "1_seek_003135.000s.jpg",
+    "video": "1.mp4",
+    "requested_seek_seconds": 3135.0,
+    "model_labels": [
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.266265869140625,
+      "terrain": 0.0,
+      "built surfaces": 24.0692138671875
+    },
+    "low_score_fraction": 0.19890213012695312,
+    "possible_landscape_fraction": 0.041622161865234375,
+    "uncertain_landscape_fraction": 0.9360278617908533,
+    "ambiguous_landscape_fraction": 0.6829804784162772,
+    "landscape_id": "L033",
+    "human_labels": [
+      "plants",
+      "unknown"
+    ],
+    "labels": [
+      "plants",
+      "unknown"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Blur, darkness, dust, smoke, or transition warrants visual review",
+      "Existing human labels disagree with model; image labels already corrected, mask uncorrected"
+    ]
+  },
+  {
+    "filename": "3_seek_000225.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 225.0,
+    "model_labels": [
+      "water",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 23.124313354492188,
+      "terrain": 0.0,
+      "built surfaces": 50.39329528808594
+    },
+    "low_score_fraction": 0.16604995727539062,
+    "possible_landscape_fraction": 0.24834823608398438,
+    "uncertain_landscape_fraction": 0.06887547424849853,
+    "ambiguous_landscape_fraction": 0.04222539667910849,
+    "landscape_id": "L035",
+    "human_labels": [],
+    "labels": [
+      "water",
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "3_seek_000255.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 255.0,
+    "model_labels": [
+      "water",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.1644134521484375,
+      "plants": 0.241851806640625,
+      "field": 0.0,
+      "water": 38.466644287109375,
+      "terrain": 0.0,
+      "built surfaces": 2.297210693359375
+    },
+    "low_score_fraction": 0.14337539672851562,
+    "possible_landscape_fraction": 0.4470024108886719,
+    "uncertain_landscape_fraction": 0.1303646557830328,
+    "ambiguous_landscape_fraction": 0.12801781889246366,
+    "landscape_id": "L036",
+    "human_labels": [],
+    "labels": [
+      "water",
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "3_seek_000525.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 525.0,
+    "model_labels": [
+      "field"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.058746337890625,
+      "plants": 0.0,
+      "field": 30.071640014648438,
+      "water": 0.0,
+      "terrain": 0.0,
+      "built surfaces": 0.0186920166015625
+    },
+    "low_score_fraction": 0.023097991943359375,
+    "possible_landscape_fraction": 0.3089141845703125,
+    "uncertain_landscape_fraction": 0.024635712521610273,
+    "ambiguous_landscape_fraction": 0.016732526549765373,
+    "landscape_id": "L037",
+    "human_labels": [],
+    "labels": [
+      "field"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "3_seek_000555.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 555.0,
+    "model_labels": [
+      "trees",
+      "water",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 3.4576416015625,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 6.682586669921875,
+      "terrain": 17.627334594726562,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.2733421325683594,
+    "possible_landscape_fraction": 0.5400466918945312,
+    "uncertain_landscape_fraction": 0.48583033128487674,
+    "ambiguous_landscape_fraction": 0.3834357561630289,
+    "landscape_id": "L038",
+    "human_labels": [
+      "terrain",
+      "trees",
+      "water"
+    ],
+    "labels": [
+      "terrain",
+      "trees",
+      "water"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "R013",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Competing pixel labels"
+    ]
+  },
+  {
+    "filename": "3_seek_000585.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 585.0,
+    "model_labels": [
+      "trees",
+      "field",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 1.96685791015625,
+      "plants": 0.0,
+      "field": 7.55157470703125,
+      "water": 0.0,
+      "terrain": 25.40435791015625,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.03473663330078125,
+    "possible_landscape_fraction": 0.37708282470703125,
+    "uncertain_landscape_fraction": 0.07386949924127466,
+    "ambiguous_landscape_fraction": 0.12649468892261,
+    "landscape_id": "L039",
+    "human_labels": [],
+    "labels": [
+      "trees",
+      "field",
+      "terrain"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Small region near image-tag threshold"
+    ]
+  },
+  {
+    "filename": "3_seek_000615.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 615.0,
+    "model_labels": [
+      "trees",
+      "terrain",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 1.2859344482421875,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 11.634063720703125,
+      "built surfaces": 1.4453887939453125
+    },
+    "low_score_fraction": 0.18714523315429688,
+    "possible_landscape_fraction": 0.20315170288085938,
+    "uncertain_landscape_fraction": 0.3640221575438926,
+    "ambiguous_landscape_fraction": 0.23875692423246644,
+    "landscape_id": "L040",
+    "human_labels": [],
+    "labels": [
+      "trees",
+      "terrain",
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Competing pixel labels",
+      "Small region near image-tag threshold"
+    ]
+  },
+  {
+    "filename": "3_seek_000645.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 645.0,
+    "model_labels": [
+      "terrain",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.3643035888671875,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 1.6345977783203125,
+      "built surfaces": 2.5241851806640625
+    },
+    "low_score_fraction": 0.058773040771484375,
+    "possible_landscape_fraction": 0.0383148193359375,
+    "uncertain_landscape_fraction": 0.47829549980087616,
+    "ambiguous_landscape_fraction": 0.311031461569096,
+    "landscape_id": "L041",
+    "human_labels": [],
+    "labels": [
+      "terrain",
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Small region near image-tag threshold"
+    ]
+  },
+  {
+    "filename": "3_seek_000675.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 675.0,
+    "model_labels": [
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0102996826171875,
+      "field": 0.067901611328125,
+      "water": 0.0,
+      "terrain": 63.33770751953125,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.08800506591796875,
+    "possible_landscape_fraction": 0.7136764526367188,
+    "uncertain_landscape_fraction": 0.1114193472520659,
+    "ambiguous_landscape_fraction": 0.11435917171781962,
+    "landscape_id": "L042",
+    "human_labels": [],
+    "labels": [
+      "terrain"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "3_seek_000705.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 705.0,
+    "model_labels": [
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0339508056640625,
+      "plants": 0.0274658203125,
+      "field": 0.61798095703125,
+      "water": 0.0,
+      "terrain": 36.44905090332031,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.38822174072265625,
+    "possible_landscape_fraction": 0.7554359436035156,
+    "uncertain_landscape_fraction": 0.5085162573914449,
+    "ambiguous_landscape_fraction": 0.3588543323587483,
+    "landscape_id": "L043",
+    "human_labels": [
+      "field",
+      "plants",
+      "trees"
+    ],
+    "labels": [
+      "field",
+      "plants",
+      "trees"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "R012",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Competing pixel labels",
+      "Existing human labels disagree with model; image labels already corrected, mask uncorrected"
+    ]
+  },
+  {
+    "filename": "3_seek_000735.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 735.0,
+    "model_labels": [
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0217437744140625,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 6.2763214111328125,
+      "built surfaces": 0.8304595947265625
+    },
+    "low_score_fraction": 0.05632781982421875,
+    "possible_landscape_fraction": 0.07745361328125,
+    "uncertain_landscape_fraction": 0.18685973207249804,
+    "ambiguous_landscape_fraction": 0.11741528762805359,
+    "landscape_id": "L044",
+    "human_labels": [],
+    "labels": [
+      "terrain"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "3_seek_000825.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 825.0,
+    "model_labels": [
+      "terrain",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 1.2752532958984375,
+      "built surfaces": 68.27774047851562
+    },
+    "low_score_fraction": 0.18103790283203125,
+    "possible_landscape_fraction": 0.097808837890625,
+    "uncertain_landscape_fraction": 0.8696177847113885,
+    "ambiguous_landscape_fraction": 0.6760530421216848,
+    "landscape_id": "L045",
+    "human_labels": [],
+    "labels": [
+      "terrain",
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Competing pixel labels"
+    ]
+  },
+  {
+    "filename": "3_seek_000885.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 885.0,
+    "model_labels": [
+      "field",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 32.220458984375,
+      "water": 0.6160736083984375,
+      "terrain": 9.33685302734375,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.12978744506835938,
+    "possible_landscape_fraction": 0.5413322448730469,
+    "uncertain_landscape_fraction": 0.2209334282311655,
+    "ambiguous_landscape_fraction": 0.14897785169160083,
+    "landscape_id": "L046",
+    "human_labels": [],
+    "labels": [
+      "field",
+      "terrain"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Small region near image-tag threshold"
+    ]
+  },
+  {
+    "filename": "3_seek_000915.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 915.0,
+    "model_labels": [
+      "field",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 12.219619750976562,
+      "water": 0.0,
+      "terrain": 4.483795166015625,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.037502288818359375,
+    "possible_landscape_fraction": 0.19655609130859375,
+    "uncertain_landscape_fraction": 0.15019601754454062,
+    "ambiguous_landscape_fraction": 0.16587742110779025,
+    "landscape_id": "L047",
+    "human_labels": [],
+    "labels": [
+      "field",
+      "terrain"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "3_seek_000945.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 945.0,
+    "model_labels": [
+      "field",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 2.216339111328125,
+      "water": 0.0,
+      "terrain": 1.898193359375,
+      "built surfaces": 0.2727508544921875
+    },
+    "low_score_fraction": 0.13910293579101562,
+    "possible_landscape_fraction": 0.16180801391601562,
+    "uncertain_landscape_fraction": 0.7457151613739774,
+    "ambiguous_landscape_fraction": 0.3943701817667445,
+    "landscape_id": "L048",
+    "human_labels": [
+      "field",
+      "water"
+    ],
+    "labels": [
+      "field",
+      "water"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "R017",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Competing pixel labels",
+      "Existing human labels disagree with model; image labels already corrected, mask uncorrected"
+    ]
+  },
+  {
+    "filename": "3_seek_000975.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 975.0,
+    "model_labels": [
+      "plants",
+      "water",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0003814697265625,
+      "plants": 56.2896728515625,
+      "field": 0.0,
+      "water": 2.80914306640625,
+      "terrain": 0.012969970703125,
+      "built surfaces": 1.1508941650390625
+    },
+    "low_score_fraction": 0.397369384765625,
+    "possible_landscape_fraction": 0.9050788879394531,
+    "uncertain_landscape_fraction": 0.34688381149872927,
+    "ambiguous_landscape_fraction": 0.286545197061464,
+    "landscape_id": "L049",
+    "human_labels": [],
+    "labels": [
+      "plants",
+      "water",
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Competing pixel labels",
+      "Blur, darkness, dust, smoke, or transition warrants visual review"
+    ]
+  },
+  {
+    "filename": "3_seek_001065.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 1065.0,
+    "model_labels": [
+      "trees",
+      "water",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 14.128875732421875,
+      "plants": 0.0095367431640625,
+      "field": 0.0,
+      "water": 32.39593505859375,
+      "terrain": 2.762603759765625,
+      "built surfaces": 0.4360198974609375
+    },
+    "low_score_fraction": 0.2984275817871094,
+    "possible_landscape_fraction": 0.6569252014160156,
+    "uncertain_landscape_fraction": 0.24958045166048232,
+    "ambiguous_landscape_fraction": 0.1945310639978166,
+    "landscape_id": "L050",
+    "human_labels": [
+      "trees",
+      "terrain",
+      "built surfaces"
+    ],
+    "labels": [
+      "trees",
+      "terrain",
+      "built surfaces"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Existing human labels disagree with model; image labels already corrected, mask uncorrected"
+    ]
+  },
+  {
+    "filename": "3_seek_001095.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 1095.0,
+    "model_labels": [
+      "trees",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 4.6337127685546875,
+      "plants": 0.0,
+      "field": 0.284576416015625,
+      "water": 0.0,
+      "terrain": 9.947586059570312,
+      "built surfaces": 0.1621246337890625
+    },
+    "low_score_fraction": 0.13616943359375,
+    "possible_landscape_fraction": 0.23404312133789062,
+    "uncertain_landscape_fraction": 0.3648232360275781,
+    "ambiguous_landscape_fraction": 0.25832477629455775,
+    "landscape_id": "L051",
+    "human_labels": [],
+    "labels": [
+      "trees",
+      "terrain"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Competing pixel labels"
+    ]
+  },
+  {
+    "filename": "3_seek_001125.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 1125.0,
+    "model_labels": [
+      "trees",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 22.553253173828125,
+      "plants": 0.0,
+      "field": 0.0179290771484375,
+      "water": 0.0,
+      "terrain": 12.08648681640625,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.10155487060546875,
+    "possible_landscape_fraction": 0.4163665771484375,
+    "uncertain_landscape_fraction": 0.16761644739253123,
+    "ambiguous_landscape_fraction": 0.11370799281709239,
+    "landscape_id": "L052",
+    "human_labels": [],
+    "labels": [
+      "trees",
+      "terrain"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "3_seek_001155.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 1155.0,
+    "model_labels": [
+      "trees",
+      "terrain",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 10.046005249023438,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 11.3800048828125,
+      "built surfaces": 3.4328460693359375
+    },
+    "low_score_fraction": 0.13288116455078125,
+    "possible_landscape_fraction": 0.2885551452636719,
+    "uncertain_landscape_fraction": 0.25747260156260326,
+    "ambiguous_landscape_fraction": 0.21653028039607103,
+    "landscape_id": "L053",
+    "human_labels": [
+      "built surfaces",
+      "field",
+      "trees"
+    ],
+    "labels": [
+      "built surfaces",
+      "field",
+      "trees"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "V006",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Competing pixel labels",
+      "Existing human labels disagree with model; image labels already corrected, mask uncorrected"
+    ]
+  },
+  {
+    "filename": "3_seek_001305.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 1305.0,
+    "model_labels": [
+      "trees",
+      "plants",
+      "water",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 16.143417358398438,
+      "plants": 1.22833251953125,
+      "field": 0.0,
+      "water": 3.269195556640625,
+      "terrain": 21.28448486328125,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.14251327514648438,
+    "possible_landscape_fraction": 0.5336456298828125,
+    "uncertain_landscape_fraction": 0.21435821919766676,
+    "ambiguous_landscape_fraction": 0.13490406885311526,
+    "landscape_id": "L054",
+    "human_labels": [
+      "plants",
+      "terrain",
+      "trees",
+      "water"
+    ],
+    "labels": [
+      "plants",
+      "terrain",
+      "trees",
+      "water"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "V007",
+    "review_reasons": [
+      "Small region near image-tag threshold"
+    ]
+  },
+  {
+    "filename": "3_seek_001335.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 1335.0,
+    "model_labels": [
+      "trees",
+      "water",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 8.25347900390625,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 4.8358917236328125,
+      "terrain": 44.78607177734375,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.11254119873046875,
+    "possible_landscape_fraction": 0.6845436096191406,
+    "uncertain_landscape_fraction": 0.15453972995112816,
+    "ambiguous_landscape_fraction": 0.09628362375939682,
+    "landscape_id": "L055",
+    "human_labels": [],
+    "labels": [
+      "trees",
+      "water",
+      "terrain"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "3_seek_001815.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 1815.0,
+    "model_labels": [
+      "water"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.4550933837890625,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 2.1175384521484375,
+      "terrain": 0.2780914306640625,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.2689552307128906,
+    "possible_landscape_fraction": 0.105560302734375,
+    "uncertain_landscape_fraction": 0.7299436253252385,
+    "ambiguous_landscape_fraction": 0.5009757155247181,
+    "landscape_id": "L056",
+    "human_labels": [
+      "built surfaces",
+      "terrain",
+      "water"
+    ],
+    "labels": [
+      "built surfaces",
+      "terrain",
+      "water"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "R014",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Competing pixel labels",
+      "Small region near image-tag threshold",
+      "Existing human labels disagree with model; image labels already corrected, mask uncorrected"
+    ]
+  },
+  {
+    "filename": "3_seek_001895.500s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 1895.5,
+    "model_labels": [
+      "water",
+      "terrain",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.06561279296875,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 5.6705474853515625,
+      "terrain": 1.7513275146484375,
+      "built surfaces": 1.1341094970703125
+    },
+    "low_score_fraction": 0.3494758605957031,
+    "possible_landscape_fraction": 0.24620437622070312,
+    "uncertain_landscape_fraction": 0.6958832370121318,
+    "ambiguous_landscape_fraction": 0.4620783687888319,
+    "landscape_id": "L103",
+    "human_labels": [],
+    "labels": [
+      "water",
+      "terrain",
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Competing pixel labels",
+      "Blur, darkness, dust, smoke, or transition warrants visual review"
+    ]
+  },
+  {
+    "filename": "3_seek_002115.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 2115.0,
+    "model_labels": [
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.756072998046875,
+      "terrain": 3.47747802734375,
+      "built surfaces": 0.392913818359375
+    },
+    "low_score_fraction": 0.44942474365234375,
+    "possible_landscape_fraction": 0.202728271484375,
+    "uncertain_landscape_fraction": 0.7911711576095137,
+    "ambiguous_landscape_fraction": 0.5505795574288725,
+    "landscape_id": "L057",
+    "human_labels": [
+      "built surfaces",
+      "terrain"
+    ],
+    "labels": [
+      "built surfaces",
+      "terrain"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "R011",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Competing pixel labels",
+      "Small region near image-tag threshold",
+      "Existing human labels disagree with model; image labels already corrected, mask uncorrected"
+    ]
+  },
+  {
+    "filename": "3_seek_002145.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 2145.0,
+    "model_labels": [
+      "water",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 15.91033935546875,
+      "terrain": 0.1171112060546875,
+      "built surfaces": 7.8693389892578125
+    },
+    "low_score_fraction": 0.2631874084472656,
+    "possible_landscape_fraction": 0.21677780151367188,
+    "uncertain_landscape_fraction": 0.260650747004065,
+    "ambiguous_landscape_fraction": 0.14209794639871892,
+    "landscape_id": "L058",
+    "human_labels": [
+      "terrain",
+      "built surfaces"
+    ],
+    "labels": [
+      "terrain",
+      "built surfaces"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Existing human labels disagree with model; image labels already corrected, mask uncorrected"
+    ]
+  },
+  {
+    "filename": "3_seek_002235.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 2235.0,
+    "model_labels": [
+      "water",
+      "terrain",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.1117706298828125,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 1.2523651123046875,
+      "terrain": 4.791259765625,
+      "built surfaces": 1.6796112060546875
+    },
+    "low_score_fraction": 0.26718902587890625,
+    "possible_landscape_fraction": 0.19219970703125,
+    "uncertain_landscape_fraction": 0.6797395998729755,
+    "ambiguous_landscape_fraction": 0.341973642426167,
+    "landscape_id": "L059",
+    "human_labels": [
+      "field",
+      "plants"
+    ],
+    "labels": [
+      "field",
+      "plants"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "R018",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Competing pixel labels",
+      "Small region near image-tag threshold",
+      "Existing human labels disagree with model; image labels already corrected, mask uncorrected"
+    ]
+  },
+  {
+    "filename": "3_seek_002325.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 2325.0,
+    "model_labels": [
+      "trees",
+      "water",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 15.13671875,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 2.09197998046875,
+      "terrain": 3.778839111328125,
+      "built surfaces": 0.8251190185546875
+    },
+    "low_score_fraction": 0.20811080932617188,
+    "possible_landscape_fraction": 0.2789878845214844,
+    "uncertain_landscape_fraction": 0.24700895604019962,
+    "ambiguous_landscape_fraction": 0.19401107540849113,
+    "landscape_id": "L060",
+    "human_labels": [],
+    "labels": [
+      "trees",
+      "water",
+      "terrain"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "3_seek_002355.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 2355.0,
+    "model_labels": [
+      "trees",
+      "plants",
+      "terrain",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 3.19061279296875,
+      "plants": 21.8109130859375,
+      "field": 0.0,
+      "water": 0.943756103515625,
+      "terrain": 7.3726654052734375,
+      "built surfaces": 19.668960571289062
+    },
+    "low_score_fraction": 0.21467971801757812,
+    "possible_landscape_fraction": 0.4821052551269531,
+    "uncertain_landscape_fraction": 0.308907193328111,
+    "ambiguous_landscape_fraction": 0.19388990433688608,
+    "landscape_id": "L061",
+    "human_labels": [
+      "built surfaces",
+      "plants",
+      "trees"
+    ],
+    "labels": [
+      "built surfaces",
+      "plants",
+      "trees"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "R020",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Small region near image-tag threshold",
+      "Existing human labels disagree with model; image labels already corrected, mask uncorrected"
+    ]
+  },
+  {
+    "filename": "3_seek_002385.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 2385.0,
+    "model_labels": [
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 9.84039306640625,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.15666961669921875,
+    "possible_landscape_fraction": 0.109405517578125,
+    "uncertain_landscape_fraction": 0.100557880055788,
+    "ambiguous_landscape_fraction": 0.07245467224546723,
+    "landscape_id": "L062",
+    "human_labels": [],
+    "labels": [
+      "terrain"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "3_seek_002445.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 2445.0,
+    "model_labels": [
+      "trees",
+      "water",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 4.755401611328125,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 19.9981689453125,
+      "terrain": 12.876129150390625,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.07886505126953125,
+    "possible_landscape_fraction": 0.4124259948730469,
+    "uncertain_landscape_fraction": 0.0876011654257041,
+    "ambiguous_landscape_fraction": 0.07778754104425843,
+    "landscape_id": "L063",
+    "human_labels": [],
+    "labels": [
+      "trees",
+      "water",
+      "terrain"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "3_seek_002595.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 2595.0,
+    "model_labels": [
+      "trees",
+      "water",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 3.8928985595703125,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 1.177215576171875,
+      "terrain": 1.2516021728515625,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.07876968383789062,
+    "possible_landscape_fraction": 0.08517837524414062,
+    "uncertain_landscape_fraction": 0.25782614537149,
+    "ambiguous_landscape_fraction": 0.19974024810784183,
+    "landscape_id": "L064",
+    "human_labels": [],
+    "labels": [
+      "trees",
+      "water",
+      "terrain"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Small region near image-tag threshold"
+    ]
+  },
+  {
+    "filename": "3_seek_002625.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 2625.0,
+    "model_labels": [
+      "trees"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 3.0513763427734375,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.1033782958984375,
+      "terrain": 0.1903533935546875,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.11737823486328125,
+    "possible_landscape_fraction": 0.05572509765625,
+    "uncertain_landscape_fraction": 0.39971248630887185,
+    "ambiguous_landscape_fraction": 0.317565717415115,
+    "landscape_id": "L065",
+    "human_labels": [],
+    "labels": [
+      "trees"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Competing pixel labels"
+    ]
+  },
+  {
+    "filename": "3_seek_002685.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 2685.0,
+    "model_labels": [
+      "trees",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 24.253082275390625,
+      "plants": 0.031280517578125,
+      "field": 0.0,
+      "water": 0.5397796630859375,
+      "terrain": 7.4817657470703125,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.14773941040039062,
+    "possible_landscape_fraction": 0.44733428955078125,
+    "uncertain_landscape_fraction": 0.2778128357750755,
+    "ambiguous_landscape_fraction": 0.17924206504869272,
+    "landscape_id": "L066",
+    "human_labels": [
+      "built surfaces",
+      "plants",
+      "terrain",
+      "trees"
+    ],
+    "labels": [
+      "built surfaces",
+      "plants",
+      "terrain",
+      "trees"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "V008",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Small region near image-tag threshold",
+      "Existing human labels disagree with model; image labels already corrected, mask uncorrected"
+    ]
+  },
+  {
+    "filename": "3_seek_002745.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 2745.0,
+    "model_labels": [
+      "trees",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 2.2388458251953125,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 2.3609161376953125,
+      "built surfaces": 0.48065185546875
+    },
+    "low_score_fraction": 0.06529998779296875,
+    "possible_landscape_fraction": 0.06689071655273438,
+    "uncertain_landscape_fraction": 0.3123467351012261,
+    "ambiguous_landscape_fraction": 0.28035357855717136,
+    "landscape_id": "L067",
+    "human_labels": [],
+    "labels": [
+      "trees",
+      "terrain"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Competing pixel labels"
+    ]
+  },
+  {
+    "filename": "3_seek_002805.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 2805.0,
+    "model_labels": [
+      "trees",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 2.252960205078125,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.899505615234375,
+      "terrain": 6.6707611083984375,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.07453536987304688,
+    "possible_landscape_fraction": 0.12327957153320312,
+    "uncertain_landscape_fraction": 0.20317479964105578,
+    "ambiguous_landscape_fraction": 0.20818764117956493,
+    "landscape_id": "L068",
+    "human_labels": [],
+    "labels": [
+      "trees",
+      "terrain"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Competing pixel labels",
+      "Small region near image-tag threshold"
+    ]
+  },
+  {
+    "filename": "3_seek_002835.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 2835.0,
+    "model_labels": [
+      "trees",
+      "terrain",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 2.4776458740234375,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 7.3688507080078125,
+      "built surfaces": 14.886093139648438
+    },
+    "low_score_fraction": 0.13078689575195312,
+    "possible_landscape_fraction": 0.13647079467773438,
+    "uncertain_landscape_fraction": 0.27849056603773586,
+    "ambiguous_landscape_fraction": 0.15703703703703703,
+    "landscape_id": "L069",
+    "human_labels": [],
+    "labels": [
+      "trees",
+      "terrain",
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Low model scores in possible landscape regions"
+    ]
+  },
+  {
+    "filename": "3_seek_002925.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 2925.0,
+    "model_labels": [
+      "trees",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 39.80979919433594,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 2.4196624755859375,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.0328369140625,
+    "possible_landscape_fraction": 0.43582916259765625,
+    "uncertain_landscape_fraction": 0.031054704595185997,
+    "ambiguous_landscape_fraction": 0.04780743982494529,
+    "landscape_id": "L070",
+    "human_labels": [],
+    "labels": [
+      "trees",
+      "terrain"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "3_seek_002955.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 2955.0,
+    "model_labels": [
+      "trees",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 33.026123046875,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 3.948974609375,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.12093353271484375,
+    "possible_landscape_fraction": 0.41310882568359375,
+    "uncertain_landscape_fraction": 0.10495502982621382,
+    "ambiguous_landscape_fraction": 0.07372522946792989,
+    "landscape_id": "L071",
+    "human_labels": [],
+    "labels": [
+      "trees",
+      "terrain"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "3_seek_002985.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 2985.0,
+    "model_labels": [
+      "trees",
+      "water"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 17.515182495117188,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 24.328994750976562,
+      "terrain": 0.0,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.0365447998046875,
+    "possible_landscape_fraction": 0.4540672302246094,
+    "uncertain_landscape_fraction": 0.07845855281397283,
+    "ambiguous_landscape_fraction": 0.02972334937957339,
+    "landscape_id": "L072",
+    "human_labels": [],
+    "labels": [
+      "trees",
+      "water"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "3_seek_003045.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 3045.0,
+    "model_labels": [
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.8258819580078125,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 26.609039306640625,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.11066436767578125,
+    "possible_landscape_fraction": 0.3491020202636719,
+    "uncertain_landscape_fraction": 0.21412883133912472,
+    "ambiguous_landscape_fraction": 0.14831448396437744,
+    "landscape_id": "L073",
+    "human_labels": [],
+    "labels": [
+      "terrain"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Small region near image-tag threshold"
+    ]
+  },
+  {
+    "filename": "3_seek_003075.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 3075.0,
+    "model_labels": [
+      "trees",
+      "water",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 3.14483642578125,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 1.8829345703125,
+      "terrain": 56.46514892578125,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.12760162353515625,
+    "possible_landscape_fraction": 0.7353248596191406,
+    "uncertain_landscape_fraction": 0.1637312526911564,
+    "ambiguous_landscape_fraction": 0.12813795321667765,
+    "landscape_id": "L074",
+    "human_labels": [],
+    "labels": [
+      "trees",
+      "water",
+      "terrain"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Small region near image-tag threshold",
+      "Blur, darkness, dust, smoke, or transition warrants visual review"
+    ]
+  },
+  {
+    "filename": "3_seek_003105.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 3105.0,
+    "model_labels": [
+      "trees",
+      "terrain",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 2.8697967529296875,
+      "plants": 0.01373291015625,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 34.527587890625,
+      "built surfaces": 27.141571044921875
+    },
+    "low_score_fraction": 0.0700225830078125,
+    "possible_landscape_fraction": 0.40586090087890625,
+    "uncertain_landscape_fraction": 0.07822809556929902,
+    "ambiguous_landscape_fraction": 0.050679549598661576,
+    "landscape_id": "L075",
+    "human_labels": [
+      "built surfaces",
+      "plants",
+      "trees"
+    ],
+    "labels": [
+      "built surfaces",
+      "plants",
+      "trees"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "V009",
+    "review_reasons": [
+      "Existing human labels disagree with model; image labels already corrected, mask uncorrected"
+    ]
+  },
+  {
+    "filename": "3_seek_003135.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 3135.0,
+    "model_labels": [
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.5138397216796875,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 0.0,
+      "built surfaces": 62.590789794921875
+    },
+    "low_score_fraction": 0.19190597534179688,
+    "possible_landscape_fraction": 0.025051116943359375,
+    "uncertain_landscape_fraction": 0.7948835084513477,
+    "ambiguous_landscape_fraction": 0.49413735343383586,
+    "landscape_id": "L076",
+    "human_labels": [],
+    "labels": [
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Small region near image-tag threshold",
+      "Blur, darkness, dust, smoke, or transition warrants visual review"
+    ]
+  },
+  {
+    "filename": "3_seek_003195.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 3195.0,
+    "model_labels": [
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.2826690673828125,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 0.18463134765625,
+      "built surfaces": 40.63720703125
+    },
+    "low_score_fraction": 0.39972686767578125,
+    "possible_landscape_fraction": 0.10436630249023438,
+    "uncertain_landscape_fraction": 0.9552249716729413,
+    "ambiguous_landscape_fraction": 0.6133996125589386,
+    "landscape_id": "L077",
+    "human_labels": [
+      "built surfaces",
+      "terrain"
+    ],
+    "labels": [
+      "built surfaces",
+      "terrain"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "R010",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Competing pixel labels",
+      "Existing human labels disagree with model; image labels already corrected, mask uncorrected"
+    ]
+  },
+  {
+    "filename": "3_seek_003285.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 3285.0,
+    "model_labels": [
+      "trees",
+      "water",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 16.253280639648438,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 2.1709442138671875,
+      "terrain": 13.408660888671875,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.1831512451171875,
+    "possible_landscape_fraction": 0.4715232849121094,
+    "uncertain_landscape_fraction": 0.3248926031697234,
+    "ambiguous_landscape_fraction": 0.20743970810714604,
+    "landscape_id": "L078",
+    "human_labels": [
+      "built surfaces",
+      "plants",
+      "trees"
+    ],
+    "labels": [
+      "built surfaces",
+      "plants",
+      "trees"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "R019",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Competing pixel labels",
+      "Existing human labels disagree with model; image labels already corrected, mask uncorrected"
+    ]
+  },
+  {
+    "filename": "3_seek_003345.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 3345.0,
+    "model_labels": [
+      "water",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.244903564453125,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 10.820770263671875,
+      "terrain": 61.02790832519531,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.1370697021484375,
+    "possible_landscape_fraction": 0.8060455322265625,
+    "uncertain_landscape_fraction": 0.10558920965451964,
+    "ambiguous_landscape_fraction": 0.07111216280170374,
+    "landscape_id": "L079",
+    "human_labels": [],
+    "labels": [
+      "water",
+      "terrain"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "3_seek_003525.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 3525.0,
+    "model_labels": [
+      "trees",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 6.9400787353515625,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 28.667831420898438,
+      "built surfaces": 0.2101898193359375
+    },
+    "low_score_fraction": 0.10543441772460938,
+    "possible_landscape_fraction": 0.4129905700683594,
+    "uncertain_landscape_fraction": 0.13780331230429602,
+    "ambiguous_landscape_fraction": 0.07963015988841987,
+    "landscape_id": "L080",
+    "human_labels": [],
+    "labels": [
+      "trees",
+      "terrain"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "3_seek_003555.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 3555.0,
+    "model_labels": [
+      "trees",
+      "terrain",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 5.429840087890625,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 28.120040893554688,
+      "built surfaces": 1.256561279296875
+    },
+    "low_score_fraction": 0.08395004272460938,
+    "possible_landscape_fraction": 0.3870391845703125,
+    "uncertain_landscape_fraction": 0.13316577961758327,
+    "ambiguous_landscape_fraction": 0.10108417110191209,
+    "landscape_id": "L081",
+    "human_labels": [],
+    "labels": [
+      "trees",
+      "terrain",
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "3_seek_003585.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 3585.0,
+    "model_labels": [
+      "water",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 11.758041381835938,
+      "terrain": 14.057540893554688,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.08951568603515625,
+    "possible_landscape_fraction": 0.2875022888183594,
+    "uncertain_landscape_fraction": 0.10207385195111919,
+    "ambiguous_landscape_fraction": 0.0807249857364629,
+    "landscape_id": "L082",
+    "human_labels": [
+      "built surfaces",
+      "terrain",
+      "water"
+    ],
+    "labels": [
+      "built surfaces",
+      "terrain",
+      "water"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "V010",
+    "review_reasons": [
+      "Existing human labels disagree with model; image labels already corrected, mask uncorrected"
+    ]
+  },
+  {
+    "filename": "3_seek_003615.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 3615.0,
+    "model_labels": [
+      "water",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 66.46919250488281,
+      "terrain": 28.725433349609375,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.048053741455078125,
+    "possible_landscape_fraction": 1.0,
+    "uncertain_landscape_fraction": 0.048053741455078125,
+    "ambiguous_landscape_fraction": 0.07498550415039062,
+    "landscape_id": "L083",
+    "human_labels": [],
+    "labels": [
+      "water",
+      "terrain"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Blur, darkness, dust, smoke, or transition warrants visual review"
+    ]
+  },
+  {
+    "filename": "3_seek_003765.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 3765.0,
+    "model_labels": [
+      "terrain",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 12.807464599609375,
+      "built surfaces": 29.517745971679688
+    },
+    "low_score_fraction": 0.2745819091796875,
+    "possible_landscape_fraction": 0.16909408569335938,
+    "uncertain_landscape_fraction": 0.24258352697001828,
+    "ambiguous_landscape_fraction": 0.12276941818756062,
+    "landscape_id": "L084",
+    "human_labels": [],
+    "labels": [
+      "terrain",
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "3_seek_003975.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 3975.0,
+    "model_labels": [
+      "terrain",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 28.334426879882812,
+      "built surfaces": 30.429458618164062
+    },
+    "low_score_fraction": 0.1182403564453125,
+    "possible_landscape_fraction": 0.3053932189941406,
+    "uncertain_landscape_fraction": 0.07219855852704948,
+    "ambiguous_landscape_fraction": 0.03485016925440623,
+    "landscape_id": "L085",
+    "human_labels": [],
+    "labels": [
+      "terrain",
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "3_seek_004005.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 4005.0,
+    "model_labels": [
+      "terrain",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0194549560546875,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 20.15380859375,
+      "built surfaces": 9.801864624023438
+    },
+    "low_score_fraction": 0.21570587158203125,
+    "possible_landscape_fraction": 0.242523193359375,
+    "uncertain_landscape_fraction": 0.16819239964766577,
+    "ambiguous_landscape_fraction": 0.09160689568390587,
+    "landscape_id": "L086",
+    "human_labels": [],
+    "labels": [
+      "terrain",
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "3_seek_004125.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 4125.0,
+    "model_labels": [
+      "field"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 26.02386474609375,
+      "water": 0.0,
+      "terrain": 0.0,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.028690338134765625,
+    "possible_landscape_fraction": 0.27687835693359375,
+    "uncertain_landscape_fraction": 0.06009754484582954,
+    "ambiguous_landscape_fraction": 0.03622110165054697,
+    "landscape_id": "L087",
+    "human_labels": [],
+    "labels": [
+      "field"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Blur, darkness, dust, smoke, or transition warrants visual review"
+    ]
+  },
+  {
+    "filename": "3_seek_004155.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 4155.0,
+    "model_labels": [
+      "field",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 30.436325073242188,
+      "water": 0.0,
+      "terrain": 1.274871826171875,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.05512237548828125,
+    "possible_landscape_fraction": 0.3519439697265625,
+    "uncertain_landscape_fraction": 0.09897030132234988,
+    "ambiguous_landscape_fraction": 0.055625406460004335,
+    "landscape_id": "L088",
+    "human_labels": [],
+    "labels": [
+      "field",
+      "terrain"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Blur, darkness, dust, smoke, or transition warrants visual review"
+    ]
+  },
+  {
+    "filename": "3_seek_004185.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 4185.0,
+    "model_labels": [
+      "field",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 28.429794311523438,
+      "water": 0.138092041015625,
+      "terrain": 1.152801513671875,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.092803955078125,
+    "possible_landscape_fraction": 0.3542366027832031,
+    "uncertain_landscape_fraction": 0.16099331258547722,
+    "ambiguous_landscape_fraction": 0.09734980239282369,
+    "landscape_id": "L089",
+    "human_labels": [
+      "field",
+      "plants"
+    ],
+    "labels": [
+      "field",
+      "plants"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "V011",
+    "review_reasons": [
+      "Blur, darkness, dust, smoke, or transition warrants visual review",
+      "Existing human labels disagree with model; image labels already corrected, mask uncorrected"
+    ]
+  },
+  {
+    "filename": "3_seek_004215.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 4215.0,
+    "model_labels": [
+      "field"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 11.759567260742188,
+      "water": 0.0,
+      "terrain": 0.0156402587890625,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.026706695556640625,
+    "possible_landscape_fraction": 0.12822723388671875,
+    "uncertain_landscape_fraction": 0.08169215207949068,
+    "ambiguous_landscape_fraction": 0.2401677872315107,
+    "landscape_id": "L090",
+    "human_labels": [],
+    "labels": [
+      "field"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Competing pixel labels",
+      "Blur, darkness, dust, smoke, or transition warrants visual review"
+    ]
+  },
+  {
+    "filename": "3_seek_004275.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 4275.0,
+    "model_labels": [
+      "field"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 27.245712280273438,
+      "water": 0.0,
+      "terrain": 0.051116943359375,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.06909942626953125,
+    "possible_landscape_fraction": 0.3134307861328125,
+    "uncertain_landscape_fraction": 0.1290954676013826,
+    "ambiguous_landscape_fraction": 0.0846477776155007,
+    "landscape_id": "L091",
+    "human_labels": [],
+    "labels": [
+      "field"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Blur, darkness, dust, smoke, or transition warrants visual review"
+    ]
+  },
+  {
+    "filename": "3_seek_004425.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 4425.0,
+    "model_labels": [
+      "field",
+      "water",
+      "terrain",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 3.641510009765625,
+      "water": 5.8765411376953125,
+      "terrain": 2.2205352783203125,
+      "built surfaces": 2.127838134765625
+    },
+    "low_score_fraction": 0.2850227355957031,
+    "possible_landscape_fraction": 0.20064926147460938,
+    "uncertain_landscape_fraction": 0.41496986634726896,
+    "ambiguous_landscape_fraction": 0.26103157854712067,
+    "landscape_id": "L092",
+    "human_labels": [],
+    "labels": [
+      "field",
+      "water",
+      "terrain",
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Competing pixel labels",
+      "Blur, darkness, dust, smoke, or transition warrants visual review"
+    ]
+  },
+  {
+    "filename": "3_seek_004995.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 4995.0,
+    "model_labels": [
+      "terrain",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.4009246826171875,
+      "terrain": 1.1264801025390625,
+      "built surfaces": 25.19989013671875
+    },
+    "low_score_fraction": 0.444122314453125,
+    "possible_landscape_fraction": 0.09198760986328125,
+    "uncertain_landscape_fraction": 0.8339553786182301,
+    "ambiguous_landscape_fraction": 0.5014099693124326,
+    "landscape_id": "L093",
+    "human_labels": [
+      "built surfaces",
+      "water"
+    ],
+    "labels": [
+      "built surfaces",
+      "water"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "V012",
+    "review_reasons": [
+      "Low model scores in possible landscape regions",
+      "Competing pixel labels",
+      "Small region near image-tag threshold",
+      "Blur, darkness, dust, smoke, or transition warrants visual review",
+      "Existing human labels disagree with model; image labels already corrected, mask uncorrected"
+    ]
+  },
+  {
+    "filename": "3_seek_005745.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 5745.0,
+    "model_labels": [
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 0.0,
+      "built surfaces": 2.4349212646484375
+    },
+    "low_score_fraction": 0.2841529846191406,
+    "possible_landscape_fraction": 0.0,
+    "uncertain_landscape_fraction": 0,
+    "ambiguous_landscape_fraction": 0,
+    "landscape_id": "L094",
+    "human_labels": [],
+    "labels": [
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "3_seek_005775.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 5775.0,
+    "model_labels": [
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 0.0,
+      "terrain": 0.0,
+      "built surfaces": 26.671218872070312
+    },
+    "low_score_fraction": 0.39178466796875,
+    "possible_landscape_fraction": 0.0032501220703125,
+    "uncertain_landscape_fraction": 1.0,
+    "ambiguous_landscape_fraction": 0.9964788732394366,
+    "landscape_id": "L095",
+    "human_labels": [],
+    "labels": [
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "3_seek_006045.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 6045.0,
+    "model_labels": [
+      "trees",
+      "water"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 5.9658050537109375,
+      "plants": 0.9136199951171875,
+      "field": 0.0,
+      "water": 49.37591552734375,
+      "terrain": 0.0377655029296875,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.0380859375,
+    "possible_landscape_fraction": 0.591033935546875,
+    "uncertain_landscape_fraction": 0.04754866525533123,
+    "ambiguous_landscape_fraction": 0.05051117880931481,
+    "landscape_id": "L096",
+    "human_labels": [],
+    "labels": [
+      "trees",
+      "water"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": [
+      "Small region near image-tag threshold"
+    ]
+  },
+  {
+    "filename": "3_seek_006075.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 6075.0,
+    "model_labels": [
+      "water"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 43.930816650390625,
+      "terrain": 0.5573272705078125,
+      "built surfaces": 0.002288818359375
+    },
+    "low_score_fraction": 0.0493316650390625,
+    "possible_landscape_fraction": 0.4895973205566406,
+    "uncertain_landscape_fraction": 0.09133195683509292,
+    "ambiguous_landscape_fraction": 0.06544080408274572,
+    "landscape_id": "L097",
+    "human_labels": [],
+    "labels": [
+      "water"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "3_seek_006105.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 6105.0,
+    "model_labels": [
+      "water",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 24.510955810546875,
+      "terrain": 15.073013305664062,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.12548828125,
+    "possible_landscape_fraction": 0.5064125061035156,
+    "uncertain_landscape_fraction": 0.21834534812772594,
+    "ambiguous_landscape_fraction": 0.15809058928988423,
+    "landscape_id": "L098",
+    "human_labels": [],
+    "labels": [
+      "water",
+      "terrain"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "3_seek_006135.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 6135.0,
+    "model_labels": [
+      "water",
+      "terrain"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 3.04412841796875,
+      "terrain": 3.91082763671875,
+      "built surfaces": 0.899505615234375
+    },
+    "low_score_fraction": 0.042148590087890625,
+    "possible_landscape_fraction": 0.08410263061523438,
+    "uncertain_landscape_fraction": 0.173039415793532,
+    "ambiguous_landscape_fraction": 0.12763641311743093,
+    "landscape_id": "L099",
+    "human_labels": [
+      "terrain",
+      "water"
+    ],
+    "labels": [
+      "terrain",
+      "water"
+    ],
+    "labels_source": "user",
+    "previous_review_id": "V013",
+    "review_reasons": []
+  },
+  {
+    "filename": "3_seek_006165.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 6165.0,
+    "model_labels": [
+      "water"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 41.10107421875,
+      "terrain": 0.0,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.00289154052734375,
+    "possible_landscape_fraction": 0.411529541015625,
+    "uncertain_landscape_fraction": 0.001260659992584353,
+    "ambiguous_landscape_fraction": 0.0037263626251390434,
+    "landscape_id": "L100",
+    "human_labels": [],
+    "labels": [
+      "water"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "3_seek_006195.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 6195.0,
+    "model_labels": [
+      "water",
+      "built surfaces"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 12.504196166992188,
+      "terrain": 0.0,
+      "built surfaces": 1.21612548828125
+    },
+    "low_score_fraction": 0.17916488647460938,
+    "possible_landscape_fraction": 0.1270904541015625,
+    "uncertain_landscape_fraction": 0.016118381558410375,
+    "ambiguous_landscape_fraction": 0.010205306759514948,
+    "landscape_id": "L101",
+    "human_labels": [],
+    "labels": [
+      "water",
+      "built surfaces"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  },
+  {
+    "filename": "3_seek_006225.000s.jpg",
+    "video": "3.mp4",
+    "requested_seek_seconds": 6225.0,
+    "model_labels": [
+      "water"
+    ],
+    "config_fingerprint": "87aa6908a1ef287d9fafd32004c5287cca39cb768acfcb27078e03a7a3f1f92d",
+    "internal_pixel_coverage_percent": {
+      "trees": 0.0,
+      "plants": 0.0,
+      "field": 0.0,
+      "water": 46.60835266113281,
+      "terrain": 0.0,
+      "built surfaces": 0.0
+    },
+    "low_score_fraction": 0.002834320068359375,
+    "possible_landscape_fraction": 0.4674720764160156,
+    "uncertain_landscape_fraction": 0.002970337427067608,
+    "ambiguous_landscape_fraction": 0.00351707536007181,
+    "landscape_id": "L102",
+    "human_labels": [],
+    "labels": [
+      "water"
+    ],
+    "labels_source": "model",
+    "previous_review_id": "",
+    "review_reasons": []
+  }
+]

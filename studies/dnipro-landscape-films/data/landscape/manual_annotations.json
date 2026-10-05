@@ -1,0 +1,120 @@
+{
+  "version": 1,
+  "annotations": {
+    "1_seek_000135.000s.jpg": {
+      "labels": [
+        "water",
+        "terrain",
+        "built surfaces"
+      ],
+      "source": "user_web_editor",
+      "status": "reviewed",
+      "updated_at": "2026-09-22T08:07:43.045253+00:00",
+      "scope": "Image labels only; model masks unchanged"
+    },
+    "1_seek_003135.000s.jpg": {
+      "labels": [
+        "plants",
+        "unknown"
+      ],
+      "source": "user_web_editor",
+      "status": "reviewed",
+      "updated_at": "2026-09-22T08:09:31.707221+00:00",
+      "scope": "Image labels only; model masks unchanged"
+    },
+    "1_seek_001155.000s.jpg": {
+      "labels": [
+        "trees",
+        "plants",
+        "terrain",
+        "built surfaces"
+      ],
+      "source": "user_web_editor",
+      "status": "reviewed",
+      "updated_at": "2026-09-24T20:50:45.415100+00:00",
+      "scope": "Image labels only; model masks unchanged"
+    },
+    "3_seek_001065.000s.jpg": {
+      "labels": [
+        "trees",
+        "terrain",
+        "built surfaces"
+      ],
+      "source": "user_web_editor",
+      "status": "reviewed",
+      "updated_at": "2026-09-24T20:53:48.329607+00:00",
+      "scope": "Image labels only; model masks unchanged"
+    },
+    "3_seek_002145.000s.jpg": {
+      "labels": [
+        "terrain",
+        "built surfaces"
+      ],
+      "source": "user_web_editor",
+      "status": "reviewed",
+      "updated_at": "2026-09-24T20:55:21.813390+00:00",
+      "scope": "Image labels only; model masks unchanged"
+    }
+  },
+  "history": [
+    {
+      "filename": "1_seek_000135.000s.jpg",
+      "before": [],
+      "after": [
+        "water",
+        "terrain",
+        "built surfaces"
+      ],
+      "saved_at": "2026-09-22T08:07:43.045253+00:00"
+    },
+    {
+      "filename": "1_seek_003135.000s.jpg",
+      "before": [],
+      "after": [
+        "unknown"
+      ],
+      "saved_at": "2026-09-22T08:09:17.836371+00:00"
+    },
+    {
+      "filename": "1_seek_003135.000s.jpg",
+      "before": [
+        "unknown"
+      ],
+      "after": [
+        "plants",
+        "unknown"
+      ],
+      "saved_at": "2026-09-22T08:09:31.707221+00:00"
+    },
+    {
+      "filename": "1_seek_001155.000s.jpg",
+      "before": [],
+      "after": [
+        "trees",
+        "plants",
+        "terrain",
+        "built surfaces"
+      ],
+      "saved_at": "2026-09-24T20:50:45.415100+00:00"
+    },
+    {
+      "filename": "3_seek_001065.000s.jpg",
+      "before": [],
+      "after": [
+        "trees",
+        "terrain",
+        "built surfaces"
+      ],
+      "saved_at": "2026-09-24T20:53:48.329607+00:00"
+    },
+    {
+      "filename": "3_seek_002145.000s.jpg",
+      "before": [],
+      "after": [
+        "terrain",
+        "built surfaces"
+      ],
+      "saved_at": "2026-09-24T20:55:21.813390+00:00"
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "1_seek_000555.000s.jpg": {
+    "validation_id": "V001",
+    "source": "user",
+    "original_labels": [
+      "water",
+      "built surfaces"
+    ],
+    "labels": [
+      "water",
+      "built surfaces"
+    ],
+    "scope": "Image labels only; no pixel-mask validation"
+  },
+  "1_seek_000645.000s.jpg": {
+    "validation_id": "V002",
+    "source": "user",
+    "original_labels": [
+      "mountain"
+    ],
+    "labels": [
+      "terrain"
+    ],
+    "scope": "Image labels only; no pixel-mask validation"
+  },
+  "1_seek_000765.000s.jpg": {
+    "validation_id": "V003",
+    "source": "user",
+    "original_labels": [
+      "water"
+    ],
+    "labels": [
+      "water"
+    ],
+    "scope": "Image labels only; no pixel-mask validation"
+  },
+  "1_seek_002205.000s.jpg": {
+    "validation_id": "V004",
+    "source": "user",
+    "original_labels": [
+      "built surfaces",
+      "water"
+    ],
+    "labels": [
+      "built surfaces",
+      "water"
+    ],
+    "scope": "Image labels only; no pixel-mask validation"
+  },
+  "1_seek_002865.000s.jpg": {
+    "validation_id": "V005",
+    "source": "user",
+    "original_labels": [
+      "built surfaces"
+    ],
+    "labels": [
+      "built surfaces"
+    ],
+    "scope": "Image labels only; no pixel-mask validation"
+  },
+  "3_seek_001155.000s.jpg": {
+    "validation_id": "V006",
+    "source": "user",
+    "original_labels": [
+      "built surfaces",
+      "trees",
+      "field"
+    ],
+    "labels": [
+      "built surfaces",
+      "trees",
+      "field"
+    ],
+    "scope": "Image labels only; no pixel-mask validation"
+  },
+  "3_seek_001305.000s.jpg": {
+    "validation_id": "V007",
+    "source": "user",
+    "original_labels": [
+      "water",
+      "land",
+      "grass",
+      "trees"
+    ],
+    "labels": [
+      "water",
+      "terrain",
+      "grass",
+      "trees"
+    ],
+    "scope": "Image labels only; no pixel-mask validation"
+  },
+  "3_seek_002685.000s.jpg": {
+    "validation_id": "V008",
+    "source": "user",
+    "original_labels": [
+      "terrain",
+      "grass",
+      "tree",
+      "built surfaces"
+    ],
+    "labels": [
+      "terrain",
+      "grass",
+      "trees",
+      "built surfaces"
+    ],
+    "scope": "Image labels only; no pixel-mask validation"
+  },
+  "3_seek_003105.000s.jpg": {
+    "validation_id": "V009",
+    "source": "user",
+    "original_labels": [
+      "grass",
+      "built surfaces",
+      "tree"
+    ],
+    "labels": [
+      "grass",
+      "built surfaces",
+      "trees"
+    ],
+    "scope": "Image labels only; no pixel-mask validation"
+  },
+  "3_seek_003585.000s.jpg": {
+    "validation_id": "V010",
+    "source": "user",
+    "original_labels": [
+      "built surfaces",
+      "land",
+      "water"
+    ],
+    "labels": [
+      "built surfaces",
+      "terrain",
+      "water"
+    ],
+    "scope": "Image labels only; no pixel-mask validation"
+  },
+  "3_seek_004185.000s.jpg": {
+    "validation_id": "V011",
+    "source": "user",
+    "original_labels": [
+      "field",
+      "grass"
+    ],
+    "labels": [
+      "field",
+      "grass"
+    ],
+    "scope": "Image labels only; no pixel-mask validation"
+  },
+  "3_seek_004995.000s.jpg": {
+    "validation_id": "V012",
+    "source": "user",
+    "original_labels": [
+      "built surfaces",
+      "water"
+    ],
+    "labels": [
+      "built surfaces",
+      "water"
+    ],
+    "scope": "Image labels only; no pixel-mask validation"
+  },
+  "3_seek_006135.000s.jpg": {
+    "validation_id": "V013",
+    "source": "user",
+    "original_labels": [
+      "water",
+      "land",
+      "terrain"
+    ],
+    "labels": [
+      "water",
+      "terrain"
+    ],
+    "scope": "Image labels only; no pixel-mask validation"
+  }
+}
