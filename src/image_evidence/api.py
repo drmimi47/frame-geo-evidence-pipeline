@@ -16,12 +16,14 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Query, Request
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
 
 from .layout import Library
 from .service import EvidenceService
 from .store import SQLiteRepository
+
+FILM_STUDY_ROOT = Path(__file__).resolve().parents[2] / "studies/dnipro-landscape-films/outputs/landscape"
 
 
 @dataclass
@@ -259,6 +261,20 @@ def create_app(library_dir: Path, study_areas: list | None = None) -> FastAPI:
     @app.get("/", include_in_schema=False)
     def index():
         return FileResponse(Path(__file__).parent / "web" / "index.html")
+
+    @app.get("/film-study/", include_in_schema=False)
+    def film_study_index():
+        index_file = FILM_STUDY_ROOT / "index.html"
+        if not index_file.is_file():
+            return HTMLResponse("<h1>Historical film study</h1><p>Restore the local film gallery using the instructions in <code>studies/dnipro-landscape-films/README.md</code>.</p>")
+        return FileResponse(index_file)
+
+    @app.get("/film-study/{path:path}", include_in_schema=False)
+    def film_study_file(path: str):
+        file = (FILM_STUDY_ROOT / path).resolve()
+        if not file.is_relative_to(FILM_STUDY_ROOT.resolve()) or not file.is_file() or file.suffix.lower() not in {".html", ".jpg", ".jpeg", ".mp4"}:
+            raise HTTPException(404)
+        return FileResponse(file)
 
     @app.get("/media/lib/{slug}/{path:path}", include_in_schema=False)
     def other_media(slug: str, path: str):

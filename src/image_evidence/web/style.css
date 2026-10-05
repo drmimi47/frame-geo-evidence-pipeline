@@ -134,10 +134,10 @@ canvas.words { position: absolute; left: 0; z-index: 1; pointer-events: none; }
   background: linear-gradient(to bottom, transparent, var(--bg) 55%); pointer-events: none;
 }
 #corner { display: flex; align-items: baseline; gap: clamp(16px, 2.2vw, 32px); } /* the same gap as the bottom-right controls */
-#corner > button { flex-shrink: 0; white-space: nowrap; }
+#corner > button, #corner > a { flex-shrink: 0; white-space: nowrap; }
 @media (min-width: 801px) { #corner { padding-right: 12px; } } /* the count may run to just short of the images */
-#video, #evidence { pointer-events: auto; border: 0; background: none; padding: 0; font: inherit; color: var(--muted); cursor: default; transition: color .15s; }
-#video:hover, #video.set, #evidence:hover, #evidence.set { color: var(--fg); }
+#video, #evidence, #film-study { pointer-events: auto; border: 0; background: none; padding: 0; font: inherit; color: var(--muted); cursor: default; text-decoration: none; transition: color .15s; }
+#video:hover, #video.set, #evidence:hover, #evidence.set, #film-study:hover { color: var(--fg); }
 #video svg, #evidence svg { margin-right: .4em; vertical-align: -1px; }
 
 /* ------------------------------------------------- the Evidence panel: one row per folder */

@@ -6,7 +6,7 @@ source link plus location and date clues, and every clue carries a confidence an
 
 Full rules and design notes are in [`CLAUDE.md`](CLAUDE.md).
 
-An independent [historical-film landscape study](studies/dnipro-landscape-films/README.md) preserves the Dnipro film gallery, label editor, and history timeline without adding archival footage to this collection's library.
+An independent [historical-film landscape study](studies/dnipro-landscape-films/README.md) preserves a read-only Dnipro film gallery and history timeline without adding archival footage to this collection's library. When its local gallery has been prepared, the viewer's **Films** link opens it on the same server.
 
 ## Scope (hard limits)
 

@@ -11,7 +11,7 @@ CSS='''
 '''
 
 CSS += """
-.mode-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-bottom:1px solid #363636;margin-bottom:24px}.mode-tabs button{border:0;border-radius:0;background:#000;color:#888;padding:17px;font-size:18px;border-bottom:3px solid transparent}.mode-tabs button[aria-selected=true]{color:#fff;border-bottom-color:#fff}.editor-toolbar{display:none;padding:18px;border:1px solid #444;border-radius:12px;margin-bottom:24px;background:#101010}.editor-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.editor-toolbar p{font-size:14px;color:#aaa;line-height:1.6}.editor-panel{display:none;padding:20px 22px;border-top:1px solid #333;background:#111}.editor-panel .options{margin:12px 0 18px}.editing-tip{font-size:13px;color:#aaa}.error{color:#ff9999!important}body[data-mode=editing] .editor-toolbar,body[data-mode=editing] .editor-panel{display:block}.has-draft{border-color:#d6b55f}.primary-save{background:#eee;color:#111;font-weight:600}.primary-save:hover{background:#fff}button:disabled{opacity:.45;cursor:default}.your-labels{display:flex;gap:8px;flex-wrap:wrap}
+.mode-tabs{display:grid;grid-template-columns:repeat(2,1fr);border-bottom:1px solid #363636;margin-bottom:24px}.mode-tabs button{border:0;border-radius:0;background:#000;color:#888;padding:17px;font-size:18px;border-bottom:3px solid transparent}.mode-tabs button[aria-selected=true]{color:#fff;border-bottom-color:#fff}
 .location-line{margin:16px 0 0;padding-top:15px;border-top:1px solid #252525;font-size:13px;color:#aaa;line-height:1.6}.location-line strong{color:#eee}.location-status{display:inline-block;margin-left:8px;padding:2px 7px;border:1px solid #444;border-radius:999px;color:#bbb;font-size:11px;text-transform:uppercase;letter-spacing:.06em}
 figure video{display:block;width:100%;height:clamp(230px,32vw,470px);object-fit:contain;background:#000}.clip-note{padding:10px 18px;font-size:12px;line-height:1.5;color:#aaa;margin:0}.clip-note a{display:inline}@media(max-width:700px){figure video{height:auto;max-height:460px;aspect-ratio:4/3}}
 """
@@ -44,7 +44,7 @@ document.querySelectorAll('[data-reset]').forEach(button=>button.addEventListene
 applyFilters();
 
 '''
-JS += (ROOT/'scripts/landscape_editor.js').read_text()
+JS += (ROOT/'scripts/gallery_navigation.js').read_text()
 JS += (ROOT/'scripts/history_timeline.js').read_text()
 
 def tags(labels):
@@ -67,7 +67,7 @@ def history_location_tables(rows):
                 links.append(f'<a href="#frame-{frame_id}" data-history-frame-link="{frame_id}">{escape(row["landscape_id"])}</a>')
             parts.append(f'<tr><th scope="row">{escape(item["place"])}</th><td class="history-frame-links">{" ".join(links)}</td><td>{escape(item["evidence"])}</td><td>{escape(item["note"])}</td></tr>')
         parts.append('</tbody></table></div></section>')
-    parts.append('<p class="history-location-note">Location assessments come from the project’s <code>claude/README.md</code> summary and <code>geolocation/predictions.json</code>. Hrushivka is a story prototype, not a claimed filming site.</p></section>')
+    parts.append('<p class="history-location-note">Location assessments come from the versioned <code>data/landscape/geolocation/predictions.json</code>. Hrushivka is a story prototype, not a claimed filming site.</p></section>')
     return ''.join(parts)
 def page(rows,title,uncertain=False):
     geo_path=ROOT/'outputs/landscape/geolocation/predictions.json'
@@ -85,14 +85,13 @@ def page(rows,title,uncertain=False):
     video_names=sorted({r['video'] for r in rows})
     video_options=''.join(f'<label class="check"><input type="checkbox" name="video" value="{escape(video)}" checked>Video {escape(video.split(".")[0])}</label>' for video in video_names)
     label_options=''.join(f'<label class="check"><input type="checkbox" name="category" value="{escape(name)}"><span style="color:{color}">{escape(name)}</span></label>' for name,color in COLORS.items())
-    links='<a href="../index.html">All landscape frames</a><a href="review.csv">Review CSV</a>' if uncertain else '<a href="uncertain/index.html">Uncertain results</a><a href="labels.csv">Download labels</a><a href="screening/screening.csv">Screening decisions</a>'
+    links='<a href="../index.html">All landscape frames</a>' if uncertain else '<a href="uncertain/index.html">Uncertain results</a>'
     history_tab = '<button id="tab-history" role="tab" aria-controls="history-workspace" aria-selected="false" tabindex="-1" data-tab="history">History</button>' if not uncertain else ''
-    html=[f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{escape(title)}</title><style>{CSS}</style></head><body data-mode="gallery" data-gallery-view="film"><main class="shell"><div class="mode-tabs" role="tablist" aria-label="Workspace mode"><button id="tab-gallery" role="tab" aria-controls="gallery-workspace" aria-selected="true" data-tab="gallery">Gallery</button><button id="tab-editing" role="tab" aria-controls="frames-panel" aria-selected="false" tabindex="-1" data-tab="editing">Editing</button>{history_tab}</div><div id="gallery-workspace"><div class="film-view"><header><div class="eyebrow">Landscape study / B0</div><h1>{escape(title)}</h1><p>Explore original frames alongside film sequences for location results, or segmentation overlays for other frames. Location predictions retain their evidence status. Saved human corrections take precedence for landscape labels.</p><nav aria-label="Gallery links">{links}</nav></header><section class="editor-toolbar" aria-label="Save label edits"><div class="editor-actions"><button id="save-all" class="primary-save" disabled>Save changes</button><button id="discard-drafts" disabled>Discard unsaved changes</button><span id="draft-count" class="muted"></span></div><p>Check every label present in a frame. Use its Save labels button to confirm a model suggestion, or Save changes to save all modified frames. Saving updates image labels; segmentation overlays stay unchanged.</p><p id="editor-status" role="status" aria-live="polite"></p></section><section class="filters" aria-label="Filter frames"><fieldset><legend>Video</legend><div class="options">{video_options}</div></fieldset><fieldset><legend>Landscape categories</legend><div class="options">{label_options}</div></fieldset><div class="filter-footer"><label for="geo-suitability">Geolocation potential<select id="geo-suitability"><option value="all">All frames</option><option value="worth">Worth geolocating</option><option value="strong">Strong candidates</option><option value="possible">Possible candidates</option><option value="low">Low priority</option></select></label><label for="match-mode">Match<select id="match-mode"><option value="all">All selected categories</option><option value="any">Any selected category</option></select></label><span id="filter-hint">No categories selected: show all categories.</span><button type="button" data-reset>Reset filters</button></div></section><div class="results-bar"><strong id="result-count" role="status" aria-live="polite">{len(rows)} of {len(rows)} frames</strong><span>Filters use saved human labels where available</span></div><noscript><p>Enable JavaScript to use the filters. All frames are shown below.</p></noscript><div id="empty-state" class="empty" hidden><h2>No matching frames</h2><p>Select a video, remove a category, or switch to “Any selected category.”</p><button type="button" data-reset>Reset filters</button></div><section id="frames-panel" role="tabpanel" aria-labelledby="tab-gallery" class="gallery" aria-label="Landscape frames">''']
+    html=[f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{escape(title)}</title><style>{CSS}</style></head><body data-mode="gallery" data-gallery-view="film"><main class="shell"><div class="mode-tabs" role="tablist" aria-label="Workspace mode"><button id="tab-gallery" role="tab" aria-controls="gallery-workspace" aria-selected="true" data-tab="gallery">Gallery</button>{history_tab}</div><div id="gallery-workspace"><div class="film-view"><header><div class="eyebrow">Landscape study / B0</div><h1>{escape(title)}</h1><p>Explore original frames alongside film sequences for location results, or segmentation overlays for other frames. Location predictions retain their evidence status. Reviewed labels take precedence over model predictions.</p><nav aria-label="Gallery links">{links}</nav></header><section class="filters" aria-label="Filter frames"><fieldset><legend>Video</legend><div class="options">{video_options}</div></fieldset><fieldset><legend>Landscape categories</legend><div class="options">{label_options}</div></fieldset><div class="filter-footer"><label for="geo-suitability">Geolocation potential<select id="geo-suitability"><option value="all">All frames</option><option value="worth">Worth geolocating</option><option value="strong">Strong candidates</option><option value="possible">Possible candidates</option><option value="low">Low priority</option></select></label><label for="match-mode">Match<select id="match-mode"><option value="all">All selected categories</option><option value="any">Any selected category</option></select></label><span id="filter-hint">No categories selected: show all categories.</span><button type="button" data-reset>Reset filters</button></div></section><div class="results-bar"><strong id="result-count" role="status" aria-live="polite">{len(rows)} of {len(rows)} frames</strong><span>Filters use saved human labels where available</span></div><noscript><p>Enable JavaScript to use the filters. All frames are shown below.</p></noscript><div id="empty-state" class="empty" hidden><h2>No matching frames</h2><p>Select a video, remove a category, or switch to “Any selected category.”</p><button type="button" data-reset>Reset filters</button></div><section id="frames-panel" role="tabpanel" aria-labelledby="tab-gallery" class="gallery" aria-label="Landscape frames">''']
     for r in rows:
         seconds=int(r['requested_seek_seconds']);timestamp=f'{seconds//3600:02d}:{seconds%3600//60:02d}:{seconds%60:02d}'
         filename=escape(r['filename']);labels_attr=escape(json.dumps(r['labels']),quote=True)
         human=tags(r['human_labels']) if r['human_labels'] else '<span class="muted">Not reviewed</span>'
-        edit_options=''.join(f'<label class="check"><input class="edit-label" type="checkbox" value="{escape(label)}" disabled><span style="color:{color}">{escape(label)}</span></label>' for label,color in COLORS.items())
         review=escape('; '.join(r['review_reasons']) or 'No uncertainty rule triggered; predictions may still contain errors.')
         screening=suitability.get(r['filename'],{})
         geo_tier=screening.get('tier','unassessed')
@@ -113,7 +112,7 @@ def page(rows,title,uncertain=False):
             location_text='Not yet located'
         geo_status=escape(geo.get('status','unlocated').replace('_',' '))
         geo_note=escape(geo.get('method_note','No transcript or visual location evidence has been attached.'))
-        if geo.get('evidence_report'):
+        if geo.get('evidence_report') and (ROOT/'outputs/landscape'/geo['evidence_report']).is_file():
             report_prefix='../' if uncertain else ''
             geo_note+=f' <a href="{report_prefix}{escape(geo["evidence_report"],quote=True)}">View geolocation evidence</a>'
         if geo.get('location'):
@@ -128,11 +127,13 @@ def page(rows,title,uncertain=False):
                 query=urlencode({'api':1,'query':fallback['latitude']+','+fallback['longitude']})
                 geo_note+=f' <a href="https://www.google.com/maps/search/?{escape(query,quote=True)}">View predicted pin</a>'
             report_prefix='../' if uncertain else ''
-            geo_note+=f' <a href="{report_prefix}geolocation/zainali/index.html">View Zainali results</a>'
-            if geo.get('evidence_report'):
+            if (ROOT/'outputs/landscape/geolocation/zainali/index.html').is_file():
+                geo_note+=f' <a href="{report_prefix}geolocation/zainali/index.html">View Zainali results</a>'
+            if geo.get('evidence_report') and (ROOT/'outputs/landscape'/geo['evidence_report']).is_file():
                 geo_note+=f' <a href="{report_prefix}{escape(geo["evidence_report"],quote=True)}">View Geo-sleuth assessment</a>'
         location_html=f'<p class="location-line"><span class="label-name">Location evidence</span> {location_text}<span class="location-status">{geo_status}</span><br>{geo_note}</p>'
-        right_media=f'<figure><figcaption>B0 segmentation</figcaption><a href="overlays/{filename}"><img loading="lazy" src="overlays/{filename}" alt="B0 segmentation overlay for {escape(r["landscape_id"])}"></a></figure>'
+        media_prefix='../' if uncertain else ''
+        right_media=f'<figure><figcaption>B0 segmentation</figcaption><a href="{media_prefix}overlays/{filename}"><img loading="lazy" src="{media_prefix}overlays/{filename}" alt="B0 segmentation overlay for {escape(r["landscape_id"])}"></a></figure>'
         clip=clips.get(r['filename']) if geo.get('location') or fallback else None
         if clip and (ROOT/'outputs/landscape'/clip['file']).is_file():
             clip_url=escape(('../' if uncertain else '')+clip['file'],quote=True)
@@ -143,7 +144,7 @@ def page(rows,title,uncertain=False):
                          f'<source src="{clip_url}" type="video/mp4"><a href="{clip_url}">Open film clip</a></video>'
                          f'<p class="clip-note">Original frame appears {clip["frame_offset_seconds"]:g}s into this clip. '
                          f'Adjacent shots may show other locations. <a href="{clip_url}">Open clip</a></p></figure>')
-        html.append(f'''<article id="frame-{escape(r['landscape_id'],quote=True)}" tabindex="-1" class="frame" data-geo-tier="{escape(geo_tier)}" data-filename="{filename}" data-video="{escape(r['video'])}" data-labels="{labels_attr}"><div class="frame-head"><h2>{escape(r['landscape_id'])}</h2><div class="frame-meta"><span>Video {escape(r['video'].split('.')[0])}</span><time>{timestamp}</time></div></div><div class="images"><figure><figcaption>Original frame</figcaption><a href="frames/{filename}"><img loading="lazy" src="frames/{filename}" alt="Original landscape frame {escape(r['landscape_id'])}"></a></figure>{right_media}</div><div class="details"><div class="label-line"><span class="label-name">Model prediction</span>{tags(r['model_labels'])}</div><div class="label-line"><span class="label-name">Your labels</span><div class="your-labels">{human}</div><span class="muted">{escape(r.get('previous_review_id',''))}</span></div>{screening_html}{location_html}<p class="review">{review}</p><div class="filename">{filename}</div></div><div class="editor-panel"><fieldset><legend>Choose labels for {escape(r['landscape_id'])}</legend><p class="editing-tip edit-source"></p><div class="options">{edit_options}</div></fieldset><button type="button" class="save-frame primary-save" disabled>Save labels</button></div></article>''')
+        html.append(f'''<article id="frame-{escape(r['landscape_id'],quote=True)}" tabindex="-1" class="frame" data-geo-tier="{escape(geo_tier)}" data-filename="{filename}" data-video="{escape(r['video'])}" data-labels="{labels_attr}"><div class="frame-head"><h2>{escape(r['landscape_id'])}</h2><div class="frame-meta"><span>Video {escape(r['video'].split('.')[0])}</span><time>{timestamp}</time></div></div><div class="images"><figure><figcaption>Original frame</figcaption><a href="{media_prefix}frames/{filename}"><img loading="lazy" src="{media_prefix}frames/{filename}" alt="Original landscape frame {escape(r['landscape_id'])}"></a></figure>{right_media}</div><div class="details"><div class="label-line"><span class="label-name">Model prediction</span>{tags(r['model_labels'])}</div><div class="label-line"><span class="label-name">Reviewed labels</span><div class="your-labels">{human}</div><span class="muted">{escape(r.get('previous_review_id',''))}</span></div>{screening_html}{location_html}<p class="review">{review}</p><div class="filename">{filename}</div></div></article>''')
     html.append('</section><footer>Plants includes grass. Unknown includes sky and is left uncolored in overlays. Frames were sampled every 30 seconds and screened for landscape context. Image labels and overlays are not validated land-cover measurements.</footer></div></div>')
     if not uncertain:
         dams=json.loads((ROOT/'scripts/history_dams.json').read_text())
@@ -153,7 +154,7 @@ def page(rows,title,uncertain=False):
         html.append(history_location_tables(rows))
         html.append('</section>')
         html.append('<script id="history-dams" type="application/json">'+history_data+'</script>')
-    html.append(f'''</main><script id="label-colors" type="application/json">{json.dumps(COLORS)}</script><script>{JS}</script></body></html>''')
+    html.append(f'''</main><script>{JS}</script></body></html>''')
     return '\n'.join(html)
 if __name__=='__main__':
     out=ROOT/'outputs/landscape';rows=json.loads((out/'predictions.json').read_text())

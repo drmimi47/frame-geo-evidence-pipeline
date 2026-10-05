@@ -5,7 +5,7 @@ import json
 import shutil
 from pathlib import Path
 
-from landscape_store import ReviewStore
+from render_landscape_gallery import page
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -42,8 +42,12 @@ def main():
     if missing:
         print(f"Restored metadata. {len(missing)} film frames are missing; supply --media-from to view the gallery.")
         return
-    ReviewStore(landscape).rebuild()
-    print(f"Gallery ready: {len(rows)} film frames. Run ./start_landscape.command")
+    (landscape / "index.html").write_text(page(rows, "Landscape frames"))
+    uncertain = landscape / "uncertain"
+    uncertain.mkdir(exist_ok=True)
+    flagged = [row for row in rows if row["review_reasons"]]
+    (uncertain / "index.html").write_text(page(flagged, "Uncertain landscape frames", True))
+    print(f"Gallery ready: {len(rows)} film frames. Open {landscape / 'index.html'}")
 
 
 if __name__ == "__main__":
