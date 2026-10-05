@@ -1,4 +1,5 @@
 import { LEVELS, setupZoom } from "./zoom.js";
+import { renderDocument } from "./document.js";
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -28,6 +29,7 @@ let peek = null;            // { nodes, focus } of the Video/Evidence panel whil
 const savedView = (() => { try { return localStorage.getItem("view"); } catch { return null; } })();
 let timeline = savedView === "timeline" || savedView === "subtitles";
 let subs = savedView === "subtitles";
+let documentView = savedView === "document";
 
 // ---------------------------------------------------------------- data
 
@@ -41,6 +43,7 @@ async function loadVideos() {
 let loadSeq = 0;
 async function load() {
   const seq = ++loadSeq;
+  if (documentView) return renderDocument(main, $("research"));
   const keep = items[current]?.frame_id;
   const p = new URLSearchParams({ limit: 500 });
   if ($("q").value) p.set("q", $("q").value);
@@ -88,6 +91,7 @@ function detail(id) {
 // ---------------------------------------------------------------- grid
 
 function render(list) {
+  if (documentView) return;
   const sorted = !timeline && !!($("sort").value || queryImage);
   const groups = new Map();
   if (sorted) {
@@ -539,19 +543,35 @@ const thumbs = new IntersectionObserver((entries) => {
 addEventListener("resize", () => { if (timeline) layoutTimeline(); });
 
 function setView(view) {
-  timeline = view !== "grid";
+  ++loadSeq; // discard any frame request still loading from the previous view
+  documentView = view === "document";
+  timeline = view === "timeline" || view === "subtitles";
   subs = view === "subtitles";
   tlScale = readZoom();
   try { localStorage.setItem("view", view); } catch {}
+  if (documentView) {
+    thumbs.disconnect();
+    endPeek();
+    setPin(-1);
+    current = -1;
+    tlVideos = [];
+    intro();
+    openFilters(false);
+    main.classList.remove("sorted", "timeline", "subtitles");
+  }
   showView();
   scrollTo(0, 0);
   drawWords(); // clears the words when leaving the subtitles view
   load();
 }
-// Three views, one button each (exactly one is on): Gallery ("grid"), Filmstrip ("timeline") and Transcript
-// ("subtitles", the filmstrip's lines with the words instead of the images). The stored names stay as they were.
-const currentView = () => (subs ? "subtitles" : timeline ? "timeline" : "grid");
+// Four views, one selected at a time. Existing stored view names remain compatible.
+const currentView = () => (documentView ? "document" : subs ? "subtitles" : timeline ? "timeline" : "grid");
 function showView() {
+  main.classList.toggle("document", documentView);
+  panel.hidden = documentView;
+  $("research").hidden = !documentView;
+  $("corner").hidden = documentView;
+  for (const id of ["filterwrap", "q", "tlzoom"]) $(id).hidden = documentView;
   syncSlider();
   for (const b of document.querySelectorAll("button.view")) {
     const on = b.dataset.view === currentView();
@@ -1104,6 +1124,7 @@ $("sort").onchange = (e) => {
 const IMAGE_SORT = "__image";
 let queryImage = null; // { id }
 async function useImage(file) {
+  if (documentView) return;
   if (!file || !file.type.startsWith("image/")) return;
   $("stats").textContent = "Reading image…";
   try {
@@ -1151,7 +1172,7 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && !$("filterpop").hidden) { openFilters(false); $("filters").focus(); return; }
   if (e.key === "Escape" && panelMode && e.target.matches?.("input, textarea, select")) { e.target.blur(); return; }
   if (e.key === "Escape" && panelMode) { leavePanel(); return; }
-  if (e.target.matches?.("select, input, button, textarea")) return;
+  if (documentView || e.target.matches?.("select, input, button, textarea")) return;
   if (e.key === "/") { e.preventDefault(); $("q").focus(); }
   if (e.key === "Escape" && pinned !== null) unpin(null);
   if (e.key === "ArrowRight") { e.preventDefault(); go(Math.min(items.length - 1, current + 1)); }
@@ -1162,6 +1183,7 @@ document.addEventListener("keydown", (e) => {
 // In the timeline view a pinch stretches time instead, re-wrapping the timelines as it goes.
 const zoom = setupZoom({
   root: main,
+  enabled: () => !documentView,
   axis: () => (timeline ? "x" : "both"),
   stretch: {
     clamp: (s) => clampScale(tlScale * s) / tlScale,
@@ -1514,5 +1536,6 @@ function showJob(job) {
 
 showView(); // here, once the whole module is defined (the slider's range needs the subtitles' constants)
 intro(); // the Video panel shows at once, before the folder's images have loaded
-await Promise.all([loadVideos(), pollStats(), loadFolders()]);
-load();
+if (documentView) load();
+await Promise.allSettled([loadVideos(), pollStats(), loadFolders()]);
+if (!documentView) load();

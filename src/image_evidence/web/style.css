@@ -269,3 +269,24 @@ footer > #q { flex-shrink: 1; min-width: var(--rest, 4.2em); } /* opens only as 
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
+
+/* ------------------------------------------------- Document: PDF pages, one column in source order */
+main.document { transform: none !important; }
+.document-pages { width: 100%; }
+.document-pages header { margin: 0 0 28px; }
+.document-pages h1 { margin: 0 0 8px; font-size: 22px; font-weight: 400; line-height: 1.25; }
+.document-subtitle { margin: 0; font-size: 14px; line-height: 1.4; color: var(--muted); }
+.document-page { margin: 0 0 28px; }
+.document-page img { display: block; width: 100%; height: auto; background: #fff; }
+footer > [hidden] { display: none; }
+aside[hidden], #corner[hidden] { display: none; }
+.research-content { font-size: 14px; line-height: 1.5; }
+.research-content h2 { margin: 28px 0 8px; font-size: 14px; font-weight: 400; color: var(--muted); }
+.research-content h2:first-child { margin-top: 0; font-size: 17px; color: var(--fg); }
+.research-content p { margin: 0; }
+.research-content ol { margin: 0; padding-left: 1.4em; }
+.research-content li + li { margin-top: 7px; }
+/* The additional view must fit above the sidebar without controls crossing over it. */
+@media (min-width: 801px) and (max-width: 1250px) {
+  footer { flex-wrap: wrap; row-gap: 12px; padding-left: 12px; }
+}

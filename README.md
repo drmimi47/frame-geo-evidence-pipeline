@@ -97,6 +97,43 @@ Every record has three tiers: **`source`** (what YouTube reports), **`derived`**
 - **Evidence** lists the folders (`library/` and `libraries/folder-<n>/`): show one in the grid, open it in Finder,
   or rename it. Each folder keeps one place and range of years.
 
+## Reconstruction view
+
+The **Reconstruction** button beside Transcript in the bottom-right controls shows PDF pages
+vertically in their original order. The included document is **Water Level Reconstruction**,
+with subtitle **Rozumivka Plateau — Paramonov Memorial Sign: 2000 & 2022**.
+The left panel shows Research, Site, Source photographs, and Method while this view is open.
+It keeps the existing panel width and replaces the video form in this view.
+Research text is editable in the manifest’s `research` object and is preserved by the PDF importer.
+Display text comes from `src/image_evidence/web/documents/document.json`, never the PDF filename.
+The document is shared across evidence folders; video filters do not apply to it.
+
+The supplied pages are ready to view with the usual `evidence serve`. They are 2800-pixel
+WebP renders of the PDF (about 2.7 MB total), lazy-loaded as you scroll. No PDF plugin,
+external viewer/CDN, classifier, API key, or new backend endpoint is needed. PDF text is
+shown as pixels rather than selectable text. Keep the original PDF separately for editing.
+
+To replace the document, from the repository root:
+
+```sh
+python -m pip install -e ".[document]"
+python scripts/import_document.py "/path/to/new.pdf"
+```
+
+The importer keeps the default title/subtitle above. For another document:
+
+```sh
+python scripts/import_document.py "/path/to/new.pdf" --title "Your title" --subtitle "Your subtitle"
+```
+
+Optionally use `--width 4000` for more detail (default 2800, range 800–6000).
+Restart `evidence serve` and reload the browser after changes. The importer writes the
+JSON manifest and page assets under `src/image_evidence/web/documents/`; commit those
+files with your code changes. It keeps older page assets for tabs still displaying them.
+Once those tabs are closed, unused assets not listed in `document.json` may be removed.
+A packaged installation must be rebuilt/reinstalled after replacing its source assets;
+an editable installation (`pip install -e`) reads the source assets directly.
+
 ## Tests
 
 ```sh

@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "title": "Water Level Reconstruction",
+  "subtitle": "Rozumivka Plateau — Paramonov Memorial Sign: 2000 & 2022",
+  "pages": [
+    {
+      "src": "page-001-3c2270c7e788.webp",
+      "width": 2800,
+      "height": 1325
+    },
+    {
+      "src": "page-002-ec894d3dbc99.webp",
+      "width": 2800,
+      "height": 1327
+    },
+    {
+      "src": "page-003-e937adedcc77.webp",
+      "width": 2800,
+      "height": 1327
+    },
+    {
+      "src": "page-004-803d736023c3.webp",
+      "width": 2800,
+      "height": 1327
+    },
+    {
+      "src": "page-005-0eeb247136b4.webp",
+      "width": 2800,
+      "height": 1526
+    },
+    {
+      "src": "page-006-534912ba92ec.webp",
+      "width": 2800,
+      "height": 1526
+    },
+    {
+      "src": "page-007-4ea9850bb0fb.webp",
+      "width": 2800,
+      "height": 1536
+    },
+    {
+      "src": "page-008-0a7343b09f77.webp",
+      "width": 2800,
+      "height": 1536
+    },
+    {
+      "src": "page-009-7bda22c20f1c.webp",
+      "width": 2800,
+      "height": 1533
+    },
+    {
+      "src": "page-010-5761d088be90.webp",
+      "width": 2800,
+      "height": 1530
+    }
+  ],
+  "research": {
+    "description": "Two photographs taken at the same monument in 2000 and 2022 are used to investigate changes in the river’s water level. The site is reconstructed in Blender using a digital elevation model (DEM), with cameras positioned to approximate the original viewpoints. Visible water edges are then compared against the reconstructed terrain to estimate the water level in each photograph.",
+    "site": "Rozumivka Plateau — Paramonov Memorial Sign",
+    "photograph_years": [
+      2000,
+      2022
+    ],
+    "method": [
+      "Locate the monument on the map.",
+      "Build the terrain from elevation data.",
+      "Reconstruct the monument.",
+      "Match the two photographic viewpoints.",
+      "Estimate and compare the water levels."
+    ]
+  }
+}
