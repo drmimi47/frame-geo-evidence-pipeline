@@ -28,7 +28,7 @@ const KEY_STRETCH = 1.5;    // + / - in the timeline view
 
 const ln = Math.log;
 
-export function setupZoom({ root, onChange, axis = () => "both", stretch }) {
+export function setupZoom({ root, onChange, axis = () => "both", stretch, enabled = () => true }) {
   const store = { get: () => { try { return localStorage.getItem("gridDensity"); } catch { return null; } },
                   set: (v) => { try { localStorage.setItem("gridDensity", v); } catch {} } };
   const raw = store.get();
@@ -190,7 +190,7 @@ export function setupZoom({ root, onChange, axis = () => "both", stretch }) {
   // Chrome / Edge / Firefox: pinch arrives as ctrl+wheel.
   let wheelTimer;
   window.addEventListener("wheel", (e) => {
-    if (!e.ctrlKey) return;
+    if (!enabled() || !e.ctrlKey) return;
     e.preventDefault(); // stop browser page zoom
     if (!g) begin(e.clientX, e.clientY);
     const dy = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY;         // lines -> pixels
@@ -201,21 +201,21 @@ export function setupZoom({ root, onChange, axis = () => "both", stretch }) {
   }, { passive: false });
 
   // Safari (macOS trackpad, iOS/iPadOS touch): gesture events with a cumulative scale.
-  window.addEventListener("gesturestart", (e) => { e.preventDefault(); begin(e.clientX, e.clientY); });
-  window.addEventListener("gesturechange", (e) => { e.preventDefault(); update(e.scale); });
-  window.addEventListener("gestureend", (e) => { e.preventDefault(); end(); });
+  window.addEventListener("gesturestart", (e) => { if (!enabled()) return; e.preventDefault(); begin(e.clientX, e.clientY); });
+  window.addEventListener("gesturechange", (e) => { if (!enabled()) return; e.preventDefault(); update(e.scale); });
+  window.addEventListener("gestureend", (e) => { if (!enabled()) return; e.preventDefault(); end(); });
 
   // Other touchscreens. iOS/iPadOS already delivers pinches as gesture events above.
   if (!("ongesturechange" in window)) {
     let d0 = 0;
     const dist = (t) => Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY);
     root.addEventListener("touchstart", (e) => {
-      if (e.touches.length !== 2) return;
+      if (!enabled() || e.touches.length !== 2) return;
       d0 = dist(e.touches);
       begin((e.touches[0].clientX + e.touches[1].clientX) / 2, (e.touches[0].clientY + e.touches[1].clientY) / 2);
     }, { passive: true });
     root.addEventListener("touchmove", (e) => {
-      if (e.touches.length !== 2 || !d0) return;
+      if (!enabled() || e.touches.length !== 2 || !d0) return;
       e.preventDefault(); // no page zoom; one-finger scrolling is untouched
       update(dist(e.touches) / d0);
     }, { passive: false });
@@ -226,7 +226,7 @@ export function setupZoom({ root, onChange, axis = () => "both", stretch }) {
 
   // Keyboard: + / -
   window.addEventListener("keydown", (e) => {
-    if (e.target.matches?.("input, select, textarea") || e.metaKey || e.ctrlKey) return;
+    if (!enabled() || e.target.matches?.("input, select, textarea") || e.metaKey || e.ctrlKey) return;
     const k = e.key === "+" || e.key === "=" ? -1 : e.key === "-" || e.key === "_" ? 1 : 0;
     if (!k) return;
     if (stretching()) stretchBy(KEY_STRETCH ** -k);
