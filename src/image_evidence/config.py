@@ -117,6 +117,16 @@ class AcquisitionConfig(_Cfg):
 class ExtractionConfig(_Cfg):
     interval_s: float = Field(default=10.0, gt=0, description="Guarantee at least one frame every N seconds.")
     scene_threshold: float = Field(default=0.3, gt=0, lt=1, description="FFmpeg scene score threshold (0-1).")
+    view_step_s: float = Field(
+        default=1.0, ge=0,
+        description="Within a shot, look at a frame every N seconds and keep it once the camera has moved on (see view_overlap), "
+                    "so a pan or a flight over a landscape gives a frame for each new stretch of it. 0: off.",
+    )
+    view_overlap: float = Field(
+        default=0.5, gt=0, lt=1,
+        description="A frame within a shot is kept when it shares less than this fraction of its view with the last kept frame "
+                    "(matched image features, so wind, water or people moving in a static shot don't count).",
+    )
     min_gap_s: float = Field(default=1.5, ge=0, description="Minimum spacing between selected frames.")
     max_frames_per_video: int = Field(default=100, ge=1)
     candidate_pool: int = Field(

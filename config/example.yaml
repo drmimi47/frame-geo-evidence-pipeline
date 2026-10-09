@@ -44,6 +44,8 @@ acquisition:
 extraction:
   interval_s: 10                # at least one frame every N seconds
   scene_threshold: 0.3          # plus every scene change above this FFmpeg scene score
+  view_step_s: 1                # within a shot, check a frame every N seconds (0: off) ...
+  view_overlap: 0.5             # ... and keep it once it shares less than this much view with the last kept (pans, flights)
   min_gap_s: 1.5
   max_frames_per_video: 100
   candidate_pool: 500           # previewed + classified; the best max_frames_per_video are kept

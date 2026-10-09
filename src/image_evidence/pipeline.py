@@ -185,13 +185,18 @@ class Pipeline:
                 self._save_video(dirs, prior)
             log.info("[%s] already processed (use --force to re-extract)", youtube_id)
             return VideoResult(youtube_id, "skipped_existing", prior.acquisition.status if prior.acquisition else None, frames=len(prior.frame_ids), title=prior.source.title)
+        if api_item is None and prior and (stored := dirs.raw / "youtube_api.json").exists():
+            # Re-extracting without a fresh API lookup: keep the API metadata it was ingested with (geotag, the
+            # uploader's title translations), which yt-dlp doesn't supply.
+            api_item = json.loads(stored.read_text())
         try:
-            return self._ingest(youtube_id, dirs, api_item, discovery, force)
+            return self._ingest(youtube_id, dirs, api_item, discovery, force, prior)
         except Exception as e:  # keep going with the next video; record the failure
             log.exception("[%s] failed", youtube_id)
             return VideoResult(youtube_id, "failed", reason=f"{type(e).__name__}: {e}")
 
-    def _ingest(self, yid: str, dirs: VideoDirs, api_item: dict | None, discovery: list[DiscoveryContext], force: bool) -> VideoResult:
+    def _ingest(self, yid: str, dirs: VideoDirs, api_item: dict | None, discovery: list[DiscoveryContext], force: bool,
+                prior: VideoRecord | None = None) -> VideoResult:
         log.info("[%s] metadata", yid)
         # Scope gate (the library's: Ukraine-only, published 2022..2026, for the main one) runs on in-memory metadata,
         # before anything is written to disk. Checked on API metadata first to avoid a yt-dlp call.
@@ -255,6 +260,11 @@ class Pipeline:
             if not self.cfg.acquisition.keep_media:
                 media_path.unlink()
                 video.acquisition = video.acquisition.model_copy(update={"reason": MEDIA_DELETED})
+        elif prior and prior.frame_ids:
+            # Re-ingesting (force) without a fresh download (YouTube refused it, or policy): the frames taken
+            # before are still on disk, so keep them and how they were acquired.
+            log.warning("[%s] not re-extracted (%s); keeping its %d frames", yid, video.acquisition.reason, len(prior.frame_ids))
+            video.frame_ids, video.acquisition = prior.frame_ids, prior.acquisition
         video.status = "processed"
         self._save_video(dirs, video)
         log.info("[%s] done: %s, %d frames", yid, video.acquisition.status, len(video.frame_ids))
@@ -273,6 +283,7 @@ class Pipeline:
         for d in (dirs.originals, dirs.web, dirs.thumbs, dirs.meta):
             shutil.rmtree(d, ignore_errors=True)
             d.mkdir(parents=True)
+        (dirs.meta.parent / "embeddings.npz").unlink(missing_ok=True)  # else the dropped frames' rows stay in it
         self.repo.delete_frames_for_video(video_id)
 
     def _extract(self, video: VideoRecord, dirs: VideoDirs, media_path) -> list[str]:
@@ -559,12 +570,15 @@ def reindex(lib: Library, repo: Repository) -> tuple[int, int]:
             continue
         repo.upsert_video(video)
         n_videos += 1
+        ids = set()
         for meta in sorted((video_json.parent / "frames" / "meta").glob("*.json")):
-            repo.upsert_frame(FrameRecord.model_validate_json(meta.read_text()))
+            record = FrameRecord.model_validate_json(meta.read_text())
+            repo.upsert_frame(record)
+            ids.add(record.frame_id)
             n_frames += 1
         if (npz := video_json.parent / "frames" / "embeddings.npz").exists():
             rows, model = visual.load_embeddings(npz)
-            repo.upsert_embeddings(model, rows)
+            repo.upsert_embeddings(model, {k: v for k, v in rows.items() if k in ids})  # a frame since removed has no row to point at
     return n_videos, n_frames
 
 

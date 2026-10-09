@@ -40,7 +40,7 @@ If a rule seems wrong for a task, ask the user. Don't work around it with flags 
 
 The collection is about **places**: landscapes, architecture, scenery, nature, animals, and infrastructure. It is not
 about people or interiors. `pipeline._extract` works in these steps:
-1. One FFmpeg pass produces small previews (longest side 384px, in the video's own aspect ratio) of every candidate frame (scene changes, plus one frame every `interval_s`).
+1. One FFmpeg pass produces small previews (longest side 384px, in the video's own aspect ratio) of every candidate frame (scene changes, plus one frame every `interval_s`). Within a shot a frame is checked every `view_step_s` and kept once it shares less than `view_overlap` (0.5) of its view with the last kept frame (`selection: "camera_move"`; ORB features + a similarity transform, so a pan or flight gives a frame per new stretch of landscape while wind, water or people moving in a static shot don't count).
 2. Dark frames, mostly-black frames (credits, title cards), and near-duplicates are dropped.
 3. Up to `candidate_pool` previews are classified with SigLIP.
 4. Frames with `subject_score` = share(`prefer`) − share(`avoid`) ≥ `min_subject` are kept, up to
@@ -160,26 +160,36 @@ Keep it minimal (loose reference: mos.nyc). No header and no dashboards. The lay
   (one tick per extracted frame, proportional to the video's duration, with a playhead you can scrub),
   frame info, and inferred metadata with notes;
 - a numbered grid on the right, grouped by video. It holds only images and frame numbers: no video titles or other text;
-- Gallery, Filmstrip, Transcript, Light/Dark, Sort & filter, Search and a zoom slider fixed at the bottom right, in that
-  order left to right, all at 14px, on one line with equal gaps. Gallery, Filmstrip and Transcript are the three views,
-  one button each with exactly one on (the chosen view is remembered per browser; stored as "grid", "timeline" and
-  "subtitles", the names the code uses).
-  Sort & filter opens a small panel above it with Sort, Category, Year and Clear all (which also clears the search and
-  the image); the button counts what is set ("Sort & filter · 2"). Click outside or Esc closes it. The
+- Gallery, Temporal Map, Filmstrip, Transcript, Reconstruction, a zoom slider and the Light/Dark icon fixed at the bottom right
+  (no search box there: search is typed in Sort & filter; `/` opens it),
+  in that order left to right, all at 14px, on one line with equal gaps. Gallery, Filmstrip and Transcript are the three views,
+  one button each with exactly one on (the code calls them "grid", "timeline" and "subtitles"). The chosen view is
+  remembered per browser (`localStorage.view`), so a reload stays on it (decided with the user); a first visit opens
+  on the Gallery, with the Video panel. The first time the gallery is drawn in a page load (hard reloads included), the
+  images on screen fade in one by one in a random order across the grid over about 1.4 s (`revealGallery`,
+  `REVEAL_MS`, a random transition delay each), with no flicker or flash. They first wait for each other to download
+  (up to `REVEAL_WAIT_MS`), and any still arriving after that get a random delay of their own, so with nothing cached
+  they still appear scattered, not top to bottom. Later re-draws (search, filters) and images below the screen fade in
+  as usual, and reduced motion skips it.
+  The
   slider (right is bigger) follows pinches and +/-. In the timeline and subtitles it is the same stretch as a pinch
   (`zoom.js` `stretchBy`), on a log scale over `tlRange()`; in the gallery it steps through the column counts
   (`zoom.js` `LEVELS`, `set`), fewest columns on the right, with the same snap glide as a pinch.
-  Light/Dark follows the system until clicked, then is remembered per browser (`localStorage.theme`, `data-theme` on `<html>`);
+  Light/Dark is an icon only (a half-filled circle, no text; its tooltip says which theme it switches to). It follows the system until clicked, then is remembered per browser (`localStorage.theme`, `data-theme` on `<html>`);
 - Filmstrip (the timeline view): one row per video like a clip in an editing timeline, with no text, numbers
-  or ruler: a filmstrip where each extracted frame starts at a black vertical bar at its timestamp and repeats until the
-  next bar. Frames outside the current search or filters leave an empty stretch with no bar. Re-layouts reuse and move
+  or ruler: each extracted frame starts at a black vertical bar at its timestamp and runs until the next bar, with its
+  image in the middle of that stretch and its edges slit-scanned out to the bars: the image's outermost columns
+  stretched sideways, shading into the neighbouring frame's edge colours at the bar, so streaks blend from one image to
+  the next (`edgesOf`, `shade`, `dress`: small images made in a worker, `edges.js`, ahead of time while the page is idle (`prewarm`, which also fetches the transcripts), drawn as background layers so a zoom only repaints;
+  a frame wrapping onto another line is `.split`, positioned by `--cx`, `--fx0`, `--fx1`). Where the stretch is
+  narrower than the image, the image's middle shows. Frames outside the current search or filters leave an empty stretch with no bar. Re-layouts reuse and move
   the existing segment elements (`segEls`) at whole-pixel edges, never rebuild them, or zooming flashes white. All videos
   share one time scale; pinch or +/- stretches time only (`zoom.js` `stretch`, re-laid out live, no transform, no snap).
   The stretch is continuous, separate from grid density, and reaches until the shortest video spans about two widths,
   so short clips with dense frames spread out too. Lines run the full page width so the strip reflows smoothly, and a
   video's height eases (`tlTick`) when it gains or loses a line, with the video under the pointer held in place.
-  Strips meet edge to edge with no blur, fade or splice effects. The strip is thin: each image keeps its width at the
-  unsquashed height (`--ih`, `--ar`) but is squashed flat to the line height; a line grown for an opened frame is not squashed. Clicking a frame (pin) opens a slot
+  Strips meet edge to edge with no blur or splice effects; the only blending is the slit-scan shading into the bars. The strip is thin: each image keeps its width at the unsquashed height (`--ih`, `--ar`) but is squashed flat to the
+  line height; a line grown for an opened frame is not squashed. Clicking a frame (pin) opens a slot
   in the strip for its image, whole and sharp (`web_url`, a `.seg.image` element), on the line its marker is on: the image
   never moves to another line, and the timeline only grows forward (never backwards, never a line added above). The image always
   shares a border with its marker. A frame in the left half of its line opens to the right: the slot starts at the
@@ -227,10 +237,18 @@ Keep it minimal (loose reference: mos.nyc). No header and no dashboards. The lay
 - search by image: drop or paste an image anywhere (no button or file picker) to order the grid by SigLIP similarity
   to it, shown as the sort "Like your image". The upload is only kept in server memory (`/api/query-image`), never
   written to the library;
-- the live count, polling `/api/stats`, at the bottom left after Video and Evidence, in italics (it is not a button): "20 uploaded · 1019 images",
-  "120/1019 images" when filtered (the tooltip, in the same wording, has both counts). It stays inside the panel's width, which never grows
-  for it (`--aside`): with too little room it shortens to videos → images ("20 → 1019"; filtered, "10 → 582"), then is
-  cut with an ellipsis; it never reaches the images;
+- the live count, polling `/api/stats`, in italics at the top of the Evidence and Sort & filter panels (`statsEl`, moved
+  into whichever is open): "20 uploaded · 1019 images", or what the search and filters leave, "120 of 1019 images · 10
+  of 20 videos" (with a Near sort, how many images are near the place);
+- Sort & filter (beside Evidence, a sliders icon before the word; the button counts what is set, "Sort & filter · 2"):
+  opens in the panel, held like Evidence (hovering frames shows them; Esc or the button goes back to Video; a frame
+  clicked and let go comes back to it), and switches the view to the Gallery, where sorting works. Top to bottom: the
+  live count, a search field (the same search as the bottom one), Sort (every sort with a line on what it does, and
+  "Like your image" while an image is the sort), the study-area places as "Near" sorts (one note, then the names),
+  Category (any number; a frame must have every one chosen), Published on YouTube (All or one year; counts are over the
+  whole folder) and Clear all (which also clears the search and the image). Every choice applies at once, so the grid
+  changes beside it. The chosen sort and year are kept in hidden selects (`#filterstate`), the categories in `cats`.
+  Dropping or pasting an image opens it too;
 - Video (bottom left, an upload icon before the word): a form in the panel. It is the panel's resting state: open on
   load (at once, before the images arrive) and whenever nothing is selected (after a frame is unpinned, or Evidence is closed); there is no intro text.
   Opening it deselects any frame. Hovering frames (in all three views) shows each in its place, and moving the pointer
@@ -264,8 +282,10 @@ then the channel and year.
 No machine translation and no click-to-switch. `evidence refresh-titles` backfills stored videos.
 An empty folder (a new project) leaves the grid blank; "No frames match" is only for a search or filter.
 The grid loads every page of `/api/frames` (500 per request); never assume one page holds everything.
-Use the default cursor on tiles. Clicking a tile pins it: the other tiles dim and the panel stays on it until it is
-clicked again, empty space is clicked, or Esc is pressed, which brings back the Video panel. Bottom controls are sized to their text so the gaps are equal.
+Use the default cursor on tiles. Clicking a tile pins it: the image opens out of its tile to fill the gallery side, whole (its own aspect, not the
+tile's crop), over the page background (`zoomTo`; the panel and controls stay above it), and the panel stays on it
+until it or the space around it is clicked, or Esc is pressed: it shrinks back into its tile and the Video panel
+comes back. The arrow keys and the tally step through frames in place. Bottom controls are sized to their text so the gaps are equal.
 Plain HTML/CSS/ES modules in `web/`, no build step. Grid density is `--cols`, set by `zoom.js`:
 during a pinch the grid scales continuously (CSS transform), then on release it snaps to the nearest column count with a
 FLIP glide. Inputs are ctrl+wheel, Safari gesture events, touch, and +/- keys.

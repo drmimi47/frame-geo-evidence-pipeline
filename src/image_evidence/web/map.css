@@ -1,0 +1,126 @@
+/* ------------------------------------------------- Temporal Map (map.js): the map fills the gallery side */
+main.map { position: fixed; top: 0; right: 0; bottom: 0; left: var(--aside); margin: 0; padding: 0; transform: none !important; }
+.tmap { position: absolute; inset: 0; }
+.tmap .tmap-canvas { position: absolute; inset: 0; background: var(--bg); } /* (maplibre makes its container relative) */
+.tmap .tm-msg { position: absolute; top: var(--pad); left: var(--pad); }
+/* the bottom controls sit over the map: let it show through, with only a soft fade behind the words */
+body:has(main.map) footer { background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--bg) 92%, transparent) 35%); }
+
+/* top left of the map: base layer, and a key */
+/* the buttons read like the bottom controls: 14px, one line, the footer's equal gaps, with a halo of the page colour so
+   the faint ones stay legible over the tiles */
+.tmap-tools { position: absolute; top: 20px; left: 20px; display: flex; align-items: baseline; gap: clamp(16px, 2.2vw, 32px);
+  font-size: 14px; line-height: 1.25; white-space: nowrap; z-index: 2; }
+.tmap-tools button { border: 0; background: none; padding: 0; margin: 0; font: inherit; line-height: inherit; color: var(--muted);
+  cursor: default; transition: color .15s; text-shadow: 0 0 3px var(--bg), 0 0 6px var(--bg); }
+.tmap-tools button:hover, .tmap-tools button.set { color: var(--fg); }
+.tmap-key { position: absolute; top: 52px; left: 20px; display: grid; gap: 4px; font-size: 12px; color: var(--muted); z-index: 2; pointer-events: none; }
+.tmap-key span { display: flex; align-items: center; gap: .6em; text-shadow: 0 0 3px var(--bg), 0 0 6px var(--bg); }
+.tmap-key i { display: inline-block; width: 22px; height: 0; border-top: 3px solid var(--muted); } /* as on the map: road 2.6 px */
+.tmap-key .k-filmed { border-top-color: var(--fg); border-top-width: 4px; } /* travelled: 4.2 px */
+.tmap-key .k-cut { border: 0; height: 3px; background: repeating-linear-gradient(90deg, var(--muted) 0 4px, transparent 4px 7px); } /* the map's dash */
+.tmap-key .k-band { height: 9px; border: 0; background: color-mix(in srgb, var(--fg) 18%, transparent); }
+.tmap-key .k-tick { width: 1.5px; height: 11px; border: 0; background: var(--fg); margin: 0 10px; }
+.tmap.sat .tmap-tools button, .tmap.sat .tmap-key { color: #e8e8e8; text-shadow: 0 0 4px #000; }
+.tmap.sat .tmap-tools button.set { color: #fff; }
+.tmap.sat .tmap-key i { border-top-color: #ddd; }
+.tmap.sat .tmap-key .k-cut { background: repeating-linear-gradient(90deg, #ddd 0 4px, transparent 4px 7px); }
+.tmap.sat .tmap-key .k-filmed { border-top-color: #fff; }
+.tmap.sat .tmap-key .k-band { background: rgba(255, 255, 255, .3); }
+.tmap.sat .tmap-key .k-tick { background: #fff; }
+
+/* the map library's own controls, quiet */
+.tmap .maplibregl-ctrl-group { background: var(--bg); box-shadow: 0 0 0 1px var(--faint); border-radius: 3px; }
+.tmap .maplibregl-ctrl-group button + button { border-top-color: var(--faint); }
+.tmap .maplibregl-ctrl-top-right { top: 8px; right: 8px; }
+:root[data-theme="dark"] .tmap .maplibregl-ctrl-icon { filter: invert(1); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tmap .maplibregl-ctrl-icon { filter: invert(1); } }
+.tmap .maplibregl-ctrl-attrib { font-size: 10px; background: color-mix(in srgb, var(--bg) 70%, transparent); color: var(--muted); }
+.tmap .maplibregl-ctrl-bottom-right { bottom: 0; right: 0; }
+.tmap .maplibregl-ctrl-bottom-left { display: none; }
+
+/* labels on the map: A, B, and each cut's unseen stretch */
+.tm-label { font-size: 12px; line-height: 1.2; white-space: nowrap; padding: 2px 6px; transform: translateY(-6px);
+  background: color-mix(in srgb, var(--bg) 88%, transparent); color: var(--fg); border-radius: 2px; pointer-events: none; }
+.tm-label b { font-weight: 600; }
+.tm-label.cut { color: var(--muted); font-style: italic; }
+/* riding along, the camera looks at the horizon: labels of places past it would pile up at the top edge */
+.tmap.riding .tm-label:not(.tm-cap) { display: none; }
+
+/* the current frame's caption, on the road at its foot (the frames themselves are 3D planes: map.js addPlanes) */
+.tm-label.tm-cap { transform: translateY(8px); font-size: 11px; font-variant-numeric: tabular-nums; }
+
+/* bottom right: the scrubber, grown out of the zoom slider (map.js openScrub). Closed it is the slider's size and look,
+   a thin line with a dot; open it stretches up and to the left (the bottom-right corner stays where it is) into the
+   distance–time chart over a bar with one tick per frame, and the buttons beside it slide left to make room. */
+/* the buttons (and the theme icon) keep to the bottom line while the scrubber is tall, and stop short of the panel */
+#controls.tm-on { align-items: flex-end; padding-left: 20px; }
+#controls.tm-on #theme { align-self: flex-end; margin-bottom: 2px; }
+/* while the timeline is out (or still shrinking back into the slider's place) the slider itself stays hidden, so
+   there is never a second slider beside it */
+#controls.tm-on #tlzoom { display: none; }
+/* the other views fold into Temporal Map while the timeline is open: each narrows to nothing and fades, and the gap
+   after it closes too (the negative margin is the controls' gap, style.css footer) */
+#controls button.view:not([data-view="map"]) {
+  max-width: 12em; overflow: hidden; transition: max-width .7s var(--ease), margin .7s var(--ease), opacity .35s, color .15s;
+}
+#controls.tm-wide button.view:not([data-view="map"]) {
+  max-width: 0; opacity: 0; margin-right: calc(-1 * clamp(16px, 2.2vw, 32px)); pointer-events: none;
+}
+#controls .tm-scrub {
+  position: relative; flex: 0 1 96px; height: 14px; min-width: 0; margin-bottom: 1px; display: flex; flex-direction: column;
+  touch-action: none; cursor: default; pointer-events: auto;
+  transition: flex-grow var(--scrub-ms, .7s) var(--ease), height var(--scrub-ms, .7s) var(--ease);
+}
+#controls .tm-scrub.open { flex-grow: 1; height: 152px; }
+#controls .tm-scrub { user-select: none; -webkit-user-select: none; } /* scrubbing never highlights its times */
+/* the slider's line and dot, which the timeline grows out of */
+#controls .tm-scrub::before { content: ""; position: absolute; left: 0; right: 0; bottom: 6px; height: 1px; background: var(--muted); transition: opacity .25s; }
+#controls .tm-scrub::after { content: ""; position: absolute; left: calc(var(--x, 0) * (100% - 9px)); bottom: 2px; /* the playhead */ width: 9px; height: 9px; border-radius: 50%; background: var(--fg);
+  transition: opacity .25s, left var(--scrub-ms, .7s) var(--ease); }
+#controls .tm-scrub.open::before, #controls .tm-scrub.open::after { opacity: 0; }
+/* the timeline's parts fade in once it has room, and out at once when it shrinks */
+#controls .tm-scrub > * { opacity: 0; transition: opacity .2s; }
+#controls .tm-scrub.open > * { opacity: 1; transition: opacity .35s .45s; }
+.tm-scrub .marey { display: block; width: 100%; flex: 1; min-height: 0; overflow: visible; }
+.marey .rule { stroke: var(--faint); stroke-width: 1; }
+.marey .lbl { font-size: 10px; fill: var(--muted); }
+.marey .lbl.end { text-anchor: end; fill: var(--fg); }
+.marey .cutlbl { font-style: italic; }
+.marey .band { fill: var(--fg); opacity: .1; }
+.marey .path { fill: none; stroke: var(--fg); stroke-width: 1.5; }
+.marey .riser { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.marey .now { stroke: var(--fg); stroke-width: 1; opacity: .5; }
+.marey .dot { fill: var(--fg); stroke: var(--bg); stroke-width: 1.5; }
+.tm-scrub .bar { position: relative; flex: none; height: 22px; margin-top: 6px; border-bottom: 1px solid var(--faint); }
+.tm-scrub .ticks i { position: absolute; bottom: 0; left: calc(var(--x) * 100%); width: 1px; height: 9px; background: var(--muted); }
+.tm-scrub .ticks b { position: absolute; bottom: -3px; left: calc(var(--x) * 100%); width: 0; height: 26px; border-left: 1px dashed var(--fg); }
+.tm-scrub .head { position: absolute; bottom: -4px; left: calc(var(--x, 0) * 100%); width: 2px; height: 26px; margin-left: -1px; background: var(--fg); }
+.tm-scrub .ends { flex: none; display: flex; justify-content: space-between; margin-top: .35em; font-size: 12px; line-height: 1; color: var(--muted); font-variant-numeric: tabular-nums; }
+.tm-scrub .ends .now { color: var(--fg); }
+
+/* the left panel in this view: the video, then what the path rests on */
+.tm-video { position: relative; width: 100%; aspect-ratio: 16 / 9; background: color-mix(in srgb, var(--fg) 6%, transparent); margin: 0 0 1.1em; }
+.tm-video iframe, .tm-video > div { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.tm-video.off::after { content: "The YouTube player couldn't load. Scrub below the map, or press Play to run the path without it.";
+  position: absolute; inset: 0; display: grid; place-items: center; padding: 1em; font-size: 13px; color: var(--muted); text-align: center; }
+.tm-pick { appearance: none; -webkit-appearance: none; border: 0; background: none; padding: 0; font: inherit; color: var(--fg); width: 100%; }
+.tm-transport { display: flex; gap: 1.2em; font-size: 14px; margin: 0 0 1.1em !important; }
+.tm-transport button, .tm-list button { border: 0; background: none; padding: 0; font: inherit; color: var(--muted); cursor: default; transition: color .15s; }
+.tm-transport button:hover, .tm-transport button.set, .tm-list button:hover { color: var(--fg); }
+#tm-play { color: var(--fg); }
+.tm-now dd { font-variant-numeric: tabular-nums; }
+.tm-summary { font-size: 14px; line-height: 1.4; }
+.tm-prov dd { line-height: 1.4; }
+.tm-h { font-size: 14px; font-weight: 400; color: var(--muted); margin: 1.4em 0 .5em; }
+.tm-list { list-style: none; margin: 0; padding: 0; font-size: 14px; line-height: 1.4; }
+.tm-list li + li { margin-top: .3em; }
+.tm-list button { color: var(--fg); text-decoration: underline; text-decoration-color: var(--faint); text-underline-offset: 2px; }
+.tm-credit { margin-top: 1.6em !important; font-size: 12px; }
+.tm-empty code { font-size: 12px; }
+
+@media (max-width: 800px) {
+  main.map { position: relative; left: 0; height: 70vh; }
+  #controls .tm-scrub.open { flex-basis: 100%; height: 132px; }
+  .tmap-key { display: none; }
+}

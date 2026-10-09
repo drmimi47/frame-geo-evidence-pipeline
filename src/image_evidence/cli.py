@@ -237,6 +237,30 @@ def cmd_slim(args: argparse.Namespace) -> int:
     return 0
 
 
+def _latlon(s: str) -> tuple[float, float]:
+    lat, lon = (float(x) for x in s.split(","))
+    return lat, lon
+
+
+def cmd_track(args: argparse.Namespace) -> int:
+    from .layout import Library
+    from .track import build_for
+
+    video_dir = Library(_load(args).library_dir).video(args.video).root
+    if not (video_dir / "video.json").exists():
+        print(f"not in the library: {args.video}")
+        return 1
+    t = build_for(video_dir, start=args.start, end=args.end, via=args.via, route_note=args.note,
+                  drive_start=args.drive_start, cuts=args.cut, refetch=args.refetch)
+    print(t["summary"])
+    for s in t["segments"]:
+        print(f"  video {s['video_start']:7.1f}–{s['video_end']:7.1f} s  clock {s['clock_start'][11:]}–{s['clock_end'][11:]}"
+              f"  road {s['along_start_m'] / 1000:5.1f}–{s['along_end_m'] / 1000:5.1f} km")
+    print(f"  passes: {', '.join(f'{x['name']} ({x['along_m'] / 1000:.1f} km)' for x in t['settlements'])}")
+    print(f"-> {video_dir / 'inferred' / 'track.json'}")
+    return 0
+
+
 def cmd_refresh_titles(args: argparse.Namespace) -> int:
     from .discovery import YouTubeClient
     from .layout import Library
@@ -370,6 +394,17 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--keep-originals", action="store_true", help="delete only the downloaded videos")
     s.add_argument("--dry-run", action="store_true", help="only show what would be deleted")
     s.set_defaults(fn=cmd_slim)
+
+    s = sub.add_parser("track", parents=[common], help="infer a video's camera path for the Temporal Map (road + dashcam clock)")
+    s.add_argument("video", type=parse_youtube_id)
+    s.add_argument("--start", type=_latlon, required=True, help="lat,lon where the drive starts (read off a map the video shows)")
+    s.add_argument("--end", type=_latlon, required=True, help="lat,lon where it ends")
+    s.add_argument("--via", type=_latlon, action="append", default=[], help="lat,lon the road must pass (repeatable)")
+    s.add_argument("--note", required=True, help="where the start and end came from (kept as provenance)")
+    s.add_argument("--drive-start", type=float, help="video time (s) the driving footage starts (default: first clock reading)")
+    s.add_argument("--cut", type=float, action="append", default=[], help="video time (s) of a cut, measured more finely than the stored frames")
+    s.add_argument("--refetch", action="store_true", help="ask OSRM for the route again")
+    s.set_defaults(fn=cmd_track)
 
     s = sub.add_parser("refresh-titles", parents=[common], help="fetch uploader title translations (YouTube localizations)")
     s.set_defaults(fn=cmd_refresh_titles)

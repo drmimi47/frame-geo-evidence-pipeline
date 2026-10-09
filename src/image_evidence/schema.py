@@ -275,7 +275,7 @@ class FrameCore(Frozen):
     fps: float
     width: int
     height: int
-    selection: Literal["scene_change", "interval"]
+    selection: Literal["scene_change", "interval", "camera_move"]
     scene_score: float | None = None
     original_format: Literal["png", "jpg"] | None = None
     sha256: str = Field(description="SHA-256 of the original-quality file, or of the decoded RGB pixels (sha256_of).")

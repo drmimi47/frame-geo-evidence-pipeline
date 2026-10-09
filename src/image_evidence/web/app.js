@@ -1,5 +1,6 @@
 import { LEVELS, setupZoom } from "./zoom.js";
 import { renderDocument } from "./document.js";
+import { renderMap, leaveMap } from "./map.js";
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -11,6 +12,11 @@ const clock = (s) => {
 };
 
 const panel = $("panel"), main = $("main");
+// The live count: moved into the Evidence and Sort & filter panels when they open (a panel redraw detaches it,
+// so it is held here rather than looked up by id).
+const statsEl = $("stats");
+const cats = new Set(); // the chosen categories (Sort & filter); a frame must have every one
+let facets = { category: {}, year: {} }; // counts over the whole folder, from the first load
 const videos = new Map();   // video_id -> { duration_s, frame_times: [[frame_id, t], ...], ... }
 const details = new Map();  // frame_id -> Promise<full frame record>
 let items = [], total = 0, current = -1, facetsLoaded = false;
@@ -26,10 +32,21 @@ let peek = null;            // { nodes, focus } of the Video/Evidence panel whil
 // Clicking the panel title switches every title between the original and YouTube's English title.
 // Timeline view: each video drawn as an editing timeline, with a marker at every extracted frame.
 // Its subtitles mode shows each video's captions instead of the filmstrip.
-const savedView = (() => { try { return localStorage.getItem("view"); } catch { return null; } })();
-let timeline = savedView === "timeline" || savedView === "subtitles";
-let subs = savedView === "subtitles";
+// The chosen view is remembered per browser (localStorage.view), so a reload stays on it; the first visit opens on the
+// gallery (with the Video panel, the panel's resting state).
+const VIEWS = ["grid", "map", "timeline", "subtitles", "document"];
+const savedView = (() => { try { const v = localStorage.getItem("view"); return VIEWS.includes(v) ? v : "grid"; } catch { return "grid"; } })();
+let timeline = savedView === "timeline" || savedView === "subtitles", subs = savedView === "subtitles";
 let documentView = savedView === "document";
+// Temporal Map (map.js): a video's inferred path on a map, in step with the video; it takes over main and #research.
+let mapView = savedView === "map";
+// The first time the gallery is drawn (every page load, hard reloads included), the images on screen fade in one
+// by one in a random order across the grid; later re-draws (search, filters) fade in all at once. They wait until
+// those images have arrived (or REVEAL_WAIT_MS), so on a hard reload, with nothing cached, they still appear
+// scattered rather than in the order they download.
+let revealPending = true;
+const REVEAL_MS = 1400;      // the random delays are spread over this
+const REVEAL_WAIT_MS = 3000; // the longest the images on screen wait for each other
 
 // ---------------------------------------------------------------- data
 
@@ -41,19 +58,25 @@ async function loadVideos() {
 }
 
 let loadSeq = 0;
-async function load() {
+// The last frame list, by query: switching view asks for the same frames, so it is drawn at once from here
+// instead of fetched again. Anything else (a search, a filter, a job adding videos) fetches afresh.
+let framesCache = null; // { key, res }
+async function load(reuse = false) {
   const seq = ++loadSeq;
   if (documentView) return renderDocument(main, $("research"));
+  if (mapView) return renderMap(main, $("research"));
   const keep = items[current]?.frame_id;
   const p = new URLSearchParams({ limit: 500 });
   if ($("q").value) p.set("q", $("q").value);
-  if ($("category").value) p.append("category", $("category").value);
+  for (const c of cats) p.append("category", c);
   if ($("year").value) p.set("year", $("year").value);
   if (queryImage) { p.set("sort", "image"); p.set("image", queryImage.id); }
   else if ($("sort").value) p.set("sort", $("sort").value); // (the image sort is the branch above)
   // The API returns at most 500 frames per request: page through all of them, or the grid silently
   // drops whole videos and the numbering stops matching the timeline tally.
-  const res = await (await fetch("/api/frames?" + p)).json();
+  const key = p.toString();
+  const res = reuse && framesCache?.key === key ? { ...framesCache.res, items: [...framesCache.res.items] }
+    : await (await fetch("/api/frames?" + p)).json();
   while (res.items.length < res.total) {
     p.set("offset", res.items.length);
     const page = await (await fetch("/api/frames?" + p)).json();
@@ -61,15 +84,17 @@ async function load() {
     res.items.push(...page.items);
   }
   if (seq !== loadSeq) return; // a newer search started while this one was loading
+  framesCache = { key, res: { ...res, items: [...res.items] } };
   if (!facetsLoaded) {
-    for (const [k, n] of Object.entries(res.facets.category)) $("category").add(new Option(`${k} (${n})`, k));
-    for (const [k, n] of Object.entries(res.facets.year)) $("year").add(new Option(`Published ${k} (${n})`, k));
+    facets = res.facets;
+    for (const k of Object.keys(res.facets.year)) $("year").add(new Option(k, k));
+    if (panelMode === "filters" && !peek) showFilters();
     total = res.total;
     facetsLoaded = true;
-    fitControls();
   }
   render(res.items);
   showStats(res.items);
+  warmSoon();
   current = -1;
   const pin = items.findIndex((it) => it.frame_id === pinned);
   if (pin >= 0) return setPin(pin);
@@ -91,7 +116,7 @@ function detail(id) {
 // ---------------------------------------------------------------- grid
 
 function render(list) {
-  if (documentView) return;
+  if (documentView || mapView) return;
   const sorted = !timeline && !!($("sort").value || queryImage);
   const groups = new Map();
   if (sorted) {
@@ -118,8 +143,10 @@ function render(list) {
   const q = $("q").value.trim();
   // an empty folder (a new project) shows nothing at all; "no match" is only for a search or filter
   main.innerHTML = items.length || !library.frames ? "" : `<p class="empty">No frames match${q ? ` “${esc(q)}”` : ""}${
-    $("category").value || $("year").value ? " with these filters" : ""}.</p>`;
+    cats.size || $("year").value ? " with these filters" : ""}.</p>`;
   if (timeline) return items.length && renderTimeline(groups);
+  const reveal = revealPending && items.length > 0 && !reduced();
+  if (items.length) revealPending = false;
   let i = 0;
   for (const frames of groups.values()) {
     const order = videos.get(frames[0].video_id)?.order;
@@ -130,14 +157,42 @@ function render(list) {
         `<img loading="lazy" decoding="async" src="${it.thumb_url}" alt=""></figure>`).join("")}</div>`;
     main.append(sec);
   }
-  for (const img of main.querySelectorAll("img")) {
+  const imgs = [...main.querySelectorAll("img")];
+  // (measuring here also settles their style at opacity 0, so even cached images fade rather than pop in)
+  const held = new Set(reveal ? imgs.filter((img) => { const r = img.getBoundingClientRect(); return r.bottom > 0 && r.top < innerHeight; }) : []);
+  for (const img of imgs) {
+    if (held.has(img)) continue; // (images below the screen fade in as they load, when scrolled to)
     if (img.complete) img.classList.add("loaded");
     else img.addEventListener("load", () => img.classList.add("loaded"), { once: true });
   }
+  if (held.size) revealGallery([...held]);
 }
 
-// Each video is laid out like a clip on an editing timeline: a filmstrip in which each extracted frame
-// starts at a black vertical marker at its timestamp and repeats until the next frame's marker. No text.
+function revealGallery(shown) {
+  const arrived = (img) => img.complete || new Promise((ok) => {
+    img.addEventListener("load", ok, { once: true });
+    img.addEventListener("error", ok, { once: true });
+  });
+  Promise.race([Promise.all(shown.map(arrived)), new Promise((ok) => setTimeout(ok, REVEAL_WAIT_MS))]).then(() => {
+    const fadeIn = (img) => {
+      Object.assign(img.style, { transitionDelay: `${Math.round(Math.random() * REVEAL_MS)}ms`, transitionDuration: ".6s" });
+      img.classList.add("loaded");
+      setTimeout(() => { img.style.transitionDelay = img.style.transitionDuration = ""; }, REVEAL_MS + 700);
+    };
+    for (const img of shown) {
+      if (!img.isConnected) continue; // the grid was drawn again meanwhile
+      // one still downloading (a slow connection) gets a random delay of its own when it arrives, so the
+      // stragglers don't fill in top to bottom
+      if (img.complete) fadeIn(img);
+      else img.addEventListener("load", () => fadeIn(img), { once: true });
+    }
+  });
+}
+
+// Each video is laid out like a clip on an editing timeline: each extracted frame starts at a black vertical
+// marker at its timestamp and runs until the next frame's marker. Its image sits in the middle of that stretch,
+// and its edges are slit-scanned out to the markers: the image's outermost columns stretched sideways, shading
+// into the neighbouring frame's edge so the streaks blend from one image to the next. No text.
 // Frames outside the current search/filters leave an empty stretch of strip. All videos
 // share one time scale so lengths compare; pinching stretches it. A video longer than the page width
 // wraps onto more lines below, like text, so nothing runs off screen.
@@ -171,13 +226,20 @@ function renderTimeline(groups) {
     // frames are in time order, like items
     const r = { id: frames[0].video_id, dur, times, shown: new Map(frames.map((it) => [it.frame_id, [it, i++]])), order: v?.order };
     tlVideos.push(r);
-    if (subs) loadSubtitles(r.id).then((d) => { r.subs = d; drawWords(); }, () => {});
+    // a transcript fetched ahead of time (prewarm) is drawn with the first layout; one still arriving draws only
+    // its own lines, once a frame, however many arrive together
+    if (subs) r.subs = subtitleReady.get(r.id) ?? (loadSubtitles(r.id).then((d) => { r.subs = d; wordsSoon(); }, () => {}), null);
   }
   const wrap = document.createElement("div");
   wrap.className = "tl";
   main.append(wrap);
+  tlFresh = true;
   layoutTimeline();
+  tlFresh = false;
 }
+// A newly drawn strip dresses only what comes near the screen (the observer), not every strip at once: thousands of
+// images in one style pass is the stall. It fades in (.tl), so the first frame before the observer runs never shows.
+let tlFresh = false;
 
 function tlRange() {
   const durs = tlVideos.map((r) => r.dur), longest = Math.max(1, ...durs);
@@ -295,6 +357,7 @@ function layoutTimeline() {
       if (!hit) return; // outside the search/filters: an empty stretch, no marker
       const end = k + 1 < r.times.length ? r.times[k + 1][1] : r.dur;
       const x0 = X(t), x1 = X(end);
+      const near = (j) => r.shown.get(r.times[j]?.[0])?.[0].thumb_url ?? ""; // the neighbouring frames, when shown
       // A frame's strip runs until the next marker, continuing on the next line if it crosses the edge.
       for (let l = Math.min(n - 1, Math.floor(x0 / W + 1e-6)); l < n && l * W < x1 - 0.01; l++) {
         const a = l * W, left = Math.round(Math.max(x0, a) - a), right = Math.round(Math.min(x1, a + W) - a);
@@ -305,16 +368,28 @@ function layoutTimeline() {
           seg = document.createElement("div");
           seg.dataset.i = hit[1];
           seg.dataset.bg = hit[0].thumb_url;
+          seg.dataset.prev = near(k - 1);
+          seg.dataset.next = near(k + 1);
           const it = hit[0];
           seg.style.setProperty("--ar", it.width && it.height ? it.width / it.height : 16 / 9);
-          if (seen.has(seg.dataset.bg)) seg.style.setProperty("--img", `url("${seg.dataset.bg}")`);
+          if (subs); // the Transcript shows words, not the strips' images: nothing to dress
+          else if (dressed.has(dressKey(seg)) && !tlFresh) dress(seg);
           else thumbs.observe(seg);
           segEls.set(key, seg);
         }
-        seg.className = `tile seg${a > x0 + 0.01 ? " cont" : ""}` +
+        const split = a > x0 + 0.01 || a + W < x1 - 0.01; // the frame's stretch wraps onto another line
+        seg.className = `tile seg${a > x0 + 0.01 ? " cont" : ""}${split ? " split" : ""}` +
           `${hit[1] === current ? " on" : ""}${hit[1] === pin ? " pinned" : ""}`;
         seg.style.left = `${left}px`;
         seg.style.width = `${Math.max(0, right - left)}px`;
+        // A wrapped frame's pieces: its whole stretch and its middle, from this piece's left edge. A piece that is
+        // the whole stretch needs none (the CSS centres its image), so a zoom doesn't restyle every strip.
+        if (split) {
+          const o = a + left;
+          seg.style.setProperty("--fx0", `${x0 - o}px`);
+          seg.style.setProperty("--fx1", `${x1 - o}px`);
+          seg.style.setProperty("--cx", `${(x0 + x1) / 2 - o}px`);
+        }
         if (seg.parentNode !== sec.children[l]) sec.children[l].append(seg);
       }
     });
@@ -353,20 +428,56 @@ function layoutTimeline() {
 // snapping with the same glide as a pinch.
 const SLIDER_MAX = 1000;
 let gridLevel = 0; // the gallery's column level (zoom.js), kept by its onChange
-function syncSlider() {
+// Reconstruction: the same slider, there for consistency, is the page's vertical scroll (top at the left).
+const scrollRoom = () => Math.max(0, document.documentElement.scrollHeight - innerHeight);
+function syncSlider(animate = false) {
   const el = $("tlzoom");
-  if (!timeline) {
-    el.max = LEVELS.length - 1;
-    el.value = LEVELS.length - 1 - gridLevel;
-    return;
-  }
-  el.max = SLIDER_MAX;
+  el.title = el.ariaLabel = documentView ? "Scroll" : "Zoom (or pinch, or + / −)";
+  if (documentView) return setSlider(SLIDER_MAX, scrollRoom() ? (SLIDER_MAX * scrollY) / scrollRoom() : 0, animate);
+  if (!timeline) return setSlider(LEVELS.length - 1, LEVELS.length - 1 - gridLevel, animate);
   const [lo, hi] = tlRange(), s = clampScale(tlScale * tlLive);
-  el.value = Math.round(SLIDER_MAX * Math.log(s / lo) / Math.log(hi / lo));
+  setSlider(SLIDER_MAX, SLIDER_MAX * Math.log(s / lo) / Math.log(hi / lo), animate);
 }
+// Switching views, the slider's dot glides from where it was to where the new view puts it (a range input can't be
+// eased by CSS, so its value is). It chases its target each frame, closing most of the gap in about 0.4 s and
+// slowing as it arrives, so a target that moves while it glides (Reconstruction resetting its scroll and loading its
+// pages) only bends its path, never makes it jump. A timeline's position is known only once it is laid out
+// (layoutTimeline), so switching to one the dot waits for that (at most HOLD_MS) rather than set off the wrong way.
+// Grabbing the slider ends the glide.
+const SLIDE_TAU = 110, HOLD_MS = 500;
+let slide = null;  // { pos, to, last, hold }: dot positions as fractions of the track; hold: time it may set off
+let dotWas = null; // where the dot was when a view switch began (the old view's teardown may move the slider first)
+function setSlider(max, value, animate) {
+  const el = $("tlzoom"), to = max ? Math.min(1, Math.max(0, value / max)) : 0;
+  const at = slide ? slide.pos : animate && dotWas !== null ? dotWas : +el.value / (+el.max || 1);
+  if (animate) dotWas = null;
+  el.max = max;
+  if (animate && !reduced() && el.offsetParent && Math.abs(at - to) > 0.002) {
+    const first = !slide, now = performance.now();
+    slide = { pos: at, to, last: now, hold: timeline ? now + HOLD_MS : 0 };
+    el.value = at * max;
+    if (first) requestAnimationFrame(glideDot);
+  } else if (slide) Object.assign(slide, { to, hold: 0 }); // under way (or waiting): aim it here, and go
+  else el.value = to * max;
+}
+function glideDot(now) {
+  if (!slide) return;
+  // at most a frame's worth per step: after the page stalls (a timeline laying out) the dot still glides, not leaps
+  const el = $("tlzoom"), dt = Math.min(34, Math.max(0, now - slide.last));
+  slide.last = now;
+  if (now < slide.hold) return requestAnimationFrame(glideDot);
+  slide.pos += (slide.to - slide.pos) * (1 - Math.exp(-dt / SLIDE_TAU));
+  if (Math.abs(slide.to - slide.pos) < 0.001) { el.value = slide.to * +el.max; slide = null; return; }
+  el.value = slide.pos * +el.max;
+  requestAnimationFrame(glideDot);
+}
+$("tlzoom").addEventListener("pointerdown", () => {
+  if (slide) { $("tlzoom").value = slide.to * +$("tlzoom").max; slide = null; }
+});
 $("tlzoom").addEventListener("input", (e) => {
-  if (!timeline) {
-    const i = LEVELS.length - 1 - +e.target.value;
+  if (documentView) return scrollTo(0, (scrollRoom() * e.target.value) / SLIDER_MAX);
+  if (!timeline) { // (the dot moves freely while dragged; the gallery steps to the nearest column count)
+    const i = LEVELS.length - 1 - Math.round(+e.target.value);
     if (i !== zoom.level) zoom.set(i);
     return;
   }
@@ -394,16 +505,18 @@ function spreadTo(id) {
   const now = performance.now();
   const v = id !== null ? frameVideo(id) : null;
   let wait = 0; // until the other images in this video have closed
+  let changed = false; // nothing opens or closes (unpinning with nothing open, as each view draws): no re-layout
   for (const [key, s] of spreads) {
     if (key === id) continue;
-    if (s.to !== 0) Object.assign(s, { from: s.p, to: 0, start: now });
+    if (s.to !== 0) { Object.assign(s, { from: s.p, to: 0, start: now }); changed = true; }
     if (v !== null && frameVideo(key) === v) wait = Math.max(wait, s.start + SPREAD_MS - now);
   }
   if (id !== null && timeline) {
     const s = spreads.get(id);
-    if (!s) spreads.set(id, { p: 0, from: 0, to: 1, start: now + wait });
-    else if (s.to !== 1) Object.assign(s, { from: s.p, to: 1, start: now + wait, settled: false });
+    if (!s) { spreads.set(id, { p: 0, from: 0, to: 1, start: now + wait }); changed = true; }
+    else if (s.to !== 1) { Object.assign(s, { from: s.p, to: 1, start: now + wait, settled: false }); changed = true; }
   }
+  if (!changed) return;
   layoutTimeline();
   tlAnimate();
 }
@@ -527,59 +640,181 @@ function tlAnchor() {
 }
 
 // Filmstrip thumbnails load when their segment scrolls into view.
-const seen = new Set();     // thumbnail URLs the browser has loaded and decoded
+// A strip's slit-scanned edges. Each thumbnail gives its left and right edge slits (2% of its width, just
+// inside the border, averaged to one column of SLIT_ROWS pixels). The stretch either side of an image is a
+// small image shading from one column to the other, which the CSS stretches across it: from the middle of
+// this edge and the neighbour's (where the marker is) to this image's own edge.
+// Made once per thumbnail and neighbour pair, in a worker (edges.js) so the page never stalls on them: ahead of
+// time while the page is idle (prewarm), and first for the strips coming near the screen.
+const SLIT_ROWS = 48, SHADE_COLS = 16;
+const edges = new Map();   // thumbnail URL -> the promise of its { l, r } edge columns (RGBA); without a worker only
+function edgesOf(url) {
+  if (!url) return Promise.resolve(null);
+  if (!edges.has(url)) edges.set(url, (async () => {
+    const img = new Image();
+    img.src = url;
+    await img.decode();
+    const w = img.naturalWidth, h = img.naturalHeight, k = Math.max(1, Math.round(w / 50)), in1 = Math.round(w / 100);
+    const c = Object.assign(document.createElement("canvas"), { width: 2, height: SLIT_ROWS });
+    const g = c.getContext("2d", { willReadFrequently: true });
+    g.drawImage(img, in1, 0, k, h, 0, 0, 1, SLIT_ROWS);
+    g.drawImage(img, w - in1 - k, 0, k, h, 1, 0, 1, SLIT_ROWS);
+    const d = g.getImageData(0, 0, 2, SLIT_ROWS).data, col = (x) => d.filter((_, j) => (j >> 2) % 2 === x);
+    return { l: col(0), r: col(1) };
+  })());
+  return edges.get(url);
+}
+const mix = (a, b) => (b ? a.map((v, j) => (v + b[j]) >> 1) : a);
+function shade(a, b) { // column a shading into column b, as a CSS url
+  const c = Object.assign(document.createElement("canvas"), { width: SHADE_COLS, height: SLIT_ROWS });
+  const px = new Uint8ClampedArray(4 * SHADE_COLS * SLIT_ROWS);
+  for (let y = 0; y < SLIT_ROWS; y++)
+    for (let x = 0; x < SHADE_COLS; x++)
+      for (let ch = 0, f = x / (SHADE_COLS - 1); ch < 4; ch++)
+        px[4 * (y * SHADE_COLS + x) + ch] = a[4 * y + ch] + (b[4 * y + ch] - a[4 * y + ch]) * f;
+  c.getContext("2d").putImageData(new ImageData(px, SHADE_COLS, SLIT_ROWS), 0, 0);
+  return `url("${c.toDataURL()}")`;
+}
+const dressed = new Map(); // "prev|own|next" thumbnail URLs -> { bl, br }: a strip's two edge shadings
+const dressKey = (seg) => `${seg.dataset.prev}|${seg.dataset.bg}|${seg.dataset.next}`;
+const edgeWorker = (() => {
+  try { return typeof OffscreenCanvas === "function" ? new Worker(new URL("edges.js", import.meta.url), { type: "module" }) : null; }
+  catch { return null; }
+})();
+const shadings = new Map(); // key -> the promise of its entry in `dressed`
+const edgeQueue = [];       // jobs not yet sent to the worker: the strips near the screen first, then the prewarm
+const edgeWaiting = new Map(); // key -> job sent and not yet answered
+const EDGE_JOBS = 8;        // in flight at once, so a strip coming into view never queues behind the whole library
+function shading(prev, own, next, urgent) {
+  const key = `${prev}|${own}|${next}`;
+  if (!shadings.has(key)) {
+    shadings.set(key, new Promise((ok, no) => {
+      const job = { key, prev, own, next, ok, no };
+      urgent ? edgeQueue.unshift(job) : edgeQueue.push(job);
+    }));
+    pumpEdges();
+  } else if (urgent) { // asked for again by a strip near the screen: move it to the front if it is still waiting
+    const k = edgeQueue.findIndex((j) => j.key === key);
+    if (k > 0) edgeQueue.unshift(...edgeQueue.splice(k, 1));
+  }
+  return shadings.get(key);
+}
+function pumpEdges() {
+  while (edgeQueue.length && edgeWaiting.size < EDGE_JOBS) {
+    const job = edgeQueue.shift();
+    if (edgeWorker) {
+      edgeWaiting.set(job.key, job);
+      edgeWorker.postMessage({ key: job.key, prev: job.prev, own: job.own, next: job.next });
+    } else { // no worker (an old browser): on the page, as before
+      edgeWaiting.set(job.key, job);
+      Promise.all([edgesOf(job.prev), edgesOf(job.own), edgesOf(job.next)]).then(([p, o, n]) => {
+        dressed.set(job.key, { bl: shade(mix(o.l, p?.r), o.l), br: shade(o.r, mix(o.r, n?.l)) });
+        job.ok();
+      }, job.no).finally(() => { edgeWaiting.delete(job.key); pumpEdges(); });
+    }
+  }
+}
+if (edgeWorker) edgeWorker.onmessage = ({ data: { key, bl, br, error } }) => {
+  const job = edgeWaiting.get(key);
+  edgeWaiting.delete(key);
+  if (job) {
+    if (error) { shadings.delete(key); job.no(); }
+    else {
+      dressed.set(key, { bl, br });
+      job.ok();
+    }
+  }
+  pumpEdges();
+};
+function dress(seg) {
+  seg.style.setProperty("--img", `url("${seg.dataset.bg}")`);
+  const key = dressKey(seg), done = dressed.get(key);
+  if (done) { seg.style.setProperty("--bl", done.bl); seg.style.setProperty("--br", done.br); return; }
+  shading(seg.dataset.prev, seg.dataset.bg, seg.dataset.next, true).then(() => dress(seg), () => {});
+}
 const thumbs = new IntersectionObserver((entries) => {
   for (const e of entries) {
     if (!e.isIntersecting) continue;
-    const url = e.target.dataset.bg;
-    e.target.style.setProperty("--img", `url("${url}")`);
-    const img = new Image();
-    img.src = url;
-    img.decode().then(() => seen.add(url), () => {});
+    dress(e.target);
     thumbs.unobserve(e.target);
   }
 }, { rootMargin: "300px" });
 
 addEventListener("resize", () => { if (timeline) layoutTimeline(); });
 
+// Ahead of time, while the page is idle: what the Filmstrip and Transcript need that the gallery doesn't, so
+// switching to them draws at once. Every shown strip's edge shadings (in the worker, top of the page first) and
+// every video's transcript. Each is made once (shading, loadSubtitles), so asking again costs nothing. The first
+// time waits for the gallery's fade-in to finish, so it never competes with it.
+let warmTimer = 0, warmedOnce = false;
+function warmSoon() {
+  clearTimeout(warmTimer);
+  const wait = warmedOnce ? 300 : REVEAL_MS + 700;
+  warmTimer = setTimeout(() => (window.requestIdleCallback ?? ((f) => f()))(prewarm, { timeout: 2000 }), wait);
+}
+function prewarm() {
+  if (documentView || mapView || !items.length) return;
+  warmedOnce = true;
+  const thumb = new Map(items.map((it) => [it.frame_id, it.thumb_url]));
+  for (const id of new Set(items.map((it) => it.video_id))) {
+    loadSubtitles(id).catch(() => {});
+    // the strips' neighbours as layoutTimeline finds them: the video's frames in time order, those shown
+    const times = [...(videos.get(id)?.frame_times ?? [])].sort((a, b) => a[1] - b[1]);
+    times.forEach(([fid], k) => {
+      const own = thumb.get(fid);
+      if (own) shading(thumb.get(times[k - 1]?.[0]) ?? "", own, thumb.get(times[k + 1]?.[0]) ?? "", false).catch(() => {});
+    });
+  }
+}
+
 function setView(view) {
+  dotWas = slide ? slide.pos : +$("tlzoom").value / (+$("tlzoom").max || 1);
   ++loadSeq; // discard any frame request still loading from the previous view
   documentView = view === "document";
+  mapView = view === "map";
+  if (!mapView) leaveMap();
   timeline = view === "timeline" || view === "subtitles";
   subs = view === "subtitles";
   tlScale = readZoom();
   try { localStorage.setItem("view", view); } catch {}
-  if (documentView) {
+  if (documentView || mapView) {
     thumbs.disconnect();
     endPeek();
     setPin(-1);
     current = -1;
     tlVideos = [];
     intro();
-    openFilters(false);
     main.classList.remove("sorted", "timeline", "subtitles");
   }
-  showView();
+  showView(true);
   scrollTo(0, 0);
   drawWords(); // clears the words when leaving the subtitles view
-  load();
+  load(true);
 }
 // Four views, one selected at a time. Existing stored view names remain compatible.
-const currentView = () => (documentView ? "document" : subs ? "subtitles" : timeline ? "timeline" : "grid");
-function showView() {
+const currentView = () => (mapView ? "map" : documentView ? "document" : subs ? "subtitles" : timeline ? "timeline" : "grid");
+function showView(animate = false) {
+  const takeover = documentView || mapView; // views that bring their own left panel
   main.classList.toggle("document", documentView);
-  panel.hidden = documentView;
-  $("research").hidden = !documentView;
-  $("corner").hidden = documentView;
-  for (const id of ["filterwrap", "q", "tlzoom"]) $(id).hidden = documentView;
-  syncSlider();
+  main.classList.toggle("map", mapView);
+  panel.hidden = takeover;
+  $("research").hidden = !takeover;
+  $("corner").hidden = takeover;
+  $("tlzoom").hidden = mapView; // (the Temporal Map grows its timeline out of it: map.js)
+  syncSlider(animate);
   for (const b of document.querySelectorAll("button.view")) {
     const on = b.dataset.view === currentView();
     b.classList.toggle("set", on);
     b.setAttribute("aria-pressed", on);
   }
 }
-$("tlzoom").addEventListener("change", releaseImages);
+$("tlzoom").addEventListener("change", () => {
+  releaseImages();
+  if (!timeline && !documentView) syncSlider(); // let go in the gallery: the dot settles on its column count
+});
+// the Reconstruction's scroll slider follows the page: scrolling, and pages loading (which changes the room to scroll)
+addEventListener("scroll", () => { if (documentView) syncSlider(); }, { passive: true });
+new ResizeObserver(() => { if (documentView) syncSlider(); }).observe(main);
 // + / - zoom the timeline (zoom.js); the images hold until the keys have stopped for a moment
 addEventListener("keydown", (e) => {
   if (timeline && /^[-+=_]$/.test(e.key) && !e.metaKey && !e.ctrlKey && !e.target.matches?.("input, select, textarea")) holdImages("keys", 350);
@@ -587,7 +822,8 @@ addEventListener("keydown", (e) => {
 
 // Light/dark: follows the system until chosen here, then remembered per browser. The button names the other one.
 const isDark = () => (document.documentElement.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")) === "dark";
-const themeLabel = () => { $("theme").textContent = isDark() ? "Light" : "Dark"; };
+// an icon only (after the zoom slider): its tooltip and label say which theme it switches to
+const themeLabel = () => { const t = `Switch to ${isDark() ? "light" : "dark"}`; $("theme").title = t; $("theme").setAttribute("aria-label", t); };
 $("theme").onclick = () => {
   const t = isDark() ? "light" : "dark";
   document.documentElement.dataset.theme = t;
@@ -597,7 +833,11 @@ $("theme").onclick = () => {
 };
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => { themeLabel(); drawWords(); });
 themeLabel();
-for (const b of document.querySelectorAll("button.view")) b.onclick = () => { if (b.dataset.view !== currentView()) setView(b.dataset.view); };
+for (const b of document.querySelectorAll("button.view")) {
+  b.onclick = () => { if (b.dataset.view !== currentView()) setView(b.dataset.view); };
+  // pointing at Filmstrip or Transcript is a head start on what they need, in case the idle time hasn't done it yet
+  if (b.dataset.view === "timeline" || b.dataset.view === "subtitles") b.addEventListener("pointerenter", prewarm);
+}
 
 // ---------------------------------------------------------------- subtitles
 // The subtitles view is the timeline with the words instead of the images: every word of a video's
@@ -611,15 +851,18 @@ for (const b of document.querySelectorAll("button.view")) b.onclick = () => { if
 // The words are drawn on canvases inside the lines near the screen (see drawWords). Frames still sit
 // under their markers: hover, pin and spread work.
 const subtitleData = new Map(); // video_id -> Promise<subtitles>
+const subtitleReady = new Map(); // video_id -> subtitles, once arrived
 function loadSubtitles(id) {
   if (!subtitleData.has(id)) {
     subtitleData.set(id, fetch(`/api/videos/${encodeURIComponent(id)}/subtitles`).then((r) => {
       if (!r.ok) throw new Error(r.status);
       return r.json();
-    }).catch((e) => { subtitleData.delete(id); throw e; }));
+    }).then((d) => { subtitleReady.set(id, d); return d; }).catch((e) => { subtitleData.delete(id); throw e; }));
   }
   return subtitleData.get(id);
 }
+let wordsRaf = 0;
+const wordsSoon = () => { wordsRaf ||= requestAnimationFrame(() => { wordsRaf = 0; drawWords(false); }); };
 
 const LANGS = { uk: "Ukrainian", ru: "Russian", en: "English" };
 function subtitleNote(d) {
@@ -744,7 +987,7 @@ function drawLines(r, todo) {
       const hole = r.holes.find(([a]) => a > x - 0.01); // an opened image after it: the word stops before it
       const room = Math.min(k + 1 < words.length ? r.X(words[k + 1][0]) : r.X(r.dur) + WORD_GAP, hole ? hole[0] : Infinity) - x - WORD_GAP;
       const f = kind === "en" ? (flag === 1 ? font.enPlace : font.en) : flag === 1 ? font.place : font.orig, marked = hit(word);
-      laid.push({ word, flag, l, lx: x - l * r.W, room, f, tw: width(f, word), marked,
+      laid.push({ word, flag, l, lx: x - l * r.W, room, f, tw: (words[k].tw ??= width(f, word)), marked,
                   strong: flag === 1 || marked, land: flag === 3 });
     }
     // Priority (each row on its own): place names, words about the land and search matches claim room for their text first, in
@@ -832,9 +1075,71 @@ function setPin(i) {
   pinned = items[i]?.frame_id ?? null;
   main.classList.toggle("has-pin", pinned !== null);
   spreadTo(pinned);
+  zoomTo(timeline || documentView || mapView ? -1 : i);
   if (pinned === null) return;
   for (const t of main.querySelectorAll(`.tile[data-i="${i}"]`)) t.classList.add("pinned"); // a wrapped timeline frame has several pieces
   select(i);
+}
+
+// Gallery: a pinned frame opens out of its tile to fill the gallery side, whole (its own aspect, not the tile's
+// crop), over the page background; unpinning shrinks it back into its tile (or fades it, if the tile has
+// scrolled away). The arrow keys and the tally step through frames in place. Clicking it or the space around
+// it unpins, like clicking a pinned tile.
+const ZOOM_MS = 380, ZOOM_EASE = "cubic-bezier(.2, .9, .25, 1)";
+const zoomBox = Object.assign(document.createElement("div"), { id: "zoom", hidden: true, innerHTML: `<div class="zimg"></div>` });
+document.body.append(zoomBox);
+let zoomed = null; // frame_id of the frame shown
+zoomBox.addEventListener("click", () => unpin());
+zoomBox.addEventListener("wheel", (e) => e.preventDefault(), { passive: false }); // the grid stays put underneath
+addEventListener("resize", () => { const i = items.findIndex((it) => it.frame_id === zoomed); if (i >= 0) Object.assign(zoomBox.firstChild.style, px(fitRect(items[i]))); });
+const px = (r) => ({ left: `${r.left}px`, top: `${r.top}px`, width: `${r.width}px`, height: `${r.height}px` });
+// The gallery's room on screen: inside main's padding, below the panel on a narrow screen, above the controls.
+function fitRect(it) {
+  const m = main.getBoundingClientRect(), cs = getComputedStyle(main);
+  const left = m.left + parseFloat(cs.paddingLeft), right = m.right - parseFloat(cs.paddingRight);
+  const top = Math.max(parseFloat(cs.paddingTop), matchMedia("(max-width: 800px)").matches ? panel.getBoundingClientRect().bottom + 16 : 0);
+  const bottom = $("controls").getBoundingClientRect().top + 20;
+  const W = right - left, H = bottom - top, ar = it.width && it.height ? it.width / it.height : 16 / 9;
+  const w = Math.min(W, H * ar), h = w / ar;
+  return { left: left + (W - w) / 2, top: top + (H - h) / 2, width: w, height: h };
+}
+function tileRect(id) {
+  const r = main.querySelector(`.tile[data-i="${items.findIndex((it) => it.frame_id === id)}"] img`)?.getBoundingClientRect();
+  return r && r.bottom > 0 && r.top < innerHeight ? r : null;
+}
+function zoomTo(i) {
+  const it = items[i], img = zoomBox.firstChild, opts = { duration: ZOOM_MS, easing: ZOOM_EASE, fill: "forwards" };
+  if (!it) {
+    if (zoomed === null) return;
+    const from = img.getBoundingClientRect(), to = tileRect(zoomed);
+    zoomed = null;
+    if (reduced()) { zoomBox.hidden = true; return; }
+    const fade = zoomBox.animate([{ opacity: 1 }, { opacity: 0 }], opts);
+    if (to) img.animate([px(from), px(to)], opts);
+    fade.finished.then(() => { if (zoomed === null) zoomBox.hidden = true; }, () => {});
+    return;
+  }
+  if (zoomed === it.frame_id) return;
+  img.style.setProperty("--img", `url("${it.thumb_url}")`);
+  img.style.removeProperty("--sharp");
+  img.dataset.want = it.web_url;
+  if (it.web_url) {
+    const full = new Image();
+    full.src = it.web_url;
+    full.decode().then(() => { if (img.dataset.want === it.web_url) img.style.setProperty("--sharp", `url("${it.web_url}")`); }, () => {});
+  }
+  const to = fitRect(it);
+  if (zoomed === null) { // opening out of its tile (or catching an image still closing)
+    const from = zoomBox.hidden ? tileRect(it.frame_id) : img.getBoundingClientRect();
+    for (const a of [...zoomBox.getAnimations(), ...img.getAnimations()]) a.cancel();
+    zoomBox.hidden = false;
+    if (!reduced()) {
+      zoomBox.animate([{ opacity: 0 }, { opacity: 1 }], opts);
+      if (from) img.animate([px(from), px(to)], opts);
+    }
+  }
+  Object.assign(img.style, px(to));
+  zoomed = it.frame_id;
 }
 
 // Explicit navigation (tally scrub, arrow keys) moves the pin along when there is one.
@@ -1015,15 +1320,18 @@ main.addEventListener("click", (e) => {
   const tile = e.target.closest(".tile");
   if (!tile) return pinned !== null && unpin(null);
   const i = +tile.dataset.i;
-  if (panelMode) { closePanel(); current = -1; } // a frame clicked while the Video or Evidence panel is open: show it
+  // a frame clicked while a panel is open: show it (and after Sort & filter, come back to it when let go)
+  if (panelMode) { backTo = panelMode === "filters" ? "filters" : null; closePanel(); current = -1; }
   // in the timeline, a video's frames wait while one of its images is closing (it would push them along)
   if (timeline && items[i].frame_id !== pinned && closingIn(items[i].video_id)) return;
   items[i].frame_id === pinned ? unpin(tile) : setPin(i);
 });
+let backTo = null;
 function unpin() {
   setPin(-1);
   current = -1;
-  openPanel("video"); // nothing selected: back to the Video panel
+  openPanel(backTo ?? "video"); // nothing selected: back to the Video panel (or to Sort & filter, if it was open)
+  backTo = null;
 }
 panel.addEventListener("pointermove", (e) => { if (e.target.closest("#track")) scrub(e); });
 panel.addEventListener("pointerdown", (e) => {
@@ -1032,26 +1340,10 @@ panel.addEventListener("pointerdown", (e) => {
   scrub(e);
 });
 
-// Size each bottom control to the text it shows (a <select> is otherwise as wide as its longest
-// option), so the gaps between them read as equal.
-const ruler = document.createElement("canvas").getContext("2d");
-function textWidth(el, text) {
-  const cs = getComputedStyle(el);
-  ruler.font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
-  return Math.ceil(ruler.measureText(text).width);
-}
-function fitControls() {
-  for (const id of ["sort", "category", "year"]) {
-    const el = $(id);
-    el.style.width = textWidth(el, el.selectedOptions[0]?.text ?? "") + "px";
-  }
-  $("q").style.setProperty("--rest", textWidth($("q"), $("q").placeholder) + 2 + "px");
-}
-document.fonts?.ready.then(fitControls);
 
-// Bottom left, after Video and Evidence: how much the folder holds, live, kept short so it never reaches the
-// images ("20 uploaded · 1019 images"; "120/1019 images" when filtered; "20 → 1019" when there's too little room). Polls so it keeps up
-// while a job is adding videos.
+// The live count, at the top of the Evidence and Sort & filter panels: how much the folder holds ("20 uploaded ·
+// 1019 images"), or what the search and filters leave of it ("120 of 1019 images · 10 of 20 videos"). Polls so it
+// keeps up while a job is adding videos.
 let library = { videos: 0, frames: 0 };
 function showStats(list = items) {
   const vids = new Set(list.map((it) => it.video_id)).size;
@@ -1060,24 +1352,12 @@ function showStats(list = items) {
   if (near) {
     // how many images the site places at or near the chosen place (it may be none)
     const here = list.filter((it) => it.sort_group === "at" || it.sort_group === "near");
-    $("stats").textContent = here.length ? `${here.length} images near ${near}` : `None near ${near}`;
+    statsEl.textContent = here.length ? `${here.length} image${here.length === 1 ? "" : "s"} near ${near}` : `None near ${near}`;
     return;
   }
-  // filtered, only the images fit beside the buttons; the tooltip has both
-  fitStats(filtered ? `${list.length}/${library.frames} images` : `${library.videos} uploaded · ${library.frames} images`,
-           filtered ? `${vids} → ${list.length}` : `${library.videos} → ${library.frames}`);
-  $("stats").title = filtered ? `${list.length}/${library.frames} images · ${vids}/${library.videos} uploaded`
-                              : `${library.videos} uploaded · ${library.frames} images`;
+  statsEl.textContent = filtered ? `${list.length} of ${library.frames} images · ${vids} of ${library.videos} videos`
+                                 : `${library.videos} uploaded · ${library.frames} images`;
 }
-// the count's text, or "videos → images" when the window leaves it too little room (it is never cut into the images)
-function fitStats(full, short) {
-  const el = $("stats");
-  el.textContent = full;
-  el.dataset.full = full;
-  el.dataset.short = short;
-  if (el.scrollWidth > el.clientWidth) el.textContent = short;
-}
-addEventListener("resize", () => { const el = $("stats"); if (el.dataset.full) fitStats(el.dataset.full, el.dataset.short); });
 async function pollStats() {
   try {
     const s = await (await fetch("/api/stats")).json();
@@ -1093,47 +1373,111 @@ fetch("/api/study-places").then((r) => r.json()).then((list) => {
   const group = $("near");
   for (const p of list) group.append(new Option(`Near ${p.name}`, p.sort));
   group.hidden = !list.length;
+  showFilters(); // (when open)
 }, () => {});
 
 let t;
 $("q").oninput = () => { clearTimeout(t); t = setTimeout(load, 250); };
 
-// Sort & filter: one button opening a small panel with Sort, Category, Year and Clear all. The button
-// says how many of them are set ("Sort & filter · 2").
+// Sort & filter: the button beside Evidence opens it in the left panel (held like Evidence: hovering frames
+// shows them, and closing it goes back to Video), over the gallery, where sorting works: it switches the view
+// to the Gallery. Search, every sort with what it does, categories (a frame must have every one chosen) and
+// the year published, each applied at once so the grid changes beside it. The button says how many are set
+// ("Sort & filter · 2").
+const SORTS = [
+  ["", "Video & time", "Each video's frames in the order they were filmed"],
+  ["place", "Place", "Grouped by the most likely place named for each frame; inferred, not verified. Unknown last"],
+  ["similar", "Similar view", "Frames that look alike side by side, so one site filmed in different videos meets"],
+  ["angle", "Camera angle", "From top-down to ground level, as an image model sees it"],
+  ["damage", "Damage", "Most visible damage first; frames with few buildings last"],
+  ["scale", "Scale", "Close-up first, wide aerial last"],
+  ["color", "Colour", "Around the colour wheel by mean colour; greys last"],
+  ["light", "Light", "Darkest first: a cue for time of day and weather"],
+  ["season", "Season cues", "Snow, bare, some green, green: cues, not a date"],
+  ["published", "Published", "Newest YouTube upload first (not the capture date)"],
+  ["detail", "Detail", "Sharpest first: more measurable detail"],
+];
 function syncFilters() {
-  const n = [$("sort").value || queryImage, $("category").value, $("year").value].filter(Boolean).length;
-  $("filters").textContent = n ? `Sort & filter · ${n}` : "Sort & filter";
+  const n = ($("sort").value || queryImage ? 1 : 0) + cats.size + ($("year").value ? 1 : 0);
+  $("filters").lastChild.textContent = n ? `Sort & filter · ${n}` : "Sort & filter";
   $("filters").classList.toggle("set", n > 0);
-  $("clear").classList.toggle("on", !!(n || $("q").value));
+  syncFilterPanel(n);
 }
-function openFilters(open) {
-  $("filterpop").hidden = !open;
-  $("filters").setAttribute("aria-expanded", open);
+function showFilters() {
+  if (panelMode !== "filters" || peek) return;
+  const opt = ([v, name, note]) =>
+    `<button type="button" data-sort="${esc(v)}"><span class="nm">${esc(name)}</span><span class="note">${esc(note)}</span></button>`;
+  const near = [...$("near").children].map((o) => `<button type="button" data-sort="${esc(o.value)}">${esc(o.text.replace(/^Near /, ""))}</button>`);
+  const chips = (key, counts) => Object.entries(counts).map(([k, n]) =>
+    `<button type="button" data-${key}="${esc(k)}">${esc(k)} <span class="n">${n}</span></button>`).join("");
+  panel.innerHTML = `
+    <div class="sf">
+      <input type="search" class="sf-q" placeholder="Search words, places or what is in view" aria-label="Search" autocomplete="off" spellcheck="false">
+      <h3>Sort</h3>
+      <div class="sf-sorts">${(queryImage ? [[IMAGE_SORT, "Like your image", "Most like the image you dropped or pasted first"]] : []).concat(SORTS).map(opt).join("")}</div>
+      ${near.length ? `<h4>Near a study-area place</h4>
+        <p class="note">Frames placed at it (within 3 km) first, then near it, then the rest; from inferred places, never a verified location</p>
+        <div class="sf-chips">${near.join("")}</div>` : ""}
+      <h3>Category <span class="note">a frame must have every one chosen</span></h3>
+      <div class="sf-chips">${chips("cat", facets.category)}</div>
+      <h3>Published on YouTube</h3>
+      <div class="sf-chips"><button type="button" data-year="">All</button>${chips("year", facets.year)}</div>
+      <button type="button" class="sf-clear">Clear all</button>
+    </div>`;
+  panel.prepend(statsEl); // the live count, at the top
+  panel.querySelector(".sf-q").addEventListener("input", (e) => {
+    $("q").value = e.target.value;
+    $("q").dispatchEvent(new Event("input")); // the search, as if typed at the bottom
+  });
+  syncFilters();
 }
-$("filters").onclick = () => openFilters($("filterpop").hidden);
-document.addEventListener("pointerdown", (e) => { if (!e.target.closest("#filterwrap")) openFilters(false); });
-$("sort").onchange = (e) => {
-  if (queryImage && e.target.value !== IMAGE_SORT) setQueryImage(null);
-  e.target.classList.toggle("set", !!e.target.value);
-  syncFilters(); fitControls(); load();
+// which choices are on (the panel isn't redrawn, so typing in its search keeps the focus)
+function syncFilterPanel(n) {
+  const box = panelMode === "filters" && panel.querySelector(".sf");
+  if (!box) return;
+  for (const b of box.querySelectorAll("[data-sort]")) b.classList.toggle("on", b.dataset.sort === $("sort").value);
+  for (const b of box.querySelectorAll("[data-cat]")) b.classList.toggle("on", cats.has(b.dataset.cat));
+  for (const b of box.querySelectorAll("[data-year]")) b.classList.toggle("on", b.dataset.year === $("year").value);
+  box.querySelector(".sf-clear").classList.toggle("on", !!(n || $("q").value));
+  const q = box.querySelector(".sf-q");
+  if (document.activeElement !== q) q.value = $("q").value;
+}
+panel.addEventListener("click", (e) => {
+  const b = e.target.closest?.(".sf button");
+  if (!b) return;
+  if (b.classList.contains("sf-clear")) return clearAll();
+  if ("sort" in b.dataset) {
+    if (queryImage && b.dataset.sort !== IMAGE_SORT) setQueryImage(null);
+    $("sort").value = b.dataset.sort;
+  } else if ("cat" in b.dataset) cats.has(b.dataset.cat) ? cats.delete(b.dataset.cat) : cats.add(b.dataset.cat);
+  else if ("year" in b.dataset) $("year").value = b.dataset.year === $("year").value ? "" : b.dataset.year;
+  syncFilters();
+  load();
+});
+$("filters").onclick = () => {
+  if (panelMode === "filters") return leavePanel();
+  if (currentView() !== "grid") setView("grid"); // sorting works in the gallery
+  openPanel("filters");
 };
-
 // Search by image: drop or paste an image anywhere; the grid is ordered by visual similarity to it, shown
 // as the sort "Like your image" (pick another sort, or Clear all, to stop). The image is only held in
 // memory by the local server, never added to the library.
 const IMAGE_SORT = "__image";
 let queryImage = null; // { id }
 async function useImage(file) {
-  if (documentView) return;
+  if (documentView || mapView) return;
   if (!file || !file.type.startsWith("image/")) return;
-  $("stats").textContent = "Reading image…";
+  // the image becomes a sort: show it in Sort & filter, over the gallery
+  if (currentView() !== "grid") setView("grid");
+  if (panelMode !== "filters") openPanel("filters");
+  statsEl.textContent = "Reading image…";
   try {
     const r = await fetch("/api/query-image", { method: "POST", body: file, headers: { "Content-Type": file.type } });
     if (!r.ok) throw new Error((await r.json()).detail ?? r.status);
     setQueryImage({ id: (await r.json()).id });
     load();
   } catch (err) {
-    $("stats").textContent = `Couldn't use that image: ${err.message}`;
+    statsEl.textContent = `Couldn't use that image: ${err.message}`;
   }
 }
 function setQueryImage(q) {
@@ -1144,7 +1488,8 @@ function setQueryImage(q) {
     $("sort").value = IMAGE_SORT;
   } else if ($("sort").value === IMAGE_SORT || !$("sort").value) $("sort").value = "";
   $("sort").classList.toggle("set", !!$("sort").value);
-  syncFilters(); fitControls();
+  syncFilters();
+  showFilters(); // (when open) "Like your image" joins or leaves the sorts
 }
 window.addEventListener("dragover", (e) => { if ([...e.dataTransfer.items].some((i) => i.type.startsWith("image/"))) e.preventDefault(); });
 window.addEventListener("drop", (e) => {
@@ -1155,25 +1500,25 @@ window.addEventListener("paste", (e) => {
   const file = [...(e.clipboardData?.files ?? [])].find((f) => f.type.startsWith("image/"));
   if (file && !e.target.matches?.("input, textarea")) { e.preventDefault(); useImage(file); }
 });
-for (const id of ["category", "year"]) {
-  $(id).onchange = (e) => { e.target.classList.toggle("set", !!e.target.value); fitControls(); syncFilters(); load(); };
-}
 $("q").addEventListener("input", syncFilters);
 // Clear all: sort, filters, search and the image
-$("clear").onclick = () => {
-  $("q").value = $("sort").value = $("category").value = $("year").value = "";
-  for (const id of ["sort", "category", "year"]) $(id).classList.remove("set");
+function clearAll() {
+  $("q").value = $("sort").value = $("year").value = "";
+  cats.clear();
   setQueryImage(null);
   load();
-};
+}
 
 document.addEventListener("keydown", (e) => {
-  if (e.target === $("q")) { if (e.key === "Escape") $("q").blur(); return; }
-  if (e.key === "Escape" && !$("filterpop").hidden) { openFilters(false); $("filters").focus(); return; }
   if (e.key === "Escape" && panelMode && e.target.matches?.("input, textarea, select")) { e.target.blur(); return; }
   if (e.key === "Escape" && panelMode) { leavePanel(); return; }
-  if (documentView || e.target.matches?.("select, input, button, textarea")) return;
-  if (e.key === "/") { e.preventDefault(); $("q").focus(); }
+  if (documentView || mapView || e.target.matches?.("select, input, button, textarea")) return;
+  if (e.key === "/") { // search: in Sort & filter, over the gallery
+    e.preventDefault();
+    if (currentView() !== "grid") setView("grid");
+    if (panelMode !== "filters") openPanel("filters");
+    panel.querySelector(".sf-q")?.focus();
+  }
   if (e.key === "Escape" && pinned !== null) unpin(null);
   if (e.key === "ArrowRight") { e.preventDefault(); go(Math.min(items.length - 1, current + 1)); }
   if (e.key === "ArrowLeft") { e.preventDefault(); go(Math.max(0, current - 1)); }
@@ -1183,7 +1528,7 @@ document.addEventListener("keydown", (e) => {
 // In the timeline view a pinch stretches time instead, re-wrapping the timelines as it goes.
 const zoom = setupZoom({
   root: main,
-  enabled: () => !documentView,
+  enabled: () => !documentView && !mapView,
   axis: () => (timeline ? "x" : "both"),
   stretch: {
     clamp: (s) => clampScale(tlScale * s) / tlScale,
@@ -1245,26 +1590,26 @@ function openPanel(mode) {
   for (const t of main.querySelectorAll(".tile.on")) t.classList.remove("on");
   current = -1;
   panelMode = mode;
-  for (const id of ["video", "evidence"]) {
-    $(id).classList.toggle("set", id === mode);
-    $(id).setAttribute("aria-expanded", id === mode);
-  }
+  for (const id of ["video", "evidence"]) $(id).classList.toggle("set", id === mode);
+  for (const id of ["video", "evidence", "filters"]) $(id).setAttribute("aria-expanded", id === mode);
   panel.dataset.video = "";
   if (mode === "video") {
     panel.replaceChildren(videoForm ??= buildVideoForm());
     refreshVideoForm();
-  } else showEvidence();
+  } else if (mode === "filters") showFilters();
+  else showEvidence();
 }
 // Closing Evidence goes back to Video; closing Video (its button, Esc) leaves the panel empty, so hovering a
 // frame shows it, until a frame is pinned and let go again. A frame clicked meanwhile just closes it (to the frame).
 function closePanel() {
   peek = null;
   panelMode = null;
-  for (const id of ["video", "evidence"]) { $(id).classList.remove("set"); $(id).setAttribute("aria-expanded", "false"); }
+  for (const id of ["video", "evidence"]) $(id).classList.remove("set");
+  for (const id of ["video", "evidence", "filters"]) $(id).setAttribute("aria-expanded", "false");
   panel.dataset.video = "";
   panel.replaceChildren();
 }
-const leavePanel = () => (panelMode === "evidence" ? openPanel("video") : closePanel());
+const leavePanel = () => (panelMode === "evidence" || panelMode === "filters" ? openPanel("video") : closePanel());
 for (const id of ["video", "evidence"]) $(id).onclick = () => (panelMode === id ? leavePanel() : openPanel(id));
 const setLibCookie = (slug) => { document.cookie = `lib=${encodeURIComponent(slug)}; path=/; max-age=31536000; samesite=strict`; };
 function switchLibrary(slug) {
@@ -1289,6 +1634,7 @@ async function showEvidence() {
         <span class="acts"><button type="button" data-act="reveal">${reveal}</button><button type="button" data-act="rename">Rename</button></span>
       </li>`).join("")}
     </ul>`;
+  panel.prepend(statsEl); // the live count, at the top
 }
 // live: the counts follow jobs while the list is open (not while a name is being edited)
 setInterval(() => { if (panelMode === "evidence" && !panel.querySelector(".folders input")) showEvidence(); }, 10000);
@@ -1536,6 +1882,6 @@ function showJob(job) {
 
 showView(); // here, once the whole module is defined (the slider's range needs the subtitles' constants)
 intro(); // the Video panel shows at once, before the folder's images have loaded
-if (documentView) load();
+if (documentView || mapView) load(); // views with their own left panel don't wait for the folder's frames
 await Promise.allSettled([loadVideos(), pollStats(), loadFolders()]);
-if (!documentView) load();
+if (!documentView && !mapView) load();

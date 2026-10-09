@@ -1,8 +1,9 @@
 """Frame selection and extraction.
 
 Pass 1 (FFmpeg, one downscaled decode of the whole video): select frames that are
-either a scene change (``scene > threshold``) or the first frame after ``interval_s``
-seconds without a selection. Each one's exact presentation timestamp, scene score, and
+a scene change (``scene > threshold``), the first frame after ``interval_s``
+seconds without a selection, or, within a shot, a frame once the camera has moved on
+(a pan or flight shows a new stretch of landscape). Each one's exact presentation timestamp, scene score, and
 a small RGB preview are recorded. Blank and near-duplicate candidates are dropped using
 the previews, which the pipeline also classifies to choose which frames to keep.
 
@@ -15,9 +16,14 @@ from __future__ import annotations
 import json
 import logging
 import re
+import shutil
 import subprocess
+import sys
+import threading
+from collections import deque
 from dataclasses import dataclass, field
 from fractions import Fraction
+from functools import cache
 from pathlib import Path
 from typing import Iterator
 
@@ -53,7 +59,7 @@ class Probe:
 class Candidate:
     pts_time: float  # absolute container timestamp
     scene_score: float | None
-    selection: str  # "scene_change" | "interval"
+    selection: str  # "scene_change" | "interval" | "camera_move"
     preview: np.ndarray | None = field(default=None, repr=False, compare=False)  # RGB, longest side PREVIEW_PX
 
 
@@ -67,8 +73,27 @@ class ExtractedFrame:
     quality: FrameQuality
 
 
+def _low(cmd: list[str]) -> list[str]:
+    """Run FFmpeg at low priority: it still uses every idle core, but the browser and the site's server come first,
+    so pages stay smooth while videos are added."""
+    return ["nice", "-n", "10", *cmd] if shutil.which("nice") else cmd
+
+
+@cache
+def _hwaccel() -> tuple[str, ...]:
+    """Hardware video decoding for the whole-video scan on macOS (VideoToolbox: the same pixels, about a third of the
+    CPU). FFmpeg falls back to software for a codec the hardware can't decode."""
+    if sys.platform != "darwin":
+        return ()
+    try:
+        out = subprocess.run(["ffmpeg", "-hide_banner", "-hwaccels"], capture_output=True, text=True).stdout
+    except OSError:
+        return ()
+    return ("-hwaccel", "videotoolbox") if "videotoolbox" in out.split() else ()
+
+
 def _run(cmd: list[str]) -> subprocess.CompletedProcess:
-    proc = subprocess.run(cmd, capture_output=True)
+    proc = subprocess.run(_low(cmd), capture_output=True)
     if proc.returncode != 0:
         raise ExtractionError(f"{cmd[0]} failed ({proc.returncode}): {proc.stderr.decode(errors='replace')[-800:]}")
     return proc
@@ -111,31 +136,129 @@ _SCENE = re.compile(r"lavfi\.scene_score=([\d.]+)")
 
 
 def select_candidates(path: Path, cfg: ExtractionConfig, info: Probe | None = None) -> list[Candidate]:
-    """One pass over the video: timestamps, scene scores, and a small preview of every selected frame."""
+    """One pass over the video: timestamps, scene scores, and a small preview of every selected frame.
+
+    Selected: scene changes, the first frame after ``interval_s`` without one, and, within a shot (looked at every
+    ``view_step_s``), a frame once the camera has moved on from the last selected one (``view_overlap``): a pan or a
+    flight over a landscape gives a frame for each new stretch of it, a static shot still gives one. Previews are
+    read as FFmpeg makes them and only the selected ones are kept, so the dense look doesn't hold the whole video.
+    """
     pw, ph = preview_size(info or probe(path))
-    expr = f"gt(scene\\,{cfg.scene_threshold})+isnan(prev_selected_t)+gte(t-prev_selected_t\\,{cfg.interval_s})"
+    step = min(cfg.interval_s, cfg.view_step_s) if cfg.view_step_s else cfg.interval_s
+    expr = f"gt(scene\\,{cfg.scene_threshold})+isnan(prev_selected_t)+gte(t-prev_selected_t\\,{step})"
     vf = f"scale={pw}:{ph},setsar=1,select='{expr}',metadata=mode=print"
-    proc = _run([
-        "ffmpeg", "-hide_banner", "-nostats", "-i", str(path), "-an", "-sn", "-dn", "-vf", vf,
-        "-fps_mode", "passthrough", "-f", "rawvideo", "-pix_fmt", "rgb24", "-",
-    ])
-    marks: list[tuple[float, float | None]] = []
-    for line in proc.stderr.decode(errors="replace").splitlines():
-        if "Parsed_metadata" not in line:
-            continue
-        if m := _PTS.search(line):
-            marks.append((float(m.group(1)), None))
-        elif (m := _SCENE.search(line)) and marks:
-            marks[-1] = (marks[-1][0], float(m.group(1)))
-    size = pw * ph * 3
-    if len(proc.stdout) != size * len(marks):
-        raise ExtractionError(f"preview size mismatch: {len(proc.stdout)} bytes for {len(marks)} frames")
-    pixels = np.frombuffer(proc.stdout, np.uint8).reshape(len(marks), ph, pw, 3)
-    out = []
-    for (pts, score), px in zip(marks, pixels):
-        is_scene = score is not None and score > cfg.scene_threshold
-        out.append(Candidate(pts, score, "scene_change" if is_scene else "interval", px))
+    cmd = ["ffmpeg", "-hide_banner", "-nostats", *_hwaccel(), "-i", str(path), "-an", "-sn", "-dn", "-vf", vf,
+           "-fps_mode", "passthrough", "-f", "rawvideo", "-pix_fmt", "rgb24", "-"]
+    proc = subprocess.Popen(_low(cmd), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    marks: list[list] = []  # [pts_time, scene score], one per frame FFmpeg passes on, in order
+    tail: deque[str] = deque(maxlen=20)
+    ready = threading.Condition()
+    finished = False
+
+    def read_marks() -> None:  # stderr on its own thread, so neither pipe can fill up and stall FFmpeg
+        nonlocal finished
+        for raw in proc.stderr:
+            line = raw.decode(errors="replace")
+            tail.append(line)
+            if "Parsed_metadata" not in line:
+                continue
+            with ready:
+                if m := _PTS.search(line):
+                    marks.append([float(m.group(1)), None])
+                elif (m := _SCENE.search(line)) and marks:
+                    marks[-1][1] = float(m.group(1))
+                ready.notify_all()
+        with ready:
+            finished = True
+            ready.notify_all()
+
+    reader = threading.Thread(target=read_marks, daemon=True)
+    reader.start()
+    size, n, out = pw * ph * 3, 0, []
+    last: _View | None = None  # the last selected frame, which a frame within the same shot is compared with
+    try:
+        while buf := proc.stdout.read(size):
+            if len(buf) != size:
+                raise ExtractionError(f"preview size mismatch: a frame of {len(buf)} bytes, not {size}")
+            with ready:  # a frame's scene score is printed before the next frame's time
+                ready.wait_for(lambda: len(marks) > n + 1 or finished)
+                if len(marks) <= n:
+                    raise ExtractionError(f"preview size mismatch: frame {n + 1} without a timestamp")
+                pts, score = marks[n]
+            n += 1
+            px = np.frombuffer(buf, np.uint8).reshape(ph, pw, 3)
+            if score is not None and score > cfg.scene_threshold:
+                selection = "scene_change"
+            elif last is None or pts - last.pts_time >= cfg.interval_s - 1e-6:
+                selection = "interval"
+            elif last.moved_from(view := _View(pts, px), cfg):
+                selection = "camera_move"
+            else:
+                continue
+            last = view if selection == "camera_move" else _View(pts, px)
+            out.append(Candidate(pts, score, selection, px))
+    finally:
+        proc.stdout.close()
+        proc.wait()
+        reader.join()
+    if proc.returncode != 0:
+        raise ExtractionError(f"ffmpeg failed ({proc.returncode}): {''.join(tail)[-800:]}")
+    if n != len(marks):
+        raise ExtractionError(f"preview size mismatch: {n} frames for {len(marks)} timestamps")
     return out
+
+
+class _View:
+    """A preview's grey image and (lazily) its ORB features, for telling whether the camera has moved on."""
+
+    _orb = None
+
+    def __init__(self, pts_time: float, rgb: np.ndarray):
+        self.pts_time = pts_time
+        self.gray = cv2.cvtColor(rgb, cv2.COLOR_RGB2GRAY)
+        self.hash = dhash(self.gray)
+        self._features = None
+
+    @property
+    def features(self):
+        if self._features is None:
+            if _View._orb is None:
+                _View._orb = cv2.ORB_create(1000)
+            self._features = _View._orb.detectAndCompute(self.gray, None)
+        return self._features
+
+    def moved_from(self, other: "_View", cfg: ExtractionConfig) -> bool:
+        if bin(self.hash ^ other.hash).count("1") <= cfg.dedup_hamming:
+            return False  # a near-duplicate: certainly the same view
+        shared = view_overlap(self, other)
+        return shared is not None and shared < cfg.view_overlap
+
+
+def view_overlap(a: _View, b: _View) -> float | None:
+    """Share of view two frames have in common (0..1). Their ORB features are matched and a similarity transform
+    (shift, turn, zoom) fitted; each frame's outline is mapped into the other and the smaller covered share is
+    returned, so a zoom or a flight forward counts as well as a pan. 0 when nothing matches (the camera has moved
+    on); None when a frame has too little texture to tell (sky, water, fog)."""
+    (ka, da), (kb, db) = a.features, b.features
+    if da is None or db is None or len(ka) < 20 or len(kb) < 20:
+        return None
+    matches = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True).match(da, db)
+    if len(matches) < 15:
+        return 0.0
+    pa = np.float32([ka[m.queryIdx].pt for m in matches])
+    pb = np.float32([kb[m.trainIdx].pt for m in matches])
+    M, inliers = cv2.estimateAffinePartial2D(pa, pb, method=cv2.RANSAC, ransacReprojThreshold=4)
+    if M is None or inliers is None or int(inliers.sum()) < 12:
+        return 0.0
+    h, w = a.gray.shape
+    outline = np.float32([[0, 0], [w, 0], [w, h], [0, h]]).reshape(-1, 1, 2)
+
+    def covered(m) -> float:
+        mask = np.zeros((h, w), np.uint8)
+        cv2.fillConvexPoly(mask, cv2.transform(outline, m).reshape(-1, 2).round().astype(np.int32), 1)
+        return float(mask.mean())
+
+    return min(covered(M), covered(cv2.invertAffineTransform(M)))
 
 
 def thin_candidates(cands: list[Candidate], cfg: ExtractionConfig, limit: int | None = None) -> list[Candidate]:
@@ -143,7 +266,7 @@ def thin_candidates(cands: list[Candidate], cfg: ExtractionConfig, limit: int | 
     kept: list[Candidate] = []
     for c in sorted(cands, key=lambda c: c.pts_time):
         if kept and c.pts_time - kept[-1].pts_time < cfg.min_gap_s:
-            if c.selection == "scene_change" and kept[-1].selection == "interval":
+            if c.selection == "scene_change" and kept[-1].selection != "scene_change":
                 kept[-1] = c
             continue
         kept.append(c)

@@ -106,6 +106,16 @@ def test_policy_blocks_non_cc_download(pipeline):
     assert not list(pipeline.lib.video(YID).media.iterdir())
 
 
+def test_forced_reingest_that_cannot_download_keeps_the_frames(pipeline, monkeypatch):
+    first = pipeline.ingest(YID, api_item=API_ITEM, contexts=[])
+    refused = Acquisition(status="unavailable", policy="public", reason="Sign in to confirm you're not a bot")
+    monkeypatch.setattr(acquisition, "download", lambda cfg, dirs, lib, yid: (refused, None))
+    again = pipeline.ingest(YID, api_item=API_ITEM, contexts=[], force=True)
+    video = json.loads(pipeline.lib.video(YID).video_json.read_text())
+    assert again.frames == first.frames > 0 and len(video["frame_ids"]) == first.frames
+    assert video["acquisition"]["status"] == "downloaded"
+
+
 def test_frame_source_link_is_immutable_in_db(pipeline):
     pipeline.ingest(YID, api_item=API_ITEM, contexts=[])
     conn = sqlite3.connect(pipeline.lib.db_path)

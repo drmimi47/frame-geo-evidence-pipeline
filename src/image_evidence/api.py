@@ -171,6 +171,42 @@ def create_app(library_dir: Path, study_areas: list | None = None) -> FastAPI:
         return {"video_id": video_id, "fetched": captions is not None,
                 **geo_text.subtitles(v, captions, geo_text.english_captions(video_dir, captions))}
 
+    @app.get("/api/tracks")
+    def tracks(request: Request):
+        """Videos with an inferred camera path (`inferred/track.json`, made by `evidence track`): the Temporal Map."""
+        from .track import track_path
+
+        x = ctx(request)
+        out = []
+        for v in x.repo.list_videos(1000, 0):
+            p = track_path(x.lib.videos / v.source.youtube_id)
+            if p.exists():
+                out.append({"video_id": v.video_id, "youtube_id": v.source.youtube_id, "title": v.source.title})
+        return out
+
+    @app.get("/api/videos/{video_id}/track")
+    def track(request: Request, video_id: str):
+        import json
+
+        from .track import track_path
+
+        x = ctx(request)
+        v = x.repo.get_video(video_id)
+        if v is None:
+            raise HTTPException(404, "video not found")
+        p = track_path(x.lib.videos / v.source.youtube_id)
+        if not p.exists():
+            raise HTTPException(404, "no inferred track for this video")
+        t = json.loads(p.read_text())
+        frames = {f.frame_id: f for f in x.repo.get_frames([f["frame_id"] for f in t["frames"]])}
+        for f in t["frames"]:
+            if rec := frames.get(f["frame_id"]):
+                s = x.svc.summary(rec)
+                f["thumb_url"], f["web_url"] = s["thumb_url"], s["web_url"]
+        return {**t, "title": v.source.title, "channel_title": v.source.channel_title,
+                "published_at": v.source.published_at.isoformat(), "duration_s": v.source.duration_s,
+                "source_url": v.source.source_url}
+
     # ------------------------------------------------------------ Video panel
 
     def same_site(request: Request) -> None:
