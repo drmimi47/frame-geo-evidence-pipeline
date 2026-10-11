@@ -345,6 +345,21 @@ def build_walk(video: dict, frames: list[dict], plan: dict, step_s: float = 1.0)
                      "along_start_m": round(along(v0 + 1e-3)), "along_end_m": round(along(v1 - 1e-3))})
     for k in range(1, len(segs)):
         segs[k]["skipped_m"] = segs[k]["along_start_m"] - segs[k - 1]["along_end_m"]
+    # runs of cuts with only short takes between them (each filming less than MIN_SKIP_M): on a map their few metres
+    # filmed vanish among the skips, so the run reads as one stretch not filmed; how the skipped ground divides between
+    # the cuts isn't known (it is spread between the fixed points), so where those takes lie on it is a guess
+    skips = []
+    for k in range(1, len(segs)):
+        run = skips[-1] if skips and skips[-1]["last"] == k - 1 and segs[k - 1]["along_end_m"] - segs[k - 1]["along_start_m"] < MIN_SKIP_M else None
+        if run is None:
+            run = {"first": k, "filmed_m": 0, "skipped_m": 0}
+            skips.append(run)
+        else:
+            run["filmed_m"] += segs[k - 1]["along_end_m"] - segs[k - 1]["along_start_m"]
+        run["last"] = k
+        run["skipped_m"] += segs[k]["skipped_m"]
+    skips = [{"video_start": segs[s["first"]]["video_start"], "video_end": segs[s["last"]]["video_start"],
+              "cuts": s["last"] - s["first"] + 1, "skipped_m": s["skipped_m"], "filmed_m": s["filmed_m"]} for s in skips]
 
     def insert_at(t: float) -> dict | None:
         return next((x for x in inserts if x["start"] <= t < x["end"]), None)
@@ -386,6 +401,7 @@ def build_walk(video: dict, frames: list[dict], plan: dict, step_s: float = 1.0)
         "route": {"length_m": round(total, 1), "roads": [], "pieces": [{"name": p["name"], "note": p.get("note", "")} for p in plan["pieces"]],
                   "coordinates": [[round(x, 6), round(y, 6)] for x, y in coords], "along_m": [round(c, 1) for c in cum]},
         "segments": segs,
+        "skips": skips,
         "inserts": inserts,
         "settlements": _settlements(coords, cum),
         "frames": frame_points,

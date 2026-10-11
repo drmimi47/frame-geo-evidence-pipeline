@@ -38,6 +38,13 @@ const clock = (s) => {
   return `${m}:${sec}`;
 };
 const km = (m) => (Math.abs(m) < 1000 ? `${Math.round(m)} m` : `${(m / 1000).toFixed(1)} km`);
+const SKIP_LABEL_M = 200; // a walk's runs of cuts skipping at least this are labelled on the map
+// a run of cuts with only short takes between them (track.json `skips`): why it reads as one dashed stretch
+const about = (m) => km(m < 1000 ? Math.round(m / 10) * 10 : m);
+const filmedNote = (m) => (m < 5 ? "almost nothing filmed" : `about ${about(m)} filmed`);
+const skipNote = (x, path = "path") => `${clock(x.video_start)}–${clock(x.video_end)}: ${x.cuts} cuts in ${Math.round(x.video_end - x.video_start)} s
+  skip about ${about(x.skipped_m)} of ${path}, with ${filmedNote(x.filmed_m)} between them: too little to show as solid, so it reads as one stretch.`;
+const SKIP_GUESS = "How a run's skipped ground divides between its cuts isn't known (it is spread evenly between the fixed points), so where the short takes between them lie on it is a guess.";
 const COMPASS = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
 const compass = (deg) => COMPASS[Math.round(((deg % 360) + 360) % 360 / 45) % 8];
 const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -279,8 +286,10 @@ function buildPanel(st) {
   const cuts = tr.segments.slice(1).map((s, k) => {
     const prev = tr.segments[k], gap = km(s.along_start_m - prev.along_end_m);
     const why = s.clock_start ? `clock jumps ${Math.round((new Date(s.clock_start) - new Date(prev.clock_end)) / 60000)} min · ` : "";
+    // after the last cut of a run with only short takes between them: what the run skips, as one stretch
+    const run = (tr.skips ?? []).find((x) => x.cuts > 1 && x.video_end === s.video_start);
     return `<li><button type="button" data-t="${s.video_start}">Cut at ${clock(s.video_start)}</button>
-      <span class="muted">· ${why}${gap} of ${path} not filmed</span></li>`;
+      <span class="muted">· ${why}${gap} of ${path} not filmed</span></li>${run ? `<li class="muted tm-run">${skipNote(run, path)}</li>` : ""}`;
   }).join("");
   // a walk's capture time is the season the narrator names; a drive's is the dashcam clock
   const filmed = tr.capture.clock_start
@@ -310,6 +319,7 @@ function buildPanel(st) {
         : "inferred, not a GPS track: the dot is where the road and the clock put the camera, give or take the shaded stretch"}</span></dd>
     </dl>
     <h3 class="tm-h">Cuts</h3><ul class="tm-list">${cuts || "<li class='muted'>None: one continuous take</li>"}</ul>
+    ${(tr.skips ?? []).some((x) => x.cuts > 1) ? `<p class="small muted tm-credit">${SKIP_GUESS}</p>` : ""}
     ${passes ? `<h3 class="tm-h">Passes</h3><ul class="tm-list">${passes}</ul>` : ""}
     <p class="small muted tm-credit">${walk
       ? "Paths © OpenStreetMap contributors (ODbL), routed by FOSSGIS OSRM · old map: as shown in the video"
@@ -592,7 +602,13 @@ function buildMap(st, gl) {
     st.fixed = [
       label([tr.start.lon, tr.start.lat], `<b>A</b> start · ${clock(tr.segments[0].video_start)}`, "end"),
       label([tr.end.lon, tr.end.lat], `<b>B</b> end · ${clock(tr.duration_s)}`, "end"),
-      // (a walk's skips are only dashed: they are many, and spread evenly between its fixed points, not measured)
+      // (a walk's cuts aren't labelled one by one: they are many, and spread evenly between its fixed points, not
+      // measured; only its long runs of them, as one stretch, where the takes between are too short to show)
+      ...(isWalk(tr) ? (tr.skips ?? []).filter((x) => x.skipped_m >= SKIP_LABEL_M).map((x) => {
+        const a = tr.segments.find((s) => s.video_end === x.video_start), b = tr.segments.find((s) => s.video_start === x.video_end);
+        return label(lerpAlong(r, (a.along_end_m + b.along_start_m) / 2),
+          `not filmed · ${x.cuts > 1 ? `${clock(x.video_start)}–${clock(x.video_end)}` : clock(x.video_start)} · about ${about(x.skipped_m)}`, "cut");
+      }) : []),
       ...tr.segments.slice(1).flatMap((s, k) => {
         const prev = tr.segments[k], skip = s.along_start_m - prev.along_end_m;
         if (isWalk(tr)) return [];

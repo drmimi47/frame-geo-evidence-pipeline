@@ -210,6 +210,17 @@ ends = [{"label": e["label"], "xyz": xyz(e["lon"], e["lat"])} for e in (track["s
 marks = [{"label": str(k + 1), "xyz": [round(v, 1) for v in (to_xz(*c)[0], height(*c), to_xz(*c)[1])]}
          for k, c in enumerate(next(p.get("points", p["coords"]) for p in plan["pieces"] if p["name"] == "bandura_points"))]
 
+# the long stretches not filmed (the Route Map's `skips`): a run of cuts with only short takes between them reads as
+# one dash, and where those takes lie on it is a guess
+clock = lambda t: f"{round(t) // 60}:{round(t) % 60:02d}"
+dist = lambda m: f"{round(m, -1):.0f} m" if m < 1000 else f"{m / 1000:.1f} km"
+long_skips = [x for x in track.get("skips", []) if x["skipped_m"] >= 100]
+skip_text = (" Long stretches not filmed: " + "; ".join(
+    f"{clock(x['video_start'])}, one cut, about {dist(x['skipped_m'])}" if x["cuts"] == 1 else
+    f"{clock(x['video_start'])}–{clock(x['video_end'])}, {x['cuts']} cuts, about {dist(x['skipped_m'])} (about "
+    f"{dist(x['filmed_m'])} filmed between them)" if x["filmed_m"] >= 5 else f"{clock(x['video_start'])}–{clock(x['video_end'])}, {x['cuts']} cuts, about {dist(x['skipped_m'])}" for x in long_skips) + ". Where cuts run together, the few metres filmed "
+    "between them are too short to show as solid, and how the skipped ground divides between the cuts isn't known (it is "
+    "spread evenly), so where those takes and their dots lie on it is a guess.") if long_skips else ""
 x0, z0 = to_xz(W, N)
 x1, z1 = to_xz(E, S)
 terrain = {
@@ -238,7 +249,7 @@ terrain = {
         {"label": "Turned", "evidence": a.bearing_note},
         {"label": "Lines", "evidence": "From the Route Map. Blue: the Bandura as the old map draws it (the uploader's "
          "dot), through the user's points (Bandura river 1–8; 4–8 refitted to the old channel the drained bed shows). White: the walk as the Route Map draws it, solid where filmed, dashed where a cut "
-         "skips it, a dot for each frame, and its start and end (A, B); estimates, the take's own stretch left out."},
+         "skips it, a dot for each frame, and its start and end (A, B); estimates, the take's own stretch left out." + skip_text},
         {"label": "Sources", "evidence": ("FABDEM V1-2, Hawker et al. 2022, University of Bristol (CC BY-NC-SA 4.0), from " if a.dem == "fabdem" else "")
          + "Copernicus WorldDEM-30 © DLR e.V. 2010–2014 and © Airbus Defence and Space GmbH 2014–2018, provided under "
          "COPERNICUS by the European Union and ESA. Contains modified Copernicus Sentinel data 2023–2024, via Microsoft "

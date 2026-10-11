@@ -5,7 +5,11 @@
 # keys: iters (splat training steps; -1 keeps the splat already trained, the default), level (ice: the frozen water
 # is level, so its plane is horizontal; else the best of four estimates), eye (camera height above the ground he
 # walks on, m), source (the footage, e.g. "480p"), keep (percentile of the points kept by distance, default 97),
-# splats (most kept, default 1200000: more and the viewer stutters), open (the moment, s into the video, whose camera the viewer flies in to on load; else it stops at the overview).
+# splats (most kept, default 1200000: more and the viewer stutters), open (the moment, s into the video, whose camera the viewer flies in to on load; else it stops at the overview),
+# also (PREFIX@START@FPS: a later stretch of the same place, its frames named PREFIX0001... from START s at FPS, solved
+# together with the take; START:END stay the first stretch, named f0001...), fit (a factor on the size, set by the user
+# against the map), radius and reach (m: override the take's radius and reach, worked out from its points, when the
+# splats reach otherwise: the viewer fades the splats' rim from the radius).
 import json, math, shutil, sys, pathlib
 import numpy as np, pycolmap
 
@@ -47,8 +51,11 @@ for name, work, start, end, label, opt in takes:
     work, start, end = pathlib.Path(work), float(start), float(end)
     iters, eye, keep_pct = int(opt.get("iters", -1)), float(opt.get("eye", 1.5)), float(opt.get("keep", 97))
     names = sorted(p.name for p in (work / "images").glob("*.jpg"))
-    fps = (len(names) - 1) / (end - start)
-    time_of = lambda n: round(start + (int(n[1:5]) - 1) / fps, 2)
+    first = [n for n in names if n.startswith("f")]
+    fps = (len(first) - 1) / (end - start)
+    later = dict(zip(("prefix", "start", "fps"), opt["also"].split("@"))) if "also" in opt else None
+    time_of = lambda n: round(float(later["start"]) + (int(n[1:5]) - 1) / float(later["fps"]) if later and n.startswith(later["prefix"])
+                              else start + (int(n[1:5]) - 1) / fps, 2)
     rec = max((pycolmap.Reconstruction(p) for p in (work / "sparse").iterdir() if p.is_dir()), key=lambda r: r.num_reg_images())
     # a take is one continuous path: where a camera jumps far from the frame before (100x the usual step), the
     # mapper has placed it wrongly; keep the longest run between such jumps. (A stray camera hundreds of units out
@@ -103,7 +110,8 @@ for name, work, start, end, label, opt in takes:
     near = rel[(dist <= np.percentile(dist, 10)) & (rel < 0)]
     hist, e = np.histogram(near, bins=40, range=(float(np.percentile(near, 2)), 0.0))
     cam_h = -float(e[np.argmax(hist)] + (e[1] - e[0]) / 2)
-    scale = eye / cam_h
+    fit = float(opt.get("fit", 1))
+    scale = eye / cam_h * fit
     hc0 = float(np.median((Cs - c0) @ up))
     # viewer axes: y up; x, z on the ground, -z the way the camera first looks; origin on the ground under the cameras
     f0 = Rs[0].T @ [0, 0, 1]; f0 = f0 - up * (f0 @ up); f0 /= np.linalg.norm(f0)
@@ -138,23 +146,25 @@ for name, work, start, end, label, opt in takes:
         f.write(f"ply\nformat binary_little_endian 1.0\nelement vertex {len(V)}\nproperty float x\nproperty float y\nproperty float z\nproperty uchar red\nproperty uchar green\nproperty uchar blue\nend_header\n".encode())
         f.write(arr.tobytes())
     cam = rec.cameras[imgs[0].camera_id]
-    under = np.median([c["position"] for c in cams], axis=0) - [0, eye, 0]
+    under = np.median([c["position"] for c in cams], axis=0) - [0, eye * fit, 0]
     piece = {"name": name, "label": label, "start": start, "end": end, "frames": len(names), "registered": len(imgs),
-             "points": f"{name}_points.ply", "point_count": int(len(V)), "eye_height": eye,
+             **({"also": [round(min(c["t"] for c in cams if c["t"] > end), 2), round(max(c["t"] for c in cams), 2)]} if later else {}),
+             "points": f"{name}_points.ply", "point_count": int(len(V)), "eye_height": round(eye * fit, 3),
              **({"open_t": float(opt["open"])} if "open" in opt else {}),
              "fov_deg": round(math.degrees(2 * math.atan(cam.height / 2 / cam.params[0])), 1),
              "world": [round(float(v), 6) for v in M4.T.flatten()], "cameras": cams,
-             "radius_m": round(float(np.percentile(d[keep], 90)), 1),
+             "radius_m": float(opt["radius"]) if "radius" in opt else round(float(np.percentile(d[keep], 90)), 1),
              # what the view looks at: the ground under where the cameras stood (a turn-around films all round
              # them), and how far the reconstruction reaches from there
              "centre": [round(float(v), 2) for v in under],
-             "reach": round(float(np.percentile(np.linalg.norm(V - under, axis=1), 85)), 2),
+             "reach": float(opt["reach"]) if "reach" in opt else round(float(np.percentile(np.linalg.norm(V - under, axis=1), 85)), 2),
              "provenance": [
-                 {"label": "Footage", "evidence": f"{opt.get('source', '480p')}, {len(names)} frames ({fps:.0f} a second); "
+                 {"label": "Footage", "evidence": f"{opt.get('source', '480p')}, {len(names)} frames ({fps:.0f} a second){f', {len(names) - len(first)} of them from a later stretch of the same place (from {float(later["start"]):.1f} s), solved together' if later else ''}; "
                   f"{len(imgs)} placed{f', {dropped} left out (placed off the camera path, or under the ground)' if dropped else ''}."},
                  {"label": "Upright", "evidence": level_note},
                  {"label": "Size", "evidence": f"The phone taken to be {eye} m above the ground he walks on (the commonest level just "
-                  "below the cameras): an assumption, not a measurement."},
+                  "below the cameras): an assumption, not a measurement."
+                  + (f" Then sized ×{fit:g} by the user, by eye against the street map under it." if fit != 1 else "")},
              ]}
     sp = out / f"{name}.splat"
     if iters > 0:

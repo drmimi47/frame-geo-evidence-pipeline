@@ -7,6 +7,10 @@
 // over main and #research, like the Route Map. three.js and Spark come from the import map in index.html.
 let state = null; // the shown scene: { renderer, raf, ... }; renderScene replaces it, leaveScene clears it
 const FLY_MS = 900;
+// the view's field of view (vertical, degrees): a little wider than the phone's (the ice pools' 37°), so it feels like
+// standing there, not so wide that the splats' edges (beyond what was filmed) show much; a camera's own view keeps the
+// phone's, so it matches the frame
+const VIEW_FOV = 50;
 const INTRO_MS = 4200; // on load: from far out, in to the take's opening camera (`open_t`)
 const INTRO_FAR = 3.2; // how many times the overview's distance it starts from
 const INTRO_HOLD_MS = 700; // a still moment far out first, while the splats are drawn for the first time
@@ -90,7 +94,7 @@ export async function renderScene(main, research) {
 function panel(st, research, list, v) {
   const sc = st.scene;
   const pick = list.length > 1 ? `<select class="tm-pick" id="sc-pick">${list.map((x) => `<option value="${esc(x.video_id)}"${x.video_id === v.video_id ? " selected" : ""}>${esc(x.title)}</option>`).join("")}</select>` : "";
-  const takes = (sc.pieces ?? []).map((x, k) => `<li><button type="button" data-piece="${k}">${esc(x.label)}, ${clock(x.start)}–${clock(x.end)}</button>
+  const takes = (sc.pieces ?? []).map((x, k) => `<li><button type="button" data-piece="${k}">${esc(x.label)}, ${clock(x.start)}–${clock(x.end)}${x.also ? ` and ${clock(x.also[0])}–${clock(x.also[1])}` : ""}</button>
     <span class="muted">· ${x.registered} of ${x.frames} frames placed${x.gaussians ? ` · ${x.gaussians.toLocaleString()} splats` : ""}</span></li>`).join("");
   research.innerHTML = `
     <div class="head">
@@ -392,7 +396,7 @@ async function view(st, main, research) {
     const h = Math.max(-swing, Math.min(swing, turnTo));
     const look = north.clone().multiplyScalar(Math.cos(h)).addScaledVector(east, Math.sin(h));
     const span = Math.max(...T.grid.x.map(Math.abs), ...T.grid.z.map(Math.abs)); // the take to the land's farthest edge
-    const dist = (span * 0.72) / Math.tan(THREE.MathUtils.degToRad((x.fov_deg ?? 60) / 2));
+    const dist = (span * 0.72) / Math.tan(THREE.MathUtils.degToRad(VIEW_FOV / 2));
     const tilt = THREE.MathUtils.degToRad(LAND_TILT);
     x.land = { T, uniforms, lines,
       area: { target: mid, position: mid.clone().addScaledVector(look, -dist * Math.cos(tilt)).add(new THREE.Vector3(0, dist * Math.sin(tilt), 0)) } };
@@ -416,7 +420,7 @@ async function view(st, main, research) {
   };
 
   let cur = -1, at = -1, vi = -1, fly = null, moved = false; // moved: the pointer took over, so the intro doesn't start
-  const flyTo = (to, ms = FLY_MS, curve = ease) => { fly = { t0: performance.now(), ms, curve, p0: camera.position.clone(), q0: controls.target.clone(), p1: to.position, q1: to.target }; };
+  const flyTo = (to, ms = FLY_MS, curve = ease) => { fly = { t0: performance.now(), ms, curve, p0: camera.position.clone(), q0: controls.target.clone(), p1: to.position, q1: to.target, fov0: camera.fov, fov1: to.fov ?? VIEW_FOV }; };
   // a take seen whole: from above and to one side of the reconstruction's middle, far enough to take it all in
   const overview = (x) => {
     const c = new THREE.Vector3(...(x.centre ?? [0, 0, 0])), r = Math.max(2, x.reach ?? x.radius_m ?? 10);
@@ -430,12 +434,12 @@ async function view(st, main, research) {
     wake(1500);
     research.querySelectorAll("button[data-piece]").forEach((b) => b.classList.toggle("set", +b.dataset.piece === k));
     const x = pieces[k];
-    $("sc-take").textContent = `${x.label}, ${clock(x.start)}–${clock(x.end)}`;
+    $("sc-take").textContent = `${x.label}, ${clock(x.start)}–${clock(x.end)}${x.also ? ` and ${clock(x.also[0])}–${clock(x.also[1])}` : ""}`;
     $("sc-shown").innerHTML = `${x.gaussians ? `${x.gaussians.toLocaleString()} Gaussian splats` : `${x.point_count.toLocaleString()} points`}<span class="note">${x.registered} of ${x.frames} frames placed${x.gaussians && SPLAT_GRADE ? "; its shadows drawn a little cooler, and what is far off hazed, to sit with the map (the model's colours are as filmed)" : ""}</span>`;
     $("sc-cam").textContent = "drag to turn, right-drag or shift-drag to move, scroll to zoom";
     // this take's own notes: its footage, how it was levelled and sized
     $("sc-notes").innerHTML = (x.provenance ?? []).map((p) => `<dt>${esc(p.label)}</dt><dd>${esc(p.evidence)}</dd>`).join("");
-    camera.fov = x.fov_deg ?? 60;
+    camera.fov = VIEW_FOV;
     camera.updateProjectionMatrix();
     const o = overview(x);
     const intro = !glide && x.open_t != null;
@@ -540,7 +544,7 @@ async function view(st, main, research) {
   const camPose = (x, j) => {
     const c = x.cameras[j], p = new THREE.Vector3(...c.position);
     const fwd = new THREE.Vector3(0, 0, -1).applyQuaternion(new THREE.Quaternion(...c.quaternion));
-    return { position: p, target: p.clone().add(fwd.multiplyScalar(2)) };
+    return { position: p, target: p.clone().add(fwd.multiplyScalar(2)), fov: x.fov_deg ?? VIEW_FOV };
   };
   const label = (x, j) => {
     at = j; vi = -1;
@@ -591,6 +595,8 @@ async function view(st, main, research) {
     m.normalize().multiplyScalar(v * dt);
     camera.position.add(m);
     controls.target.add(m);
+    // walking off a camera's own view: its lens widens back to the view's over about a second
+    if (camera.fov !== VIEW_FOV) { camera.fov += Math.sign(VIEW_FOV - camera.fov) * Math.min(Math.abs(VIEW_FOV - camera.fov), 15 * dt); camera.updateProjectionMatrix(); }
     wake();
   };
   renderer.domElement.addEventListener("pointerdown", (e) => { down = [e.clientX, e.clientY]; fly = null; moved = true; });
@@ -620,6 +626,7 @@ async function view(st, main, research) {
       const f = Math.min(1, (now - fly.t0) / fly.ms), e = fly.curve(f);
       if (fly.path && f < 1) fly.path(e);
       else { camera.position.lerpVectors(fly.p0 ?? fly.p1, fly.p1, e); controls.target.lerpVectors(fly.q0 ?? fly.q1, fly.q1, e); }
+      if (fly.fov1 != null && camera.fov !== fly.fov1) { camera.fov = fly.fov0 + (fly.fov1 - fly.fov0) * e; camera.updateProjectionMatrix(); }
       if (f === 1) fly = null;
       wake();
     }
