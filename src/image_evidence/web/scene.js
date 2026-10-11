@@ -28,12 +28,20 @@ const SPLAT_GRADE = 0.12; // how far its shadows shift cool (and lose a little c
 const SPLAT_HAZE = [1.2, 12, 2.2, 45]; // haze from 1.2× the view's distance + 12 m to 2.2× + 45 m beyond the eye
 // the take's footprint on the land (where its splats lie, seen from above): the land dimmed under it, not in a round patch
 const FOOT_M = 40, FOOT_N = 160, FOOT_LEVEL = 5; // ±m round its middle, cells a side, opacity per m² at its edge
+// W A S D move the view (forward, left, back, right, level with the ground), Q E down and up, Shift faster: the eye and
+// what it looks at go together, at a speed that follows the view's distance (walking pace in the take, faster from afar)
+const MOVE_KEYS = { w: [0, 0, 1], s: [0, 0, -1], a: [-1, 0, 0], d: [1, 0, 0], q: [0, -1, 0], e: [0, 1, 0] };
+const MOVE_SPEED = [0.6, 1.5, 3000]; // m/s per m of the view's distance, at least, at most
+const MOVE_FAST = 3;
 const smooth = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
 
 export function leaveScene() {
   if (!state) return;
   cancelAnimationFrame(state.raf);
   state.ro?.disconnect();
+  removeEventListener("keydown", state.onKey, true);
+  removeEventListener("keyup", state.onKeyUp, true);
+  removeEventListener("blur", state.onBlur);
   state.controls?.dispose();
   state.renderer?.dispose();
   state.renderer?.forceContextLoss(); // hand the GPU memory back at once, not whenever the page is collected
@@ -95,6 +103,7 @@ function panel(st, research, list, v) {
       <dt>Take</dt><dd id="sc-take"></dd>
       <dt>Shown</dt><dd id="sc-shown"></dd>
       <dt>View</dt><dd id="sc-cam"></dd>
+      <dt>Move</dt><dd>W A S D, Q E down and up<span class="note">Shift for faster; drag to look round, scroll to come closer</span></dd>
     </dl>
     <p class="tm-summary">${esc(sc.summary)}</p>
     <h3 class="tm-h">Takes</h3><ul class="tm-list">${takes}</ul>
@@ -157,11 +166,11 @@ async function view(st, main, research) {
           `${o.gsplat}.rgba.a *= 1.0 - smoothstep(${f(r * SPLAT_FEATHER[0])}, ${f(r * SPLAT_FEATHER[1])}, rim);`,
           `vec3 col = clamp(${i.gsplat}.rgba.rgb, 0.0, 1.0);`,
           `float lum = dot(col, vec3(0.3, 0.59, 0.11));`,
-          // its shadows a little cooler and greyer, toward the land's blue; highlights (the ice) as they are
+          // its shadows a little cooler and greyer; highlights (the ice) as they are
           `col = mix(col, mix(vec3(lum), col, 0.8) + lum * vec3(-0.25, 0.0, 0.35), ${f(SPLAT_GRADE * 4)} * (1.0 - smoothstep(0.3, 0.75, lum)));`,
           // haze: what lies well beyond what the view looks at sinks toward the dark land
           `float haze = smoothstep(${i.h0}, ${i.h1}, distance(${i.gsplat}.center, vec3(${i.ex}, ${i.ey}, ${i.ez})));`,
-          `col = mix(col, vec3(0.04, 0.055, 0.075), 0.8 * haze);`,
+          `col = mix(col, vec3(0.055), 0.8 * haze);`,
           `${o.gsplat}.rgba.rgb = col;`,
         ] }).outputs.gsplat }));
     m.updateGenerator();
@@ -244,7 +253,7 @@ async function view(st, main, research) {
   };
 
   // the land around a take: heights on a grid in metres around it (x east, z south), true to size, turned and set on
-  // its ground as terrain.json says; drawn as a map in a duotone, near-black and the Bandura's pale blue (terrain_layers: open water darkest, and
+  // its ground as terrain.json says; drawn as a map in greys, no colour (terrain_layers: open water darkest, and
   // where the drained bed stays wet, its old channels, lighter), shaded from the north-west, with contour lines every
   // metre, dimmed round the take. Round the take it is drawn as if at the far end of the view, so the take's own model
   // always shows over it (its ice lies lower than the land's flat old water) and the land only where it has none
@@ -292,8 +301,8 @@ async function view(st, main, research) {
       void main() {
         vec4 L = texture2D(layers, vUv);
         float h = vP.y + base, d = length(vP.xz); // the real height, m above sea level; how far from the take
-        // a duotone: every tone a mix of two inks, near-black and the Bandura line's pale blue (t, 0 to 1)
-        const vec3 INK0 = vec3(0.015, 0.02, 0.03), INK1 = vec3(0.62, 0.81, 1.0);
+        // black and white, no colour (decided with the user): every tone a grey from near-black to light grey (t, 0 to 1)
+        const vec3 INK0 = vec3(0.02), INK1 = vec3(0.77);
         // the ground: darker low (the bed and islands), lighter high (the bank), shaded from the north-west;
         // the shading steepened 4 times so a gentle land still reads (the heights themselves are true to size)
         vec3 n = normalize(vec3(vN.x * 4.0, vN.y, vN.z * 4.0));
@@ -301,7 +310,7 @@ async function view(st, main, research) {
         float t = g * (0.62 + 0.62 * max(dot(n, normalize(vec3(-1.0, 1.3, -1.0))), 0.0));
         // where the drained bed stays wet (its old channels): lighter
         t = mix(t, 0.4, 0.85 * smoothstep(0.12, 0.6, L.g));
-        ${map ? `// the street map in the same two inks: its water darkest (the river and the channels it draws), its roads and
+        ${map ? `// the street map in the same greys: its water darkest (the river and the channels it draws), its roads and
         // tracks lightest, its land and wetland as mid tones by their lightness; shaded by the relief, so it lies on the heights
         vec3 o = texture2D(osm, vUv).rgb;
         float lum = dot(o, vec3(0.3, 0.59, 0.11)), ow = smoothstep(0.04, 0.1, o.b - o.r) * smoothstep(0.0, 0.05, o.b - o.g);
@@ -549,6 +558,41 @@ async function view(st, main, research) {
   // a click (not a drag) on a ring flies to that camera
   const ray = new THREE.Raycaster();
   let down = null;
+  // W A S D (see MOVE_KEYS): held keys move the view each frame; typing in a field doesn't
+  const keys = new Set();
+  let fast = false;
+  st.onKey = (e) => {
+    const k = e.key.toLowerCase();
+    fast = e.shiftKey;
+    if (!(k in MOVE_KEYS) || e.metaKey || e.ctrlKey || e.altKey || e.target.matches?.("input, select, textarea")) return;
+    e.preventDefault();
+    keys.add(k);
+    fly = null; moved = true;
+    wake();
+  };
+  st.onKeyUp = (e) => { keys.delete(e.key.toLowerCase()); fast = e.shiftKey; };
+  st.onBlur = () => { keys.clear(); fast = false; };
+  addEventListener("keydown", st.onKey, true);
+  addEventListener("keyup", st.onKeyUp, true);
+  addEventListener("blur", st.onBlur);
+  let lastNow = 0;
+  const walk = (now) => {
+    const dt = Math.min(0.1, (now - lastNow) / 1000);
+    lastNow = now;
+    if (!keys.size) return;
+    const fwd = controls.target.clone().sub(camera.position).setY(0);
+    if (fwd.lengthSq() < 1e-9) fwd.set(0, 0, -1).applyQuaternion(camera.quaternion).setY(0);
+    fwd.normalize();
+    const right = new THREE.Vector3(-fwd.z, 0, fwd.x), m = new THREE.Vector3();
+    for (const k of keys) { const [x, y, z] = MOVE_KEYS[k]; m.addScaledVector(right, x).addScaledVector(fwd, z).y += y; }
+    if (m.lengthSq() < 1e-9) return;
+    const far = camera.position.distanceTo(controls.target);
+    const v = Math.min(MOVE_SPEED[2], Math.max(MOVE_SPEED[1], far * MOVE_SPEED[0])) * (fast ? MOVE_FAST : 1);
+    m.normalize().multiplyScalar(v * dt);
+    camera.position.add(m);
+    controls.target.add(m);
+    wake();
+  };
   renderer.domElement.addEventListener("pointerdown", (e) => { down = [e.clientX, e.clientY]; fly = null; moved = true; });
   renderer.domElement.addEventListener("wheel", () => { fly = null; moved = true; }, { passive: true });
   renderer.domElement.addEventListener("pointerup", (e) => {
@@ -585,6 +629,7 @@ async function view(st, main, research) {
       if (f === 1) st.fading = null;
       wake();
     }
+    walk(now);
     controls.update();
     // from a few metres to a few kilometres: the near plane follows the distance, so the depth stays sharp at both
     const far = camera.position.distanceTo(controls.target), L = pieces[cur]?.land;
