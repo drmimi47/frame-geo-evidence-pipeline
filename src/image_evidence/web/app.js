@@ -1,6 +1,7 @@
 import { LEVELS, setupZoom } from "./zoom.js";
 import { renderDocument } from "./document.js";
 import { renderMap, leaveMap } from "./map.js";
+import { renderScene, leaveScene } from "./scene.js";
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -34,12 +35,14 @@ let peek = null;            // { nodes, focus } of the Video/Evidence panel whil
 // Its subtitles mode shows each video's captions instead of the filmstrip.
 // The chosen view is remembered per browser (localStorage.view), so a reload stays on it; the first visit opens on the
 // gallery (with the Video panel, the panel's resting state).
-const VIEWS = ["grid", "map", "timeline", "subtitles", "document"];
+const VIEWS = ["grid", "timeline", "subtitles", "document", "map", "scene"];
 const savedView = (() => { try { const v = localStorage.getItem("view"); return VIEWS.includes(v) ? v : "grid"; } catch { return "grid"; } })();
 let timeline = savedView === "timeline" || savedView === "subtitles", subs = savedView === "subtitles";
 let documentView = savedView === "document";
-// Temporal Map (map.js): a video's inferred path on a map, in step with the video; it takes over main and #research.
+// Route Map (map.js): a video's inferred path on a map, in step with the video; it takes over main and #research.
 let mapView = savedView === "map";
+// Scene Viewer (scene.js): a Gaussian splat view; it takes over main and #research too.
+let sceneView = savedView === "scene";
 // The first time the gallery is drawn (every page load, hard reloads included), the images on screen fade in one
 // by one in a random order across the grid; later re-draws (search, filters) fade in all at once. They wait until
 // those images have arrived (or REVEAL_WAIT_MS), so on a hard reload, with nothing cached, they still appear
@@ -65,6 +68,7 @@ async function load(reuse = false) {
   const seq = ++loadSeq;
   if (documentView) return renderDocument(main, $("research"));
   if (mapView) return renderMap(main, $("research"));
+  if (sceneView) return renderScene(main, $("research"));
   const keep = items[current]?.frame_id;
   const p = new URLSearchParams({ limit: 500 });
   if ($("q").value) p.set("q", $("q").value);
@@ -116,7 +120,7 @@ function detail(id) {
 // ---------------------------------------------------------------- grid
 
 function render(list) {
-  if (documentView || mapView) return;
+  if (documentView || mapView || sceneView) return;
   const sorted = !timeline && !!($("sort").value || queryImage);
   const groups = new Map();
   if (sorted) {
@@ -424,7 +428,7 @@ function layoutTimeline() {
 }
 
 // Zoom slider, in every view; right is bigger. Timeline and subtitles: the same stretch as a pinch, on a log
-// scale over its whole range. Gallery: one step per column count (zoom.js LEVELS), fewest columns on the right,
+// scale over its whole range. Frame Gallery: one step per column count (zoom.js LEVELS), fewest columns on the right,
 // snapping with the same glide as a pinch.
 const SLIDER_MAX = 1000;
 let gridLevel = 0; // the gallery's column level (zoom.js), kept by its onChange
@@ -639,7 +643,7 @@ function tlAnchor() {
   return under || [...main.querySelectorAll(".tl-video")].find((s) => s.getBoundingClientRect().bottom > 0);
 }
 
-// Filmstrip thumbnails load when their segment scrolls into view.
+// Frame Sequence thumbnails load when their segment scrolls into view.
 // A strip's slit-scanned edges. Each thumbnail gives its left and right edge slits (2% of its width, just
 // inside the border, averaged to one column of SLIT_ROWS pixels). The stretch either side of an image is a
 // small image shading from one column to the other, which the CSS stretches across it: from the middle of
@@ -742,7 +746,7 @@ const thumbs = new IntersectionObserver((entries) => {
 
 addEventListener("resize", () => { if (timeline) layoutTimeline(); });
 
-// Ahead of time, while the page is idle: what the Filmstrip and Transcript need that the gallery doesn't, so
+// Ahead of time, while the page is idle: what the Frame Sequence and Transcript need that the gallery doesn't, so
 // switching to them draws at once. Every shown strip's edge shadings (in the worker, top of the page first) and
 // every video's transcript. Each is made once (shading, loadSubtitles), so asking again costs nothing. The first
 // time waits for the gallery's fade-in to finish, so it never competes with it.
@@ -753,7 +757,7 @@ function warmSoon() {
   warmTimer = setTimeout(() => (window.requestIdleCallback ?? ((f) => f()))(prewarm, { timeout: 2000 }), wait);
 }
 function prewarm() {
-  if (documentView || mapView || !items.length) return;
+  if (documentView || mapView || sceneView || !items.length) return;
   warmedOnce = true;
   const thumb = new Map(items.map((it) => [it.frame_id, it.thumb_url]));
   for (const id of new Set(items.map((it) => it.video_id))) {
@@ -772,12 +776,14 @@ function setView(view) {
   ++loadSeq; // discard any frame request still loading from the previous view
   documentView = view === "document";
   mapView = view === "map";
+  sceneView = view === "scene";
   if (!mapView) leaveMap();
+  if (!sceneView) leaveScene();
   timeline = view === "timeline" || view === "subtitles";
   subs = view === "subtitles";
   tlScale = readZoom();
   try { localStorage.setItem("view", view); } catch {}
-  if (documentView || mapView) {
+  if (documentView || mapView || sceneView) {
     thumbs.disconnect();
     endPeek();
     setPin(-1);
@@ -791,16 +797,17 @@ function setView(view) {
   drawWords(); // clears the words when leaving the subtitles view
   load(true);
 }
-// Four views, one selected at a time. Existing stored view names remain compatible.
-const currentView = () => (mapView ? "map" : documentView ? "document" : subs ? "subtitles" : timeline ? "timeline" : "grid");
+// The views, one selected at a time. Existing stored view names remain compatible.
+const currentView = () => (sceneView ? "scene" : mapView ? "map" : documentView ? "document" : subs ? "subtitles" : timeline ? "timeline" : "grid");
 function showView(animate = false) {
-  const takeover = documentView || mapView; // views that bring their own left panel
+  const takeover = documentView || mapView || sceneView; // views that bring their own left panel
   main.classList.toggle("document", documentView);
   main.classList.toggle("map", mapView);
+  main.classList.toggle("scene", sceneView);
   panel.hidden = takeover;
   $("research").hidden = !takeover;
   $("corner").hidden = takeover;
-  $("tlzoom").hidden = mapView; // (the Temporal Map grows its timeline out of it: map.js)
+  $("tlzoom").hidden = mapView || sceneView; // (the Route Map grows its timeline out of it: map.js; the Scene Viewer has nothing to zoom)
   syncSlider(animate);
   for (const b of document.querySelectorAll("button.view")) {
     const on = b.dataset.view === currentView();
@@ -835,7 +842,7 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => { th
 themeLabel();
 for (const b of document.querySelectorAll("button.view")) {
   b.onclick = () => { if (b.dataset.view !== currentView()) setView(b.dataset.view); };
-  // pointing at Filmstrip or Transcript is a head start on what they need, in case the idle time hasn't done it yet
+  // pointing at Frame Sequence or Transcript is a head start on what they need, in case the idle time hasn't done it yet
   if (b.dataset.view === "timeline" || b.dataset.view === "subtitles") b.addEventListener("pointerenter", prewarm);
 }
 
@@ -1075,13 +1082,13 @@ function setPin(i) {
   pinned = items[i]?.frame_id ?? null;
   main.classList.toggle("has-pin", pinned !== null);
   spreadTo(pinned);
-  zoomTo(timeline || documentView || mapView ? -1 : i);
+  zoomTo(timeline || documentView || mapView || sceneView ? -1 : i);
   if (pinned === null) return;
   for (const t of main.querySelectorAll(`.tile[data-i="${i}"]`)) t.classList.add("pinned"); // a wrapped timeline frame has several pieces
   select(i);
 }
 
-// Gallery: a pinned frame opens out of its tile to fill the gallery side, whole (its own aspect, not the tile's
+// Frame Gallery: a pinned frame opens out of its tile to fill the gallery side, whole (its own aspect, not the tile's
 // crop), over the page background; unpinning shrinks it back into its tile (or fades it, if the tile has
 // scrolled away). The arrow keys and the tally step through frames in place. Clicking it or the space around
 // it unpins, like clicking a pinned tile.
@@ -1381,7 +1388,7 @@ $("q").oninput = () => { clearTimeout(t); t = setTimeout(load, 250); };
 
 // Sort & filter: the button beside Evidence opens it in the left panel (held like Evidence: hovering frames
 // shows them, and closing it goes back to Video), over the gallery, where sorting works: it switches the view
-// to the Gallery. Search, every sort with what it does, categories (a frame must have every one chosen) and
+// to the Frame Gallery. Search, every sort with what it does, categories (a frame must have every one chosen) and
 // the year published, each applied at once so the grid changes beside it. The button says how many are set
 // ("Sort & filter · 2").
 const SORTS = [
@@ -1465,7 +1472,7 @@ $("filters").onclick = () => {
 const IMAGE_SORT = "__image";
 let queryImage = null; // { id }
 async function useImage(file) {
-  if (documentView || mapView) return;
+  if (documentView || mapView || sceneView) return;
   if (!file || !file.type.startsWith("image/")) return;
   // the image becomes a sort: show it in Sort & filter, over the gallery
   if (currentView() !== "grid") setView("grid");
@@ -1512,7 +1519,7 @@ function clearAll() {
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && panelMode && e.target.matches?.("input, textarea, select")) { e.target.blur(); return; }
   if (e.key === "Escape" && panelMode) { leavePanel(); return; }
-  if (documentView || mapView || e.target.matches?.("select, input, button, textarea")) return;
+  if (documentView || mapView || sceneView || e.target.matches?.("select, input, button, textarea")) return;
   if (e.key === "/") { // search: in Sort & filter, over the gallery
     e.preventDefault();
     if (currentView() !== "grid") setView("grid");
@@ -1528,7 +1535,7 @@ document.addEventListener("keydown", (e) => {
 // In the timeline view a pinch stretches time instead, re-wrapping the timelines as it goes.
 const zoom = setupZoom({
   root: main,
-  enabled: () => !documentView && !mapView,
+  enabled: () => !documentView && !mapView && !sceneView,
   axis: () => (timeline ? "x" : "both"),
   stretch: {
     clamp: (s) => clampScale(tlScale * s) / tlScale,
@@ -1882,6 +1889,6 @@ function showJob(job) {
 
 showView(); // here, once the whole module is defined (the slider's range needs the subtitles' constants)
 intro(); // the Video panel shows at once, before the folder's images have loaded
-if (documentView || mapView) load(); // views with their own left panel don't wait for the folder's frames
+if (documentView || mapView || sceneView) load(); // views with their own left panel don't wait for the folder's frames
 await Promise.allSettled([loadVideos(), pollStats(), loadFolders()]);
-if (!documentView && !mapView) load();
+if (!documentView && !mapView && !sceneView) load();

@@ -160,12 +160,13 @@ Keep it minimal (loose reference: mos.nyc). No header and no dashboards. The lay
   (one tick per extracted frame, proportional to the video's duration, with a playhead you can scrub),
   frame info, and inferred metadata with notes;
 - a numbered grid on the right, grouped by video. It holds only images and frame numbers: no video titles or other text;
-- Gallery, Temporal Map, Filmstrip, Transcript, Reconstruction, a zoom slider and the Light/Dark icon fixed at the bottom right
+- Frame Gallery, Frame Sequence, Transcript, Reconstruction, Route Map, Scene Viewer, a zoom slider and the Light/Dark icon fixed at the bottom right
   (no search box there: search is typed in Sort & filter; `/` opens it),
-  in that order left to right, all at 14px, on one line with equal gaps. Gallery, Filmstrip and Transcript are the three views,
-  one button each with exactly one on (the code calls them "grid", "timeline" and "subtitles"). The chosen view is
+  in that order left to right, all at 14px, on one line with equal gaps (names decided with the user). These are the views,
+  one button each with exactly one on (the code calls them "grid", "timeline", "subtitles", "document", "map" and "scene";
+  Scene Viewer, `scene.js`, below). The chosen view is
   remembered per browser (`localStorage.view`), so a reload stays on it (decided with the user); a first visit opens
-  on the Gallery, with the Video panel. The first time the gallery is drawn in a page load (hard reloads included), the
+  on the Frame Gallery, with the Video panel. The first time the gallery is drawn in a page load (hard reloads included), the
   images on screen fade in one by one in a random order across the grid over about 1.4 s (`revealGallery`,
   `REVEAL_MS`, a random transition delay each), with no flicker or flash. They first wait for each other to download
   (up to `REVEAL_WAIT_MS`), and any still arriving after that get a random delay of their own, so with nothing cached
@@ -176,7 +177,37 @@ Keep it minimal (loose reference: mos.nyc). No header and no dashboards. The lay
   (`zoom.js` `stretchBy`), on a log scale over `tlRange()`; in the gallery it steps through the column counts
   (`zoom.js` `LEVELS`, `set`), fewest columns on the right, with the same snap glide as a pinch.
   Light/Dark is an icon only (a half-filled circle, no text; its tooltip says which theme it switches to). It follows the system until clicked, then is remembered per browser (`localStorage.theme`, `data-theme` on `<html>`);
-- Filmstrip (the timeline view): one row per video like a clip in an editing timeline, with no text, numbers
+- Scene Viewer (`scene.js`, `/api/scenes`, `/api/videos/{id}/scene`): 3D reconstructions from a video's own footage,
+  shown like a 3D viewer (black ground whatever the theme, orbit controls, a ring per second where the camera stood, fly
+  to a camera). On load a take with an `open_t` (compose.py `open=`) starts far out and flies in, curving down behind
+  the camera, to the camera at that moment, or to its `open_view` when it has one (for the ice pools a view set by the user a few
+  metres behind the camera at 4:55, looking at the right pool; not kept by a rebuild, which changes the take's coordinates); a click,
+  drag or scroll stops it. Previous/Next view step through a take's chosen views (`views` in scene.json, kept by a rebuild since they are moments in the video, not coordinates): for the ice pools 8, chosen against the footage so a viewer can find each in the video (walk-in 4:42, first sight 4:52, the opening view 4:55, beside the pool 5:00, across it 5:04, its end 5:08, the second pool 5:13, last look 5:28), each from `back` m behind and `rise` m above the camera at that moment, looking `look` m along its view, with a link to that moment on YouTube; without views they step through every camera. The splat is dressed for the map on the GPU (a Spark world modifier; the model itself is unchanged): its rim fades out from 0.9 to 1.45 times the take's radius (`SPLAT_FEATHER`: its splats reach about 1.4, the trees round it, the loose ones beyond), and it is always in its own colours (a far-off duotone was tried and removed by the user), with two light touches, said in the panel: its shadows a little cooler and greyer (`SPLAT_GRADE`; highlights and the ice untouched) and what lies well beyond what the view looks at hazed toward the dark land (`SPLAT_HAZE`, scaled by the view's distance). Its footprint (where its splats lie, worked out from them on load: `footprint`, `FOOT_*`) dims the land under it, in place of a round dark patch (no outline: removed by the user). It draws only while the view moves (and briefly after), so a still view costs no GPU, and leaving it frees its WebGL context. One take at a time, each on its own (its own place and scale). Saved in `derived/scene/` (`scene.json`
+  + per take a `.splat` and points `.ply`), tier `inferred` with confidence and provenance: the shape comes from the
+  footage; the size is an assumption (the phone 1.5 m above the ground) and the panel says so. Built by `scripts/scene/`
+  (pycolmap, every frame matched with every other, the uploader's logo masked; msplat splats on the Mac's GPU, floaters
+  dropped, at most 1.2 million splats: Spark sorts them all each frame the view moves, and the full 2.5 million stuttered); floaters can be deleted by hand in SuperSplat (`scripts/scene/splat_ply.py` out to a .ply and back in, capped; delete only, never move the model, and the take's notes say so): the ice pools' cleaned full set is `pools_cleaned.ply` beside it, lost to a retrain in a separate venv. Only takes where the camera turns around a place work (decided with the user, after an
+  attempt on the walking shots failed): for cSThxR6dXpc the two ice pools at 4:38–5:28, from a 1080p download, levelled on the ice (frozen water is level) and sized from the phone at 1.3 m (the user's notes; a turn-around at 3:18–3:34 was tried and removed).
+  Walking straight ahead gives too little to go on, and takes across a cut share no view: never join them into one
+  model. Never generate (hallucinate) a scene from a single image for evidence.
+  The land around a take (`scripts/scene/terrain.py` → `derived/scene/terrain.json` + `terrain_layers.webp`, tier
+  `inferred`): FABDEM bare-earth heights (Copernicus GLO-30 without trees; 2011–15, so the former reservoir is flat water
+  in them: the drained bed has no relief), true to size, never exaggerated (decided with the user), drawn as a map in a
+  duotone (decided with the user: near-black and the Bandura line's pale blue): shaded by height, contours every metre, open water darkest, and where the drained bed stays wet (Sentinel-2
+  moisture over six dates after the drainage: its old channels) lighter. Over it lies the Route Map's street map (`scripts/scene/osm_map.py` → `terrain_osm.webp`: OpenStreetMap, today's map, reprojected to the land's grid), in the same two inks (its water darkest, roads lightest) at `LAND_MAP` strength and shaded by the relief, so it blankets the heights and shows the river channels and roads they lack; credited on the canvas, a backdrop only (nothing is read off it), kept by a terrain rebuild. `terrain.jpg` (true colour) is kept for a
+  sharper photo drape near the take, still to try. On it the Bandura in blue and the walk drawn as the Route Map draws it
+  (solid where filmed, dashed where a cut skips it, a dot per frame, A and B; wide lines, `Line2`), fading out as the view
+  comes down into the take (the splats' trees don't hide lines behind them). By default the take is placed and turned as the Route Map has it: at its estimate, its cameras'
+  way first to last along the Route Map's walk over the same seconds (the footage has no compass). The ice pools are set
+  by the user (`--at`, `--bearing`, with notes): at the trail's point at 6:15, turned 224.5° (first 239°, fine-tuned against the street map), so the splat's narrow end,
+  where the videographer walks in, points back to the last Bandura point; the walk plan's `ice_pits` piece then runs the
+  jump at the cut at 4:28 into that end and the Route Map's frames of the take along its own camera path. The lines
+  leave out only the take's own camera path, so the way in reaches the splat. On load the view starts over the whole area from the south (north up,
+  so the map is never upside down), turned toward the opening view's way by at most 60° (from the south-east or
+  south-west, decided with the user: no 180° spin), with the take in the middle; the land fades in as the flight starts,
+  and it comes down to the take, turning the rest of the way gradually over the descent; round the take the land never
+  hides the model;
+- Frame Sequence (the timeline view): one row per video like a clip in an editing timeline, with no text, numbers
   or ruler: each extracted frame starts at a black vertical bar at its timestamp and runs until the next bar, with its
   image in the middle of that stretch and its edges slit-scanned out to the bars: the image's outermost columns
   stretched sideways, shading into the neighbouring frame's edge colours at the bar, so streaks blend from one image to
@@ -242,7 +273,7 @@ Keep it minimal (loose reference: mos.nyc). No header and no dashboards. The lay
   of 20 videos" (with a Near sort, how many images are near the place);
 - Sort & filter (beside Evidence, a sliders icon before the word; the button counts what is set, "Sort & filter · 2"):
   opens in the panel, held like Evidence (hovering frames shows them; Esc or the button goes back to Video; a frame
-  clicked and let go comes back to it), and switches the view to the Gallery, where sorting works. Top to bottom: the
+  clicked and let go comes back to it), and switches the view to the Frame Gallery, where sorting works. Top to bottom: the
   live count, a search field (the same search as the bottom one), Sort (every sort with a line on what it does, and
   "Like your image" while an image is the sort), the study-area places as "Near" sorts (one note, then the names),
   Category (any number; a frame must have every one chosen), Published on YouTube (All or one year; counts are over the
@@ -251,7 +282,7 @@ Keep it minimal (loose reference: mos.nyc). No header and no dashboards. The lay
   Dropping or pasting an image opens it too;
 - Video (bottom left, an upload icon before the word): a form in the panel. It is the panel's resting state: open on
   load (at once, before the images arrive) and whenever nothing is selected (after a frame is unpinned, or Evidence is closed); there is no intro text.
-  Opening it deselects any frame. Hovering frames (in all three views) shows each in its place, and moving the pointer
+  Opening it deselects any frame. Hovering frames (in the Frame Gallery, Frame Sequence and Transcript) shows each in its place, and moving the pointer
   off the images brings it back as it was (typed text and focus kept; the same for Evidence, except while renaming);
   clicking a frame pins it, and closing Video (its button, Esc) leaves the panel empty so hovering frames shows them. It keeps what was typed. YouTube links sit in the
   title's place ("Paste a YouTube link, links"); Search is one line like the other fields (it grows as you type), and its example cycles through ten (`SEARCH_EXAMPLES`, no "e.g.", every `EXAMPLE_MS`): drawn over the field, not as a placeholder, so the old one lifts and fades as the next rises in; under them one grid of settings, all 14px with even rows and no help text: Search, YouTube key,

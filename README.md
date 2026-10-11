@@ -86,8 +86,10 @@ Every record has three tiers: **`source`** (what YouTube reports), **`derived`**
 ## Web viewer
 
 `evidence serve` runs a minimal read-only site: a frame panel on the left and a numbered image grid on the right.
-- Three views: **Gallery** (a grid of every image), **Filmstrip** (each video as a filmstrip) and **Transcript**
-  (each spoken word at its time, with place names and land words emphasised).
+- Views: **Frame Gallery** (a grid of every image), **Route Map** (a video's inferred path on a map, its frames
+  standing where they were taken), **Frame Sequence** (each video as a filmstrip), **Transcript** (each spoken word at
+  its time, with place names and land words emphasised), **Reconstruction** (below) and **Scene Viewer** (a Gaussian
+  splat view, not built yet).
 - You can also sort, filter, search text, and search by image (drop or paste an image).
 - Pinch or `+`/`−` to zoom. Click a frame to pin it; Esc to unpin.
 - **Video** (bottom left) adds videos from the browser: paste links, or describe what to search for. Paste your

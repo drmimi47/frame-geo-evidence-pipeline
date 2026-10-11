@@ -306,7 +306,12 @@ class Pipeline:
             log.info("[%s] keeping %d of %d (subject score >= %.2f; prefer %s, avoid %s)", yid, len(keep), len(cands),
                      ccfg.min_subject, "/".join(ccfg.prefer), "/".join(ccfg.avoid))
             cands, results, emb = [cands[i] for i in keep], [results[i] for i in keep], emb[keep]
+        return self._store(video, dirs, media_path, probe, cands, results, emb)
 
+    def _store(self, video: VideoRecord, dirs: VideoDirs, media_path, probe, cands, results, emb) -> list[str]:
+        """Decode the chosen candidates at full resolution and write their images, records, features and embeddings."""
+        ecfg = self.cfg.extraction
+        yid = video.source.youtube_id
         fmt = original_format(ecfg, len(cands)) if ecfg.keep_originals else None
         inferred = infer(video.source, video.discovery, video.scope)
         pipeline_info = PipelineInfo(version=__version__, config_digest=self.cfg.digest())
@@ -363,6 +368,47 @@ class Pipeline:
             visual.save_embeddings(dirs.meta.parent / "embeddings.npz", rows, self.cfg.classification.model)
             self.repo.upsert_embeddings(self.cfg.classification.model, rows)
         return [r.frame_id for r, _, _ in staged]
+
+    def add_frames(self, youtube_id: str, times: list[float]) -> list[str]:
+        """Add frames at the given video times to a stored video, through the same steps as ingest (full-resolution
+        decode, web and thumbnail images, classification, sorting features, embeddings, OCR and place clues). For a
+        stretch the selection skipped that something else needs covered evenly, e.g. the Route Map's frames along
+        a walk. The video is downloaded again (if the acquisition policy allows) and deleted after, as at ingest.
+        Times that land on a frame already stored are skipped. Returns the new frame ids."""
+        dirs = VideoDirs(self.lib.video(youtube_id).root)
+        if not dirs.video_json.exists():
+            raise FileNotFoundError(f"not in the library: {youtube_id}")
+        video = VideoRecord.model_validate_json(dirs.video_json.read_text())
+        acq, media_path = acquisition.download(self.cfg.acquisition, dirs, self.lib, youtube_id)
+        if media_path is None:
+            raise RuntimeError(f"[{youtube_id}] could not download: {acq.reason}")
+        try:
+            probe = frames.probe(media_path)
+            have = set(video.frame_ids)
+            cands = []
+            for t in sorted(times):
+                if frame_id_for(youtube_id, round(t * probe.fps)) in have:
+                    continue
+                rgb = frames.decode_frame(media_path, t + probe.start_time, probe.fps)
+                img = Image.fromarray(rgb)
+                img.thumbnail((frames.PREVIEW_PX, frames.PREVIEW_PX))
+                cands.append(frames.Candidate(t + probe.start_time, None, "interval", np.asarray(img)))
+            if not cands:
+                return []
+            if self.classifier.provenance is None:
+                results, emb = [([], {}) for _ in cands], None
+            else:
+                emb = self.classifier.embed([Image.fromarray(c.preview) for c in cands])
+                results = self.classifier.classify_embeddings(emb)
+            new = self._store(video, dirs, media_path, probe, cands, results, emb)
+        finally:
+            if not self.cfg.acquisition.keep_media and acq.status != "existing":
+                media_path.unlink(missing_ok=True)
+        video.frame_ids = sorted({*video.frame_ids, *new}, key=lambda f: int(f.rsplit("_f", 1)[-1]))  # frame number order
+        self._save_video(dirs, video)
+        relocate_video(self.lib, self.repo, dirs.root, video=video, run_ocr=True)  # OCR + place clues for the new ones
+        log.info("[%s] added %d frames", youtube_id, len(new))
+        return new
 
 
 def reclassify(lib: Library, repo: Repository, classifier: Classifier, youtube_id: str | None = None) -> int:

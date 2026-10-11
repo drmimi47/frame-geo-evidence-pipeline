@@ -173,7 +173,7 @@ def create_app(library_dir: Path, study_areas: list | None = None) -> FastAPI:
 
     @app.get("/api/tracks")
     def tracks(request: Request):
-        """Videos with an inferred camera path (`inferred/track.json`, made by `evidence track`): the Temporal Map."""
+        """Videos with an inferred camera path (`inferred/track.json`, made by `evidence track`): the Route Map."""
         from .track import track_path
 
         x = ctx(request)
@@ -206,6 +206,44 @@ def create_app(library_dir: Path, study_areas: list | None = None) -> FastAPI:
         return {**t, "title": v.source.title, "channel_title": v.source.channel_title,
                 "published_at": v.source.published_at.isoformat(), "duration_s": v.source.duration_s,
                 "source_url": v.source.source_url}
+
+    # Scene Viewer: a 3D reconstruction made from a video's own footage (`derived/scene/scene.json` beside its files)
+    SCENE_FILES = {".json", ".ply", ".spz", ".splat", ".ksplat", ".jpg", ".webp"}
+
+    def scene_dir(x, video_id: str) -> tuple[Path, object]:
+        v = x.repo.get_video(video_id)
+        if v is None:
+            raise HTTPException(404, "video not found")
+        return x.lib.videos / v.source.youtube_id / "derived" / "scene", v
+
+    @app.get("/api/scenes")
+    def scenes(request: Request):
+        """Videos with a 3D reconstruction: the Scene Viewer."""
+        x = ctx(request)
+        return [{"video_id": v.video_id, "youtube_id": v.source.youtube_id, "title": v.source.title}
+                for v in x.repo.list_videos(1000, 0)
+                if (x.lib.videos / v.source.youtube_id / "derived" / "scene" / "scene.json").exists()]
+
+    @app.get("/api/videos/{video_id}/scene")
+    def scene(request: Request, video_id: str):
+        import json
+
+        d, v = scene_dir(ctx(request), video_id)
+        if not (d / "scene.json").exists():
+            raise HTTPException(404, "no reconstruction for this video")
+        return {**json.loads((d / "scene.json").read_text()), "title": v.source.title,
+                "channel_title": v.source.channel_title, "published_at": v.source.published_at.isoformat(),
+                "source_url": v.source.source_url, "base_url": f"/api/videos/{video_id}/scene/",
+                # the land around a take (scripts/scene/terrain.py), when it was built
+                "terrain": "terrain.json" if (d / "terrain.json").exists() else None}
+
+    @app.get("/api/videos/{video_id}/scene/{name}")
+    def scene_file(request: Request, video_id: str, name: str):
+        d, _ = scene_dir(ctx(request), video_id)
+        f = d / name
+        if "/" in name or name.startswith(".") or f.suffix not in SCENE_FILES or not f.is_file():
+            raise HTTPException(404, "no such file")
+        return FileResponse(f, headers={"Cache-Control": "no-cache"})
 
     # ------------------------------------------------------------ Video panel
 

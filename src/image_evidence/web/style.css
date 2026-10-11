@@ -253,7 +253,7 @@ footer > * { pointer-events: auto; flex-shrink: 0; white-space: nowrap; }
 #theme { border: 0; background: none; padding: 0; font: inherit; font-size: 14px; color: var(--muted); cursor: default; transition: color .15s;
          align-self: center; display: flex; }
 #theme:hover { color: var(--fg); }
-/* Gallery, Filmstrip, Transcript: one view on at a time */
+/* Frame Gallery, Route Map, Frame Sequence, Transcript, Reconstruction, Scene Viewer: one view on at a time */
 button.view { border: 0; background: none; padding: 0; font: inherit; font-size: 14px; color: var(--muted); cursor: default; transition: color .15s; }
 button.view:hover, button.view.set { color: var(--fg); }
 aside .src { color: var(--muted); border-bottom: 1px dotted var(--faint); }
@@ -287,6 +287,14 @@ aside .src { color: var(--muted); border-bottom: 1px dotted var(--faint); }
 
 /* ------------------------------------------------- Document: PDF pages, one column in source order */
 main.document { transform: none !important; }
+main.scene { position: fixed; top: 0; right: 0; bottom: 0; left: var(--aside); margin: 0; padding: 0; transform: none !important; }
+/* the Scene Viewer's 3D: a dark ground whatever the theme, like a 3D viewer (scene.js) */
+.scene-view { position: absolute; inset: 0; background: #000; }
+.scene-view canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+/* the bottom controls sit over the dark ground: light words, with a dark fade behind them */
+body:has(main.scene) footer { background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, .85) 55%); }
+body:has(main.scene) footer button.view, body:has(main.scene) #theme { color: #9a9a9a; }
+body:has(main.scene) footer button.view:hover, body:has(main.scene) footer button.view.set { color: #fff; }
 .document-pages { width: 100%; }
 .document-pages header { margin: 0 0 28px; }
 .document-pages h1 { margin: 0 0 8px; font-size: 22px; font-weight: 400; line-height: 1.25; }
@@ -305,3 +313,4 @@ aside[hidden], #corner[hidden] { display: none; }
 @media (min-width: 801px) and (max-width: 1250px) {
   footer { flex-wrap: wrap; row-gap: 12px; padding-left: 12px; }
 }
+.scene-credit { position: absolute; left: 12px; bottom: 10px; font-size: 11px; color: rgba(255, 255, 255, 0.45); pointer-events: none; }

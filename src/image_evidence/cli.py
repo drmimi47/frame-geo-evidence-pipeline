@@ -113,6 +113,21 @@ def cmd_ingest_video(args: argparse.Namespace) -> int:
     return 0 if all(r.status != "failed" for r in report.results) else 1
 
 
+def cmd_add_frames(args: argparse.Namespace) -> int:
+    from .pipeline import Pipeline
+
+    times = list(args.at)
+    if args.start is not None and args.end is not None:
+        n = max(2, args.count)
+        times += [args.start + (args.end - args.start) * k / (n - 1) for k in range(n)]
+    if not times:
+        print("give --at times, or --from, --to and --count")
+        return 1
+    new = Pipeline(_load(args)).add_frames(args.video, times)
+    print(f"added {len(new)} frames" + (f": {new[0]} … {new[-1]}" if new else " (all already stored)"))
+    return 0
+
+
 def _service(args: argparse.Namespace):
     from .layout import Library
     from .service import EvidenceService
@@ -244,11 +259,22 @@ def _latlon(s: str) -> tuple[float, float]:
 
 def cmd_track(args: argparse.Namespace) -> int:
     from .layout import Library
-    from .track import build_for
+    from .track import build_for, build_walk_for
 
     video_dir = Library(_load(args).library_dir).video(args.video).root
     if not (video_dir / "video.json").exists():
         print(f"not in the library: {args.video}")
+        return 1
+    if args.plan:  # a walk: no clock, timed by the video's own map, its cuts and walking pace
+        t = build_walk_for(video_dir, args.plan)
+        print(t["summary"])
+        for s in t["segments"]:
+            print(f"  video {s['video_start']:7.1f}–{s['video_end']:7.1f} s  path {s['along_start_m']:6.0f}–{s['along_end_m']:6.0f} m"
+                  + (f"  (skips {s['skipped_m']} m)" if s.get("skipped_m") else ""))
+        print(f"-> {video_dir / 'inferred' / 'track.json'}")
+        return 0
+    if not (args.start and args.end and args.note):
+        print("a drive needs --start, --end and --note (or a walk, --plan)")
         return 1
     t = build_for(video_dir, start=args.start, end=args.end, via=args.via, route_note=args.note,
                   drive_start=args.drive_start, cuts=args.cut, refetch=args.refetch)
@@ -341,6 +367,16 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--force", action="store_true")
     s.set_defaults(fn=cmd_ingest_video)
 
+    s = sub.add_parser("add-frames", parents=[common], help="add frames at given times to a stored video (same steps as ingest)")
+    s.add_argument("video", type=parse_youtube_id)
+    s.add_argument("--at", type=float, action="append", default=[], help="video time (s) of a frame to add (repeatable)")
+    s.add_argument("--from", dest="start", type=float, help="first of evenly spaced times (s)")
+    s.add_argument("--to", dest="end", type=float, help="last of evenly spaced times (s)")
+    s.add_argument("--count", type=int, default=20, help="how many evenly spaced frames (with --from/--to)")
+    s.add_argument("--policy", choices=policies, help="override acquisition.policy")
+    s.add_argument("--classifier", choices=["auto", "siglip", "none"])
+    s.set_defaults(fn=cmd_add_frames)
+
     s = sub.add_parser("search", parents=[common], help="search indexed frames")
     s.add_argument("query", nargs="?")
     s.add_argument("--category", action="append", default=[])
@@ -395,12 +431,13 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--dry-run", action="store_true", help="only show what would be deleted")
     s.set_defaults(fn=cmd_slim)
 
-    s = sub.add_parser("track", parents=[common], help="infer a video's camera path for the Temporal Map (road + dashcam clock)")
+    s = sub.add_parser("track", parents=[common], help="infer a video's camera path for the Route Map (road + dashcam clock)")
     s.add_argument("video", type=parse_youtube_id)
-    s.add_argument("--start", type=_latlon, required=True, help="lat,lon where the drive starts (read off a map the video shows)")
-    s.add_argument("--end", type=_latlon, required=True, help="lat,lon where it ends")
+    s.add_argument("--start", type=_latlon, help="lat,lon where the drive starts (read off a map the video shows)")
+    s.add_argument("--end", type=_latlon, help="lat,lon where it ends")
     s.add_argument("--via", type=_latlon, action="append", default=[], help="lat,lon the road must pass (repeatable)")
-    s.add_argument("--note", required=True, help="where the start and end came from (kept as provenance)")
+    s.add_argument("--note", help="where the start and end came from (kept as provenance)")
+    s.add_argument("--plan", type=Path, help="a walk: its plan (route pieces, fixed points, cuts; see track.build_walk)")
     s.add_argument("--drive-start", type=float, help="video time (s) the driving footage starts (default: first clock reading)")
     s.add_argument("--cut", type=float, action="append", default=[], help="video time (s) of a cut, measured more finely than the stored frames")
     s.add_argument("--refetch", action="store_true", help="ask OSRM for the route again")

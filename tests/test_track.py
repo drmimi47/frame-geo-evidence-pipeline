@@ -1,4 +1,4 @@
-"""Temporal Map tracks: dashcam clock -> continuous stretches and cuts -> positions along a road (offline)."""
+"""Route Map tracks: dashcam clock -> continuous stretches and cuts -> positions along a road (offline)."""
 
 from datetime import datetime, timedelta
 
@@ -63,3 +63,29 @@ def test_build_places_frames_along_the_road():
     assert set(by) == {f["frame_id"] for f in _frames()}
     assert by["g150"]["onscreen_text"] == ["Вел. Знам'янка"]
     assert all(p["method"] for p in t["provenance"])
+
+
+def test_build_walk_holds_fixed_points_and_skips_at_cuts():
+    # a straight path due east, ~1.5 km; fixed at 0 s (start), 100 s (half way) and 200 s (end); cuts at 50 and 150 s
+    coords = [[34.0 + k * 0.002, 47.0] for k in range(11)]
+    plan = {
+        "pieces": [{"name": "a", "coords": coords[:6]}, {"name": "b", "coords": coords[5:]}],
+        "anchors": [[0, *coords[0], 100], [100, *coords[5], 30], [200, *coords[-1], 100]],
+        "cuts": [[50, 1], [150, 1], [170, 0]],
+        "still": [[180, 200]],
+        "inserts": [{"start": 10, "end": 20, "label": "map inset"}],
+        "provenance": [{"method": "test", "evidence": "stub"}],
+    }
+    video = {"video_id": "yt_x", "source": {"youtube_id": "x", "duration_s": 200.0}}
+    t = track.build_walk(video, [_frame("f15", 15, None), _frame("f60", 60, None)], plan)
+    assert t["kind"] == "walk" and t["tier"] == "inferred" and t["confidence"] < 1
+    L = t["route"]["length_m"]
+    along = {s[0]: s[1] for s in t["samples"]}
+    assert along[0] == 0 and abs(along[100] - L / 2) < 5 and abs(along[200] - L) < 5
+    # within a take it walks; the rest of the distance is skipped at the weighted cuts (not the one weighted 0)
+    assert [s["video_start"] for s in t["segments"]] == [0.0, 50.0, 150.0]
+    assert t["segments"][1]["skipped_m"] > 300
+    assert along[16] == along[11]  # the dot holds while a map is on screen
+    assert along[190] == along[181]  # and while the camera stands
+    assert next(f for f in t["frames"] if f["frame_id"] == "f15")["insert"] == "map inset"
+    assert sorted(s[1] for s in t["samples"]) == [s[1] for s in t["samples"]]

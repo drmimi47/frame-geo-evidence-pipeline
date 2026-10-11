@@ -1,4 +1,4 @@
-/* ------------------------------------------------- Temporal Map (map.js): the map fills the gallery side */
+/* ------------------------------------------------- Route Map (map.js): the map fills the gallery side */
 main.map { position: fixed; top: 0; right: 0; bottom: 0; left: var(--aside); margin: 0; padding: 0; transform: none !important; }
 .tmap { position: absolute; inset: 0; }
 .tmap .tmap-canvas { position: absolute; inset: 0; background: var(--bg); } /* (maplibre makes its container relative) */
@@ -59,7 +59,7 @@ body:has(main.map) footer { background: linear-gradient(to bottom, transparent, 
 /* while the timeline is out (or still shrinking back into the slider's place) the slider itself stays hidden, so
    there is never a second slider beside it */
 #controls.tm-on #tlzoom { display: none; }
-/* the other views fold into Temporal Map while the timeline is open: each narrows to nothing and fades, and the gap
+/* the other views fold into Route Map while the timeline is open: each narrows to nothing and fades, and the gap
    after it closes too (the negative margin is the controls' gap, style.css footer) */
 #controls button.view:not([data-view="map"]) {
   max-width: 12em; overflow: hidden; transition: max-width .7s var(--ease), margin .7s var(--ease), opacity .35s, color .15s;
@@ -105,7 +105,8 @@ body:has(main.map) footer { background: linear-gradient(to bottom, transparent, 
 .tm-video.off::after { content: "The YouTube player couldn't load. Scrub below the map, or press Play to run the path without it.";
   position: absolute; inset: 0; display: grid; place-items: center; padding: 1em; font-size: 13px; color: var(--muted); text-align: center; }
 .tm-pick { appearance: none; -webkit-appearance: none; border: 0; background: none; padding: 0; font: inherit; color: var(--fg); width: 100%; }
-.tm-transport { display: flex; gap: 1.2em; font-size: 14px; margin: 0 0 1.1em !important; }
+.tm-transport { display: flex; flex-wrap: wrap; gap: .3em 1.2em; font-size: 14px; margin: 0 0 1.1em !important; }
+.tm-transport button { white-space: nowrap; }
 .tm-transport button, .tm-list button { border: 0; background: none; padding: 0; font: inherit; color: var(--muted); cursor: default; transition: color .15s; }
 .tm-transport button:hover, .tm-transport button.set, .tm-list button:hover { color: var(--fg); }
 #tm-play { color: var(--fg); }
@@ -117,6 +118,7 @@ body:has(main.map) footer { background: linear-gradient(to bottom, transparent, 
 .tm-list li + li { margin-top: .3em; }
 .tm-list button { color: var(--fg); text-decoration: underline; text-decoration-color: var(--faint); text-underline-offset: 2px; }
 .tm-credit { margin-top: 1.6em !important; font-size: 12px; }
+.tm-list + .fields { margin-top: 1.4em; } /* (Scene Viewer: the shots, then where it comes from) */
 .tm-empty code { font-size: 12px; }
 
 @media (max-width: 800px) {

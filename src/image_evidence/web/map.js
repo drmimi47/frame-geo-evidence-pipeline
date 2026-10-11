@@ -1,4 +1,4 @@
-// Temporal Map: a video's inferred camera path (`evidence track`, /api/videos/{id}/track) on a tilted map, in step
+// Route Map: a video's inferred camera path (`evidence track`, /api/videos/{id}/track) on a tilted map, in step
 // with the video. The video plays in the left panel; the dot moves along the road as it plays; the frames taken from
 // it stand up along the route where they are placed, as the playhead passes them. Bottom right: a distance–time chart
 // (Marey's train schedule: video time across, distance along the road up) over a scrubber with one tick per frame.
@@ -18,11 +18,18 @@ const BASES = {
 };
 const FOLLOW_PITCH = 62, OVERVIEW_PITCH = 52;
 // Ride along: the camera low behind the dashcam, looking down the road, close in, so the frames pass like screens
-const RIDE_PITCH = 74, RIDE_ZOOM = 15.4, RIDE_TURN = 0.1; // RIDE_TURN: how quickly it turns with the road (Follow: 0.04)
+const RIDE_PITCH = 74, RIDE_TURN = 0.1; // RIDE_TURN: how quickly it turns with the road (Follow: 0.04)
 const OVERVIEW_PAD = { top: 140, bottom: 260, left: 80, right: 80 }; // clear of the key (top) and the chart (bottom)
-const CONE_DEG = 55, CONE_M = 650;      // the dashcam's view: about 110° wide, drawn 650 m out
-const TICK_M = 110;                     // half-length of a frame's tick across the road
-const JUMP_M = 400;                     // samples further apart than this are a cut: don't slide between them
+const CONE_DEG = 55;                    // the camera's view: about 110° wide
+// A drive covers tens of kilometres, seen from zoom 13–15; a walk a few, on foot, seen closer. What depends on it:
+// how far the view cone reaches (m), a frame tick's half-length across the path (m), a frame plane's width (m, min and
+// max), the zoom Follow keeps within, riding along's zoom, and (walks) how far ahead on the ground the stack of frames reaches.
+const SCALES = {
+  drive: { cone: 650, tick: 110, plane: [220, 1300], follow: [13, 14.8], ride: 15.4 },
+  walk: { cone: 70, tick: 14, plane: [24, 170], follow: [15.6, 17.4], ride: 17.6, ahead: 400 },
+};
+const scaleOf = (tr) => SCALES[tr?.kind === "walk" ? "walk" : "drive"];
+const isWalk = (tr) => tr?.kind === "walk";
 
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const clock = (s) => {
@@ -30,7 +37,7 @@ const clock = (s) => {
   const m = Math.floor(s / 60), sec = String(s % 60).padStart(2, "0");
   return `${m}:${sec}`;
 };
-const km = (m) => `${(m / 1000).toFixed(1)} km`;
+const km = (m) => (Math.abs(m) < 1000 ? `${Math.round(m)} m` : `${(m / 1000).toFixed(1)} km`);
 const COMPASS = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
 const compass = (deg) => COMPASS[Math.round(((deg % 360) + 360) % 360 / 45) % 8];
 const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -104,10 +111,11 @@ const fc = (features) => ({ type: "FeatureCollection", features });
 function at(track, t) {
   const S = track.samples, i = Math.min(S.length - 2, Math.max(0, Math.floor(t)));
   const a = S[i], b = S[i + 1], f = Math.min(1, Math.max(0, t - a[0]));
-  if (Math.abs(b[1] - a[1]) > JUMP_M) {
-    // a cut between these samples: on its near side until the cut's own time (not the next whole second)
-    const cut = track.segments.find((x) => x.video_start > a[0] && x.video_start <= b[0]);
-    const s = t >= (cut ? cut.video_start : b[0]) ? b : a;
+  // a cut between these samples: on its near side until the cut's own time (not the next whole second), never sliding
+  // across the stretch it skips
+  const cut = track.segments.find((x) => x.video_start > a[0] && x.video_start <= b[0]);
+  if (cut) {
+    const s = t >= cut.video_start ? b : a;
     return { t, along: s[1], lonlat: [s[2], s[3]], heading: s[4], sigma: s[5] };
   }
   return { t, along: a[1] + (b[1] - a[1]) * f, lonlat: [a[2] + (b[2] - a[2]) * f, a[3] + (b[3] - a[3]) * f], heading: a[4], sigma: a[5] + (b[5] - a[5]) * f };
@@ -131,7 +139,7 @@ export async function renderMap(main, research) {
     if (state !== st) return;
     // the page is newer than the running server (its Python is loaded at start; the page is read fresh)
     closeScrub();
-    research.innerHTML = `<div class="tm-empty"><p>The server doesn't know the Temporal Map yet.</p>
+    research.innerHTML = `<div class="tm-empty"><p>The server doesn't know the Route Map yet.</p>
       <p class="small muted">Restart it (<code>evidence serve</code>) and reload this page.</p></div>`;
     return;
   }
@@ -193,7 +201,7 @@ export function leaveMap() {
 
 // The scrubber: the zoom slider at the end of the bottom controls (a thin line with a dot) stretches up and to the
 // left into the timeline, its bottom-right corner staying put; being in the same row, the buttons slide left to make
-// room, and the other views fold into the Temporal Map button (#controls.tm-wide) to give it more. Clicking Temporal
+// room, and the other views fold into the Route Map button (#controls.tm-wide) to give it more. Clicking Route
 // Map again folds the scrubber back into the slider and brings the views back out; clicking it (or the folded slider)
 // once more opens it again. Leaving the view shrinks it back into the slider. (map.css: #controls .tm-scrub)
 const SCRUB_MS = 700;
@@ -211,7 +219,7 @@ function openScrub() {
   if (!scrub.classList.contains("open")) scrubGrown = new Promise((r) => setTimeout(r, reduced() ? 0 : SCRUB_MS));
   scrub.classList.add("open");
   footer.classList.add("tm-wide");
-  mapButton()?.setAttribute("title", "Temporal Map · click to fold the timeline and show the other views");
+  mapButton()?.setAttribute("title", "Route Map · click to fold the timeline and show the other views");
   return scrub;
 }
 const mapButton = () => document.querySelector('#controls button.view[data-view="map"]');
@@ -222,9 +230,9 @@ function foldScrub(open) {
   if (open) return openScrub();
   scrub.classList.remove("open");
   document.getElementById("controls").classList.remove("tm-wide");
-  mapButton()?.setAttribute("title", "Temporal Map · click to open the timeline again");
+  mapButton()?.setAttribute("title", "Route Map · click to open the timeline again");
 }
-// A click on Temporal Map while it is shown folds or opens the timeline. (The click that switches to it is ignored:
+// A click on Route Map while it is shown folds or opens the timeline. (The click that switches to it is ignored:
 // the view was made by that same click, after it happened.)
 mapButton()?.addEventListener("click", (e) => {
   if (!state || !scrub || e.timeStamp < state.bornAt) return;
@@ -257,7 +265,10 @@ function buildPanel(st) {
   const pick = st.list.length > 1
     ? `<select class="tm-pick" aria-label="Video">${st.list.map((x) => `<option value="${esc(x.video_id)}"${x.video_id === tr.video_id ? " selected" : ""}>${esc(x.title)}</option>`).join("")}</select>`
     : "";
-  const LABEL = { uploader_route_map: "Ends", openstreetmap_route: "Road", frame_onscreen_clock: "Timing", average_speed_model: "Between" };
+  const LABEL = { uploader_route_map: "Ends", openstreetmap_route: "Road", frame_onscreen_clock: "Timing", average_speed_model: "Between",
+                  uploader_animated_map: "Uploader's map", user_georeference: "Aligned", satellite_channel_refinement: "Refitted", uploader_narration: "Narration",
+                  visual_reading: "Ends", openstreetmap_foot_route: "Way back", walking_pace_model: "Between" };
+  const walk = isWalk(tr), path = walk ? "path" : "road";
   const prov = tr.provenance.map((p) => `<dt>${LABEL[p.method] ?? esc(p.method)}</dt><dd>${esc(p.evidence)}</dd>`).join("");
   const passes = tr.settlements.map((s) => {
     const t = timeAtAlong(tr, s.along_m);
@@ -266,10 +277,15 @@ function buildPanel(st) {
       : `<button type="button" data-t="${t}">${esc(s.name)}</button> <span class="muted">· ${km(s.along_m)} · ${clock(t)}</span>`}</li>`;
   }).join("");
   const cuts = tr.segments.slice(1).map((s, k) => {
-    const prev = tr.segments[k], gapS = (new Date(s.clock_start) - new Date(prev.clock_end)) / 1000;
+    const prev = tr.segments[k], gap = km(s.along_start_m - prev.along_end_m);
+    const why = s.clock_start ? `clock jumps ${Math.round((new Date(s.clock_start) - new Date(prev.clock_end)) / 60000)} min · ` : "";
     return `<li><button type="button" data-t="${s.video_start}">Cut at ${clock(s.video_start)}</button>
-      <span class="muted">· clock jumps ${Math.round(gapS / 60)} min · ${km(s.along_start_m - prev.along_end_m)} of road not filmed</span></li>`;
+      <span class="muted">· ${why}${gap} of ${path} not filmed</span></li>`;
   }).join("");
+  // a walk's capture time is the season the narrator names; a drive's is the dashcam clock
+  const filmed = tr.capture.clock_start
+    ? `${esc(tr.capture.clock_start.replace("T", " "))} – ${esc(tr.capture.clock_end.slice(11))}<span class="note">${esc(tr.capture.note)}</span>`
+    : esc(tr.capture.note);
   st.research.innerHTML = `
     <div class="tm-video"><div id="tm-player"></div></div>
     <div class="head">
@@ -281,19 +297,23 @@ function buildPanel(st) {
       <button type="button" id="tm-overview">Whole route</button></p>
     <dl class="fields tm-now">
       <dt>Video</dt><dd id="tm-t"></dd>
-      <dt>Clock</dt><dd id="tm-clock"></dd>
-      <dt>Road</dt><dd id="tm-along"></dd>
+      <dt>${walk ? "Shot" : "Clock"}</dt><dd id="tm-clock"></dd>
+      <dt>${walk ? "Path" : "Road"}</dt><dd id="tm-along"></dd>
       <dt>Facing</dt><dd id="tm-heading"></dd>
     </dl>
     <p class="tm-summary">${esc(tr.summary)}</p>
     <dl class="fields tm-prov">
       ${prov}
-      <dt>Filmed</dt><dd>${esc(tr.capture.clock_start.replace("T", " "))} – ${esc(tr.capture.clock_end.slice(11))}<span class="note">${esc(tr.capture.note)}</span></dd>
-      <dt>Confidence</dt><dd>${Math.round(tr.confidence * 100)}%<span class="note">inferred, not a GPS track: the dot is where the road and the clock put the camera, give or take the shaded stretch</span></dd>
+      <dt>Filmed</dt><dd>${filmed}</dd>
+      <dt>Confidence</dt><dd>${Math.round(tr.confidence * 100)}%<span class="note">${walk
+        ? "inferred, not a GPS track: the dot is where the uploader's map, the paths and walking pace put the camera, give or take the shaded stretch"
+        : "inferred, not a GPS track: the dot is where the road and the clock put the camera, give or take the shaded stretch"}</span></dd>
     </dl>
     <h3 class="tm-h">Cuts</h3><ul class="tm-list">${cuts || "<li class='muted'>None: one continuous take</li>"}</ul>
-    <h3 class="tm-h">Passes</h3><ul class="tm-list">${passes}</ul>
-    <p class="small muted tm-credit">Road © OpenStreetMap contributors (ODbL), routed by OSRM · places: GeoNames (CC BY 4.0)</p>`;
+    ${passes ? `<h3 class="tm-h">Passes</h3><ul class="tm-list">${passes}</ul>` : ""}
+    <p class="small muted tm-credit">${walk
+      ? "Paths © OpenStreetMap contributors (ODbL), routed by FOSSGIS OSRM · old map: as shown in the video"
+      : "Road © OpenStreetMap contributors (ODbL), routed by OSRM"} · places: GeoNames (CC BY 4.0)</p>`;
   const $ = (id) => st.research.querySelector("#" + id);
   st.ui = { t: $("tm-t"), clock: $("tm-clock"), along: $("tm-along"), heading: $("tm-heading"), play: $("tm-play"), follow: $("tm-follow") };
   st.ui.play.onclick = () => togglePlay(st);
@@ -368,7 +388,15 @@ function setRide(st, on) {
   st.main.querySelector(".tmap")?.classList.toggle("riding", on);
   st.ui.ride?.classList.toggle("set", on);
   st.ui.ride?.setAttribute("aria-pressed", on);
-  setFollow(st, true); // either way the camera follows: low (riding) or high (Follow)
+  if (on) return setFollow(st, true); // the camera follows, low behind the dot
+  // off again: the camera lifts back up over where it is and the map is the viewer's again (pan, tilt, rotate, zoom);
+  // nothing follows until Follow is pressed
+  setFollow(st, false);
+  if (st.map) {
+    st.map.stop();
+    const [z0, z1] = scaleOf(st.track).follow;
+    st.map.easeTo({ pitch: FOLLOW_PITCH, zoom: Math.min(z1, Math.max(z0, st.map.getZoom() - 1.2)), duration: reduced() ? 0 : 900 });
+  }
 }
 
 function setFollow(st, on) {
@@ -479,7 +507,8 @@ function drawMarey(st) {
   tr.segments.slice(1).forEach((s, k) => {
     const prev = tr.segments[k], x = X(s.video_start);
     g += `<line class="riser" x1="${x}" x2="${x}" y1="${Y(prev.along_end_m)}" y2="${Y(s.along_start_m)}"/>`;
-    g += `<text class="lbl cutlbl" x="${x + 4}" y="${(Y(prev.along_end_m) + Y(s.along_start_m)) / 2 + 4}">cut · ${km(s.along_start_m - prev.along_end_m)} unseen</text>`;
+    // a walk's cuts are many and their skips only spread evenly between fixed points: the risers say enough
+    if (!isWalk(tr)) g += `<text class="lbl cutlbl" x="${x + 4}" y="${(Y(prev.along_end_m) + Y(s.along_start_m)) / 2 + 4}">cut · ${km(s.along_start_m - prev.along_end_m)} unseen</text>`;
   });
   g += `<line class="now" x1="0" x2="0" y1="0" y2="${H}"/><circle class="dot" r="3.5" cx="0" cy="0"/>`;
   svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
@@ -527,7 +556,7 @@ function buildMap(st, gl) {
     const unfilmed = tr.segments.slice(1).map((s, k) => slice(r, tr.segments[k].along_end_m, s.along_start_m));
     const ticks = tr.frames.map((f) => {
       const p = [f.lon, f.lat], h = headingAt(r, f.along_m);
-      return { type: "Feature", properties: { id: f.frame_id, t: f.t }, geometry: { type: "LineString", coordinates: [offset(p, h - 90, TICK_M), offset(p, h + 90, TICK_M)] } };
+      return { type: "Feature", properties: { id: f.frame_id, t: f.t }, geometry: { type: "LineString", coordinates: [offset(p, h - 90, scaleOf(tr).tick), offset(p, h + 90, scaleOf(tr).tick)] } };
     });
     const add = (id, data) => map.addSource(id, { type: "geojson", data });
     add("unfilmed", fc([multi(unfilmed)]));
@@ -563,10 +592,13 @@ function buildMap(st, gl) {
     st.fixed = [
       label([tr.start.lon, tr.start.lat], `<b>A</b> start · ${clock(tr.segments[0].video_start)}`, "end"),
       label([tr.end.lon, tr.end.lat], `<b>B</b> end · ${clock(tr.duration_s)}`, "end"),
-      ...tr.segments.slice(1).map((s, k) => {
-        const prev = tr.segments[k], mid = lerpAlong(r, (prev.along_end_m + s.along_start_m) / 2);
-        const gap = Math.round((new Date(s.clock_start) - new Date(prev.clock_end)) / 60000);
-        return label(mid, `not filmed · ${gap} min · ${km(s.along_start_m - prev.along_end_m)}`, "cut");
+      // (a walk's skips are only dashed: they are many, and spread evenly between its fixed points, not measured)
+      ...tr.segments.slice(1).flatMap((s, k) => {
+        const prev = tr.segments[k], skip = s.along_start_m - prev.along_end_m;
+        if (isWalk(tr)) return [];
+        const mid = lerpAlong(r, (prev.along_end_m + s.along_start_m) / 2);
+        const gap = s.clock_start ? `${Math.round((new Date(s.clock_start) - new Date(prev.clock_end)) / 60000)} min · ` : "";
+        return [label(mid, `not filmed · ${gap}${km(skip)}`, "cut")];
       }),
     ];
     st.ready = true;
@@ -625,7 +657,6 @@ function paint(st) {
   map.setPaintProperty("tick-on", "line-color", p.ink);
   map.setPaintProperty("here-halo", "circle-color", p.halo);
   map.setPaintProperty("here", "circle-color", p.ink);
-  paintPlanes(st);
 }
 
 // ------------------------------------------------------------ every frame
@@ -640,8 +671,11 @@ function update(st, force = false) {
   const s = tr.segments[seg];
   if (st.ui) {
     st.ui.t.textContent = `${clock(st.t)} / ${clock(tr.duration_s)}`;
-    st.ui.clock.textContent = s ? new Date(new Date(s.clock_start).getTime() + (st.t - s.video_start) * 1000).toTimeString().slice(0, 8) +
-      ` · stretch ${seg + 1} of ${tr.segments.length}` : "before the drive (the uploader's route map)";
+    const inset = tr.inserts?.find((x) => st.t >= x.start && st.t < x.end);
+    st.ui.clock.textContent = !s ? "before the drive (the uploader's route map)"
+      : !s.clock_start ? `${inset ? inset.label : "footage"} · stretch ${seg + 1} of ${tr.segments.length}`
+      : new Date(new Date(s.clock_start).getTime() + (st.t - s.video_start) * 1000).toTimeString().slice(0, 8) +
+        ` · stretch ${seg + 1} of ${tr.segments.length}`;
     st.ui.along.innerHTML = `${km(now.along)} of ${km(L)} <span class="muted">± ${km(now.sigma)}</span>`;
     st.ui.heading.textContent = `${compass(now.heading)} · ${Math.round(now.heading)}°`;
   }
@@ -664,7 +698,7 @@ function update(st, force = false) {
   map.getSource("done").setData(fc([multi(done)]));
   map.getSource("band").setData(fc([line(slice(r, Math.max(0, now.along - now.sigma), Math.min(L, now.along + now.sigma)))]));
   const cone = [now.lonlat];
-  for (let a = -CONE_DEG; a <= CONE_DEG; a += 5) cone.push(offset(now.lonlat, now.heading + a, CONE_M));
+  for (let a = -CONE_DEG; a <= CONE_DEG; a += 5) cone.push(offset(now.lonlat, now.heading + a, scaleOf(tr).cone));
   cone.push(now.lonlat);
   map.getSource("cone").setData(fc([{ type: "Feature", properties: {}, geometry: { type: "Polygon", coordinates: [cone] } }]));
   map.getSource("here").setData(fc([{ type: "Feature", properties: {}, geometry: { type: "Point", coordinates: now.lonlat } }]));
@@ -689,10 +723,12 @@ function update(st, force = false) {
   }
   st.lastCut = seg;
 }
-// the following camera's tilt and zoom: riding along, or Follow (the viewer's zoom, held between 13 and 14.8, so
+// the following camera's tilt and zoom: riding along, or Follow (the viewer's zoom, held within the scale's range, so
 // leaving Ride along also lifts the camera back out)
-const camera = (st) => (st.ride ? { pitch: RIDE_PITCH, zoom: RIDE_ZOOM }
-                                : { pitch: FOLLOW_PITCH, zoom: Math.min(14.8, Math.max(13, st.map.getZoom())) });
+const camera = (st) => {
+  const sc = scaleOf(st.track);
+  return st.ride ? { pitch: RIDE_PITCH, zoom: sc.ride } : { pitch: FOLLOW_PITCH, zoom: Math.min(sc.follow[1], Math.max(sc.follow[0], st.map.getZoom())) };
+};
 const angleDiff = (a, b) => ((a - b + 540) % 360) - 180;
 // while the camera eases somewhere on its own (into Follow, over a cut), following waits for it
 function glide(st, ms) { st.glideUntil = performance.now() + (reduced() ? 0 : ms); }
@@ -700,12 +736,12 @@ function glide(st, ms) { st.glideUntil = performance.now() + (reduced() ? 0 : ms
 // The frames as objects on the map: each a thin upright plane standing on the road where the track puts the camera
 // when it was taken, square to the road (facing back along it, so looking down the road you see the image as the
 // dashcam saw it). Seen at an angle they foreshorten, and in a row they stack into a block, like a video given volume:
-// the current frame is solid and outlined; the frames still to come recede ahead of it, fainter with time; passed
+// the current frame is solid (no border: just the image); the frames still to come recede ahead of it, fainter with time; passed
 // frames drop away while following (they would stand between the view and the dot), and stay faint otherwise.
 // Drawn by three.js in a MapLibre custom layer, in metres around a local origin.
 const THREE_URL = "https://unpkg.com/three@0.160.0/build/three.module.js";
-const PLANE_PX = 230;                   // a frame's width on screen at the follow zoom ...
-const PLANE_M = [150, 900];             // ... held within these widths in metres, so it stays an object of the place
+const PLANE_PX = 340;                   // a frame's width on screen at the follow zoom ...
+// ... held within the scale's widths in metres (SCALES plane), so it stays an object of the place
 const AHEAD_S = 150;                    // frames up to this far ahead stand in the stack
 const ALL_ALPHA = 0.55;                 // with All frames on, every frame but the current one
 let threePromise = null;
@@ -721,21 +757,27 @@ async function addPlanes(st) {
   const scene = new THREE.Scene(), camera = new THREE.Camera();
   // a 16:9 plane, 1 unit wide, standing on its bottom edge; x east, y up, z south (see `world` below)
   const geo = new THREE.PlaneGeometry(1, 9 / 16).translate(0, 9 / 32, 0);
-  const edges = new THREE.EdgesGeometry(geo);
   const loader = new THREE.TextureLoader();
   st.planes = tr.frames.filter((f) => f.thumb_url).map((f) => {
     const tex = loader.load(f.thumb_url, () => map.triggerRepaint());
     tex.colorSpace = THREE.SRGBColorSpace;
-    const mesh = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ map: tex, transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false }));
-    const outline = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ transparent: true, opacity: 0, depthWrite: false }));
+    // a frame beside a map (a split screen) shows only its footage: the texture cut to it, on a plane as narrow as it is
+    let g0 = geo;
+    if (f.crop) {
+      const [x0, y0, x1, y1] = f.crop;
+      tex.repeat.set(x1 - x0, y1 - y0);
+      tex.offset.set(x0, 1 - y1);
+      g0 = new THREE.PlaneGeometry(((x1 - x0) / (y1 - y0)), 9 / 16).translate(0, 9 / 32, 0);
+    }
+    const mesh = new THREE.Mesh(g0, new THREE.MeshBasicMaterial({ map: tex, transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false }));
     const g = new THREE.Group();
-    g.add(mesh, outline);
+    g.add(mesh);
     const c = gl.MercatorCoordinate.fromLngLat([f.lon, f.lat], 0);
     g.position.set((c.x - oc.x) / u, 0, (c.y - oc.y) / u);
     g.rotation.y = (-headingAt(tr.route, f.along_m) * Math.PI) / 180; // face back along the road
     g.visible = false;
     scene.add(g);
-    return { f, g, mesh, outline };
+    return { f, g, mesh };
   });
   // scene metres -> map: translate to the origin, scale to mercator units (mercator y runs south), stand y up
   const world = new THREE.Matrix4().makeTranslation(oc.x, oc.y, oc.z)
@@ -747,9 +789,9 @@ async function addPlanes(st) {
       this.renderer.autoClear = false;
     },
     render(ctx, matrix) {
-      // the planes keep a readable size as the map zooms, within PLANE_M
+      // the planes keep a readable size as the map zooms, within the scale's widths
       const mpp = (40075016.686 * Math.cos((mid[1] * Math.PI) / 180)) / (512 * 2 ** map.getZoom());
-      const w = Math.min(PLANE_M[1], Math.max(PLANE_M[0], PLANE_PX * mpp));
+      const [lo, hi] = scaleOf(tr).plane, w = Math.min(hi, Math.max(lo, PLANE_PX * mpp));
       for (const p of st.planes) p.g.scale.setScalar(w);
       camera.projectionMatrix = new THREE.Matrix4().fromArray(matrix).multiply(world);
       this.renderer.resetState();
@@ -757,14 +799,7 @@ async function addPlanes(st) {
     },
   }, "here-halo"); // under the dot
   st.caption = new gl.Marker({ element: Object.assign(document.createElement("div"), { className: "tm-label tm-cap" }), anchor: "top" });
-  paintPlanes(st);
   update(st, true);
-}
-
-function paintPlanes(st) {
-  const ink = palette(st).ink;
-  for (const p of st.planes ?? []) p.outline.material.color.set(ink);
-  st.map?.triggerRepaint();
 }
 
 function frames(st) {
@@ -772,16 +807,26 @@ function frames(st) {
   const current = tr.frames.filter((f) => f.t <= st.t + 0.05).at(-1);
   st.map.setFilter("tick-on", ["==", ["get", "id"], current?.frame_id ?? ""]);
   if (!st.planes) return;
+  // the next frame firms up as the dot closes on it (by ground covered, or by time where the camera stands), so each
+  // image arrives with the dot rather than all at once
+  const here = at(tr, st.t).along, next = tr.frames.find((f) => f.t > st.t + 0.05);
+  let gain = 0;
+  if (next && current) {
+    const dm = next.along_m - current.along_m;
+    gain = Math.min(1, Math.max(0, dm > 1 ? (here - current.along_m) / dm : (st.t - current.t) / (next.t - current.t)));
+  }
+  const reach = scaleOf(tr).ahead; // walks: the stack reaches this far ahead of the dot on the ground (m), not in time
   for (const p of st.planes) {
     const dt = p.f.t - st.t;
-    let a, line;
-    if (p.f === current) { a = 1; line = 0.9; }
-    else if (st.allFrames) { a = ALL_ALPHA; line = 0.5; }                                              // All frames
-    else if (dt > 0) { a = dt > AHEAD_S ? 0 : 0.06 + 0.3 * (1 - dt / AHEAD_S) ** 2; line = a * 0.8; } // ahead: the stack
-    else { a = st.follow ? 0 : 0.18; line = a; }                                                       // passed
+    const ahead = reach ? Math.max(0, p.f.along_m - here) / reach : dt / AHEAD_S; // 0 at the dot, 1 at the stack's end
+    let a;
+    if (p.f === current) a = 1;
+    else if (st.allFrames) a = ALL_ALPHA;                                                // All frames
+    else if (dt > 0) a = ahead > 1 ? 0 : 0.06 + 0.3 * (1 - ahead) ** 2;                  // ahead: the stack
+    else a = st.follow ? 0 : 0.18;                                                       // passed
+    if (p.f === next && !st.allFrames) a += (0.85 - a) * gain ** 2;
     p.g.visible = a > 0.01;
     p.mesh.material.opacity = a;
-    p.outline.material.opacity = line;
     p.mesh.renderOrder = p.f === current ? 2 : 1;
   }
   if (current) {

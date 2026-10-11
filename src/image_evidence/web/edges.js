@@ -1,4 +1,4 @@
-// Filmstrip edge shadings (app.js dress), made off the main thread so switching to the Filmstrip never stalls:
+// Frame Sequence edge shadings (app.js dress), made off the main thread so switching to the Frame Sequence never stalls:
 // each thumbnail's outermost columns (SLIT_ROWS colours a side), and for each strip the two shadings from its
 // own edge into its neighbour's. Asked for one strip at a time: { key, prev, own, next } (thumbnail URLs,
 // "" for no neighbour); answers { key, bl, br } (CSS urls of small PNGs) or { key, error }. Blob URLs made here

@@ -1,4 +1,4 @@
-"""An inferred camera path for one video, for the site's Temporal Map.
+"""An inferred camera path for one video, for the site's Route Map.
 
 A claim about the world, so it lives in the video's `inferred/track.json` with its confidence and provenance, and
 never reaches a frame record (`inferred.locations` stays as it is). It is built from sources that have their own
@@ -245,6 +245,168 @@ def build(video: dict, frames: list[dict], route: dict, *, start: tuple[float, f
         "samples": samples,
         "created_at": created.isoformat(),
     }
+
+
+# ------------------------------------------------------------ a walk (no clock: an uploader's map, cuts and walking pace)
+
+WALK_PACE = 0.8           # m/s while a take is walking (filming over rough ground)
+MIN_SKIP_M = 15.0         # a cut that skips less than this is the same stretch
+SIGMA_WALK_PER_M = 0.15   # growth of sigma with distance from the nearer fixed point
+WALK_CONFIDENCE = 0.45
+
+
+def _project(coords: list[list[float]], cum: list[float], p: tuple[float, float], after: float) -> float:
+    """Distance along the route of the point nearest p, not before `after` (a walk only goes forward along it)."""
+    best, best_m = float("inf"), after
+    for k in range(len(coords) - 1):
+        if cum[k + 1] < after:
+            continue
+        a, b = coords[k], coords[k + 1]
+        kx = math.cos(math.radians(a[1]))
+        ax, ay, bx, by, px, py = a[0] * kx, a[1], b[0] * kx, b[1], p[0] * kx, p[1]
+        dx, dy = bx - ax, by - ay
+        f = max(0.0, min(1.0, ((px - ax) * dx + (py - ay) * dy) / ((dx * dx + dy * dy) or 1e-18)))
+        m = max(after, cum[k] + f * (cum[k + 1] - cum[k]))
+        d = _haversine(p, _at(coords, cum, m))
+        if d < best:
+            best, best_m = d, m
+    return best_m
+
+
+def build_walk(video: dict, frames: list[dict], plan: dict, step_s: float = 1.0) -> dict[str, Any]:
+    """A walk's camera path from a plan (`inferred/walk_plan.json`): the route in pieces, each from a source with its
+    own coordinates; fixed points in time (`anchors`: [t, lon, lat, sigma_m]: where the video itself places the camera);
+    the cuts (`cuts`: [t, weight]: how much of the unfilmed distance each skips, 0 for a cut in one place); the takes
+    in which the camera stands (`still`) or moves at a pace of its own (`pace`: [start, end, m/s]); and the map
+    insets (`inserts`), in which the dot holds (unless `moves`: the inset shows the walk going on, e.g. a dot moving on a
+    map; an insert's `crop`, [x0, y0, x1, y1] as fractions, is the part of a frame that is footage, e.g. beside a map). Within a take the camera moves at walking pace; the rest of the
+    distance between fixed points is skipped at the cuts, so each leaves a stretch "not filmed"."""
+    coords = [c for piece in plan["pieces"] for c in piece["coords"]]
+    coords = [c for k, c in enumerate(coords) if k == 0 or c != coords[k - 1]]
+    cum = _cumulative(coords)
+    total = cum[-1]
+    duration = float(video["source"]["duration_s"])
+    anchors, after = [], 0.0
+    for t, lon, lat, sig in sorted(plan["anchors"]):
+        after = _project(coords, cum, (lon, lat), after)
+        anchors.append((float(t), after, float(sig)))
+    if anchors[0][0] > 0:
+        anchors.insert(0, (0.0, anchors[0][1], anchors[0][2]))
+    if anchors[-1][0] < duration:
+        anchors.append((duration, anchors[-1][1], anchors[-1][2]))
+    inserts = [dict(x) for x in plan.get("inserts", [])]
+    # a map on screen holds the dot, unless the map itself shows the walk going on (`moves`: the uploader's moving dot)
+    held = [(x["start"], x["end"]) for x in inserts if not x.get("moves")] + [tuple(x) for x in plan.get("still", [])]
+    paces = [tuple(x) for x in plan.get("pace", [])]
+    cuts = sorted((float(c), float(w)) for c, w in plan.get("cuts", []))
+
+    def pace(t: float) -> float:
+        if any(a <= t < b for a, b in held):
+            return 0.0
+        return next((p for a, b, p in paces if a <= t < b), WALK_PACE)
+
+    def integral(a: float, b: float, dt: float = 0.05) -> float:
+        n = max(1, int((b - a) / dt))
+        return sum(pace(a + (k + 0.5) * (b - a) / n) for k in range(n)) * (b - a) / n
+
+    # each interval between fixed points: how fast the takes move, and what each cut skips
+    spans = []
+    for (t0, a0, s0), (t1, a1, s1) in zip(anchors, anchors[1:]):
+        inside = [(c, w) for c, w in cuts if t0 < c <= t1 and w > 0]
+        filmed, dist = integral(t0, t1), a1 - a0
+        if not inside:  # one continuous take (or the uploader's dot): the takes' pace stretched to fit
+            k, gaps = (dist / filmed if filmed > 0 else None), []
+        else:
+            k = min(1.0, dist / filmed) if filmed > 0 else 0.0
+            rest = max(0.0, dist - k * filmed)
+            wsum = sum(w for _, w in inside)
+            gaps = [(c, rest * w / wsum) for c, w in inside]
+        spans.append((t0, t1, a0, a1, s0, s1, k, gaps))
+
+    def along(t: float) -> float:
+        t = min(max(t, 0.0), duration)
+        t0, t1, a0, a1, s0, s1, k, gaps = next((s for s in spans if t <= s[1]), spans[-1])
+        if k is None:  # nothing moves at a pace here: straight from one fixed point to the next
+            return a0 + (a1 - a0) * (t - t0) / ((t1 - t0) or 1)
+        return min(a1, a0 + k * integral(t0, t) + sum(g for c, g in gaps if c <= t))
+
+    def sigma(t: float, m: float) -> float:
+        t0, t1, a0, a1, s0, s1, *_ = next((s for s in spans if t <= s[1]), spans[-1])
+        f = (t - t0) / ((t1 - t0) or 1)
+        return s0 + (s1 - s0) * f + SIGMA_WALK_PER_M * max(0.0, min(m - a0, a1 - m))
+
+    # stretches: split at every cut that skips enough ground to see
+    bounds = [0.0] + [c for s in spans for c, g in s[7] if g >= MIN_SKIP_M] + [duration]
+    segs = []
+    for v0, v1 in zip(bounds, bounds[1:]):
+        if v1 - v0 <= 0:
+            continue
+        segs.append({"video_start": round(v0, 2), "video_end": round(v1, 2),
+                     "along_start_m": round(along(v0 + 1e-3)), "along_end_m": round(along(v1 - 1e-3))})
+    for k in range(1, len(segs)):
+        segs[k]["skipped_m"] = segs[k]["along_start_m"] - segs[k - 1]["along_end_m"]
+
+    def insert_at(t: float) -> dict | None:
+        return next((x for x in inserts if x["start"] <= t < x["end"]), None)
+
+    samples, t = [], 0.0
+    while t <= duration + 1e-6:
+        m = along(t)
+        lon, lat = _at(coords, cum, m)
+        samples.append([round(t, 2), round(m, 1), round(lon, 6), round(lat, 6),
+                        round(_heading(coords, cum, m, window=25.0), 1), round(sigma(t, m))])
+        t += step_s
+    frame_points = []
+    for f in sorted(frames, key=lambda f: f["frame"]["timestamp_s"]):
+        ft = f["frame"]["timestamp_s"]
+        m = along(ft)
+        lon, lat = _at(coords, cum, m)
+        ocr = [ln["text"] for ln in ((f.get("derived") or {}).get("ocr") or {}).get("lines", [])]
+        frame_points.append({"frame_id": f["frame_id"], "t": ft, "along_m": round(m, 1), "lon": round(lon, 6),
+                             "lat": round(lat, 6), "sigma_m": round(sigma(ft, m)), "onscreen_text": ocr[:6],
+                             # on screen beside a map (a split screen): which part of the frame is the footage, for display
+                             **({"insert": ins["label"], **({"crop": ins["crop"]} if ins.get("crop") else {})}
+                                if (ins := insert_at(ft)) else {})})
+    created = datetime.now().astimezone()
+    n_cuts = sum(1 for _, w in cuts if w > 0)
+    skipped = sum(s.get("skipped_m", 0) for s in segs)
+    return {
+        "schema": "track/1",
+        "tier": "inferred",
+        "video_id": video["video_id"],
+        "youtube_id": video["source"]["youtube_id"],
+        "kind": "walk",
+        "confidence": plan.get("confidence", WALK_CONFIDENCE),
+        "summary": (f"Walked about {total / 1000:.1f} km, filmed in {len(segs)} stretches: {n_cuts} cuts skip about "
+                    f"{skipped / 1000:.1f} km between them. {plan.get('summary', '')}").strip(),
+        "provenance": [Provenance(created_at=created, **p).model_dump(mode="json") for p in plan["provenance"]],
+        "capture": {"note": plan.get("capture_note", "")},
+        "start": {"lon": coords[0][0], "lat": coords[0][1], "label": "A"},
+        "end": {"lon": coords[-1][0], "lat": coords[-1][1], "label": "B"},
+        "route": {"length_m": round(total, 1), "roads": [], "pieces": [{"name": p["name"], "note": p.get("note", "")} for p in plan["pieces"]],
+                  "coordinates": [[round(x, 6), round(y, 6)] for x, y in coords], "along_m": [round(c, 1) for c in cum]},
+        "segments": segs,
+        "inserts": inserts,
+        "settlements": _settlements(coords, cum),
+        "frames": frame_points,
+        "sample_fields": ["t", "along_m", "lon", "lat", "heading_deg", "sigma_m"],
+        "samples": samples,
+        "created_at": created.isoformat(),
+    }
+
+
+def build_walk_for(video_dir: Path, plan_path: Path) -> dict:
+    """Build and save `inferred/track.json` for a stored walk from its plan (kept beside it as `walk_plan.json`)."""
+    video = json.loads((video_dir / "video.json").read_text())
+    frames = [json.loads(p.read_text()) for p in sorted((video_dir / "frames" / "meta").glob("*.json"))]
+    plan = json.loads(Path(plan_path).read_text())
+    out = track_path(video_dir)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    if Path(plan_path).resolve() != (out.parent / "walk_plan.json").resolve():
+        write_json(out.parent / "walk_plan.json", plan)
+    track = build_walk(video, frames, plan)
+    write_json(out, track)
+    return track
 
 
 def build_for(video_dir: Path, *, start: tuple[float, float], end: tuple[float, float], route_note: str,
