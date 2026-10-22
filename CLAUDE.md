@@ -2,7 +2,8 @@
 
 A research collection of frames from YouTube videos **about Ukraine**, **published 2022–2026**.
 Pipeline: `src/image_evidence/`. Site: `src/image_evidence/web/` (served by `evidence serve`), read-only except
-the Video panel, which adds videos through `/api/jobs` (`jobs.py`), and the Evidence panel (rename a folder, show it
+the Video panel, which adds videos through `/api/jobs` (`jobs.py`), the Satellite panel, which adds satellite passes and
+films through `/api/satellite/jobs` and `/api/seam/films` (`satellite/`), and the Evidence panel (rename a folder, show it
 in the file browser: `/api/folders`).
 
 ## Collection scope (hard rules, never relax silently)
@@ -33,8 +34,96 @@ in the file browser: `/api/folders`).
    against its own library's scope; `ScopeCheck.scope_name` records which. Never put another scope's video in
    `library/`, and never widen the main library's scope. Elsewhere the Ukrainian place gazetteer isn't used for
    location clues (it only finds false matches); the country-level candidate is the scope's name.
+   "The Conductive Seam" (`libraries/conductive-seam/`, `jobs.ensure_seam_folder`; `folder.json` `order: 0` keeps it
+   right below the main library) is Ukraine 2022–2026 for its videos and also holds satellite imagery (below).
 
 If a rule seems wrong for a task, ask the user. Don't work around it with flags or edits.
+
+## Satellite (The Conductive Seam, `satellite/`)
+
+Satellite imagery along the power lines of the Zaporizhzhia power plants across the former Kakhovka reservoir, for a
+film in the manner of *Best of Luck With the Wall* (decided with the user: open data only for now, a top-down
+travelling shot). Areas are in `config/conductive-seam.yaml`; the test area is the 330 kV Л-243/Л-244 crossing from
+the Zaporizhzhia thermal plant (Enerhodar) to the Nikopol bank (its corridor, chips and films were removed from the
+folder on 19 October 2026 at the user's request: test images out of the gallery; the config area stays for scratch use). `great-meadow` (110 km, 330 kV all the way) follows that
+line on along the north bank, across the river from the nuclear plant, through the Ferosplavna and Nikopolska
+substations, then Л-211 back east to the Dnipro dam (Дніпро І ГЕС): the user's site is the Great Meadow and the places
+round it, so the route stays there (the 750 kV line north to Dniprovska and the Enerhodar–Zaporizhzhia lines on the left
+bank were looked at and not taken).
+- Sources: Sentinel-2 L2A (10 m) and Landsat Collection 2 L2 (30 m) from Microsoft Planetary Computer (no key;
+  `providers.py`): STAC search, then crops by the data API in lon/lat at an exact pixel size (`.npy`: bands as stored
+  plus a validity mask; the cloud mask read nearest-neighbour). Reprocessed Sentinel-2 items: only the newest is kept.
+- A pass's date is its acquisition time, a source fact: **any year is allowed** for satellite imagery (decided with
+  the user: many years along the same path). The 2022–2026 rule is about YouTube publication and still applies to the
+  folder's videos. The area gate (`fetch.check_area`): a corridor must lie inside its folder's place (Ukraine's box),
+  checked before anything is written.
+- A corridor is fixed once (`georef.json`, like `scope.json`): its box, its lines and one grid (linear in lon/lat, metres
+  by `KX/KZ` as `scripts/scene/terrain.py`). Every pass, of any date or sensor, is stitched onto that same grid and
+  laid on the corridor's reference pass (phase correlation + ECC of NIR detail on clear land, shorelines eroded away;
+  only small, clear shifts applied, always recorded). Another area is a new corridor id, never an edit.
+- A long corridor is fetched as tiles (`stitch.TILE`, 2048 px) and only those within `strip_m` of the line
+  (`stitch.need_mask`); each tile is laid on the reference pass on its own (its shift in `pass.json` `files.tiles`).
+  A pass may cover only the line's first part (`--until-km`, `derived.until_m`), e.g. a before pass just where a
+  dissolve needs it; the exposed bed is then reported only where the earlier pass covers enough of the clear land.
+  Lines joined through a substation (`join_m`) record each join (`georef.json` `line.joins`).
+- The lines are OpenStreetMap `power=line` ways (Overpass, several servers with backoff; the reply saved verbatim):
+  coordinates from a source that has its own, with provenance. Never detected from pixels (at 10–30 m wires don't show
+  and a pylon is a few pixels). Leave ≥ 3.5 km of box round the line so a turned 6 km frame stays on imagery.
+- Records (`satellite/schema.py`): `SatellitePass` (source: items, platform, time, cloud; derived: alignment, water,
+  cloud), `SatelliteChip` (frozen link to its pass and station). Chips are the folder's images: the whole corridor,
+  then a square every `chip_spacing_m` along the line. Water: NIR and SWIR reflectance under 3%; exposed bed: water in
+  the last pass before 6 June 2023, not now. Display: one tone curve for every pass (`stitch.tone`, a soft shoulder so
+  the drained bed's sand keeps detail).
+- In the site, chips join the grid as one group per pass ahead of the videos (`service._sat_items`); text and year
+  filter them; categories and image sorts don't (they aren't classified: no false labels); the Frame Sequence,
+  Transcript and Route Map skip them. The panel shows the pass, place (the product's georeference), line, water,
+  exposed bed, cloud, alignment and STAC links; its tally is distance along the line.
+- The film's frames join the gallery too (decided with the user: "each frame of the video" into the Frame Gallery), as
+  the first group of the folder (`film_frames.py`; `SatelliteIndex.films`: each corridor's newest film with frames).
+  Not all 7,800: as for a video's frames, one is kept once less than half its ground is in the last kept frame
+  (a zoom counts), plus the held moments by name (the plant's lines drawn, the pan's end, before and after a dissolve,
+  the inset at full strength, the last hold); none in a fade, mid-dissolve or with the inset fading in. They are the
+  film's frames as shown (red line, labels, captions included), WebP web and thumb in `films/<id>/frames/`, with
+  `frames.json`: shot, passes and weights, camera (a viewing path), what is drawn, why kept, sha256 of the pixels.
+  The panel (`app.js` `showFilmFrame`): the film's time on the tally, what is shown, along, camera, drawn, the note at
+  that moment with its sources, and "Play the film from here" (`seam.js` `seamStart`).
+- The film (`film.py`): hold, track along the camera path (smoothed position and heading, eased), dissolves between
+  passes at held stops, hold. Pixels are only resampled (bicubic) or, in a dissolve, mixed; **never generated, filled
+  or sharpened**; no data is black. `film.json` records every segment (observed or dissolve, passes and weights,
+  overlays), the camera each second and the sources. Captions only on holds and dissolves; credits on the last hold.
+  An area's `film:` sets its own options: `dissolve_at_km` (where the dissolves stop), `trace`, and a `profile` of
+  speed and frame width by km along the line (eased between; turns are slowed to `max_turn_dps`, so a U-turn at a
+  substation reads as a turn, not a spin). A dissolve beyond what a partial pass covers is refused, never filled.
+  The line is drawn red (`trace_rgb`, decided with the user, so it can be followed). An area's `opening` (`opening.py`,
+  decided with the user) starts the film on a plant instead of a hold: a fade from black with the plant in the middle,
+  its lines drawn out from it in red and labelled, then a pan and zoom to the line's start (the thermal plant's lines
+  drawn on the way), the other lines and labels fading over the track's first seconds. Lines are OpenStreetMap ways
+  from `raw/osm_opening.json` (plants, switchyards and lines round them, saved verbatim, fetched once); each starts at
+  the end nearest its origin. Names: the ways' own tags, else the config's label with its source (`names`). For
+  great-meadow: the Zaporizhzhia NPP's four 750 kV lines (Dniprovska, Zaporizka, Pivdennodonbaska, Kakhovska; unnamed
+  ways named by Bellona's map of the plant's lines and where they end) and the six 330 kV circuits from the thermal
+  plant's switchyard (Л-243/Л-244 Ferosplavna 1 and 2, Л-242 Zaporizka, Л-246 Molochanska, and way 187125189 carrying
+  Л-247 Melitopolska and Л-241 Kakhovska to where they part), plus the units' links and the NPP–TPP 330 kV link. Quote a
+  YAML label that has a comma (a flow mapping splits at it). An area's `insets` lay a supplied
+  image on the passes (Forensic Architecture's way: smaller than the frame, named in the caption; just the image, no
+  frame or marks, decided with the user): the file in
+  the corridor's `insets/` folder as given (sha256 in `film.json`), only cropped, scaled and placed; its `pins` tie image
+  pixels to OpenStreetMap towers in the corridor's saved Overpass reply, fitted north up by least squares (each pin's
+  residual recorded; more than 15 m is refused, never stretched to fit). The camera zooms in on the way to it
+  (`zoom_in_m`, keeping its path and heading), holds while it fades in on the later pass, and zooms out as it fades.
+  The great-meadow inset (`crossing-pylons.png`, the user's screenshot of Esri World Imagery) shows the 330 kV and
+  750 kV crossing pylons at km 5.2. Its date and sensor come from Esri's own metadata at that spot (saved beside it:
+  WorldView-2, 23 August 2024, Vantor), checked by matching the screenshot to Esri's imagery of the same extent
+  (correlation 0.95, under 1 m apart: the pins agree with Esri's georeference). The user's coordinates for it
+  (47°45'05"N 35°10'23"E) are 50 km off and weren't used.
+  The last hold fades to black (`fade_out_s`, credits too; great-meadow: a 9 s hold, the last 3.5 s fading).
+  Notes (`notes.py`, decided with the user): short lines under the film in the view, never burned into it, each with
+  its sources (what the ZNPP is, its ten lines, the two circuits of Ferosplavna, the seizure, the outages, the dam, the
+  Great Meadow, why the line matters). Placed by shot (`{shot, s, n}`) or by km along the line into `film.json`
+  `notes`; `evidence satellite notes --area great-meadow` places them again without rendering. Every fact was checked
+  against the sources linked (19 October 2026; the IAEA's count of complete losses of off-site power was 26 by August
+  2026); add a source for any new note, and say "context from sources", never that the imagery shows it.
+  When tuning, check the film's `contact.webp`.
 
 ## Frame selection
 
@@ -147,6 +236,11 @@ candidate from its API metadata by how well it can be placed there, and ingests 
 .venv/bin/evidence reindex --fresh
 .venv/bin/evidence slim [--keep-originals] [--dry-run]   # delete stored downloads + full-resolution frames
 .venv/bin/evidence refresh-titles                      # uploader title translations (1 unit / 50 videos)
+.venv/bin/evidence satellite fetch --area enerhodar-crossing [--start 2023-07-01 --end 2023-09-30] [--sensor landsat]
+.venv/bin/evidence satellite fetch --area great-meadow --start 2023-04-01 --end 2023-06-05 --until-km 9   # a partial pass
+.venv/bin/evidence satellite film --area enerhodar-crossing [--passes ID ...] [--trace]   # into The Conductive Seam
+.venv/bin/evidence satellite notes --area great-meadow [--film ID]   # place the config's notes on a film again
+.venv/bin/evidence satellite lines --bbox W,S,E,N        # OSM power lines in a box (for a new area); --folder: scratch
 .venv/bin/evidence serve                                # http://127.0.0.1:8000
 .venv/bin/pytest -q
 ```
@@ -160,10 +254,10 @@ Keep it minimal (loose reference: mos.nyc). No header and no dashboards. The lay
   (one tick per extracted frame, proportional to the video's duration, with a playhead you can scrub),
   frame info, and inferred metadata with notes;
 - a numbered grid on the right, grouped by video. It holds only images and frame numbers: no video titles or other text;
-- Frame Gallery, Frame Sequence, Transcript, Reconstruction, Route Map, Scene Viewer, a zoom slider and the Light/Dark icon fixed at the bottom right
+- Frame Gallery, Frame Sequence, Transcript, Reconstruction, Route Map, Scene Viewer, The Conductive Seam, a zoom slider and the Light/Dark icon fixed at the bottom right
   (no search box there: search is typed in Sort & filter; `/` opens it),
   in that order left to right, all at 14px, on one line with equal gaps (names decided with the user). These are the views,
-  one button each with exactly one on (the code calls them "grid", "timeline", "subtitles", "document", "map" and "scene";
+  one button each with exactly one on (the code calls them "grid", "timeline", "subtitles", "document", "map", "scene" and "seam";
   Scene Viewer, `scene.js`, below). The chosen view is
   remembered per browser (`localStorage.view`), so a reload stays on it (decided with the user); a first visit opens
   on the Frame Gallery, with the Video panel. The first time the gallery is drawn in a page load (hard reloads included), the
@@ -177,6 +271,17 @@ Keep it minimal (loose reference: mos.nyc). No header and no dashboards. The lay
   (`zoom.js` `stretchBy`), on a log scale over `tlRange()`; in the gallery it steps through the column counts
   (`zoom.js` `LEVELS`, `set`), fewest columns on the right, with the same snap glide as a pinch.
   Light/Dark is an icon only (a half-filled circle, no text; its tooltip says which theme it switches to). It follows the system until clicked, then is remembered per browser (`localStorage.theme`, `data-theme` on `<html>`);
+- The Conductive Seam (`seam.js`, `/api/seam/films`): the satellite films, always from that folder, on a black ground.
+  Under the film a thin strip says what each stretch is (observed solid, dissolve hatched, inset light) with the playhead and
+  what has played filled (`.playhead`, `.done`: not `.head`, a global class that squashed it to nothing); click or
+  drag to seek, Space to play, ← → 5 s. The left panel follows the playhead: the pass shown (a dissolve says it is an
+  interpolation between two dates), distance along the line, the camera's position (a viewing path, not an
+  observation), then the statement, passes with STAC links, provenance and `film.json`. Under the strip the film's
+  notes (`.seam-note`, 15px, its sources small under it), one at a time, fading between them;
+- Satellite (bottom left, between Video and Evidence, a satellite icon before the word): a form in the panel, held
+  like Evidence (`satellite.js`): Area (config areas, corridors already made, or a new one: a box, then Find power
+  lines), Line, Sensor, Between (dates), Max cloud, Save to The Conductive Seam; "Fetch the clearest pass"; then Film
+  (passes, view width, speed, draw the line) and "Make film". Jobs wait in the same line as video jobs;
 - Scene Viewer (`scene.js`, `/api/scenes`, `/api/videos/{id}/scene`): 3D reconstructions from a video's own footage,
   shown like a 3D viewer (black ground whatever the theme, a 50° view, wider than the phone's 37° to feel like standing there (`VIEW_FOV`; a camera's own view keeps its lens, eased back to 50° when walked off), orbit controls, a ring per second where the camera stood, fly
   to a camera). On load a take with an `open_t` (compose.py `open=`) starts far out and flies in, curving down behind

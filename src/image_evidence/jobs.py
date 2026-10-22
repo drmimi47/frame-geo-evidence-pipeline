@@ -8,7 +8,8 @@
   Ukraine 2022..2026) or a project folder (`libraries/folder-<n>/`, named "Evidence folder <n>" until renamed;
   the name is in its `folder.json`). A folder's scope (`scope.json`) is fixed by the job that made it; a later
   job may only save into it with the same place and years within it. Every video passes its folder's gate.
-- One job runs at a time (frame extraction and the image model are heavy); others wait in line.
+- One job runs at a time (frame extraction and the image model are heavy); others wait in line. The Satellite
+  panel's jobs (satellite passes, films: `start_task`) wait in the same line.
 """
 
 from __future__ import annotations
@@ -114,15 +115,42 @@ def folder_title(root: Path, main: bool) -> str:
         return MAIN_TITLE if main else Path(root).name
 
 
+def _folder_order(root: Path) -> tuple[int, int, str]:
+    """A folder's `order` (folder.json) first, so a pinned folder ("The Conductive Seam") stays right below the
+    main one; then the numbered folders in the order they were made."""
+    try:
+        order = int(json.loads((root / FOLDER_FILE).read_text()).get("order", 10**6))
+    except (OSError, ValueError, TypeError):
+        order = 10**6
+    m = _FOLDER_DIR.match(root.name)
+    return order, int(m.group(1)) if m else 10**9, root.name
+
+
 def list_libraries(main_root: Path) -> list[dict[str, Any]]:
-    """Every evidence folder: the main library first, then the project folders in the order they were made."""
+    """Every evidence folder: the main library first, then the project folders (pinned ones first, then in the
+    order they were made)."""
     out = [{"slug": "", "root": Path(main_root), "scope": UKRAINE, "title": folder_title(main_root, True)}]
     d = libraries_dir(main_root)
     if d.is_dir():
         roots = [r for r in d.iterdir() if (r / SCOPE_FILE).is_file()]
-        for root in sorted(roots, key=lambda r: (int(m.group(1)) if (m := _FOLDER_DIR.match(r.name)) else 10**9, r.name)):
+        for root in sorted(roots, key=_folder_order):
             out.append({"slug": root.name, "root": root, "scope": library_scope(root), "title": folder_title(root, False)})
     return out
+
+
+def ensure_seam_folder(main_root: Path) -> Path:
+    """"The Conductive Seam" (libraries/conductive-seam/): satellite imagery along the power lines, and videos of
+    them. Its scope is Ukraine 2022..2026 like the main library (for videos; satellite passes have the area gate,
+    satellite/fetch.py). Made on first use, listed right below the main library."""
+    from .layout import write_json
+    from .satellite import SEAM_SLUG, SEAM_TITLE
+
+    root = libraries_dir(main_root) / SEAM_SLUG
+    if not (root / SCOPE_FILE).is_file():
+        root.mkdir(parents=True, exist_ok=True)
+        write_json(root / SCOPE_FILE, replace(UKRAINE, made_by="user").to_json())
+        write_json(root / FOLDER_FILE, {"title": SEAM_TITLE, "order": 0})
+    return root
 
 
 def next_folder(main_root: Path) -> tuple[str, str]:
@@ -167,7 +195,11 @@ def rename_folder(main_root: Path, slug: str, title: str) -> str:
     x = next((x for x in list_libraries(main_root) if x["slug"] == slug), None)
     if x is None or not title:
         raise ValueError("no such folder" if x is None else "a folder needs a name")
-    write_json(x["root"] / FOLDER_FILE, {"title": title})
+    try:  # (keep its place in the list)
+        old = json.loads((x["root"] / FOLDER_FILE).read_text())
+    except (OSError, ValueError):
+        old = {}
+    write_json(x["root"] / FOLDER_FILE, {**old, "title": title})
     return title
 
 
@@ -245,13 +277,14 @@ class Job:
     scope: str
     folder: str = ""
     status: str = "queued"  # queued | running | done | failed
+    kind: str = "video"     # video | satellite | film
     log: list[str] = field(default_factory=list)
     results: list[dict[str, Any]] = field(default_factory=list)
     error: str | None = None
     started_at: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
 
     def public(self) -> dict[str, Any]:
-        return {"id": self.id, "library": self.library, "scope": self.scope, "folder": self.folder, "status": self.status,
+        return {"id": self.id, "kind": self.kind, "library": self.library, "scope": self.scope, "folder": self.folder, "status": self.status,
                 "log": self.log[-80:], "results": self.results, "error": self.error, "started_at": self.started_at}
 
 
@@ -303,8 +336,21 @@ class Jobs:
     def get(self, job_id: str) -> Job | None:
         return self.jobs.get(job_id)
 
+    def start_task(self, kind: str, library: str, folder: str, scope: str, work: Callable[[Job], None]) -> Job:
+        """Another kind of job (the Satellite panel's passes and films): `work(job)` runs in the same line as the
+        video jobs, its log lines copied into the job."""
+        job = Job(id=uuid.uuid4().hex[:12], library=library, scope=scope, folder=folder, kind=kind)
+        self.jobs[job.id] = job
+        threading.Thread(target=self._execute, args=(job, lambda: work(job), []), daemon=True, name=f"job-{job.id}").start()
+        return job
+
     def _run(self, job: Job, req: JobRequest, root: Path, scope: Scope, new: bool) -> None:
-        secrets = [req.youtube_key or "", req.llm_key or ""]
+        try:
+            self._execute(job, lambda: self._ingest(job, req, root, scope, new), [req.youtube_key or "", req.llm_key or ""])
+        finally:
+            req.youtube_key = req.llm_key = None  # drop the tokens with the job
+
+    def _execute(self, job: Job, work: Callable[[], None], secrets: list[str]) -> None:
         handler = _JobLog(job, secrets)
         logging.getLogger("image_evidence").addHandler(handler)
         try:
@@ -312,14 +358,13 @@ class Jobs:
                 job.log.append("Waiting for the job before this one to finish…")
             with self.run_lock:
                 job.status = "running"
-                self._ingest(job, req, root, scope, new)
+                work()
             job.status = "done"
         except Exception as e:  # noqa: BLE001 - reported to the page
             job.status, job.error = "failed", redact(f"{type(e).__name__}: {e}", secrets)
             log.info("failed: %s", job.error)
         finally:
             logging.getLogger("image_evidence").removeHandler(handler)
-            req.youtube_key = req.llm_key = None  # drop the tokens with the job
             if self.on_done:
                 self.on_done(job)
 

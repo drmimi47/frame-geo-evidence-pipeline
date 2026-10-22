@@ -149,12 +149,12 @@ canvas.words { position: absolute; left: 0; z-index: 1; pointer-events: none; }
   padding: 40px var(--pad) 22px; font-size: 14px; line-height: 1.25;
   background: linear-gradient(to bottom, transparent, var(--bg) 55%); pointer-events: none;
 }
-#corner { display: flex; align-items: baseline; gap: clamp(16px, 2.2vw, 32px); } /* the same gap as the bottom-right controls */
+#corner { display: flex; align-items: baseline; gap: clamp(16px, 1.8vw, 32px); } /* the same gap as the bottom-right controls */
 #corner > button { flex-shrink: 0; white-space: nowrap; }
 @media (min-width: 801px) { #corner { padding-right: 12px; } } /* the count may run to just short of the images */
-#video, #evidence, #filters { pointer-events: auto; border: 0; background: none; padding: 0; font: inherit; color: var(--muted); cursor: default; transition: color .15s; }
-#video:hover, #video.set, #evidence:hover, #evidence.set, #filters:hover, #filters.set, #filters[aria-expanded="true"] { color: var(--fg); }
-#video svg, #evidence svg, #filters svg { margin-right: .4em; vertical-align: -1px; }
+#video, #satellite, #evidence, #filters { pointer-events: auto; border: 0; background: none; padding: 0; font: inherit; color: var(--muted); cursor: default; transition: color .15s; }
+#video:hover, #video.set, #satellite:hover, #satellite.set, #evidence:hover, #evidence.set, #filters:hover, #filters.set, #filters[aria-expanded="true"] { color: var(--fg); }
+#video svg, #satellite svg, #evidence svg, #filters svg { margin-right: .4em; vertical-align: -1px; }
 
 /* ------------------------------------------------- the Evidence panel: one row per folder */
 .folders { list-style: none; margin: 0; padding: 0; font-size: 14px; line-height: 1.35; }
@@ -245,7 +245,7 @@ aside .sortnote { color: var(--fg); }
 /* ------------------------------------------------- bottom controls (no header) */
 footer {
   position: fixed; left: var(--aside); right: 0; bottom: 0; z-index: 2;
-  display: flex; justify-content: flex-end; align-items: baseline; gap: clamp(16px, 2.2vw, 32px); /* equal gaps, tighter on narrow screens */
+  display: flex; justify-content: flex-end; align-items: baseline; gap: clamp(16px, 1.8vw, 32px); /* equal gaps, tighter on narrow screens */
   padding: 40px var(--pad) 22px 0;
   background: linear-gradient(to bottom, transparent, var(--bg) 55%); pointer-events: none;
 }
@@ -310,7 +310,63 @@ aside[hidden], #corner[hidden] { display: none; }
 .research-content ol { margin: 0; padding-left: 1.4em; }
 .research-content li + li { margin-top: 7px; }
 /* The additional view must fit above the sidebar without controls crossing over it. */
-@media (min-width: 801px) and (max-width: 1250px) {
+@media (min-width: 801px) and (max-width: 1440px) {
   footer { flex-wrap: wrap; row-gap: 12px; padding-left: 12px; }
 }
 .scene-credit { position: absolute; left: 12px; bottom: 10px; font-size: 11px; color: rgba(255, 255, 255, 0.45); pointer-events: none; }
+
+/* ------------------------------------------------- the Satellite panel (satellite.js): the Video form's look */
+.satellite .head select.title { font-size: 17px; border: 0; padding-bottom: 3px; }
+.satellite .settings dd.line, .satellite .settings dd.passes { display: grid; gap: 4px; }
+.satellite .settings .unit { display: flex; align-items: baseline; gap: .5em; }
+.satellite .settings .unit input { width: 5em; flex: none; }
+.satellite .settings .unit span, .satellite .range span { color: var(--muted); }
+.satellite .range input { flex: 1; min-width: 0; }
+.satellite button.link { font: inherit; color: var(--muted); border: 0; background: none; padding: 0; cursor: default; }
+.satellite button.link:hover { color: var(--fg); }
+.satellite .tm-h { margin: 1.8em 0 .9em; }
+#s-note { color: var(--muted); }
+#s-note:empty { display: none; }
+.satellite button.go { font: inherit; font-size: 14px; color: var(--bg); background: var(--fg); border: 0; border-radius: 2px; padding: 5px 16px; cursor: default; }
+.satellite button.go:disabled { opacity: .4; }
+#s-job p { margin: 0 0 .5em; }
+#s-job .results { list-style: none; margin: 0 0 1em; padding: 0; }
+#s-job .results li { margin: 0 0 .35em; }
+#s-job .log { margin: 0 0 1em; font: 11px/1.4 ui-monospace, Menlo, monospace; color: var(--muted); white-space: pre-wrap; overflow-wrap: anywhere; }
+
+/* ------------------------------------------------- The Conductive Seam (seam.js): the film on a black ground */
+main.seam { position: fixed; top: 0; right: 0; bottom: 0; left: var(--aside); margin: 0; padding: 0; transform: none !important; }
+.seam-view { position: absolute; inset: 0; background: #000; display: flex; flex-direction: column; justify-content: center;
+             padding: 32px 32px 96px; gap: 14px; }
+.seam-film { display: block; width: 100%; min-height: 0; flex: 0 1 auto; max-height: calc(100% - 30px); object-fit: contain; background: #000; }
+/* what each stretch of the film is: observed solid, a dissolve hatched; the playhead over it */
+.seam-strip { position: relative; flex: none; height: 14px; touch-action: none; cursor: default; }
+.seam-strip i { position: absolute; top: 5px; height: 4px; }
+.seam-strip i.obs, .seam-legend i.obs { background: #6d6d6d; }
+.seam-strip i.dis, .seam-legend i.dis { background: repeating-linear-gradient(135deg, #bdbdbd 0 2px, transparent 2px 5px); }
+.seam-strip i.ins, .seam-legend i.ins { background: #e8e8e8; }
+.seam-strip i + i { border-left: 1px solid #000; }
+/* the part played, lit over the stretches (the hatching still shows through), and the playhead: a tick taller than the
+   strip (not .head: that is the panel titles' class, whose margin would squash it) */
+.seam-strip .done { position: absolute; left: 0; top: 5px; height: 4px; width: calc(var(--x, 0) * 100%); background: rgba(255, 255, 255, .6); }
+.seam-strip .playhead { position: absolute; top: -2px; height: 18px; left: calc(var(--x, 0) * 100%); width: 2px; margin-left: -1px; background: #fff; }
+/* the note under the strip: context from sources, a line or two at a time (fades between notes) */
+.seam-note { flex: none; min-height: 4.6em; max-width: 72ch; color: #e6e6e6; font-size: 15px; line-height: 1.45;
+             transition: opacity .22s; }
+.seam-note.out { opacity: 0; }
+.seam-note p { margin: 0 0 .25em; }
+.seam-note .src { font-size: 11px; color: #8a8a8a; }
+.seam-note .src a { color: inherit; text-decoration: none; }
+.seam-note .src a:hover { color: #e6e6e6; }
+.seam-legend { display: flex; flex-wrap: wrap; gap: .3em 1.4em; font-size: 12px; color: var(--muted); }
+.seam-legend i { display: inline-block; width: 22px; height: 4px; margin-right: .5em; vertical-align: 2px; }
+:root:not([data-theme="dark"]) .seam-legend i.obs { background: #8a8a8a; }
+.seam-passes .note a { color: var(--muted); font: 11px/1.4 ui-monospace, Menlo, monospace; overflow-wrap: anywhere; }
+.tm-transport a { color: var(--muted); text-decoration: none; transition: color .15s; }
+.tm-transport a:hover { color: var(--fg); }
+body:has(main.seam) footer { background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, .85) 55%); }
+body:has(main.seam) footer button.view, body:has(main.seam) #theme { color: #9a9a9a; }
+body:has(main.seam) footer button.view:hover, body:has(main.seam) footer button.view.set { color: #fff; }
+@media (max-width: 800px) { main.seam { left: 0; top: 42vh; } .seam-view { padding: 12px 12px 110px; } }
+.tm-prov dd { overflow-wrap: anywhere; }
+.satellite .settings { grid-template-columns: 5.4em minmax(0, 1fr); } /* the film settings line up with the ones above */

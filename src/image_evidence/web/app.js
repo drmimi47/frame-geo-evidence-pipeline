@@ -2,6 +2,8 @@ import { LEVELS, setupZoom } from "./zoom.js";
 import { renderDocument } from "./document.js";
 import { renderMap, leaveMap } from "./map.js";
 import { renderScene, leaveScene } from "./scene.js";
+import { renderSeam, leaveSeam, seamStart } from "./seam.js";
+import { buildSatelliteForm, refreshSatelliteForm } from "./satellite.js";
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -27,7 +29,7 @@ let hoverPaused = false, pointerXY = "";
 // A clicked frame is pinned: the panel sticks to it and the other tiles dim, until it's clicked again.
 let pinned = null;          // frame_id
 // The Video and Evidence panels hold the panel like a pin; the library shown is picked by the `lib` cookie.
-let panelMode = null, currentLib = "";  // panelMode: "video" | "evidence"
+let panelMode = null, currentLib = "";  // panelMode: "video" | "satellite" | "evidence" | "filters"
 // Hovering frames while Video or Evidence is open previews them in its place; leaving the images brings it back.
 let peek = null;            // { nodes, focus } of the Video/Evidence panel while a frame is previewed
 // Clicking the panel title switches every title between the original and YouTube's English title.
@@ -35,7 +37,7 @@ let peek = null;            // { nodes, focus } of the Video/Evidence panel whil
 // Its subtitles mode shows each video's captions instead of the filmstrip.
 // The chosen view is remembered per browser (localStorage.view), so a reload stays on it; the first visit opens on the
 // gallery (with the Video panel, the panel's resting state).
-const VIEWS = ["grid", "timeline", "subtitles", "document", "map", "scene"];
+const VIEWS = ["grid", "timeline", "subtitles", "document", "map", "scene", "seam"];
 const savedView = (() => { try { const v = localStorage.getItem("view"); return VIEWS.includes(v) ? v : "grid"; } catch { return "grid"; } })();
 let timeline = savedView === "timeline" || savedView === "subtitles", subs = savedView === "subtitles";
 let documentView = savedView === "document";
@@ -43,6 +45,10 @@ let documentView = savedView === "document";
 let mapView = savedView === "map";
 // Scene Viewer (scene.js): a Gaussian splat view; it takes over main and #research too.
 let sceneView = savedView === "scene";
+// The Conductive Seam (seam.js): the satellite films; it takes over main and #research too.
+let seamView = savedView === "seam";
+// the views that bring their own left panel (and draw no frames)
+const takeover = () => documentView || mapView || sceneView || seamView;
 // The first time the gallery is drawn (every page load, hard reloads included), the images on screen fade in one
 // by one in a random order across the grid; later re-draws (search, filters) fade in all at once. They wait until
 // those images have arrived (or REVEAL_WAIT_MS), so on a hard reload, with nothing cached, they still appear
@@ -69,6 +75,7 @@ async function load(reuse = false) {
   if (documentView) return renderDocument(main, $("research"));
   if (mapView) return renderMap(main, $("research"));
   if (sceneView) return renderScene(main, $("research"));
+  if (seamView) return renderSeam(main, $("research"), { openSatellite: () => { setView("grid"); openPanel("satellite"); } });
   const keep = items[current]?.frame_id;
   const p = new URLSearchParams({ limit: 500 });
   if ($("q").value) p.set("q", $("q").value);
@@ -120,7 +127,9 @@ function detail(id) {
 // ---------------------------------------------------------------- grid
 
 function render(list) {
-  if (documentView || mapView || sceneView) return;
+  if (takeover()) return;
+  // satellite chips have no time in a video: the Frame Sequence and Transcript show only videos
+  if (timeline) list = list.filter((it) => it.kind !== "satellite");
   const sorted = !timeline && !!($("sort").value || queryImage);
   const groups = new Map();
   if (sorted) {
@@ -757,10 +766,11 @@ function warmSoon() {
   warmTimer = setTimeout(() => (window.requestIdleCallback ?? ((f) => f()))(prewarm, { timeout: 2000 }), wait);
 }
 function prewarm() {
-  if (documentView || mapView || sceneView || !items.length) return;
+  if (takeover() || !items.length) return;
   warmedOnce = true;
   const thumb = new Map(items.map((it) => [it.frame_id, it.thumb_url]));
   for (const id of new Set(items.map((it) => it.video_id))) {
+    if (videos.get(id)?.kind === "satellite") continue;
     loadSubtitles(id).catch(() => {});
     // the strips' neighbours as layoutTimeline finds them: the video's frames in time order, those shown
     const times = [...(videos.get(id)?.frame_times ?? [])].sort((a, b) => a[1] - b[1]);
@@ -777,13 +787,15 @@ function setView(view) {
   documentView = view === "document";
   mapView = view === "map";
   sceneView = view === "scene";
+  seamView = view === "seam";
   if (!mapView) leaveMap();
   if (!sceneView) leaveScene();
+  if (!seamView) leaveSeam();
   timeline = view === "timeline" || view === "subtitles";
   subs = view === "subtitles";
   tlScale = readZoom();
   try { localStorage.setItem("view", view); } catch {}
-  if (documentView || mapView || sceneView) {
+  if (takeover()) {
     thumbs.disconnect();
     endPeek();
     setPin(-1);
@@ -798,16 +810,17 @@ function setView(view) {
   load(true);
 }
 // The views, one selected at a time. Existing stored view names remain compatible.
-const currentView = () => (sceneView ? "scene" : mapView ? "map" : documentView ? "document" : subs ? "subtitles" : timeline ? "timeline" : "grid");
+const currentView = () => (seamView ? "seam" : sceneView ? "scene" : mapView ? "map" : documentView ? "document" : subs ? "subtitles" : timeline ? "timeline" : "grid");
 function showView(animate = false) {
-  const takeover = documentView || mapView || sceneView; // views that bring their own left panel
+  const own = takeover(); // views that bring their own left panel
   main.classList.toggle("document", documentView);
   main.classList.toggle("map", mapView);
   main.classList.toggle("scene", sceneView);
-  panel.hidden = takeover;
-  $("research").hidden = !takeover;
-  $("corner").hidden = takeover;
-  $("tlzoom").hidden = mapView || sceneView; // (the Route Map grows its timeline out of it: map.js; the Scene Viewer has nothing to zoom)
+  main.classList.toggle("seam", seamView);
+  panel.hidden = own;
+  $("research").hidden = !own;
+  $("corner").hidden = own;
+  $("tlzoom").hidden = mapView || sceneView || seamView; // (the Route Map grows its timeline out of it: map.js; the Scene Viewer and the films have nothing to zoom)
   syncSlider(animate);
   for (const b of document.querySelectorAll("button.view")) {
     const on = b.dataset.view === currentView();
@@ -1082,7 +1095,7 @@ function setPin(i) {
   pinned = items[i]?.frame_id ?? null;
   main.classList.toggle("has-pin", pinned !== null);
   spreadTo(pinned);
-  zoomTo(timeline || documentView || mapView || sceneView ? -1 : i);
+  zoomTo(timeline || takeover() ? -1 : i);
   if (pinned === null) return;
   for (const t of main.querySelectorAll(`.tile[data-i="${i}"]`)) t.classList.add("pinned"); // a wrapped timeline frame has several pieces
   select(i);
@@ -1200,6 +1213,7 @@ function select(i, scroll = false) {
 }
 
 function showFrame(it) {
+  if (it.kind === "satellite") return it.sat_kind === "film" ? showFilmFrame(it) : showChip(it);
   const v = videos.get(it.video_id);
   const times = v?.frame_times ?? [];
   if (panel.dataset.video !== it.video_id) {
@@ -1268,6 +1282,133 @@ async function showDetails(it) {
       ${f.urls.original ? `<a href="${f.urls.original}" target="_blank">Original</a> &nbsp;` : ""}
       <a href="/api/frames/${encodeURIComponent(f.frame_id)}" target="_blank">JSON</a></p>
     <p class="small muted">${esc(f.frame_id)}</p>`;
+  box.classList.remove("loading");
+}
+
+// A satellite image (The Conductive Seam): its pass as the title, the tally along the line instead of the video's time
+// (one tick per image, by its distance along the line), and its source, georeference and measurements.
+const km = (m) => `${(m / 1000).toFixed(1)} km`;
+function showChip(it) {
+  const v = videos.get(it.video_id), times = v?.frame_times ?? [];
+  if (panel.dataset.video !== it.video_id) {
+    const dur = it.duration_s || 1;
+    panel.dataset.video = it.video_id;
+    panel.dur = dur;
+    panel.innerHTML = `
+      <div class="head"><div>
+        <div class="title" id="title">${esc(it.video_title)}</div>
+        <div class="sub">${esc(it.channel_title)}, satellite pass</div>
+      </div></div>
+      <div class="tally" title="Where each image sits along the line">
+        <div class="now"><span id="now"></span></div>
+        <div class="track" id="track">${times.map(([id, t]) => `<i data-id="${esc(id)}" style="--x:${Math.min(1, t / dur)}"></i>`).join("")}<b class="playhead" id="playhead"></b></div>
+        <div class="ends"><span>0 km</span><span>${km(dur)}</span></div>
+      </div>
+      <p class="small" id="frameline"></p>
+      <div class="details" id="details"></div>`;
+  }
+  const x = Math.min(1, it.timestamp_s / panel.dur);
+  $("now").style.setProperty("--x", x);
+  $("now").textContent = it.selection === "overview" ? "whole corridor" : km(it.timestamp_s);
+  $("playhead").style.setProperty("--x", x);
+  $("track").querySelector("i.here")?.classList.remove("here");
+  $("track").querySelector(`i[data-id="${CSS.escape(it.frame_id)}"]`)?.classList.add("here");
+  const stations = times.length - 1;
+  $("frameline").innerHTML = (it.selection === "overview" ? `The whole corridor · ${it.width}×${it.height}`
+    : `Image ${it.frame_number} of ${stations} · ${km(it.timestamp_s)} along the line · ${it.width}×${it.height}`) +
+    `<br><span class="muted">Acquired ${it.published_at.slice(0, 16).replace("T", " ")} UTC: when the satellite took it</span>` +
+    (it.sort_note ? `<br><span class="sortnote">${esc(it.sort_note)}</span>` : "");
+  showChipDetails(it);
+}
+
+async function showChipDetails(it) {
+  const box = $("details");
+  box.classList.add("loading");
+  let d;
+  try { d = await detail(it.frame_id); } catch { return; }
+  if (items[current]?.frame_id !== it.frame_id) return; // moved on while loading
+  const p = d.pass, c = d.chip, x = d.derived, al = p.derived.alignment;
+  const base = it.web_url.slice(0, it.web_url.indexOf("satellite/"));
+  const exposed = x.exposed_bed_share == null ? "—<span class=\"note\">needs a pass from before 6 June 2023 in this corridor</span>"
+    : `${pct(x.exposed_bed_share)} of clear pixels<span class="note">open water in ${esc(x.exposed_against)}, not now: derived from reflectance</span>`;
+  box.innerHTML = `
+    <dl class="fields">
+      <dt>Source</dt><dd>${esc(p.source.platform)} · ${esc(p.source.collection)} · ${p.source.gsd_m} m<span class="note">${esc(p.source.provider)}; ${esc(p.source.licence)}</span></dd>
+      <dt>Place</dt><dd>${c.centre_lat.toFixed(5)} N, ${c.centre_lon.toFixed(5)} E · ${km(c.size_m[0])} × ${km(c.size_m[1])}<span class="note">the image's middle, from the product's own georeference</span></dd>
+      <dt>Line</dt><dd>${esc(d.corridor.line)}<span class="note">OpenStreetMap's geometry (fetched ${esc(d.corridor.osm.fetched_at.slice(0, 10))}): where mappers put it, not detected in the image</span></dd>
+      <dt>Water</dt><dd>${pct(x.water_share)} of clear pixels<span class="note">derived: near and shortwave infrared under 3%</span></dd>
+      <dt>Exposed bed</dt><dd>${exposed}</dd>
+      <dt>Cloud</dt><dd>${pct(x.cloud_share ?? 0)} · data over ${pct(x.valid_share)}<span class="note">the product's own cloud mask</span></dd>
+      <dt>Aligned</dt><dd>${al.reference_pass ? `${al.applied ? "shifted" : "not shifted"} ${al.dx_m} m east, ${al.dy_m} m north` : "reference pass"}<span class="note">${esc(al.provenance.evidence)}</span></dd>
+      <dt>Display</dt><dd>${esc(p.derived.display)}</dd>
+    </dl>
+    <p class="small">${p.source.item_urls.map((u, k) => `<a href="${esc(u)}" target="_blank" rel="noopener">STAC item${p.source.item_urls.length > 1 ? ` ${k + 1}` : ""} ↗</a>`).join(" &nbsp;")} &nbsp;
+      <a href="${esc(base + (p.files.visual ?? `satellite/corridors/${p.corridor_id}/passes/${p.pass_id}/chips/web/sat_${p.corridor_id}_${p.pass_id}_c000.webp`))}" target="_blank">Whole pass</a> &nbsp;
+      <a href="/api/frames/${encodeURIComponent(d.chip_id)}" target="_blank">JSON</a></p>
+    <p class="small muted">${esc(d.chip_id)}<br>${esc(p.source.attribution)}</p>`;
+  box.classList.remove("loading");
+}
+
+// A frame of a satellite film (The Conductive Seam; film_frames.py): the film as the title, its time in the film on the
+// tally, then what the frame shows (pass or dissolve), where the camera is (a viewing path), what is drawn on it, and the
+// note shown under the film at that moment (context from sources, not read from the imagery).
+const day = (iso) => new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+function showFilmFrame(it) {
+  const v = videos.get(it.video_id), times = v?.frame_times ?? [];
+  if (panel.dataset.video !== it.video_id) {
+    const dur = it.duration_s || 1;
+    panel.dataset.video = it.video_id;
+    panel.dur = dur;
+    panel.innerHTML = `
+      <div class="head"><div>
+        <div class="title" id="title">${esc(it.video_title)}</div>
+        <div class="sub">${esc(it.channel_title)}, a film made from satellite passes</div>
+      </div></div>
+      <div class="tally" title="Where each image sits in the film">
+        <div class="now"><span id="now"></span></div>
+        <div class="track" id="track">${times.map(([id, t]) => `<i data-id="${esc(id)}" style="--x:${Math.min(1, t / dur)}"></i>`).join("")}<b class="playhead" id="playhead"></b></div>
+        <div class="ends"><span>0:00</span><span>${clock(dur)}</span></div>
+      </div>
+      <p class="small" id="frameline"></p>
+      <div class="details" id="details"></div>`;
+  }
+  const x = Math.min(1, it.timestamp_s / panel.dur);
+  $("now").style.setProperty("--x", x);
+  $("now").textContent = clock(it.timestamp_s);
+  $("playhead").style.setProperty("--x", x);
+  $("track").querySelector("i.here")?.classList.remove("here");
+  $("track").querySelector(`i[data-id="${CSS.escape(it.frame_id)}"]`)?.classList.add("here");
+  $("frameline").innerHTML = `Image ${it.frame_number} of ${times.length} · ${clock(it.timestamp_s)} of ${clock(panel.dur)} in the film` +
+    (it.sort_note ? `<br><span class="sortnote">${esc(it.sort_note)}</span>` : "");
+  showFilmDetails(it);
+}
+
+async function showFilmDetails(it) {
+  const box = $("details");
+  box.classList.add("loading");
+  let d;
+  try { d = await detail(it.frame_id); } catch { return; }
+  if (items[current]?.frame_id !== it.frame_id) return; // moved on while loading
+  const f = d.film, cam = d.camera, titles = Object.fromEntries(f.passes.map((p) => [p.pass_id, p]));
+  const shown = d.kind === "dissolve"
+    ? `Dissolve, ${esc(day(titles[d.passes[0].pass_id].acquired_at))} → ${esc(day(titles[d.passes[1].pass_id].acquired_at))} (${pct(d.passes[1].weight)} the later)<span class="note">interpolated: two passes mixed, not imagery of any date between them</span>`
+    : `${esc(titles[d.passes[0].pass_id].title)}<span class="note">observed: this pass, resampled (acquired ${esc(titles[d.passes[0].pass_id].acquired_at.slice(0, 16).replace("T", " "))} UTC)</span>`;
+  const along = d.shot === "open" || d.shot === "pan" ? "Before the line, at the plants" : `${km(d.along_m)} of ${km(f.line.length_m)}`;
+  const note = d.note ? `<dt>Note</dt><dd>${esc(d.note.text)}<span class="note">${d.note.sources.map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>`).join(" · ")}; shown under the film here: context from these sources, not read from the imagery</span></dd>` : "";
+  box.innerHTML = `
+    <dl class="fields">
+      <dt>Shown</dt><dd>${shown}</dd>
+      <dt>Along</dt><dd>${along}<span class="note">${esc(f.line.label)}</span></dd>
+      <dt>Camera</dt><dd>${cam.lat.toFixed(4)} N, ${cam.lon.toFixed(4)} E · heading ${Math.round(cam.heading_deg)}°<span class="note">${cam.m_per_px.toFixed(1)} m a pixel · ${km(cam.view_m)} across; a path for viewing along the line, not where anything was observed from</span></dd>
+      <dt>Drawn</dt><dd>${d.overlays.length ? esc(d.overlays.join("; ")) : "nothing"}<span class="note">drawn over the imagery, not seen in it</span></dd>
+      ${note}
+      <dt>Kept</dt><dd>${esc(d.kept)}</dd>
+    </dl>
+    <p class="small"><a href="#" id="playfrom">Play the film from here</a> &nbsp;
+      ${f.passes.map((p) => `STAC ${esc(day(p.acquired_at))} ${p.item_urls.map((u, k) => `<a href="${esc(u)}" target="_blank" rel="noopener">${k + 1}</a>`).join(" ")} ↗`).join(" &nbsp;")} &nbsp;
+      <a href="/api/frames/${encodeURIComponent(d.frame_id)}" target="_blank">JSON</a></p>
+    <p class="small muted">${esc(d.frame_id)}<br>sha256 ${esc(d.sha256.slice(0, 16))}… of the frame's pixels<br>${esc([...new Set(f.passes.map((p) => p.attribution))].join(" · "))}</p>`;
+  box.querySelector("#playfrom").onclick = (e) => { e.preventDefault(); seamStart(f.film_id, d.t); setView("seam"); };
   box.classList.remove("loading");
 }
 
@@ -1362,8 +1503,9 @@ function showStats(list = items) {
     statsEl.textContent = here.length ? `${here.length} image${here.length === 1 ? "" : "s"} near ${near}` : `None near ${near}`;
     return;
   }
-  statsEl.textContent = filtered ? `${list.length} of ${library.frames} images · ${vids} of ${library.videos} videos`
-                                 : `${library.videos} uploaded · ${library.frames} images`;
+  const sat = library.passes ? ` · ${library.passes} satellite pass${library.passes === 1 ? "" : "es"}` : "";
+  statsEl.textContent = filtered ? `${list.length} of ${library.frames} images · ${vids} of ${library.videos + (library.passes ?? 0)} ${library.passes ? "groups" : "videos"}`
+                                 : `${library.videos} uploaded${sat} · ${library.frames} images`;
 }
 async function pollStats() {
   try {
@@ -1427,7 +1569,7 @@ function showFilters() {
         <div class="sf-chips">${near.join("")}</div>` : ""}
       <h3>Category <span class="note">a frame must have every one chosen</span></h3>
       <div class="sf-chips">${chips("cat", facets.category)}</div>
-      <h3>Published on YouTube</h3>
+      <h3>${library.passes ? "Year <span class=\"note\">published on YouTube, or acquired by satellite</span>" : "Published on YouTube"}</h3>
       <div class="sf-chips"><button type="button" data-year="">All</button>${chips("year", facets.year)}</div>
       <button type="button" class="sf-clear">Clear all</button>
     </div>`;
@@ -1472,7 +1614,7 @@ $("filters").onclick = () => {
 const IMAGE_SORT = "__image";
 let queryImage = null; // { id }
 async function useImage(file) {
-  if (documentView || mapView || sceneView) return;
+  if (takeover()) return;
   if (!file || !file.type.startsWith("image/")) return;
   // the image becomes a sort: show it in Sort & filter, over the gallery
   if (currentView() !== "grid") setView("grid");
@@ -1519,7 +1661,7 @@ function clearAll() {
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && panelMode && e.target.matches?.("input, textarea, select")) { e.target.blur(); return; }
   if (e.key === "Escape" && panelMode) { leavePanel(); return; }
-  if (documentView || mapView || sceneView || e.target.matches?.("select, input, button, textarea")) return;
+  if (takeover() || e.target.matches?.("select, input, button, textarea")) return;
   if (e.key === "/") { // search: in Sort & filter, over the gallery
     e.preventDefault();
     if (currentView() !== "grid") setView("grid");
@@ -1535,7 +1677,7 @@ document.addEventListener("keydown", (e) => {
 // In the timeline view a pinch stretches time instead, re-wrapping the timelines as it goes.
 const zoom = setupZoom({
   root: main,
-  enabled: () => !documentView && !mapView && !sceneView,
+  enabled: () => !takeover(),
   axis: () => (timeline ? "x" : "both"),
   stretch: {
     clamp: (s) => clampScale(tlScale * s) / tlScale,
@@ -1597,12 +1739,15 @@ function openPanel(mode) {
   for (const t of main.querySelectorAll(".tile.on")) t.classList.remove("on");
   current = -1;
   panelMode = mode;
-  for (const id of ["video", "evidence"]) $(id).classList.toggle("set", id === mode);
-  for (const id of ["video", "evidence", "filters"]) $(id).setAttribute("aria-expanded", id === mode);
+  for (const id of ["video", "satellite", "evidence"]) $(id).classList.toggle("set", id === mode);
+  for (const id of ["video", "satellite", "evidence", "filters"]) $(id).setAttribute("aria-expanded", id === mode);
   panel.dataset.video = "";
   if (mode === "video") {
     panel.replaceChildren(videoForm ??= buildVideoForm());
     refreshVideoForm();
+  } else if (mode === "satellite") {
+    panel.replaceChildren(satelliteForm ??= buildSatelliteForm(satelliteHooks));
+    refreshSatelliteForm();
   } else if (mode === "filters") showFilters();
   else showEvidence();
 }
@@ -1611,13 +1756,21 @@ function openPanel(mode) {
 function closePanel() {
   peek = null;
   panelMode = null;
-  for (const id of ["video", "evidence"]) $(id).classList.remove("set");
-  for (const id of ["video", "evidence", "filters"]) $(id).setAttribute("aria-expanded", "false");
+  for (const id of ["video", "satellite", "evidence"]) $(id).classList.remove("set");
+  for (const id of ["video", "satellite", "evidence", "filters"]) $(id).setAttribute("aria-expanded", "false");
   panel.dataset.video = "";
   panel.replaceChildren();
 }
-const leavePanel = () => (panelMode === "evidence" || panelMode === "filters" ? openPanel("video") : closePanel());
-for (const id of ["video", "evidence"]) $(id).onclick = () => (panelMode === id ? leavePanel() : openPanel(id));
+const leavePanel = () => (panelMode === "evidence" || panelMode === "filters" || panelMode === "satellite" ? openPanel("video") : closePanel());
+for (const id of ["video", "satellite", "evidence"]) $(id).onclick = () => (panelMode === id ? leavePanel() : openPanel(id));
+// Satellite (satellite.js): held like Evidence. A pass added to the folder shown reloads the grid; a film made is
+// watched in The Conductive Seam.
+let satelliteForm = null;
+const satelliteHooks = {
+  currentLib: () => currentLib,
+  added: async (job) => { if (job.library === currentLib) { await loadVideos(); load(); } },
+  watchFilm: () => setView("seam"),
+};
 const setLibCookie = (slug) => { document.cookie = `lib=${encodeURIComponent(slug)}; path=/; max-age=31536000; samesite=strict`; };
 function switchLibrary(slug) {
   setLibCookie(slug);
@@ -1635,7 +1788,7 @@ async function showEvidence() {
     <ul class="folders">${folders.map((f) => `
       <li class="${f.current ? "on" : ""}" data-slug="${esc(f.slug)}">
         <button type="button" class="name" data-act="open" title="${f.current ? "Shown now" : "Show this folder"}">${esc(f.title)}</button>
-        <span class="count">${f.videos} video${f.videos === 1 ? "" : "s"} · ${f.frames} image${f.frames === 1 ? "" : "s"}</span>
+        <span class="count">${f.videos} video${f.videos === 1 ? "" : "s"}${f.passes ? ` · ${f.passes} satellite pass${f.passes === 1 ? "" : "es"}` : ""} · ${f.frames} image${f.frames === 1 ? "" : "s"}</span>
         <span class="meta">${esc(f.scope)}</span>
         <span class="path">${esc(f.path)}</span>
         <span class="acts"><button type="button" data-act="reveal">${reveal}</button><button type="button" data-act="rename">Rename</button></span>
@@ -1812,7 +1965,7 @@ async function refreshVideoForm() {
   fillFolders();
   showSaveTo();
   if (!jobTimer) {
-    const last = (await fetch("/api/jobs").then((r) => r.json()).catch(() => [])).at(-1);
+    const last = (await fetch("/api/jobs").then((r) => r.json()).catch(() => [])).filter((j) => (j.kind ?? "video") === "video").at(-1);
     if (last) showJob(last);
     if (last && (last.status === "running" || last.status === "queued")) watchJob(last.id);
   }
@@ -1889,6 +2042,6 @@ function showJob(job) {
 
 showView(); // here, once the whole module is defined (the slider's range needs the subtitles' constants)
 intro(); // the Video panel shows at once, before the folder's images have loaded
-if (documentView || mapView || sceneView) load(); // views with their own left panel don't wait for the folder's frames
+if (takeover()) load(); // views with their own left panel don't wait for the folder's frames
 await Promise.allSettled([loadVideos(), pollStats(), loadFolders()]);
-if (!documentView && !mapView && !sceneView) load();
+if (!takeover()) load();

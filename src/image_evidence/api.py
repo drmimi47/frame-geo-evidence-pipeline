@@ -1,7 +1,8 @@
 """HTTP API over EvidenceService (requires the [api] extra).
 
-Read-only over the libraries, except /api/jobs (the site's Video panel adds videos through it, jobs.py) and
-/api/folders (rename, show in Finder). Each evidence folder is a library: the main one (`library/`, Ukraine
+Read-only over the libraries, except /api/jobs (the site's Video panel adds videos through it, jobs.py),
+/api/folders (rename, show in Finder), and /api/satellite/jobs and /api/seam/films (the Satellite panel adds passes and
+renders films into "The Conductive Seam": satellite/). Each evidence folder is a library: the main one (`library/`, Ukraine
 2022..2026) or a project folder in `libraries/`; the `lib` cookie picks which one the site shows (none: the main one).
 """
 
@@ -33,9 +34,10 @@ class _Lib:
     scope: object
 
 
-def create_app(library_dir: Path, study_areas: list | None = None) -> FastAPI:
+def create_app(library_dir: Path, study_areas: list | None = None, seam_config: Path | None = None) -> FastAPI:
     from .focus import study_places
     from .jobs import JobRequest, Jobs, list_libraries, next_folder, rename_folder, scope_label
+    from .satellite.store import SatelliteIndex
 
     main_root = Path(library_dir)
     places = study_places(study_areas or [])
@@ -53,7 +55,7 @@ def create_app(library_dir: Path, study_areas: list | None = None) -> FastAPI:
             base = f"/media/lib/{slug}/" if slug else "/media/"
             # the study areas are places in Ukraine: their "Near ..." sorts belong to the main library
             svc = EvidenceService(repo, media_base=base, study_places=places if not slug else {},
-                                  has_file=lambda rel, lib=lib: lib.abs(rel).is_file())
+                                  has_file=lambda rel, lib=lib: lib.abs(rel).is_file(), satellite=SatelliteIndex(lib.root))
             opened[slug] = _Lib(slug, lib, repo, svc, x["scope"])
         return opened[slug]
 
@@ -273,7 +275,7 @@ def create_app(library_dir: Path, study_areas: list | None = None) -> FastAPI:
             sc = x["scope"]
             out.append({"slug": x["slug"], "title": x["title"], "scope": scope_label(sc), "place": sc.name,
                         "start": sc.start.year, "end": sc.end.year, "path": shown_path(x["root"]),
-                        "videos": st["videos"], "frames": st["frames"], "current": x["slug"] == current})
+                        "videos": st["videos"], "frames": st["frames"], "passes": st.get("passes", 0), "current": x["slug"] == current})
         slug, title = next_folder(main_root)
         return {"folders": out, "next": {"slug": slug, "title": title}}
 
@@ -296,6 +298,138 @@ def create_app(library_dir: Path, study_areas: list | None = None) -> FastAPI:
         cmd = {"darwin": ["open"], "win32": ["explorer"]}.get(sys.platform, ["xdg-open"])
         subprocess.Popen([*cmd, str(x.lib.root.resolve())], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         return {"ok": True}
+
+    # ------------------------------------------------------------ Satellite panel, The Conductive Seam view
+
+    from datetime import date
+
+    from .jobs import ensure_seam_folder, folder_title
+    from .satellite import SEAM_SLUG
+    from .satellite import corridor as sat_corridor
+    from .satellite import fetch as sat_fetch
+    from .satellite import film as sat_film
+    from .satellite import store as sat_store
+    from .satellite.providers import SENSORS
+    from .scope import UKRAINE, library_scope
+
+    seam_root = main_root.parent / "libraries" / SEAM_SLUG
+    lines_cache: dict[str, list] = {}
+
+    def seam_cfg():
+        return sat_fetch.SeamConfig.load(seam_config)
+
+    def corridors_of(root: Path) -> list[dict]:
+        out = []
+        for cid in sat_store.corridor_ids(root):
+            g = sat_store.read_georef(root, cid)
+            out.append({"corridor_id": cid, "name": g["name"], "bbox": g["grid"]["bbox"], "line": g["line"]["label"],
+                        "length_m": g["line"]["length_m"], "grid": g["grid"],
+                        "passes": [{"pass_id": p.pass_id, "title": sat_store.pass_title(p), "sensor": p.source.sensor,
+                                    "acquired_at": p.source.acquired_at.isoformat(), "cloud_share": p.derived.cloud_share}
+                                   for p in sat_store.read_passes(root, cid)]})
+        return out
+
+    @app.get("/api/satellite/setup")
+    def satellite_setup():
+        cfg = seam_cfg()
+        have = (seam_root / "scope.json").is_file()
+        return {
+            "folder": {"slug": SEAM_SLUG, "title": folder_title(seam_root, False) if have else "The Conductive Seam", "exists": have},
+            "areas": [{"id": a.corridor_id, "name": a.name, "bbox": list(a.bbox), "lines": a.lines, "note": a.note}
+                      for a in cfg.areas.values()],
+            "corridors": corridors_of(seam_root) if have else [],
+            "sensors": [{"name": x.name, "label": x.label, "first_year": x.first_year, "gsd_m": x.gsd_m} for x in SENSORS.values()],
+            "fetch": {k: str(v) for k, v in cfg.fetch.items()}, "film": cfg.film,
+        }
+
+    @app.get("/api/satellite/lines")
+    def satellite_lines(bbox: str):
+        """The power lines in a box (OpenStreetMap, for choosing a new corridor's line); cached while the server runs."""
+        try:
+            box = tuple(float(x) for x in bbox.split(","))
+            assert len(box) == 4 and box[0] < box[2] and box[1] < box[3] and (box[2] - box[0]) * (box[3] - box[1]) <= 0.5
+        except (ValueError, AssertionError):
+            raise HTTPException(400, "a box is west,south,east,north, at most about 0.5 square degrees")
+        key = ",".join(f"{x:.4f}" for x in box)
+        if key not in lines_cache:
+            import httpx
+
+            try:
+                lines_cache[key] = sat_corridor.choices(sat_corridor.fetch_power(box, httpx.Client(), rounds=2))
+            except RuntimeError as e:
+                raise HTTPException(503, str(e))
+        return lines_cache[key]
+
+    def area_for(d: dict, cfg) -> "sat_fetch.Area":
+        v = d.get("area")
+        if isinstance(v, dict):  # a new corridor: an id, a name, a box and lines
+            return sat_fetch.Area.from_dict(str(v.get("corridor_id") or ""), v)
+        return sat_fetch.area_named(seam_root, cfg, str(v or ""))
+
+    def seam_job(kind: str, work) -> dict:
+        root = ensure_seam_folder(main_root)
+        library(SEAM_SLUG)  # (listed and opened)
+        return jobs.start_task(kind, SEAM_SLUG, folder_title(root, False), scope_label(library_scope(root)), work).public()
+
+    @app.post("/api/satellite/jobs")
+    async def satellite_job(request: Request):
+        same_site(request)
+        d = await request.json()
+        cfg = seam_cfg()
+        try:
+            area = area_for(d, cfg)
+            sensor = str(d.get("sensor") or cfg.fetch.get("sensor") or "sentinel-2")
+            if sensor not in SENSORS:
+                raise ValueError("choose Sentinel-2 or Landsat")
+            start = date.fromisoformat(str(d.get("start") or cfg.fetch.get("start") or "2023-07-01"))
+            end = date.fromisoformat(str(d.get("end") or cfg.fetch.get("end") or "2023-09-30"))
+            max_cloud = min(100.0, max(0.0, float(d.get("max_cloud") or cfg.fetch.get("max_cloud") or 5)))
+            until_km = float(d["until_km"]) if d.get("until_km") else None
+            # the area gate before the job is queued (and again in it), so a refused area never makes the folder
+            if sat_store.read_georef(seam_root, area.corridor_id) is None:
+                sat_fetch.check_area(library_scope(seam_root) if (seam_root / "scope.json").is_file() else UKRAINE, area.bbox)
+        except (ValueError, TypeError, KeyError) as e:
+            raise HTTPException(400, str(e))
+
+        def work(job):
+            job.results.append(sat_fetch.run(seam_root, library_scope(seam_root), area, sensor, start, end, max_cloud,
+                                             until_km=until_km))
+        return seam_job("satellite", work)
+
+    @app.post("/api/seam/films")
+    async def film_job(request: Request):
+        same_site(request)
+        d = await request.json()
+        cid = str(d.get("corridor_id") or "")
+        if sat_store.read_georef(seam_root, cid) is None:
+            raise HTTPException(400, "fetch a pass for this corridor first")
+        passes = [str(x) for x in d.get("passes") or []] or None
+        options = {k: v for k, v in (d.get("options") or {}).items() if k in sat_film.DEFAULTS}
+
+        def work(job):
+            cfg = seam_cfg()
+            area = cfg.areas.get(cid)
+            f = sat_film.render(seam_root, cid, passes, {**cfg.film, **(area.film if area else {}), **options})
+            job.results.append({"status": "processed", "title": f"Film, {f['duration_s']:.0f} s, {len(f['passes'])} pass"
+                                + ("" if len(f["passes"]) == 1 else "es"), "film_id": f["film_id"], "corridor_id": cid})
+        return seam_job("film", work)
+
+    def film_urls(f: dict) -> dict:
+        base = f"/api/seam/films/{f['corridor_id']}/{f['film_id']}/"
+        return {**f, "urls": {k: base + v for k, v in f["files"].items()}}
+
+    @app.get("/api/seam/films")
+    def seam_films():
+        """Every film of The Conductive Seam, newest first (whichever folder the grid shows)."""
+        return [film_urls(f) for f in sat_store.films(seam_root)] if seam_root.is_dir() else []
+
+    @app.get("/api/seam/films/{corridor_id}/{film_id}/{name}")
+    def seam_film_file(corridor_id: str, film_id: str, name: str):
+        base = (seam_root / "satellite" / "corridors").resolve()
+        f = (base / corridor_id / "films" / film_id / name).resolve()
+        if not f.is_relative_to(base) or name not in ("film.mp4", "poster.webp", "contact.webp", "film.json") or not f.is_file():
+            raise HTTPException(404, "no such file")
+        return FileResponse(f, headers={"Cache-Control": "no-cache"})  # (byte ranges: video seeking)
 
     @app.get("/api/ingest/setup")
     def ingest_setup():
@@ -340,7 +474,8 @@ def create_app(library_dir: Path, study_areas: list | None = None) -> FastAPI:
         if x is None:
             raise HTTPException(404)
         f = (x.lib.root / path).resolve()
-        if not f.is_relative_to(x.lib.videos.resolve()) or not f.is_file():
+        served = (x.lib.videos.resolve(), (x.lib.root / "satellite").resolve())  # (not evidence.db, scope.json, ...)
+        if not any(f.is_relative_to(d) for d in served) or not f.is_file():
             raise HTTPException(404)
         return FileResponse(f)
 

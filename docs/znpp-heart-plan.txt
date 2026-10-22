@@ -1,0 +1,291 @@
+THE CONDUCTIVE SEAM: NEXT DIRECTION (draft, still being refined)
+Started 21 October 2026, after presentation feedback. Last updated 21 October 2026 (the instrument at the heart).
+
+======================================================================================================
+FEEDBACK WE ARE ANSWERING
+======================================================================================================
+- Why do we care about the power lines? Why the Enerhodar area?
+- Better resolution satellite imagery.
+- An architectural section / 3D of the crossing (the advice: lean toward artistic, speculative, data visualisation).
+- Show the damage and influence on Ukraine beyond realistic imagery.
+- Make an intervention in the Great Meadow or its surroundings; it doesn't have to be one spot (it could follow the
+  power lines).
+- References: joshbegley.com, truth-and-beauty.net, c4sr.columbia.edu, liamyoung.org, certainmeasures.com, lav.io
+
+======================================================================================================
+THE DIRECTION
+======================================================================================================
+The Zaporizhzhia NPP (ZNPP) as the contested heart of the territory; its 750 kV and 330 kV lines as arteries.
+The inversion is the story: the heart has stopped beating and the arteries now feed it. Before September 2022 the
+plant sent power out to Ukraine; since then power flows in across the front line to keep the shut-down reactors
+cooling, with diesel generators as the last resort.
+
+======================================================================================================
+SITE (decided 21 October 2026)
+======================================================================================================
+The site is the power lines that come from the ZNPP: all of them, not one. The four 750 kV lines from the plant and
+the 330 kV lines from the thermal plant's switchyard next door, each followed to a reasonable length (not hundreds of
+km).
+- Where a line stops: TO DECIDE. Options: its first substation, a fixed distance (e.g. 50 km), or where it reaches
+  Ukrainian-held ground.
+- The great-meadow line (110 km, 390 towers in OSM) is one of them.
+
+======================================================================================================
+INTERVENTION (chosen 21 October 2026): THE HUM
+======================================================================================================
+An immersive sound architecture of the plant's lines, made from real sounds of live lines.
+
+THE INSTRUMENT AT THE HEART (updated 21 October 2026, the user's idea)
+- The listener is dropped into the ZNPP itself, in an abstracted, imagined form: an invented site where every line
+  from the plant ends close enough to be heard at once. Labelled as an imagined site, never a model of the real plant.
+- The result is a symphony of hums: all lines live is loud and full; one line left is a single thin voice; none is
+  silence (then the diesel generators). How many arteries are left is heard, not read.
+- The object: a new musical instrument hooked up to all the lines, transmitting their status audibly to someone
+  inside the plant. Each line is a voice (a string); its timbre by voltage (750 kV vs 330 kV), its level by what the
+  record says it carried.
+- The lines arrive at the instrument from their real bearings (the 750 kV lines from their real directions, the
+  330 kV from the thermal plant's switchyard), so the symphony keeps the geography: you hear where each artery goes.
+- Its listener: the people inside the plant (its staff), who would know by ear how many lines are left. A related
+  image: a hospital's heart monitor, where the sound is the status and the flatline is the alarm.
+- A render / animation: the instrument stays in one spot, immovable and permanent, while the region around it
+  changes through time (see HISTORY below). It is silent before the lines exist, gains a voice as each line is
+  built, plays the full chord in the plant's working years, then falls apart into single voices and silence in the
+  war as lines are cut and reconnected.
+- NO sounds of fighting or war (decided with the user: too sensitive). Only the lines, the generators, and the
+  silence between.
+
+Why it works
+- An outage stops being a date on a chart; a voice drops out. It answers "why care about the lines" through the body.
+- One place holds all the lines: the instrument gathers what is spread over hundreds of km into one listening point.
+- The real site can't be visited (Enerhodar occupied, the bank shelled), so the heart is reached only as an imagined
+  place, and says so.
+
+The physics (check before using)
+- Ukraine's grid runs at 50 Hz; the hum (transformers, corona) is at twice that: 100 Hz.
+- Corona crackle follows VOLTAGE: a connected line crackles (louder in rain, louder at 750 kV than 330 kV); a cut
+  line is silent.
+- The magnetic hum follows CURRENT (how much power flows; recorded with an induction coil). Before 2022 the 750 kV
+  lines carried up to gigawatts out (roughly): loud. Since shutdown, a much smaller draw for cooling flows in: a
+  whisper. The inversion is heard as a change in loudness.
+- The DIRECTION of flow can't be heard, only its size. Say so; don't invent a sound for it.
+=> Two layers per line: crackle (connected or cut) and magnetic hum (how much flows).
+
+Two kinds of silence (the key design decision)
+- A dead line: the record says it was cut.
+- A gap in the record: no source says either way.
+They must sound different (e.g. dead silence vs a filtered noise floor). The record is complete only for the ZNPP's
+own lines (the IAEA names each line and date); other lines are left out or given the "unknown" texture.
+Possible theme: "the record is silent, not the line".
+
+Other listening spots (earlier idea, now secondary: possible extra stations out along the lines)
+- Under the crossing pylons on the drained bed (km 5.2): two 330 kV circuits plus the 750 kV line overhead.
+- Nikopol embankment: the lines heard faintly across the water, facing the plant.
+- Ferosplavna-330 substation: a node, with transformer hum, where Ferosplavna-1 arrives.
+- Under Dniprovska (750 kV): the main line, the last one left in the long single-line periods.
+
+HISTORY: what the instrument "hears" around it over time (all to check against sources)
+- Before the lines: the Great Meadow (Velykyi Luh) floodplain, then the Kakhovka reservoir filled in the 1950s
+  (dam 1956). No hum: the instrument is silent.
+- The user recalled a coal mine before the plant: TO CHECK. What I know: the Zaporizhzhia thermal plant at Enerhodar
+  (1970s) burned coal and gas brought in; the mines nearby are the Nikopol manganese basin on the north bank
+  (Marhanets, Pokrov), open pits. Check what stood on the site itself.
+- Enerhodar founded about 1970 for the thermal plant; its 330 kV lines first voices.
+- The ZNPP's six units, about 1984-1995; its 750 kV lines join as they were built (line build dates: to find).
+- The working years: the full chord.
+- 2022 on: seizure (4 March 2022), the grid supply stops (September 2022), outages, single voices, silence, diesel.
+- 6 June 2023: the dam destroyed, the reservoir drains (the setting changes; the instrument stays).
+- Sounds of a period are only sounds the record supports (the lines, generators). Nothing invented to stand for an
+  era, and no fighting.
+- Imagery for the changing surroundings can be real for every era (USGS / archive, free):
+  WWII German aerial photographs (1940s, before the flooding), Corona spy satellite (declassified, 1960s-1972),
+  Landsat (1984 on: the ZNPP's construction visible), Sentinel-2 (2017 on). Each labelled with its date and source.
+
+Time
+- March 2022 to October 2026: about 28 minutes at a day a second (too long); about 4 minutes at a week a second, but
+  outages of a few hours vanish. The full history (1950s on) needs a much faster scale for the early decades.
+- Options: event-driven time (slows round each outage, then speeds up), or a minimum audible length for every event
+  (honest only if a visible clock says so). Either way, show the date while it plays.
+
+Sounds
+- These lines can't be recorded. Record other 330 kV and 750 kV lines, or use licensed field recordings (Freesound
+  has some; check each licence). Label every recording with its place and date: "a 330 kV line", not "this one".
+- If possible, record under a real line: an ordinary mic for crackle, an induction coil for the magnetic hum.
+- No sounds of fighting or war at all (decided with the user). When the last line goes, the real sequence is the
+  diesel generators starting (20 of them): a labelled recording of a large diesel generator.
+
+Making it architecture, not just a soundscape
+- The instrument itself is the designed object: where each line terminates, how the voices are arranged by their
+  real bearings, the room or structure a listener stands in at the heart. To design.
+- On the web: the instrument at the plant; each line plays from its real direction through headphones (the
+  browser's Web Audio API), with the date running. Could become a view in the site.
+- As an installation: a room built as the instrument. Speakers for each line arriving from its real bearing; each
+  falls quiet when the record says its line was cut; the listener stands where the plant would be.
+- A render / animation: the instrument fixed in place while the surroundings change through the eras (HISTORY).
+- Tied to the linear zone (below): the instrument is where the zone's lines are gathered and heard. TO CONFIRM
+  whether the zone stays as the framing.
+
+Playback for the final presentation (discussed 21 October 2026; low-tech, to test)
+- Main: a ring of 4 wired speakers round the reviewers (north, east, south, west), lines panned by real bearing,
+  from a pre-rendered 4-channel file. Needs a 4-output USB audio interface; borrow speakers / interface from the
+  school's media or AV lab if possible. Bluetooth speakers can't be kept in sync.
+- Fallback: a stereo pair (lines panned west-east), or a binaural (headphone) render, which works on any headphones.
+- AirPods head tracking: only through Apple's own apps / a Dolby Atmos mix (e.g. Logic Pro); not from a browser;
+  one pair for several reviewers is slow, and headphones cut reviewers off from each other. Not the main plan.
+- The 100 Hz hum itself is hard to place by ear (low sounds aren't localised) and small speakers barely play it:
+  direction comes from the crackle and the harmonics, so every voice needs those.
+- Pitch / timbre: line n on the nth harmonic of 100 Hz (all real multiples of the hum), so all lines make a full
+  chord and each cut takes a harmonic out; 750 kV lower and denser, 330 kV higher. A design choice, labelled.
+  Listeners won't count ten voices, but will hear full / fewer / one / none.
+- Note: since late 2022 the record is mostly one or two lines (Dniprovska 750 kV, Ferosplavna-1 330 kV backup:
+  check), so the war years are a duet that flickers; the full chord is the pre-war years.
+
+Precedents (know them; set yourself apart)
+- Christina Kubisch, Electrical Walks: headphones that make electromagnetic fields audible.
+- Jacob Kirkegaard, 4 Rooms: recordings in empty rooms in the Chernobyl zone.
+- Lawrence Abu Hamdan: earwitness testimony, forensic listening.
+- Alvin Lucier, Music on a Long Thin Wire.
+What sets this apart: the score is the line record (built, connected, cut). Kubisch lets you hear fields; this
+plays a sourced history of a contested grid, gathered into one instrument.
+
+Suggested first step for the Hum
+A rough browser prototype of the instrument: every ZNPP line as a voice from its real bearing, played through the
+plant's outage record 2022-2026, placeholder sounds until there are recordings. Tests the feeling (does one line
+vs all read clearly by ear?) cheaply, like the low-resolution film. The longer history comes after.
+
+======================================================================================================
+FRAMING ARGUMENT (chosen earlier on 21 October 2026; may frame the Hum): THE PROTECTION ZONE SHOULD BE A LINE, NOT A CIRCLE
+======================================================================================================
+- In 2022 the IAEA (Grossi) proposed a nuclear safety and security protection zone around the plant. It was never
+  agreed. (Check against sources: proposed after the IAEA's September 2022 mission; I believe it was replaced in
+  May 2023 by five principles put to the UN Security Council; whether a boundary was ever published.)
+- A zone round the plant protects the wrong thing: the plant's safety depends on lines running many km away, across
+  the front, where the outages happen.
+- The proposal: the zone the diplomacy never drew, as a linear zone along the plant's lines, including the local
+  ceasefire windows that repairs need. Architecture as treaty (reference: Keller Easterling, Extrastatecraft).
+- Other candidate parts along it (not chosen): the Datum (a band on the crossing towers at the old reservoir level,
+  about 16 m above sea level: check), the Meadow Line (the cleared strip under the lines kept as meadow habitat), the
+  Pulse (lights on only while power flows to the plant: film or post-war only), the Bypass (distributed generation
+  along the corridor, sited where VIIRS shows the lights fell most).
+- In the film: red is only ever what is real (the OSM lines); proposals in a second colour (e.g. dashed white).
+
+======================================================================================================
+FILM OUTLINE (rough)
+======================================================================================================
+1. Open on the plant, its lines drawn out (exists).
+2. Zoom out to all of Ukraine. Daylight imagery turns into night (VIIRS Black Marble).
+3. The 750 kV and 330 kV grid traced in red, spreading outward from the plant in order of network distance
+   (OpenStreetMap lines joined through substations).
+4. The lights dim through strike waves on energy, each matched to a dated, sourced event.
+5. Back in to the plant's own lines: the damaged ones, the outages (the IAEA's count was 26 by August 2026).
+6. The IAEA's 2022 protection zone: a dashed circle round the plant, labelled as never agreed (no drawn boundary
+   unless a source gives one; otherwise marked illustrative). The outages happen outside it, out along the lines.
+   The circle gives way to the linear zone along all the lines.
+7. The existing Great Meadow / Enerhodar crossing film becomes one chapter (one line of several).
+8. Speculative ending, kept separate and clearly labelled (see below).
+Possible: the Hum as the film's soundtrack (sourced recordings, labelled).
+
+======================================================================================================
+VIDEO PLAN, DRAFT 2 (21 October 2026): at most 5 minutes (the presentation is 7)
+======================================================================================================
+Not one line: it starts on the ZNPP and zooms out as the major lines spreading from it are traced. Low-resolution
+imagery is fine: this draft tests framing and composition.
+
+Storyboard (about 4:30; times rough)
+0:00-0:20  Fade in on the plant; its lines drawn out (the existing opening).
+0:20-1:10  A slow continuous zoom out (6 km frame -> about 150-200 km). Every ZNPP line traced in red outward to
+           where it stops, in network order: the four 750 kV (Dniprovska, Zaporizka, Pivdennodonbaska, Kakhovska)
+           and the 330 kV from the thermal plant's switchyard (Ferosplavna 1 and 2, Zaporizka Л-242, Molochanska
+           Л-246, Melitopolska Л-247, Kakhovska Л-241). Labels as they arrive. Line width constant on screen.
+1:10-1:50  Hold wide: "ten lines before the war". Then the record: lines fade to dashed as they were lost, until
+           mostly Dniprovska and Ferosplavna-1 are left (dates from the events register; check).
+1:50-2:20  The IAEA's 2022 protection zone: a dashed circle, "proposed, never agreed" (illustrative unless a source
+           gives a boundary). The outages happen out along the lines.
+2:20-3:40  Push in along the two surviving arteries: Ferosplavna-1 across the drained bed (from the existing
+           great-meadow footage: crossing, dissolve, inset) and a shorter stretch of Dniprovska.
+3:40-4:30  Pull back to the plant; the lines go dark as the record says; end on one line; fade to black.
+Later: VIIRS night lights (waiting for an Earthdata account), the Hum as the soundtrack.
+
+Cross-checking the lines (before anything is animated)
+1. OpenStreetMap: every power=line way at 750 kV and 330 kV from the plant and the thermal plant's switchyard,
+   followed through the network to where it ends; record the ways, the length, both ends and any gaps.
+2. Check names and ends against independent sources: IAEA updates (the line names), Bellona's map (already used),
+   a Ukrenergo or ENTSO-E grid map if one can be found. OpenInfraMap is OSM itself, so it is not a cross-check.
+3. Check on imagery: towers at each end and every few km on sub-metre imagery (Esri), as a contact sheet.
+4. Draw only what checks out: unverified stretches dashed or left out, gaps never filled by guessing. Each line's
+   record says what it was checked against. Occupied areas: OSM may be stale; say so.
+5. A still check map (all lines, labels, ends) and a table, reviewed by the user before animating.
+
+Build steps
+1. Stop rule for each line (TO DECIDE; proposed: to its far substation if inside the wide frame, else cut at the
+   frame edge, labelled "to X").
+2. Fetch and cross-check the lines (above); the user reviews the check map.
+3. A new wide area (its own corridor, about 200 km box) with one low-resolution pass (about 30-60 m a pixel). Its grid
+   is only roughly true at that size (fine for a composition test; recorded).
+4. Film code: several lines per corridor (today one); a zoom shot (fixed centre, frame width from A to B); lines
+   growing outward in network order over a longer time (the opening's drawing, extended); dashed / faded line
+   states by date.
+5. Render small first (960x540) with a contact sheet, iterate timing; the push-in chapter can first be cut from
+   the existing great-meadow film with ffmpeg rather than re-rendered.
+6. Notes placed again with `evidence satellite notes`.
+
+======================================================================================================
+FIRST STEPS (low resolution, to test the feeling)
+======================================================================================================
+1. Fetch Ukraine's 750 kV and 330 kV lines and substations from OpenStreetMap; build the network and its order
+   outward from the ZNPP.
+2. Fetch VIIRS monthly composites (VNP46A3) for key months: before the invasion, Oct-Dec 2022, spring 2024, now.
+   Needs a free NASA Earthdata account; the token goes in .env and is never printed or committed.
+3. Start an events register: date, event, line, source (IAEA updates, Ukrenergo, reporting). First test date to
+   check: 23 November 2022. (The Hum's score is built from this too.)
+4. A 30-40 s test film: plant, zoom out to Ukraine at night, lines traced outward, lights dim through a strike wave.
+5. The Hum prototype (one spot, see above).
+
+======================================================================================================
+HONESTY RULES
+======================================================================================================
+- VIIRS shows lights falling, not why: curfews, light discipline, rolling outages, clouds, snow and moonlight also
+  dim it. Say "lights fell after...", never "this strike caused...".
+- Line-by-line damage across Ukraine is mostly secret in wartime. Close focus on damage stays on the ZNPP's own lines
+  (the IAEA names them); damage elsewhere is shown through the lights.
+- OpenStreetMap is today's map and may be stale in occupied areas. Cross-check against a Ukrenergo or ENTSO-E grid
+  map if one can be found.
+- The country scale needs its own map projection (the corridor's grid only holds over about 30 km), with a crossfade
+  where the two scales meet.
+- Immersive pieces are intervention, not evidence: they may be invented, but are labelled as reconstruction or
+  proposal. Recordings are labelled with where and when they were made.
+
+======================================================================================================
+SPECULATIVE PART (to decide; never inside the evidence film)
+======================================================================================================
+"What if all the lines go dark, where does the energy come from?" Futures grounded in reported facts, drawn as
+diagrams, not generated imagery:
+- The last line fails: the diesel countdown (20 generators, about ten days of fuel).
+- The arteries rerouted: the plant connected to Russia's grid through the occupied south (Ukraine's 2025 protests).
+- The heart returned: reconnected to Ukraine's grid, synchronised with Europe (ENTSO-E) since March 2022.
+No imagined meltdown.
+
+======================================================================================================
+RESOLUTION
+======================================================================================================
+Test at low resolution first. The upgrade is only needed for a few close-ups (the plant, the crossing,
+substations); the country scale is about 1 km a pixel anyway. Options: Esri Wayback (dated versions; check terms),
+Planet Education and Research, ESA third-party missions (Pleiades). Never AI super-resolution.
+
+======================================================================================================
+KEPT SEPARATE FOR NOW
+======================================================================================================
+- The YouTube image scraper, the Gaussian splats (Scene Viewer) and the Route Map pathways.
+- Later: paths of workers repairing lines. Only past repairs that have already been publicly reported, with
+  sources; nothing current. Crews have been targeted.
+
+======================================================================================================
+OTHER IDEAS FROM THE DISCUSSIONS (not chosen)
+======================================================================================================
+Immersive environments: The Window (walk a line as a repair crew, only while a ceasefire window is open); Draw the
+Zone (a negotiation game, two sides and the IAEA draw the zone, only the overlap holds); The Shrinking Network
+(move through the grid as lines close, 2022-2026); The View Across (the Nikopol bank, looking at the plant); Night
+Over Ukraine (a dome or VR over VIIRS lights); One Spot, Ten Years (scrub time at the crossing).
+Other: Landsat thermal of the ZNPP's cooling pond 2017-2026 (the plant's "pulse"); a long section along the line
+(terrain, ICESat-2 bed profile, water by pass, towers, outages); a videogrep-style supercut (lav.io) of "світло",
+"ЗАЕС", "блекаут"; a Begley-style grid of every tower; NDVI regrowth of the bed, irrigation loss, FIRMS fires;
+Maintenance as monument (Mierle Laderman Ukeles); three futures for one crossing.

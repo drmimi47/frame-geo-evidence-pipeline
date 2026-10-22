@@ -1,0 +1,284 @@
+# The Conductive Seam: satellite imagery along the power lines of the Zaporizhzhia power plants, across the former
+# Kakhovka reservoir (`evidence satellite`, the site's Satellite panel and The Conductive Seam view).
+# Each area becomes a corridor once (its box, lines and grid are then fixed: satellite/corridors/<id>/georef.json);
+# passes of any date and sensor are laid on that same grid. Saved in the "The Conductive Seam" evidence folder.
+
+areas:
+  # The test area: the 330 kV double line Л-243/Л-244 from the Zaporizhzhia thermal power plant (Enerhodar) north
+  # across the former reservoir to the Nikopol bank, with six crossing towers that stood in the water. The 750 kV
+  # line from the nuclear plant runs north just west of it (inside the box, drawn as context).
+  enerhodar-crossing:
+    name: Enerhodar Dnipro crossing (test)
+    bbox: [34.56, 47.47, 34.73, 47.63]   # west, south, east, north: ≥ 3.5 km round the line, so a turned
+                                         # 6 km frame stays on the imagery
+    lines: [265670105, 143488526]        # OpenStreetMap ways, joined end to end: ZTPP → 47.539 N → north bank
+    m_per_px: 10
+    chip_size_m: 3000
+    chip_spacing_m: 1500
+
+  # The Great Meadow's north bank: the same 330 kV line from the Zaporizhzhia thermal plant (Enerhodar) across the
+  # former reservoir, then on along the north bank, across the river from the nuclear plant, to the Dnipro dam at
+  # Zaporizhzhia (Дніпро І ГЕС): 330 kV all the way, joined through the Ferosplavna and Nikopolska substations. At
+  # Nikopolska-330 the line turns back east (Л-211), so the camera turns round there and passes Chervonohryhorivka a
+  # second time a few km inland. (The lines that run from Enerhodar straight to Zaporizhzhia, 750 kV and Л-242, go
+  # south round the left bank, away from the meadow.)
+  great-meadow:
+    name: Enerhodar → DniproHES, Great Meadow
+    bbox: [34.26, 47.47, 35.14, 47.91]
+    lines: [265670105, 143488526, 265670135, 143495706, 303336697]   # Л-243/Л-244, north bank, Nikopolska, Л-211
+    join_m: 1500           # through a substation, one line's end and the next one's start can be far apart
+    strip_m: 6500          # imagery within 6.5 km of the line (a 10 km frame, turned, stays on it)
+    chip_size_m: 4000
+    chip_spacing_m: 5000
+    film:
+      dissolve_at_km: [5.2]   # the crossing: 5 June 2023 (the reservoir full) to after it drained, at the inset
+      trace: true             # 110 km of line at 10 m imagery: drawn (red), so it can be followed
+      opening:                # before the line: a fade in on the nuclear plant, its lines drawn out from it in red
+        plant: 28877213       # OpenStreetMap way: Запорізька АЕС (the frame's middle)
+        box: [34.50, 47.44, 34.72, 47.58]   # the plants' surroundings (raw/osm_opening.json: plants, switchyards, lines)
+        view_m: 7600          # the frame's width on the plant (the June pass has no imagery 4 km west of it)
+        fade_s: 3
+        hold_s: 12            # the frame held while the plant's lines draw out
+        pan_s: 8              # then across to the line's start (the thermal plant's 330 kV lines drawn on the way),
+                              # zooming to the track's width; the other lines fade out as the track begins
+        names: >-
+          the ways' own OpenStreetMap tags (ref, from, to; Kakhovska 750 kV by its name); the unnamed 750 kV ways by
+          Bellona's map of the plant's lines (four 750 kV, six 330 kV; Bellona, "Potential Restart of the Zaporizhzhia
+          Nuclear Power Plant", 2024) and where they end; 187125189 carries Л-247 and Л-241 (two circuits) to where
+          they part
+        origins:              # where branches start: OpenStreetMap ways (their middle)
+          npp: 28877213       # the plant
+          npp750: 28877226    # its 750 kV switchyard
+          tpp330: 28877449    # the thermal plant's 330 kV switchyard
+        sites:
+          - {osm: 28877213, text: Zaporizhzhia NPP}
+          - {osm: 28877239, text: Zaporizhzhia TPP}
+        branches:             # OpenStreetMap ways, drawn out from `from` from start_s (s into the opening) over draw_s
+          - {ways: [143603531], from: npp, kv: 750, start_s: 3.0, draw_s: 2, reach_m: 1800}   # the units to the switchyard
+          - {ways: [143603538], from: npp, kv: 750, start_s: 3.2, draw_s: 2, reach_m: 1800}
+          - {ways: [143603545], from: npp, kv: 750, start_s: 3.4, draw_s: 2, reach_m: 1800}
+          - {ways: [143603547], from: npp, kv: 750, start_s: 3.6, draw_s: 2, reach_m: 1800}
+          - {ways: [143603549], from: npp, kv: 750, start_s: 3.8, draw_s: 2, reach_m: 1800}
+          - {ways: [143603551], from: npp, kv: 750, start_s: 4.0, draw_s: 2, reach_m: 1800}
+          - {ways: [790736604], from: npp750, kv: 750, start_s: 5.5, label: 750 kV · Dniprovska, label_m: 3200}
+          - {ways: [143926899], from: npp750, kv: 750, start_s: 5.8, label: 750 kV · Zaporizka, label_m: 1300}
+          - {ways: [143519988], from: npp750, kv: 750, start_s: 6.1, label: 750 kV · Pivdennodonbaska, label_m: 1600}
+          - {ways: [316571510], from: npp750, kv: 750, start_s: 6.4, label: 750 kV · Kakhovska, label_m: 1300, side: left}
+          - {ways: [155275704], from: npp, kv: 330, start_s: 6.0, draw_s: 4, reach_m: 4500, label: 330 kV · to the TPP switchyard, label_m: 2000}
+          - {ways: [155276120], from: npp, kv: 330, start_s: 6.2, draw_s: 4, reach_m: 4500}
+          - {ways: [187022455], from: tpp330, kv: 330, start_s: 13.0, label: 330 kV · Zaporizka (Л-242), label_m: 1500}
+          - {ways: [711002169], from: tpp330, kv: 330, start_s: 13.3, label: 330 kV · Molochanska (Л-246), label_m: 2300}
+          - {ways: [187125189], from: tpp330, kv: 330, start_s: 13.6, label: "330 kV · Melitopolska, Kakhovska (Л-247, Л-241)", label_m: 3100}
+        line: {start_s: 12.5, kv: 330, label: 330 kV · Ferosplavna 1 and 2 (Л-243/Л-244), label_m: 1800}   # the corridor's own
+      insets:                 # supplied images laid on the passes (in the corridor's insets/ folder, as given)
+        - image: crossing-pylons.png
+          title: WorldView-2 · 23 August 2024 · Esri World Imagery
+          credit: Esri, Vantor, Earthstar Geographics, and the GIS User Community
+          source: >-
+            a screenshot of Esri World Imagery supplied by the user; Esri's metadata there (crossing-pylons.esri-metadata.json):
+            WorldView-2, 23 August 2024, 0.5 m, Vantor; the screenshot matches Esri's imagery of the same extent
+          pins:               # image pixel -> OpenStreetMap tower (the corridor's saved Overpass reply)
+            - {px: [674, 893], osm_node: 1570098588, label: 330 kV Л-243/Л-244}
+            - {px: [1462, 512], osm_node: 1570098077, label: 750 kV}
+          crop: [330, 230, 1780, 1150]   # x0, y0, x1, y1: smaller than the frame, so it reads as an image on the map
+          at_km: 5.2          # where the camera stops (the image's middle, along the line)
+          view_m: 1600        # the frame's width there
+          zoom_in_m: 800      # the camera zooms in over the last 800 m (from about 0:37) and out over the next 900
+          zoom_out_m: 900
+          hold_s: 10
+      profile:                # km along the line: speed (m a second) and the frame's width (m)
+        - {km: 0, speed_mps: 150, view_m: 6000}
+        - {km: 9, speed_mps: 150, view_m: 6000}
+        - {km: 15, speed_mps: 550, view_m: 10000}
+        - {km: 35, speed_mps: 550, view_m: 10000}
+        - {km: 39, speed_mps: 450, view_m: 6000}   # the turn at Nikopolska-330, 4 km from the box's west edge:
+        - {km: 46, speed_mps: 450, view_m: 6000}   # a narrower frame, turned, stays on the imagery
+        - {km: 50, speed_mps: 550, view_m: 10000}
+        - {km: 67.6, speed_mps: 550, view_m: 10000}
+        - {km: 69.8, speed_mps: 550, view_m: 4000}   # 3:30 to 4:30 closer in on the line (decided with the user):
+        - {km: 103, speed_mps: 550, view_m: 4000}    # same path and speed, a narrower frame
+        - {km: 110, speed_mps: 200, view_m: 7000}
+      hold_s: 9               # the last hold (the credits), its last 3.5 s fading to black
+      fade_out_s: 3.5
+      # Notes under the film (the view shows them; satellite/notes.py): context from the sources given with each, never
+      # read from the imagery. `from`/`to`: {shot: open|pan|track|dissolve|inset|hold, s: seconds into it (negative: from
+      # its end), n: which one (-1 the last)} or {km: along the line}; a note runs until the next unless `to` is given.
+      # Checked against the sources on 19 October 2026. Re-place without rendering: evidence satellite notes --area great-meadow
+      notes:
+        - from: {shot: open, s: 1.5}
+          text: >-
+            Zaporizhzhia Nuclear Power Plant (ZNPP): six reactors, the largest nuclear plant in Europe.
+          sources:
+            - {title: Wikipedia, url: "https://en.wikipedia.org/wiki/Zaporizhzhia_Nuclear_Power_Plant"}
+        - from: {shot: open, s: 6.5}
+          text: >-
+            Before the war, ten lines linked it to the grid: four at 750 kV, and six at 330 kV from the switchyard of the
+            thermal plant beside it.
+          sources:
+            - {title: "IAEA, Update 345", url: "https://reliefweb.int/report/ukraine/update-345-iaea-director-general-statement-situation-ukraine"}
+        - from: {shot: pan, s: 3}
+          text: >-
+            Russian forces seized the plant on 4 March 2022. It has sent no power to the grid since September 2022, and
+            all six reactors have been in cold shutdown since April 2024.
+          sources:
+            - {title: Wikipedia, url: "https://en.wikipedia.org/wiki/Zaporizhzhia_Nuclear_Power_Plant"}
+            - {title: "Ukrinform (IAEA), April 2024", url: "https://ukrinform.net/rubric-economy/3852084-all-reactors-at-zaporizhzhia-npp-in-cold-shutdown-for-first-time-since-2022-iaea.html"}
+        - from: {km: 0.9}
+          text: >-
+            The red line is Ferosplavna: in fact two 330 kV lines on one row of towers, Л-243 and Л-244, running north from
+            the thermal plant in occupied Enerhodar.
+          sources:
+            - {title: "OpenStreetMap, way 265670105", url: "https://www.openstreetmap.org/way/265670105"}
+        - from: {km: 2.6}        # 0:39: the line leaving Enerhodar
+          text: >-
+            Before the war, the plant's power flowed out along lines like this one into Ukraine's grid. Since it stopped
+            supplying the grid in September 2022 the flow runs the other way: the grid sends power in.
+          sources:
+            - {title: "RFE/RL, December 2023", url: "https://www.rferl.org/a/zaporizhzhya-nuclear-power-plant-safety-ukraine/32711212.html"}
+            - {title: "Ukrainska Pravda, January 2026", url: "https://www.pravda.com.ua/eng/news/2026/01/18/8016739"}
+        - from: {shot: dissolve, s: 0}
+          text: >-
+            On 6 June 2023 the Kakhovka dam, downstream, was destroyed and the reservoir drained. Here: 5 June, then
+            8 September 2023.
+          sources:
+            - {title: Wikipedia, url: "https://en.wikipedia.org/wiki/Destruction_of_the_Kakhovka_Dam"}
+        - from: {shot: inset, s: 1.5}
+          text: >-
+            At half a metre a pixel the towers show: a 750 kV line and Ferosplavna's 330 kV, standing on the drained
+            reservoir bed.
+          sources:
+            - {title: Esri World Imagery, url: "https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9"}
+        - from: {shot: track, n: 2, s: 0}   # 1:14: leaving the inset
+          text: >-
+            Why power must flow in: shut-down fuel still gives off heat, and the pumps that carry it away run on
+            electricity. At Fukushima in 2011, a total loss of power led to three meltdowns.
+          sources:
+            - {title: "RFE/RL, December 2023", url: "https://www.rferl.org/a/zaporizhzhya-nuclear-power-plant-safety-ukraine/32711212.html"}
+            - {title: "Wikipedia, Fukushima nuclear accident", url: "https://en.wikipedia.org/wiki/Fukushima_nuclear_accident"}
+        - from: {km: 7}          # 1:27: over the drained bed
+          text: >-
+            The plant drew its cooling water from this reservoir. Since it drained, wells keep the reactors' sprinkler
+            ponds filled.
+          sources:
+            - {title: "NEI Magazine (IAEA), September 2023", url: "https://www.neimagazine.com/news/more-wells-drilled-at-zaporizhia-npp-11160730/"}
+        - from: {km: 8.5}
+          text: >-
+            On 25 August 2022 fires near the plant cut its lines: for the first time in its history it was cut off from the
+            grid. IAEA experts arrived on 1 September and have stayed.
+          sources:
+            - {title: "Al Jazeera, 25 August 2022", url: "https://www.aljazeera.com/news/2022/8/25/ukraine-says-zaporizhzhia-nuclear-plant-disconnected-from-grid"}
+            - {title: "CNN, September 2022", url: "https://abc17news.com/news/national-world/cnn-europe-mideast-africa/2022/09/04/zaporizhzhia-nuclear-plant-loses-main-connection-to-power-grid-again/"}
+        - from: {km: 11}         # 1:51
+          text: >-
+            When the last line fails, 20 diesel generators take over, with about ten days of fuel kept on site. Cold
+            shutdown leaves several days' margin if the cooling stops.
+          sources:
+            - {title: "RFE/RL, December 2023", url: "https://www.rferl.org/a/zaporizhzhya-nuclear-power-plant-safety-ukraine/32711212.html"}
+            - {title: "Euromaidan Press, September 2026", url: "https://euromaidanpress.com/2026/09/07/russia-burns-occupied-zaporizhzhia-nuclear-plants-last-resort-generators-as-everyday-power-ukraine-says/"}
+            - {title: "Ukrinform (IAEA), April 2024", url: "https://ukrinform.net/rubric-economy/3852084-all-reactors-at-zaporizhzhia-npp-in-cold-shutdown-for-first-time-since-2022-iaea.html"}
+        - from: {km: 17}         # 2:05
+          text: >-
+            On 23 September 2025 its last line was cut. It ran on diesel generators for a month, until repairs under local
+            ceasefires brokered by the IAEA.
+          sources:
+            - {title: "AP, 23 October 2025", url: "https://www.yahoo.com/news/articles/off-power-being-restored-ukraine-104314844.html"}
+        - from: {km: 24}
+          text: >-
+            Marhanets and Nikopol, on this bank, are held by Ukraine and face the plant across the water. Rockets fired from
+            the direction of Enerhodar began hitting Nikopol in August 2022.
+          sources:
+            - {title: "CBC (AP), August 2022", url: "https://www.cbc.ca/lite/story/1.6540764"}
+        - from: {km: 31}         # 2:33: the line reaches its substation (km 32.5)
+          text: >-
+            Here Ferosplavna-1 ends, at the Ferosplavna-330 substation. Of the plant's ten lines, two are left: this one,
+            its backup, and the 750 kV Dniprovska, its main line.
+          sources:
+            - {title: "OpenStreetMap, way 265670105", url: "https://www.openstreetmap.org/way/265670105"}
+            - {title: "Babel, 2026", url: "https://babel.ua/en/news/124384-repairs-to-the-backup-power-line-at-the-zaporizhzhia-npp-began-after-agreements"}
+        - from: {km: 38}
+          text: >-
+            At Nikopol the route turns onto Л-211, a 330 kV line running east toward Zaporizhzhia: the grid the plant once
+            fed.
+          sources:
+            - {title: "OpenStreetMap, way 303336697", url: "https://www.openstreetmap.org/way/303336697"}
+        - from: {km: 50}       # 3:18: the drained bed comes into view on the right (south)
+          text: >-
+            To the right, south of the line, lay the Great Meadow (Velykyi Luh): the Dnipro's floodplain of grassland and
+            marsh, rich in Cossack history, flooded by the Kakhovka reservoir in the 1950s.
+          sources:
+            - {title: "Yale e360, October 2024", url: "https://e360.yale.edu/features/ukraine-war-wilding"}
+        - from: {km: 56}       # 3:29: the bed still on the right
+          text: >-
+            Since the reservoir drained in 2023, native willows have grown across its floor: researchers call the young
+            forest Europe's largest floodplain forest.
+          sources:
+            - {title: "Yale e360, October 2024", url: "https://e360.yale.edu/features/ukraine-war-wilding"}
+        - from: {km: 64}       # 3:43: the line over farmland on the north bank, the bed out of frame
+          text: >-
+            Why trace the line: the plant is on the occupied bank, but the power that keeps its reactors cooled comes from
+            this side of the front. Every repair needs work, and a ceasefire, on both sides.
+          sources:
+            - {title: "AP, 23 October 2025", url: "https://www.yahoo.com/news/articles/off-power-being-restored-ukraine-104314844.html"}
+            - {title: "Komersant, October 2025", url: "https://komersant.ua/en/zaes-znovu-pidkliuchat-do-elektromerezhi-mahate-rozpochalo-protses"}
+        - from: {km: 76}       # 4:05
+          text: >-
+            Lines can also lead to another grid: in 2025 Ukraine protested to the IAEA that Russia was building power
+            lines in the occupied south to connect the plant to Russia's grid and restart it.
+          sources:
+            - {title: "Yahoo News, 2025", url: "https://www.yahoo.com/news/ukraine-protests-iaea-over-russia-112557454.html"}
+            - {title: "LIGA.net, 2025", url: "https://news.liga.net/en/politics/news/siberia-russia-wants-to-connect-znpp-to-its-power-grid-and-involve-the-iaea"}
+        - from: {km: 88}       # 4:27
+          text: >-
+            On 10 February 2026 shelling cut Ferosplavna-1 at the thermal plant's switchyard, where this line begins. For 23
+            days the plant hung on Dniprovska alone, until repairs under a ceasefire reconnected it on 5 March.
+          sources:
+            - {title: "NEI Magazine, March 2026", url: "https://www.neimagazine.com/?p=102910"}
+            - {title: "IAEA, Update 345", url: "https://reliefweb.int/report/ukraine/update-345-iaea-director-general-statement-situation-ukraine"}
+        - from: {km: 100}      # 4:49: Zaporizhzhia's outskirts
+          text: >-
+            Zaporizhzhia, the oblast's capital, held by Ukraine. The plant, in the same oblast but occupied, is about
+            55 km away in a straight line.
+          sources:
+            - {title: Wikipedia, url: "https://en.wikipedia.org/wiki/Zaporizhzhia"}
+        - from: {km: 108.5}    # 5:08: the dam comes into view
+          text: >-
+            DniproHES, the dam at the head of the old Kakhovka reservoir, the water that drowned the Great Meadow. Russian
+            missiles hit it on 22 March 2024, badly damaging its power stations.
+          sources:
+            - {title: "Wikipedia, Kakhovka Reservoir", url: "https://en.wikipedia.org/wiki/Kakhovka_Reservoir"}
+            - {title: "Euromaidan Press, 22 March 2024", url: "https://euromaidanpress.com/2024/03/22/dnipro-hydroelectric-plant-out-of-service-after-russian-missile-attack/"}
+        - from: {shot: hold, n: -1, s: 0}   # 5:19: the last hold, the credits
+          text: >-
+            On 20 August 2026 it lost its last line again, the IAEA's 26th count: almost three weeks on diesel, down to two
+            generators, before repairs.
+          sources:
+            - {title: "ANS, 9 September 2026", url: "https://www.ans.org/news/2026-09-09/article-8377/zaporizhzhia-restores-offsite-power-following-iaeabrokered-local-ceasefire/"}
+            - {title: "Euromaidan Press, September 2026", url: "https://euromaidanpress.com/2026/09/07/russia-burns-occupied-zaporizhzhia-nuclear-plants-last-resort-generators-as-everyday-power-ukraine-says/"}
+
+  # Another corridor is added the same way (a new id: an existing corridor's box and lines never change), e.g. the
+  # 750 kV line from the nuclear plant north to Dniprovska-750:
+  # znpp-750-north:
+  #   name: ZNPP 750 kV, north across the reservoir
+  #   bbox: [34.00, 47.45, 34.75, 48.50]
+  #   lines: [790736604, 375110029, 375440092, 375440078]
+  #   join_m: 1500
+  #   strip_m: 6500
+
+fetch:
+  sensor: sentinel-2
+  start: 2023-07-01      # after the dam's destruction (6 June 2023): the bed exposed
+  end: 2023-09-30
+  max_cloud: 5           # % of each tile, by the provider; checked again over the corridor itself
+
+film:
+  width: 1920
+  height: 1080
+  fps: 24
+  view_m: 6000           # ground width of the frame
+  speed_mps: 150         # ground metres travelled per second of film
+  hold_s: 6              # still at the start and the end
+  ease_s: 3              # the camera eases in and out of a move
+  dissolve_s: 6          # between two passes, at a held position
+  orient: travel         # travel: the way along the line points up; north: north up
+  caption: true          # sensor and date, small, on the holds and dissolves
+  trace: false           # the OSM line as a hairline (an overlay, labelled in film.json)

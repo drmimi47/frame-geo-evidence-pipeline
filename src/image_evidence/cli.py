@@ -320,6 +320,54 @@ def _study_areas(cfg: Config) -> list:
     return out
 
 
+def cmd_satellite(args: argparse.Namespace) -> int:
+    """The Conductive Seam: power lines in a box, a satellite pass along a corridor, or a film of one."""
+    from datetime import date
+
+    from .jobs import ensure_seam_folder
+    from .satellite import corridor, fetch, film
+    from .scope import library_scope
+
+    seam = fetch.SeamConfig.load(args.seam_config)
+    if args.action == "lines":
+        import httpx
+
+        box = tuple(float(x) for x in (args.bbox or "").split(",")) if args.bbox else seam.areas[args.area].bbox
+        for c in corridor.choices(corridor.fetch_power(box, httpx.Client())):
+            print(f"  {c['id']:>11}  {c['kv']:>4} kV  {c['length_m'] / 1000:6.1f} km  {c['label']}")
+        return 0
+    # a scratch folder (--folder) for trying things out; otherwise "The Conductive Seam" beside the library
+    root = Path(args.folder).resolve() if args.folder else ensure_seam_folder(_load(args).library_dir)
+    if args.action == "fetch":
+        area = fetch.area_named(root, seam, args.area)
+        start = date.fromisoformat(args.start or str(seam.fetch.get("start", "2023-07-01")))
+        end = date.fromisoformat(args.end or str(seam.fetch.get("end", "2023-09-30")))
+        sensor = args.sensor or seam.fetch.get("sensor", "sentinel-2")
+        r = fetch.run(root, library_scope(root), area, sensor, start, end, args.max_cloud or float(seam.fetch.get("max_cloud", 5)),
+                      until_km=args.until_km)
+        print(f"  {r['status']}: {r['title']}" + (f" · {r['frames']} images" if r.get("frames") else "") + f" · {r.get('reason', '')}")
+        return 0 if r["status"] == "processed" else 1
+    film_area = seam.areas.get(args.area)
+    if args.action == "notes":  # the area's notes placed on a film already made (its newest, or --film)
+        from .satellite import notes, store
+
+        made = [f for f in store.films(root) if f["corridor_id"] == args.area]
+        target = args.film or (made[0]["film_id"] if made else None)
+        if target is None:
+            print(f"  no film of {args.area} yet", file=sys.stderr)
+            return 1
+        placed = notes.write(root, args.area, target, (film_area.film if film_area else {}).get("notes"))
+        for n in placed:
+            print(f"  {n['t0']:6.1f}–{n['t1']:6.1f} s  {n['text'][:90]}")
+        return 0
+    opts = {**seam.film, **(film_area.film if film_area else {}), **{k: v for k, v in (("view_m", args.view_m), ("speed_mps", args.speed), ("width", args.width),
+                                               ("height", args.height), ("trace", args.trace or None)) if v is not None}}
+    f = film.render(root, args.area, args.passes or None, opts)
+    print(f"  {f['film_id']}: {f['duration_s']:.0f} s, {f['width']}×{f['height']}, "
+          f"{', '.join(p['title'] for p in f['passes'])}")
+    return 0
+
+
 def cmd_serve(args: argparse.Namespace) -> int:
     try:
         import uvicorn
@@ -329,7 +377,7 @@ def cmd_serve(args: argparse.Namespace) -> int:
         print("install the [api] extra: pip install -e '.[api]'", file=sys.stderr)
         return 1
     cfg = _load(args)
-    uvicorn.run(create_app(cfg.library_dir, _study_areas(cfg)), host=args.host, port=args.port)
+    uvicorn.run(create_app(cfg.library_dir, _study_areas(cfg), args.seam_config), host=args.host, port=args.port)
     return 0
 
 
@@ -446,9 +494,31 @@ def build_parser() -> argparse.ArgumentParser:
     s = sub.add_parser("refresh-titles", parents=[common], help="fetch uploader title translations (YouTube localizations)")
     s.set_defaults(fn=cmd_refresh_titles)
 
+    s = sub.add_parser("satellite", parents=[common], help="The Conductive Seam: satellite passes along power lines, and films")
+    s.add_argument("action", choices=["lines", "fetch", "film", "notes"], help="lines: OSM power lines in an area; fetch: add a "
+                   "pass; film: render the corridor's passes; notes: place the area's notes on its newest film again")
+    s.add_argument("--area", default="enerhodar-crossing", help="an area of the seam config (or an existing corridor)")
+    s.add_argument("--seam-config", type=Path, help="default: config/conductive-seam.yaml")
+    s.add_argument("--folder", help="a scratch library root instead of The Conductive Seam folder")
+    s.add_argument("--bbox", help="lines: west,south,east,north (default: the area's)")
+    s.add_argument("--sensor", choices=["sentinel-2", "landsat"])
+    s.add_argument("--start", help="fetch: first date (YYYY-MM-DD)")
+    s.add_argument("--end", help="fetch: last date")
+    s.add_argument("--max-cloud", type=float, help="fetch: %% cloud at most")
+    s.add_argument("--until-km", type=float, help="fetch: only round the line's first so many km (e.g. a date shown only at the start)")
+    s.add_argument("--film", help="notes: a film id (default: the area's newest)")
+    s.add_argument("--passes", nargs="*", help="film: pass ids (default: all, oldest first)")
+    s.add_argument("--view-m", type=float, help="film: ground width of the frame (m)")
+    s.add_argument("--speed", type=float, help="film: metres along the line per second")
+    s.add_argument("--width", type=int)
+    s.add_argument("--height", type=int)
+    s.add_argument("--trace", action="store_true", help="film: draw the OSM line as a hairline")
+    s.set_defaults(fn=cmd_satellite)
+
     s = sub.add_parser("serve", parents=[common], help="serve the read-only image-evidence HTTP API")
     s.add_argument("--host", default="127.0.0.1")
     s.add_argument("--port", type=int, default=8000)
+    s.add_argument("--seam-config", type=Path, help="The Conductive Seam's areas and film (default: config/conductive-seam.yaml)")
     s.set_defaults(fn=cmd_serve)
     return parser
 
