@@ -120,3 +120,23 @@ def test_llm_plan_is_parsed_and_the_token_only_goes_in_the_header():
 
 def test_tokens_are_blanked_out_of_job_logs():
     assert redact("GET ...&key=AIzaSECRET failed", ["AIzaSECRET", ""]) == "GET ...&key=••• failed"
+
+
+def test_cli_logs_never_carry_a_key(caplog):
+    import logging
+
+    from image_evidence.cli import RedactSecrets
+
+    f = RedactSecrets(["tok-SECRET"])
+    rec = logging.LogRecord("httpx", logging.INFO, __file__, 1,
+                            'HTTP Request: GET https://www.googleapis.com/youtube/v3/search?part=id&key=AIzaUNKNOWN "200"',
+                            None, None)
+    f.filter(rec)
+    assert "AIzaUNKNOWN" not in rec.getMessage() and "key=•••" in rec.getMessage()
+    try:
+        raise RuntimeError("Authorization: Bearer tok-SECRET")
+    except RuntimeError:
+        import sys
+        rec = logging.LogRecord("image_evidence", logging.ERROR, __file__, 1, "failed", None, sys.exc_info())
+    f.filter(rec)
+    assert "tok-SECRET" not in rec.exc_text and "•••" in rec.exc_text

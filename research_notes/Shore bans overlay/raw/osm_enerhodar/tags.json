@@ -1,0 +1,91 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-11-05T05:26:23Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "relation",
+  "id": 1989839,
+  "tags": {
+    "admin_level": "10",
+    "boundary": "administrative",
+    "katotth": "UA23040070030069873",
+    "koatuu": "2322484602",
+    "name": "Симиренкове",
+    "name:prefix": "село",
+    "name:ru": "Симиренково",
+    "name:uk": "Симиренкове",
+    "old_name": "Мічуріна",
+    "old_name:en": "Michurina",
+    "old_name:ko": "미추리나",
+    "old_name:ru": "Мичурина",
+    "old_name:uk": "Мічуріна",
+    "place": "village",
+    "population": "53",
+    "postal_code": "71321",
+    "type": "boundary",
+    "wikidata": "Q4298298",
+    "wikipedia": "uk:Симиренкове"
+  }
+},
+{
+  "type": "relation",
+  "id": 12207507,
+  "tags": {
+    "admin_level": "7",
+    "boundary": "administrative",
+    "katotth": "UA23040110000019947",
+    "name": "Енергодарська міська громада",
+    "name:en": "Enerhodar urban hromada",
+    "name:ru": "Энергодарская городская община",
+    "name:uk": "Енергодарська міська громада",
+    "place": "municipality",
+    "population": "53343",
+    "type": "boundary",
+    "wikidata": "Q105099446",
+    "wikipedia": "uk:Енергодарська міська громада"
+  }
+},
+{
+  "type": "relation",
+  "id": 12207508,
+  "tags": {
+    "admin_level": "7",
+    "boundary": "administrative",
+    "katotth": "UA23040070000097076",
+    "name": "Водянська сільська громада",
+    "name:en": "Vodianska rural hromada",
+    "name:ru": "Водянская сельская община",
+    "name:uk": "Водянська сільська громада",
+    "place": "municipality",
+    "population": "11878",
+    "type": "boundary",
+    "wikidata": "Q57314150",
+    "wikipedia": "uk:Водянська сільська громада (Запорізька область)"
+  }
+},
+{
+  "type": "relation",
+  "id": 12219453,
+  "tags": {
+    "admin_level": "7",
+    "boundary": "administrative",
+    "katotth": "UA23040010000033945",
+    "name": "Благовіщенська сільська громада",
+    "name:en": "Blahovishchenska rural hromada",
+    "name:ru": "Благовещенская сельская община",
+    "name:uk": "Благовіщенська сільська громада",
+    "place": "municipality",
+    "population": "6278",
+    "type": "boundary",
+    "wikidata": "Q57314121",
+    "wikipedia": "uk:Благовіщенська сільська громада"
+  }
+}
+
+  ]
+}

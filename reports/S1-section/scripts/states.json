@@ -1,0 +1,42 @@
+{
+ "A": {
+  "date": "2022-09-06",
+  "pass": "2022-08-29_0836",
+  "river_egm": 16.4,
+  "pond_baltic": 16.0,
+  "flat": true,
+  "level_note": "the reservoir and the pond at the reservoir's normal level, 16 m (its design level; the level that day not published)",
+  "event": "ISLAND MODE: EVERY LINE CUT, ONE REACTOR POWERS THE PLANT (5-10 SEPTEMBER 2022)",
+  "imagery": "SENTINEL-2, 29 AUGUST 2022 (6 AND 8 SEPTEMBER CLOUDED OVER)",
+  "past": []
+ },
+ "B": {
+  "date": "2025-09-27",
+  "pass": "2025-09-27_0836",
+  "river_egm": 7.66,
+  "pond_baltic": 13.54,
+  "level_note": "the pond 13.54 m (Energoatom, 11 August 2025, the last report before); the river SWOT's, monthly",
+  "event": "DAY 5 OF A MONTH ON DIESEL GENERATORS: NO LINE CONNECTED (23 SEPTEMBER - 23 OCTOBER 2025)",
+  "imagery": "SENTINEL-2, 27 SEPTEMBER 2025",
+  "past": [
+   16.67,
+   15.4,
+   14.34
+  ]
+ },
+ "C": {
+  "date": "2026-08-23",
+  "pass": "2026-08-23_0835",
+  "river_egm": 8.14,
+  "pond_baltic": 12.34,
+  "level_note": "the pond 12.34 m (Ukraine's HUR, 1 October 2026, unverified: the nearest report, after); the river SWOT's, monthly",
+  "event": "DAY 4 OF 18 ON DIESEL GENERATORS: NO LINE CONNECTED (20 AUGUST - 7 SEPTEMBER 2026)",
+  "imagery": "SENTINEL-2, 23 AUGUST 2026",
+  "past": [
+   16.67,
+   15.4,
+   14.34,
+   13.54
+  ]
+ }
+}

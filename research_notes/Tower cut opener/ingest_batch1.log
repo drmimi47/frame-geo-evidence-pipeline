@@ -1,0 +1,14 @@
+02:00:55 I [YODjwXFjnyg] metadata
+02:00:56 I [YODjwXFjnyg] in scope: Ukraine relevance 0.95 (min 0.5)
+02:00:56 I [YODjwXFjnyg] downloading (policy=public, license=unknown)
+02:01:13 I [YODjwXFjnyg] 53 candidate frames, 25 after dedup (h264 1920x1080 @ 60.000 fps, 112s)
+02:01:18 I loading google/siglip-so400m-patch14-384 on mps
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+02:01:19 W Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+02:01:42 I [YODjwXFjnyg] keeping 25 of 25 (subject score >= 0.30; prefer infrastructure/landscape/aerial/drone/industrial, avoid people/interior/graphic/ruins)
+02:02:04 I [YODjwXFjnyg] done: downloaded, 25 frames
+02:02:04 I [3coe3Z-2TLg] metadata
+02:02:05 I [3coe3Z-2TLg] in scope: Ukraine relevance 0.80 (min 0.5)
+02:02:05 I [3coe3Z-2TLg] downloading (policy=public, license=unknown)
+02:02:48 I [3coe3Z-2TLg] 152 candidate frames, 141 after dedup (h264 1920x1080 @ 30.000 fps, 305s)
+02:07:28 I [3coe3Z-2TLg] keeping 100 of 141 (subject score >= 0.30; prefer infrastructure/landscape/aerial/drone/industrial, avoid people/interior/graphic/ruins)

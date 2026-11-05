@@ -1,0 +1,748 @@
+{
+ "8Fn2Ne4jLJM": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Доброго вечора, ми з Нікополя! : Дно Каховського водосховища в районі Нікополя зараз",
+  "channel": "Viktor Artemenko",
+  "channel_id": "UCkUgIhgyq5qI8amqBP9QP7w",
+  "published": "2023-09-28",
+  "license": "standard YouTube licence",
+  "duration_s": 284,
+  "url": "https://www.youtube.com/watch?v=8Fn2Ne4jLJM",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Нікопол -> Nikopol",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Украин -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Никопол -> Nikopol",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Ukraine -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Нікопол -> Nikopol",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:38:03Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "6cJIs6-R4Qs": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Журналіст показав, як виглядає дно Каховського водосховища",
+  "channel": "NikopolNews",
+  "channel_id": "UCCn7a3nLMjM_jwuuzacJfOQ",
+  "published": "2023-06-25",
+  "license": "standard YouTube licence",
+  "duration_s": 134,
+  "url": "https://www.youtube.com/watch?v=6cJIs6-R4Qs",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Никопол -> Nikopol",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:38:11Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "4iveMcLZ720": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "\"Нікопольські плавні\" замість Каховського водосховища! Декомунізація руками москалів!!!",
+  "channel": "Olexandr L",
+  "channel_id": "UC4WE5IpYcVPfjz42Yo_zYlg",
+  "published": "2023-06-14",
+  "license": "standard YouTube licence",
+  "duration_s": 106,
+  "url": "https://www.youtube.com/watch?v=4iveMcLZ720",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Нікопол -> Nikopol",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:38:17Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "JzAb5EFJu_Y": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Друга річниця підриву Каховської ГЕС. Як колишнє водосховище згадують мешканці Нікополя",
+  "channel": "Суспільне Дніпро",
+  "channel_id": "UCHor8vwW6KPxV3FPmWQtE3Q",
+  "published": "2025-06-06",
+  "license": "standard YouTube licence",
+  "duration_s": 146,
+  "url": "https://www.youtube.com/watch?v=JzAb5EFJu_Y",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Нікопол -> Nikopol",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "дніпропетровщин -> Dnipropetrovsk Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "дніпро -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпр -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Нікопол -> Nikopol",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:38:24Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "dgbb1Zm7rF8": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Форпост на водосховищі: чим живе щоденно обстрілюваний рашистами НІКОПОЛЬ",
+  "channel": "Факти ICTV",
+  "channel_id": "UCG26bSkEjJc7SqGsxoHNnbA",
+  "published": "2022-11-05",
+  "license": "standard YouTube licence",
+  "duration_s": 231,
+  "url": "https://www.youtube.com/watch?v=dgbb1Zm7rF8",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "НІКОПОЛ -> Nikopol",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "никопол -> Nikopol",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпропетровщин -> Dnipropetrovsk Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Нікопол -> Nikopol",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Енергодар -> Enerhodar",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:38:38Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "hNztO88SMZc": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "\"Про Нікополь\" / Водосховище засіять / Вода для громад / В Нікополі запрацюють реєстри",
+  "channel": "11 канал. Голос Дніпра🌊",
+  "channel_id": "UCwALNfmBX8f2XKt2xe4PMBA",
+  "published": "2023-07-26",
+  "license": "standard YouTube licence",
+  "duration_s": 116,
+  "url": "https://www.youtube.com/watch?v=hNztO88SMZc",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Нікопол -> Nikopol",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "дніпро -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Нікопол -> Nikopol",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:38:53Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "FavZds0hYzo": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Знайшли кістки мамонтів та козацьку зброю! Топ-5 історичних знахідок на дні Каховського водосховища",
+  "channel": "Дніпро Оперативний - життя великого міста",
+  "channel_id": "UC1h4sv6jq8vrKvtyNSqbpYQ",
+  "published": "2023-07-14",
+  "license": "standard YouTube licence",
+  "duration_s": 122,
+  "url": "https://www.youtube.com/watch?v=FavZds0hYzo",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "украин -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "херсон -> Kherson Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "днепр -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "херсон -> Kherson Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:39:06Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "k4uBUB9Pjs8": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Унікальні артефакти на дні колишнього Каховського водосховища: історик про унікальні знахідки",
+  "channel": "Суспільне Дніпро",
+  "channel_id": "UCHor8vwW6KPxV3FPmWQtE3Q",
+  "published": "2023-11-27",
+  "license": "standard YouTube licence",
+  "duration_s": 203,
+  "url": "https://www.youtube.com/watch?v=k4uBUB9Pjs8",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "запорізьк -> Zaporizhzhia Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "нікопол -> Nikopol",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "енергодар -> Enerhodar",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховк -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "dnipropetrovsk -> Dnipropetrovsk Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпр -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Нікопол -> Nikopol",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:39:17Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "Kcg9_e-g-W0": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "НІКОПОЛЬ під вогнем: як живе місто навпроти окупованої ЗАЕС та чи може ворог форсувати тут Дніпро",
+  "channel": "Новинарня",
+  "channel_id": "UCP4-EHo95N1itjsHcm-IR-Q",
+  "published": "2026-08-29",
+  "license": "standard YouTube licence",
+  "duration_s": 1251,
+  "url": "https://www.youtube.com/watch?v=Kcg9_e-g-W0",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "НІКОПОЛ -> Nikopol",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Дніпропетровськ -> Dnipropetrovsk Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Нікопол -> Nikopol",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпропетровськ -> Dnipropetrovsk Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Запорізьк -> Zaporizhzhia Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "КРАМАТОРСЬК -> Kramatorsk",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Нікопол -> Nikopol",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Енергодар -> Enerhodar",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:39:31Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "a4m6eQmiFv0": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "НІКОПОЛЬ —  ВЕЛИЧНА КОЗАЦЬКА ІСТОРІЯ І ЖАХЛИВЕ СЬОГОДЕННЯ ПІД ОБСТРІЛАМИ ТА ЯДЕРНИМ ШАНТАЖЕМ",
+  "channel": "Thickets",
+  "channel_id": "UCIxAwgoXmEGr2ML72c3QxGA",
+  "published": "2024-05-25",
+  "license": "standard YouTube licence",
+  "duration_s": 3011,
+  "url": "https://www.youtube.com/watch?v=a4m6eQmiFv0",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "НІКОПОЛ -> Nikopol",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Дніпропетровськ -> Dnipropetrovsk Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Запоріжжя -> Zaporizhzhia Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Хмельницьк -> Khmelnytskyi Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Нікопол -> Nikopol",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Енергодар -> Enerhodar",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "великий луг -> Velykyi Luh",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "запорож -> Zaporizhzhia Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Хмельницьк -> Khmelnytskyi Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Бахмут -> Bakhmut",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Нікопол -> Nikopol",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "ukrainian letters",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:40:12Z",
+   "scope_name": "Ukraine"
+  }
+ }
+}

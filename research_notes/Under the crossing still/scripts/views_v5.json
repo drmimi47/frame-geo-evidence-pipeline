@@ -1,0 +1,27 @@
+{
+ "note": "v5: v3's view f as it was (views.json), by day",
+ "views": [
+  {
+   "id": "f",
+   "what": "v3's view f, unchanged (further out on the bed, in a meadow lane through the willows 190 m south of tower 23, under the lit span), by day: the film's own light",
+   "cam": [
+    4355.0,
+    6870.0
+   ],
+   "heading": 22.0,
+   "pitch": 14.0,
+   "lens": 18.0,
+   "eye": 1.6,
+   "cone_deg": 75,
+   "far_m": 1500,
+   "clear_m": 1.0,
+   "clear_tall_m": 2.5,
+   "gap": [
+    7,
+    3,
+    200
+   ],
+   "light": "day"
+  }
+ ]
+}

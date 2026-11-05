@@ -1,0 +1,49 @@
+{
+ "view": {
+  "id": "d",
+  "what": "lying on the bed under the span between towers 21 and 22, looking up at the wires through the crowns",
+  "cam": [
+   3992.0,
+   5674.0
+  ],
+  "heading": 17.0,
+  "pitch": 62.0,
+  "lens": 14.0,
+  "eye": 0.45,
+  "cone_deg": 180,
+  "far_m": 500,
+  "clear_m": 1.0,
+  "clear_tall_m": 1.8
+ },
+ "camera_ground_m": 10.46,
+ "habitat_at_camera": "woody",
+ "plants": 65612,
+ "by_layer": {
+  "canopy lod0": 109,
+  "canopy lod1": 2569,
+  "canopy lod2": 9289,
+  "understorey lod0": 609,
+  "understorey lod1": 4516,
+  "marsh lod0": 46,
+  "marsh lod1": 1399,
+  "herbs lod0": 3575,
+  "herbs lod1": 19647,
+  "grass lod0": 11765,
+  "grass lod1": 12088
+ },
+ "by_family": {
+  "0": 9323,
+  "1": 2644,
+  "2": 4378,
+  "3": 520,
+  "4": 227,
+  "5": 2718,
+  "6": 0,
+  "7": 7677,
+  "8": 5069,
+  "9": 3051,
+  "10": 3303,
+  "11": 2849,
+  "12": 23853
+ }
+}

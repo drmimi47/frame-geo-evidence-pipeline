@@ -1,0 +1,31 @@
+{
+ "title": "The waterline reprise's sound (a stretch of the speculative soundscape)",
+ "seconds": 9.0,
+ "sample_rate": 48000,
+ "sha256": "50331771f0021f47d71c98dc2518699ceed49e39b22cee7c34070c009080e17b",
+ "from": "Speculative crossing soundscape/under_the_crossing.wav (mix.py), seconds 13.5-22.5 of its 30 s, only the line and the near nightingale",
+ "rerun_matches_original": true,
+ "master_gain_db": 4.15,
+ "line": "Ferosplavna-1 as mix.py synthesizes it (seed 330, the 30 s synthesized and the same window cut; -30 dBFS RMS before the master)",
+ "nightingale": {
+  "recording": "iNat sound 1950271 (observation 361637893)",
+  "recordist": "Oleksii Vasyliuk",
+  "licence": "CC BY",
+  "date": "2026-05-14",
+  "place": "Mar'ianske, on the drained bed",
+  "recording_seconds": [
+   14.5,
+   23.5
+  ],
+  "level_dbfs_rms": -20,
+  "pan": 0.2
+ },
+ "fades_s": [
+  1.0,
+  1.5
+ ],
+ "limit": "-1 dBFS (mix.py's limiter)",
+ "statement": "No new recordings: cut from the shot's own montage; never pitched, looped or stretched. The line is synthesized, not recorded.",
+ "peak_dbfs": -6.0,
+ "rms_dbfs": -21.7
+}

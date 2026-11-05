@@ -1,0 +1,33 @@
+{
+ "a": {
+  "plants": 10852,
+  "left_out": 8,
+  "met_first": {
+   "water seen": 8
+  },
+  "camera_ground_m": 6.09,
+  "camera_on": "land",
+  "prepare_s": 4.9,
+  "render_dawn_s": 21.1
+ },
+ "c": {
+  "plants": 43829,
+  "left_out": 0,
+  "met_first": {},
+  "camera_ground_m": 6.49,
+  "camera_on": "land",
+  "prepare_s": 8.3,
+  "render_dawn_s": 20.1
+ },
+ "e": {
+  "plants": 88383,
+  "left_out": 2,
+  "met_first": {
+   "water seen": 2
+  },
+  "camera_ground_m": 7.7,
+  "camera_on": "land",
+  "prepare_s": 15.3,
+  "render_dawn_s": 30.3
+ }
+}

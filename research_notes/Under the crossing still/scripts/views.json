@@ -1,0 +1,117 @@
+{
+ "note": "Views for the v3 comparison stills (5 November 2026). Positions in the scene's own metres (x east, y north from the scene origin); heading is a compass bearing (0 north, 90 east), pitch up from level, lens in mm on a 36 mm wide sensor. cone_deg: how far either side of the heading plants are placed beyond 20 m. far_m: how far the canopy goes. clear_m: nothing but low grass this close; clear_tall_m: nothing taller than the eye this close. gap [half-angle deg, from m, to m]: a narrow wedge toward the tower kept free of trees, shrubs and reeds (a framing choice, said so); with a fourth item \"all\", only low grass is left in it (open ground at the water's edge).",
+ "views": [
+  {
+   "id": "a",
+   "what": "the first still's spot: on the sand bar 150 m south-west of tower 20, along the span",
+   "cam": [
+    3606.1,
+    4671.0
+   ],
+   "heading": 55.0,
+   "pitch": 18.0,
+   "lens": 20.0,
+   "eye": 1.6,
+   "cone_deg": 75,
+   "far_m": 1200,
+   "clear_m": 1.0,
+   "clear_tall_m": 4.0
+  },
+  {
+   "id": "b",
+   "what": "inside the forest's edge 90 m east-north-east of tower 20, looking up at it through a gap in the young willows, over the reeds",
+   "cam": [
+    3812.0,
+    4782.0
+   ],
+   "heading": 253.0,
+   "pitch": 30.0,
+   "lens": 16.0,
+   "eye": 1.6,
+   "cone_deg": 80,
+   "far_m": 1200,
+   "clear_m": 1.2,
+   "clear_tall_m": 2.0,
+   "gap": [
+    11,
+    3,
+    95
+   ]
+  },
+  {
+   "id": "c",
+   "what": "in the reeds at the channel's edge, looking along the span across the water to towers 21 and 22",
+   "cam": [
+    3905.0,
+    5080.0
+   ],
+   "heading": 10.0,
+   "pitch": 10.0,
+   "lens": 24.0,
+   "eye": 1.3,
+   "cone_deg": 60,
+   "far_m": 2000,
+   "clear_m": 0.8,
+   "clear_tall_m": 2.0
+  },
+  {
+   "id": "d",
+   "what": "lying on the bed under the span between towers 21 and 22, looking up at the wires through the crowns",
+   "cam": [
+    3992.0,
+    5674.0
+   ],
+   "heading": 17.0,
+   "pitch": 62.0,
+   "lens": 14.0,
+   "eye": 0.45,
+   "cone_deg": 180,
+   "far_m": 500,
+   "clear_m": 1.0,
+   "clear_tall_m": 1.8
+  },
+  {
+   "id": "e",
+   "what": "low at the water's edge on a sand bank east of a pool on the bed, wide: the forest line across the water, Ferosplavna's lit span running off left toward tower 22 (out of frame), Dniprovska's cut tower 24 small in the middle",
+   "cam": [
+    4572.0,
+    5568.0
+   ],
+   "heading": 345.0,
+   "pitch": 4.0,
+   "lens": 16.0,
+   "eye": 1.7,
+   "cone_deg": 80,
+   "far_m": 2500,
+   "clear_m": 0.6,
+   "clear_tall_m": 2.0,
+   "gap": [
+    40,
+    0,
+    10,
+    "all"
+   ]
+  },
+  {
+   "id": "f",
+   "what": "further out on the bed, in a meadow lane through the willows 190 m south of tower 23, under the lit span",
+   "cam": [
+    4355.0,
+    6870.0
+   ],
+   "heading": 22.0,
+   "pitch": 14.0,
+   "lens": 18.0,
+   "eye": 1.6,
+   "cone_deg": 75,
+   "far_m": 1500,
+   "clear_m": 1.0,
+   "clear_tall_m": 2.5,
+   "gap": [
+    7,
+    3,
+    200
+   ]
+  }
+ ]
+}

@@ -1,0 +1,34 @@
+{
+ "made": "2026-11-04",
+ "cell": [
+  47.5,
+  34.5
+ ],
+ "rule": "wet hour: precipitation >= 0.1 mm, or relative humidity >= 97% with wind < 3 m/s (fog likely, inferred)",
+ "lines": {
+  "Dniprovska": {
+   "days": {
+    "on": 1253,
+    "off": 233,
+    "unknown": 175
+   },
+   "wet_days": {
+    "on": 594,
+    "off": 124,
+    "unknown": 82
+   }
+  },
+  "Ferosplavna-1": {
+   "days": {
+    "on": 913,
+    "off": 456,
+    "unknown": 292
+   },
+   "wet_days": {
+    "on": 431,
+    "off": 219,
+    "unknown": 150
+   }
+  }
+ }
+}

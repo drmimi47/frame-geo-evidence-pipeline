@@ -1,0 +1,55 @@
+{
+ "view": {
+  "id": "e",
+  "what": "low at the water's edge on a sand bank east of a pool on the bed, wide: the forest line across the water, Ferosplavna's tower 22 at left, Dniprovska's cut tower 24 at right",
+  "cam": [
+   4572.0,
+   5568.0
+  ],
+  "heading": 345.0,
+  "pitch": 4.0,
+  "lens": 16.0,
+  "eye": 1.7,
+  "cone_deg": 80,
+  "far_m": 2500,
+  "clear_m": 0.6,
+  "clear_tall_m": 2.0,
+  "gap": [
+   40,
+   0,
+   10,
+   "all"
+  ]
+ },
+ "camera_ground_m": 7.71,
+ "habitat_at_camera": "sand",
+ "plants": 88385,
+ "by_layer": {
+  "canopy lod0": 2,
+  "canopy lod1": 1318,
+  "canopy lod2": 68968,
+  "understorey lod0": 28,
+  "understorey lod1": 2025,
+  "marsh lod0": 274,
+  "marsh lod1": 3043,
+  "herbs lod0": 1270,
+  "herbs lod1": 5085,
+  "grass lod0": 3406,
+  "grass lod1": 2966
+ },
+ "by_family": {
+  "0": 54961,
+  "1": 15327,
+  "2": 1914,
+  "3": 86,
+  "4": 53,
+  "5": 3301,
+  "6": 151,
+  "7": 2258,
+  "8": 1360,
+  "9": 500,
+  "10": 1236,
+  "11": 866,
+  "12": 6372
+ }
+}

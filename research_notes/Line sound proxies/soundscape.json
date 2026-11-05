@@ -1,0 +1,27 @@
+{
+ "source": "api.inaturalist.org/v1/observations?sounds=true, box 47.30-47.80 N 34.05-35.10 E",
+ "count": 116,
+ "recordists": 1,
+ "years": [
+  2022,
+  2026
+ ],
+ "licences": [
+  "cc-by-nc"
+ ],
+ "cell_m": 1000.0,
+ "cells": 17,
+ "km_to_lines": [
+  2.19,
+  3.33,
+  6.21
+ ],
+ "ground": {
+  "imagery": "libraries/conductive-seam/satellite/networks/znpp/imagery/c3d_2025_08",
+  "pass": "sentinel-2_2025-08-28",
+  "north": 47.703,
+  "south": 47.4999,
+  "m_per_px": 20.8,
+  "gain": 0.8
+ }
+}

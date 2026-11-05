@@ -1,0 +1,1000 @@
+{
+ "note": "Marks are by eye, from grid images (scripts/mark_tool.py grid, check), for alignment only: they are not evidence and locate nothing. top = the tower's or pole's highest point; base = the middle of its foot on the ground, or with base_cut true the point where its axis leaves the frame (or the crop). top_cut true: the top is out of the frame, and the top mark is where the axis leaves it.",
+ "layout": {
+  "axis_x": 960,
+  "base_y": 990,
+  "heights": {
+   "distribution": 680,
+   "35": 720,
+   "35-110": 720,
+   "330": 840,
+   "750": 900,
+   "crossing": 960
+  }
+ },
+ "alignment": "Fixed base line, the height growing by class: every tower's base (or where its axis leaves the frame) sits on y=990 on the centre line x=960 and its top straight above it, at a height set by its class (distribution 680 px, 35 kV and 35-110 kV 720, 330 kV 840, 750 kV 900, the crossing towers 960). Chosen over one fixed top height because the poles are small in the dashcam frames: stretching them to a crossing tower's height would upscale them 3-4x. The heights were raised (from 560/610/690/820/900) so each frame fills more of the canvas; poles that would then need more than about 2.2x upscaling were left out. One similarity transform per frame (shift, uniform scale, rotation).",
+ "fade_in_s": 2.0,
+ "rules": [
+  "pixels only resampled (area when shrinking, bicubic otherwise) and cropped; never generated, filled, inpainted or sharpened",
+  "black where the moved frame does not cover the canvas",
+  "hard cuts; one fade from black at the start",
+  "no text, marks or labels drawn; no sound",
+  "logos, captions and channel overlays cropped off (crop) or left outside the canvas"
+ ],
+ "frames": [
+  {
+   "key": "ZUX_1278",
+   "video": "ZUXsmHCUVg4",
+   "t": 1278.5,
+   "top": [
+    499,
+    185
+   ],
+   "base": [
+    509,
+    653
+   ],
+   "base_cut": false,
+   "crop": [
+    0,
+    145,
+    1920,
+    1080
+   ],
+   "class": "distribution (0.4-10 kV, estimate)",
+   "class_how": "by eye: a single wooden or concrete pole a few metres tall with pin insulators on short crossarms, along a village street or field road (low-voltage or 6-10 kV distribution)",
+   "hold_s": 3.4,
+   "why": "opens grey and wet: a row of concrete poles along a field road on the Great Meadow's edge, overcast",
+   "size_class": "distribution"
+  },
+  {
+   "key": "Kcg_038",
+   "video": "Kcg9_e-g-W0",
+   "t": 38.5,
+   "top": [
+    925,
+    0
+   ],
+   "base": [
+    912,
+    893
+   ],
+   "base_cut": false,
+   "top_cut": true,
+   "crop": [
+    0,
+    0,
+    1700,
+    1080
+   ],
+   "class": "distribution (0.4-10 kV, estimate)",
+   "size_class": "distribution",
+   "class_how": "by eye: a concrete pole with pin insulators and a street lamp on a Nikopol street (low-voltage distribution); its top is cut by the frame, so the top mark is where its axis leaves the frame",
+   "why": "a Nikopol street pole with the Zaporizhzhia plant across the former reservoir behind it (now willow forest): the place the film is about, seen past the smallest line",
+   "hold_s": 1.7
+  },
+  {
+   "key": "a4m_714",
+   "video": "a4m6eQmiFv0",
+   "t": 714,
+   "top": [
+    751,
+    60
+   ],
+   "base": [
+    660,
+    1068
+   ],
+   "base_cut": false,
+   "crop": null,
+   "class": "distribution (0.4-10 kV, estimate)",
+   "size_class": "distribution",
+   "class_how": "by eye: a wooden or concrete pole a few metres tall with pin insulators on short crossarms (low-voltage or 6-10 kV distribution)",
+   "why": "spring in the Nikopol district: a leaning pole above a pond and reeds",
+   "hold_s": 1.35
+  },
+  {
+   "key": "XZz_264",
+   "video": "XZz7sRLnoAk",
+   "t": 264,
+   "top": [
+    1229,
+    324
+   ],
+   "base": [
+    1236,
+    629
+   ],
+   "base_cut": false,
+   "crop": [
+    0,
+    0,
+    1920,
+    1025
+   ],
+   "class": "distribution (0.4-10 kV, estimate)",
+   "class_how": "by eye: a single wooden or concrete pole a few metres tall with pin insulators on short crossarms, along a village street or field road (low-voltage or 6-10 kV distribution)",
+   "hold_s": 1.1,
+   "why": "a white concrete pole in a village on the left bank, bright",
+   "size_class": "distribution",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off): likely September 2021; inferred, not verified"
+  },
+  {
+   "key": "7C1_274",
+   "video": "7C1Ex2_xFi0",
+   "t": 274,
+   "top": [
+    1349,
+    132
+   ],
+   "base": [
+    1356,
+    667
+   ],
+   "base_cut": false,
+   "crop": [
+    0,
+    0,
+    1920,
+    1025
+   ],
+   "class": "distribution (0.4-10 kV, estimate)",
+   "class_how": "by eye: a single wooden or concrete pole a few metres tall with pin insulators on short crossarms, along a village street or field road (low-voltage or 6-10 kV distribution)",
+   "hold_s": 0.9,
+   "why": "Kamianka-Dniprovska street pole, houses behind",
+   "size_class": "distribution",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off the canvas) and the title says 09.21: likely filmed September 2021, before the war; inferred, not verified"
+  },
+  {
+   "key": "a4m_1260",
+   "video": "a4m6eQmiFv0",
+   "t": 1260,
+   "top": [
+    1332,
+    149
+   ],
+   "base": [
+    1325,
+    816
+   ],
+   "base_cut": false,
+   "crop": null,
+   "class": "distribution (0.4-10 kV, estimate)",
+   "size_class": "distribution",
+   "class_how": "by eye: a wooden or concrete pole a few metres tall with pin insulators on short crossarms (low-voltage or 6-10 kV distribution)",
+   "why": "a village street in May, poles under fresh leaves",
+   "hold_s": 0.7
+  },
+  {
+   "key": "7C1_270",
+   "video": "7C1Ex2_xFi0",
+   "t": 270,
+   "top": [
+    1241,
+    164
+   ],
+   "base": [
+    1282,
+    636
+   ],
+   "base_cut": false,
+   "crop": [
+    500,
+    0,
+    1920,
+    1025
+   ],
+   "class": "distribution (0.4-10 kV, estimate)",
+   "class_how": "by eye: a single wooden or concrete pole a few metres tall with pin insulators on short crossarms, along a village street or field road (low-voltage or 6-10 kV distribution); base behind a wall, estimated on the pole's line at ground level",
+   "hold_s": 0.52,
+   "why": "a street corner, a 10 kV pole with its yard transformer house behind",
+   "size_class": "distribution",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off the canvas) and the title says 09.21: likely filmed September 2021, before the war; inferred, not verified"
+  },
+  {
+   "key": "XZz_315",
+   "video": "XZz7sRLnoAk",
+   "t": 315,
+   "top": [
+    1493,
+    115
+   ],
+   "base": [
+    1536,
+    636
+   ],
+   "base_cut": false,
+   "crop": [
+    0,
+    0,
+    1920,
+    1025
+   ],
+   "class": "distribution (0.4-10 kV, estimate)",
+   "class_how": "by eye: a single wooden or concrete pole a few metres tall with pin insulators on short crossarms, along a village street or field road (low-voltage or 6-10 kV distribution)",
+   "hold_s": 0.4,
+   "why": "a tall white pole by a house",
+   "size_class": "distribution",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off): likely September 2021; inferred, not verified"
+  },
+  {
+   "key": "a4m_842",
+   "video": "a4m6eQmiFv0",
+   "t": 842.5,
+   "top": [
+    420,
+    144
+   ],
+   "base": [
+    403,
+    876
+   ],
+   "base_cut": false,
+   "crop": null,
+   "class": "distribution (0.4-10 kV, estimate)",
+   "size_class": "distribution",
+   "class_how": "by eye: a wooden or concrete pole a few metres tall with pin insulators on short crossarms (low-voltage or 6-10 kV distribution); its foot hidden by the wheat, the base marked at the ground line",
+   "why": "green wheat and cumulus",
+   "hold_s": 0.32
+  },
+  {
+   "key": "ZUX_1280",
+   "video": "ZUXsmHCUVg4",
+   "t": 1280,
+   "top": [
+    881,
+    247
+   ],
+   "base": [
+    883,
+    583
+   ],
+   "base_cut": false,
+   "crop": [
+    0,
+    145,
+    1920,
+    1080
+   ],
+   "class": "distribution (0.4-10 kV, estimate)",
+   "class_how": "by eye: a single wooden or concrete pole a few metres tall with pin insulators on short crossarms, along a village street or field road (low-voltage or 6-10 kV distribution)",
+   "hold_s": 0.3,
+   "why": "back to the grey field: a farther pole of the same row",
+   "size_class": "distribution"
+  },
+  {
+   "key": "7C1_276",
+   "video": "7C1Ex2_xFi0",
+   "t": 276,
+   "top": [
+    1555,
+    12
+   ],
+   "base": [
+    1584,
+    732
+   ],
+   "base_cut": false,
+   "crop": [
+    0,
+    0,
+    1920,
+    1025
+   ],
+   "class": "distribution (0.4-10 kV, estimate)",
+   "class_how": "by eye: a single wooden or concrete pole a few metres tall with pin insulators on short crossarms, along a village street or field road (low-voltage or 6-10 kV distribution)",
+   "hold_s": 0.3,
+   "why": "the next street pole, close",
+   "size_class": "distribution",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off the canvas) and the title says 09.21: likely filmed September 2021, before the war; inferred, not verified"
+  },
+  {
+   "key": "a4m_1326",
+   "video": "a4m6eQmiFv0",
+   "t": 1326,
+   "top": [
+    511,
+    113
+   ],
+   "base": [
+    516,
+    1056
+   ],
+   "base_cut": false,
+   "crop": null,
+   "class": "distribution (0.4-10 kV, estimate)",
+   "size_class": "distribution",
+   "class_how": "by eye: a wooden or concrete pole a few metres tall with pin insulators on short crossarms (low-voltage or 6-10 kV distribution)",
+   "why": "a pole with a street lamp, the river valley behind",
+   "hold_s": 0.3
+  },
+  {
+   "key": "7C1_729",
+   "video": "7C1Ex2_xFi0",
+   "t": 729,
+   "top": [
+    252,
+    221
+   ],
+   "base": [
+    240,
+    581
+   ],
+   "base_cut": false,
+   "crop": [
+    0,
+    0,
+    1920,
+    1025
+   ],
+   "class": "distribution (0.4-10 kV, estimate)",
+   "class_how": "by eye: a single wooden or concrete pole a few metres tall with pin insulators on short crossarms, along a village street or field road (low-voltage or 6-10 kV distribution)",
+   "hold_s": 0.3,
+   "why": "open steppe, evening light",
+   "size_class": "distribution",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off the canvas) and the title says 09.21: likely filmed September 2021, before the war; inferred, not verified"
+  },
+  {
+   "key": "XZz_759",
+   "video": "XZz7sRLnoAk",
+   "t": 759,
+   "top": [
+    1306,
+    10
+   ],
+   "base": [
+    1320,
+    642
+   ],
+   "base_cut": false,
+   "crop": [
+    0,
+    0,
+    1920,
+    1025
+   ],
+   "class": "35 kV (estimate)",
+   "class_how": "by eye: one tall concrete pole with two crossarms carrying suspension insulator strings of a few discs (typical of 35 kV lines; larger than distribution, no lattice)",
+   "hold_s": 0.3,
+   "why": "the first suspension insulators: a 35 kV pole by the road, water behind",
+   "size_class": "35",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off): likely September 2021; inferred, not verified"
+  },
+  {
+   "key": "7C1_016",
+   "video": "7C1Ex2_xFi0",
+   "t": 16,
+   "top": [
+    653,
+    149
+   ],
+   "base": [
+    643,
+    480
+   ],
+   "base_cut": false,
+   "crop": [
+    0,
+    0,
+    1920,
+    1025
+   ],
+   "class": "35-110 kV (estimate)",
+   "class_how": "by eye: a slender steel lattice tower with a V-shaped top over the houses; lattice steel and its height put it above distribution, too small for 330 kV",
+   "hold_s": 0.3,
+   "why": "the first lattice: a steel tower over Kamianka-Dniprovska's houses",
+   "size_class": "35-110",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off the canvas) and the title says 09.21: likely filmed September 2021, before the war; inferred, not verified"
+  },
+  {
+   "key": "XZz_788",
+   "video": "XZz7sRLnoAk",
+   "t": 788.5,
+   "top": [
+    763,
+    235
+   ],
+   "base": [
+    773,
+    578
+   ],
+   "base_cut": false,
+   "crop": [
+    0,
+    0,
+    1920,
+    1025
+   ],
+   "class": "35-110 kV (estimate)",
+   "class_how": "by eye: a narrow lattice tower with a V top beyond the road; size and form as 35-110 kV lines in the region",
+   "hold_s": 0.3,
+   "why": "a lattice tower in a clearing, poplars",
+   "size_class": "35-110",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off): likely September 2021; inferred, not verified"
+  },
+  {
+   "key": "3co_001",
+   "video": "3coe3Z-2TLg",
+   "t": 1,
+   "top": [
+    907,
+    288
+   ],
+   "base": [
+    816,
+    1080
+   ],
+   "base_cut": true,
+   "crop": null,
+   "class": "330 kV (estimate)",
+   "class_how": "by eye: a large double-circuit steel lattice tower with long suspension strings (many discs), filmed from below by a walker near Enerhodar; the uploader's title says it is 'under the power line' (ЛЭП); its strings are far longer than 35-110 kV but the tower smaller than the 750 kV towers",
+   "hold_s": 0.36,
+   "why": "under a big line: a walker's view up, autumn trees",
+   "size_class": "330"
+  },
+  {
+   "key": "3co_299",
+   "video": "3coe3Z-2TLg",
+   "t": 299,
+   "top": [
+    972,
+    12
+   ],
+   "base": [
+    869,
+    876
+   ],
+   "base_cut": false,
+   "crop": null,
+   "class": "330 kV (estimate)",
+   "class_how": "as above (same walk)",
+   "hold_s": 0.48,
+   "why": "the tower's legs in autumn woods",
+   "size_class": "330"
+  },
+  {
+   "key": "3co_216",
+   "video": "3coe3Z-2TLg",
+   "t": 216,
+   "top": [
+    972,
+    413
+   ],
+   "base": [
+    1056,
+    1080
+   ],
+   "base_cut": true,
+   "crop": null,
+   "class": "330 kV (estimate)",
+   "class_how": "as above (same walk)",
+   "hold_s": 0.6,
+   "why": "clear sky, the crossarms and strings",
+   "size_class": "330"
+  },
+  {
+   "key": "3co_213",
+   "video": "3coe3Z-2TLg",
+   "t": 213,
+   "top": [
+    991,
+    24
+   ],
+   "base": [
+    1049,
+    1080
+   ],
+   "base_cut": true,
+   "crop": null,
+   "class": "330 kV (estimate)",
+   "class_how": "as above (same walk)",
+   "hold_s": 0.7,
+   "why": "close under it, the tower filling the frame",
+   "size_class": "330"
+  },
+  {
+   "key": "t8T_118",
+   "video": "t8TkQAs8X3U",
+   "t": 118.0,
+   "top": [
+    680,
+    212
+   ],
+   "base": [
+    650,
+    1015
+   ],
+   "base_cut": false,
+   "crop": null,
+   "class": "330 kV (estimate)",
+   "size_class": "330",
+   "class_how": "by eye: a double-circuit lattice tower with three crossarm levels and a phase at each end (six phases), multi-string glass insulators; the uploader's description (\"ОРУ 330 и ОРУ 750 ЗАЭС. Также переходы через Каховское водохранилище ВЛ 330 кВ и 750 кВ\") names the plant's 330 and 750 kV switchyards and lines, and this is the 330 kV type",
+   "why": "the 330 kV towers seen whole, base to peak, three in a row, after the close views under them",
+   "capture_hint": "published 29 June 2023; the end card reads 'г. Одесса, июнь 2023' and thanks Bobkov Yu. B. for help gathering the material, so the footage may be his; spring growth and rapeseed in flower; the date it was filmed is not given",
+   "hold_s": 0.85
+  },
+  {
+   "key": "td0_023",
+   "video": "td0-UyyIV_8",
+   "t": 23,
+   "top": [
+    490,
+    62
+   ],
+   "base": [
+    495,
+    795
+   ],
+   "base_cut": true,
+   "crop": [
+    372,
+    0,
+    1380,
+    795
+   ],
+   "class": "750 kV (Energoatom's footage of the plant's 750 kV lines)",
+   "class_how": "by eye and from the video: the tall portal-headed lattice towers of the Zaporizhzhia NPP's 750 kV lines (the news item is about the plant's lines; the tower form matches 750 kV towers: very long horizontal crossarm, split-phase bundles)",
+   "hold_s": 0.95,
+   "why": "the plant's 750 kV lines, a row of towers going away",
+   "size_class": "750",
+   "capture_hint": "stock footage inside a 2023 news item; the date it was filmed is not given (green leaves: a spring or summer)"
+  },
+  {
+   "key": "td0_035",
+   "video": "td0-UyyIV_8",
+   "t": 35.5,
+   "top": [
+    986,
+    112
+   ],
+   "base": [
+    986,
+    795
+   ],
+   "base_cut": true,
+   "crop": [
+    400,
+    0,
+    1380,
+    795
+   ],
+   "class": "750 kV (as above)",
+   "class_how": "as above",
+   "hold_s": 1.2,
+   "why": "the last and largest: a 750 kV tower by the plant's cooling pond, held",
+   "size_class": "750",
+   "capture_hint": "stock footage inside a 2023 news item; the date it was filmed is not given (green leaves: a spring or summer)"
+  },
+  {
+   "key": "t8T_172",
+   "video": "t8TkQAs8X3U",
+   "t": 172.0,
+   "top": [
+    692,
+    257
+   ],
+   "base": [
+    692,
+    962
+   ],
+   "base_cut": false,
+   "crop": null,
+   "class": "750 kV crossing (estimate)",
+   "size_class": "crossing",
+   "class_how": "by eye: one long crossarm at the top carrying three phases, an earth-wire peak above, a second short arm below, standing on a caisson in open water; the 750 kV crossing towers are described with their crossbar near the top (126 m, SkyscraperPage no. 23, scene3d/towers.py). That this is the Kakhovka crossing: the uploader's description names the 330 and 750 kV crossings of the Kakhovka reservoir, and the thermal plant's chimneys stand on the far shore behind the line (the NPP's cooling towers come into view in the same pan, 180 s). Base marked where the legs meet the caisson, as for crossing_user_1",
+   "why": "real footage of the crossing over full water: the 750 kV tower on its caisson, the thermal plant behind",
+   "capture_hint": "published 29 June 2023 (after the breach) but the reservoir is full, so filmed before 6 June 2023; the date it was filmed is not given",
+   "hold_s": 2.4
+  },
+  {
+   "key": "user_1",
+   "file": "supplied/crossing_user_1.png",
+   "t": null,
+   "top": [
+    535,
+    232
+   ],
+   "base": [
+    531,
+    965
+   ],
+   "base_cut": false,
+   "crop": null,
+   "class": "330 kV crossing (estimate); 750 kV crossing towers beside it",
+   "size_class": "crossing",
+   "class_how": "by eye: the tower in front has three crossarm levels with a phase at each end (six phases, a double circuit), as the 330 kV crossing towers (100 m, crossbars at 92, 81 and 70 m: SkyscraperPage no. 19; Ferosplavna's two circuits) and stands on a round caisson; the line receding left is the same type; the two towers on the right, one crossarm with three phases, are of the 750 kV crossing's type: both crossings side by side, as at the Kakhovka reservoir",
+   "why": "the ending: the two crossings side by side over full water, the 330 kV tower held",
+   "provenance": {
+    "supplied_by": "the user",
+    "supplied_on": "2026-11-05",
+    "file_sha256": "8f7cacc44c39c4c0067585611881e7a7ddd2e58fd6bf9e7b146a8d0c11734b96",
+    "source": "unknown; possibly from Wikimapia's page of the crossing (https://wikimapia.org/18910322/Dnipro-river-crossing-powerline-750kV), which the user linked earlier: unconfirmed",
+    "date": "unknown; before 6 June 2023 (the reservoir is full)",
+    "rights": "unknown: to be cleared before any use"
+   },
+   "hold_s": 4.0
+  },
+  {
+   "key": "UYf_233",
+   "video": "UYfx16Vju1g",
+   "t": 233,
+   "top": [
+    592,
+    384
+   ],
+   "base": [
+    589,
+    720
+   ],
+   "base_cut": true,
+   "crop": null,
+   "class": "distribution (0.4-10 kV, estimate)",
+   "class_how": "by eye: plain poles with pin insulators on a short crossarm, standing on the bank above the drained reservoir (distribution)",
+   "hold_s": 0.72,
+   "why": "the same small line, now over the drained bed days after the dam (the world turns to mud and water)",
+   "size_class": "distribution",
+   "capture_hint": "the title gives 09.06.2023 (three days after the dam's destruction); inferred from the title",
+   "left_out": "left out (round 3, 5 November 2026): at full resolution the 'wires' are a coil of concertina (razor) wire strung between two posts over the drained bed, with dark balls and hooks hung on wires below it: a barrier or obstacle, fortification-like, not a power line (the small distribution poles stand in front of it). No replacement view of poles on the drained bed was found in the round-3 search"
+  },
+  {
+   "key": "UYf_235",
+   "video": "UYfx16Vju1g",
+   "t": 235,
+   "top": [
+    1075,
+    368
+   ],
+   "base": [
+    1075,
+    720
+   ],
+   "base_cut": true,
+   "crop": null,
+   "class": "distribution (0.4-10 kV, estimate)",
+   "class_how": "by eye: plain poles with pin insulators on a short crossarm, standing on the bank above the drained reservoir (distribution)",
+   "hold_s": 0.3,
+   "why": "over the drained bed again, the shallows behind",
+   "size_class": "distribution",
+   "capture_hint": "the title gives 09.06.2023 (three days after the dam's destruction); inferred from the title",
+   "left_out": "left out (round 3, 5 November 2026): at full resolution the 'wires' are a coil of concertina (razor) wire strung between two posts over the drained bed, with dark balls and hooks hung on wires below it: a barrier or obstacle, fortification-like, not a power line (the small distribution poles stand in front of it). No replacement view of poles on the drained bed was found in the round-3 search"
+  },
+  {
+   "key": "user_2",
+   "file": "supplied/crossing_user_2.png",
+   "t": null,
+   "top": [
+    225,
+    65
+   ],
+   "base": [
+    230,
+    759
+   ],
+   "base_cut": false,
+   "crop": null,
+   "class": "750 kV crossing (estimate)",
+   "size_class": "crossing",
+   "class_how": "by eye: one long crossarm carrying three phases with a short earth-wire peak above it, as the 750 kV crossing towers are described (126 m, crossbar at 113 m: SkyscraperPage no. 23, scene3d/towers.py), not the 330 kV crossing's three crossarm levels. But it stands on a square caisson, while the Kakhovka crossing's caissons are round ribbed drums (Esri WorldView-2, 2024), so that this photo shows this crossing is unconfirmed",
+   "why": "the crossing over full water: the largest towers, on caissons in the reservoir",
+   "provenance": {
+    "supplied_by": "the user",
+    "supplied_on": "2026-11-05",
+    "file_sha256": "8b98bb0f47a5b47e7203d0e0b60f76b94e47dc6edce5c57b79fe0f2b4e736869",
+    "source": "unknown; possibly from Wikimapia's page of the crossing (https://wikimapia.org/18910322/Dnipro-river-crossing-powerline-750kV), which the user linked earlier: unconfirmed",
+    "date": "unknown; before 6 June 2023 (the reservoir is full)",
+    "rights": "unknown: to be cleared before any use"
+   },
+   "hold_s": 2.0,
+   "left_out": "left out (round 3): real footage of the Kakhovka crossing towers was found (t8T_172, the uploader's video of the plant's 330 and 750 kV lines and their crossings of the reservoir), so it takes this photo's place before crossing_user_1, as asked; this photo (square caisson, unconfirmed as this crossing) is kept for the user's decision"
+  },
+  {
+   "key": "XZz_735",
+   "video": "XZz7sRLnoAk",
+   "t": 735,
+   "class": "35-110 kV (estimate)",
+   "size_class": "35-110",
+   "left_out": "lattice tower; its foot is hidden by trees, so its base can't be marked",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off): likely September 2021; inferred, not verified"
+  },
+  {
+   "key": "XZz_774",
+   "video": "XZz7sRLnoAk",
+   "t": 774,
+   "class": "35-110 kV (estimate)",
+   "size_class": "35-110",
+   "left_out": "lattice tower; foot hidden by bushes",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off): likely September 2021; inferred, not verified"
+  },
+  {
+   "key": "XZz_782",
+   "video": "XZz7sRLnoAk",
+   "t": 782,
+   "class": "35-110 kV (estimate)",
+   "size_class": "35-110",
+   "left_out": "lattice tower beside a substation; foot hidden",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off): likely September 2021; inferred, not verified"
+  },
+  {
+   "key": "XZz_790",
+   "video": "XZz7sRLnoAk",
+   "t": 790,
+   "class": "35-110 kV (estimate)",
+   "size_class": "35-110",
+   "left_out": "lattice tower; its top is out of the frame",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off): likely September 2021; inferred, not verified"
+  },
+  {
+   "key": "XZz_764",
+   "video": "XZz7sRLnoAk",
+   "t": 764,
+   "class": "35 kV (estimate)",
+   "size_class": "35",
+   "left_out": "concrete pole; foot in bushes, a car in front",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off): likely September 2021; inferred, not verified"
+  },
+  {
+   "key": "XZz_721",
+   "video": "XZz7sRLnoAk",
+   "t": 721,
+   "class": "distribution (0.4-10 kV, estimate)",
+   "size_class": "distribution",
+   "left_out": "an A-frame pole cut by the frame's top, strong perspective",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off): likely September 2021; inferred, not verified"
+  },
+  {
+   "key": "7C1_099",
+   "video": "7C1Ex2_xFi0",
+   "t": 99,
+   "class": "distribution (0.4-10 kV, estimate)",
+   "size_class": "distribution",
+   "left_out": "small and far; others like it used",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off the canvas) and the title says 09.21: likely filmed September 2021, before the war; inferred, not verified"
+  },
+  {
+   "key": "7C1_453",
+   "video": "7C1Ex2_xFi0",
+   "t": 453,
+   "class": "distribution (0.4-10 kV, estimate)",
+   "size_class": "distribution",
+   "left_out": "the same field as 7C1_447, six seconds on",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off the canvas) and the title says 09.21: likely filmed September 2021, before the war; inferred, not verified"
+  },
+  {
+   "key": "7C1_018",
+   "video": "7C1Ex2_xFi0",
+   "t": 18,
+   "class": "distribution (0.4-10 kV, estimate)",
+   "size_class": "distribution",
+   "left_out": "small and far",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off the canvas) and the title says 09.21: likely filmed September 2021, before the war; inferred, not verified"
+  },
+  {
+   "key": "3co_211",
+   "video": "3coe3Z-2TLg",
+   "t": 211,
+   "class": "330 kV (estimate)",
+   "size_class": "330",
+   "left_out": "the same tower as 3co_213, mostly trees"
+  },
+  {
+   "key": "3co_218",
+   "video": "3coe3Z-2TLg",
+   "t": 218,
+   "class": "330 kV (estimate)",
+   "size_class": "330",
+   "left_out": "near-duplicate of 3co_216"
+  },
+  {
+   "key": "td0_015",
+   "video": "td0-UyyIV_8",
+   "t": 15.5,
+   "class": "750 kV (as above)",
+   "size_class": "750",
+   "left_out": "the switchyard's portals under the news title; no single tower to hold",
+   "capture_hint": "stock footage inside a 2023 news item; the date it was filmed is not given (green leaves: a spring or summer)"
+  },
+  {
+   "key": "FavZ_025",
+   "video": "FavZds0hYzo",
+   "t": 25.5,
+   "class": "none",
+   "size_class": "750",
+   "left_out": "the plant seen across the drained bed from the Nikopol side: cooling towers and units, no tower visible at this resolution"
+  },
+  {
+   "key": "Kcg_783",
+   "video": "Kcg9_e-g-W0",
+   "t": 783,
+   "class": "distribution (0.4-10 kV, estimate)",
+   "size_class": "distribution",
+   "left_out": "the plant across the former reservoir with a pole cut by the right edge (it can't be centred); the shot is followed by FPV-drone footage, not used"
+  },
+  {
+   "key": "a4m_2472",
+   "video": "a4m6eQmiFv0",
+   "t": 2472,
+   "class": "distribution (0.4-10 kV, estimate)",
+   "size_class": "distribution",
+   "left_out": "a street with roof damage from shelling: no damage on screen"
+  },
+  {
+   "key": "a4m_762",
+   "video": "a4m6eQmiFv0",
+   "t": 762,
+   "class": "distribution (0.4-10 kV, estimate)",
+   "size_class": "distribution",
+   "left_out": "people walking in the street"
+  },
+  {
+   "key": "a4m_2586",
+   "video": "a4m6eQmiFv0",
+   "t": 2586,
+   "class": "distribution (0.4-10 kV, estimate)",
+   "size_class": "distribution",
+   "left_out": "a repair crew in a bucket truck at a pole: crews' positions are never shown"
+  },
+  {
+   "key": "7C1_432",
+   "video": "7C1Ex2_xFi0",
+   "t": 432,
+   "top": [
+    763,
+    293
+   ],
+   "base": [
+    763,
+    576
+   ],
+   "base_cut": false,
+   "crop": [
+    0,
+    0,
+    1920,
+    1025
+   ],
+   "class": "distribution (0.4-10 kV, estimate)",
+   "class_how": "by eye: a single wooden or concrete pole a few metres tall with pin insulators on short crossarms, along a village street or field road (low-voltage or 6-10 kV distribution)",
+   "hold_s": 0.36,
+   "why": "out of the village: field road, poplars",
+   "size_class": "distribution",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off the canvas) and the title says 09.21: likely filmed September 2021, before the war; inferred, not verified",
+   "left_out": "too small in its frame: at the raised distribution height (680 px) it would need 2.4-3.1x upscaling (kept at most about 2.2x)"
+  },
+  {
+   "key": "7C1_447",
+   "video": "7C1Ex2_xFi0",
+   "t": 447,
+   "top": [
+    684,
+    281
+   ],
+   "base": [
+    689,
+    523
+   ],
+   "base_cut": false,
+   "crop": [
+    0,
+    0,
+    1920,
+    1025
+   ],
+   "class": "distribution (0.4-10 kV, estimate)",
+   "class_how": "by eye: a single wooden or concrete pole a few metres tall with pin insulators on short crossarms, along a village street or field road (low-voltage or 6-10 kV distribution)",
+   "hold_s": 0.28,
+   "why": "a field and a ploughed strip",
+   "size_class": "distribution",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off the canvas) and the title says 09.21: likely filmed September 2021, before the war; inferred, not verified",
+   "left_out": "too small in its frame: at the raised distribution height (680 px) it would need 2.4-3.1x upscaling (kept at most about 2.2x)"
+  },
+  {
+   "key": "7C1_030",
+   "video": "7C1Ex2_xFi0",
+   "t": 30,
+   "top": [
+    660,
+    240
+   ],
+   "base": [
+    660,
+    525
+   ],
+   "base_cut": false,
+   "crop": [
+    0,
+    0,
+    1920,
+    1025
+   ],
+   "class": "distribution (0.4-10 kV, estimate)",
+   "class_how": "by eye: a single wooden or concrete pole a few metres tall with pin insulators on short crossarms, along a village street or field road (low-voltage or 6-10 kV distribution)",
+   "hold_s": 0.28,
+   "why": "a junction at the edge of town",
+   "size_class": "distribution",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off the canvas) and the title says 09.21: likely filmed September 2021, before the war; inferred, not verified",
+   "left_out": "too small in its frame: at the raised distribution height (680 px) it would need 2.4-3.1x upscaling (kept at most about 2.2x)"
+  },
+  {
+   "key": "7C1_693",
+   "video": "7C1Ex2_xFi0",
+   "t": 693,
+   "top": [
+    823,
+    365
+   ],
+   "base": [
+    814,
+    601
+   ],
+   "base_cut": false,
+   "crop": [
+    0,
+    0,
+    1920,
+    1025
+   ],
+   "class": "distribution (0.4-10 kV, estimate)",
+   "class_how": "by eye: a single wooden or concrete pole a few metres tall with pin insulators on short crossarms, along a village street or field road (low-voltage or 6-10 kV distribution)",
+   "hold_s": 0.28,
+   "why": "a lone pole in a stubble field",
+   "size_class": "distribution",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off the canvas) and the title says 09.21: likely filmed September 2021, before the war; inferred, not verified",
+   "left_out": "too small in its frame: at the raised distribution height (680 px) it would need 2.4-3.1x upscaling (kept at most about 2.2x)"
+  },
+  {
+   "key": "XZz_321",
+   "video": "XZz7sRLnoAk",
+   "t": 321,
+   "top": [
+    1194,
+    395
+   ],
+   "base": [
+    1193,
+    617
+   ],
+   "base_cut": false,
+   "crop": [
+    0,
+    0,
+    1920,
+    1025
+   ],
+   "class": "distribution (0.4-10 kV, estimate)",
+   "class_how": "by eye: a single wooden or concrete pole a few metres tall with pin insulators on short crossarms, along a village street or field road (low-voltage or 6-10 kV distribution)",
+   "hold_s": 0.28,
+   "why": "village road, a pole among gardens",
+   "size_class": "distribution",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off): likely September 2021; inferred, not verified",
+   "left_out": "too small in its frame: at the raised distribution height (680 px) it would need 2.4-3.1x upscaling (kept at most about 2.2x)"
+  },
+  {
+   "key": "7C1_691",
+   "video": "7C1Ex2_xFi0",
+   "t": 691.5,
+   "top": [
+    1282,
+    341
+   ],
+   "base": [
+    1286,
+    600
+   ],
+   "base_cut": false,
+   "crop": [
+    0,
+    0,
+    1920,
+    1025
+   ],
+   "class": "distribution (0.4-10 kV, estimate)",
+   "class_how": "by eye: a single wooden or concrete pole a few metres tall with pin insulators on short crossarms, along a village street or field road (low-voltage or 6-10 kV distribution); an angle pole with a strut",
+   "hold_s": 0.28,
+   "why": "a dirt road, bushes",
+   "size_class": "distribution",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off the canvas) and the title says 09.21: likely filmed September 2021, before the war; inferred, not verified",
+   "left_out": "too small in its frame: at the raised distribution height (680 px) it would need 2.4-3.1x upscaling (kept at most about 2.2x)"
+  }
+ ],
+ "pacing": "first hold 3.4 s (the fade is its first 2 s), quickening to 0.3 s through the poles, slowing through the 330 kV towers, 0.95 and 1.2 s on the plant's 750 kV towers, 2.4 s on the crossing filmed from the shore and 4 s on the last photograph"
+}

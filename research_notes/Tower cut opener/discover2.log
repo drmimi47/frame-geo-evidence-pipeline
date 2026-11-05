@@ -1,0 +1,517 @@
+03:44:43 I run 20261105T084443Z: estimated quota 2021 units
+03:44:43 I discovery: 20 searches (~2021 quota units)
+03:44:43 D connect_tcp.started host='www.googleapis.com' port=443 local_address=None timeout=30 socket_options=None
+03:44:43 D connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x10d0e9820>
+03:44:43 D start_tls.started ssl_context=<ssl.SSLContext object at 0x118f41f50> server_hostname='www.googleapis.com' timeout=30
+03:44:43 D start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x118f66e40>
+03:44:43 D send_request_headers.started request=<Request [b'GET']>
+03:44:43 D send_request_headers.complete
+03:44:43 D send_request_body.started request=<Request [b'GET']>
+03:44:43 D send_request_body.complete
+03:44:43 D receive_response_headers.started request=<Request [b'GET']>
+03:44:43 D receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Thu, 05 Nov 2026 08:44:43 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+03:44:43 I HTTP Request: GET https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=%D0%BF%D0%B5%D1%80%D0%B5%D1%85%D0%BE%D0%B4+%D0%9B%D0%95%D0%9F+%D1%87%D0%B5%D1%80%D0%B5%D0%B7+%D0%94%D0%BD%D0%B5%D0%BF%D1%80&maxResults=50&order=relevance&publishedAfter=2022-01-01T00%3A00%3A00Z&publishedBefore=2026-12-31T23%3A59%3A59Z&relevanceLanguage=uk&safeSearch=none&key=REDACTED "HTTP/1.1 200 OK"
+03:44:43 D receive_response_body.started request=<Request [b'GET']>
+03:44:43 D receive_response_body.complete
+03:44:43 D response_closed.started
+03:44:43 D response_closed.complete
+03:44:43 I   'переход ЛЕП через Днепр'                          2022..2026-12-31 -> 43
+03:44:43 D send_request_headers.started request=<Request [b'GET']>
+03:44:43 D send_request_headers.complete
+03:44:43 D send_request_body.started request=<Request [b'GET']>
+03:44:43 D send_request_body.complete
+03:44:43 D receive_response_headers.started request=<Request [b'GET']>
+03:44:44 D receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Thu, 05 Nov 2026 08:44:44 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+03:44:44 I HTTP Request: GET https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=%D0%BE%D0%BF%D0%BE%D1%80%D0%B8+%D0%9B%D0%95%D0%9F+%D0%B2+%D0%9A%D0%B0%D1%85%D0%BE%D0%B2%D1%81%D1%8C%D0%BA%D0%BE%D0%BC%D1%83+%D0%B2%D0%BE%D0%B4%D0%BE%D1%81%D1%85%D0%BE%D0%B2%D0%B8%D1%89%D1%96&maxResults=50&order=relevance&publishedAfter=2022-01-01T00%3A00%3A00Z&publishedBefore=2026-12-31T23%3A59%3A59Z&relevanceLanguage=uk&safeSearch=none&key=REDACTED "HTTP/1.1 200 OK"
+03:44:44 D receive_response_body.started request=<Request [b'GET']>
+03:44:44 D receive_response_body.complete
+03:44:44 D response_closed.started
+03:44:44 D response_closed.complete
+03:44:44 I   'опори ЛЕП в Каховському водосховищі'              2022..2026-12-31 -> 1
+03:44:44 D send_request_headers.started request=<Request [b'GET']>
+03:44:44 D send_request_headers.complete
+03:44:44 D send_request_body.started request=<Request [b'GET']>
+03:44:44 D send_request_body.complete
+03:44:44 D receive_response_headers.started request=<Request [b'GET']>
+03:44:44 D receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Thu, 05 Nov 2026 08:44:44 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+03:44:44 I HTTP Request: GET https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=%D0%9B%D0%95%D0%9F+750+%D0%95%D0%BD%D0%B5%D1%80%D0%B3%D0%BE%D0%B4%D0%B0%D1%80&maxResults=50&order=relevance&publishedAfter=2022-01-01T00%3A00%3A00Z&publishedBefore=2026-12-31T23%3A59%3A59Z&relevanceLanguage=uk&safeSearch=none&key=REDACTED "HTTP/1.1 200 OK"
+03:44:44 D receive_response_body.started request=<Request [b'GET']>
+03:44:44 D receive_response_body.complete
+03:44:44 D response_closed.started
+03:44:44 D response_closed.complete
+03:44:44 I   'ЛЕП 750 Енергодар'                                2022..2026-12-31 -> 8
+03:44:44 D send_request_headers.started request=<Request [b'GET']>
+03:44:44 D send_request_headers.complete
+03:44:44 D send_request_body.started request=<Request [b'GET']>
+03:44:44 D send_request_body.complete
+03:44:44 D receive_response_headers.started request=<Request [b'GET']>
+03:44:44 D receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Thu, 05 Nov 2026 08:44:44 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+03:44:44 I HTTP Request: GET https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=%D1%80%D1%8B%D0%B1%D0%B0%D0%BB%D0%BA%D0%B0+%D0%9A%D0%B0%D0%BC%D0%B5%D0%BD%D0%BA%D0%B0-%D0%94%D0%BD%D0%B5%D0%BF%D1%80%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F+%D0%BE%D0%BF%D0%BE%D1%80%D1%8B+%D0%9B%D0%95%D0%9F&maxResults=50&order=relevance&publishedAfter=2022-01-01T00%3A00%3A00Z&publishedBefore=2026-12-31T23%3A59%3A59Z&relevanceLanguage=uk&safeSearch=none&key=REDACTED "HTTP/1.1 200 OK"
+03:44:44 D receive_response_body.started request=<Request [b'GET']>
+03:44:44 D receive_response_body.complete
+03:44:44 D response_closed.started
+03:44:44 D response_closed.complete
+03:44:44 I   'рыбалка Каменка-Днепровская опоры ЛЕП'            2022..2026-12-31 -> 1
+03:44:44 D send_request_headers.started request=<Request [b'GET']>
+03:44:44 D send_request_headers.complete
+03:44:44 D send_request_body.started request=<Request [b'GET']>
+03:44:44 D send_request_body.complete
+03:44:44 D receive_response_headers.started request=<Request [b'GET']>
+03:44:44 D receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Thu, 05 Nov 2026 08:44:44 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+03:44:44 I HTTP Request: GET https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=%D0%9D%D1%96%D0%BA%D0%BE%D0%BF%D0%BE%D0%BB%D1%8C+%D0%B4%D1%80%D0%BE%D0%BD+%D0%BE%D0%BF%D0%BE%D1%80%D0%B8+%D0%9B%D0%95%D0%9F&maxResults=50&order=relevance&publishedAfter=2022-01-01T00%3A00%3A00Z&publishedBefore=2026-12-31T23%3A59%3A59Z&relevanceLanguage=uk&safeSearch=none&key=REDACTED "HTTP/1.1 200 OK"
+03:44:44 D receive_response_body.started request=<Request [b'GET']>
+03:44:44 D receive_response_body.complete
+03:44:44 D response_closed.started
+03:44:44 D response_closed.complete
+03:44:44 I   'Нікополь дрон опори ЛЕП'                          2022..2026-12-31 -> 0
+03:44:44 D send_request_headers.started request=<Request [b'GET']>
+03:44:44 D send_request_headers.complete
+03:44:44 D send_request_body.started request=<Request [b'GET']>
+03:44:44 D send_request_body.complete
+03:44:44 D receive_response_headers.started request=<Request [b'GET']>
+03:44:45 D receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Thu, 05 Nov 2026 08:44:44 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+03:44:45 I HTTP Request: GET https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=%D0%B4%D0%BD%D0%BE+%D0%9A%D0%B0%D1%85%D0%BE%D0%B2%D1%81%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE+%D0%B2%D0%BE%D0%B4%D0%BE%D1%81%D1%85%D0%BE%D0%B2%D0%B8%D1%89%D0%B0+%D0%9B%D0%95%D0%9F&maxResults=50&order=relevance&publishedAfter=2022-01-01T00%3A00%3A00Z&publishedBefore=2026-12-31T23%3A59%3A59Z&relevanceLanguage=uk&safeSearch=none&key=REDACTED "HTTP/1.1 200 OK"
+03:44:45 D receive_response_body.started request=<Request [b'GET']>
+03:44:45 D receive_response_body.complete
+03:44:45 D response_closed.started
+03:44:45 D response_closed.complete
+03:44:45 I   'дно Каховського водосховища ЛЕП'                  2022..2026-12-31 -> 0
+03:44:45 D send_request_headers.started request=<Request [b'GET']>
+03:44:45 D send_request_headers.complete
+03:44:45 D send_request_body.started request=<Request [b'GET']>
+03:44:45 D send_request_body.complete
+03:44:45 D receive_response_headers.started request=<Request [b'GET']>
+03:44:45 D receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Thu, 05 Nov 2026 08:44:45 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+03:44:45 I HTTP Request: GET https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=Kakhovka+reservoir+power+line+towers+drone&maxResults=50&order=relevance&publishedAfter=2022-01-01T00%3A00%3A00Z&publishedBefore=2026-12-31T23%3A59%3A59Z&relevanceLanguage=uk&safeSearch=none&key=REDACTED "HTTP/1.1 200 OK"
+03:44:45 D receive_response_body.started request=<Request [b'GET']>
+03:44:45 D receive_response_body.complete
+03:44:45 D response_closed.started
+03:44:45 D response_closed.complete
+03:44:45 I   'Kakhovka reservoir power line towers drone'       2022..2026-12-31 -> 4
+03:44:45 D send_request_headers.started request=<Request [b'GET']>
+03:44:45 D send_request_headers.complete
+03:44:45 D send_request_body.started request=<Request [b'GET']>
+03:44:45 D send_request_body.complete
+03:44:45 D receive_response_headers.started request=<Request [b'GET']>
+03:44:45 D receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Thu, 05 Nov 2026 08:44:45 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+03:44:45 I HTTP Request: GET https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=%D0%BE%D0%BF%D0%BE%D1%80%D1%8B+%D0%9B%D0%AD%D0%9F+%D0%B2+%D0%9A%D0%B0%D1%85%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%BC+%D0%B2%D0%BE%D0%B4%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D0%B8%D0%BB%D0%B8%D1%89%D0%B5+%D1%80%D1%8B%D0%B1%D0%B0%D0%BB%D0%BA%D0%B0&maxResults=50&order=relevance&publishedAfter=2022-01-01T00%3A00%3A00Z&publishedBefore=2026-12-31T23%3A59%3A59Z&relevanceLanguage=uk&safeSearch=none&key=REDACTED "HTTP/1.1 200 OK"
+03:44:45 D receive_response_body.started request=<Request [b'GET']>
+03:44:45 D receive_response_body.complete
+03:44:45 D response_closed.started
+03:44:45 D response_closed.complete
+03:44:45 I   'опоры ЛЭП в Каховском водохранилище рыбалка'      2022..2026-12-31 -> 0
+03:44:45 D send_request_headers.started request=<Request [b'GET']>
+03:44:45 D send_request_headers.complete
+03:44:45 D send_request_body.started request=<Request [b'GET']>
+03:44:45 D send_request_body.complete
+03:44:45 D receive_response_headers.started request=<Request [b'GET']>
+03:44:45 D receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Thu, 05 Nov 2026 08:44:45 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+03:44:45 I HTTP Request: GET https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=%D0%92%D0%BE%D0%B4%D1%8F%D0%BD%D0%B5+%D0%9A%D0%B0%D1%85%D0%BE%D0%B2%D1%81%D1%8C%D0%BA%D0%B5+%D0%B2%D0%BE%D0%B4%D0%BE%D1%81%D1%85%D0%BE%D0%B2%D0%B8%D1%89%D0%B5+%D0%B4%D1%80%D0%BE%D0%BD&maxResults=50&order=relevance&publishedAfter=2022-01-01T00%3A00%3A00Z&publishedBefore=2026-12-31T23%3A59%3A59Z&relevanceLanguage=uk&safeSearch=none&key=REDACTED "HTTP/1.1 200 OK"
+03:44:45 D receive_response_body.started request=<Request [b'GET']>
+03:44:45 D receive_response_body.complete
+03:44:45 D response_closed.started
+03:44:45 D response_closed.complete
+03:44:45 I   'Водяне Каховське водосховище дрон'                2022..2026-12-31 -> 1
+03:44:45 D send_request_headers.started request=<Request [b'GET']>
+03:44:45 D send_request_headers.complete
+03:44:45 D send_request_body.started request=<Request [b'GET']>
+03:44:45 D send_request_body.complete
+03:44:45 D receive_response_headers.started request=<Request [b'GET']>
+03:44:46 D receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Thu, 05 Nov 2026 08:44:46 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+03:44:46 I HTTP Request: GET https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=%D0%9C%D0%B0%D1%80%D0%B3%D0%B0%D0%BD%D0%B5%D1%86%D1%8C+%D0%BE%D0%BF%D0%BE%D1%80%D0%B8+%D0%9B%D0%95%D0%9F&maxResults=50&order=relevance&publishedAfter=2022-01-01T00%3A00%3A00Z&publishedBefore=2026-12-31T23%3A59%3A59Z&relevanceLanguage=uk&safeSearch=none&key=REDACTED "HTTP/1.1 200 OK"
+03:44:46 D receive_response_body.started request=<Request [b'GET']>
+03:44:46 D receive_response_body.complete
+03:44:46 D response_closed.started
+03:44:46 D response_closed.complete
+03:44:46 I   'Марганець опори ЛЕП'                              2022..2026-12-31 -> 2
+03:44:46 D send_request_headers.started request=<Request [b'GET']>
+03:44:46 D send_request_headers.complete
+03:44:46 D send_request_body.started request=<Request [b'GET']>
+03:44:46 D send_request_body.complete
+03:44:46 D receive_response_headers.started request=<Request [b'GET']>
+03:44:46 D receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Thu, 05 Nov 2026 08:44:46 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+03:44:46 I HTTP Request: GET https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=%D0%AD%D0%BD%D0%B5%D1%80%D0%B3%D0%BE%D0%B4%D0%B0%D1%80+%D0%9B%D0%AD%D0%9F+750+%D0%BA%D0%92&maxResults=50&order=relevance&publishedAfter=2022-01-01T00%3A00%3A00Z&publishedBefore=2026-12-31T23%3A59%3A59Z&relevanceLanguage=uk&safeSearch=none&key=REDACTED "HTTP/1.1 200 OK"
+03:44:46 D receive_response_body.started request=<Request [b'GET']>
+03:44:46 D receive_response_body.complete
+03:44:46 D response_closed.started
+03:44:46 D response_closed.complete
+03:44:46 I   'Энергодар ЛЭП 750 кВ'                             2022..2026-12-31 -> 14
+03:44:46 D send_request_headers.started request=<Request [b'GET']>
+03:44:46 D send_request_headers.complete
+03:44:46 D send_request_body.started request=<Request [b'GET']>
+03:44:46 D send_request_body.complete
+03:44:46 D receive_response_headers.started request=<Request [b'GET']>
+03:44:46 D receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Thu, 05 Nov 2026 08:44:46 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+03:44:46 I HTTP Request: GET https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=%D0%B2%D1%8B%D1%81%D0%BE%D0%BA%D0%BE%D0%B2%D0%BE%D0%BB%D1%8C%D1%82%D0%BD%D0%B0%D1%8F+%D0%BB%D0%B8%D0%BD%D0%B8%D1%8F+%D0%B7%D0%B8%D0%BC%D0%B0+%D0%97%D0%B0%D0%BF%D0%BE%D1%80%D0%BE%D0%B6%D1%81%D0%BA%D0%B0%D1%8F+%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C&maxResults=50&order=relevance&publishedAfter=2022-01-01T00%3A00%3A00Z&publishedBefore=2026-12-31T23%3A59%3A59Z&relevanceLanguage=uk&safeSearch=none&key=REDACTED "HTTP/1.1 200 OK"
+03:44:46 D receive_response_body.started request=<Request [b'GET']>
+03:44:46 D receive_response_body.complete
+03:44:46 D response_closed.started
+03:44:46 D response_closed.complete
+03:44:46 I   'высоковольтная линия зима Запорожская область'    2022..2026-12-31 -> 1
+03:44:46 D send_request_headers.started request=<Request [b'GET']>
+03:44:46 D send_request_headers.complete
+03:44:46 D send_request_body.started request=<Request [b'GET']>
+03:44:46 D send_request_body.complete
+03:44:46 D receive_response_headers.started request=<Request [b'GET']>
+03:44:46 D receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Thu, 05 Nov 2026 08:44:46 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+03:44:46 I HTTP Request: GET https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=%D0%BB%D1%96%D0%BD%D1%96%D1%8F+330+%D0%BA%D0%92+%D0%BE%D0%BF%D0%BE%D1%80%D0%B0&maxResults=50&order=relevance&publishedAfter=2022-01-01T00%3A00%3A00Z&publishedBefore=2026-12-31T23%3A59%3A59Z&relevanceLanguage=uk&safeSearch=none&key=REDACTED "HTTP/1.1 200 OK"
+03:44:46 D receive_response_body.started request=<Request [b'GET']>
+03:44:46 D receive_response_body.complete
+03:44:46 D response_closed.started
+03:44:46 D response_closed.complete
+03:44:46 I   'лінія 330 кВ опора'                               2022..2026-12-31 -> 50
+03:44:46 D send_request_headers.started request=<Request [b'GET']>
+03:44:46 D send_request_headers.complete
+03:44:46 D send_request_body.started request=<Request [b'GET']>
+03:44:46 D send_request_body.complete
+03:44:46 D receive_response_headers.started request=<Request [b'GET']>
+03:44:47 D receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Thu, 05 Nov 2026 08:44:47 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+03:44:47 I HTTP Request: GET https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=%D0%9B%D0%AD%D0%9F+110+%D0%BA%D0%92+%D0%BE%D0%BF%D0%BE%D1%80%D0%B0+%D0%BF%D0%BE%D0%BB%D0%B5+%D0%97%D0%B0%D0%BF%D0%BE%D1%80%D0%BE%D0%B6%D1%8C%D0%B5&maxResults=50&order=relevance&publishedAfter=2022-01-01T00%3A00%3A00Z&publishedBefore=2026-12-31T23%3A59%3A59Z&relevanceLanguage=uk&safeSearch=none&key=REDACTED "HTTP/1.1 200 OK"
+03:44:47 D receive_response_body.started request=<Request [b'GET']>
+03:44:47 D receive_response_body.complete
+03:44:47 D response_closed.started
+03:44:47 D response_closed.complete
+03:44:47 I   'ЛЭП 110 кВ опора поле Запорожье'                  2022..2026-12-31 -> 0
+03:44:47 D send_request_headers.started request=<Request [b'GET']>
+03:44:47 D send_request_headers.complete
+03:44:47 D send_request_body.started request=<Request [b'GET']>
+03:44:47 D send_request_body.complete
+03:44:47 D receive_response_headers.started request=<Request [b'GET']>
+03:44:47 D receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Thu, 05 Nov 2026 08:44:47 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+03:44:47 I HTTP Request: GET https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=%D0%9A%D0%B0%D0%BC%D0%B5%D0%BD%D0%BA%D0%B0-%D0%94%D0%BD%D0%B5%D0%BF%D1%80%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F+%D0%B2%D0%BE%D0%B4%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D0%B8%D0%BB%D0%B8%D1%89%D0%B5+%D0%BB%D0%BE%D0%B4%D0%BA%D0%B0&maxResults=50&order=relevance&publishedAfter=2022-01-01T00%3A00%3A00Z&publishedBefore=2026-12-31T23%3A59%3A59Z&relevanceLanguage=uk&safeSearch=none&key=REDACTED "HTTP/1.1 200 OK"
+03:44:47 D receive_response_body.started request=<Request [b'GET']>
+03:44:47 D receive_response_body.complete
+03:44:47 D response_closed.started
+03:44:47 D response_closed.complete
+03:44:47 I   'Каменка-Днепровская водохранилище лодка'          2022..2026-12-31 -> 9
+03:44:47 D send_request_headers.started request=<Request [b'GET']>
+03:44:47 D send_request_headers.complete
+03:44:47 D send_request_body.started request=<Request [b'GET']>
+03:44:47 D send_request_body.complete
+03:44:47 D receive_response_headers.started request=<Request [b'GET']>
+03:44:47 D receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Thu, 05 Nov 2026 08:44:47 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+03:44:47 I HTTP Request: GET https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=%D0%9D%D1%96%D0%BA%D0%BE%D0%BF%D0%BE%D0%BB%D1%8C+%D0%92%D0%B5%D0%BB%D0%B8%D0%BA%D0%B8%D0%B9+%D0%9B%D1%83%D0%B3+%D0%B4%D1%80%D0%BE%D0%BD&maxResults=50&order=relevance&publishedAfter=2022-01-01T00%3A00%3A00Z&publishedBefore=2026-12-31T23%3A59%3A59Z&relevanceLanguage=uk&safeSearch=none&key=REDACTED "HTTP/1.1 200 OK"
+03:44:47 D receive_response_body.started request=<Request [b'GET']>
+03:44:47 D receive_response_body.complete
+03:44:47 D response_closed.started
+03:44:47 D response_closed.complete
+03:44:47 I   'Нікополь Великий Луг дрон'                        2022..2026-12-31 -> 17
+03:44:47 D send_request_headers.started request=<Request [b'GET']>
+03:44:47 D send_request_headers.complete
+03:44:47 D send_request_body.started request=<Request [b'GET']>
+03:44:47 D send_request_body.complete
+03:44:47 D receive_response_headers.started request=<Request [b'GET']>
+03:44:47 D receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Thu, 05 Nov 2026 08:44:48 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+03:44:47 I HTTP Request: GET https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=%D0%BF%D0%B5%D1%80%D0%B5%D1%85%D0%BE%D0%B4%D0%BD%D1%8B%D0%B5+%D0%BE%D0%BF%D0%BE%D1%80%D1%8B+%D0%9B%D0%AD%D0%9F+%D0%94%D0%BD%D0%B5%D0%BF%D1%80+%D0%9D%D0%B8%D0%BA%D0%BE%D0%BF%D0%BE%D0%BB%D1%8C&maxResults=50&order=relevance&publishedAfter=2022-01-01T00%3A00%3A00Z&publishedBefore=2026-12-31T23%3A59%3A59Z&relevanceLanguage=uk&safeSearch=none&key=REDACTED "HTTP/1.1 200 OK"
+03:44:47 D receive_response_body.started request=<Request [b'GET']>
+03:44:47 D receive_response_body.complete
+03:44:47 D response_closed.started
+03:44:47 D response_closed.complete
+03:44:47 I   'переходные опоры ЛЭП Днепр Никополь'              2022..2026-12-31 -> 0
+03:44:47 D send_request_headers.started request=<Request [b'GET']>
+03:44:47 D send_request_headers.complete
+03:44:47 D send_request_body.started request=<Request [b'GET']>
+03:44:47 D send_request_body.complete
+03:44:47 D receive_response_headers.started request=<Request [b'GET']>
+03:44:48 D receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Thu, 05 Nov 2026 08:44:48 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+03:44:48 I HTTP Request: GET https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=%D0%9B%D0%95%D0%9F&maxResults=50&order=relevance&publishedAfter=2022-01-01T00%3A00%3A00Z&publishedBefore=2026-12-31T23%3A59%3A59Z&relevanceLanguage=uk&safeSearch=none&location=47.5345%2C34.5181&locationRadius=23km&key=REDACTED "HTTP/1.1 200 OK"
+03:44:48 D receive_response_body.started request=<Request [b'GET']>
+03:44:48 D receive_response_body.complete
+03:44:48 D response_closed.started
+03:44:48 D response_closed.complete
+03:44:48 I   'ЛЕП' (geotagged)                                  2022..2026-12-31 -> 1
+03:44:48 D send_request_headers.started request=<Request [b'GET']>
+03:44:48 D send_request_headers.complete
+03:44:48 D send_request_body.started request=<Request [b'GET']>
+03:44:48 D send_request_body.complete
+03:44:48 D receive_response_headers.started request=<Request [b'GET']>
+03:44:48 D receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Thu, 05 Nov 2026 08:44:48 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+03:44:48 I HTTP Request: GET https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=%D0%B4%D1%80%D0%BE%D0%BD&maxResults=50&order=relevance&publishedAfter=2022-01-01T00%3A00%3A00Z&publishedBefore=2026-12-31T23%3A59%3A59Z&relevanceLanguage=uk&safeSearch=none&location=47.5345%2C34.5181&locationRadius=23km&key=REDACTED "HTTP/1.1 200 OK"
+03:44:48 D receive_response_body.started request=<Request [b'GET']>
+03:44:48 D receive_response_body.complete
+03:44:48 D response_closed.started
+03:44:48 D response_closed.complete
+03:44:48 I   'дрон' (geotagged)                                 2022..2026-12-31 -> 50
+03:44:48 D send_request_headers.started request=<Request [b'GET']>
+03:44:48 D send_request_headers.complete
+03:44:48 D send_request_body.started request=<Request [b'GET']>
+03:44:48 D send_request_body.complete
+03:44:48 D receive_response_headers.started request=<Request [b'GET']>
+03:44:48 D receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Thu, 05 Nov 2026 08:44:48 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+03:44:48 I HTTP Request: GET https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=%D1%80%D0%B8%D0%B1%D0%B0%D0%BB%D0%BA%D0%B0&maxResults=50&order=relevance&publishedAfter=2022-01-01T00%3A00%3A00Z&publishedBefore=2026-12-31T23%3A59%3A59Z&relevanceLanguage=uk&safeSearch=none&location=47.5345%2C34.5181&locationRadius=23km&key=REDACTED "HTTP/1.1 200 OK"
+03:44:48 D receive_response_body.started request=<Request [b'GET']>
+03:44:48 D receive_response_body.complete
+03:44:48 D response_closed.started
+03:44:48 D response_closed.complete
+03:44:48 I   'рибалка' (geotagged)                              2022..2026-12-31 -> 21
+03:44:48 D send_request_headers.started request=<Request [b'GET']>
+03:44:48 D send_request_headers.complete
+03:44:48 D send_request_body.started request=<Request [b'GET']>
+03:44:48 D send_request_body.complete
+03:44:48 D receive_response_headers.started request=<Request [b'GET']>
+03:44:49 D receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Thu, 05 Nov 2026 08:44:49 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+03:44:49 I HTTP Request: GET https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatus%2CrecordingDetails%2Cstatistics%2CtopicDetails%2Clocalizations&id=jzpEhvOelEs%2C1TMcz0Jne3U%2CTGoCdDd25xY%2C7ejjFd8RIVU%2C-VAGUmodrtQ%2CzWHZIvvhi8Y%2CCYgxGpvfM8g%2CGyJ6WhFiApk%2Cz_u5GK1-ODE%2CGiYVw1cCe44%2C3-ep5WmkDqY%2CuGcm6DaBm_c%2CD83DGAiFdmA%2C2lVyeEy-uys%2CGAsRa_SBKqg%2Cgvh5rzyKisk%2CBIgWa0c40S0%2CVbmCHH_TliA%2CDJxtQ-uthBw%2CAVnP_H57WWk%2Cp6njssTyOqk%2ChVtanAwELSw%2CqgTrJ3xOsBQ%2CnAsiiGFbR9w%2C2GO9N5CzsYw%2CqRUJk5qBy0U%2CQE7-_zf1-0U%2CBKY6b9BmToA%2CTQ1smMCTmdA%2CGwnXk-n_Aa8%2CBFNt-1FC014%2CDWaEcJoTJFY%2Ca_uibP-fy8s%2CIaLQqXppl7I%2CmkoeOm8Ejro%2CMnSWiPqIj-A%2CuuSW-FvWpx4%2ChEGJrI2ajJA%2Ck6Z4RNun9ZU%2CZFuTSaRx_2c%2Cnm_owEwZaqM%2Ca_wS5y7a5Qw%2CBSAplBIb-1M%2CVRRWJSqso9w%2ClhiGq03Dq3I%2C-it3gNKh1mY%2CD04E87u4xFI%2CQNk6ea3olc4%2CcJJ4fSABByM%2Ctd0-UyyIV_8&maxResults=50&key=REDACTED "HTTP/1.1 200 OK"
+03:44:49 D receive_response_body.started request=<Request [b'GET']>
+03:44:49 D receive_response_body.complete
+03:44:49 D response_closed.started
+03:44:49 D response_closed.complete
+03:44:49 D send_request_headers.started request=<Request [b'GET']>
+03:44:49 D send_request_headers.complete
+03:44:49 D send_request_body.started request=<Request [b'GET']>
+03:44:49 D send_request_body.complete
+03:44:49 D receive_response_headers.started request=<Request [b'GET']>
+03:44:49 D receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Thu, 05 Nov 2026 08:44:49 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+03:44:49 I HTTP Request: GET https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatus%2CrecordingDetails%2Cstatistics%2CtopicDetails%2Clocalizations&id=NmX69NOIKHE%2CytGF601YVJ0%2CiH8lUWwKiYg%2CYODjwXFjnyg%2CKb4I0SJD2cA%2C_M90Zp9g3Ng%2CgMvq4Gp2SeY%2CIOqVVIfFDJo%2CIkwAa5EjbrY%2Cst0P9Ef0e0s%2CM1LvarAEV1Y%2CAUIyi3yBBTo%2CHy_nomG0CLU%2CyND0nkwF3Dk%2CYr3A2HxD8m8%2C8hJx8CuNh0s%2CB-t-xSK9Xrk%2CY4RrPYoYg24%2Cjcy44t3599c%2C9iUiC4N8rUY%2CO7ZEWG9vcXA%2CwXDVqvqTkds%2C1Suh-_MewXk%2CiN4LwGxsALo%2C1IigBiU-cjE%2CEL3GymZMvK4%2C6aCg0ZUwX7s%2Ct8TkQAs8X3U%2C28IHQc_iQU8%2Cj7oyKBkYAM0%2C6WYS6QFweCg%2CBcv6Z3MTtI4%2CIYn4RL1gBB0%2CAk9XCSx-vMk%2C6sAb15nxCtw%2CcgHPIa0PS30%2CWSwEU_KXUP4%2C7twGV7BJh2Q%2C618TcZ0txbM%2CjuDapn3qf_o%2Ce8vuXtTlykM%2CX3bD0DFyMig%2CZPF8thUqSb0%2CEHwQSJJxyaI%2C8QXxrF5CyXw%2CqocKEKZPfb0%2CZ2rGKyME7P0%2CiLEi740tx4s%2C0Wcql4hifiM%2CdeolEe5JgrI&maxResults=50&key=REDACTED "HTTP/1.1 200 OK"
+03:44:49 D receive_response_body.started request=<Request [b'GET']>
+03:44:49 D receive_response_body.complete
+03:44:49 D response_closed.started
+03:44:49 D response_closed.complete
+03:44:49 D send_request_headers.started request=<Request [b'GET']>
+03:44:49 D send_request_headers.complete
+03:44:49 D send_request_body.started request=<Request [b'GET']>
+03:44:49 D send_request_body.complete
+03:44:49 D receive_response_headers.started request=<Request [b'GET']>
+03:44:49 D receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Thu, 05 Nov 2026 08:44:49 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+03:44:49 I HTTP Request: GET https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatus%2CrecordingDetails%2Cstatistics%2CtopicDetails%2Clocalizations&id=Q1awaYJq3Jc%2C26B2FnNiBlA%2CaJihbhsfhZQ%2Cg1aGaPcz8XY%2CpgG7GtDAcyE%2CPjhoDxy6oOE%2CO-S4BGiTwk4%2CNfc01M8qPbc%2CBhcrqALRgxk%2CFHR3jI5gHCs%2C5zrxUebctIc%2CYtDx6c8ZeS4%2Cqj1Iix6WoU0%2CD0h7wPfQ4zY%2CYI0Cq_u8W60%2C6bp5486O5_M%2CfvcLyNJIlUE%2ClBfgthXK3BM%2CBILPM10F6hs%2Ckv05VkaEvjQ%2C5U2-CtId_2w%2CSGm7BOsrj8Q%2C-M1Bg257vmo%2CJ3gnyYzkjgM%2Cs8O_bCT4TFg%2CWUzwFRdu8bs%2Ca4m6eQmiFv0%2CR6uzaPY6rIk%2Ctw34AEG7NB4%2CV-tmry7p7Hs%2Cxr11dn68fiA%2CfSUi8STs594%2CV7yYVj1BZRw%2CbYpLkaq-zds%2CJfMmfgg20Go%2CxfE26-yWh1E%2CQi1Qw3bCoug%2C7cT9iJ_F48E%2CD4oRMQzAiTk%2CEQCetes_hOk%2CANMYH0_hdNc%2CDVqrXhktaSE%2COcB41Et9kBA%2CWDaQZSt_ZUE%2CQ-3SdHxFuXg%2CGG-P3D51EYA%2C4cTSgIwLs28%2C1TZSWeY0BXw%2CL-aHmv4_2Xk%2CiBb9lIp4AhM&maxResults=50&key=REDACTED "HTTP/1.1 200 OK"
+03:44:49 D receive_response_body.started request=<Request [b'GET']>
+03:44:49 D receive_response_body.complete
+03:44:49 D response_closed.started
+03:44:49 D response_closed.complete
+03:44:49 D send_request_headers.started request=<Request [b'GET']>
+03:44:49 D send_request_headers.complete
+03:44:49 D send_request_body.started request=<Request [b'GET']>
+03:44:49 D send_request_body.complete
+03:44:49 D receive_response_headers.started request=<Request [b'GET']>
+03:44:49 D receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Thu, 05 Nov 2026 08:44:49 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+03:44:49 I HTTP Request: GET https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatus%2CrecordingDetails%2Cstatistics%2CtopicDetails%2Clocalizations&id=jkboybBjqY8%2CcYYaXrnD97M%2Cei6aJeeptes%2CP-Xqx8Obm6U%2CqAp9ES1Umck%2C3wwrVjLUdP0%2Cx4r055i8DuE%2CLiIXX-QrSIs%2CikxDy4dF-3Y%2CP6IpZgOQvR4%2C_eWMqWWkjYA%2CoiPRY2fobuU%2CbJjPARDk460%2CGzO8hOoQyjY%2CKdxXJFCLpJc%2CPRjzlPvvuQc%2Ce1_NaYCxyfc%2C4Ho-KASc-4Q%2C7fRedbN97dc%2C8RNLz8bltO0%2CU-JI28Yo_Fk%2C0IjuVBKv86M%2CrRepVF9JADc%2CW4PsN6PUuRA%2CwNnpjQdvOw4%2ClcYb9MTCHwM%2CRkLxX55ghoY%2CshIIsaZyOcU%2CwdedHroawUA%2CUe_a5eJKzX0%2CN2yO1ymiDLw%2CSz5Uj_nuBOU%2CHxV-pEDcJhQ%2CzafM_WlX6jg%2CWqp7oij9B7Q%2CUwnd4N4__1E%2CVeisj23cCNk%2CE-8wZ2lYsr8%2Cw33sdPpmcbM%2CKfaaKZZbBZw%2CDR0DqZrmkEQ%2C8Al7Kc3thoI%2C3hyytOj31_M%2Clpp93oO8Lfs%2C4wdgBR_Fmhg%2CwWnGuJnrkhQ%2C_kz1o_RUitw%2CVijpxpMyF18%2CpWBksneNRS4%2C17_XAXD15Bk&maxResults=50&key=REDACTED "HTTP/1.1 200 OK"
+03:44:49 D receive_response_body.started request=<Request [b'GET']>
+03:44:49 D receive_response_body.complete
+03:44:49 D response_closed.started
+03:44:49 D response_closed.complete
+03:44:49 D send_request_headers.started request=<Request [b'GET']>
+03:44:49 D send_request_headers.complete
+03:44:49 D send_request_body.started request=<Request [b'GET']>
+03:44:49 D send_request_body.complete
+03:44:49 D receive_response_headers.started request=<Request [b'GET']>
+03:44:49 D receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Thu, 05 Nov 2026 08:44:49 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+03:44:49 I HTTP Request: GET https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatus%2CrecordingDetails%2Cstatistics%2CtopicDetails%2Clocalizations&id=eE5xKGj0tV8%2CFDbb2geOL_I%2CiCz2R_PeKg8%2CkgqsWTHdo5I%2CRBHrdSJ7ots%2Co6yllj0rVBQ%2CUPsnF3YTcrc%2CTZnSZ7CWdXw%2CVvpiyYNEEng%2CYozRzN6zjUY%2C6yjyLUxe-hM%2CtTE4ZJEzuwI%2ClEWnHNooFZo%2CQC1KgEtKbOA&maxResults=50&key=REDACTED "HTTP/1.1 200 OK"
+03:44:49 D receive_response_body.started request=<Request [b'GET']>
+03:44:49 D receive_response_body.complete
+03:44:49 D response_closed.started
+03:44:49 D response_closed.complete
+03:44:50 I discovered 214 videos, 76 to ingest
+  * 11.5  a4m6eQmiFv0  2024-05-25  youtube         3012s  НІКОПОЛЬ —  ВЕЛИЧНА КОЗАЦЬКА ІСТОРІЯ І ЖАХЛИВЕ СЬОГОДЕННЯ ПІД ОБСТРІЛА
+  * 11.0  4Ho-KASc-4Q  2026-05-14  youtube         1002s  Дронове «сафарі» росіян на людей у Марганці:  хто і коли захистить міс
+  * 10.5  HxV-pEDcJhQ  2026-08-15  youtube           62s  “Тут над нами дрони літають”: як живе Червоногригорівка під постійними
+  *  9.5  E-8wZ2lYsr8  2026-06-02  youtube          431s  Шолом, бронежилет і детектор дронів — так виглядає виклик швидкої у Ні
+  *  8.5  W4PsN6PUuRA  2026-05-05  youtube          310s  Траса Нікополь-Дніпро: «кільце смерті» та атаки FPV-дронів
+  *  8.0  lpp93oO8Lfs  2025-04-10  youtube           22s  Риболовний павук ловити коропа
+  *  8.0  kgqsWTHdo5I  2025-04-10  youtube           20s  Риболовний павук ловити трофей з алігаторами
+  *  8.0  bJjPARDk460  2023-04-03  youtube           26s  Любимый Энергодар❤️ 🚁🌲🌁 пейзажи с высоты птичьего полета в мирное врем
+  *  8.0  Veisj23cCNk  2023-06-16  youtube          328s  Каким было Каховское водохранилище в Энергодаре. Архивные видео с дрон
+  *  8.0  3hyytOj31_M  2023-03-19  youtube           61s  ЭНЕРГОДАР С ВЫСОТЫ. #shorts #drone #energodar
+  *  7.5  OcB41Et9kBA  2023-07-03  youtube           70s  ЗАЕС вперше за 4 місяці під'эднали до єдиної доступної резервної лінії
+  *  7.5  WDaQZSt_ZUE  2023-08-28  youtube            8s  #FPV-Дрон Успешно Атаковал российский #ОМОН в городе #Энергодар #Запор
+  *  7.5  R6uzaPY6rIk  2026-05-07  youtube          379s  Нікополь сьогодні: як живе місто під щоденними обстрілами та атаками д
+  *  7.5  GG-P3D51EYA  2023-08-29  youtube          140s  Жительница Энергодара чудом выжила во время атаки украинских дронов | 
+  *  7.5  wWnGuJnrkhQ  2022-05-12  youtube         1216s  Как мы ловили карася. Будни рыболова...
+  *  7.5  4cTSgIwLs28  2026-01-12  youtube          105s  Дрон, який вбиває нікопольців —це терор проти мирних людей.Це воєнний 
+  *  7.5  1TZSWeY0BXw  2022-02-15  creativeCommon   187s  МІСТО ЕНЕРГОДАР З ВИСОТИ. МАЙЖЕ ВЕСНА! ВИГЛЯД З ДРОНА.
+  *  7.5  L-aHmv4_2Xk  2026-08-18  youtube           52s  Наслідки атаки FPV-дрона по багатоповерхівці у Нікополі
+  *  7.5  iBb9lIp4AhM  2026-05-13  youtube           21s  Нікополь під захистом: Як поліція ліквідувала понад 100 ворожих дронів
+  *  7.5  jkboybBjqY8  2023-08-29  youtube            7s  #Дрон Камикадзе Попадает в штаб #ОМОНа в оккупированном россией #ЭНЕРГ
+  *  7.5  bYpLkaq-zds  2025-07-21  youtube           94s  #Никополь, #каховское #водохранилище.
+  *  7.5  cYYaXrnD97M  2026-04-07  youtube           24s  Российский дрон атаковал пассажирский автобус
+  *  7.5  ei6aJeeptes  2026-05-17  youtube           16s  Реалії Нікополя: ховаємося від дронів, йдучи на роботу.
+  *  7.5  P-Xqx8Obm6U  2025-06-03  youtube           52s  Росіяни вдарили FPV дроном по багатоповерхівці в Нікополі
+  *  7.5  3wwrVjLUdP0  2026-05-21  youtube           71s  Дрон за 500$ знищує техніку за 10 мільйонів!
+  *  7.5  x4r055i8DuE  2026-08-06  youtube           44s  Нікополь . Війна. Гербера . Дрон.
+  *  7.5  LiIXX-QrSIs  2026-04-07  youtube           27s  Армия РФ ударила дроном по рейсовому автобусу в Никополе
+  *  7.5  ikxDy4dF-3Y  2026-05-12  youtube           48s  За крок від вибуху: Як спецпризначенці збивають ворожі дрони на надмал
+  *  7.5  P6IpZgOQvR4  2025-12-25  youtube           19s  #атакадронів #дрони #камікадзе #нікополь #дім
+  *  7.5  _eWMqWWkjYA  2026-11-03  youtube           37s  Нікополь. П'ятакова балка...Місце, де дрони вбиваютьмирних людей.
+  *  7.5  oiPRY2fobuU  2025-12-25  youtube           17s  #нікополь #фпв #FPV #дрони #нікопольдрон
+  *  7.5  GzO8hOoQyjY  2023-01-13  youtube           58s  ENERGODAR New Year's 2022 #energodar #drone #shorts
+  *  7.5  KdxXJFCLpJc  2026-05-24  youtube           32s  «Дронів ніколи не буває достатньо…» 😳
+  *  7.5  PRjzlPvvuQc  2026-05-18  youtube           48s  Як працює FPV дрон? Простий розбір технології, яка змінила сучасну вій
+  *  7.5  7fRedbN97dc  2025-11-12  youtube           38s  Нікополь потерпає від обстрілів: артилерія, дрони. Сьогодні ще і Шахед
+  *  7.5  8RNLz8bltO0  2023-11-05  youtube           25s  🔥Об атаке дронов на Энергодар, произошедшую 2 ноября 2023 года.
+  *  7.5  U-JI28Yo_Fk  2026-04-29  youtube           14s  Коли купив «Чуйку» на вокзалі за 700 гривень . #нікополь #чуйка
+  *  7.5  0IjuVBKv86M  2025-08-29  youtube           17s  Нікополь- росіяни атакують  житловий будинок за допомогою оптоволоконн
+  *  7.5  rRepVF9JADc  2025-09-06  youtube           14s  Армія рф стріляє по Нікополю з артилерії по мирним жителям.
+  *  7.5  wNnpjQdvOw4  2023-06-10  youtube           61s  Энергодар с дрона 2020. Обзор города с высоты птичьего полета #энергод
+  *  7.5  lcYb9MTCHwM  2023-04-21  youtube           50s  ЭНЕРГОДАР с дрона. Обзорная панорама весеннего города в мирное время #
+  *  7.5  RkLxX55ghoY  2025-04-29  youtube           18s  29.04.2025
+  *  7.5  wdedHroawUA  2026-07-05  youtube           24s  Российский дрон атаковал квартиру в Никополе!
+  *  7.5  Ue_a5eJKzX0  2023-08-28  youtube            8s  #ЭНЕРГОДАР - #Взрыв Дрона в штабе #ОМОН российских военных оккупантов.
+  *  7.5  N2yO1ymiDLw  2022-01-17  youtube           87s  ВСЕМ ЛЮБИТЕЛЯМ ЗАКАТОВ ПОСВЯЩАЕТСЯ! ЭНЕРГОДАР С ВЫСОТЫ ПТИЧЬЕГО ПОЛЁТА
+  *  7.5  Sz5Uj_nuBOU  2023-04-21  youtube           38s  ЭНЕРГОДАР 4 микрорайон и Мэрия с высоты в мирное время
+  *  7.5  zafM_WlX6jg  2022-01-23  youtube          172s  Зимний романтический клип с дрона. Шестопал Елена. #почуття #энергодар
+  *  7.5  Wqp7oij9B7Q  2026-06-14  youtube           14s  В Жигуль влучив дрон а Жигуль ще на ходу
+  *  7.5  Uwnd4N4__1E  2023-06-10  youtube           61s  Энергодар летом с дрона. Красивая панорама города с высоты #энергодар 
+  *  7.5  w33sdPpmcbM  2026-07-06  youtube           26s  Дрон в Никополе похож на звезду!Обманчиво, но это дрон!
+  *  7.5  KfaaKZZbBZw  2026-02-05  youtube           49s  Нікопольські пожежники про російські дрони та арту
+  *  7.5  DR0DqZrmkEQ  2026-05-22  youtube           31s  Чи може один боєць керувати всіма дронами?
+     7.0  4wdgBR_Fmhg  2022-04-16  youtube          127s  Ловля тарани...
+  *  7.0  qAp9ES1Umck  2023-06-10  youtube           15s  Энергодар летом с дрона 2020. Как выглядел канал и каховское водохрани
+  *  7.0  o6yllj0rVBQ  2024-07-04  youtube           44s  А тепер про риболовлю 😁 Щупачок з Нікополя. #fishing #fish #ukraine #n
+     7.0  lEWnHNooFZo  2024-12-25  youtube           14s  Три красуні Доні 🤩А ви вже спробували цей тренд ?🔥
+  *  7.0  QC1KgEtKbOA  2022-01-19  youtube          199s  Крещение 2022 Никополь/Никополь Крещение Господне/
+  *  7.0  e1_NaYCxyfc  2026-10-15  youtube           76s  Бійці ДФТГ збили в промзоні Нікополя російський "Шахед"
+  *  6.5  M1LvarAEV1Y  2023-05-22  youtube           62s  Запорізька АЕС без електроенергії: можлива аварія з радіаційними наслі
+  *  6.0  8Al7Kc3thoI  2025-04-23  youtube           25s  Марганець. 9 загиблих. 30 постраждалих.
+  *  5.0  IOqVVIfFDJo  2024-05-19  youtube         2521s  Нікополь, Марганець | "Тревел нашого часу" з Денисом Христовим | Випус
+  *  5.0  FDbb2geOL_I  2022-01-10  youtube         1192s  КАК НЕ СЛОВИТЬ ЩУКУ В ДЕКАБРЕ или рыбалка в ноль!
+  *  4.5  Q-3SdHxFuXg  2026-05-31  youtube          299s  Риски Запорожской АЭС: атаки беспилотников, обстрелы и планы по возобн
+  *  4.5  iCz2R_PeKg8  2025-02-28  youtube          134s  Зимняя рыбалка, снова на речке! #зимняярыбалка #рыбалка #марганец
+  *  4.0  V-tmry7p7Hs  2026-09-11  youtube           41s  Порт без Каховского водохранилища Никополь сентябрь 2026 #прогулка #ни
+  *  4.0  eE5xKGj0tV8  2024-02-08  youtube          447s  Пікнік рибалка великою компанією. Сімейний відпочинок біля ставка 18.0
+  *  4.0  UPsnF3YTcrc  2025-11-24  youtube           92s  котики, рибалка #cat
+     4.0  YozRzN6zjUY  2025-12-31  youtube           57s  Петрушка підсніжна
+  *  3.5  tw34AEG7NB4  2023-06-17  youtube           18s  Нікополь Каховське водосховище 17.06 пісок #каховскаягэс #дніпропетров
+     3.5  _kz1o_RUitw  2026-06-01  youtube           12s  Мій першенький  в цьому році #михаличусеякє #тракторист #карасик #риба
+  *  3.5  xr11dn68fiA  2026-06-05  youtube          484s  Евакуювали 600 людей на Нікопольщині! | Чи потрібно відновлювати Кахов
+     3.5  pWBksneNRS4  2024-05-05  youtube           36s  повне занурення.#рибалочка #карп #карпфішинг #тракторист         #shor
+     3.5  17_XAXD15Bk  2024-05-19  youtube           48s  люблю її.  #carp #carpfishing #shorts #тракторист #рибалочка
+     3.5  RBHrdSJ7ots  2024-05-05  youtube           56s  сезон відкрито.#рибалочка #карп
+  *  3.5  TZnSZ7CWdXw  2022-01-07  youtube           42s  Выход из бухты #9
+     3.5  VvpiyYNEEng  2026-04-28  youtube           41s  Михалич готує як Бог #михаличусеякє #стейк #садж #готовка #мясо #припр
+     3.5  6yjyLUxe-hM  2025-07-17  youtube           44s  Михалич і ко на телебаченні! @Mikhalych762  #праця #агро  #телебачення
+  *  3.0  lBfgthXK3BM  2022-02-20  youtube          203s  Каменка-Днепровская - Великая Знаменка подлёдный любительский лов тара
+  *  3.0  WUzwFRdu8bs  2026-08-07  youtube           22s  Хай буде мир у місті Нікополь!
+  *  3.0  st0P9Ef0e0s  2022-09-27  youtube          245s  У Нікополі після чергового обстрілу жителі відновлюють будинки
+  *  3.0  cJJ4fSABByM  2023-05-22  youtube           47s  Запорожская АЭС переведена на дизельные генераторы
+  *  3.0  yND0nkwF3Dk  2026-07-04  youtube           11s  ☢ ЗАЭС держится на одной линии: тревога МАГАТЭ не спадает
+     2.5  NmX69NOIKHE  2026-03-12  youtube         4920s  Запорожская АЭС - как в СССР создали ГИГАНТА мировой Атомной Промышлен
+     1.5  jzpEhvOelEs  2026-10-06  youtube          171s  Мосты и ЛЭП не выдерживают?! "Усатые" Герани с новой кумулятивно-режущ
+     1.5  9iUiC4N8rUY  2026-09-11  youtube          180s  Монтаж проводов АСПк 330/43 на ВЛ 220 кВ
+     1.5  AUIyi3yBBTo  2026-01-17  youtube           23s  ЛОКАЛЬНОЕ ПЕРЕМИРИЕ ДЛЯ РЕМОНТА ЗАЭС
+     1.5  O7ZEWG9vcXA  2026-05-11  youtube          246s  Монтаж проводов на пересечении ВЛ 750 кВ с ВЛ 330 кВ
+     1.5  Hy_nomG0CLU  2023-07-04  youtube         1002s  💥 Отход персонала из ЗАЭС свидетельствует о подготовке "жеста доброй в
+     1.5  CYgxGpvfM8g  2026-10-01  youtube          974s  От ЛЭП и мостов до Prozorro: Романенко о связи между ударами по инфрас
+  *  1.5  Yr3A2HxD8m8  2022-09-04  youtube          841s  ❓МАГАТЕ стримує рф від ядерного вибуху на ЗАЕС? - СОЛОНТАЙ
+     1.5  EL3GymZMvK4  2026-06-07  youtube           12s  Линия электропередачи напряжением 330 кВ (Киловольт) #лето #лэп
+     1.5  6WYS6QFweCg  2026-09-02  youtube           21s  Линии 330 и 220 кВ
+     1.5  6sAb15nxCtw  2026-10-16  youtube           35s  ЛЭП которые я видел.
+     1.5  juDapn3qf_o  2026-08-12  youtube          590s  Почему опоры ЛЭП такие разные? Секреты конструкций!
+     1.5  qocKEKZPfb0  2022-11-18  youtube           46s  Так устроена линия электропередачи #shorts
+     1.5  GwnXk-n_Aa8  2026-02-12  youtube         4667s  Каждый удар по энергетике Украины - это самоликвидация России. Чей и к
+     1.5  0Wcql4hifiM  2024-02-19  creativeCommon    20s  ЛЭП U=330 кВ гудит как трансформатор
+     1.5  deolEe5JgrI  2023-03-08  youtube           26s  Бурение под установку опор линий электропередач
+     1.5  FHR3jI5gHCs  2022-07-19  youtube           50s  Индивидуально опоры ЛЭП для системы питания
+     1.0  lhiGq03Dq3I  2025-10-19  youtube          163s  Перемирие при посредничестве МАГАТЭ: Начало ремонта ЛЭП на ЗАЭС под ме
+     1.0  TGoCdDd25xY  2023-07-26  youtube           16s  Опоры Лэп
+     1.0  D04E87u4xFI  2026-03-28  youtube         2609s  ❗Увага, ЗАЕС! Неочікуване ПРО УГОДУ США, РФ та України! Росатом ПОСТАВ
+     1.0  wXDVqvqTkds  2024-05-02  youtube           51s  2024.05.02. Анкерная опора ВЛ 330 кВ Талашкино-Новосокольники где-то в
+     1.0  1Suh-_MewXk  2026-06-26  youtube            5s  #лэп #110 #лето #провода. ЛЭП 110 и 330 кВ.
+     1.0  iN4LwGxsALo  2022-12-04  youtube           21s  ⚡️От одного вида работы горного электрика захватывает дух. #shorts
+     1.0  1IigBiU-cjE  2023-04-09  youtube           59s  Установка опоры ЛЭП 110 кВ
+     1.0  z_u5GK1-ODE  2023-01-27  youtube           75s  Самая мощная электросеть в мире!
+     1.0  GiYVw1cCe44  2023-07-12  youtube           34s  #amazing #electrical #lineman #power #лэп #330 #field #line #nature #m
+     1.0  IYn4RL1gBB0  2023-07-09  creativeCommon    11s  Под ЛЭП 330 кВ/гудит как трансформатор
+     1.0  gvh5rzyKisk  2026-10-04  youtube         1161s  Эволюция «Герань Сикер»: Новая режущая БЧ «ЛЭПорез» и главное про удар
+     1.0  DJxtQ-uthBw  2026-10-01  youtube          840s  ⚡Удары не прекращаются — атака по всей Украине. Огромные потери
+     1.0  7twGV7BJh2Q  2023-06-03  youtube           19s  Ведётся реконструкция линии электропередач, меняем деревянные опоры на
+     1.0  618TcZ0txbM  2023-09-11  youtube           16s  Падение опоры, минус 3 млн рублей за 5 секунд
+     1.0  hVtanAwELSw  2026-10-06  youtube         1846s  УДАРЫ ПО ЛОГИСТИКЕ. БОИ ПОД ЛИМАНОМ. РФ ГОТОВИТ НОВЫЙ ХОД? ОЛЕГ СТАРИК
+     1.0  e8vuXtTlykM  2023-10-13  youtube            9s  опора ЛЭП 110кв
+     1.0  ZPF8thUqSb0  2026-10-10  youtube            8s  Это линия 110 кВ.
+     1.0  Z2rGKyME7P0  2026-07-14  youtube           32s  ЛЭП 330 кВ по заказу.
+     1.0  Q1awaYJq3Jc  2022-12-03  youtube           43s  Как во времена СССР устанавливали опоры ЛЭП с помощью авиации?
+     1.0  26B2FnNiBlA  2024-04-08  youtube           20s  Опора ЛЭП в Калининграде. #футбол #чемпионатмира2018 #лэп #забивака #ш
+     1.0  hEGJrI2ajJA  2026-09-29  youtube         1652s  ⚡️СРАЗУ ПОСЛЕ УДАРОВ ПО РОССИИ! Москва ПРИНЯЛА РЕШЕНИЕ по "СВО"! РФ го
+     1.0  PjhoDxy6oOE  2023-01-13  youtube           16s  Заміна ЛЕП
+     1.0  qj1Iix6WoU0  2024-09-02  youtube           24s  Установка опор ЛЭП 10 кВ
+     1.0  YI0Cq_u8W60  2023-02-23  youtube           38s  Монтаж ВОЛС по опорам ЛЭП 110 кВ
+     1.0  6bp5486O5_M  2022-04-24  youtube           11s  Так происходит контролируемый снос опоры ЛЭП
+     1.0  fvcLyNJIlUE  2022-03-07  youtube           41s  Слава построил опоры ЛЭП в майнкрафте鯖萬
+     0.5  iH8lUWwKiYg  2024-11-01  youtube           45s  Что это такое??? Караси-мутанты😱🎣 #shorts #рыбалка #карась
+     0.5  YODjwXFjnyg  2026-03-27  youtube          112s  UA2 Power lines in Ukraine. (390)
+     0.5  1TMcz0Jne3U  2023-09-25  youtube           21s  Закончили ещё один участок, расчистка и расширение ЛЭП
+     0.5  _M90Zp9g3Ng  2023-07-15  youtube          241s  Ukraine drone targeted Russian Nuclear plant. “The height of lunacy an
+     0.5  kv05VkaEvjQ  2025-01-15  youtube           11s  Что это было? 😱 #рыбалка #fishing #река #чудо #рыба #русалка #рыбак #с
+     0.5  7ejjFd8RIVU  2023-08-25  youtube           35s  Завершение 4 км участок, расчистка ЛЭП
+     0.5  -VAGUmodrtQ  2023-07-10  youtube           38s  Валим сосну,просто мощь,под ЛЭП
+  *  0.5  VijpxpMyF18  2022-01-12  youtube          286s  КАРП НА ФЛЭТ-МЕТОД на Каховском водохранилище
+     0.5  td0-UyyIV_8  2023-07-03  youtube           67s  🔋ЗАЕС підключили до резервної лінії електропередач
+     0.5  SGm7BOsrj8Q  2022-07-27  youtube           20s  😱 SHOCKING!!!! A HUGE CATFISH TRIED TO DRAG A GOAT INTO THE WATER! IT 
+  *  0.5  ytGF601YVJ0  2022-09-03  youtube          146s  ЗАПОРОЖЬЕ НОЧНЫЕ ВЗРЫВЫ 03.09.2022 НЕФТЯНЫЕ ПЯТНА В АЗОВСКОМ МОРЕ
+     0.5  6aCg0ZUwX7s  2022-06-27  youtube          104s  Восстановление ВЛ 330 кВ "Гомсельмаш 330 - Гомель/Гомсельмаш 330 - Жло
+     0.5  t8TkQAs8X3U  2023-06-29  youtube          289s  ОГО! 330 и 750 кВ
+     0.5  8hJx8CuNh0s  2025-11-09  youtube           23s  Запорожскую АЭС подключили к резерву! Но риск аварии всё ещё огромен.
+     0.5  28IHQc_iQU8  2024-09-01  youtube           32s  Установка опоры.
+     0.5  B-t-xSK9Xrk  2024-10-01  creativeCommon    96s  «Обрив лінії електропередач нової небезпеки не приніс»: експертка про 
+     0.5  j7oyKBkYAM0  2026-09-24  youtube           16s  Міняємо старі високовольтні опори
+     0.5  Bcv6Z3MTtI4  2026-10-11  youtube           37s  Зачем на проводах ЛЭП висят металлические «гантели»? ⚡#ЛЭП #электричес
+     0.5  GAsRa_SBKqg  2023-01-11  youtube          113s  Грузия хочет построить ЛЭП через Чёрное море
+     0.5  Ak9XCSx-vMk  2025-12-22  youtube          519s  Монтаж проводов во время строительства ВЛ 220 кВ в габаритах 330 кВ
+     0.5  cgHPIa0PS30  2024-02-19  youtube           12s  Линия электропередач
+     0.5  WSwEU_KXUP4  2022-08-07  youtube            9s  Очень злая ЛЭП!!! ⚡⚡⚡ Со звуком 😱
+     0.5  p6njssTyOqk  2023-08-01  youtube         1478s  ВЛЗ 10кВ и ВЛИ 0.4кВ по одним опорам
+     0.5  qgTrJ3xOsBQ  2022-02-16  youtube           55s  Пробный захват видео через iconBIT U100TV
+     0.5  X3bD0DFyMig  2023-09-29  youtube           12s  Что будет если зарастет ЛЭП?!
+     0.5  EHwQSJJxyaI  2023-12-16  youtube           43s  Как определить напряжение ЛЭП по внешнему виду? #секрет #энерголикбез 
+     0.5  8QXxrF5CyXw  2022-09-27  youtube           10s  Зрелище / наведенка от линии  500кВ #наведенка #ЛЭП #ток #электричеств
+     0.5  BFNt-1FC014  2026-10-03  youtube           57s  🟠Российские войска атаковали Северный мост в Киеве
+     0.5  iLEi740tx4s  2025-08-30  youtube           14s  лінії електропередач | Delayman #shorts
+     0.5  a_uibP-fy8s  2025-04-25  youtube           48s  Момент обрушения моста через р.Молому, Кировская область. #киров #киро
+     0.5  aJihbhsfhZQ  2026-10-06  youtube           30s  🐹 ХОМ’ЯК ЗАСТРЯГ НА ЛІНІЇ ЕЛЕКТРОПЕРЕДАЧ!
+     0.5  uuSW-FvWpx4  2024-02-15  youtube         2508s  Экс-замначальника Генштаба ВСУ Романенко. Ликвидация Герасимова, риск 
+     0.5  g1aGaPcz8XY  2022-07-07  youtube           10s  Величественные линии электропередач
+     0.5  O-S4BGiTwk4  2022-08-24  youtube          118s  Пробная линия электропередачи с функцией самовосстановления оправдала 
+     0.5  nm_owEwZaqM  2026-09-30  youtube         2202s  Ситуация на фронте. Удары по энергетике Киева. Переговоры США и России
+     0.5  Nfc01M8qPbc  2023-08-06  youtube           54s  Расключение ЛЭП 220 кВ под Самарой
+     0.5  BSAplBIb-1M  2024-02-27  youtube           40s  Как проверить коленвал. Дефектовка. Моторемонт #bikelife #moto #motoga
+     0.5  YtDx6c8ZeS4  2023-04-21  youtube           47s  работа на севере выравнивание Анкерной опоры с проводами
+     0.5  D0h7wPfQ4zY  2023-05-26  youtube           18s  #демонтаж#лэп#майский
+     0.0  jcy44t3599c  2022-11-21  youtube           51s  Как легко узнать на какой глубине залегание воды на участке.
+     0.0  -it3gNKh1mY  2022-03-04  youtube          215s  Голова "Укренерго" Володимир Кудрицький про 9-й день війни
+     0.0  QNk6ea3olc4  2025-10-23  youtube           40s  ❗На ЗАЕС ВІДНОВИЛИ зовнішнє ЖИВЛЕННЯ через одну високовольтну лінію
+     0.0  zWHZIvvhi8Y  2023-07-20  youtube          153s  1986г. Свердловск. линия электропередачи ЛЭП 500 кВ.  Свердловэнерго. 
+     0.0  -M1Bg257vmo  2022-10-08  youtube         1012s  ЛОВЛЯ СУДАКА ОСЕНЬЮ НА СПИННИНГ
+     0.0  s8O_bCT4TFg  2024-09-23  youtube           61s  Запах страшный. Перепечинское кладбище. Москва. #shorts
+     0.0  3-ep5WmkDqY  2023-06-29  youtube           46s  Монтаж шлейфов вл 500 кВ
+     0.0  uGcm6DaBm_c  2022-03-08  youtube           70s  снимаем старый метал
+     0.0  2lVyeEy-uys  2022-01-04  youtube          153s  powerlines 33
+     0.0  BIgWa0c40S0  2022-01-26  youtube          133s  На подстанции «Петрозаводск» запустили новый Кольско-Карельской транзи
+     0.0  DVqrXhktaSE  2024-01-31  youtube            9s  Фиксай и Гречин,Няшка,Дабейт,Донни (чиби) друзья фиксая #тренд2024 #ме
+     0.0  tTE4ZJEzuwI  2022-06-23  youtube          133s  Цены на оптовом рынке "Водянська січ" 23.06.2022
+     0.0  nAsiiGFbR9w  2022-01-13  youtube            8s  я свободен словно птица в небесах
+     0.0  2GO9N5CzsYw  2026-09-27  youtube           60s  Охота на локомотивы: «Герани» ломают логистику ВСУ
+     0.0  BKY6b9BmToA  2022-10-10  youtube          159s  Излучение радиации. День четвертый после химиотерапии. Замер.
+     0.0  DWaEcJoTJFY  2022-12-29  youtube          131s  Долгожданный \\\ Ивана Охлобыстина поздравляют с рождением наследника
+     0.0  IaLQqXppl7I  2022-05-29  youtube          170s  Гимн России на Финале Кубка России по футболу 2022
+     0.0  mkoeOm8Ejro  2024-08-03  youtube           57s  Заземление для частного дома. #электромонтаж #электрика #электрикавдом
+     0.0  MnSWiPqIj-A  2025-10-18  youtube           36s  Почему этот велосипед «пьёт» воду? Удивительная технология! 🚴‍♂️💦
+     0.0  k6Z4RNun9ZU  2022-09-22  youtube           41s  какой же дискач без кардана ))  Руки Вверх! - 18 мне уже   rock-cover
+     0.0  ZFuTSaRx_2c  2023-01-15  youtube         7665s  Стрим: Итоги Недели
+     0.0  BhcrqALRgxk  2022-01-09  youtube           15s  Ветка на высоковольтной линии#shorts
+     0.0  5zrxUebctIc  2023-04-16  youtube            5s  Анкер, 500 кВ. - on the anchor.
+    -0.5  IkwAa5EjbrY  2026-07-24  youtube          107s  Понад 68 тисяч абонентів вже зі світлом: енергетики ліквідують наслідк
+    -0.5  gMvq4Gp2SeY  2026-07-06  youtube         1078s  Putin's $60 Billion SECRET Behind Crimea's Collapse EXPOSED
+    -0.5  fSUi8STs594  2025-06-06  youtube           49s  Каховське водосховище у 2025 - кадри з дрона
+    -0.5  Qi1Qw3bCoug  2023-06-14  youtube           16s  УЖАС!! Каховское водохранилище сейчас!
+    -0.5  Y4RrPYoYg24  2025-10-08  youtube          474s  ⚠️ Запорожская АЭС на Грани⁉️ Что Скрывает Кремль? Предсказание На Кар
+    -0.5  VbmCHH_TliA  2026-10-02  youtube         1242s  Удары по мостам! Четыре перемирия. Путин на Валдае. Точка в деле Фарио
+    -0.5  AVnP_H57WWk  2026-10-02  youtube         5245s  Разрыв. Удары по мостам Киева: это только цветочки. Моноэфир Юрия Рома
+    -0.5  qRUJk5qBy0U  2026-10-06  youtube          146s  Реактивные Герани над Киевом: как работает новый разведывательно-ударн
+    -0.5  QE7-_zf1-0U  2025-03-05  youtube           51s  Лобовой удар! Дрон ВСУ добивал раненых бойцов в КАМАЗе!
+    -0.5  TQ1smMCTmdA  2026-10-02  youtube           30s  Транспортный коллапс в Киеве: из-за ударов РФ по Южному мосту парализо
+    -0.5  a_wS5y7a5Qw  2026-08-17  youtube         3394s  Еврокампания завершена, отставка в Могилёве, БАТЭ наконец победил, юби
+    -1.0  Kb4I0SJD2cA  2023-06-06  youtube          102s  Ukraine: Dam Destruction's Catastrophic & Nuclear Consequences?
+    -1.0  5U2-CtId_2w  2024-07-27  youtube           59s  Что выросло на месте Каховского водохранилища?
+    -1.0  GyJ6WhFiApk  2022-06-20  youtube          138s  20.06.2022 Улица Данилы Зверева / Старые советские тополя и ЛЭП / Совд
+    -1.0  J3gnyYzkjgM  2023-06-15  youtube          715s  Экологическая катастрофа.  Урощище Сагайдачного и далее.Запорожье 15.6
+    -1.0  JfMmfgg20Go  2023-08-19  youtube           16s  😥КАХОВСЬКЕ водосховище повністю ЗАРОСЛО
+    -1.0  xfE26-yWh1E  2023-07-26  youtube           18s  ⚡️⚡️⚡️Каховське водосховище заростає травою
+    -1.0  D83DGAiFdmA  2022-02-11  youtube           65s  Монтаж проводов на ВЛ 500 кВ методом "под тяжением" с помощью оборудов
+    -1.0  7cT9iJ_F48E  2023-06-07  youtube           35s  Объем Каховского водохранилища #новости #украина
+    -1.0  D4oRMQzAiTk  2023-06-23  youtube           39s  До постройки Каховской ГЭС #каховскаягэс #водохранилище #днепр
+    -1.0  EQCetes_hOk  2023-06-12  youtube          252s  Зруйнована Каховська ГЕС відкрила під водою страшні залишки Другої сві
+    -1.0  shIIsaZyOcU  2022-04-12  youtube           45s  Каховское водоханилище Параплан
+    -1.5  VRRWJSqso9w  2022-10-21  youtube          384s  Чим загрожує підрив Каховської ГЕС?
+    -1.5  BILPM10F6hs  2024-05-14  youtube            8s  Каменское, р. Днепр. Судак 14.05.2024
+    -1.5  V7yYVj1BZRw  2024-03-19  youtube           37s  Even Russians can't resist nature. This is what the Kakhovka Reservoir
+    -1.5  ANMYH0_hdNc  2023-06-07  youtube           96s  Запорожье ПОСЛЕДСТВИЯ ВЗРЫВА НА КАХОВСКОЙ ГЕС 07.06.2023
+    -1.5  pgG7GtDAcyE  2023-02-28  youtube          714s  Монтаж проводов в анкерных пролетах ВЛ 500 кВ Усть-Илимская ГЭС - Усть
+214 candidates, 76 would be ingested (*) -> /Users/patrickrodriguez/dev/sandbox/frame-geo-evidence-pipeline/research_notes/Tower cut opener/library/runs/20261105T084443Z.json

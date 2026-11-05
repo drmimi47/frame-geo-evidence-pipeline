@@ -347,6 +347,77 @@ def cmd_satellite(args: argparse.Namespace) -> int:
                       until_km=args.until_km)
         print(f"  {r['status']}: {r['title']}" + (f" · {r['frames']} images" if r.get("frames") else "") + f" · {r.get('reason', '')}")
         return 0 if r["status"] == "processed" else 1
+    if args.action == "network":  # a plant's lines traced to their ends, then the zoom-out film
+        from .satellite import network, zoomout
+
+        cfg = network.config(args.network, args.seam_config)
+        if args.fps:  # e.g. 30 to test; the config's rate for the final render
+            cfg["film"] = {**cfg["film"], "fps": args.fps}
+        net = network.build(root, cfg)
+        for ln in net["lines"]:
+            print(f"  {ln['kv']:>4} kV  {ln['name']:<18} {ln.get('ref', ''):<11} {ln['length_m'] / 1000:6.1f} km  → {ln['to']}")
+        if args.trace_only:
+            return 0
+        network.imagery(root, cfg)
+        f = zoomout.render(root, cfg, workers=args.workers)
+        print(f"  {f['film_id']}: {f['duration_s']:.0f} s, {f['width']}×{f['height']} at {f['fps']} fps, "
+              f"drawn in {f['render']['parts']} parts in {f['render']['seconds'] / 60:.1f} min")
+        return 0
+    if args.action == "unrolled":  # the two last lines unrolled, their record and the repair truces (NEXT.md I5)
+        from .satellite import network, unrolled
+
+        cfg = network.config(args.network, args.seam_config)
+        secs = tuple(float(x) for x in args.seconds.split(":")) if args.seconds else None
+        stills = [float(x) for x in args.stills.split(",")] if args.stills else None
+        r = unrolled.render(root, cfg, fps=args.fps, seconds=secs, stills=stills)
+        if stills:
+            print("\n".join(f"  {p}" for p in r["stills"]) + f"\n  (the film is {r['total_s']:.1f} s)")
+        else:
+            print(f"  {r['frames']} frames ({r['duration_s']} s) in {r['seconds']} s → {r['mp4']}")
+        return 0
+    if args.action == "crossing3d":  # the crossing in 3D (docs/crossing-3d-plan.txt); pass 0: the survey
+        from .satellite import network
+        from .satellite.scene3d import export
+
+        cfg = network.config(args.network, args.seam_config)
+        if args.crossing_pass == "bed":  # pass 3: the drained bed from the shorelines and levels (fetches its passes once)
+            from .satellite.scene3d import bed
+
+            d = bed.build(root, cfg, export.scene_dir(root, cfg["id"]))
+            for k, v in d["icesat2_check"].items():
+                if v:
+                    print(f"  bed - ICESat-2 ({k.replace('_', ' ')}): median {v['median_m']} m, MAD {v['mad_m']} m "
+                          f"over {v['points']} points")
+            print(f"  {len(d['observations'])} passes read, {len(d['left_out'])} left out · "
+                  f"{bed.bed_dir(export.scene_dir(root, cfg['id'])) / 'bed.json'}")
+            return 0
+        if args.crossing_pass == "blend":  # each segment's scene saved to open in Blender, not rendered
+            from .satellite.scene3d import animatic
+
+            for v, path in animatic.blend(root, cfg, args.variant or None).items():
+                print(f"  {v}: {path}")
+            return 0
+        if args.crossing_pass == "animatic":  # pass 1: the grey-box camera animatic, each opening
+            from .satellite.scene3d import animatic
+
+            secs = tuple(float(x) for x in args.seconds.split(":")) if args.seconds else None
+            for v, r in animatic.render(root, cfg, args.variant or None, secs).items():
+                print(f"  {v}: {r['frames']} frames in {r['seconds']} s → {r['mp4']}")
+            print(f"  {export.scene_dir(root, cfg['id']) / 'animatic'}")
+            return 0
+        d = export.survey(root, cfg)
+        for ln in d["lines"]:
+            print(f"  {ln['name']:<18} {ln['towers_matched']}/{ln['vertex_count']} vertices on OSM towers · "
+                  f"{len(ln['crossing_towers'])} crossing towers, spans {ln['crossing_spans_m']} m")
+        f = d["flight"]
+        print(f"  lines cross at {d['lines_cross_at']['xy_m']} m · flight {f['length_m']} m heading {f['heading_deg']}° · "
+              f"gap {f['gap_m']['min']}-{f['gap_m']['max']} m (median {f['gap_m']['median']})")
+        for pid, w in d["water"].items():
+            for name, x in w["lines"].items():
+                print(f"  {pid} {name:<18} water at " + ", ".join(f"{a['north_m'][0]}-{a['north_m'][1]} m N ({a['wet_share']:.0%})"
+                                                              for a in x["stretches"]))
+        print(f"  {export.scene_dir(root, cfg['id']) / 'survey.json'}")
+        return 0
     film_area = seam.areas.get(args.area)
     if args.action == "notes":  # the area's notes placed on a film already made (its newest, or --film)
         from .satellite import notes, store
@@ -365,6 +436,29 @@ def cmd_satellite(args: argparse.Namespace) -> int:
     f = film.render(root, args.area, args.passes or None, opts)
     print(f"  {f['film_id']}: {f['duration_s']:.0f} s, {f['width']}×{f['height']}, "
           f"{', '.join(p['title'] for p in f['passes'])}")
+    return 0
+
+
+def cmd_storyboard(args: argparse.Namespace) -> int:
+    """The film's storyboard: a cut of the shot pool laid out in Blender's Video Sequence Editor, and read back."""
+    from .jobs import ensure_seam_folder
+    from .storyboard import plan
+
+    pool, cuts = plan.load(args.pool, args.cuts)
+    name = args.cut or next(iter(cuts))
+    root = ensure_seam_folder(_load(args).library_dir)
+    if args.action == "sync":
+        for line in plan.sync(root, name, args.pool, args.cuts) or ["no change"]:
+            print(f"  {line}")
+        pool, cuts = plan.load(args.pool, args.cuts)
+    elif args.action == "build":
+        r = plan.build(root, name, args.discard_edits, args.pool, args.cuts)
+        for line in r["synced"]:
+            print(f"  read back first: {line}")
+        print(f"  {r['path']}")
+        pool, cuts = plan.load(args.pool, args.cuts)
+    for line in plan.show(pool, name, cuts[name]):
+        print(line)
     return 0
 
 
@@ -495,8 +589,21 @@ def build_parser() -> argparse.ArgumentParser:
     s.set_defaults(fn=cmd_refresh_titles)
 
     s = sub.add_parser("satellite", parents=[common], help="The Conductive Seam: satellite passes along power lines, and films")
-    s.add_argument("action", choices=["lines", "fetch", "film", "notes"], help="lines: OSM power lines in an area; fetch: add a "
-                   "pass; film: render the corridor's passes; notes: place the area's notes on its newest film again")
+    s.add_argument("action", choices=["lines", "fetch", "film", "notes", "network", "crossing3d", "unrolled"], help="lines: OSM power lines in an area; fetch: add a "
+                   "pass; film: render the corridor's passes; notes: place the area's notes on its newest film again; "
+                   "network: trace a plant's lines to their ends and render the zoom-out; crossing3d: the crossing in 3D "
+                   "(pass 0: the survey of its lines, towers, water and flight path); unrolled: the two last lines "
+                   "straightened, their record and the repair truces")
+    s.add_argument("--network", default="znpp", help="network: a network of the seam config")
+    s.add_argument("--pass", dest="crossing_pass", choices=["survey", "bed", "animatic", "blend"], default="survey",
+                   help="crossing3d: survey (pass 0), the drained bed (pass 3), the camera animatic (pass 1) or "
+                        "blend (each segment's scene saved as a .blend to open in Blender, not rendered)")
+    s.add_argument("--variant", action="append", help="crossing3d animatic: only this opening (repeatable)")
+    s.add_argument("--seconds", help="crossing3d animatic, unrolled: only this stretch, A:B seconds (to test; its own mp4)")
+    s.add_argument("--stills", help="unrolled: only these moments, comma-separated seconds, as PNGs")
+    s.add_argument("--trace-only", action="store_true", help="network: trace the lines only, no imagery or film")
+    s.add_argument("--fps", type=int, help="network, unrolled: frame rate (default: the config's)")
+    s.add_argument("--workers", type=int, help="network: parts of the zoom-out drawn at once (default: three in four cores)")
     s.add_argument("--area", default="enerhodar-crossing", help="an area of the seam config (or an existing corridor)")
     s.add_argument("--seam-config", type=Path, help="default: config/conductive-seam.yaml")
     s.add_argument("--folder", help="a scratch library root instead of The Conductive Seam folder")
@@ -515,12 +622,52 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--trace", action="store_true", help="film: draw the OSM line as a hairline")
     s.set_defaults(fn=cmd_satellite)
 
+    s = sub.add_parser("storyboard", parents=[common], help="the film's storyboard: a cut laid out in Blender's sequence editor")
+    s.add_argument("action", nargs="?", choices=["show", "build", "sync"], default="show",
+                   help="show: the cut as a table; build: its .blend made again (a rearrangement saved in Blender read "
+                        "back first); sync: the .blend's arrangement read back into the cuts file")
+    s.add_argument("--cut", help="a cut of config/storyboard-cuts.yaml (default: the first)")
+    s.add_argument("--pool", type=Path, default=Path("config/storyboard.yaml"))
+    s.add_argument("--cuts", type=Path, default=Path("config/storyboard-cuts.yaml"))
+    s.add_argument("--discard-edits", action="store_true",
+                   help="build: overwrite a rearrangement in the .blend that hasn't been read back")
+    s.set_defaults(fn=cmd_storyboard)
+
     s = sub.add_parser("serve", parents=[common], help="serve the read-only image-evidence HTTP API")
     s.add_argument("--host", default="127.0.0.1")
     s.add_argument("--port", type=int, default=8000)
     s.add_argument("--seam-config", type=Path, help="The Conductive Seam's areas and film (default: config/conductive-seam.yaml)")
     s.set_defaults(fn=cmd_serve)
     return parser
+
+
+SECRET_ENV = ("YOUTUBE_API_KEY", "EARTHDATA_TOKEN", "ANTHROPIC_API_KEY")
+_KEY_PARAM = re.compile(r"([?&](?:key|api_key|access_token|token)=)[^&\s'\"<>]+", re.I)
+
+
+class RedactSecrets(logging.Filter):
+    """Blanks keys and tokens out of every log line and traceback: httpx logs each request's URL, and the YouTube key
+    rides in its query string. Never write, log or return a token (CLAUDE.md)."""
+
+    def __init__(self, secrets: list[str] | None = None):
+        super().__init__()
+        self.secrets = [s for s in (secrets if secrets is not None else
+                                    [os.environ.get(k) for k in SECRET_ENV]) if s]
+
+    def redact(self, text: str) -> str:
+        text = _KEY_PARAM.sub(r"\1•••", text)
+        for s in self.secrets:
+            text = text.replace(s, "•••")
+        return text
+
+    def filter(self, record: logging.LogRecord) -> bool:
+        msg = record.getMessage()
+        clean = self.redact(msg)
+        if clean != msg:
+            record.msg, record.args = clean, None
+        if record.exc_info and not record.exc_text:
+            record.exc_text = self.redact(logging.Formatter().formatException(record.exc_info))
+        return True
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -531,6 +678,9 @@ def main(argv: list[str] | None = None) -> int:
         format="%(asctime)s %(levelname).1s %(message)s",
         datefmt="%H:%M:%S",
     )
+    redact = RedactSecrets()
+    for handler in logging.getLogger().handlers:
+        handler.addFilter(redact)
     if not args.verbose:
         for noisy in ("httpx", "httpcore", "urllib3", "transformers"):
             logging.getLogger(noisy).setLevel(logging.WARNING)
@@ -538,8 +688,9 @@ def main(argv: list[str] | None = None) -> int:
         return args.fn(args)
     except Exception as e:  # noqa: BLE001 - surface a clean error at the CLI boundary
         if args.verbose:
-            raise
-        log.error("%s: %s", type(e).__name__, e)
+            log.exception("%s: %s", type(e).__name__, e)  # the traceback too, through the filter
+        else:
+            log.error("%s: %s", type(e).__name__, e)
         return 1
 
 

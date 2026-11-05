@@ -1,0 +1,28 @@
+{
+ "what": "S1 test sequences for Powerlines (NEXT.md S1): the offset section along each of the last two lines, and the block opening along the cooling pond. Tests at 30 fps, 1920x1080; not the film.",
+ "made": "2026-11-04",
+ "files": {
+  "S1-section-dniprovska.mp4": "the offset section: the cooling pond's north dike (x = -3000 m on the crossing's grid, south to north, seen from the east), a break where the cut jogs about 6.7 km east, then along Dniprovska's crossing (towers 21-27); 18.7 s",
+  "S1-section-ferosplavna.mp4": "the same with Ferosplavna's crossing (its row carries both circuits; towers 18-26); the jog about 6.3 km; 18.7 s",
+  "S1-block-opening.mp4": "the region as one block at true size, heights grown to x25, opened 2.5 km along the pond's cut, then the three days; 35.5 s",
+  "stills/": "the offset sections as wide stills (3126 px), each day",
+  "scripts/": "the scripts as run (Blender 5.2 headless, then PIL and ffmpeg); states.json the days, levels and captions"
+ },
+ "days": {
+  "A": {"date": "2022-09-06", "why": "island mode, 5-10 September 2022: every line cut, unit 6 powering the plant (the record, config/conductive-seam.yaml)", "imagery": "Sentinel-2 L2A, 29 August 2022 08:36 UTC (6 and 8 September clouded over, said on screen)", "levels": "the reservoir and the pond at the reservoir's normal level, 16 m Baltic (its design level); the level that day not published"},
+  "B": {"date": "2025-09-27", "why": "the month on diesel generators, 23 September - 23 October 2025: no line connected (the record)", "imagery": "Sentinel-2 L2A, 27 September 2025 08:36 UTC", "levels": "pond 13.54 m Baltic (Energoatom via OECD-NEA, 11 August 2025, the last report before); river at the crossing 7.26 m (SWOT, monthly, via bed.series)"},
+  "C": {"date": "2026-08-23", "why": "18 days on diesel generators, 20 August - 7 September 2026: no line connected (the record)", "imagery": "Sentinel-2 L2A, 23 August 2026 08:35 UTC", "levels": "pond 12.34 m Baltic (Ukraine's HUR, 1 October 2026, unverified: the nearest report, after the day); river 7.74 m (SWOT, monthly)"}
+ },
+ "pond_earlier_reports_m_baltic": {"16.67": "11 June 2023, Energoatom", "15.40": "May 2024, Russian side", "14.34": "September 2024, OECD-NEA", "13.54": "11 August 2025, Energoatom via OECD-NEA"},
+ "the_12_m_line": "the pond's reported lower limit for the cooling water pumps; the IAEA's own wording still to be checked (NEXT.md S1)",
+ "drawn": [
+  "every height x10 in the sections (ground, water, towers, sag: the plan-and-profile convention), lengths true; the detail at three times the section's scale, heights still x10",
+  "in the block: ground and water x25, towers and sag at true size on the exaggerated ground",
+  "the water a modelled surface at the reported level, where each day's pass reads water; in the pond, where the pass reads no water it is drawn dry (shoals or plants)",
+  "the drained bed's heights inferred (the waterline method, scene3d/bed.py), dotted on the cuts; the pond's depth not published, faded",
+  "towers at OpenStreetMap's positions, types representative (the 3D film's models, towers.npz); every wire bare steel: each day a complete loss of off-site power, chosen so",
+  "a dissolve mixes two days' drawings and says it is not an observation; nothing is generated"
+ ],
+ "safety": "no tower marked, numbered or pinned; the key plan shows only the cut and its jog; no coordinates on screen",
+ "sources": ["Copernicus Sentinel-2 L2A via Microsoft Planetary Computer", "OpenStreetMap power=line ways (ODbL)", "FABDEM heights and the bed's inferred heights (bed.json)", "SWOT and gauges for the river (bed.series)", "the record in config/conductive-seam.yaml (the IAEA's updates via WNA and OECD-NEA, Energoatom)"]
+}

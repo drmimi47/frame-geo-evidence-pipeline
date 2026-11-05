@@ -1,0 +1,3344 @@
+{
+ "YODjwXFjnyg": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "UA2 Power lines in Ukraine. (390)",
+  "channel": "Ivo Junior power lines",
+  "channel_id": "UCKnReewCn2JejMHuxzxX5ZQ",
+  "published": "2026-03-27",
+  "license": "standard YouTube licence",
+  "duration_s": 112,
+  "url": "https://www.youtube.com/watch?v=YODjwXFjnyg",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Ukraine -> Ukraine",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Ukraine -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Kherson -> Kherson Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Dnipro -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Kakhovka -> Kakhovka",
+     "weight": 0.6
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:09:47Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "3coe3Z-2TLg": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.80 (min 0.5)",
+  "title": "Энергодар.Находка,,Не грибы,под ЛЭП.",
+  "channel": "Mihail Kalahnikov",
+  "channel_id": "UCXXaiUae9nTpXTKxiX_a9hw",
+  "published": "2022-12-24",
+  "license": "standard YouTube licence",
+  "duration_s": 305,
+  "url": "https://www.youtube.com/watch?v=3coe3Z-2TLg",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.8,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Энергодар -> Enerhodar",
+     "weight": 0.8
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:09:49Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "6t-iCW6WLVs": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.80 (min 0.5)",
+  "title": "Энергодар.Дизайн,,,155,,.Промка.",
+  "channel": "Mihail Kalahnikov",
+  "channel_id": "UCXXaiUae9nTpXTKxiX_a9hw",
+  "published": "2023-03-26",
+  "license": "standard YouTube licence",
+  "duration_s": 430,
+  "url": "https://www.youtube.com/watch?v=6t-iCW6WLVs",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.8,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Энергодар -> Enerhodar",
+     "weight": 0.8
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:09:53Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "34nya5SYO7Q": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.80 (min 0.5)",
+  "title": "Природа не терпит пустоты | Каховское водохранилище!!!!!!",
+  "channel": "Pavlik. tv",
+  "channel_id": "UCjU6U2mwfCug7qTRRU3gRmw",
+  "published": "2023-11-02",
+  "license": "standard YouTube licence",
+  "duration_s": 97,
+  "url": "https://www.youtube.com/watch?v=34nya5SYO7Q",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.8,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховск -> Kakhovka",
+     "weight": 0.8
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:10:03Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "fSUi8STs594": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.80 (min 0.5)",
+  "title": "Каховське водосховище у 2025 - кадри з дрона",
+  "channel": "Telegraf News",
+  "channel_id": "UCZGnQop4fKuKud3VHDsjmXg",
+  "published": "2025-06-06",
+  "license": "standard YouTube licence",
+  "duration_s": 49,
+  "url": "https://www.youtube.com/watch?v=fSUi8STs594",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.8,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:10:06Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "w3hLYa_n8ao": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Каховське водосховище зараз: на його дні виріс 5-метровий ліс",
+  "channel": "Frontliner",
+  "channel_id": "UCh_kbW4p8By8rg3d9x30zDA",
+  "published": "2026-08-13",
+  "license": "standard YouTube licence",
+  "duration_s": 406,
+  "url": "https://www.youtube.com/watch?v=w3hLYa_n8ao",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Херсон -> Kherson Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Dnipro -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Великий Луг -> Velykyi Luh",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпр -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Великого Лугу -> Velykyi Luh",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:10:08Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "09-egWW-a9w": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "КАХОВСЬКЕ ВОДОСХОВИЩЕ:  через рік після підриву ГЕС. Що утворилося на місці колишнього ВЕЛИКОГО ЛУГУ",
+  "channel": "Суспільне Запоріжжя",
+  "channel_id": "UCZSashx8dRHivfiJuim_OHg",
+  "published": "2024-06-06",
+  "license": "Creative Commons Attribution license (reuse allowed)",
+  "duration_s": 225,
+  "url": "https://www.youtube.com/watch?v=09-egWW-a9w",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "КАХОВСЬК -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "ВЕЛИКОГО ЛУГУ -> Velykyi Luh",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Запоріжжя -> Zaporizhzhia Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "дніпро -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "великий луг -> Velykyi Luh",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Запорізьк -> Zaporizhzhia Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Великого лугу -> Velykyi Luh",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:10:41Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "whpeX2sjZ30": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Чи відновиться Великий луг? #каховське_дно #екологія_каховки #великийлуг",
+  "channel": "RID",
+  "channel_id": "UCVNhuJ9uW8GzAv3TyURHbTQ",
+  "published": "2024-04-18",
+  "license": "standard YouTube licence",
+  "duration_s": 41,
+  "url": "https://www.youtube.com/watch?v=whpeX2sjZ30",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Великий луг -> Velykyi Luh",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Великий луг -> Velykyi Luh",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:10:59Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "slKSnWWr5Bo": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "❗️Зелені ріки замість пустелі: як зараз виглядає Каховське водосховище | Новини.LIVE",
+  "channel": "Новини.LIVE",
+  "channel_id": "UC7Rwwb_LNJMhixpuVmjCEeA",
+  "published": "2024-05-30",
+  "license": "standard YouTube licence",
+  "duration_s": 181,
+  "url": "https://www.youtube.com/watch?v=slKSnWWr5Bo",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Херсон -> Kherson Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:11:04Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "RgZnoPpOaNk": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Дно Каховського водосховища через два роки після підриву ГЕС: «Природа займає звільнені ніші»",
+  "channel": "Радіо Свобода Україна",
+  "channel_id": "UC-wWyFdk_txbZV8FKEk0V8A",
+  "published": "2025-06-06",
+  "license": "standard YouTube licence",
+  "duration_s": 331,
+  "url": "https://www.youtube.com/watch?v=RgZnoPpOaNk",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Великого Лугу -> Velykyi Luh",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:11:17Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "OsLi1wofdRA": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "2 мільярди дерев! Ось що коїться на дні Каховського водосховища зараз!",
+  "channel": "RID",
+  "channel_id": "UCVNhuJ9uW8GzAv3TyURHbTQ",
+  "published": "2024-08-20",
+  "license": "standard YouTube licence",
+  "duration_s": 256,
+  "url": "https://www.youtube.com/watch?v=OsLi1wofdRA",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Запоріжжя -> Zaporizhzhia Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Великого лугу -> Velykyi Luh",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:11:56Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "X3BLGrmXwWI": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Каховське водосховище: що змінилось за рік і як тепер тут воюють прикордонники",
+  "channel": "LB live",
+  "channel_id": "UC_wMhlGmskE2Ue-400XjofQ",
+  "published": "2024-06-05",
+  "license": "standard YouTube licence",
+  "duration_s": 182,
+  "url": "https://www.youtube.com/watch?v=X3BLGrmXwWI",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Запорізьк -> Zaporizhzhia Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:12:11Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "9nKUouCKsJI": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Енергодар колись був символом достатку на півдні України. • RFI Українською",
+  "channel": "RFI Українською",
+  "channel_id": "UCANFmabS13REqEfPE4HZGZg",
+  "published": "2025-09-02",
+  "license": "standard YouTube licence",
+  "duration_s": 69,
+  "url": "https://www.youtube.com/watch?v=9nKUouCKsJI",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Україн -> Ukraine",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Енергодар -> Enerhodar",
+     "weight": 0.8
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:12:22Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "WTtRd2RTbE0": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Енергетики відновили живлення Запорізької АЕС з основної високовольтної лінії 750 Кв",
+  "channel": "КИЇВ24 live",
+  "channel_id": "UCT8m5Ltxs5tkhRzvHeAPrtA",
+  "published": "2023-07-06",
+  "license": "standard YouTube licence",
+  "duration_s": 24,
+  "url": "https://www.youtube.com/watch?v=WTtRd2RTbE0",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Запорізьк -> Zaporizhzhia Oblast",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Запорізьк -> Zaporizhzhia Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Києв -> Kyiv",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:12:24Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "td0-UyyIV_8": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "🔋ЗАЕС підключили до резервної лінії електропередач",
+  "channel": "Media Poglyad",
+  "channel_id": "UCnN6PLPAqdlZyeQ3fp3EEjA",
+  "published": "2023-07-03",
+  "license": "standard YouTube licence",
+  "duration_s": 66,
+  "url": "https://www.youtube.com/watch?v=td0-UyyIV_8",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Запорізьк -> Zaporizhzhia Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Київ -> Kyiv",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпр -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Бучі -> Bucha",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:12:27Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "Kz3TufedJa4": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Журналіст показав, як виглядає дно висохлого Каховського водосховища",
+  "channel": "Центр журналістських розслідувань",
+  "channel_id": "UCG10-zIqLSWwDYnaESCOVNA",
+  "published": "2023-06-25",
+  "license": "standard YouTube licence",
+  "duration_s": 389,
+  "url": "https://www.youtube.com/watch?v=Kz3TufedJa4",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Украин -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Кримськ -> Crimea",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Херсон -> Kherson Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Каховск -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "кримськ -> Crimea",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "херсон -> Kherson Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпр -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:12:31Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "PWWhmPuZePg": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "ВИРІС ЛІС ВИЩЕ 7 МЕТРІВ! Що сталося із дном Каховського моря? / ТСН.Тиждень",
+  "channel": "ТСН Тиждень",
+  "channel_id": "UCkGSij8hVjwglv_g4cF-ZOA",
+  "published": "2025-06-06",
+  "license": "standard YouTube licence",
+  "duration_s": 486,
+  "url": "https://www.youtube.com/watch?v=PWWhmPuZePg",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Запорізьк -> Zaporizhzhia Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:12:54Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "XgXY7ZlNcQg": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "ДИВА КАХОВСЬКОГО МОРЯ. Що знайшли на дні колишнього водосховища / ТСН.Тиждень",
+  "channel": "ТСН Тиждень",
+  "channel_id": "UCkGSij8hVjwglv_g4cF-ZOA",
+  "published": "2024-06-11",
+  "license": "standard YouTube licence",
+  "duration_s": 454,
+  "url": "https://www.youtube.com/watch?v=XgXY7ZlNcQg",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "КАХОВСЬК -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Великий луг -> Velykyi Luh",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:13:28Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "gifdlRybvbg": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "ЧИМ ВРАЗИВ ЛІС НА ДНІ КАХОВСЬКОГО МОРЯ? НЕЙМОВІРНІ ФАКТИ ВІД ДОСЛІДНИКІВ / ТСН.Тиждень 07.06.2026",
+  "channel": "ТСН Тиждень",
+  "channel_id": "UCkGSij8hVjwglv_g4cF-ZOA",
+  "published": "2026-06-07",
+  "license": "standard YouTube licence",
+  "duration_s": 163,
+  "url": "https://www.youtube.com/watch?v=gifdlRybvbg",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "КАХОВСЬК -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:13:58Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "W21M9PrR6W0": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "ШОК! Що знайшли НА ДНІ КАХОВСЬКОГО ВОДОСХОВИЩА?! Науковці ТАКОГО НЕ БАЧИЛИ!",
+  "channel": "ТСН",
+  "channel_id": "UCXoJ8kY9zpLBEz-8saaT3ew",
+  "published": "2026-08-19",
+  "license": "standard YouTube licence",
+  "duration_s": 673,
+  "url": "https://www.youtube.com/watch?v=W21M9PrR6W0",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "КАХОВСЬК -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "херсон -> Kherson Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпр -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:14:04Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "AtpgRwrmcmY": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Як виглядає Каховське водосховище нині і чому екологи проти відбудови ГЕС? | DW Ukrainian",
+  "channel": "DW Українською",
+  "channel_id": "UCQwVj4PyS5leCgEJY4I2t1Q",
+  "published": "2024-06-28",
+  "license": "standard YouTube licence",
+  "duration_s": 816,
+  "url": "https://www.youtube.com/watch?v=AtpgRwrmcmY",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Ukrainian -> Ukraine",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Ukrainian -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Харківщин -> Kharkiv Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Харків -> Kharkiv",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:14:32Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "cX9MEl24T_A": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Каховське водосховище чи Великий Луг: яке майбутнє території - думки фахівців і жителів",
+  "channel": "Суспільне Дніпро",
+  "channel_id": "UCHor8vwW6KPxV3FPmWQtE3Q",
+  "published": "2026-10-02",
+  "license": "standard YouTube licence",
+  "duration_s": 748,
+  "url": "https://www.youtube.com/watch?v=cX9MEl24T_A",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Великий Луг -> Velykyi Luh",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "дніпропетровщин -> Dnipropetrovsk Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "дніпро -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпропетровськ -> Dnipropetrovsk Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Нікопол -> Nikopol",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Великий Луг -> Velykyi Luh",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:15:09Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "K2gIlx4o_go": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Як виглядає дно колишнього Каховського водосховища в його найзабрудненішій ділянці на 3 рік?",
+  "channel": "RID",
+  "channel_id": "UCVNhuJ9uW8GzAv3TyURHbTQ",
+  "published": "2026-06-10",
+  "license": "standard YouTube licence",
+  "duration_s": 786,
+  "url": "https://www.youtube.com/watch?v=K2gIlx4o_go",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "запорізьк -> Zaporizhzhia Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "дніпро -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "запоріжжя -> Zaporizhzhia Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:15:34Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "o7ZH4bMKNhE": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Великий луг на дні Каховського водосховища зараз, радіаційний фон і верби не мутанти",
+  "channel": "RID",
+  "channel_id": "UCVNhuJ9uW8GzAv3TyURHbTQ",
+  "published": "2025-10-19",
+  "license": "standard YouTube licence",
+  "duration_s": 972,
+  "url": "https://www.youtube.com/watch?v=o7ZH4bMKNhE",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Великий луг -> Velykyi Luh",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "запоріжжя -> Zaporizhzhia Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "дніпро -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "запоріжжя -> Zaporizhzhia Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "дніпро -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Великий луг -> Velykyi Luh",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:16:25Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "nTW5o_Y8BBs": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Ліс, що збереже клімат. Що зараз діється на дні колишнього Каховського водосховища.",
+  "channel": "RID",
+  "channel_id": "UCVNhuJ9uW8GzAv3TyURHbTQ",
+  "published": "2025-06-29",
+  "license": "standard YouTube licence",
+  "duration_s": 1085,
+  "url": "https://www.youtube.com/watch?v=nTW5o_Y8BBs",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Запоріжж -> Zaporizhzhia Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Великого Лугу -> Velykyi Luh",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:17:22Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "VNYGgMAHm4A": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Нікополь за 5 км від армії РФ: що відбувається в місті | DW Ukrainian",
+  "channel": "DW Українською",
+  "channel_id": "UCQwVj4PyS5leCgEJY4I2t1Q",
+  "published": "2024-10-03",
+  "license": "standard YouTube licence",
+  "duration_s": 871,
+  "url": "https://www.youtube.com/watch?v=VNYGgMAHm4A",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Ukrainian -> Ukraine",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Нікопол -> Nikopol",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Ukrainian -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Дніпропетровськ -> Dnipropetrovsk Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Запорізьк -> Zaporizhzhia Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Нікопол -> Nikopol",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Енергодар -> Enerhodar",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Покровськ -> Pokrovsk",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Нікопол -> Nikopol",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "ukrainian letters",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:18:22Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "7C1Ex2_xFi0": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Ukraine. Kam'yanka-Dniprovs'ka / Кам'янка-Дніпровська. 09.21",
+  "channel": "Road",
+  "channel_id": "UC0UT8fkO90Tiamxk1lLiBfQ",
+  "published": "2023-05-17",
+  "license": "standard YouTube licence",
+  "duration_s": 845,
+  "url": "https://www.youtube.com/watch?v=7C1Ex2_xFi0",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Ukraine -> Ukraine",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.8
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "en",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:19:12Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "8tT8eFkrhXY": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Місто Україна - Кам'янка-Дніпровська - 07.10.2022",
+  "channel": "МТМ ЗАПОРІЖЖЯ",
+  "channel_id": "UCzgruHnDR1gDJCH5Aocxfmw",
+  "published": "2022-10-21",
+  "license": "standard YouTube licence",
+  "duration_s": 1206,
+  "url": "https://www.youtube.com/watch?v=8tT8eFkrhXY",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Україн -> Ukraine",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "запоріжжя -> Zaporizhzhia Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Запоріжжя -> Zaporizhzhia Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "ukrainian letters",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:20:09Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "XZz7sRLnoAk": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Ukraine. Velyka Znam'yanka to Kam'yanka-Dniprovs'ka / Велика Знам'янка - Кам'янка-Дніпровська. 09.21",
+  "channel": "Road",
+  "channel_id": "UC0UT8fkO90Tiamxk1lLiBfQ",
+  "published": "2023-05-14",
+  "license": "standard YouTube licence",
+  "duration_s": 928,
+  "url": "https://www.youtube.com/watch?v=XZz7sRLnoAk",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Ukraine -> Ukraine",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.8
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "en",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:21:18Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "Z2kBNdGfZtg": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "«Справжнє літо буяє у Великому Лузі» Як змінюється природа на місці Каховського водосховища",
+  "channel": "Суспільне Дніпро",
+  "channel_id": "UCHor8vwW6KPxV3FPmWQtE3Q",
+  "published": "2025-07-08",
+  "license": "standard YouTube licence",
+  "duration_s": 1314,
+  "url": "https://www.youtube.com/watch?v=Z2kBNdGfZtg",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Великому Лузі -> Velykyi Luh",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "дніпропетровщин -> Dnipropetrovsk Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "запоріжжя -> Zaporizhzhia Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "нікопол -> Nikopol",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховк -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпр -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Великий Луг -> Velykyi Luh",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:22:01Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "ZUXsmHCUVg4": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Яким став Великий Луг через 4 роки після катастрофи і обстрілів: Вадим Манюк про колишнє водосховище",
+  "channel": "Суспільне Дніпро",
+  "channel_id": "UCHor8vwW6KPxV3FPmWQtE3Q",
+  "published": "2026-09-16",
+  "license": "standard YouTube licence",
+  "duration_s": 1289,
+  "url": "https://www.youtube.com/watch?v=ZUXsmHCUVg4",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Великий Луг -> Velykyi Luh",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "дніпропетровщин -> Dnipropetrovsk Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "запоріжжя -> Zaporizhzhia Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "нікопол -> Nikopol",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "великий луг -> Velykyi Luh",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпр -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Нікопол -> Nikopol",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Великий Луг -> Velykyi Luh",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:23:09Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "KQ1yfExstPw": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "«Великий Луг відроджується» Еколог Вадим Манюк про другу весну колишнього Каховського водосховища",
+  "channel": "Суспільне Дніпро",
+  "channel_id": "UCHor8vwW6KPxV3FPmWQtE3Q",
+  "published": "2025-05-06",
+  "license": "standard YouTube licence",
+  "duration_s": 814,
+  "url": "https://www.youtube.com/watch?v=KQ1yfExstPw",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Великий Луг -> Velykyi Luh",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "дніпропетровщин -> Dnipropetrovsk Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "запоріжжя -> Zaporizhzhia Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "нікопол -> Nikopol",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховк -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "запорож -> Zaporizhzhia Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпр -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Великого Лугу -> Velykyi Luh",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:24:01Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "Yyf9SZViW4I": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "«Дніпро зараз такий, яким його бачили пращури»Еколог Вадим Манюк про «Великий Луг» і його екосистему",
+  "channel": "Суспільне Дніпро",
+  "channel_id": "UCHor8vwW6KPxV3FPmWQtE3Q",
+  "published": "2024-11-23",
+  "license": "standard YouTube licence",
+  "duration_s": 659,
+  "url": "https://www.youtube.com/watch?v=Yyf9SZViW4I",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Великий Луг -> Velykyi Luh",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "дніпропетровщин -> Dnipropetrovsk Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "днепр -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "великий луг -> Velykyi Luh",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Великого Лугу -> Velykyi Luh",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:24:34Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "cSThxR6dXpc": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Каховське дно. В пошуках загубленої річки, Зима 2024 #екологія",
+  "channel": "RID",
+  "channel_id": "UCVNhuJ9uW8GzAv3TyURHbTQ",
+  "published": "2024-03-06",
+  "license": "standard YouTube licence",
+  "duration_s": 629,
+  "url": "https://www.youtube.com/watch?v=cSThxR6dXpc",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Запоріжжя -> Zaporizhzhia Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Запоріжжя -> Zaporizhzhia Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Великого лугу -> Velykyi Luh",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:25:21Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "MLtEaea7TRA": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Каховська ГЕС через рік після підриву: Еколог Вадим Манюк про колишнє Каховське водосховище",
+  "channel": "Суспільне Дніпро",
+  "channel_id": "UCHor8vwW6KPxV3FPmWQtE3Q",
+  "published": "2024-06-05",
+  "license": "standard YouTube licence",
+  "duration_s": 629,
+  "url": "https://www.youtube.com/watch?v=MLtEaea7TRA",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "дніпропетровщин -> Dnipropetrovsk Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "запоріжжя -> Zaporizhzhia Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "нікопол -> Nikopol",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховк -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "dnipro -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Великому Лузі -> Velykyi Luh",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:26:29Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "Vn4LfONpGTY": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "«Такого на планеті ніде не існує» Еколог Вадим Манюк про екосистему Каховськоого водосховища",
+  "channel": "Суспільне Дніпро",
+  "channel_id": "UCHor8vwW6KPxV3FPmWQtE3Q",
+  "published": "2024-05-20",
+  "license": "standard YouTube licence",
+  "duration_s": 441,
+  "url": "https://www.youtube.com/watch?v=Vn4LfONpGTY",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "дніпропетровщин -> Dnipropetrovsk Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "запоріжжя -> Zaporizhzhia Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "нікопол -> Nikopol",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховк -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "dnipro -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:26:58Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "H8uGQiVTTjg": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Що зараз на дні колишнього Каховського водосховища? Інтерв'ю з екологом Вадимом Манюком",
+  "channel": "Суспільне Дніпро",
+  "channel_id": "UCHor8vwW6KPxV3FPmWQtE3Q",
+  "published": "2023-09-06",
+  "license": "standard YouTube licence",
+  "duration_s": 529,
+  "url": "https://www.youtube.com/watch?v=H8uGQiVTTjg",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "дніпропетровщин -> Dnipropetrovsk Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "запоріжжя -> Zaporizhzhia Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "нікопол -> Nikopol",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховк -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпропетровщин -> Dnipropetrovsk Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Нікопол -> Nikopol",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Великий Луг -> Velykyi Luh",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:27:18Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "F7g3DNwvuuE": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Дно колишнього Каховського водосховища перетворюється на ліс. Інтерв'ю з екологом Вадимом Манюком",
+  "channel": "Суспільне Дніпро",
+  "channel_id": "UCHor8vwW6KPxV3FPmWQtE3Q",
+  "published": "2024-02-14",
+  "license": "standard YouTube licence",
+  "duration_s": 645,
+  "url": "https://www.youtube.com/watch?v=F7g3DNwvuuE",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "дніпропетровщин -> Dnipropetrovsk Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "запоріжжя -> Zaporizhzhia Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "нікопол -> Nikopol",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховк -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "dnipropetrovsk -> Dnipropetrovsk Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпр -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Великий Луг -> Velykyi Luh",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:27:41Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "8pXCDBguc9c": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "У Каховське водосховище повертається вода: пояснення від еколога Вадима Манюка",
+  "channel": "Суспільне Дніпро",
+  "channel_id": "UCHor8vwW6KPxV3FPmWQtE3Q",
+  "published": "2024-03-16",
+  "license": "standard YouTube licence",
+  "duration_s": 405,
+  "url": "https://www.youtube.com/watch?v=8pXCDBguc9c",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "дніпропетровщин -> Dnipropetrovsk Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "запоріжжя -> Zaporizhzhia Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "нікопол -> Nikopol",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховк -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "dnipropetrovsk -> Dnipropetrovsk Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпр -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Великому Лузі -> Velykyi Luh",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:27:59Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "IOqVVIfFDJo": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Нікополь, Марганець | \"Тревел нашого часу\" з Денисом Христовим | Випуск 1",
+  "channel": "Телеканал ДІМ",
+  "channel_id": "UC1RFIiqw8xaYyVXq3zc6hPw",
+  "published": "2024-05-19",
+  "license": "standard YouTube licence",
+  "duration_s": 2521,
+  "url": "https://www.youtube.com/watch?v=IOqVVIfFDJo",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Нікопол -> Nikopol",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Дніпропетровщин -> Dnipropetrovsk Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Покровськ -> Pokrovsk",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Нікопол -> Nikopol",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Вовчанськ -> Vovchansk",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпропетровськ -> Dnipropetrovsk Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Нікопол -> Nikopol",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "ru",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:28:15Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "gNYVTWdys68": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "ЩО СТАЛОСЬ ІЗ ДНОМ КАХОВСЬКОГО МОРЯ? СПЕЦПРОЕКТ \"ПОБАЧИТИ ДНО\"/ТСН.Тиждень",
+  "channel": "ТСН Тиждень",
+  "channel_id": "UCkGSij8hVjwglv_g4cF-ZOA",
+  "published": "2024-06-05",
+  "license": "standard YouTube licence",
+  "duration_s": 3180,
+  "url": "https://www.youtube.com/watch?v=gNYVTWdys68",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "КАХОВСЬК -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "херсон -> Kherson Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "дніпро -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Каховк -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "великий луг -> Velykyi Luh",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Херсон -> Kherson Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:30:13Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "VV5Nju1dIsE": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Каховське водосховище стає справжнім заплавним лісом? Великий луг наповнюється водою!",
+  "channel": "RID",
+  "channel_id": "UCVNhuJ9uW8GzAv3TyURHbTQ",
+  "published": "2026-04-19",
+  "license": "standard YouTube licence",
+  "duration_s": 1523,
+  "url": "https://www.youtube.com/watch?v=VV5Nju1dIsE",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Великий луг -> Velykyi Luh",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Запоріжжя -> Zaporizhzhia Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "запоріжжя -> Zaporizhzhia Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "дніпро -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Великий Луг -> Velykyi Luh",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:32:21Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "e4SXPVhRXS0": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "«ЛІС ВИЩЕ 9 МЕТРІВ!» ШОКУЮЧА ЕКСПЕДИЦІЯ НА ДНО КАХОВСЬКОГО ВОДОСХОВИЩА",
+  "channel": "ТСН Плюс",
+  "channel_id": "UCMFSe7MeRU4NSZQYqzc2KPQ",
+  "published": "2026-06-06",
+  "license": "standard YouTube licence",
+  "duration_s": 2111,
+  "url": "https://www.youtube.com/watch?v=e4SXPVhRXS0",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "КАХОВСЬК -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Великого Лугу -> Velykyi Luh",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:34:15Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "DGIFNa_viuc": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Що з'явилося на дні Каховського моря за 3 роки після підриву ГЕС? «Великий Луг. Незвідана Зона»",
+  "channel": "Суспільне Дніпро",
+  "channel_id": "UCHor8vwW6KPxV3FPmWQtE3Q",
+  "published": "2026-05-28",
+  "license": "standard YouTube licence",
+  "duration_s": 2116,
+  "url": "https://www.youtube.com/watch?v=DGIFNa_viuc",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Великий Луг -> Velykyi Luh",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "дніпропетровщин -> Dnipropetrovsk Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "запоріжжя -> Zaporizhzhia Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "херсон -> Kherson Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "дніпро -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "великий луг -> Velykyi Luh",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Херсон -> Kherson Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпр -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Нікопол -> Nikopol",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Великий Луг -> Velykyi Luh",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:36:03Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "nmLWT7YTt3I": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Каховське водосховище Минуле і Майбутне. Великий луг відродитися!? Думка відомого вченого.",
+  "channel": "RID",
+  "channel_id": "UCVNhuJ9uW8GzAv3TyURHbTQ",
+  "published": "2025-12-28",
+  "license": "standard YouTube licence",
+  "duration_s": 2275,
+  "url": "https://www.youtube.com/watch?v=nmLWT7YTt3I",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Великий луг -> Velykyi Luh",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Дніпропетровщин -> Dnipropetrovsk Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Запоріжжя -> Zaporizhzhia Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Херсон -> Kherson Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Запоріжжя -> Zaporizhzhia Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Херсон -> Kherson Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Великий Луг -> Velykyi Luh",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:37:40Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "RVOstzWO48s": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "І вода і ліси! Клімат, аграрії і Каховське водосховище.",
+  "channel": "RID",
+  "channel_id": "UCVNhuJ9uW8GzAv3TyURHbTQ",
+  "published": "2026-03-13",
+  "license": "standard YouTube licence",
+  "duration_s": 2307,
+  "url": "https://www.youtube.com/watch?v=RVOstzWO48s",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:39:13Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "2K7eAJVD_qw": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "🌊 Дно Каховського водосховища мало СЕКРЕТИ - тепер все ВІДКРИЛОСЯ!",
+  "channel": "ТСН",
+  "channel_id": "UCXoJ8kY9zpLBEz-8saaT3ew",
+  "published": "2023-06-18",
+  "license": "standard YouTube licence",
+  "duration_s": 1669,
+  "url": "https://www.youtube.com/watch?v=2K7eAJVD_qw",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "херсон -> Kherson Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:42:00Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "aqyGE7aS6pg": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "ЩО НА ДНІ КАХОВСЬКОГО МОРЯ?/ЗНАЙШЛИ ЧОВЕН КОЗАКІВ/ЗА СКІЛЬКИ ПРОДАЮТЬ РЕЛІКВІЇ НА ЧОРНОМУ РИНКУ",
+  "channel": "PRESSING",
+  "channel_id": "UCxrfrBPA8_cgg8RUqfeQM5A",
+  "published": "2023-07-06",
+  "license": "standard YouTube licence",
+  "duration_s": 3225,
+  "url": "https://www.youtube.com/watch?v=aqyGE7aS6pg",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "КАХОВСЬК -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "дніпр -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "великий луг -> Velykyi Luh",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Великий Луг -> Velykyi Luh",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:42:33Z",
+   "scope_name": "Ukraine"
+  }
+ }
+}

@@ -1,0 +1,106 @@
+{
+ "ZUXsmHCUVg4": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Яким став Великий Луг через 4 роки після катастрофи і обстрілів: Вадим Манюк про колишнє водосховище",
+  "channel": "Суспільне Дніпро",
+  "channel_id": "UCHor8vwW6KPxV3FPmWQtE3Q",
+  "published": "2026-09-16",
+  "license": "standard YouTube licence",
+  "duration_s": 1289,
+  "url": "https://www.youtube.com/watch?v=ZUXsmHCUVg4",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Великий Луг -> Velykyi Luh",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "дніпропетровщин -> Dnipropetrovsk Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "запоріжжя -> Zaporizhzhia Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "нікопол -> Nikopol",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "великий луг -> Velykyi Luh",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Дніпр -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Нікопол -> Nikopol",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Великий Луг -> Velykyi Luh",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:48:25Z",
+   "scope_name": "Ukraine"
+  }
+ }
+}

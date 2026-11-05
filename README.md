@@ -6,6 +6,42 @@ source link plus location and date clues, and every clue carries a confidence an
 
 Full rules and design notes are in [`CLAUDE.md`](CLAUDE.md).
 
+The project now ends in **one film of at most 10 minutes**, *Powerlines*: the ten power lines of the Zaporizhzhia
+Nuclear Power Plant through four years of occupation, across the drained Kakhovka reservoir, until one line of ten is
+left. The collection, the satellite films, the 3D crossing and the storyboard are its research and its sequences.
+*The Conductive Seam* is the name of the evidence folder that holds the film's material (`libraries/conductive-seam/`)
+and of the satellite research, not of the film.
+
+## Where things are
+
+| Where | What |
+|---|---|
+| `src/image_evidence/` | the pipeline and the site (`web/`); `satellite/` the satellite films, `satellite/scene3d/` the 3D crossing (Blender), `storyboard/` the film's storyboard |
+| `scripts/` | one-off builders: the gazetteer, the PDF importer, `scene/` the Scene Viewer's reconstructions |
+| `config/` | discovery configs (`*.yaml`, one study area each), `conductive-seam.yaml` (satellite areas, networks, the 3D crossing), `storyboard.yaml` (the shot pool) and `storyboard-cuts.yaml` (the cuts) |
+| `docs/` | the film's plans: `znpp-heart-plan.txt` (the narrative outline), `crossing-3d-plan.txt` (the 3D crossing, its STATUS), `znpp-zoomout-report.txt` (an early review) |
+| `reports/` | the research reports (Markdown, figures in `images/`) |
+| `research_notes/` | the notes behind each report, one folder per report |
+| `tests/` | offline tests |
+| `library/` | the main collection (gitignored) |
+| `libraries/conductive-seam/` | the film's material (gitignored), below |
+
+In `libraries/conductive-seam/`:
+
+| Where | What |
+|---|---|
+| `storyboard/storyboard.blend` | the storyboard, to open in Blender's Video Editing tab (`media/`: its film previews) |
+| `satellite/networks/znpp/films/<id>/ZNPP-ten-lines-zoom-out.mp4` | the zoom-out: the plant's ten lines, their record and the Hum (its sound beside it, `.wav`) |
+| `satellite/networks/znpp/scenes/crossing3d/animatic/ZNPP-last-two-lines-3D.mp4` | the crossing in 3D between the last two lines (`.blend` its scene, `.wav` its sound) |
+| `satellite/networks/znpp/scenes/crossing3d/` | the 3D crossing's survey, scene, cameras, drained bed (`bed/`) |
+| `satellite/corridors/great-meadow/films/<id>/film.mp4` | the travelling shot along the Great Meadow |
+
+```sh
+evidence storyboard [show|build|sync]          # the storyboard: lay it out in Blender, read a rearrangement back
+evidence satellite network --network znpp       # the zoom-out
+evidence satellite crossing3d --pass animatic   # the 3D crossing (ZNPP-last-two-lines-3D.mp4 and .blend); --pass blend: the .blend only
+```
+
 ## Scope (hard limits)
 
 - **Ukraine only.** `scope.check_scope()` gates every video before anything is written. It checks the uploader

@@ -1,0 +1,54 @@
+{
+ "view": {
+  "id": "b",
+  "what": "inside the forest's edge 90 m east-north-east of tower 20, looking up at it through a gap in the young willows, over the reeds",
+  "cam": [
+   3812.0,
+   4782.0
+  ],
+  "heading": 253.0,
+  "pitch": 30.0,
+  "lens": 16.0,
+  "eye": 1.6,
+  "cone_deg": 80,
+  "far_m": 1200,
+  "clear_m": 1.2,
+  "clear_tall_m": 2.0,
+  "gap": [
+   11,
+   3,
+   95
+  ]
+ },
+ "camera_ground_m": 6.41,
+ "habitat_at_camera": "woody",
+ "plants": 18982,
+ "by_layer": {
+  "canopy lod0": 86,
+  "canopy lod1": 25,
+  "canopy lod2": 1689,
+  "understorey lod0": 324,
+  "understorey lod1": 113,
+  "marsh lod0": 247,
+  "marsh lod1": 1220,
+  "herbs lod0": 2614,
+  "herbs lod1": 2435,
+  "grass lod0": 7605,
+  "grass lod1": 2624
+ },
+ "by_family": {
+  "0": 1337,
+  "1": 463,
+  "2": 343,
+  "3": 75,
+  "4": 19,
+  "5": 1515,
+  "6": 46,
+  "7": 1833,
+  "8": 1250,
+  "9": 373,
+  "10": 805,
+  "11": 694,
+  "12": 10229
+ }
+}

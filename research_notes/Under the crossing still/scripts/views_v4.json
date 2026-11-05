@@ -1,0 +1,26 @@
+{
+ "note": "The v4 view (5 November 2026): f re-framed on the line's axis, for the 30 s shot `under-the-crossing`. Positions in the scene's own metres (x east, y north). The camera stands on the vertical plane through the centres of Ferosplavna-1's towers 22 and 23, `back_m` short of tower 23, looking along the span toward it (heading = bearing 22 to 23, computed), roll 0. Plants are placed as in v3 (place_plants.py) on the left of the axis only, then mirrored across it with jitter (place_v4.py); a young forest is composed round tower 23's caisson. Both are framing choices, said so.",
+ "views": [
+  {
+   "id": "f4",
+   "what": "f on the axis: in the meadow lane under Ferosplavna-1's span 22-23, looking along it to tower 23, the wires converging on it",
+   "tower_from": [4185.0, 6275.1],
+   "tower_to": [4426.2, 7062.3],
+   "back_m": 190.0,
+   "pitch": 15.0,
+   "lens": 18.0,
+   "eye": 1.6,
+   "cone_deg": 75,
+   "far_m": 1500,
+   "clear_m": 1.0,
+   "clear_tall_m": 2.5,
+   "gap": [6, 3, 150],
+   "low_wedge": [20, 4, 168, 1.45],
+   "caisson_clear_m": 23.5,
+   "keep_side": "left",
+   "base_forest": {"r": [23.5, 115.0], "spacing_m": 3.4, "p_near": 0.92, "p_far": 0.6,
+                   "front_low_half_m": 10.0, "front_shrub_half_m": 16.0, "poplar_share": 0.3},
+   "lod": {"trees_lod0_m": 40, "trees_lod1_m": 420}
+  }
+ ]
+}

@@ -1,0 +1,388 @@
+THE CROSSING IN 3D: FROM THE SATELLITE MAP TO A FLIGHT BETWEEN THE LAST TWO LINES
+Planned with the user, 25 October 2026. A sequence of the final film (CLAUDE.md "The end result"; the film outline in
+docs/znpp-heart-plan.txt, THE END RESULT). Read this before working on the 3D sequence.
+
+STATUS (26 October 2026)
+- Plan agreed. Pass 0 done (25 October 2026): `evidence satellite crossing3d` (satellite/scene3d/export.py `survey`,
+  config `crossing3d:` under networks: znpp) writes scenes/crossing3d/survey.json and survey.webp (the June and
+  September 2023 passes side by side, lines, towers, crossing point, flight path). Next: pass 1 (the grey-box camera
+  animatic). What it found (corrects the estimates below):
+  - The lines cross 3.4 km east and 2.6 km north of the plant: Dniprovska passes over Ferosplavna's row there. North of
+    it they run side by side a steady 365 m apart (median; 288 m just after the crossing), not 0.3-1 km. Flying north,
+    Ferosplavna (1 and 2, one row of towers) is on the LEFT and Dniprovska on the RIGHT (the right ear).
+  - The flight path (midline) runs 6.7 km from the crossing point to 9.0 km north, heading 15° east of north; both lines
+    turn on the north bank just after (Dniprovska at 9.0 km, Ferosplavna at 9.2 km).
+  - Water on 5 June 2023 (the day before the dam broke): 3.9-8.3 km north along Dniprovska, 4.0-8.4 km along
+    Ferosplavna (not 4.8-8.7). After (8 September 2023): only the river channel, 4.2-4.6 / 4.3-4.7 km north.
+  - Towers: every vertex of both lines in the window is an OSM tower node in great-meadow's saved Overpass reply (the
+    switchyard end of Dniprovska excepted), so no new fetch was needed. Crossing towers (`tower:type=crossing`):
+    Dniprovska 5, spans 1.2-1.35 km; Ferosplavna 7, spans 0.76-0.92 km. Most carry OSM's `fixme=check position`
+    (4 and 5 of them): check against the WorldView-2 inset before pass 4. None has a height tag.
+  - FABDEM (tile N47E034 now cached): the reservoir is flat at 14.5 m in it; the south bank 18-22 m, the north bank's
+    crossing towers at 28-30 m.
+- Pass 1 started (25 October 2026): `evidence satellite crossing3d --pass animatic [--variant plant|crossing]`
+  (scene3d/camera.py the camera as numbers, export.py `scene`, build.py inside Blender, animatic.py renders, mp4s,
+  contact sheets, compare.mp4). Land: FABDEM at 40 m under the 8 September 2021 pass (imagery/crossing_2021, 40x24 km
+  round the crossing), unlit; towers boxes of placeholder heights (until pass 4, below); wires straight; haze from 5 km beyond what the camera
+  looks at. Two openings asked for by the user, both ending 120 m up over the lines' crossing, pitch -12°, 28 mm:
+  `plant` (tilt while travelling from the plant, 10 s) and `crossing` (a 4 s top-down slide to the crossing, then an
+  8 s tilt there); then 15 s of flight at 80 m/s. About 0.25 s a frame at 960x540.
+  The user chose `plant` (25 October 2026), but without its correction at the end: the tilt landed on the lines'
+  crossing, where the midline jogs for a kilometre while the lines spread to 365 m, so the camera shifted sideways to
+  centre itself, and it stopped before the flight set off. Now (camera.py): the camera flies the corridor's AXIS (the
+  straight line through the midline where the lines run parallel, 3.1-9.0 km north, bearing 16.8°, within 8 m of the
+  midline); its own ground track curves from over the zone's circle onto the axis, tangent, landing at the crossing's
+  northing (about 160 m west of the crossing itself), its speed eased from rest into the flight's 80 m/s with the
+  braking fading to nothing (a quintic: no stop, no jolt). Two framings to pick from: `centred` (120 m, -12°, 28 mm:
+  the frame the user marked) and `low` (70 m, -7°, 35 mm). The user also likes a reference photo's angle (a little
+  too low and off-centre, but it shows detail and the wires' sag); the image didn't come through: ask for it again.
+  Seen in the first render: 10 m imagery is soft from 120 m up (pass 5's look, or fly higher); 15 s at 80 m/s only
+  reaches the shore (the water starts 1.3 km on).
+  The user chose `low` (25 October 2026: its angle from 11 s on is good), but 2-11 s should follow the yellow line
+  (Dniprovska) out of the plant until the camera diverts smoothly into that frame, smooth and purposeful. In `low` the
+  camera's track went north-east while it faced north (crabbing 40-60°), so the line slid out of the frame. Tried: the
+  camera following the line, its heading the way it went (`trace`, `sweep`): REJECTED by the user, the map swivelled.
+  The map stays north up: the heading only eases from north to the corridor's 17° over the whole move, as in `low`.
+  Asked instead (25 October 2026): `low`'s movement, but zooming in and tilting over the corridor's axis extended back
+  south from the crossing, at a point to choose along it. A variant's `approach_m`: the track comes onto the axis that
+  far before the landing (a quintic curve, no sudden turning), then runs straight up it; the slide from the zone's
+  centre happens while high and looking straight down. Four to pick from: `axis1k`, `axis2k`, `axis3k` (about level with
+  the plant; the slide dips south-east first) and `axis2k_late` (straight down for longer, `tilt_from` 0.45, so the
+  whole tilt is on the axis). On the axis from 8.7, 7.6, 6.9 and 7.6 s (`low`: only at the landing).
+  The user chose `axis2k` (25 October 2026): the opening is settled; the other variants were removed from the config.
+  Then asked to carry the camera on to the end of the crossing. The animatic's `route` (camera.py `route`): keys along
+  the axis by km north, each a speed and any change of view, eased between (quintic, no jolt at a key). The plan's
+  beats, as a first timing (pass 2 pins them to the record's dates): on at 80 m/s over the south bank to the shore
+  (3.9 km N, 29.8 s); slowing to 4 m/s and rising to 110 m, pitch -16°, over the full reservoir (4.35 km, 41 s); the
+  hover over the river channel, the crossing towers ahead on both sides (26 s, to 4.45 km: the drain); on, down to
+  70 m, over the bed at 80 m/s (to 7.7 km); slowing to a stop on the north bank between the last crossing towers,
+  rising to 150 m (8.4 km; first 8.7, between the last crossing towers, but the turn swung through Ferosplavna's tower and wire 171 m off); turning round to the left in 14 s to look back south across the crossing at the
+  plant (50 mm), held 8 s. 2:44 in all: over the 2-2.5 min agreed, to be cut in pass 2.
+  The user's notes on it (25 October 2026), now the route: NO tilting down (the hover pitched to -16°): level with the
+  horizon all the way, as at the landing (70 m, -7°); NO slowing or stopping for the drain: the drain happens while the
+  camera flies on at 80 m/s; at the north shore the camera lifts up and away (to 300 m, slowing to 60 m/s, still
+  level) and fades to white over the last 5 s; NO turn round or pivot (the look back is dropped). The drain in this
+  prototype: the land dissolves from the 2021 pass (the reservoir full) to the zoom-out's 2025 crop (the drained bed;
+  same box and grid, `texture_after`) as the camera passes 4.8-5.5 km N (`drain_km`, about 9 s), said in scene.json
+  as an interpolation between two dates; the bed's relief stays FABDEM's flat reservoir until pass 3. 1:41 in all
+  (pass 2 sets the speed and timing against the record's dates).
+  The user approved `axis2k` as rendered (25 October 2026; the test variants' renders deleted at their request) and
+  asked for a version with the electricity heard, left and right, as the lines were cut and reconnected, slow enough
+  to tell which side is live, the flight spaced so the record has played out by the north shore and the fade.
+  `axis2k_record` (a variant: `axis2k` stays as approved): states.py keeps the network's record to Ferosplavna-1
+  (left, pan -0.85) and Dniprovska (right, 0.85) and the complete losses, from 6 September 2022 (the zone's day: the
+  3D takes over) to 11 September 2026. Each line starts as the reports leave it (Dniprovska cut since 3 September,
+  Ferosplavna-1 unreported until 29 December 2022: dotted and muffled). Every state held at least 1.3 s, a multi-day
+  complete loss 2-3.5 s; a line fades out over 0.4 s and swells back over 0.8 s (heard: 0.3 s and 0.6 s). The full
+  record would need 100 s even at the 2D film's pace, so the 25 outages over within the day (18 brief complete
+  losses, most in 2026) are left out, each listed in camera_axis2k_record.json `record.left_out`: 50 moments remain.
+  Seen: a cut wire unlit, steel grey and half as thick, an unreported one the same, dotted (light means power, the
+  2D film's convention, the user, 2 November 2026; dark red and grey before); the date top left and
+  each line's name on its side (dimmed while cut), white capitals on a half-black box. Heard: hum.score with the two
+  voices (200 Hz stressed for the 750 kV, 600 Hz for the 330 kV), slower envelopes (`follow`), the level set where
+  both are connected (`ref_s`); the WAV beside the mp4. The drain is pinned to 6 June 2023 (26.5 s, a 6 s dissolve,
+  the camera 340 m from the shore). 77 m/s instead of 80 so the last change (Ferosplavna-1 reconnected, 7 September
+  2026) comes at 85 s, as the camera reaches the north shore and lifts; held through the lift and the fade. 1:44.
+  The user is still deciding the hums' pacing and number (the within-day outages could come back as quick dips).
+- Pass 4's towers done (25 October 2026; the user: "as accurate/detailed as the real things ... they come in different
+  sizes"), ahead of passes 2-3. scene3d/towers.py: each OSM tower drawn as the type it is (towers.npz: one mesh per
+  type, placed and turned to its line; scene.json `towers`: types, sources, statement). Research (sources in
+  towers.SOURCES): Novoklimov's 2011 photo report of both crossings and their land towers (his own photos of
+  Л-243/244, the crossing towers, ZNPP-Dniprovska no. 30, the caissons being floated in 1977), SkyscraperPage nos. 23
+  (750: 126 m, crossbar 113 m, caisson 40 m) and 19 (330: 100 m, crossbars 92/81/70 m, caisson 43.6/29 m, base 12.8 m
+  down), uk.wikipedia, OSM tags, Esri World Imagery over each tower (shadows, paint). Found: Dniprovska on land is
+  guyed portals (`pp750`) with three single-phase towers at angles and ends (OSM `triple_tower=yes`: `triple750`, seen
+  as three shadows); its crossing К-П-П-А-П-П-К: four 126 m suspension towers and the 100 m anchor in the middle, red
+  and white top to bottom; Ferosplavna on land is ПВС concrete portals (`pvs330`), triple end towers (`triple330`), and
+  seven 100/90 m double-circuit anchors over the water (`crossing330`, painted from the bottom arms up; all at no. 19's
+  100 m: which are 90 m isn't published). Caissons: ribbed cones, 3 m above the reservoir, under the 3 + 5 towers in
+  the water. Conductors: three (750) or six (330 crossing) glowing phases, keyed by the record as before, at least
+  0.7 px wide however far (a drawing convention); two earth wires; sag a parabola of L²/8C (C 1800 m, 4200 m on the
+  crossings: 45 m in a 1.25 km span), representative. The one vertex of Ferosplavna's way with no tower mapped gets
+  none. Checks: tests; a line-up render of each type against the photos; the camera's closest approach 34 m (over
+  Dniprovska's conductors where the lines cross). Not drawn: Ferosplavna's other circuit on its own towers on land (the
+  row is one of the two OSM ways; both circuits share the crossing towers). Member sizes, panels, arms, strings and
+  paint bands are representative and said so.
+- The towers refined (26 October 2026; the user, with a photo of the crossing towers in the ice and a textbook figure
+  of a line's parts: the trapezoids inverted, "suspension clamps, vibration dampeners, the crescent configuration yoke
+  plates ... the wires suspended properly in the assembly", colours "too pure white & orange"). Checked against
+  Novoklimov's close-ups of these heads (b30, b40: the 750 kV suspension tower; b13: the 330 kV anchor; b02: no. 30;
+  b03: the triple anchors): the crossarms are flat on top, their bottom chords rising to the tips (they were drawn the
+  other way up); the guyed portal's legs were already right (feet wide apart, closing to the top, as b02). Now: lattice
+  of L-section angles, thinner; arms with walkway rails; the window through the 750 kV body for the middle phase;
+  insulators as glass discs on strings in sets side by side between yoke plates (750 kV suspension: two in line at the
+  tips, eight across in the window; anchors four; the 330 kV crossing six, as its drawing; rings on 750 kV); each
+  phase's sub-conductors (750: five on a 0.6 m pentagon, clamped under a crescent yoke; 330: two, 0.4 m apart, under a
+  plate), dead-end yokes and clamps on the tension sets, jumpers per sub-conductor; spacers every 55/65 m and
+  Stockbridge dampers 2 m from every clamp (towers.fittings: one mesh in the world's frame); earth-wire clamps. Wires
+  at real radius (geometry nodes: at least 0.7 px at each point's own distance from the camera, so near wires stay
+  thin), a translucent glow round each connected bundle that fades out within 60-400 m of the camera (so the clamps
+  show); cut lines unlit steel grey, no glow. Colours weathered as photographed (the red a dull brick, the white greyed;
+  triple330 rust-brown as b07), shaded by a fixed sun from the south-east like the imagery's. Fittings' kinds as
+  photographed, sizes and spacing typical: scene.json `towers.fittings` says so.
+- The flow (26 October 2026; the user, after TouchDesigner's cooking wires: "clearly show the direction of energy
+  going to the znpp or going to power the northern ukrainian grid"): dashes run along every connected line toward
+  where its power goes, a bright white-hot head with a tail fading behind it every `dash_m` (80 m, the first draft's
+  spacing, kept by the user), faint still dots between (every 10 m, FLOW_DOT_M), at `speed_mps` (650 m/s: the user's
+  TouchDesigner recording, ~0.9 frame widths/s; here the near spans run ~0.7-0.85), on the sub-conductors and in the
+  glow (which thickens at a head). Fullest over the water (the user: "most visible across the enerhodar dnieper
+  crossing"): each wire point's `cross` (towers.wires, towers.npz `wire_cross`, carried in the curve's tilt) is 1 over
+  the reservoir as the survey found it on its first water pass (5 June 2023, the day before the dam broke: Dniprovska
+  3940-8266 m N, Ferosplavna 4021-8391 m N), easing to 0 within CROSS_EASE_M (150 m) beyond its shores; on land the
+  dashes and dots are FLOW_LAND (0.35) as strong, while the wire itself dims and glows the same everywhere (the user:
+  "do not change the cable transparency, just the particle/dash animations"). Both lines' glow the same width
+  (GLOW_R 0.6 m) so their flow reads alike (the user: the left line's looked finer). The whole render is
+  animatic/3D-film.mp4 (the variant's `title`; renamed ZNPP-last-two-lines-3D.mp4 on 2 November 2026); the test videos were removed (26 October 2026). The direction is the
+  config's dated, sourced `crossing3d.flow.periods` (states.flow_toward, per frame in camera_<variant>.json): the plant
+  has sent no power to the grid since September 2022 and the grid sends power in, so through the whole 3D record it is
+  toward the plant (south over the water, toward the camera); a `toward: grid` period would run them north. None on a
+  line cut off or unreported. Each wire point carries `along` (metres from the line's plant end, towers.npz
+  `wire_along`, stored by geometry nodes) for the shader. Spacing and speed are drawn, not measured: said in
+  camera_<variant>.json `flow`. To test a stretch alone: `--seconds 40:55` (its own folder, mp4 and contact sheet;
+  the sound cut from the whole).
+- Pass 3, the drained bed, done as a full-length prototype (26 October 2026; the user: "build the bed's shape from
+  1940s-50s maps, realistic water level drop, and exposed powerline foundations ... the water change ... at around
+  35s"). `evidence satellite crossing3d --pass bed` (scene3d/bed.py; config `crossing3d.bed`), then the animatic.
+  Research (sources in the config and bed/sources/): no open elevation model of the drained bed exists; the 1941 Red
+  Army sheet L-36-22 (Indiana University, public domain) gives spot heights on the floodplain before the reservoir
+  (five read by hand round the crossing, held to at half weight); ICESat-2 ATL08 (Lehnigk et al. 2026, Zenodo, CC BY)
+  measured the bed in August 2023, but only west of the crossing (34.36-34.55 E); the water's fall from the official
+  gauges (DAHITI altimetry 17.22 m on 4 June; the Hydromet Center's 16.77 m Baltic on 5 June; the IAEA's plant series
+  to 9 June; Ukrhydroenergo's Nikopol gauge to 9.04 m on 11 June, when the water left it), then SWOT's river reaches
+  either side of the crossing each month (about 9.3 m in August 2023, swinging 1.5-2 m with the seasons, 7.4 m by
+  September 2025), and SWOT's slope along the river (7.5 m per degree of longitude, about 0.1 m/km rising upstream).
+  Baltic heights are raised 0.4 m to EGM2008 (inferred from the altimetry against the gauge; never published).
+  The waterline method: the footprint is the reservoir on 5 June 2023; 45 clear Sentinel-2 and Landsat passes from 8
+  June to 8 September (green, NIR, SWIR per pass in bed/obs/) give where the water still was (MNDWI over 0.2, NIR under
+  15%; 8 June's silt-laden floodwater by its own rule, SWIR under 9%), only water joined to the river counting (a
+  body reaching the box's east or west edge: the floodplain's perched lakes keep their own level, unknown); each
+  pixel's drying fitted as one step, a pixel wet in most of its last 15 passes still under the water; heights between
+  the levels either side, by distance to the ground that dried before and after, the level sloping along the river as
+  SWOT measures it once the reservoir has turned back into one; where it never dried, a bank sloping under the last
+  level (inferred). Left out, with reasons in bed.json: the two Sentinel-1 radar passes (read against ICESat-2 they
+  call ground dry that lay metres under the water). Checked: against ICESat-2 from the shorelines alone the bed is
+  1.2 m high (median; MAD 1.2), 0.4 m once held to it; the modelled water on 19 August 2023 agrees with the water seen
+  that day except the perched lakes (drawn by the imagery, not as river).
+  In the scene (export.py, build.py): the land at 20 m with the bed inside the footprint (the shore's first row of
+  FABDEM raised to the full level where FABDEM's water's edge is low); one water surface over the footprint at the
+  frame's level, tilting along the river as its slope forms, capped once settled at the lowest level the bed was
+  mapped at (8.94 m: the inferred floodplain is too flat to hold the seasonal rises, so those aren't drawn; its falls
+  are); its colour the 2021 pass's own pixels until the breach, then the passes' measured water colour; a sky
+  reflection at half of Fresnel and drawn ripples, screen-space reflections of the towers and wires. The bed's ground
+  is the passes in date order (20 June 2023 shown from the day after the breach as the ground comes out; 19 August
+  2023, 23 August 2024, 28 August 2025), each crossfaded in over the 40 days before its date. The caissons
+  redesigned from Esri's WorldView-2 of the exposed drums (23 August 2024): a ribbed 32-panel drum, a faceted cone to a
+  flat top 3 m above the normal level (16.0 m Baltic), stained below the old waterline (representative), set on the
+  normal level, not FABDEM's flat water, so 8-10 m of them stands out of the drained bed.
+  Timing: the dam's day pinned at 35 s (`pins`; it was 26.5 s), the date stepping through 7-11 June a day a second as
+  the water falls, settling on 17 June at 42.5 s; five brief cuts left out for pace (`omit`: 26 November 2023, 4
+  April, 21 October, 16 November and 2 December 2024; listed in `record.left_out`), so 2024-26 keeps its pace; the Hum
+  follows the record. The previous render was kept as animatic/3D-film_before-pass3.mp4 to compare (deleted with
+  pass 3 v1's on 2 November 2026, at the user's request). About 3 s a frame (ray tracing at half resolution, the 20 m
+  land).
+- Pass 3 revised (26 October 2026; the user: the right line "ends abruptly ... continued so it communicates ... these
+  powerlines feed to/from the ukrainian northern grid. use real data"; the floodplain's lakes and rivers as the
+  imagery shows them; and a double check of the caissons, "more of it would be exposed vertically ... the riverbed was
+  deeper"). Done:
+  - The lines go on as OpenStreetMap has them: the land's box is now 40x36 km centred 3 km E, 10.5 km N of the
+    crossing (layers `c3d_*`; the bed keeps its own box, `bed.grid_of`), the window -1.5..27 km, the towers beyond the
+    corridor from a new Overpass reply over the box (scenes/crossing3d/raw/osm_power.json, `towers.beyond`).
+    Dniprovska runs on 27 km north (88 towers) toward Dniprovska 750 kV, cut by the box (`cut`: no gantry drawn at a
+    cut end) into the haze; Ferosplavna (133) turns west along the bank to its substation, drawn to it.
+  - The water as seen: after settling (17 June 2023) the reservoir's plane sinks 6 m over 2 days (`HANDOVER`) and the
+    water is drawn per pass as observed: the river (joined to the box's edge) as one sheet at the reported level plus
+    slope, a shape key per pass keyed by the layer weights, the bed carved under it (0.4 m + 0.05 m per metre from the
+    shore, at most 2.5 m: inferred, said so); the pools and narrow channels in the land shader from each pass's own 10 m
+    water mask (`bed.channels`: MNDWI over 0.2 and NIR under 15%, or SWIR under 11% and under 0.6x its 31-px median with
+    MNDWI over -0.25, which finds channels under willows and reeds; specks under 6 px dropped; softened 1.2 px), keeping
+    the pass's own colour with a drawn gloss and ripples. Seen: the 2023 floodplain lakes and the restored channel
+    (east-west, 1.5-3 km north of the crossing); in 2024-25 the dredged straight channel along the line and the north-east
+    lake are dry or overgrown, as the passes show (they had been flooded by the single plane).
+  - The caissons checked: uk.wikipedia (foundations 30 m across, 2-5 m above the water; 40 m for the 750 kV) and
+    SkyscraperPage no. 19 (the base 12.8 m under the water) agree with the drums at 19.4 m (16.4 + 3). The bed under them
+    had read 11.6-13 m: Sentinel-2 saw the concrete as dry ground from the first pass, so the waterline method dated
+    its drying too early. Now each crossing tower's disc (45 m, `STRUCTURE_M`) is left out of the shorelines and takes
+    the median of the bed round it (`_fill`), and the later passes (23 August 2024, 28 August 2025, `observe.also`)
+    bound the bed (river water at least 0.3 m under that day's level, dry ground 0.1 m over it). Exposed: about 11.5 m on
+    the 750 kV caissons (bed about 7.9 m), 7.6-12 m on the 330 kV ones. Esri's WorldView-2 (2024) shows water-filled scour
+    moats round the 750 kV caissons. Tried and not used: tower heights from shadow lengths (where a shadow's tip falls
+    is not known). Not more than that: no. 19's base 12.8 m under the water is about 3.6 m Baltic, so the drums are sunk
+    4-7 m into the floodplain's ground, not standing on it. Against ICESat-2: median 0.43 m, MAD 0.6.
+  - The land is hillshaded (`RELIEF`, smooth shading) so the bed's relief reads.
+- S6, the flight south (4 November 2026; the user: "facing the other way around and flowing with the electricity
+  instead of against it"; NEXT.md S6). A second version beside the approved one, `south_record`, rendered as
+  animatic/ZNPP-last-two-lines-3D-south.mp4 (.wav, .blend); `axis2k_record` and its film stay as they were. Not the
+  film played backwards: a camera of its own (camera.frames_track, a variant's `track`), the same scene, record, water,
+  flow and Hum. The user's calls: fade in from white and come down over the north bank; a slow rise over the units
+  and fade (temporary: what they want to see is the crossing and the plant modelled from afar); the plant detailed.
+  - The camera: faded in from white 300 m over the north bank (9.6 km N of the plant, just past where both lines
+    turn), coming down to 70 m by 8.6 km while speeding up to 80 m/s; south down the corridor's axis (heading 197°,
+    the dashes running ahead of it toward the plant); off the axis 0.6 km before the lines cross, on a quintic curve
+    to 253°, rising in one smooth climb to 335 m (pitch -7° to -9°) and slowing to a drift 2.1 km north-east of the
+    units, the six units and the two cooling towers in frame; the last 5 s fade to white. Its heading is always the
+    way it travels (no crabbing, no turn round); 2:33 in all. North and south swap the sides: Dniprovska left (pan
+    -0.85), Ferosplavna right; the names fade at 92 s, before the lines cross and part to their switchyards. The
+    record's own timing (`record:` in the variant; states.options; re-pinned 4 November 2026 so the drain is seen: the
+    first pins left the reservoir behind the camera before it emptied): the date at 5 s, the full reservoir held
+    to the dam's day at 35 s (the camera over open water about 6 km north of the plant), settled 17 June at 42.5 s,
+    the dry pass (23 August 2024) at 51 s and 28 August 2025 at 65 s, while the bed is still under the camera
+    (`run_s` 95: the last change about 101.5 s, as the rise begins), then held to the fade.
+  - The plant modelled (scene3d/plant.py, scene.json `plant`; only in a variant with `extras: [plant]`): OSM's
+    footprints and places (raw/osm_plant.json: 1,097 buildings of the plant, the thermal plant and Enerhodar), the six
+    units' containments (45 m across, the dome's top at 66.45 m: SMiRT 19, Great Russian Encyclopedia) on grey boxes at
+    OSM's 40 m, their turbine halls and bays placed from the 10 m imagery and photographs (not mapped), the vent stacks
+    (about 105 m, read off photographs), the special building's striped chimney (100 m, SkyscraperPage), the two
+    cooling towers (125 m, SkyscraperPage; checked by their shadows on seven winter Sentinel-2 passes 2023-2025:
+    about 120 m, 112-129 m, research_notes/Cooling tower height check/; no plumes: none on any pass since 2022), the thermal plant's two chimneys (320 m, OSM and SkyscraperPage); the town
+    at its storeys (3 m each) or a representative height by kind. Colours as photographed (Commons). Not drawn: the
+    fire damage to cooling tower no. 1 (11 August 2024, mostly inside it), the switchyards' gantries.
+  - The land on south (`land_south`, `extras: [land_south]`): the box ended 7.5 km south of the plant, in view as the
+    camera comes toward it; the same five passes over a 12 km strip (imagery c3s_*), FABDEM under them, keyed by the
+    same dates.
+  - Render: about 3 s a frame at 960x540 (4,577 frames). The scene shared by both versions (scene.json, terrain, towers,
+    water) was rebuilt with the plant and the strip; the approved version only draws them if its `extras` ask.
+  - The plant's other lines (`others`, `extras: [others]`, the user, 4 November 2026; export.other_rows, _others):
+    the three other 750 kV lines (Zaporizka, Pivdennodonbaska, Kakhovska) south into the distance, the four 330 kV
+    (Kakhovska, Melitopolska, Zaporizka, Molochanska), each from its end nearest the plant and cut at the land's
+    box; where one starts on a row already drawn it is drawn from the tower where it parts (that tower once). The
+    units' six feeds into the 750 kV switchyard and the two NPP-TPP 330 kV links too. Towers at OSM's towers
+    (raw/osm_power.json and raw/osm_power_south.json, the strip's box), land types only, wires without fittings
+    (others.npz). States by the date shown, from each line's own record run (states.others_per_frame: the film's
+    pacing stays the two lines'): the other 750 kV unlit throughout, the other 330 kV unreported from September
+    2022 and cut from 29 December 2022. The feeds lit with Dniprovska, the links with Ferosplavna-1 (the power
+    reaching the plant through them is inferred, said so). No context grid (the user: only the plant's lines).
+  Next, the user's review of the new render; then possibly the switchyards' gantries and sharper imagery near the plant.
+- Blender 5.2.2 LTS installed (/Applications/Blender.app). `blender` on PATH via a wrapper script in ~/.local/bin (a
+  symlink breaks Blender's bundled Python). Headless EEVEE renders on the GPU (Metal): about 4 s for a 960x540 test.
+- MCP for Blender (blender-mcp) 2.0.0: the add-on is installed and enabled in Blender with telemetry off (saved in the
+  user preferences); the `blender` MCP server is registered for this project only (`uvx mcp-for-blender==2.0.0`,
+  DISABLE_TELEMETRY=true). Its outside services (Poly Haven, Sketchfab, Hyper3D generation) stay off: generated
+  models are never evidence. The first live test hung (a dialog in Blender's window). Connected live on 25 October
+  2026 (add-on 1.7, protocol 7, up to date; scene info and viewport screenshot both work); telemetry was found on
+  and turned off again. Only the "MCP for Blender" add-on should be enabled (the `mcp` extension 1.0.3 is another
+  server), and Claude Desktop's own blender-mcp can hold the same port 9876. It is optional: the pipeline runs headless.
+- Screen recording and screenshot permission given to the terminal (the user, 25 October 2026), so Blender's
+  window can be checked with `screencapture`.
+
+======================================================================================================
+WHAT THE USER WANTS
+======================================================================================================
+A separate video, spliced into the zoom-out film (film-20261022-144403) at about 1:10, where the camera is close on
+the plant in the IAEA zone's held moment (11 km frame). From there the satellite top-down view tilts into 3D and the
+camera flies north from the ZNPP's side, between the Dniprovska (750 kV) and Ferosplavna-1 (330 kV) lines, over the
+water to the Nikopol bank. On the way:
+- the lines switch on and off in sync with the sourced record (record.py), heard left and right by their side on
+  screen (the right-hand line in the right ear);
+- arrows show the direction of power: into the plant since its shutdown (it draws power from Ukraine's grid instead
+  of supplying it);
+- the water drains after 6 June 2023 and exposes the tall foundations the crossing towers stand on;
+- later: realistic towers, wires, trees, water; the wires visibly and audibly carrying power.
+
+Decided with the user (25 October 2026):
+- The 3D sequence takes over everything after the zone's close-up: September 2022 to the last report (11 September
+  2026), the drain included, ending on the north shore. About 2-2.5 min of 3D.
+- The drained bed's relief: first look for open topography of the bed; derive it from waterlines where needed.
+- Work in passes: settle the camera and timing on cheap prototypes before any detail or long render.
+
+======================================================================================================
+TOOLS
+======================================================================================================
+- Blender, scripted and headless (`blender -b -P build.py -- spec.json`): every scene is rebuilt from data, never
+  hand-edited; the scripts are the source of truth. MCP for Blender (above) for live looks with the user while tuning
+  the camera; anything found that way goes back into the scripts.
+- Not used: BlenderGIS (our own importer keeps the zoom-out's exact coordinates, `zoomout.Plane`: metres east and north
+  of the plant = Blender X, Y; Z up, so the match cut is exact); Google Photorealistic 3D Tiles (generated meshes,
+  closed licence).
+- Also: CC0 assets (Poly Haven) as representative trees and textures, labelled; the Earthdata token in .env (for
+  ICESat-2 checks, as for VIIRS).
+- Engine: EEVEE for prototypes and probably the final (Cycles is too slow on the M3 for about 9,000 frames at 60 fps).
+
+======================================================================================================
+ARCHITECTURE: RENDER ONCE, SET THE TIMING AFTERWARDS
+======================================================================================================
+Blender renders passes; a Python compositor applies the record, so pacing, record and captions change without a new
+Blender render.
+- satellite/scene3d/export.py (our Python): a scene.json spec and assets in the zoom-out's plane: FABDEM heights (reuse
+  the fetch in scripts/scene/terrain.py; true to size, never exaggerated), the Sentinel-2 textures with the 2D film's
+  crops and gain (imagery/crossing for 2025, a new crossing_2021 crop), the OSM lines (network.json) and tower
+  positions, water levels by date, the camera path.
+- scene3d/build.py (runs inside Blender): builds the scene; renders per frame a beauty pass (terrain, water, towers,
+  unlit wires), an emission mask per line (AOV or view layer: Dniprovska, Ferosplavna-1, Ferosplavna-2, the others'
+  stubs near the plant) and depth; exports camera matrices per frame (camera.json).
+- scene3d/compose.py: per frame, each line's glow from Record.states in the 2D film's STATE_RGB / STATE_W / STATE_GLOW
+  and fades (on and off read the same in both), power-direction arrows along lit wires, the top-left date, count,
+  legend and captions, labels projected from OSM coordinates through camera.json (reuse zoomout._Overlay, _blend,
+  record.Record).
+- Sound: hum.score gets per-voice pan curves (arrays, not constants): each line's pan follows its screen x from
+  camera.json, a little level for distance. One score for the whole merged film, so the Hum is continuous across the cut.
+- The match cut: the 2D film's last frame (zoomout._view(i): half-width, centre) is the 3D sequence's first: a
+  perspective camera with a very long lens, high up (near-orthographic), on the same textures; then it dollies in while
+  the lens shortens (the ground width kept) and tilts. Checked by the pixel difference of the two frames.
+- zoomout gets a `handoff` option: after the zone's close hold the camera eases to the handoff framing (the plant and
+  both lines leaving north) and the 2D render stops there; the pull-back with the pulse, the dissolve and the 2D push in
+  are replaced by the 3D sequence.
+- Output: satellite/networks/znpp/scenes/<id>/ (scene.json, renders, film.mp4, film.json: camera per second, sources,
+  statements: modelled, derived, synthesized). CLI: `evidence satellite crossing3d --pass animatic|timing|final`.
+  Config: a `crossing3d:` block under `networks: znpp` in config/conductive-seam.yaml.
+
+======================================================================================================
+PASSES (fast prototypes first)
+======================================================================================================
+Pass 0, set-up and data check: the two lines' geometry over the water; the tower nodes (the great-meadow corridor's
+  saved Overpass reply has 5,120 towers, a few with design/height tags; fetch the towers along Dniprovska across the
+  crossing, saved verbatim); the flight path as the midline between the lines (about 0.3-1 km apart; they cross about
+  3 km north of the plant), from the switchyards to the north shore (about 10 km). The water crosses from about 4.8 to
+  8.7 km north of the plant.
+Pass 1, camera animatic (grey box, about 960x540, 15-30 fps, minutes): FABDEM land with the 2021 texture, the water a
+  plane at the reservoir's level, wires as straight OSM segments, towers as boxes at OSM positions; the match cut
+  against the 2D frame, then the tilt and the flight. Iterate with the user: height, speed, tilt timing, framing between
+  the lines, the hover for the drain, the look back at the end. An animatic and a contact sheet each round.
+Pass 2, timing, state and sound animatic (low resolution): the compositor with the record's states, arrows, date box,
+  labels, the panned Hum. Beats pinned to dates: handoff and tilt (September 2022, the zone still drawn); the flight
+  over the full reservoir; a hover while the water drains (6-25 June 2023, the date slowed); on over the bed to the
+  north shore through 2023-2026, losses held dark and silent; a look back south at the plant, ending on Ferosplavna-1
+  alone. Output: a low-resolution full-film preview with the 3D spliced in, to judge the whole film's pacing.
+Pass 3, ground truth (the bed, the water); research first, in order:
+  1. Pre-flood maps of the Great Meadow: German 1940s sheets (as Texty.org.ua used) and US Army Map Service 1950s
+     sheets (public domain): the valley's contours before 1956 (the bed has silted since: a base, labelled with its date).
+  2. Waterline contours: Sentinel-2 and Landsat water masks from the days the water fell (6-30 June 2023), each with
+     Ukrhydroenergo's Nikopol gauge level (14.41 m on 7 June 10:00, 12.5 m on the evening of 8 June, 11.74 m on 9 June
+     08:00, 9.35 m on 11 June 08:00; the full series to collect from the reports). Each shoreline is a contour of the bed.
+  3. Checks: ICESat-2 ground tracks over the exposed bed (open, needs Earthdata); the SWOT studies' data if released.
+  4. GLOBathy only as a coarse fallback.
+  The bed surface is tier derived/inferred with confidence and provenance; the water level animated from the gauge
+  series, plainly interpolated between reports, and said so.
+Pass 4, structures: research the crossing towers (type, height, the tall piers in the water: OSM tags, the saved
+  WorldView-2 inset insets/crossing-pylons.png, reporting, photos); parametric 750 and 330 kV lattice towers and the
+  river-crossing towers on their piers; wires as catenaries between attachment points (geometry nodes). All labelled
+  as modelled (representative types); positions always from OSM.
+Pass 5, look: vegetation from land cover (ESA WorldCover 2021 for the banks; the bed's regrowth since 2023 from
+  Sentinel-2 and the published plant-cover study), trees representative and labelled; water, haze, sun and grade
+  matched to the 2D film; the electricity: the 2D glow states, a faint corona shimmer when live, arrows. Look frames
+  at 1080p reviewed before the long render.
+Pass 6, final render and splice: EEVEE 1920x1080 at 60 fps in resumable frame-range parts (as the zoom-out's parallel
+  parts; about 3-6 s a frame, so 8-15 h for about 9,000 frames, overnight); compositor; the Hum for the whole film; one
+  splice; film.json records both sequences and the cut.
+
+======================================================================================================
+HONESTY (CLAUDE.md's rules, on screen and in film.json)
+======================================================================================================
+Positions from OpenStreetMap; terrain FABDEM, true to size; the bed derived from the sources above; towers and trees
+modelled or representative, labelled so; water levels from gauge reports; line states from the record; arrows by the
+reported direction (into the plant since its reactors were shut down: date to check against the IAEA, about 11
+September 2022; out of it before). Whether to call it "hostage" is the film's narrative, not a drawn fact. No
+generated imagery: the Sentinel-2 textures are only resampled. The Hum is synthesized and said to be.
+
+======================================================================================================
+VERIFICATION
+======================================================================================================
+Unit tests (offline, no Blender needed): export writes a spec in plant metres matching zoomout.Plane; the camera path
+stays between the two lines over the water; the compositor's line states equal Record.states frame by frame;
+hum.score with pan curves puts a right-side line's energy in the right channel. Each pass: a contact sheet and a short
+mp4 reviewed with the user; the match cut's pixel difference; left/right audio energy per line against camera.json.
+The full suite after each pass. Nothing is spliced into the main film until pass 2's full preview is approved.
+
+Sources found while planning (25 October 2026): Yi et al. 2025, Water Resources Research (doi 10.1029/2024WR038314:
+no public bathymetry; a 12.6 m drop in 30 days); Lehnigk et al. 2026, GRL (doi 10.1029/2025GL120832: SWOT, GLOBathy);
+UJRS article 296 (Sentinel-2 bed mapping, data on request); Texty.org.ua, the Great Meadow on 1940s German maps;
+Ukrainska Pravda 7, 8 and 9 June 2023 and Meduza 11 June 2023 (Nikopol gauge levels).

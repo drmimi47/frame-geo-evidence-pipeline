@@ -1,0 +1,30 @@
+{
+ "camera_xy": [
+  3606.1,
+  4671.0
+ ],
+ "camera_ground_m": 6.09,
+ "heading_deg": 55.00000000000009,
+ "tower_xy": [
+  3729.0,
+  4757.0
+ ],
+ "trees": 5580,
+ "by_detail": [
+  28,
+  13,
+  5539
+ ],
+ "poplar_share": 0.22,
+ "heights_m": [
+  4.6,
+  6.8,
+  9.0
+ ],
+ "rule": "a tree where the 2025 pass's pixel is vegetation (green at least red, darker than 115 of 255, not water by its own mask), 26 m off any caisson, an 8 m clearing round the camera; every ~4 m to 160 m, ~6.5 m beyond, 12% left out at random",
+ "sources": [
+  "TSN, 7 June 2026: largest trees about 9 m (spring 2026)",
+  "Kuzemko (Hmarochos, 3 Sep 2025): about 7 m in 2025",
+  "Frontliner w3hLYa_n8ao (13 Aug 2026): a 5-metre forest"
+ ]
+}

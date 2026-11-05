@@ -1,0 +1,49 @@
+{
+ "view": {
+  "id": "c",
+  "what": "in the reeds at the channel's edge, looking along the span across the water to towers 21 and 22",
+  "cam": [
+   3905.0,
+   5080.0
+  ],
+  "heading": 10.0,
+  "pitch": 10.0,
+  "lens": 24.0,
+  "eye": 1.3,
+  "cone_deg": 60,
+  "far_m": 2000,
+  "clear_m": 0.8,
+  "clear_tall_m": 2.0
+ },
+ "camera_ground_m": 6.49,
+ "habitat_at_camera": "reed",
+ "plants": 43829,
+ "by_layer": {
+  "canopy lod0": 3,
+  "canopy lod1": 257,
+  "canopy lod2": 34297,
+  "understorey lod0": 26,
+  "understorey lod1": 318,
+  "marsh lod0": 583,
+  "marsh lod1": 4183,
+  "herbs lod0": 1173,
+  "herbs lod1": 649,
+  "grass lod0": 2340,
+  "grass lod1": 0
+ },
+ "by_family": {
+  "0": 27043,
+  "1": 7514,
+  "2": 307,
+  "3": 20,
+  "4": 17,
+  "5": 4516,
+  "6": 251,
+  "7": 645,
+  "8": 287,
+  "9": 41,
+  "10": 541,
+  "11": 307,
+  "12": 2340
+ }
+}

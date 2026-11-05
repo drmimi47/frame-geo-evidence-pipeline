@@ -1,0 +1,49 @@
+{
+ "view": {
+  "id": "a",
+  "what": "the first still's spot: on the sand bar 150 m south-west of tower 20, along the span",
+  "cam": [
+   3606.1,
+   4671.0
+  ],
+  "heading": 55.0,
+  "pitch": 18.0,
+  "lens": 20.0,
+  "eye": 1.6,
+  "cone_deg": 75,
+  "far_m": 1200,
+  "clear_m": 1.0,
+  "clear_tall_m": 4.0
+ },
+ "camera_ground_m": 6.09,
+ "habitat_at_camera": "bare",
+ "plants": 10860,
+ "by_layer": {
+  "canopy lod0": 0,
+  "canopy lod1": 0,
+  "canopy lod2": 7638,
+  "understorey lod0": 16,
+  "understorey lod1": 0,
+  "marsh lod0": 0,
+  "marsh lod1": 270,
+  "herbs lod0": 832,
+  "herbs lod1": 51,
+  "grass lod0": 1989,
+  "grass lod1": 64
+ },
+ "by_family": {
+  "0": 5903,
+  "1": 1735,
+  "2": 5,
+  "3": 10,
+  "4": 1,
+  "5": 257,
+  "6": 13,
+  "7": 333,
+  "8": 349,
+  "9": 60,
+  "10": 0,
+  "11": 141,
+  "12": 2053
+ }
+}

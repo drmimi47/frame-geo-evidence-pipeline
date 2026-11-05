@@ -6,6 +6,93 @@ the Video panel, which adds videos through `/api/jobs` (`jobs.py`), the Satellit
 films through `/api/satellite/jobs` and `/api/seam/films` (`satellite/`), and the Evidence panel (rename a folder, show it
 in the file browser: `/api/folders`).
 
+**What to work on next: `NEXT.md`** (the running checklist, started 2 November 2026). Read it at the start of a
+session; keep it current: only what is left to do, each item deleted once done (its record goes where the work is).
+
+## The end result (decided with the user, 25 October 2026)
+
+The project ends in **one developed film, at most 10 minutes long**, titled **Powerlines** (one word, no subtitle;
+the user): a high-quality video exploration in the manner
+of computational design visualisation, showing the project's intricate parts (the ZNPP's lines, their record through
+the war, the Great Meadow, the crossing, the Hum). Narrative and storytelling, graphics, data and cinematography carry
+equal weight. Everything else serves it: the collection, the satellite passes, the corridor and zoom-out films, the
+Scene Viewer and the site are its research and its sequences, not the deliverable.
+- The 10 minutes is a ceiling, not a target. Every sequence has to earn its time; a draft that runs long is cut, not
+  sped up. That is for the final film: while prototyping, the storyboard may run past 7 or 10 minutes, and its
+  length isn't flagged until the story settles (the user, 4 November 2026).
+- Story first: a sequence is planned by what it tells and where it sits in the whole (chapters, turns, held moments,
+  silence), then by how it looks. The working outline is in `docs/znpp-heart-plan.txt` (FILM).
+- Cinematography is designed, not left to defaults: camera moves, holds, pacing, sound and type are decided on
+  purpose and recorded with the user's decisions.
+- The evidence rules still hold on screen: every drawn fact has a source in the film's `film.json`, inferred things
+  are never shown as observed, imagery is never generated, and what is synthesized or drawn (the Hum, the lines, the
+  zone) is said to be. Safety (amended with the user, NEXT.md I5): where lines were damaged or repaired, or
+  where crews were sent, is shown only as a general region (a stretch of line or an area at least about 3 km across,
+  never finer than the source), never a tower, a pin, coordinates or a crew's position; never the Dniprovska
+  substation's place or the trench site (no coordinates, no pin, dated imagery from 2024 or earlier only).
+- Quality: final renders at 60 fps (tests at 30), 1920×1080 or larger, sound mixed with the picture. The sequences
+  rendered so far (the zoom-out with the record, the great-meadow corridor film) are drafts toward it.
+- In progress: the crossing in 3D (planned with the user, 25 October 2026): from the zone's close-up the map tilts
+  into a Blender flight north between Dniprovska and Ferosplavna-1 over the water, the lines switching with the record,
+  the water draining to show the tower foundations. **Read `docs/crossing-3d-plan.txt` before working on it** (its
+  STATUS says where it stands; Blender 5.2 is scripted headless via `blender` on PATH, MCP for Blender optional).
+  The towers are modelled by type (`scene3d/towers.py`, from photographs of these towers and published heights; the
+  crossings' schemes in the config, checked against OSM): positions always OSM's, shapes representative and said so.
+  Crossarms flat on top as photographed; fittings (disc strings, yokes, bundle clamps, spacers, dampers) of the kinds
+  photographed, sizes typical; wires at real size, at least 0.7 px however far (geometry nodes, per point).
+  The flow: dashes run along connected lines toward where the power goes, by the config's dated, sourced periods
+  (`crossing3d.flow`: toward the plant since September 2022), fullest over the reservoir as surveyed, the dashes fainter
+  on land and the wire unchanged (`wire_cross`, `FLOW_LAND`), paced to the user's TouchDesigner reference; a drawing
+  convention, said so. The whole render is `animatic/ZNPP-last-two-lines-3D.mp4` (the variant's `title`; `3D-film` until 2 November 2026).
+  The drained bed (pass 3, `scene3d/bed.py`, config `crossing3d.bed`): no elevation model of it exists, so its
+  heights are inferred by the waterline method (where the water was on each clear pass after the breach, at the level
+  reported then: gauges, then SWOT, Baltic +0.4 m to EGM2008), held to ICESat-2's measured ground and the 1941 sheet's
+  spot heights, never out of the band the shorelines give; checked against ICESat-2 in `bed.json`. The water is a
+  modelled surface at the reported level (capped once settled at the lowest level the bed was mapped at), its
+  colour the passes' own, its ripples and reflections drawn: said in scene.json. Once settled the water is drawn as
+  each pass saw it (the river a sheet at the reported level, the bed carved under it, inferred; pools and channels from
+  the pass's own water mask, `bed.channels`). The caissons' discs are left out of the shorelines (S2 reads the concrete
+  as dry ground) and take the bed round them; later passes bound the bed. The land's box (40x36 km) lets the lines run
+  on as OSM has them (Dniprovska north into the haze, cut by the box and said so). The dam's day is pinned at 35 s.
+  A second version flies south toward the plant, with the power (S6, the user, 4 November 2026; both kept):
+  `south_record`, `ZNPP-last-two-lines-3D-south`, its own camera (`track`, camera.frames_track: a fade from white over
+  the north bank, down the same axis, a curve off toward the units and a slow rise, its heading always the way it
+  travels), the lines' sides swapped (states.options), and its `extras`: the plant, the thermal plant and Enerhodar
+  modelled (scene3d/plant.py: OSM footprints, the published heights, else storeys or a representative height, said
+  so), the land on south of the box, and the plant's other lines (`others`: the other three 750 kV and four 330 kV
+  lines south into the distance, the units' feeds and the NPP-TPP links, at OSM's towers, cut at the box; states by
+  the date shown; the feeds and links lit with the line feeding them, inferred and said so; no context grid).
+  Scene files (the user, 2 November 2026): a whole render saves its scene as `animatic/<title>.blend` (`ZNPP-last-two-lines-3D.blend`,
+  the picture only: the date, names, fade and Hum are added after Blender); `--pass blend` saves it without rendering.
+  Only the configured variants' .blend files are kept and never a .blend1: prototypes come and go.
+- The lines unrolled (NEXT.md I5 idea 1, the user, 4 November 2026: time "left to right, not unrolling down like a
+  scroll", "only the most critical stuff"; `satellite/unrolled.py`, `unrolled_web/`, config `networks.znpp.unrolled`):
+  Ferosplavna-1 and Dniprovska grow on a map, then unroll like a tape (each span turned upright from the switchyard
+  out, its length kept) into upright bars: the switchyard at the bottom, the first 20 km up it (both lines go on, said
+  so), the river across it (the shores of 5 June 2023, the channel after: the front, occupied below, Ukrainian-held
+  above). The bars move right with the date and the frame pans with them, each line's record left behind as a ribbon
+  (lit while connected, dark while cut, dotted where unreported); complete losses a tick through both, those lasting
+  days a pale band; the last year at six times the scale (said once); the seven repair truces as hatched, dashed
+  regions as tall as their sources say (a side, a bank, the crossing, or the whole bar where unpublished; `truce`
+  refuses under 3 km), named only while held ("TRUCE 3 · NOVEMBER 2025 · THE SOUTH BANK"); a few captions at held
+  moments, the count top right, one legend; then the whole record fitted to the frame. D3 7.9.0 vendored; each frame
+  drawn by `draw(t)` and taken from the installed Chrome (Playwright, the `charts` extra), FFmpeg to
+  `unrolled/ZNPP-last-two-lines-unrolled.mp4` with `unrolled.json` (every source) and the page as drawn. No sound yet.
+- The storyboard (`storyboard/`, decided with the user, 2 November 2026): the narrative isn't locked, so the film is
+  planned as a pool of shots (`config/storyboard.yaml`: each with a status, good, draft, still, missing, idea or new,
+  what it tells, what it needs, where it is in `reports/`, tags; a source film or figure with `in`/`out`, else a card's
+  `duration`) and cuts of it in order (`config/storyboard-cuts.yaml`, rewritten by `sync`). `evidence storyboard build`
+  lays a cut out in Blender's Video Sequence Editor (`libraries/conductive-seam/storyboard/<cut>.blend`): one meta
+  strip per shot named by its id and coloured by status (the films as 720p previews at 30 fps in `storyboard/media/`,
+  figures as they are, cards for the rest, a label top right), the cut up to the END marker, the other shots parked
+  after it (PARKED). The user rearranges by hand (drag, trim, park past END, mute, Shift-D to reuse, add a text strip
+  for a new idea) and saves; `evidence storyboard sync` reads it back (order by where each starts, trims, new strips as
+  shots of their own) and says what changed. A build reads back a saved rearrangement first and refuses if the cut
+  file changed too (`--discard-edits` to overwrite); it never deletes a shot from the pool (a parked shot deleted in Blender is only hidden: the cut's `hidden`). Known good (the user):
+  the 3D film and the zoom-out to about a minute in (to the zone, where the 3D takes over). Target about 7 minutes
+  for the final; the prototype cut holds everything made so far (the user, 4 November 2026) and may run longer.
+  Storyboard shots are planning, not evidence: the evidence rules apply when a shot is made.
+
 ## Collection scope (hard rules, never relax silently)
 
 1. **Ukraine only.** A video enters the library only if `scope.check_scope()` accepts it:
@@ -124,6 +211,105 @@ bank were looked at and not taken).
   against the sources linked (19 October 2026; the IAEA's count of complete losses of off-site power was 26 by August
   2026); add a source for any new note, and say "context from sources", never that the imagery shows it.
   When tuning, check the film's `contact.webp`.
+- The zoom-out (`network.py`, `zoomout.py`; decided with the user, 21 October 2026: the site is all of the ZNPP's lines,
+  not one; the push in to the surviving lines comes later). A network (`networks:` in the config, saved in
+  `satellite/networks/<id>/`, apart from the corridors): every line leaving the plant's 750 kV switchyard and the
+  thermal plant's 330 kV switchyard, traced through OpenStreetMap (one Overpass reply, saved verbatim) way to way to
+  the substation where it ends; the config names that substation (`to`) and a trace ending anywhere else is refused,
+  never drawn. Names by destination (as the IAEA and the user's reference image). Checked: Kakhovska 750 is 186 km
+  officially, 185.2 km traced; the step-shaped stretches (Kakhovska 750, Л-241) are real: towers mapped at every corner.
+  The film (decided with the user, 22 October 2026): north up. It opens close on the six units (2.2 km wide, centred
+  on them; to be sharper with better imagery), outlined one by one and numbered (OSM `power=generator` ways, `units:`);
+  then out to both switchyards while each unit's own 750 kV line (`feeds:`, OSM ways) is drawn into the plant's 750 kV
+  switchyard (south-west) and the two 330 kV `links:` into the thermal plant's 330 kV switchyard (north-east), each
+  switchyard outlined as they arrive, in white (the plant's inside: power made in the units, routed into the yards).
+  Only then do the blue lines leave, from the switchyards. All lines leave together at one speed that builds, so
+  length is when a line lands; the camera makes one eased move (log scale, never shrinking), its centre easing onto
+  the plant, and the lines are held back wherever the frame hasn't room for them. The camera eases into
+  `max_view_km` (172 km, decided with the user: the Dnipro and the Great Meadow framed) and stays; the lines grow on
+  off the frame. A line's name rides its tip until the tip nears the frame's edge (`label_zone`), then stays at that
+  point of the line while the tip goes on (decided with the user: no names off screen or in odd spots). 60 fps; the
+  growth is smoothed looking back only (never ahead of the frame, no jumps), and labels and marks move at sub-pixel
+  positions (`_Overlay`). The lines are two yellows (`line_rgb` by kV, decided with the user: the blues read as rivers;
+  750 kV the brighter), with a lighter core and a faint glow,
+  brightest where they leave the plant and fading toward their end substation (`FADE_TO` of the start, by share of
+  each line's length). Every text is white capitals in Helvetica Neue on a black box at half opacity (`_boxed`,
+  `BOX_A`); the plant's full name over its units gives way to a small mark before the mark appears. Sentinel-2 all
+  the way out (decided with the user; `imagery_fade_km: null`): a 10 m close-up crop over a 60 m wide crop of the same
+  pass (180×102 km; each layer in its own `imagery/<name>/`), in two eras (the layers' `era`, decided with the user,
+  22 October 2026): the pre-war pass of 8 September 2021 (the reservoir full) until the record's date reaches the dam's
+  destruction (`imagery_switch`, 6 June 2023), then a 3 s dissolve (said in the credit) to the pass of 28 August 2025;
+  dimmed by one factor (`imagery_gain` 0.8) so the lines stand out. On it the rest of the 750 and 330 kV
+  grid, faint, and GeoNames towns (never over a label or a line). The Great Meadow
+  (`areas:`, the user's studio site) is OSM relation 1600087 (Великий Луг, natural=wetland): OSM maps it as the whole
+  drained reservoir bed down to the dam, wider than the historical meadow (its upper reach); drawn as its outer shore
+  only (decided with the user: the channels inside are today's, and the outline must hold for earlier states of the
+  river; `_shoreline`, inlets under 1 km closed), drawn on as the frame takes it in, then a faint fill.
+  Then the record (`record.py`, the network's `record:`; decided with the user, 22 October 2026): once the lines have
+  landed, the date runs from 24 February 2022 and each line goes unlit when cut off and glows yellow when reconnected
+  (light means power, decided with the user, 2 November 2026, the same in the 3D: connected lines lit, glowing with a
+  white-hot core; cut ones unlit, the bare wire: a thin steel-grey hairline with a dark edge and no glow, `STATE_*`;
+  the dark red and grey before it vanished on dark ground, read as roads and clashed with the 3D towers' red paint; a
+  cut dims in `fade_off_s` 0.25 s, a reconnection swells back over `fade_on_s` 0.6 s, the Hum's swell to match),
+  unlit and dotted (dots held along the line, `_dotted`; dotted means not confirmed, as the zone's dashed circle)
+  where lines were cut but the reports don't say which (March to August 2022 for all, the other 330 kV lines until
+  December 2022); island mode (`island`, 5–10 September 2022, checked 2 November 2026): every line cut
+  while unit 6 powered the plant itself, not a complete loss (the count stays), labelled "ISLAND MODE: ONE REACTOR
+  POWERS THE PLANT" under the count (in the 3D under the date) and captioned, the Hum a low note held in the middle
+  (100 and 200 Hz, a design choice); the 3D starts inside it (`from_start`, its real start kept as `began`); every event a dated report with its sources (the IAEA's updates, mostly via the WNA's and OECD-NEA's
+  chronologies, Energoatom, news). The IAEA names lines only from late 2022: "the 750 kV line" is Dniprovska, "the 330 kV back-up line"
+  Ferosplavna-1 (Ferosplavna's two circuits part into two strands). Top left: the date, the IAEA's count of complete
+  losses of off-site power (`count: derived` where the number follows from those either side), the legend, a caption
+  per key event. The date shown steps from one reported change to the next (`Record.shown`, decided with the user:
+  days with nothing reported are skipped, not raced through), and each state has room to breathe: every interval
+  between reported changes held at least `min_hold_s` (0.7 s), a cut restored within the day shown `min_blink_s`
+  (0.8 s) at its start, a complete loss within the day `loss_s` (1.8 s: a longer pause with every line off, decided
+  with the user) and one lasting days `loss_hold_s` + `loss_day_s` a day up to `loss_max_s` (2.4 s + 0.12 s, up to 6 s:
+  the month on diesel generators), the imagery dimmed a little more meanwhile (`loss_dim` 0.7); a captioned interval
+  `caption_hold_s` (2 s), the caption staying while the date stays on its day; the rest of `run_s` (155 s) shared by the
+  log of each interval's days. The record starts `wait_s` (13 s: 10 decided with the user, 3 more for the night lights) after the full chord has faded in:
+  between, the lines still growing off screen grow faster (up to about 3.8x, eased in and out; film.json `time`), so
+  all have landed first. The film is about 229 s (past the 3 minutes asked for earlier: the longer losses, the zone's
+  moment and the night lights need it). Two camera moves after it has settled (film.json `moves`, decided with the user, 22 October 2026):
+  the zone's held moment (below), and once the imagery has dissolved to the drained bed, a push in (`crossing`, 18 s,
+  zooming about a point so the frame lands exactly) to a 25 km frame on the Dnipro crossing, where Dniprovska and
+  Ferosplavna-1 cross the drained bed to the Nikopol bank, held to the end; the two named where they cross with their
+  state ("the last 750 kV line", "the 330 kV backup line"), the other lines' names fading as the frame closes in, the
+  towns on. Its imagery is a 10 m crop of the 2025 pass round the crossing (`crossing`, `centre_km`, shown below
+  `fade_km` 30–44 km; a close-up is laid only where it has pixels). What the opening drew (units, titles) stays its own:
+  the later moves don't bring it back; the Great Meadow's outline stays drawn but fades when close. Bottom left only the imagery's credit (pass, date, Copernicus
+  attribution), no box, faint (`CREDIT_A`, decided with the user: not to draw the eye); the lines', towns' and
+  record's sources are in film.json only (OpenStreetMap's ODbL asks for credit wherever the film is shown: in its
+  description or end credits). The IAEA's protection zone (the record's `zone`, asked
+  for by the user): proposed 6 September 2022, never agreed, set aside for actions to avoid on 30 March 2023; no
+  size was ever published (Grossi: "the perimeter and the plant itself"), so it is a dashed circle round the plant's
+  OSM site (1.6 km across) between those dates, labelled "proposed, never agreed" and that no size was published:
+  never a radius of our own. Its day is a held moment (decided with the user: `zone.hold_s` 9 s, the date held): the
+  camera closes in about the circle to an 11 km frame (its true size, faintly filled, with "the plant's lines reach 214
+  km from it": the farthest point of any traced line), holds, and pulls back out while a ring of white light spreads
+  from the plant, its front keeping pace with the frame (a drawn mark, said in film.json; off the lines, decided with
+  the user, 2 November 2026: a light running along them read as power through lines that were all cut). The Hum (`hum.py`, decided with the user) is the film's sound: all ten lines fade in
+  once the camera stops pulling back (about 40 s), so the full chord is heard before the war; then a voice per line
+  on the 100 Hz hum and its harmonics with corona crackle, panned by the line's bearing, silent when cut, muffled
+  where unreported, silence during complete losses (no diesel generators, removed by the user); no sounds of
+  fighting. Synthesized: said in film.json `sound` and the statement, never passed off as recordings (no line on
+  screen: removed by the user). The Hum beside the film as `<title>.wav` (`ZNPP-ten-lines-zoom-out.wav`). It ends on the last reported state (11 September 2026): only Ferosplavna-1 connected (Dniprovska cut
+  since 24 March 2026, repaired in June, its substation too damaged to reconnect). Test renders at 30 fps
+  (`--fps 30`); the final at the config's 60. The file is named by the film's `title`
+  (`films/<id>/ZNPP-ten-lines-zoom-out.mp4`, film.json `files.video`; `film.mp4` without one; the user, 2 November 2026). Rendered in parts at once (`--workers`, default three in four cores;
+  each layer blended only in the tiles it touches, `_blend`): a layout pass (no pixels) carries the labels' state frame to frame and starts each part from it, so the frames are those of
+  one process; the parts are joined without re-encoding and the Hum muxed in. VIIRS
+  Black Marble: tested 2 November 2026 (`research_notes/Night lights test/`, NEXT.md N2; `EARTHDATA_TOKEN` in `.env`,
+  never printed; LAADS licence accepted by the user). Good-quality, clear-sky pixels only, never Gap_Filled; two
+  satellites checked against each other; brightness is not electricity, so every dark place needs a source for why.
+  In the zoom-out (the film's `night_lights`, asked for by the user, 2 November 2026: before, during, after, as the
+  test's triptych): the ground at night at three held moments, each September (same season, no snow): 2021 in the full
+  chord before the date appears; 2022 on 5 September, the date held (the record's `holds`); 2026 at the end, the camera
+  pulling back out from the crossing to the 172 km frame and holding to the fade. The month's VNP46A3 pixels laid on the
+  daylight pass dimmed to a faint map, each a block as measured, hatched grey where there is no good-quality value (an
+  area, not a line); named top left under the caption with why it is dark only where a source says (2022: "the
+  satellite shows where it was dark, not why"). Crops of the 172 km frame and the test's files kept in
+  `libraries/conductive-seam/satellite/nightlights/blackmarble/` (`provenance.json`).
 
 ## Frame selection
 
@@ -240,6 +426,14 @@ candidate from its API metadata by how well it can be placed there, and ingests 
 .venv/bin/evidence satellite fetch --area great-meadow --start 2023-04-01 --end 2023-06-05 --until-km 9   # a partial pass
 .venv/bin/evidence satellite film --area enerhodar-crossing [--passes ID ...] [--trace]   # into The Conductive Seam
 .venv/bin/evidence satellite notes --area great-meadow [--film ID]   # place the config's notes on a film again
+.venv/bin/evidence satellite network --network znpp [--trace-only]   # the plant's lines traced, the zoom-out film
+.venv/bin/evidence satellite crossing3d [--network znpp]   # the crossing in 3D, pass 0: survey of lines, towers, water, flight path
+.venv/bin/evidence satellite crossing3d --pass bed           # pass 3: the drained bed (shorelines + levels; fetches its passes once)
+.venv/bin/evidence satellite crossing3d --pass animatic [--variant axis2k_record]   # pass 1: Blender animatic (headless); _record: the two lines' record seen and heard
+.venv/bin/evidence satellite crossing3d --pass animatic --variant axis2k_record --seconds 40:55   # only that stretch, to test
+.venv/bin/evidence satellite crossing3d --pass blend          # the 3D segments' scenes saved as .blend, not rendered
+.venv/bin/evidence satellite unrolled [--fps 30] [--stills 5,34] [--seconds A:B]   # the two last lines unrolled (D3, Chrome headless)
+.venv/bin/evidence storyboard [show|build|sync] [--cut storyboard]   # the film's storyboard in Blender's sequence editor
 .venv/bin/evidence satellite lines --bbox W,S,E,N        # OSM power lines in a box (for a new area); --folder: scratch
 .venv/bin/evidence serve                                # http://127.0.0.1:8000
 .venv/bin/pytest -q

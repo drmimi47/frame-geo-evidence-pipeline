@@ -1,0 +1,167 @@
+{
+ "title": "Under the crossing, a May morning now (speculative)",
+ "statement": "A speculative montage, not a recording: no one has recorded at the crossing since the breach. The line is synthesized (Ferosplavna-1, 330 kV, the one line connected since 24 March 2026, voiced as the Hum voices it, its crackle a little denser for a dewy morning). The birds were recorded on the drained bed about 50 km downstream and on the north bank opposite; the frog about 90 km away, since no frog has been recorded or described on the bed. Cut, high-passed at 250 Hz, levelled, panned, faded; never pitched, stretched, looped or reverberated. No sounds of fighting.",
+ "seconds": 30.0,
+ "sample_rate": 48000,
+ "sha256": "04969094738b59f6caf71e8a3a5e77ed2abd921990297bb55f435aee97fe76a7",
+ "shape": "the line alone, fading in over 2.5 s; the birds in from 2.0 s and out by 27.5 s; the line alone again, fading out over the last 2.5 s",
+ "level": "the birds' bus peak-limited at -12 dBFS (2 ms look-ahead, 120 ms release), the whole at -20 dBFS RMS while the birds sing, peaks limited at -1 dBFS",
+ "line": {
+  "name": "Ferosplavna-1",
+  "kv": 330,
+  "level_dbfs_rms": -30,
+  "pan": 0,
+  "made": "hum.py's 330 kV voice (100 Hz and 11 harmonics, the 6th stressed), corona hiss and cracks at 6 a second (the Hum's 3.5), each ear its own crackle"
+ },
+ "layers": [
+  {
+   "layer": "nightingale-near",
+   "holds": "thrush nightingale (361637893)",
+   "segment_s": [
+    5,
+    30
+   ],
+   "placed_s": [
+    4.0,
+    27.5
+   ],
+   "pan": 0.2,
+   "level_dbfs_rms": -20,
+   "fade_s": 1.5,
+   "recording": "1950271.wav",
+   "observations": [
+    "https://www.inaturalist.org/observations/361637893"
+   ],
+   "recordist": "(c) Oleksii Vasyliuk, some rights reserved (CC BY)",
+   "licence": "cc-by",
+   "date": "2026-05-14",
+   "place": "Mar'ianske, on the drained bed",
+   "km_from_crossing": 50.0
+  },
+  {
+   "layer": "reeds",
+   "holds": "great reed warbler (361639437), Eurasian coot (361639473), European bee-eater (361466739)",
+   "segment_s": [
+    62,
+    72
+   ],
+   "placed_s": [
+    2.5,
+    12.5
+   ],
+   "pan": -0.55,
+   "level_dbfs_rms": -29,
+   "fade_s": 3.0,
+   "recording": "1950258.wav",
+   "observations": [
+    "https://www.inaturalist.org/observations/361639437",
+    "https://www.inaturalist.org/observations/361639473",
+    "https://www.inaturalist.org/observations/361466739"
+   ],
+   "recordist": "(c) Oleksii Vasyliuk, some rights reserved (CC BY)",
+   "licence": "cc-by",
+   "date": "2026-05-14",
+   "place": "Mar'ianske, on the drained bed",
+   "km_from_crossing": 50.0
+  },
+  {
+   "layer": "frog",
+   "holds": "marsh frog (211010127)",
+   "segment_s": [
+    0,
+    8
+   ],
+   "placed_s": [
+    11.5,
+    19.5
+   ],
+   "pan": -0.3,
+   "level_dbfs_rms": -31,
+   "fade_s": 2.0,
+   "recording": "997953.wav",
+   "observations": [
+    "https://www.inaturalist.org/observations/211010127"
+   ],
+   "recordist": "(c) W.D. Keeper, some rights reserved (CC BY)",
+   "licence": "cc-by",
+   "date": "2024-04-28",
+   "place": "near Kryvyi Rih (not on the bed)",
+   "km_from_crossing": 97.0
+  },
+  {
+   "layer": "nightingale-far",
+   "holds": "thrush nightingale, a blue tit behind (XC1016141)",
+   "segment_s": [
+    6,
+    14
+   ],
+   "placed_s": [
+    13.0,
+    21.0
+   ],
+   "pan": -0.85,
+   "level_dbfs_rms": -33,
+   "fade_s": 2.5,
+   "recording": "XC1016141",
+   "url": "https://xeno-canto.org/1016141",
+   "recordist": "Ekaterina Kormina",
+   "licence": "CC0",
+   "date": "2025-04-16",
+   "place": "near Marhanets, the north bank",
+   "km_from_crossing": 9
+  },
+  {
+   "layer": "chorus",
+   "holds": "thrush nightingale, great reed warbler, common reed warbler, cuckoo (361639097, 361639110, 361639062, 361639005)",
+   "segment_s": [
+    40,
+    47
+   ],
+   "placed_s": [
+    20.0,
+    27.0
+   ],
+   "pan": -0.45,
+   "level_dbfs_rms": -30,
+   "fade_s": 2.0,
+   "recording": "1950176.wav",
+   "observations": [
+    "https://www.inaturalist.org/observations/361639097",
+    "https://www.inaturalist.org/observations/361639110",
+    "https://www.inaturalist.org/observations/361639062",
+    "https://www.inaturalist.org/observations/361639005"
+   ],
+   "recordist": "(c) Oleksii Vasyliuk, some rights reserved (CC BY)",
+   "licence": "cc-by",
+   "date": "2026-05-14",
+   "place": "Mar'ianske, on the drained bed",
+   "km_from_crossing": 50.0
+  },
+  {
+   "layer": "hoopoe",
+   "holds": "Eurasian hoopoe (361466662)",
+   "segment_s": [
+    0,
+    6
+   ],
+   "placed_s": [
+    21.0,
+    27.0
+   ],
+   "pan": 0.8,
+   "level_dbfs_rms": -34,
+   "fade_s": 1.5,
+   "recording": "1950256.wav",
+   "observations": [
+    "https://www.inaturalist.org/observations/361466662"
+   ],
+   "recordist": "(c) Oleksii Vasyliuk, some rights reserved (CC BY)",
+   "licence": "cc-by",
+   "date": "2026-05-14",
+   "place": "Mar'ianske, on the drained bed",
+   "km_from_crossing": 50.0
+  }
+ ],
+ "peak_dbfs": -5.0,
+ "rms_dbfs": -21.0
+}

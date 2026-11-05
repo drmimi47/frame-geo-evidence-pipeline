@@ -282,3 +282,588 @@ film:
   orient: travel         # travel: the way along the line points up; north: north up
   caption: true          # sensor and date, small, on the holds and dissolves
   trace: false           # the OSM line as a hairline (an overlay, labelled in film.json)
+
+# A plant's lines as a network (`network.py`, `zoomout.py`; decided with the user, 21 October 2026): the plant at the
+# centre, the camera pulling back while every line from it grows outward to the substation where it ends.
+networks:
+  znpp:
+    name: The Zaporizhzhia NPP's lines
+    plant: {osm: 28877213, label: Zaporizhzhia NPP}           # OpenStreetMap way: Запорізька АЕС
+    origins: {npp750: 28877226, tpp330: 28877449}               # the plant's 750 kV switchyard; the thermal plant's 330 kV
+    bbox: [32.0, 45.9, 38.6, 49.2]                              # where the lines are looked for (Overpass)
+    voltages_kv: [750, 330]
+    # Each line: the ways it starts with (out of its switchyard, or the shared towers before it branches), then traced
+    # to the substation it must reach (`to`, the OSM name; anything else is refused). Names by destination, as the
+    # IAEA and the user's reference image name them. Checked 21 October 2026: Kakhovska 750 is 186 km officially
+    # (UNIAN, opened 23 December 2020), 185.2 km traced.
+    lines:
+      - {name: Dniprovska, kv: 750, from: npp750, start: [790736604], to: Дніпровська-750}
+      - {name: Zaporizka, kv: 750, from: npp750, start: [143926899], to: Запорізька-750}
+      - {name: Pivdennodonbaska, kv: 750, from: npp750, start: [143519988], to: Південнодонбаська-750}
+      - {name: Kakhovska, kv: 750, from: npp750, start: [316571510], to: Каховська-750, checked: "186 km officially (UNIAN, 23 December 2020)"}
+      - {name: "Ferosplavna 1, 2", kv: 330, ref: Л-243/Л-244, from: tpp330, start: [265670105], to: Феросплавна-330}
+      - {name: Zaporizka, kv: 330, ref: Л-242, from: tpp330, start: [187022455], to: Запорізька-330}
+      - {name: Molochanska, kv: 330, ref: Л-246, from: tpp330, start: [711002169], to: Молочанська-330}
+      - {name: Melitopolska, kv: 330, ref: Л-247, from: tpp330, start: [187125189, 139080271], to: Мелітопольська-330}
+      - {name: Kakhovska, kv: 330, ref: Л-241, from: tpp330, start: [187125189, 277659555], to: Каховська-330}
+    links: [155275704, 155276120]                               # 330 kV between the plant and the thermal plant's switchyard
+    feeds: [143603547, 143603545, 143603551, 143603531, 143603549, 143603538]   # 750 kV, units 1-6 into the plant's 750 kV switchyard
+    units: [28877253, 28888414, 28888415, 28888416, 28888417, 28888418]   # power=generator: units 1-6, outlined
+    areas:   # OSM relation 1600087 is the former Kakhovka reservoir (old_name), mapped since its drainage as the wetland
+             # Великий Луг: its whole bed, down to the dam; historically the Great Meadow is its upper reach
+      - {osm_relation: 1600087, label: Great Meadow, label_local: Великий Луг, label_at: [35.07, 47.66], min_km2: 2,
+         note: "OpenStreetMap's Великий Луг (relation 1600087): the drained Kakhovka reservoir's bed as mapped (its old_name)"}
+    imagery:  # the close-up on top, the wider pass under it: Sentinel-2 all the way out (decided with the user)
+      # before: a pre-war pass (decided with the user, 22 October 2026), shown until the record reaches the dam's
+      # destruction (`film.imagery_switch`); 8 September 2021 is the clearest summer 2021 pass covering both boxes in
+      # one overpass (cloud at most 1.7% a tile), near the later pass's season. after: the drained reservoir as it is.
+      - {name: close_2021, era: before, sensor: sentinel-2, start: 2021-09-08, end: 2021-09-08, max_cloud: 5, box_km: [26, 15], m_per_px: 10}
+      - {name: wide_2021, era: before, sensor: sentinel-2, start: 2021-09-08, end: 2021-09-08, max_cloud: 5, box_km: [180, 102], m_per_px: 60}
+      # the crossing (decided with the user, 22 October 2026): the camera closes in on the Dnipro crossing after the
+      # dissolve, so the later pass's close-up is round it (centre_km: m east and north of the plant), shown below 30 km
+      - {name: crossing, era: after, sensor: sentinel-2, start: 2025-08-28, end: 2025-08-28, max_cloud: 5, box_km: [40, 24], centre_km: [3, 4.5], m_per_px: 10, fade_km: [30, 44]}
+      - {name: wide_s2, era: after, sensor: sentinel-2, start: 2025-08-28, end: 2025-08-28, max_cloud: 5, box_km: [180, 102], m_per_px: 60}   # the close-up's pass
+    film:
+      title: ZNPP-ten-lines-zoom-out   # the film's file name, <title>.mp4 (the user, 2 November 2026)
+      size: [1920, 1080]
+      fps: 60                   # smooth growth and zoom (the final render; tests at 30: --fps 30)
+      line_rgb: {750: [255, 214, 0], 330: [240, 156, 0]}   # two yellows, apart from the rivers (decided with the user): 750 kV the brighter
+      start_view_km: 2.2        # the frame's width on the six units (centred on them)
+      yards_view_km: 5.6        # then out to both switchyards while the plant's own lines are drawn into them
+      yards_zoom_s: [6.8, 11.5]
+      feeds_at_s: 7.4           # each unit's line into the 750 kV switchyard, one after another
+      links_at_s: 10.8          # then the links to the thermal plant's 330 kV switchyard
+      origin_labels: {npp750: 750 kV switchyard, tpp330: "Thermal plant · 330 kV switchyard"}
+      plant_centre_km: 30       # the camera's centre is on the plant once the frame is this wide
+      label_zone: [0.86, 0.84]  # a line's name rides its tip while the tip is inside this share of the frame, then stays
+      end_view_km: 470          # the lines' frame: every line's end inside (the lines grow at its pace)
+      max_view_km: 172          # the camera eases into this and stays (the Dnipro and the Great Meadow framed); the lines grow on off it
+      view_cap_soft: 0.25       # how gently it eases in (log scale)
+      meadow_close_m: 500       # the Great Meadow's shore: channel inlets narrower than 1 km closed
+      fade_in_s: 2.5
+      hold_s: 14.5              # the units outlined, then their lines into the switchyards, before the lines leave
+      zoom_lead_s: 1.5          # the camera starts pulling back this long before the lines leave
+      close_fade_km: [11, 19]   # the sharp close-up gives way to the wider pass between these frame widths
+      grow_s: 46                # all lines start together at one speed; the longest lands last
+      accel: 3.2                # how much the speed builds (an exponential start: the zoom reads as steady)
+      end_hold_s: 8
+      fade_out_s: 2.5
+      margin: 1.22              # the frame keeps the growing tips this far inside
+      imagery_fade_km: null     # Sentinel-2 all the way out (decided with the user): no dark ground
+      imagery_switch: {at: 2023-06-06, dissolve_s: 3}   # the pre-war pass until the record reaches the dam's destruction, then a dissolve to the later one
+      imagery_gain: 0.8         # the imagery a little darker, so the lines stand out (decided with the user)
+      wait_s: 13                # the full chord heard this long before the war (decided with the user: 10 s; 13 since 2 November 2026, room for the night lights before it): the record starts then
+      hum: {seed: 50, fade_in_s: 4}   # the Hum (hum.py, decided with the user): synthesized; all ten lines fade in once the camera settles
+      loss_dim: 0.7             # the imagery dims a little more during a complete loss of off-site power (every line off)
+      night_lights:             # the ground at night at three held moments: before, during, after (the user, 2 November 2026; NEXT.md N2)
+        dir: satellite/nightlights/blackmarble/frame_VNP46A3   # in the Conductive Seam folder: VNP46A3 crops of the 172 km frame (provenance.json there)
+        product: {name: "NASA Black Marble VNP46A3 (Suomi NPP VIIRS Day/Night Band), Collection 2, monthly", doi: 10.5067/VIIRS/VNP46A3.002,
+                  url: "https://ladsweb.modaps.eosdis.nasa.gov/missions-and-measurements/products/VNP46A3/"}
+        day_a: 0.22             # the daylight pass kept as a faint map under the lights
+        top: 60                 # nW/cm²/sr shown at full white (log scale)
+        fade_s: 1.2
+        # September each time: the same season, no snow, the pre-war one the month of the film's pre-war pass. Brightness
+        # is not electricity: `why` gives a reason only where a source does (research_notes/Night lights test/README.md)
+        moments:
+          - {month: 2021-09, at: before, hold_s: 5, title: "September 2021, before the war", why: "Both banks lit"}
+          - {month: 2022-09, at: 2022-09-05, hold_s: 5, title: September 2022,
+             why: "Nikopol's bank dark, the occupied bank lit · The satellite shows where it was dark, not why"}
+          - {month: 2026-09, at: end, pull_s: 7, hold_s: 7, title: September 2026, src: [moscow_times_2026_07_31],
+             why: "The occupied bank dark too · Strikes on substations there cut power to nearly a million people (Moscow Times, July 2026)"}
+        sources:
+          moscow_times_2026_07_31: {title: "Ukrainian drone strikes cut power to nearly 1m people in occupied regions (The Moscow Times, 31 July 2026)",
+                                    url: "https://www.themoscowtimes.com/2026/07/31/ukrainian-drone-strikes-cut-power-to-nearly-1m-people-in-occupied-regions"}
+      # once the imagery has dissolved to the drained bed, the camera closes in on the Dnipro crossing (decided with the
+      # user, 22 October 2026): the plant at the bottom, Dniprovska and Ferosplavna-1 across the bed to the Nikopol bank
+      crossing:
+        view_km: 25
+        centre_km: [3, 4.5]     # m east and north of the plant
+        after_s: 1              # after the dissolve ends
+        push_s: 18
+        labels:                 # each named where it crosses the drained bed, with its state; the notes as the IAEA names them
+          - {line: Dniprovska, at_km: 10, side: right, note: the last 750 kV line}
+          - {line: Ferosplavna-1, name: Ferosplavna-1, at_km: 7.5, side: left, note: the 330 kV backup line}
+      # workers: 6              # parts drawn at once (default: three in four cores)
+    # The crossing in 3D (docs/crossing-3d-plan.txt, planned with the user 25 October 2026): from the zone's close-up the
+    # map tilts and the camera flies north between the last two lines over the water to the Nikopol bank.
+    # `evidence satellite crossing3d --pass survey` (pass 0): the two lines, their towers, the water, the flight path.
+    crossing3d:
+      lines: [Dniprovska, "Ferosplavna 1, 2"]   # network.json names (Ferosplavna's two circuits share one row of towers)
+      towers_from: great-meadow   # the corridor whose saved Overpass reply holds the towers (power=tower nodes)
+      water_passes: [s2a_20230605T0836, s2b_20230908T0836]   # on that corridor's grid: the day before the dam broke, and after
+      window_km: [-1.5, 27]       # m north of the plant (km): what the survey looks at; the lines drawn on to the
+                                  # land's northern edge, into the haze (the user, 26 October 2026: Dniprovska runs on
+                                  # north to the grid, not ending at the shore)
+      flight_until_km: 9.0        # the flight path runs from where the lines cross to here (both turn on the north bank)
+      # pass 1, the grey-box camera animatic (`--pass animatic`): FABDEM land under the pre-war pass, towers as boxes at
+      # their OSM positions (heights placeholders until pass 4), wires straight between them
+      texture: {name: c3d_2021_09, era: before, sensor: sentinel-2, start: 2021-09-08, end: 2021-09-08, max_cloud: 5, box_km: [40, 36], centre_km: [3, 10.5], m_per_px: 10}
+      # pass 3, the bed (bed.py; the user, 26 October 2026: "build the bed's shape from 1940s-50s maps, realistic water
+      # level drop, and exposed powerline foundations"). No elevation model of the drained bed exists: its heights are
+      # inferred from where the water was on each pass after the breach and the level reported then (the waterline
+      # method), held to ICESat-2's measured ground and the 1941 sheet's spot heights. Heights: m above EGM2008.
+      bed:
+        grid_of: {name: crossing_2021, era: before, sensor: sentinel-2, start: 2021-09-08, end: 2021-09-08, max_cloud: 5, box_km: [40, 24], centre_km: [3, 4.5], m_per_px: 10}   # the reservoir round the crossing: the bed's box
+        m_per_px: 20
+        observe: {start: 2023-06-01, end: 2023-09-10, max_cloud: 35, skip_platforms: [landsat-7],
+                  also: [2023-06-20, 2023-08-19, 2024-08-23, 2025-08-28],   # the texture layers' days: their water drawn as seen
+                  radar: [{at: "2023-06-08T03:48:43", id: S1A_IW_GRDH_1SDV_20230608T034831_20230608T034856_048889_05E116_rtc, why: "calm, two days after the breach"},
+                          {at: "2023-06-09T15:37:09", id: S1A_IW_GRDH_1SDV_20230609T153657_20230609T153722_048911_05E1BA_rtc, why: "calm, the evening of the third day"}],
+                  rules: [{at: "2023-06-08T08:46", mndwi_min: 0.03, swir_max: 900, why: "the floodwater so laden with silt that its NIR stays high (MNDWI about 0.15): water here is MNDWI over 0.03 and SWIR under 9%, which leaves out the exposed sand (checked by eye against the pass's true colour)"}],
+                  skip: [{at: "2023-06-08T03:48", why: "radar: read against ICESat-2, it marks ground as dry that lies metres under the level then (fresh wet mud and shallow water look alike to it); and it finds more water on 9 June than on 8 June while the level fell"},
+                         {at: "2023-06-09T15:37", why: "radar: as on 8 June"}]}
+        reference: 2023-06-05     # the last clear pass before the dam was destroyed: the reservoir's footprint
+        breach: "2023-06-06T02:50:00Z"
+        min_seen: 0.2             # a pass is read only if it saw this share of the box clear
+        # the water level at the crossing, m above EGM2008: the gauges (Baltic heights, `datum: baltic`, raised by
+        # `baltic_m` to EGM2008: inferred from DAHITI's 17.22 m on 4 June against the gauge's 16.77 m on 5 June, never
+        # published), then SWOT's river heights each month (`swot`). Researched 26 October 2026: the plant's own series
+        # is at the crossing until 9 June (after that its intake channel was cut off, IAEA Update 165); Nikopol's gauge
+        # (15 km downstream) to 11 June, when the water left it
+        baltic_m: 0.4
+        levels:
+          - {at: "2023-06-04T19:06:16Z", m: 17.22, place: "Kakhovka reservoir", source: "DAHITI 11364, Sentinel-3 altimetry (EIGEN-6C4)", url: "https://dahiti.dgfi.tum.de/en/11364/"}
+          - {at: "2023-06-05T17:00:00Z", m: 16.77, datum: baltic, place: "Kakhovka reservoir", source: "Hydrometeorological Center, 20:00 on 5 June (Chornomorets et al. 2023, doi 10.15407/meteorology2023.04.051)"}
+          - {at: "2023-06-06T02:50:00Z", m: 16.77, datum: baltic, place: "Kakhovka reservoir", source: "held until the dam was destroyed"}
+          - {at: "2023-06-06T07:00:00Z", m: 16.27, datum: baltic, place: "the plant", source: "IAEA Update 161: 15.44 m at 20:00 after a fall of 83 cm since 10:00"}
+          - {at: "2023-06-06T17:00:00Z", m: 15.44, datum: baltic, place: "the plant", source: "IAEA Update 161", url: "https://www.iaea.org/newscenter/pressreleases/update-161-iaea-director-general-statement-on-situation-in-ukraine"}
+          - {at: "2023-06-07T15:00:00Z", m: 14.03, datum: baltic, place: "the plant", source: "IAEA Update 162 (18:00)", url: "https://www.iaea.org/newscenter/pressreleases/update-162-iaea-director-general-statement-on-situation-in-ukraine"}
+          - {at: "2023-06-08T15:00:00Z", m: 12.7, datum: baltic, place: "the plant", source: "IAEA Update 163 (18:00, about 12.7 m)", url: "https://www.iaea.org/newscenter/pressreleases/update-163-iaea-director-general-statement-on-situation-in-ukraine"}
+          - {at: "2023-06-09T16:00:00Z", m: 11.62, datum: baltic, place: "the plant", source: "IAEA Update 164 (19:00)", url: "https://www.iaea.org/newscenter/pressreleases/update-164-iaea-director-general-statement-on-situation-in-ukraine"}
+          - {at: "2023-06-10T03:00:00Z", m: 10.55, datum: baltic, place: Nikopol, source: "Ukrhydroenergo (06:00)", url: "https://uhe.gov.ua/media_tsentr/novyny/vtracheno-ponad-tretynu-vody-z-kakhovskoho-vodoskhovyshcha-yaku-nakopychyly"}
+          - {at: "2023-06-11T05:00:00Z", m: 9.35, datum: baltic, place: Nikopol, source: "Ukrhydroenergo (08:00)", url: "https://uhe.gov.ua/media_tsentr/novyny/riven-vody-u-kakhovskomu-vodoskhovyshchi-prodovzhuye-znyzhuvatys"}
+          - {at: "2023-06-11T17:00:00Z", m: 9.04, datum: baltic, place: Nikopol, source: "Hydrometeorological Center (20:00), the last gauge reading", url: "https://uhe.gov.ua/media_tsentr/novyny/operatyvna-informatsiya-shchodo-naslidkiv-pidryvu-kakhovskoyi-hes"}
+          - {at: "2023-06-17T12:00:00Z", m: 9.3, place: "the crossing", source: "settled: the reservoir's volume loss levelled off about 17 June (Yi et al. 2025, doi 10.1029/2024WR038314); the level SWOT measured here from late July"}
+        swot:                     # monthly medians of SWOT's river reaches either side of the crossing, interpolated to it
+          file: sources/swot_reaches.csv   # NASA Hydrocron, SWORD v16 reaches; every value flagged "bad" (reaches drawn for the reservoir), so monthly medians
+          reaches: {"22511500053": 34.57, "22511500063": 34.69}
+          at_lon: 34.633
+          from: 2023-07-01
+          # the river's slope (m per degree of longitude, rising upstream, east): a line through these reaches' medians
+          slope: {reaches: {"22511500033": 34.33, "22511500043": 34.45, "22511500053": 34.57, "22511500063": 34.69, "22511500073": 34.81}, months: [2023-08, 2023-10]}
+          source: "SWOT L2 river reaches via NASA Hydrocron (https://soto.podaac.earthdatacloud.nasa.gov/hydrocron/v1/timeseries), EGM2008"
+        # the bed's ground through the years (the same box and grid as the land's texture; observed, laid on the
+        # modelled bed): each layer shown from its own date, crossfaded into the next over `fade_days` (an
+        # interpolation between two dates, said so). Before the first, the bed is under the water
+        textures:
+          fade_days: 40
+          layers:
+            - {name: c3d_2023_06, era: after, sensor: sentinel-2, start: 2023-06-20, end: 2023-06-20, max_cloud: 5, box_km: [40, 36], centre_km: [3, 10.5], m_per_px: 10, shown_from: 2023-06-07, fade_days: 1, why: "the bed two weeks after the breach, wet mud and silt: the first clear pass after it, shown from the day after the breach as the ground comes out of the water"}
+            - {name: c3d_2023_08, era: after, sensor: sentinel-2, start: 2023-08-19, end: 2023-08-19, max_cloud: 5, box_km: [40, 36], centre_km: [3, 10.5], m_per_px: 10, why: "the first growth on the drying bed"}
+            - {name: c3d_2024_08, era: after, sensor: sentinel-2, start: 2024-08-23, end: 2024-08-23, max_cloud: 5, box_km: [40, 36], centre_km: [3, 10.5], m_per_px: 10, why: "a year on: willows and reeds"}
+            - {name: c3d_2025_08, era: after, sensor: sentinel-2, start: 2025-08-28, end: 2025-08-28, max_cloud: 5, box_km: [40, 36], centre_km: [3, 10.5], m_per_px: 10, why: "two years on: the young forest"}
+        icesat2:
+          file: sources/icesat2_atl08.json   # in the bed folder: ATL08 100 m segments in the box (granules of 5 and 28 August 2023)
+          geoid_m: 22.38                     # EGM2008's geoid height at 47.55 N, 34.60 E (ellipsoid to FABDEM's datum)
+          weight: 1.0
+          source: "ICESat-2 ATL08 v6 over the former Kakhovka reservoir, from Lehnigk et al. 2026 (Zenodo 10.5281/zenodo.19115397, CC BY 4.0; icesat2_data.zip sha256 98a5a28a)"
+        old_maps:
+          - sheet: L-36-22 (Nikopol)
+            year: 1941
+            scale: "1:100 000"
+            what: "Red Army General Staff topographic map, before the reservoir (filled 1955–56): spot heights on the floodplain, Baltic heights"
+            source: "Indiana University Libraries, VAC9619-001868 (public domain)"
+            sha256: d3e5b1cb
+            georef: "the sheet's frame corners (34.5–35.0 E, 47.333–47.667 N) to its scan; the sheet's own datum (Pulkovo 1932), about 100 m off WGS84"
+            weight: 0.5               # read off a scan by hand, and 82 years older: half a satellite point's pull
+            spot_heights:             # read by hand, 26 October 2026 (scan px in brackets)
+              - {m: 9.4, lonlat: [34.63157, 47.57222], px: [2990, 3262]}
+              - {m: 12.0, lonlat: [34.66728, 47.55138], px: [3625, 3795]}
+              - {m: 8.5, lonlat: [34.62637, 47.55173], px: [2900, 3790], note: "water's edge"}
+              - {m: 10.4, lonlat: [34.56063, 47.55995], px: [1735, 3585]}
+              - {m: 8.3, lonlat: [34.59237, 47.61107], px: [2293, 2268], note: "water's edge, by Mar'ivka"}
+      # the two lines' record in 3D (states.py; the user, 25 October 2026): seen (a cut line unlit, steel grey and
+      # thinner, as in the 2D film) and heard (the Hum, each line on its side), from the zone's day, when the 3D takes
+      # over, to the last report; paced so each side's state can be told: every state held at least `min_hold_s`, a line
+      # fading out and swelling back, outages over within the day left out (listed in camera_<variant>.json
+      # `record.left_out`)
+      record:
+        start: 2022-09-06
+        lines:                    # the network record's names: the drawn line, its side (pan) and its name on screen
+          Ferosplavna-1: {drawn: "Ferosplavna 1, 2", pan: -0.85, label: "FEROSPLAVNA-1 · 330 KV"}
+          Dniprovska: {drawn: Dniprovska, pan: 0.85, label: "DNIPROVSKA · 750 KV"}
+        dates: [2023-06-06]       # dates held without a line change: the dam destroyed, the reservoir drains
+        within_day: omit
+        at_s: 4                   # the date appears as the tilt starts
+        intro_s: 1.5
+        run_s: 81                 # to 11 September 2026, as the camera reaches the north shore
+        min_hold_s: 1.3
+        loss_hold_s: 2.0          # a complete loss lasting days: at least this, 0.03 s a day more, up to 3.5 s
+        loss_day_s: 0.03
+        loss_max_s: 3.5
+        fade_off_s: 0.4           # a cut line fades out this fast (seen; heard: `sound.fall_s`)
+        fade_on_s: 0.8            # and swells back this slowly
+        names_at_s: 10            # the lines' names on their sides, as the camera comes down between them
+        # the dam's destruction at 35 s (the user, 26 October 2026: "at around 35s instead of the current 27s"): from
+        # it the date steps day by day through the gauges' readings while the water falls (bed.levels), settling on 17
+        # June; the brief cuts in `omit` are left out so the rest keeps its pace (listed in the doc)
+        pins:
+          - {at: 2023-06-06, s: 35, min_hold_s: 0.9}
+          - {at: 2023-06-17, s: 42.5}
+        steps: [2023-06-07, 2023-06-08, 2023-06-09, 2023-06-10, 2023-06-11]
+        omit:
+          - {at: 2023-11-26, lines: [Dniprovska]}
+          - {at: 2024-04-04, lines: [Ferosplavna-1]}
+          - {at: 2024-10-21, lines: [Ferosplavna-1]}
+          - {at: 2024-11-16, lines: [Dniprovska]}
+          - {at: 2024-12-02, lines: [Ferosplavna-1]}
+        sound: {start_s: 1.5, fade_in_s: 3, swell_s: 0.6, fall_s: 0.3}
+      # the flow (the user, 26 October 2026: TouchDesigner's cooking wires, "the direction of energy going to the znpp
+      # or going to power the northern ukrainian grid"): dashes running along each connected line toward where its
+      # power goes, a drawing convention (states.flow_toward). The direction is sourced: the plant has sent no power to
+      # the grid since September 2022, and since then the grid sends power in, so through all of the 3D's record (from
+      # 6 September 2022) toward the plant. A period `toward: grid` (before the seizure, say) would run them north.
+      flow:
+        dash_m: 80                # dashes this far apart along a wire, running this fast: drawn, not measured (the
+        speed_mps: 650            # user, 26 October 2026: the speed of their TouchDesigner reference, the first draft's spacing)
+        periods:
+          - from: 2022-09-06
+            toward: plant
+            note: "The plant has sent no power to the grid since September 2022; the grid sends power in to keep its shut-down reactors cooled."
+            sources:
+              - {title: "RFE/RL, December 2023", url: "https://www.rferl.org/a/zaporizhzhya-nuclear-power-plant-safety-ukraine/32711212.html"}
+              - {title: "Ukrainska Pravda, January 2026", url: "https://www.pravda.com.ua/eng/news/2026/01/18/8016739"}
+              - {title: Wikipedia, url: "https://en.wikipedia.org/wiki/Zaporizhzhia_Nuclear_Power_Plant"}
+      terrain_step_m: 20          # the land mesh's spacing (FABDEM is 30 m; the bed 20 m)
+      # for the flight south (S6, the user, 4 November 2026; a variant's `extras`): the plant, the thermal plant and
+      # Enerhodar modelled from OSM's footprints and the heights published (scene3d/plant.py; the reply saved in
+      # raw/osm_plant.json), and the land on south of the box (it ends 7.5 km south of the plant, in view as the camera
+      # comes toward it): the same five passes over a 12 km strip, crossfaded by the same dates
+      plant:
+        bbox: [47.455, 34.50, 47.545, 34.72]   # south, west, north, east: the plant, the thermal plant, Enerhodar
+      land_south:
+        layers:
+          - {name: c3s_2021_09, era: before, sensor: sentinel-2, start: 2021-09-08, end: 2021-09-08, max_cloud: 5, box_km: [40, 12], centre_km: [3, -13.5], m_per_px: 10}
+          - {name: c3s_2023_06, era: after, sensor: sentinel-2, start: 2023-06-20, end: 2023-06-20, max_cloud: 5, box_km: [40, 12], centre_km: [3, -13.5], m_per_px: 10}
+          - {name: c3s_2023_08, era: after, sensor: sentinel-2, start: 2023-08-19, end: 2023-08-19, max_cloud: 5, box_km: [40, 12], centre_km: [3, -13.5], m_per_px: 10}
+          - {name: c3s_2024_08, era: after, sensor: sentinel-2, start: 2024-08-23, end: 2024-08-23, max_cloud: 5, box_km: [40, 12], centre_km: [3, -13.5], m_per_px: 10}
+          - {name: c3s_2025_08, era: after, sensor: sentinel-2, start: 2025-08-28, end: 2025-08-28, max_cloud: 5, box_km: [40, 12], centre_km: [3, -13.5], m_per_px: 10}
+      # the plant's other lines, for the flight south (`extras: [others]`; the user, 4 November 2026: the 750 kV lines
+      # leaving the switchyard south are ahead the whole way down). network.json's rows by name and kV, cut where the
+      # land ends, each lit by its record (`record`: the network record's name; the other 750 kV cut before September
+      # 2022, the other 330 kV unreported until 29 December 2022, then cut); the units' feeds into the 750 kV switchyard
+      # and the NPP-TPP 330 kV links lit while the line feeding them is (`follows`; the user's call: inferred, the path
+      # the power must take into the plant, said so). Kakhovska 330 before Melitopolska: they share a row at first
+      # (drawn once). Other grid lines are left out (the user: only the plant's lines, each with a sourced state)
+      others:
+        lines:
+          - {name: Zaporizka, kv: 750, record: Zaporizka 750}
+          - {name: Pivdennodonbaska, kv: 750, record: Pivdennodonbaska}
+          - {name: Kakhovska, kv: 750, record: Kakhovska 750}
+          - {name: Kakhovska, kv: 330, record: Kakhovska 330}
+          - {name: Melitopolska, kv: 330, record: Melitopolska}
+          - {name: Zaporizka, kv: 330, record: Zaporizka 330}
+          - {name: Molochanska, kv: 330, record: Molochanska}
+        feeds: {follows: Dniprovska}
+        links: {follows: Ferosplavna-1}
+      # pass 4, the towers (towers.py; the user, 25 October 2026: "as accurate/detailed as the real things"): each OSM
+      # tower drawn as its type, from photographs of these towers and the heights published (sources in scene.json).
+      # The crossings' schemes as the sources give them (К end, П suspension, А anchor; Novoklimov 2011): checked
+      # against OSM's crossing towers and the triple end towers either side, refused if they don't fit
+      towers:
+        schemes: {Dniprovska: К-П-П-А-П-П-К, "Ferosplavna 1, 2": К-А-А-А-А-А-А-А-К}
+        catenary_m: {span: 1800, crossing: 4200}   # the conductors' catenary parameter (sag = L²/8C), representative
+      animatic:
+        fps: 30
+        size: [960, 540]
+        ground_m: 15              # the targets' height (the reservoir is 14.5 m in FABDEM)
+        haze_km: [5, 14]          # the land fades into the sky between these distances (the box ends 12 km on)
+        start: {view_km: 11, lens_mm: 200}   # the zone's close hold: top-down, north up, centred on the zone's circle
+        hold_s: 1.5
+        # the opening (decided with the user, 25 October 2026, after several rounds; docs/crossing-3d-plan.txt STATUS):
+        # tilt while travelling from the plant, north up, coming onto the corridor's axis 2 km before the lines' crossing
+        # (`approach_m`) and straight up it, landing centred between the lines at the flight's speed, 70 m up, pitch -7°, 35 mm
+        variants:
+          axis2k: {tilt_s: 11, approach_m: 2000, flight: {altitude_m: 70, pitch_deg: -7, lens_mm: 35}}
+          axis2k_record:          # the same, with the two lines' record seen and heard (`record` below; the user, 25 October
+            tilt_s: 11            # 2026): a little slower (77 m/s) so it reaches the north shore as the record ends, the
+            approach_m: 2000      # drain pinned to its date, the last state held through the lift and the fade
+            record: true
+            title: ZNPP-last-two-lines-3D   # the whole render's name (3D-film until 2 November 2026); a --seconds stretch keeps the variant's
+            flight: {altitude_m: 70, pitch_deg: -7, lens_mm: 35, speed_mps: 77}
+            route:
+              - {north_km: 8.0, speed_mps: 77}
+              - {north_km: 9.2, speed_mps: 60, altitude_m: 300, phase: lift}
+          # S6, the other way (the user, 4 November 2026: "facing the other way around and flowing with the electricity
+          # instead of against it"; the flight north stays as approved): faded in from white high over the north bank,
+          # down onto the corridor's axis and south along it with the dashes, off it on a curve toward the plant, then
+          # a slow rise looking at the units from afar, fading to white (temporary: the user wants to see the crossing
+          # and the plant modelled from afar). The lines on the other sides (Dniprovska left, Ferosplavna right); their
+          # names fade before the lines cross ahead and part to their switchyards. Keys: `north_km` on the axis, a share
+          # of the `curve`, or metres `beyond_m` its end (camera.frames_track)
+          south_record:
+            record:
+              at_s: 5
+              names_at_s: 12
+              names_until_s: 92
+              run_s: 95           # the record ends about 101.5 s, as the rise begins; the last state held to the fade
+              pins:               # placed by where the camera is (the user, 4 November 2026): the dam at 7.2 km, about
+                                  # 1.2 km into the full reservoir (about 15 s over it first), so the drain, the wet bed
+                                  # of 2023 and the dry bed of 2024-25 (its passes pinned) come in ahead as it flies on;
+                                  # each pin as near the record's minimum holds allows (17 June to August 2024 at least
+                                  # 7.8 s, a year to August 2025 at least 13 s); at 45 s the bed was crossed still wet
+                - {at: 2023-06-06, s: 35, min_hold_s: 0.9}
+                - {at: 2023-06-17, s: 42.5}
+                - {at: 2024-08-23, s: 51}
+                - {at: 2025-08-28, s: 65}
+              sound: {start_s: 0.5, fade_in_s: 4, swell_s: 0.6, fall_s: 0.3}
+              lines:
+                Ferosplavna-1: {pan: 0.85}
+                Dniprovska: {pan: -0.85}
+            title: ZNPP-last-two-lines-3D-south
+            extras: [plant, land_south, others]
+            fade_in_s: 4
+            fade_out_s: 5
+            flight: {altitude_m: 70, pitch_deg: -7, lens_mm: 35, speed_mps: 80}
+            track:
+              start_north_km: 9.6        # just north of where both lines turn onto the crossing (9.0-9.2)
+              leave_north_km: 3.2        # off the axis 0.6 km before the lines cross
+              end_xy_m: [1600, 1500]     # the rise ends here, 2.1 km north-east of the units
+              end_heading_deg: 253       # the units and the cooling towers both in the frame
+              start: {altitude_m: 300, speed_mps: 45}
+              rise: {from: {curve: 0.0}, to: {curve: 1.0}, altitude_m: [70, 320], pitch_deg: [-7, -9]}   # one climb from where the lines part
+            route:
+              - {north_km: 8.6, speed_mps: 80, altitude_m: 70, phase: descend}
+              - {north_km: 3.2, speed_mps: 80}
+              - {curve: 0.35, speed_mps: 65}
+              - {curve: 0.7, speed_mps: 40}
+              - {curve: 1.0, speed_mps: 12}
+              - {beyond_m: 40, speed_mps: 6}
+        land_after_m: 0          # the camera lands on the axis this far north of where the lines cross
+        flight: {altitude_m: 120, pitch_deg: -12, lens_mm: 28, speed_mps: 80}
+        flight_s: 15              # without a route: this long on along the axis
+        # then on to the end of the crossing (the user's call, 25 October 2026: level all the way, as at the landing; the
+        # drain while flying on at speed; at the end a lift up and away fading to white, never a stop or a turn round). Keys
+        # by km north of the plant (the water of 5 June 2023: 3.94-8.39; the last crossing towers on the north bank at
+        # 8.61 and 8.71; the lines turn away by 9.2), the speed there and any change of view; a stretch's time from its
+        # length and end speeds, or `s`. Times to be pinned to the record's dates in pass 2.
+        route:
+          - {north_km: 8.0, speed_mps: 80}                                         # level over the reservoir to the north shore
+          - {north_km: 9.2, speed_mps: 60, altitude_m: 300, phase: lift}           # lifting up and away over the north bank, still level
+        drain_km: [4.8, 5.5]      # the land dissolves from the full reservoir (2021) to the drained bed (2025) as the camera passes these
+        fade_out_s: 5             # the last seconds fade to white
+    # The lines' record (decided with the user, 22 October 2026): after the lines have landed, the date runs from the
+    # invasion and each line goes unlit when it is cut off and lights up again when reconnected; unlit and dotted where
+    # lines were cut but the reports don't say which (light means power: the user, 2 November 2026). Every event is a
+    # dated report with its sources (checked 22 October 2026). The IAEA names the plant's lines only from late 2022:
+    # "the 750 kV line" is Dniprovska (the one 750 kV line left; named by Energoatom on 5 September 2022 and by the IAEA
+    # after) and "the 330 kV back-up line" is Ferosplavna-1 (the IAEA's "last functioning back-up line" from 29 December
+    # 2022). `count: derived`: the IAEA's number for that complete loss follows from the numbers it gave either side,
+    # not stated in the sources found.
+    record:
+      at_s: 64.5                # the record starts (all lines landed), unless the film's `wait_s` places it
+      intro_s: 3                # "before the war" held, then the date runs
+      run_s: 155                # 24 February 2022 to `end` (the longer pauses and the zone's moment take the film past 3 minutes; 147 until 2 November 2026, +8 for the night lights held on 5 September 2022)
+      outro_s: 5.5              # the last state held, then the fade
+      min_hold_s: 0.7           # each state (between reported changes) held at least this long: room to breathe
+      min_blink_s: 0.8          # a cut restored within the day shown this long, at the start of its interval
+      loss_s: 1.8               # a complete loss within the day: every line off, silent, this long (decided with the user: a longer pause)
+      loss_hold_s: 2.4          # a complete loss lasting days at least this long, and longer the longer it lasted:
+      loss_day_s: 0.12          # this much a day
+      loss_max_s: 6             # up to this (a month on diesel generators)
+      fade_off_s: 0.25          # a cut line dims this fast (a breaker)
+      fade_on_s: 0.6            # a reconnected line swells back this slowly
+      caption_hold_s: 2.0       # a state with a caption held at least this long (read before the next change)
+      caption_min_s: 2.0        # and captions at least this far apart: none runs late
+      start: 2022-02-24
+      end: 2026-09-11           # the last report of the state shown at the end (ANVS, 11 September 2026; the ACA, September 2026)
+      lines:                    # record name: [the drawn line's name, kV, strand]; Ferosplavna's two circuits on one row of towers
+        Dniprovska: [Dniprovska, 750]
+        Zaporizka 750: [Zaporizka, 750]
+        Pivdennodonbaska: [Pivdennodonbaska, 750]
+        Kakhovska 750: [Kakhovska, 750]
+        Ferosplavna-1: ["Ferosplavna 1, 2", 330, 0]
+        Ferosplavna-2: ["Ferosplavna 1, 2", 330, 1]
+        Zaporizka 330: [Zaporizka, 330]
+        Molochanska: [Molochanska, 330]
+        Melitopolska: [Melitopolska, 330]
+        Kakhovska 330: [Kakhovska, 330]
+      groups:
+        other 750: [Zaporizka 750, Pivdennodonbaska, Kakhovska 750]
+        other 330: [Ferosplavna-2, Zaporizka 330, Molochanska, Melitopolska, Kakhovska 330]
+      note: >-
+        The IAEA counts ten lines before the war (four 750 kV, six 330 kV); the WNA's chronology says three 330 kV backup
+        lines. The six 330 kV lines here are the thermal plant's six circuits as traced; which of them the IAEA counted
+        isn't said. The 18th complete loss (June 2026, about 15 hours) isn't dated in the sources found, so the count
+        steps from 17 to 19. A trip of Dniprovska in mid-November 2025 (WNA, no date) is left out.
+      sources:
+        wna: {title: "World Nuclear Association, Ukraine: Russia-Ukraine war and nuclear energy (chronology from the IAEA's updates)", url: "https://world-nuclear.org/information-library/country-profiles/countries-t-z/ukraine-russia-war-and-nuclear-energy"}
+        nea: {title: "OECD-NEA, Ukraine: current status of nuclear power installations (quoting the IAEA)", url: "https://oecd-nea.org/jcms/pl_66130/ukraine-current-status-of-nuclear-power-installations"}
+        wnn_2022_08: {title: "World Nuclear News, Zaporizhzhia temporarily loses grid connection (August 2022)", url: "https://world-nuclear.org/ukraine-information/wnn-ukraine/wnn-zaporizhzhia-temporarily-loses-grid-connection"}
+        aljazeera_2022_08_25: {title: "Al Jazeera, 25 August 2022", url: "https://www.aljazeera.com/news/2022/8/25/ukraine-says-zaporizhzhia-nuclear-plant-disconnected-from-grid"}
+        energoatom_2022_09_05: {title: "Ukranews (Energoatom), 5 September 2022: the last line to Ukraine's grid turned off; Dniprovska, Kakhovska and Melitopolska damaged in the three days before", url: "https://ukranews.com/en/news/880261-last-power-line-that-connected-zaporizhzhia-npp-with-ukraine-s-power-system-turned-off-energoatom"}
+        inquirer_2022_09: {title: "Inquirer (AFP), September 2022: the fourth 750 kV line down", url: "https://newsinfo.inquirer.net/1658176/ukraines-zaporizhzhia-nuclear-plant-loses-power-line-iaea"}
+        babel_2022_09_05: {title: "Babel (Energoatom), 5 September 2022: Dniprovska, Kakhovska and Melitopolska damaged and disconnected in three days of shelling; the last line turned off after a fire", url: "https://babel.ua/en/news/83835-the-last-line-connecting-the-plant-to-the-energy-system-of-ukraine-was-turned-off-at-the-zaporizhzhia-nuclear-power-plant"}
+        rubryka_2022_09_05: {title: "Rubryka (Energoatom), 5 September 2022: the 330 kV ZTPP–Ferosplavna line disconnected; unit 6 powering the plant's own needs", url: "https://rubryka.com/en/2022/09/05/na-zaes-vidimknulas-ostannya-liniya-yaka-z-yednuvala-stantsiyu-z-energosystemoyu-ukrayiny-energoatom/"}
+        babel_iaea_2022_09_05: {title: "Babel (IAEA), 5 September 2022: the reserve line turned off on purpose to put out a fire, the line itself not damaged", url: "https://babel.ua/en/news/83856-iaea-at-the-zaporizhzhia-npp-the-last-line-was-turned-off-on-purpose-to-extinguish-the-fire"}
+        babel_2022_09_11: {title: "Babel (Energoatom), 11 September 2022: unit 6 in island mode three days (114-140 MW, the plant's own needs); a line restored the evening before; unit 6 disconnected at 03:41", url: "https://babel.ua/en/news/84092-energoatom-zaporizhzhia-npp-is-completely-stopped"}
+        pbs_2022_09_17: {title: "PBS NewsHour (AP), 17 September 2022: the main 750 kV line reconnected the previous afternoon", url: "https://www.pbs.org/newshour/world/ukraine-nuclear-plant-reconnected-to-power-grid-after-repairs-to-external-line"}
+        nei_2022_09: {title: "NEI Magazine, ZNPP reconnects to grid (September 2022)", url: "https://www.neimagazine.com/news/znpp-reconnects-to-grid/"}
+        ap_2022_10_09: {title: "AP, 9 October 2022: reconnected after the line was cut", url: "https://www.wsls.com/business/2022/10/09/ukraine-nuclear-plant-reconnected-to-grid-after-line-was-cut/"}
+        ukrinform_2022_10_12: {title: "Ukrinform (IAEA), 12 October 2022: second loss in five days", url: "https://ukrinform.net/rubric-ato/3591605-znpp-lost-external-power-for-second-time-in-five-days-iaea-chief.html"}
+        inquirer_2023_05_22: {title: "Inquirer (AFP), 22 May 2023: the seventh blackout", url: "https://newsinfo.inquirer.net/?p=1772662"}
+        iaea_2023_12_02: {title: "IAEA via GlobalSecurity, 2 December 2023: the eighth complete loss", url: "https://www.globalsecurity.org/wmd/library/news/ukraine/2023/12/ukraine-231202-iaea01.htm"}
+        iaea_2025_07_04: {title: "IAEA via GlobalSecurity, 4 July 2025: the ninth complete loss", url: "https://www.globalsecurity.org/wmd/library/news/ukraine/2025/07/ukraine-250704-iaea01.htm"}
+        ans_2025_10_20: {title: "ANS Nuclear Newswire, 20 October 2025", url: "https://www.ans.org/news/2025-10-20/article-7472/update-on-zaporizhzhia/"}
+        ap_2025_10_23: {title: "AP, 23 October 2025", url: "https://www.yahoo.com/news/articles/off-power-being-restored-ukraine-104314844.html"}
+        up_2026_01_17: {title: "Ukrainska Pravda (IAEA), 17 January 2026: a ceasefire to repair the backup line", url: "https://www.pravda.com.ua/eng/news/2026/01/17/8016600"}
+        up_2026_03_05: {title: "Ukrainska Pravda (IAEA), 5 March 2026: reconnected to a second line", url: "https://www.pravda.com.ua/eng/news/2026/03/05/8024118"}
+        iaea_345: {title: "IAEA, Update 345", url: "https://reliefweb.int/report/ukraine/update-345-iaea-director-general-statement-situation-ukraine"}
+        euromaidan_2026_04_30: {title: "Euromaidan Press, 30 April 2026: the fifteenth blackout", url: "https://euromaidanpress.com/2026/04/30/zaporizhzhia-npp-loses-external-power-again-fifteenth-blackout-since-the-full-scale-invasion/"}
+        iaea_348: {title: "IAEA, Update 348", url: "https://www.iaea.org/newscenter/pressreleases/update-348-iaea-director-general-statement-on-situation-in-ukraine"}
+        liga_2026: {title: "LIGA.net (IAEA), 2026: another blackout", url: "https://biz.liga.net/en/energy/news/occupied-zaporizhzhia-npp-suffers-another-blackout-iaea-says"}
+        eastern_herald_2026_06_03: {title: "Eastern Herald (IAEA), 3 June 2026: the 17th loss", url: "https://easternherald.com/2026/06/03/znpp-power-outage-17th-time-nikopolska-drone-iaea/"}
+        interfax_2026_06_11: {title: "Interfax-Ukraine (IAEA), 11 June 2026: the 19th loss", url: "https://en.interfax.com.ua/news/general/1175619.html"}
+        up_2026_06_26: {title: "Ukrainska Pravda (IAEA), 26 June 2026: Dniprovska repaired but can't be connected", url: "https://www.pravda.com.ua/eng/news/2026/06/26/8041243/index.amp"}
+        aca_2026_09: {title: "Arms Control Association, September 2026: outages rising", url: "https://www.armscontrol.org/act/2026-09/news/outages-rising-zaporizhzhia-power-plant"}
+        wnn_2022_09_07: {title: "World Nuclear News, 7 September 2022: IAEA calls for a nuclear safety and security protection zone (Grossi: limited 'to the perimeter and the plant itself')", url: "https://www.world-nuclear-news.org/Articles/IAEA-calls-for-nuclear-safety-exclusion-zone-aroun"}
+        kcl_2022_09_07: {title: "King's College London, 7 September 2022: why the proposals for a demilitarised zone are unprecedented (Grossi: 'a bubble around the perimeter of the facility')", url: "https://www.kcl.ac.uk/why-are-the-proposals-for-a-demilitarised-zone-around-europes-biggest-nuclear-power-plant-unprecedented"}
+        ap_2022_09_12: {title: "AP, 12 September 2022: technical details being explored, 'including the radius'", url: "https://www.wsls.com/news/world/2022/09/12/un-nuclear-chief-pushes-for-deal-on-nuke-plant-safety-zone/"}
+        scr_2023_05_29: {title: "Security Council Report, 29 May 2023: the IAEA's 30 March statement, from a zone to actions to avoid", url: "https://www.securitycouncilreport.org/whatsinblue/2023/05/ukraine-briefing-on-the-zaporizhzhia-nuclear-power-plant-2.php"}
+        aca_2023_05: {title: "Arms Control Association, May 2023: IAEA shifts priorities for Zaporizhzhia (the zone never established)", url: "https://www.armscontrol.org/act/2023-05/news/iaea-shifts-priorities-zaporizhzhia"}
+        ans_2026_09_09: {title: "ANS, 9 September 2026", url: "https://www.ans.org/news/2026-09-09/article-8377/zaporizhzhia-restores-offsite-power-following-iaeabrokered-local-ceasefire/"}
+        anvs_2026_09_11: {title: "ANVS, 11 September 2026: power supply restored", url: "https://english.autoriteitnvs.nl/latest/news/2026/09/11/power-supply-to-zaporizhzhia-nuclear-power-plant-restored"}
+      # The IAEA's protection zone (decided with the user, 22 October 2026): proposed in its report of 6 September 2022,
+      # never agreed; on 30 March 2023 the IAEA turned from a zone to actions the parties should avoid. No size was ever
+      # published (AP, 12 September 2022: "including the radius" still being explored); Grossi: limited "to the
+      # perimeter and the plant itself". So the circle is drawn round the plant's site as OpenStreetMap maps it.
+      zone:
+        from: 2022-09-06
+        until: 2023-03-30
+        around: [28877213]      # OSM way: Запорізька АЕС (power=plant), the plant's site
+        label: "IAEA protection zone: proposed, never agreed"
+        hold_s: 9               # the held moment (decided with the user): the date holds while the camera closes in on
+        view_km: 11             # the circle at its true size (this frame width), holds, and pulls back out as a ring
+        lead_s: 0.5             # of light spreads from the plant: how far the lines reach beyond it
+        in_s: 2.4
+        out_s: 3.0
+        tail_s: 0.6
+        measure: "The plant's lines reach {km} km from it"
+        sublabel: "No size was published: 'the perimeter and the plant itself' (Grossi) · drawn round the site, {km} km across"
+        note: "The smallest circle round the plant's site as OpenStreetMap maps it; the IAEA published no boundary or radius"
+        src: [wnn_2022_09_07, kcl_2022_09_07, ap_2022_09_12, scr_2023_05_29, aca_2023_05]
+      events:
+        - {at: 2022-02-24, lines: all, to: on, caption: "Russia's full-scale invasion. The plant has ten lines: four 750 kV, six 330 kV", src: [nea]}
+        - {at: 2022-03-03, lines: all, to: unknown, src: [wna],
+           note: "3 March one line lost; 9 March two of five damaged; 16 March a third lost; 19 March one restored. None named."}
+        - {at: 2022-03-04, caption: "Russian forces seize the plant", src: [wna]}
+        - {at: 2022-03-09, caption: "Lines cut and repaired: the reports don't say which", src: [wna]}
+        - {at: 2022-08-25, lines: other 750, to: off, src: [wnn_2022_08], note: "Energoatom: three other 750 kV lines damaged earlier in the conflict (not named, not dated)"}
+        - {at: 2022-08-25, lines: Dniprovska, to: on, src: [energoatom_2022_09_05], note: "the last 750 kV line (named by Energoatom on 5 September)"}
+        - {at: 2022-08-25, loop: 1, count: derived, until: 2022-08-25, caption: "Its last line cut: the first complete loss of off-site power", src: [aljazeera_2022_08_25, wna]}
+        - {at: 2022-09-03, lines: Dniprovska, to: off, caption: "The last 750 kV line cut: a 330 kV backup carries the plant", src: [inquirer_2022_09, wna, energoatom_2022_09_05]}
+        # island mode (checked 2 November 2026, NEXT.md D3): the 330 kV reserve line carrying the plant disconnected on
+        # 5 September (a fire; the IAEA: the line not damaged), every line then cut, unit 6 at low power for the plant's
+        # own needs until a reserve line was restored on the evening of 10 September; not a complete loss in the IAEA's
+        # count (the second is 8 October), so no `loop`. Which 330 kV circuit came back isn't reported: grey again after.
+        - {at: 2022-09-05, lines: all, to: off, until: 2022-09-10, island: true,
+           caption: "Its last line cut: one reactor powers the plant (island mode)",
+           src: [wna, rubryka_2022_09_05, babel_iaea_2022_09_05, babel_2022_09_11],
+           note: "unit 6 at 114-140 MW for the plant's own needs; no off-site power, but not on diesel and not counted by the IAEA as a complete loss"}
+        - {at: 2022-09-06, caption: "The IAEA proposes a protection zone: 'the perimeter and the plant itself'", src: [wnn_2022_09_07, kcl_2022_09_07]}
+        - {at: 2022-09-10, caption: "A 330 kV reserve line restored: the last reactor shut down", src: [wna, babel_2022_09_11],
+           note: "restored in the evening; unit 6 disconnected at 03:41 on 11 September (Energoatom)"}
+        - {at: 2022-09-16, lines: Dniprovska, to: on, src: [pbs_2022_09_17, nei_2022_09, wna], note: "reconnected in the afternoon of 16 September (reported 17 September)"}
+        - {at: 2022-10-08, loop: 2, count: derived, until: 2022-10-09, src: [wna, ap_2022_10_09]}
+        - {at: 2022-10-12, loop: 3, count: derived, brief: true, src: [ukrinform_2022_10_12, wna], note: "a few hours; Energoatom: the Dniprovska substation hit"}
+        - {at: 2022-10-12, lines: Dniprovska, until: 2022-10-18, to: off, src: [wna]}
+        - {at: 2022-11-03, loop: 4, until: 2022-11-05, caption: "Shelling cuts both lines, 50-60 km away", src: [nea, wna]}
+        - {at: 2022-11-23, loop: 5, until: 2022-11-24, src: [nea]}
+        - {at: 2022-12-29, lines: other 330, to: off, src: [wna], note: "Ferosplavna-1 'the last functioning back-up line': the others out of use (dates not reported)"}
+        - {at: 2022-12-29, lines: Ferosplavna-1, to: off, caption: "Ferosplavna-1, the last 330 kV backup, damaged", src: [wna]}
+        - {at: 2023-01-17, lines: Ferosplavna-1, to: on, src: [wna]}
+        - {at: 2023-03-01, lines: Ferosplavna-1, to: off, src: [wna, nea]}
+        - {at: 2023-03-09, loop: 6, brief: true, src: [wna], note: "11 hours"}
+        - {at: 2023-03-30, caption: "The IAEA turns from a zone to actions to avoid: the zone never agreed", src: [scr_2023_05_29, aca_2023_05]}
+        - {at: 2023-05-22, loop: 7, brief: true, src: [inquirer_2023_05_22], note: "restored the same day"}
+        - {at: 2023-06-06, caption: "The Kakhovka dam destroyed: the reservoir drains", src: [wna]}
+        - {at: 2023-07-01, lines: Ferosplavna-1, to: on, src: [wna, nea]}
+        - {at: 2023-07-04, lines: Dniprovska, to: off, brief: true, src: [nea], note: "about 12 hours"}
+        - {at: 2023-08-11, lines: Dniprovska, to: off, brief: true, src: [nea], note: "lost twice in one day"}
+        - {at: 2023-11-26, lines: Dniprovska, to: off, until: 2023-11-28, src: [nea]}
+        - {at: 2023-12-01, lines: Ferosplavna-1, to: off, until: 2023-12-15, src: [nea], note: "cut at 22:26"}
+        - {at: 2023-12-02, loop: 8, brief: true, src: [iaea_2023_12_02, nea], note: "750 kV restored shortly after 08:00"}
+        - {at: 2024-02-21, lines: Ferosplavna-1, to: off, until: 2024-03-14, src: [nea]}
+        - {at: 2024-03-22, lines: Dniprovska, to: off, brief: true, src: [nea], note: "about 5 hours"}
+        - {at: 2024-04-04, lines: Ferosplavna-1, to: off, until: 2024-04-06, src: [nea]}
+        - {at: 2024-05-23, lines: Dniprovska, to: off, brief: true, src: [nea], note: "about 3 hours"}
+        - {at: 2024-08-23, lines: Ferosplavna-1, to: off, brief: true, src: [nea]}
+        - {at: 2024-09-02, lines: Ferosplavna-1, to: off, until: 2024-09-05, src: [nea]}
+        - {at: 2024-10-01, lines: Ferosplavna-1, to: off, brief: true, src: [nea], note: "restoration not dated (before 21 October)"}
+        - {at: 2024-10-21, lines: Ferosplavna-1, to: off, until: 2024-10-22, src: [nea], note: "about 26 hours"}
+        - {at: 2024-11-16, lines: Dniprovska, to: off, until: 2024-11-17, src: [nea], note: "about 30 hours"}
+        - {at: 2024-11-21, lines: Dniprovska, to: off, until: 2024-11-23, src: [nea]}
+        - {at: 2024-12-02, lines: Ferosplavna-1, to: off, until: 2024-12-03, src: [nea]}
+        - {at: 2025-01-29, lines: Dniprovska, to: off, until: 2025-02-01, src: [nea]}
+        - {at: 2025-02-10, lines: Ferosplavna-1, to: off, until: 2025-02-27, src: [nea]}
+        - {at: 2025-03-21, lines: Ferosplavna-1, to: off, brief: true, src: [nea], note: "circuit breaker maintenance"}
+        - {at: 2025-05-07, lines: Ferosplavna-1, to: off, caption: "Ferosplavna-1 cut: six months on one line", src: [wna, nea]}
+        - {at: 2025-07-04, loop: 9, brief: true, src: [iaea_2025_07_04, wna], note: "about 4 hours"}
+        - {at: 2025-09-23, lines: Dniprovska, to: off, src: [ans_2025_10_20, wna]}
+        - {at: 2025-09-23, loop: 10, until: 2025-10-23, caption: "A month on diesel generators", src: [ans_2025_10_20, ap_2025_10_23]}
+        - {at: 2025-10-23, lines: Dniprovska, to: on, src: [ap_2025_10_23, wna]}
+        - {at: 2025-11-08, lines: Ferosplavna-1, to: on, src: [wna]}
+        - {at: 2025-12-06, loop: 11, count: derived, brief: true, src: [wna], note: "29 minutes"}
+        - {at: 2025-12-13, loop: 12, count: derived, brief: true, src: [wna], note: "more than two hours"}
+        - {at: 2026-01-02, lines: Ferosplavna-1, to: off, until: 2026-01-19, src: [wna, up_2026_01_17]}
+        - {at: 2026-02-10, lines: Ferosplavna-1, to: off, until: 2026-03-05, src: [up_2026_03_05, iaea_345]}
+        - {at: 2026-03-24, lines: Dniprovska, to: off, caption: "Dniprovska cut: the plant on its backup alone", src: [up_2026_06_26, wna]}
+        - {at: 2026-04-14, loop: 13, brief: true, src: [euromaidan_2026_04_30]}
+        - {at: 2026-04-16, loop: 14, brief: true, src: [wna, euromaidan_2026_04_30]}
+        - {at: 2026-04-26, loop: 15, brief: true, src: [iaea_348, euromaidan_2026_04_30], note: "about 60 minutes"}
+        - {at: 2026-05-29, loop: 16, brief: true, src: [liga_2026, interfax_2026_06_11]}
+        - {at: 2026-06-03, loop: 17, brief: true, src: [eastern_herald_2026_06_03], note: "a drone strike on the Nikopolska substation"}
+        - {at: 2026-06-10, loop: 19, until: 2026-06-13, src: [interfax_2026_06_11, wna]}
+        - {at: 2026-06-20, loop: 20, brief: true, src: [wna]}
+        - {at: 2026-06-26, caption: "Dniprovska repaired, but its substation is too damaged to reconnect", src: [up_2026_06_26]}
+        - {at: 2026-07-03, loop: 21, brief: true, src: [wna]}
+        - {at: 2026-07-14, loop: 22, brief: true, src: [wna]}
+        - {at: 2026-08-01, loop: 23, brief: true, src: [wna, aca_2026_09]}
+        - {at: 2026-08-04, loop: 24, brief: true, src: [wna, aca_2026_09]}
+        - {at: 2026-08-08, loop: 25, brief: true, src: [wna, aca_2026_09]}
+        - {at: 2026-08-20, lines: Ferosplavna-1, to: off, src: [ans_2026_09_09, wna]}
+        - {at: 2026-08-20, loop: 26, until: 2026-09-07, caption: "18 days on diesel generators", src: [ans_2026_09_09, wna]}
+        - {at: 2026-09-07, lines: Ferosplavna-1, to: on, caption: "Ferosplavna-1 reconnected: one line of ten", src: [anvs_2026_09_11, ans_2026_09_09, aca_2026_09]}
+    unrolled:
+      # The two last lines unrolled (NEXT.md I5, idea 1; the user, 4 November 2026: "grow from left to right and the
+      # video pan as time goes on", time left to right and "only the most critical stuff"): each line unrolled into an
+      # upright bar, km up from its switchyard; the bars move right with the date, the record's states left behind as
+      # ribbons, and the repair truces as regions as tall as their sources say (the safety rule: a stretch of at least
+      # about 3 km, never a tower, a pin or a crew; unrolled.py refuses less).
+      title: ZNPP-last-two-lines-unrolled
+      width: 1920
+      height: 1080
+      fps: 60                    # tests at 30 (--fps 30)
+      show_km: 20                # each bar this long (the river and the truces near it given room); both lines go on, said so
+      lines:                     # Ferosplavna-1 the lower ribbon, Dniprovska the upper
+        - {record: Ferosplavna-1, drawn: "Ferosplavna 1, 2", label: "FEROSPLAVNA-1 · 330 KV", from: "the thermal plant's 330 kV switchyard", to: "Ferosplavna substation"}
+        - {record: Dniprovska, drawn: Dniprovska, label: "DNIPROVSKA · 750 KV", from: "the plant's 750 kV switchyard", to: "Dniprovska substation (not shown)"}
+      water_pass: s2a_20230605T0836   # the reservoir's shores along each line the day before the dam (survey.json)
+      river_pass: s2b_20230908T0836   # the Dnipro's channel through the drained bed (survey.json): the front
+      dam: {at: 2023-06-06, label: "THE KAKHOVKA DAM DESTROYED", src: [iaea_161]}
+      scale_change: 2025-09-01   # the last year drawn larger, said on the axis
+      px_per_day: [1.0, 6.0]     # before and after scale_change (said on the axis: six times the scale)
+      sides:
+        occupied: "OCCUPIED SIDE"
+        held: "UKRAINIAN-CONTROLLED SIDE"
+        sources: [aj_2025_10_18, ukrinform_2026_06]
+      sources:
+        aj_2025_10_18: {title: "Al Jazeera (AP), 18 October 2025: repairs begin as ceasefire zones are set", url: "https://www.aljazeera.com/news/2025/10/18/zaporizhzhia-nuclear-plant-repairs-begin-in-ukraine-as-ceasefire-zones-set"}
+        ukrinform_2026_06: {title: "Ukrinform, June 2026: a ceasefire for repairs to the tall towers near the demarcation line on the Dnipro", url: "https://ukrinform.net/rubric-economy/4130748-iaea-secures-ceasefire-for-repairs-to-power-line-supplying-znpp.html"}
+        wnn_2026_06: {title: "World Nuclear News, June 2026: substation damage stopping reconnection", url: "https://world-nuclear-news.org/articles/substation-damage-stopping-zaporizhzhia-power-line-reconnection-says-iaea"}
+        up_2025_11_07: {title: "Ukrainska Pravda, 7 November 2025: a local ceasefire, the ground demined", url: "https://www.pravda.com.ua/eng/news/2025/11/07/8006360"}
+        mind_2025_11: {title: "Mind.ua, November 2025: the plant reconnected to its backup line", url: "https://mind.ua/news/20297101-zaes-znovu-pidklyuchili-do-rezervnogo-zhivlennya"}
+        liga_2026_01: {title: "Liga.net, January 2026: repair of the backup line begins", url: "https://news.liga.net/en/politics/news/repair-of-a-backup-power-line-near-zaporizhzhia-npp-begins-photo"}
+        iaea_161: {title: "IAEA, Update 161: the Kakhovka dam destroyed, the reservoir falling", url: "https://www.iaea.org/newscenter/pressreleases/update-161-iaea-director-general-statement-on-situation-in-ukraine"}
+        wnn_2026_09: {title: "World Nuclear News, September 2026: local ceasefire for power line repairs", url: "https://www.world-nuclear-news.org/articles/local-ceasefire-in-place-for-zaporizhzhia-power-line-repairs"}
+      # Each truce: the line, its window, and where as published (`region`): occupied or held (the side of the front),
+      # south_bank, crossing or north_bank (the shores of 5 June 2023), or unknown (no place published: the whole bar,
+      # said so). `open_end`: the window's end isn't reported (drawn fading to `until`).
+      truces:
+        - {n: 1, line: Dniprovska, from: 2025-10-18, until: 2025-10-23, region: occupied, where: "in an area under Russian control", src: [aj_2025_10_18, ap_2025_10_23]}
+        - {n: 2, line: Ferosplavna-1, from: 2025-10-18, until: 2025-11-08, open_end: true, region: held, where: "in Ukrainian-controlled territory", src: [aj_2025_10_18]}
+        - {n: 3, line: Ferosplavna-1, from: 2025-11-07, until: 2025-11-08, region: south_bank, where: "the south bank, between the thermal plant and the shore", src: [up_2025_11_07, mind_2025_11]}
+        - {n: 4, line: Ferosplavna-1, from: 2026-01-17, until: 2026-01-19, region: unknown, where: "not published", src: [up_2026_01_17, liga_2026_01]}
+        - {n: 5, line: Ferosplavna-1, from: 2026-02-27, until: 2026-03-05, region: unknown, where: "not published", src: [up_2026_03_05]}
+        - {n: 6, line: Dniprovska, from: 2026-06-05, until: 2026-06-26, region: crossing, where: "the tall towers across the Dnipro", note: "repaired, but its substation too damaged to reconnect", src: [ukrinform_2026_06, wnn_2026_06, up_2026_06_26]}
+        - {n: 7, line: Ferosplavna-1, from: 2026-09-05, until: 2026-09-07, region: held, where: "the northern side of the Dnipro", src: [wnn_2026_09, ans_2026_09_09]}

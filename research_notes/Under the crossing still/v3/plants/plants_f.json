@@ -1,0 +1,54 @@
+{
+ "view": {
+  "id": "f",
+  "what": "further out on the bed, in a meadow lane through the willows 190 m south of tower 23, under the lit span",
+  "cam": [
+   4355.0,
+   6870.0
+  ],
+  "heading": 22.0,
+  "pitch": 14.0,
+  "lens": 18.0,
+  "eye": 1.6,
+  "cone_deg": 75,
+  "far_m": 1500,
+  "clear_m": 1.0,
+  "clear_tall_m": 2.5,
+  "gap": [
+   7,
+   3,
+   200
+  ]
+ },
+ "camera_ground_m": 9.21,
+ "habitat_at_camera": "herbs",
+ "plants": 56053,
+ "by_layer": {
+  "canopy lod0": 23,
+  "canopy lod1": 1195,
+  "canopy lod2": 23916,
+  "understorey lod0": 171,
+  "understorey lod1": 2045,
+  "marsh lod0": 53,
+  "marsh lod1": 540,
+  "herbs lod0": 5026,
+  "herbs lod1": 7007,
+  "grass lod0": 10942,
+  "grass lod1": 5135
+ },
+ "by_family": {
+  "0": 19633,
+  "1": 5501,
+  "2": 1927,
+  "3": 205,
+  "4": 84,
+  "5": 1204,
+  "6": 0,
+  "7": 3975,
+  "8": 2565,
+  "9": 1748,
+  "10": 1692,
+  "11": 1442,
+  "12": 16077
+ }
+}

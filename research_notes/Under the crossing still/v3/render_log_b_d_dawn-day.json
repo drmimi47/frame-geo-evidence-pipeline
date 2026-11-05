@@ -1,0 +1,24 @@
+{
+ "b": {
+  "plants": 18946,
+  "left_out": 36,
+  "met_first": {
+   "water seen": 36
+  },
+  "camera_ground_m": 6.41,
+  "camera_on": "land",
+  "prepare_s": 5.1,
+  "render_dawn_s": 44.5,
+  "render_day_s": 42.7
+ },
+ "d": {
+  "plants": 65612,
+  "left_out": 0,
+  "met_first": {},
+  "camera_ground_m": 10.46,
+  "camera_on": "land",
+  "prepare_s": 14.8,
+  "render_dawn_s": 39.9,
+  "render_day_s": 40.9
+ }
+}

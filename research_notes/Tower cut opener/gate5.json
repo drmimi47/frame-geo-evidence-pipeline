@@ -1,0 +1,1471 @@
+{
+ "Veisj23cCNk": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Каким было Каховское водохранилище в Энергодаре. Архивные видео с дрона (мирное время) #энергодар",
+  "channel": "ANDRUHA_SMILE PRODUCTION",
+  "channel_id": "UCvZI4P6Pe0oIqfFFn6hcoiw",
+  "published": "2023-06-16",
+  "license": "standard YouTube licence",
+  "duration_s": 328,
+  "url": "https://www.youtube.com/watch?v=Veisj23cCNk",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Энергодар -> Enerhodar",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховск -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "украин -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "энергодар -> Enerhodar",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховск -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Энергодар -> Enerhodar",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховск -> Kakhovka",
+     "weight": 0.6
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:47:04Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "qAp9ES1Umck": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Энергодар летом с дрона 2020. Как выглядел канал и каховское водохранилище. Красивые пейзажи города",
+  "channel": "ANDRUHA_SMILE PRODUCTION",
+  "channel_id": "UCvZI4P6Pe0oIqfFFn6hcoiw",
+  "published": "2023-06-10",
+  "license": "standard YouTube licence",
+  "duration_s": 15,
+  "url": "https://www.youtube.com/watch?v=qAp9ES1Umck",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Энергодар -> Enerhodar",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "каховск -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "украин -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "запорож -> Zaporizhzhia Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "энергодар -> Enerhodar",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Каховск -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "днепр -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Энергодар -> Enerhodar",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "каховск -> Kakhovka",
+     "weight": 0.6
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:47:26Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "wNnpjQdvOw4": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Энергодар с дрона 2020. Обзор города с высоты птичьего полета #энергодар #заэс #shorts",
+  "channel": "ANDRUHA_SMILE PRODUCTION",
+  "channel_id": "UCvZI4P6Pe0oIqfFFn6hcoiw",
+  "published": "2023-06-10",
+  "license": "standard YouTube licence",
+  "duration_s": 60,
+  "url": "https://www.youtube.com/watch?v=wNnpjQdvOw4",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Энергодар -> Enerhodar",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "украин -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "запорож -> Zaporizhzhia Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "энергодар -> Enerhodar",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Энергодар -> Enerhodar",
+     "weight": 0.6
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:47:30Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "Uwnd4N4__1E": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Энергодар летом с дрона. Красивая панорама города с высоты #энергодар #заэс #shorts",
+  "channel": "ANDRUHA_SMILE PRODUCTION",
+  "channel_id": "UCvZI4P6Pe0oIqfFFn6hcoiw",
+  "published": "2023-06-10",
+  "license": "standard YouTube licence",
+  "duration_s": 60,
+  "url": "https://www.youtube.com/watch?v=Uwnd4N4__1E",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Энергодар -> Enerhodar",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "украин -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "запорож -> Zaporizhzhia Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "энергодар -> Enerhodar",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Энергодар -> Enerhodar",
+     "weight": 0.6
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:47:36Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "lcYb9MTCHwM": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "ЭНЕРГОДАР с дрона. Обзорная панорама весеннего города в мирное время #энергодар",
+  "channel": "ANDRUHA_SMILE PRODUCTION",
+  "channel_id": "UCvZI4P6Pe0oIqfFFn6hcoiw",
+  "published": "2023-04-21",
+  "license": "standard YouTube licence",
+  "duration_s": 50,
+  "url": "https://www.youtube.com/watch?v=lcYb9MTCHwM",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "ЭНЕРГОДАР -> Enerhodar",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "энергодар -> Enerhodar",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "энергодар -> Enerhodar",
+     "weight": 0.6
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:47:44Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "bJjPARDk460": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Любимый Энергодар❤️ 🚁🌲🌁 пейзажи с высоты птичьего полета в мирное время #shorts #drone #energodar",
+  "channel": "ANDRUHA_SMILE PRODUCTION",
+  "channel_id": "UCvZI4P6Pe0oIqfFFn6hcoiw",
+  "published": "2023-04-03",
+  "license": "standard YouTube licence",
+  "duration_s": 26,
+  "url": "https://www.youtube.com/watch?v=bJjPARDk460",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Энергодар -> Enerhodar",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "украин -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "запорож -> Zaporizhzhia Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "энергодар -> Enerhodar",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "энергодар -> Enerhodar",
+     "weight": 0.6
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:47:52Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "3hyytOj31_M": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "ЭНЕРГОДАР С ВЫСОТЫ. #shorts #drone #energodar",
+  "channel": "ANDRUHA_SMILE PRODUCTION",
+  "channel_id": "UCvZI4P6Pe0oIqfFFn6hcoiw",
+  "published": "2023-03-19",
+  "license": "standard YouTube licence",
+  "duration_s": 60,
+  "url": "https://www.youtube.com/watch?v=3hyytOj31_M",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "ЭНЕРГОДАР -> Enerhodar",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "украин -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "запорож -> Zaporizhzhia Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "энергодар -> Enerhodar",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Украин -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Запорож -> Zaporizhzhia Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "ЭНЕРГОДАР -> Enerhodar",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховск -> Kakhovka",
+     "weight": 0.6
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:48:01Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "GzO8hOoQyjY": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.88 (min 0.5)",
+  "title": "ENERGODAR New Year's 2022 #energodar #drone #shorts",
+  "channel": "ANDRUHA_SMILE PRODUCTION",
+  "channel_id": "UCvZI4P6Pe0oIqfFFn6hcoiw",
+  "published": "2023-01-13",
+  "license": "standard YouTube licence",
+  "duration_s": 57,
+  "url": "https://www.youtube.com/watch?v=GzO8hOoQyjY",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.88,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Энергодар -> Enerhodar",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Энергодар -> Enerhodar",
+     "weight": 0.6
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:48:10Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "N2yO1ymiDLw": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "ВСЕМ ЛЮБИТЕЛЯМ ЗАКАТОВ ПОСВЯЩАЕТСЯ! ЭНЕРГОДАР С ВЫСОТЫ ПТИЧЬЕГО ПОЛЁТА. ЯНВАРЬ 2022",
+  "channel": "ANDRUHA_SMILE PRODUCTION",
+  "channel_id": "UCvZI4P6Pe0oIqfFFn6hcoiw",
+  "published": "2022-01-17",
+  "license": "standard YouTube licence",
+  "duration_s": 86,
+  "url": "https://www.youtube.com/watch?v=N2yO1ymiDLw",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "ЭНЕРГОДАР -> Enerhodar",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "энергодар -> Enerhodar",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "ЭНЕРГОДАР -> Enerhodar",
+     "weight": 0.6
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:48:18Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "zafM_WlX6jg": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Зимний романтический клип с дрона. Шестопал Елена. #почуття #энергодар #love",
+  "channel": "ANDRUHA_SMILE PRODUCTION",
+  "channel_id": "UCvZI4P6Pe0oIqfFFn6hcoiw",
+  "published": "2022-01-23",
+  "license": "standard YouTube licence",
+  "duration_s": 172,
+  "url": "https://www.youtube.com/watch?v=zafM_WlX6jg",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "энергодар -> Enerhodar",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "энергодар -> Enerhodar",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "энергодар -> Enerhodar",
+     "weight": 0.6
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:48:28Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "Sz5Uj_nuBOU": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "ЭНЕРГОДАР 4 микрорайон и Мэрия с высоты в мирное время",
+  "channel": "ANDRUHA_SMILE PRODUCTION",
+  "channel_id": "UCvZI4P6Pe0oIqfFFn6hcoiw",
+  "published": "2023-04-21",
+  "license": "standard YouTube licence",
+  "duration_s": 38,
+  "url": "https://www.youtube.com/watch?v=Sz5Uj_nuBOU",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "ЭНЕРГОДАР -> Enerhodar",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "энергодар -> Enerhodar",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "энергодар -> Enerhodar",
+     "weight": 0.6
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:48:41Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "1TZSWeY0BXw": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "МІСТО ЕНЕРГОДАР З ВИСОТИ. МАЙЖЕ ВЕСНА! ВИГЛЯД З ДРОНА.",
+  "channel": "ANDRUHA_SMILE PRODUCTION",
+  "channel_id": "UCvZI4P6Pe0oIqfFFn6hcoiw",
+  "published": "2022-02-15",
+  "license": "Creative Commons Attribution license (reuse allowed)",
+  "duration_s": 187,
+  "url": "https://www.youtube.com/watch?v=1TZSWeY0BXw",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "ЕНЕРГОДАР -> Enerhodar",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "энергодар -> Enerhodar",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "энергодар -> Enerhodar",
+     "weight": 0.6
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:48:45Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "TZnSZ7CWdXw": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.91 (min 0.5)",
+  "title": "Выход из бухты #9",
+  "channel": "Вика Мартинова",
+  "channel_id": "UCjXrH8FoEfZ3kkvuRWVLXRw",
+  "published": "2022-01-07",
+  "license": "standard YouTube licence",
+  "duration_s": 41,
+  "url": "https://www.youtube.com/watch?v=TZnSZ7CWdXw",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.91,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "никопол -> Nikopol",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховск -> Kakhovka",
+     "weight": 0.7
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:49:30Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "lBfgthXK3BM": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Каменка-Днепровская - Великая Знаменка подлёдный любительский лов тарани на Каховском водохранилище.",
+  "channel": "Александр Алешин",
+  "channel_id": "UCNR4N_T2le-j10689bc0-3A",
+  "published": "2022-02-20",
+  "license": "standard YouTube licence",
+  "duration_s": 202,
+  "url": "https://www.youtube.com/watch?v=lBfgthXK3BM",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Днепр -> Dnipro",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховск -> Kakhovka",
+     "weight": 0.8
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:49:37Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "tw34AEG7NB4": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Нікополь Каховське водосховище 17.06 пісок #каховскаягэс #дніпропетровщина",
+  "channel": "VaGoS",
+  "channel_id": "UC99BL6hhr4R4Q8WmBcwpIsA",
+  "published": "2023-06-17",
+  "license": "standard YouTube licence",
+  "duration_s": 17,
+  "url": "https://www.youtube.com/watch?v=tw34AEG7NB4",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "дніпропетровщин -> Dnipropetrovsk Oblast",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "дніпро -> Dnipro",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Нікопол -> Nikopol",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:49:51Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "V-tmry7p7Hs": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Порт без Каховского водохранилища Никополь сентябрь 2026 #прогулка #никополь #каховськагес #война",
+  "channel": "Елена N M   ОБЗОРЫ И НЕ ТОЛЬКО",
+  "channel_id": "UCMM7bFwkSLAL4dqHKoO6YTA",
+  "published": "2026-09-11",
+  "license": "standard YouTube licence",
+  "duration_s": 41,
+  "url": "https://www.youtube.com/watch?v=V-tmry7p7Hs",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Никопол -> Nikopol",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховск -> Kakhovka",
+     "weight": 0.8
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:49:54Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "bYpLkaq-zds": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "#Никополь, #каховское #водохранилище.",
+  "channel": "Магазин Б/у техники Nikopolservice",
+  "channel_id": "UCxi-W9ADvwDuSlhKXKauTvA",
+  "published": "2025-07-21",
+  "license": "standard YouTube licence",
+  "duration_s": 93,
+  "url": "https://www.youtube.com/watch?v=bYpLkaq-zds",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Никопол -> Nikopol",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "каховск -> Kakhovka",
+     "weight": 0.8
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:49:59Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "shIIsaZyOcU": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Каховское водоханилище Параплан",
+  "channel": "94VC",
+  "channel_id": "UCzWt5gOt1gDKS-08ffFR1YQ",
+  "published": "2022-04-12",
+  "license": "standard YouTube licence",
+  "duration_s": 45,
+  "url": "https://www.youtube.com/watch?v=shIIsaZyOcU",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховск -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "украин -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "днепр -> Dnipro",
+     "weight": 0.7
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:50:03Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "5U2-CtId_2w": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Что выросло на месте Каховского водохранилища?",
+  "channel": "Sova – все о Грузии",
+  "channel_id": "UCbhwacrD-zDtGHrjAP3IdVA",
+  "published": "2024-07-27",
+  "license": "standard YouTube licence",
+  "duration_s": 58,
+  "url": "https://www.youtube.com/watch?v=5U2-CtId_2w",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховск -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Украин -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховск -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:50:06Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "JfMmfgg20Go": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "😥КАХОВСЬКЕ водосховище повністю ЗАРОСЛО",
+  "channel": "Ми - Україна",
+  "channel_id": "UCEduOt4TK8TtOaznB45TrhA",
+  "published": "2023-08-19",
+  "license": "standard YouTube licence",
+  "duration_s": 15,
+  "url": "https://www.youtube.com/watch?v=JfMmfgg20Go",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "КАХОВСЬК -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховк -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "en",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:50:10Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "xfE26-yWh1E": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "⚡️⚡️⚡️Каховське водосховище заростає травою",
+  "channel": "Новини.LIVE",
+  "channel_id": "UC7Rwwb_LNJMhixpuVmjCEeA",
+  "published": "2023-07-26",
+  "license": "standard YouTube licence",
+  "duration_s": 18,
+  "url": "https://www.youtube.com/watch?v=xfE26-yWh1E",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "каховк -> Kakhovka",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "ukrainian letters",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:50:13Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "Qi1Qw3bCoug": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "УЖАС!! Каховское водохранилище сейчас!",
+  "channel": "Одесские Истории",
+  "channel_id": "UCVFtIfCWrhvh4iZXWd3iLhQ",
+  "published": "2023-06-14",
+  "license": "standard YouTube licence",
+  "duration_s": 16,
+  "url": "https://www.youtube.com/watch?v=Qi1Qw3bCoug",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховск -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "україн -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "одес -> Odesa Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Каховськ -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховск -> Kakhovka",
+     "weight": 0.6
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:50:16Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "V7yYVj1BZRw": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Even Russians can't resist nature. This is what the Kakhovka Reservoir looks like now #warinukraine",
+  "channel": "United24 News",
+  "channel_id": "UCVy_MtdioYB-GgSaS87_p0Q",
+  "published": "2024-03-19",
+  "license": "standard YouTube licence",
+  "duration_s": 37,
+  "url": "https://www.youtube.com/watch?v=V7yYVj1BZRw",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Kakhovka -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "ukraine -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "kherson -> Kherson Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "kakhovka -> Kakhovka",
+     "weight": 0.7
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:50:19Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "t8TkQAs8X3U": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.88 (min 0.5)",
+  "title": "ОГО! 330 и 750 кВ",
+  "channel": "Валерий Петренко",
+  "channel_id": "UCLVaXPw4igzQCGoueMz4ghA",
+  "published": "2023-06-29",
+  "license": "standard YouTube licence",
+  "duration_s": 289,
+  "url": "https://www.youtube.com/watch?v=t8TkQAs8X3U",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.88,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Каховск -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Каховск -> Kakhovka",
+     "weight": 0.6
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:50:22Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "0Wcql4hifiM": {
+  "accepted": false,
+  "reason": "no Ukraine signal in title, tags, description, language or geotag",
+  "title": "ЛЭП U=330 кВ гудит как трансформатор",
+  "channel": "1-464Д-85",
+  "channel_id": "UCbDABk8aMowCxGa9HsoD-eQ",
+  "published": "2024-02-19",
+  "license": "Creative Commons Attribution license (reuse allowed)",
+  "duration_s": 20,
+  "url": "https://www.youtube.com/watch?v=0Wcql4hifiM",
+  "scope_check": {
+   "in_scope": false,
+   "confidence": 0.0,
+   "signals": [],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:50:31Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "IYn4RL1gBB0": {
+  "accepted": false,
+  "reason": "no Ukraine signal in title, tags, description, language or geotag",
+  "title": "Под ЛЭП 330 кВ/гудит как трансформатор",
+  "channel": "1-464Д-85",
+  "channel_id": "UCbDABk8aMowCxGa9HsoD-eQ",
+  "published": "2023-07-09",
+  "license": "Creative Commons Attribution license (reuse allowed)",
+  "duration_s": 10,
+  "url": "https://www.youtube.com/watch?v=IYn4RL1gBB0",
+  "scope_check": {
+   "in_scope": false,
+   "confidence": 0.0,
+   "signals": [],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:50:32Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "O7ZEWG9vcXA": {
+  "accepted": false,
+  "reason": "no Ukraine signal in title, tags, description, language or geotag",
+  "title": "Монтаж проводов на пересечении ВЛ 750 кВ с ВЛ 330 кВ",
+  "channel": "ООО ЛЭМ / Ленэлектромонтаж",
+  "channel_id": "UC11LERi9xtSI96f-vPDH-Vw",
+  "published": "2026-05-11",
+  "license": "standard YouTube licence",
+  "duration_s": 246,
+  "url": "https://www.youtube.com/watch?v=O7ZEWG9vcXA",
+  "scope_check": {
+   "in_scope": false,
+   "confidence": 0.0,
+   "signals": [],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:50:33Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "EL3GymZMvK4": {
+  "accepted": false,
+  "reason": "no Ukraine signal in title, tags, description, language or geotag",
+  "title": "Линия электропередачи напряжением 330 кВ (Киловольт) #лето #лэп",
+  "channel": "ЛЭП",
+  "channel_id": "UCz2gMzLkoEXMtvq33ogOfig",
+  "published": "2026-06-07",
+  "license": "standard YouTube licence",
+  "duration_s": 11,
+  "url": "https://www.youtube.com/watch?v=EL3GymZMvK4",
+  "scope_check": {
+   "in_scope": false,
+   "confidence": 0.0,
+   "signals": [],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:50:34Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "6WYS6QFweCg": {
+  "accepted": false,
+  "reason": "no Ukraine signal in title, tags, description, language or geotag",
+  "title": "Линии 330 и 220 кВ",
+  "channel": "ЛЭП",
+  "channel_id": "UCz2gMzLkoEXMtvq33ogOfig",
+  "published": "2026-09-02",
+  "license": "standard YouTube licence",
+  "duration_s": 21,
+  "url": "https://www.youtube.com/watch?v=6WYS6QFweCg",
+  "scope_check": {
+   "in_scope": false,
+   "confidence": 0.0,
+   "signals": [],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:50:36Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "6sAb15nxCtw": {
+  "accepted": false,
+  "reason": "no Ukraine signal in title, tags, description, language or geotag",
+  "title": "ЛЭП которые я видел.",
+  "channel": "ЛЭП",
+  "channel_id": "UCz2gMzLkoEXMtvq33ogOfig",
+  "published": "2026-10-16",
+  "license": "standard YouTube licence",
+  "duration_s": 35,
+  "url": "https://www.youtube.com/watch?v=6sAb15nxCtw",
+  "scope_check": {
+   "in_scope": false,
+   "confidence": 0.0,
+   "signals": [],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:50:37Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "1Suh-_MewXk": {
+  "accepted": false,
+  "reason": "no Ukraine signal in title, tags, description, language or geotag",
+  "title": "#лэп #110 #лето #провода. ЛЭП 110 и 330 кВ.",
+  "channel": "ЛЭП",
+  "channel_id": "UCz2gMzLkoEXMtvq33ogOfig",
+  "published": "2026-06-26",
+  "license": "standard YouTube licence",
+  "duration_s": 5,
+  "url": "https://www.youtube.com/watch?v=1Suh-_MewXk",
+  "scope_check": {
+   "in_scope": false,
+   "confidence": 0.0,
+   "signals": [],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:50:38Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "iLEi740tx4s": {
+  "accepted": false,
+  "reason": "Ukraine relevance 0.40 (min 0.5)",
+  "title": "лінії електропередач | Delayman #shorts",
+  "channel": "Delayman",
+  "channel_id": "UCEUPYTad7BR5hMKbve5B0AA",
+  "published": "2025-08-30",
+  "license": "standard YouTube licence",
+  "duration_s": 14,
+  "url": "https://www.youtube.com/watch?v=iLEi740tx4s",
+  "scope_check": {
+   "in_scope": false,
+   "confidence": 0.4,
+   "signals": [
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "uk",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:50:40Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "j7oyKBkYAM0": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.90 (min 0.5)",
+  "title": "Міняємо старі високовольтні опори",
+  "channel": "ДТЕК Київські регіональні електромережі",
+  "channel_id": "UC8nOzr--TvcQ6NA-L60ra7w",
+  "published": "2026-09-24",
+  "license": "standard YouTube licence",
+  "duration_s": 16,
+  "url": "https://www.youtube.com/watch?v=j7oyKBkYAM0",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.904,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Київщин -> Kyiv Oblast",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Київ -> Kyiv",
+     "weight": 0.6
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "ukrainian letters",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:50:41Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "PjhoDxy6oOE": {
+  "accepted": false,
+  "reason": "no Ukraine signal in title, tags, description, language or geotag",
+  "title": "Заміна ЛЕП",
+  "channel": "ЖКГ-УКРАЇНА",
+  "channel_id": "UC9USFlWcGzjNz9g8QKNo1wg",
+  "published": "2023-01-13",
+  "license": "standard YouTube licence",
+  "duration_s": 15,
+  "url": "https://www.youtube.com/watch?v=PjhoDxy6oOE",
+  "scope_check": {
+   "in_scope": false,
+   "confidence": 0.0,
+   "signals": [],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:50:44Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "iCz2R_PeKg8": {
+  "accepted": false,
+  "reason": "no Ukraine signal in title, tags, description, language or geotag",
+  "title": "Зимняя рыбалка, снова на речке! #зимняярыбалка #рыбалка #марганец",
+  "channel": "Roman Tsarevsky",
+  "channel_id": "UCy5vGyvEn6SmEJVUKPauS_A",
+  "published": "2025-02-28",
+  "license": "standard YouTube licence",
+  "duration_s": 133,
+  "url": "https://www.youtube.com/watch?v=iCz2R_PeKg8",
+  "scope_check": {
+   "in_scope": false,
+   "confidence": 0.0,
+   "signals": [],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:50:45Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "4wdgBR_Fmhg": {
+  "accepted": false,
+  "reason": "no Ukraine signal in title, tags, description, language or geotag",
+  "title": "Ловля тарани...",
+  "channel": "О рыбалке",
+  "channel_id": "UCEm5lxRGn6T1uvAqEIDewTw",
+  "published": "2022-04-16",
+  "license": "standard YouTube licence",
+  "duration_s": 127,
+  "url": "https://www.youtube.com/watch?v=4wdgBR_Fmhg",
+  "scope_check": {
+   "in_scope": false,
+   "confidence": 0.0,
+   "signals": [],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:50:47Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "VijpxpMyF18": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "КАРП НА ФЛЭТ-МЕТОД на Каховском водохранилище",
+  "channel": "РыбоСек",
+  "channel_id": "UCqjgluKJtRLHlkR-m8nN65Q",
+  "published": "2022-01-12",
+  "license": "standard YouTube licence",
+  "duration_s": 285,
+  "url": "https://www.youtube.com/watch?v=VijpxpMyF18",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховск -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховск -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "каховск -> Kakhovka",
+     "weight": 0.6
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:50:48Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "-M1Bg257vmo": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "ЛОВЛЯ СУДАКА ОСЕНЬЮ НА СПИННИНГ",
+  "channel": "Щучий омут",
+  "channel_id": "UC-cR2Llo07-teMFDokcJLhA",
+  "published": "2022-10-08",
+  "license": "standard YouTube licence",
+  "duration_s": 1012,
+  "url": "https://www.youtube.com/watch?v=-M1Bg257vmo",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "ДНЕПРОПЕТРОВСК -> Dnipropetrovsk Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "ДНЕПР -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "kiev -> Kyiv",
+     "weight": 0.6
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:51:02Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "wWnGuJnrkhQ": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.70 (min 0.5)",
+  "title": "Как мы ловили карася. Будни рыболова...",
+  "channel": "О рыбалке",
+  "channel_id": "UCEm5lxRGn6T1uvAqEIDewTw",
+  "published": "2022-05-12",
+  "license": "standard YouTube licence",
+  "duration_s": 1216,
+  "url": "https://www.youtube.com/watch?v=wWnGuJnrkhQ",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.7,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "энергодар -> Enerhodar",
+     "weight": 0.7
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:51:55Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "FDbb2geOL_I": {
+  "accepted": false,
+  "reason": "no Ukraine signal in title, tags, description, language or geotag",
+  "title": "КАК НЕ СЛОВИТЬ ЩУКУ В ДЕКАБРЕ или рыбалка в ноль!",
+  "channel": "РыбоСек",
+  "channel_id": "UCqjgluKJtRLHlkR-m8nN65Q",
+  "published": "2022-01-10",
+  "license": "standard YouTube licence",
+  "duration_s": 1192,
+  "url": "https://www.youtube.com/watch?v=FDbb2geOL_I",
+  "scope_check": {
+   "in_scope": false,
+   "confidence": 0.0,
+   "signals": [],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:53:41Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "J3gnyYzkjgM": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Экологическая катастрофа.  Урощище Сагайдачного и далее.Запорожье 15.6.2023.",
+  "channel": "Миша Потапенко",
+  "channel_id": "UCxEu6iNpaod06BGMcFezQZg",
+  "published": "2023-06-15",
+  "license": "standard YouTube licence",
+  "duration_s": 715,
+  "url": "https://www.youtube.com/watch?v=J3gnyYzkjgM",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Запорож -> Zaporizhzhia Oblast",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "запорож -> Zaporizhzhia Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Днепр -> Dnipro",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Запорож -> Zaporizhzhia Oblast",
+     "weight": 0.6
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T08:53:42Z",
+   "scope_name": "Ukraine"
+  }
+ }
+}

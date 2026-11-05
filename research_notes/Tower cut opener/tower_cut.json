@@ -1,0 +1,1511 @@
+{
+ "title": "Tower cut opener (prototype)",
+ "video": "tower_cut.mp4",
+ "fps": 30,
+ "size": [
+  1920,
+  1080
+ ],
+ "audio": null,
+ "duration_s": 24.033,
+ "fade_in_s": 2.0,
+ "layout": {
+  "axis_x": 960,
+  "base_y": 990,
+  "heights": {
+   "distribution": 680,
+   "35": 720,
+   "35-110": 720,
+   "330": 840,
+   "750": 900,
+   "crossing": 960
+  }
+ },
+ "alignment": "Fixed base line, the height growing by class: every tower's base (or where its axis leaves the frame) sits on y=990 on the centre line x=960 and its top straight above it, at a height set by its class (distribution 680 px, 35 kV and 35-110 kV 720, 330 kV 840, 750 kV 900, the crossing towers 960). Chosen over one fixed top height because the poles are small in the dashcam frames: stretching them to a crossing tower's height would upscale them 3-4x. The heights were raised (from 560/610/690/820/900) so each frame fills more of the canvas; poles that would then need more than about 2.2x upscaling were left out. One similarity transform per frame (shift, uniform scale, rotation).",
+ "rules": [
+  "pixels only resampled (area when shrinking, bicubic otherwise) and cropped; never generated, filled, inpainted or sharpened",
+  "black where the moved frame does not cover the canvas",
+  "hard cuts; one fade from black at the start",
+  "no text, marks or labels drawn; no sound",
+  "logos, captions and channel overlays cropped off (crop) or left outside the canvas"
+ ],
+ "frames": [
+  {
+   "key": "ZUX_1278",
+   "video": "ZUXsmHCUVg4",
+   "url": "https://www.youtube.com/watch?v=ZUXsmHCUVg4&t=1278s",
+   "t_s": 1278.5,
+   "channel": "Суспільне Дніпро",
+   "published": "2026-09-16",
+   "licence": "standard YouTube licence",
+   "title": "Яким став Великий Луг через 4 роки після катастрофи і обстрілів: Вадим Манюк про колишнє водосховище",
+   "scope_gate": "Ukraine relevance 0.95 (min 0.5)",
+   "line_class": "distribution (0.4-10 kV, estimate)",
+   "size_class": "distribution",
+   "class_how": "by eye: a single wooden or concrete pole a few metres tall with pin insulators on short crossarms, along a village street or field road (low-voltage or 6-10 kV distribution)",
+   "marks": {
+    "top": [
+     499,
+     185
+    ],
+    "base": [
+     509,
+     653
+    ],
+    "base_cut": false,
+    "top_cut": false,
+    "note": "by eye, for alignment only; not evidence"
+   },
+   "transform": {
+    "matrix": [
+     [
+      1.452328,
+      -0.031033,
+      241.029189
+     ],
+     [
+      0.031033,
+      1.452328,
+      25.833957
+     ]
+    ],
+    "scale": 1.4527,
+    "rotation_deg": 1.224,
+    "target_height_px": 680,
+    "source_size": [
+     1920,
+     1080
+    ]
+   },
+   "crop": [
+    0,
+    145,
+    1920,
+    1080
+   ],
+   "hold_s": 3.4,
+   "why": "opens grey and wet: a row of concrete poles along a field road on the Great Meadow's edge, overcast",
+   "source_frame_sha256": "22297ab87e2e43937b9fd28baa8b9321eefbfae61a1ea5a354a2498d5b559801",
+   "capture_date": null,
+   "capture_note": "unknown; the publication date is only an upper bound",
+   "capture_hint": null,
+   "starts_s": 0.0
+  },
+  {
+   "key": "Kcg_038",
+   "video": "Kcg9_e-g-W0",
+   "url": "https://www.youtube.com/watch?v=Kcg9_e-g-W0&t=38s",
+   "t_s": 38.5,
+   "channel": "Новинарня",
+   "published": "2026-08-29",
+   "licence": "standard YouTube licence",
+   "title": "НІКОПОЛЬ під вогнем: як живе місто навпроти окупованої ЗАЕС та чи може ворог форсувати тут Дніпро",
+   "scope_gate": "Ukraine relevance 0.95 (min 0.5)",
+   "line_class": "distribution (0.4-10 kV, estimate)",
+   "size_class": "distribution",
+   "class_how": "by eye: a concrete pole with pin insulators and a street lamp on a Nikopol street (low-voltage distribution); its top is cut by the frame, so the top mark is where its axis leaves the frame",
+   "marks": {
+    "top": [
+     925,
+     0
+    ],
+    "base": [
+     912,
+     893
+    ],
+    "base_cut": false,
+    "top_cut": true,
+    "note": "by eye, for alignment only; not evidence"
+   },
+   "transform": {
+    "matrix": [
+     [
+      0.761317,
+      0.011083,
+      255.781941
+     ],
+     [
+      -0.011083,
+      0.761317,
+      320.251775
+     ]
+    ],
+    "scale": 0.7614,
+    "rotation_deg": -0.834,
+    "target_height_px": 680,
+    "source_size": [
+     1920,
+     1080
+    ]
+   },
+   "crop": [
+    0,
+    0,
+    1700,
+    1080
+   ],
+   "hold_s": 1.7,
+   "why": "a Nikopol street pole with the Zaporizhzhia plant across the former reservoir behind it (now willow forest): the place the film is about, seen past the smallest line",
+   "source_frame_sha256": "868c635e18154070fc345852409cfab12a968189e3dceaf3dc13a68390c1c93f",
+   "capture_date": null,
+   "capture_note": "unknown; the publication date is only an upper bound",
+   "capture_hint": null,
+   "starts_s": 3.4
+  },
+  {
+   "key": "a4m_714",
+   "video": "a4m6eQmiFv0",
+   "url": "https://www.youtube.com/watch?v=a4m6eQmiFv0&t=714s",
+   "t_s": 714,
+   "channel": "Thickets",
+   "published": "2024-05-25",
+   "licence": "standard YouTube licence",
+   "title": "НІКОПОЛЬ —  ВЕЛИЧНА КОЗАЦЬКА ІСТОРІЯ І ЖАХЛИВЕ СЬОГОДЕННЯ ПІД ОБСТРІЛАМИ ТА ЯДЕРНИМ ШАНТАЖЕМ",
+   "scope_gate": "Ukraine relevance 0.95 (min 0.5)",
+   "line_class": "distribution (0.4-10 kV, estimate)",
+   "size_class": "distribution",
+   "class_how": "by eye: a wooden or concrete pole a few metres tall with pin insulators on short crossarms (low-voltage or 6-10 kV distribution)",
+   "marks": {
+    "top": [
+     751,
+     60
+    ],
+    "base": [
+     660,
+     1068
+    ],
+    "base_cut": false,
+    "top_cut": false,
+    "note": "by eye, for alignment only; not evidence"
+   },
+   "transform": {
+    "matrix": [
+     [
+      0.66915,
+      0.060409,
+      453.844125
+     ],
+     [
+      -0.060409,
+      0.66915,
+      315.218437
+     ]
+    ],
+    "scale": 0.6719,
+    "rotation_deg": -5.159,
+    "target_height_px": 680,
+    "source_size": [
+     1920,
+     1080
+    ]
+   },
+   "crop": null,
+   "hold_s": 1.35,
+   "why": "spring in the Nikopol district: a leaning pole above a pond and reeds",
+   "source_frame_sha256": "fdcfcfa9094f009aacc672aa65e61a95b803ac488c5c5acd0adbccfda17692c7",
+   "capture_date": null,
+   "capture_note": "unknown; the publication date is only an upper bound",
+   "capture_hint": null,
+   "starts_s": 5.1
+  },
+  {
+   "key": "XZz_264",
+   "video": "XZz7sRLnoAk",
+   "url": "https://www.youtube.com/watch?v=XZz7sRLnoAk&t=264s",
+   "t_s": 264,
+   "channel": "Road",
+   "published": "2023-05-14",
+   "licence": "standard YouTube licence",
+   "title": "Ukraine. Velyka Znam'yanka to Kam'yanka-Dniprovs'ka / Велика Знам'янка - Кам'янка-Дніпровська. 09.21",
+   "scope_gate": "Ukraine relevance 0.95 (min 0.5)",
+   "line_class": "distribution (0.4-10 kV, estimate)",
+   "size_class": "distribution",
+   "class_how": "by eye: a single wooden or concrete pole a few metres tall with pin insulators on short crossarms, along a village street or field road (low-voltage or 6-10 kV distribution)",
+   "marks": {
+    "top": [
+     1229,
+     324
+    ],
+    "base": [
+     1236,
+     629
+    ],
+    "base_cut": false,
+    "top_cut": false,
+    "note": "by eye, for alignment only; not evidence"
+   },
+   "transform": {
+    "matrix": [
+     [
+      2.228334,
+      -0.051142,
+      -1762.05299
+     ],
+     [
+      0.051142,
+      2.228334,
+      -474.834003
+     ]
+    ],
+    "scale": 2.2289,
+    "rotation_deg": 1.315,
+    "target_height_px": 680,
+    "source_size": [
+     1920,
+     1080
+    ]
+   },
+   "crop": [
+    0,
+    0,
+    1920,
+    1025
+   ],
+   "hold_s": 1.1,
+   "why": "a white concrete pole in a village on the left bank, bright",
+   "source_frame_sha256": "faf8f9d3702ddc557495d0f6e0584e3f920b5161b5c04fb447f2ba3b6c01dbe9",
+   "capture_date": null,
+   "capture_note": "unknown; the publication date is only an upper bound",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off): likely September 2021; inferred, not verified",
+   "starts_s": 6.433
+  },
+  {
+   "key": "7C1_274",
+   "video": "7C1Ex2_xFi0",
+   "url": "https://www.youtube.com/watch?v=7C1Ex2_xFi0&t=274s",
+   "t_s": 274,
+   "channel": "Road",
+   "published": "2023-05-17",
+   "licence": "standard YouTube licence",
+   "title": "Ukraine. Kam'yanka-Dniprovs'ka / Кам'янка-Дніпровська. 09.21",
+   "scope_gate": "Ukraine relevance 0.95 (min 0.5)",
+   "line_class": "distribution (0.4-10 kV, estimate)",
+   "size_class": "distribution",
+   "class_how": "by eye: a single wooden or concrete pole a few metres tall with pin insulators on short crossarms, along a village street or field road (low-voltage or 6-10 kV distribution)",
+   "marks": {
+    "top": [
+     1349,
+     132
+    ],
+    "base": [
+     1356,
+     667
+    ],
+    "base_cut": false,
+    "top_cut": false,
+    "note": "by eye, for alignment only; not evidence"
+   },
+   "transform": {
+    "matrix": [
+     [
+      1.27081,
+      -0.016627,
+      -752.12852
+     ],
+     [
+      0.016627,
+      1.27081,
+      119.822617
+     ]
+    ],
+    "scale": 1.2709,
+    "rotation_deg": 0.75,
+    "target_height_px": 680,
+    "source_size": [
+     1920,
+     1080
+    ]
+   },
+   "crop": [
+    0,
+    0,
+    1920,
+    1025
+   ],
+   "hold_s": 0.9,
+   "why": "Kamianka-Dniprovska street pole, houses behind",
+   "source_frame_sha256": "db4e01c3bddf9483a070943f9fc73f41924b71ed9754ec65e0c581fdff75cbf0",
+   "capture_date": null,
+   "capture_note": "unknown; the publication date is only an upper bound",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off the canvas) and the title says 09.21: likely filmed September 2021, before the war; inferred, not verified",
+   "starts_s": 7.533
+  },
+  {
+   "key": "a4m_1260",
+   "video": "a4m6eQmiFv0",
+   "url": "https://www.youtube.com/watch?v=a4m6eQmiFv0&t=1260s",
+   "t_s": 1260,
+   "channel": "Thickets",
+   "published": "2024-05-25",
+   "licence": "standard YouTube licence",
+   "title": "НІКОПОЛЬ —  ВЕЛИЧНА КОЗАЦЬКА ІСТОРІЯ І ЖАХЛИВЕ СЬОГОДЕННЯ ПІД ОБСТРІЛАМИ ТА ЯДЕРНИМ ШАНТАЖЕМ",
+   "scope_gate": "Ukraine relevance 0.95 (min 0.5)",
+   "line_class": "distribution (0.4-10 kV, estimate)",
+   "size_class": "distribution",
+   "class_how": "by eye: a wooden or concrete pole a few metres tall with pin insulators on short crossarms (low-voltage or 6-10 kV distribution)",
+   "marks": {
+    "top": [
+     1332,
+     149
+    ],
+    "base": [
+     1325,
+     816
+    ],
+    "base_cut": false,
+    "top_cut": false,
+    "note": "by eye, for alignment only; not evidence"
+   },
+   "transform": {
+    "matrix": [
+     [
+      1.019378,
+      0.010698,
+      -399.40549
+     ],
+     [
+      -0.010698,
+      1.019378,
+      172.362576
+     ]
+    ],
+    "scale": 1.0194,
+    "rotation_deg": -0.601,
+    "target_height_px": 680,
+    "source_size": [
+     1920,
+     1080
+    ]
+   },
+   "crop": null,
+   "hold_s": 0.7,
+   "why": "a village street in May, poles under fresh leaves",
+   "source_frame_sha256": "1fbc6cacfa24627f6cc2d97868dc53990b0279a5f297f1ec86c567203896182a",
+   "capture_date": null,
+   "capture_note": "unknown; the publication date is only an upper bound",
+   "capture_hint": null,
+   "starts_s": 8.433
+  },
+  {
+   "key": "7C1_270",
+   "video": "7C1Ex2_xFi0",
+   "url": "https://www.youtube.com/watch?v=7C1Ex2_xFi0&t=270s",
+   "t_s": 270,
+   "channel": "Road",
+   "published": "2023-05-17",
+   "licence": "standard YouTube licence",
+   "title": "Ukraine. Kam'yanka-Dniprovs'ka / Кам'янка-Дніпровська. 09.21",
+   "scope_gate": "Ukraine relevance 0.95 (min 0.5)",
+   "line_class": "distribution (0.4-10 kV, estimate)",
+   "size_class": "distribution",
+   "class_how": "by eye: a single wooden or concrete pole a few metres tall with pin insulators on short crossarms, along a village street or field road (low-voltage or 6-10 kV distribution); base behind a wall, estimated on the pole's line at ground level",
+   "marks": {
+    "top": [
+     1241,
+     164
+    ],
+    "base": [
+     1282,
+     636
+    ],
+    "base_cut": false,
+    "top_cut": false,
+    "note": "by eye, for alignment only; not evidence"
+   },
+   "transform": {
+    "matrix": [
+     [
+      1.429889,
+      -0.124206,
+      -794.122202
+     ],
+     [
+      0.124206,
+      1.429889,
+      -78.641971
+     ]
+    ],
+    "scale": 1.4353,
+    "rotation_deg": 4.965,
+    "target_height_px": 680,
+    "source_size": [
+     1920,
+     1080
+    ]
+   },
+   "crop": [
+    500,
+    0,
+    1920,
+    1025
+   ],
+   "hold_s": 0.52,
+   "why": "a street corner, a 10 kV pole with its yard transformer house behind",
+   "source_frame_sha256": "e33452eb561b8c96ef9eb5944983a0411245bc949f4ff6d2fead4be8a22dc9ca",
+   "capture_date": null,
+   "capture_note": "unknown; the publication date is only an upper bound",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off the canvas) and the title says 09.21: likely filmed September 2021, before the war; inferred, not verified",
+   "starts_s": 9.133
+  },
+  {
+   "key": "XZz_315",
+   "video": "XZz7sRLnoAk",
+   "url": "https://www.youtube.com/watch?v=XZz7sRLnoAk&t=315s",
+   "t_s": 315,
+   "channel": "Road",
+   "published": "2023-05-14",
+   "licence": "standard YouTube licence",
+   "title": "Ukraine. Velyka Znam'yanka to Kam'yanka-Dniprovs'ka / Велика Знам'янка - Кам'янка-Дніпровська. 09.21",
+   "scope_gate": "Ukraine relevance 0.95 (min 0.5)",
+   "line_class": "distribution (0.4-10 kV, estimate)",
+   "size_class": "distribution",
+   "class_how": "by eye: a single wooden or concrete pole a few metres tall with pin insulators on short crossarms, along a village street or field road (low-voltage or 6-10 kV distribution)",
+   "marks": {
+    "top": [
+     1493,
+     115
+    ],
+    "base": [
+     1536,
+     636
+    ],
+    "base_cut": false,
+    "top_cut": false,
+    "note": "by eye, for alignment only; not evidence"
+   },
+   "transform": {
+    "matrix": [
+     [
+      1.296352,
+      -0.106993,
+      -963.149182
+     ],
+     [
+      0.106993,
+      1.296352,
+      1.179626
+     ]
+    ],
+    "scale": 1.3008,
+    "rotation_deg": 4.718,
+    "target_height_px": 680,
+    "source_size": [
+     1920,
+     1080
+    ]
+   },
+   "crop": [
+    0,
+    0,
+    1920,
+    1025
+   ],
+   "hold_s": 0.4,
+   "why": "a tall white pole by a house",
+   "source_frame_sha256": "04dc22dad32a539508bab2c1e170baaba79cd10725cb1d55035a5db9ad635d3c",
+   "capture_date": null,
+   "capture_note": "unknown; the publication date is only an upper bound",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off): likely September 2021; inferred, not verified",
+   "starts_s": 9.667
+  },
+  {
+   "key": "a4m_842",
+   "video": "a4m6eQmiFv0",
+   "url": "https://www.youtube.com/watch?v=a4m6eQmiFv0&t=842s",
+   "t_s": 842.5,
+   "channel": "Thickets",
+   "published": "2024-05-25",
+   "licence": "standard YouTube licence",
+   "title": "НІКОПОЛЬ —  ВЕЛИЧНА КОЗАЦЬКА ІСТОРІЯ І ЖАХЛИВЕ СЬОГОДЕННЯ ПІД ОБСТРІЛАМИ ТА ЯДЕРНИМ ШАНТАЖЕМ",
+   "scope_gate": "Ukraine relevance 0.95 (min 0.5)",
+   "line_class": "distribution (0.4-10 kV, estimate)",
+   "size_class": "distribution",
+   "class_how": "by eye: a wooden or concrete pole a few metres tall with pin insulators on short crossarms (low-voltage or 6-10 kV distribution); its foot hidden by the wheat, the base marked at the ground line",
+   "marks": {
+    "top": [
+     420,
+     144
+    ],
+    "base": [
+     403,
+     876
+    ],
+    "base_cut": false,
+    "top_cut": false,
+    "note": "by eye, for alignment only; not evidence"
+   },
+   "transform": {
+    "matrix": [
+     [
+      0.928461,
+      0.021563,
+      566.941372
+     ],
+     [
+      -0.021563,
+      0.928461,
+      185.357919
+     ]
+    ],
+    "scale": 0.9287,
+    "rotation_deg": -1.33,
+    "target_height_px": 680,
+    "source_size": [
+     1920,
+     1080
+    ]
+   },
+   "crop": null,
+   "hold_s": 0.32,
+   "why": "green wheat and cumulus",
+   "source_frame_sha256": "7d44af1a83308e822f71eed9a9bcbf21612ea3c58357cf136e74ee006485a930",
+   "capture_date": null,
+   "capture_note": "unknown; the publication date is only an upper bound",
+   "capture_hint": null,
+   "starts_s": 10.067
+  },
+  {
+   "key": "ZUX_1280",
+   "video": "ZUXsmHCUVg4",
+   "url": "https://www.youtube.com/watch?v=ZUXsmHCUVg4&t=1280s",
+   "t_s": 1280,
+   "channel": "Суспільне Дніпро",
+   "published": "2026-09-16",
+   "licence": "standard YouTube licence",
+   "title": "Яким став Великий Луг через 4 роки після катастрофи і обстрілів: Вадим Манюк про колишнє водосховище",
+   "scope_gate": "Ukraine relevance 0.95 (min 0.5)",
+   "line_class": "distribution (0.4-10 kV, estimate)",
+   "size_class": "distribution",
+   "class_how": "by eye: a single wooden or concrete pole a few metres tall with pin insulators on short crossarms, along a village street or field road (low-voltage or 6-10 kV distribution)",
+   "marks": {
+    "top": [
+     881,
+     247
+    ],
+    "base": [
+     883,
+     583
+    ],
+    "base_cut": false,
+    "top_cut": false,
+    "note": "by eye, for alignment only; not evidence"
+   },
+   "transform": {
+    "matrix": [
+     [
+      2.023738,
+      -0.012046,
+      -819.937644
+     ],
+     [
+      0.012046,
+      2.023738,
+      -200.475819
+     ]
+    ],
+    "scale": 2.0238,
+    "rotation_deg": 0.341,
+    "target_height_px": 680,
+    "source_size": [
+     1920,
+     1080
+    ]
+   },
+   "crop": [
+    0,
+    145,
+    1920,
+    1080
+   ],
+   "hold_s": 0.3,
+   "why": "back to the grey field: a farther pole of the same row",
+   "source_frame_sha256": "02b80762065441ab47cc81e5b63b9cc767ae8b5abcd663b2ead43e0e76d40b54",
+   "capture_date": null,
+   "capture_note": "unknown; the publication date is only an upper bound",
+   "capture_hint": null,
+   "starts_s": 10.4
+  },
+  {
+   "key": "7C1_276",
+   "video": "7C1Ex2_xFi0",
+   "url": "https://www.youtube.com/watch?v=7C1Ex2_xFi0&t=276s",
+   "t_s": 276,
+   "channel": "Road",
+   "published": "2023-05-17",
+   "licence": "standard YouTube licence",
+   "title": "Ukraine. Kam'yanka-Dniprovs'ka / Кам'янка-Дніпровська. 09.21",
+   "scope_gate": "Ukraine relevance 0.95 (min 0.5)",
+   "line_class": "distribution (0.4-10 kV, estimate)",
+   "size_class": "distribution",
+   "class_how": "by eye: a single wooden or concrete pole a few metres tall with pin insulators on short crossarms, along a village street or field road (low-voltage or 6-10 kV distribution)",
+   "marks": {
+    "top": [
+     1555,
+     12
+    ],
+    "base": [
+     1584,
+     732
+    ],
+    "base_cut": false,
+    "top_cut": false,
+    "note": "by eye, for alignment only; not evidence"
+   },
+   "transform": {
+    "matrix": [
+     [
+      0.942915,
+      -0.037979,
+      -505.776701
+     ],
+     [
+      0.037979,
+      0.942915,
+      239.628438
+     ]
+    ],
+    "scale": 0.9437,
+    "rotation_deg": 2.306,
+    "target_height_px": 680,
+    "source_size": [
+     1920,
+     1080
+    ]
+   },
+   "crop": [
+    0,
+    0,
+    1920,
+    1025
+   ],
+   "hold_s": 0.3,
+   "why": "the next street pole, close",
+   "source_frame_sha256": "9f6fac1d9cfec346b06e3e9008e0588c2dcc2db5462717681ecffc43f16d426e",
+   "capture_date": null,
+   "capture_note": "unknown; the publication date is only an upper bound",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off the canvas) and the title says 09.21: likely filmed September 2021, before the war; inferred, not verified",
+   "starts_s": 10.7
+  },
+  {
+   "key": "a4m_1326",
+   "video": "a4m6eQmiFv0",
+   "url": "https://www.youtube.com/watch?v=a4m6eQmiFv0&t=1326s",
+   "t_s": 1326,
+   "channel": "Thickets",
+   "published": "2024-05-25",
+   "licence": "standard YouTube licence",
+   "title": "НІКОПОЛЬ —  ВЕЛИЧНА КОЗАЦЬКА ІСТОРІЯ І ЖАХЛИВЕ СЬОГОДЕННЯ ПІД ОБСТРІЛАМИ ТА ЯДЕРНИМ ШАНТАЖЕМ",
+   "scope_gate": "Ukraine relevance 0.95 (min 0.5)",
+   "line_class": "distribution (0.4-10 kV, estimate)",
+   "size_class": "distribution",
+   "class_how": "by eye: a wooden or concrete pole a few metres tall with pin insulators on short crossarms (low-voltage or 6-10 kV distribution)",
+   "marks": {
+    "top": [
+     511,
+     113
+    ],
+    "base": [
+     516,
+     1056
+    ],
+    "base_cut": false,
+    "top_cut": false,
+    "note": "by eye, for alignment only; not evidence"
+   },
+   "transform": {
+    "matrix": [
+     [
+      0.721083,
+      -0.003823,
+      591.958834
+     ],
+     [
+      0.003823,
+      0.721083,
+      226.563939
+     ]
+    ],
+    "scale": 0.7211,
+    "rotation_deg": 0.304,
+    "target_height_px": 680,
+    "source_size": [
+     1920,
+     1080
+    ]
+   },
+   "crop": null,
+   "hold_s": 0.3,
+   "why": "a pole with a street lamp, the river valley behind",
+   "source_frame_sha256": "79e8214b9ca8802e65998b5bf68e6fa3380be5563c12f037cf8caf2b5c5dbc55",
+   "capture_date": null,
+   "capture_note": "unknown; the publication date is only an upper bound",
+   "capture_hint": null,
+   "starts_s": 11.0
+  },
+  {
+   "key": "7C1_729",
+   "video": "7C1Ex2_xFi0",
+   "url": "https://www.youtube.com/watch?v=7C1Ex2_xFi0&t=729s",
+   "t_s": 729,
+   "channel": "Road",
+   "published": "2023-05-17",
+   "licence": "standard YouTube licence",
+   "title": "Ukraine. Kam'yanka-Dniprovs'ka / Кам'янка-Дніпровська. 09.21",
+   "scope_gate": "Ukraine relevance 0.95 (min 0.5)",
+   "line_class": "distribution (0.4-10 kV, estimate)",
+   "size_class": "distribution",
+   "class_how": "by eye: a single wooden or concrete pole a few metres tall with pin insulators on short crossarms, along a village street or field road (low-voltage or 6-10 kV distribution)",
+   "marks": {
+    "top": [
+     252,
+     221
+    ],
+    "base": [
+     240,
+     581
+    ],
+    "base_cut": false,
+    "top_cut": false,
+    "note": "by eye, for alignment only; not evidence"
+   },
+   "transform": {
+    "matrix": [
+     [
+      1.886792,
+      0.062893,
+      470.628931
+     ],
+     [
+      -0.062893,
+      1.886792,
+      -91.132075
+     ]
+    ],
+    "scale": 1.8878,
+    "rotation_deg": -1.909,
+    "target_height_px": 680,
+    "source_size": [
+     1920,
+     1080
+    ]
+   },
+   "crop": [
+    0,
+    0,
+    1920,
+    1025
+   ],
+   "hold_s": 0.3,
+   "why": "open steppe, evening light",
+   "source_frame_sha256": "be2164f55eac82eb5119733cee6c2e5d0231d6122aee67bd13b1c3bcf2548ed6",
+   "capture_date": null,
+   "capture_note": "unknown; the publication date is only an upper bound",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off the canvas) and the title says 09.21: likely filmed September 2021, before the war; inferred, not verified",
+   "starts_s": 11.3
+  },
+  {
+   "key": "XZz_759",
+   "video": "XZz7sRLnoAk",
+   "url": "https://www.youtube.com/watch?v=XZz7sRLnoAk&t=759s",
+   "t_s": 759,
+   "channel": "Road",
+   "published": "2023-05-14",
+   "licence": "standard YouTube licence",
+   "title": "Ukraine. Velyka Znam'yanka to Kam'yanka-Dniprovs'ka / Велика Знам'янка - Кам'янка-Дніпровська. 09.21",
+   "scope_gate": "Ukraine relevance 0.95 (min 0.5)",
+   "line_class": "35 kV (estimate)",
+   "size_class": "35",
+   "class_how": "by eye: one tall concrete pole with two crossarms carrying suspension insulator strings of a few discs (typical of 35 kV lines; larger than distribution, no lattice)",
+   "marks": {
+    "top": [
+     1306,
+     10
+    ],
+    "base": [
+     1320,
+     642
+    ],
+    "base_cut": false,
+    "top_cut": false,
+    "note": "by eye, for alignment only; not evidence"
+   },
+   "transform": {
+    "matrix": [
+     [
+      1.138682,
+      -0.025224,
+      -526.866123
+     ],
+     [
+      0.025224,
+      1.138682,
+      225.670687
+     ]
+    ],
+    "scale": 1.139,
+    "rotation_deg": 1.269,
+    "target_height_px": 720,
+    "source_size": [
+     1920,
+     1080
+    ]
+   },
+   "crop": [
+    0,
+    0,
+    1920,
+    1025
+   ],
+   "hold_s": 0.3,
+   "why": "the first suspension insulators: a 35 kV pole by the road, water behind",
+   "source_frame_sha256": "0563a84b51435099829fb55891addd76402fe2d1e83347e4fd97b6a2141a3bc0",
+   "capture_date": null,
+   "capture_note": "unknown; the publication date is only an upper bound",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off): likely September 2021; inferred, not verified",
+   "starts_s": 11.6
+  },
+  {
+   "key": "7C1_016",
+   "video": "7C1Ex2_xFi0",
+   "url": "https://www.youtube.com/watch?v=7C1Ex2_xFi0&t=16s",
+   "t_s": 16,
+   "channel": "Road",
+   "published": "2023-05-17",
+   "licence": "standard YouTube licence",
+   "title": "Ukraine. Kam'yanka-Dniprovs'ka / Кам'янка-Дніпровська. 09.21",
+   "scope_gate": "Ukraine relevance 0.95 (min 0.5)",
+   "line_class": "35-110 kV (estimate)",
+   "size_class": "35-110",
+   "class_how": "by eye: a slender steel lattice tower with a V-shaped top over the houses; lattice steel and its height put it above distribution, too small for 330 kV",
+   "marks": {
+    "top": [
+     653,
+     149
+    ],
+    "base": [
+     643,
+     480
+    ],
+    "base_cut": false,
+    "top_cut": false,
+    "note": "by eye, for alignment only; not evidence"
+   },
+   "transform": {
+    "matrix": [
+     [
+      2.173243,
+      0.065657,
+      -468.910552
+     ],
+     [
+      -0.065657,
+      2.173243,
+      -10.939258
+     ]
+    ],
+    "scale": 2.1742,
+    "rotation_deg": -1.73,
+    "target_height_px": 720,
+    "source_size": [
+     1920,
+     1080
+    ]
+   },
+   "crop": [
+    0,
+    0,
+    1920,
+    1025
+   ],
+   "hold_s": 0.3,
+   "why": "the first lattice: a steel tower over Kamianka-Dniprovska's houses",
+   "source_frame_sha256": "2675f9de8a67c9ba3da5dfcb85108abea9723ebb3b9db545454ceb29944c90e4",
+   "capture_date": null,
+   "capture_note": "unknown; the publication date is only an upper bound",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off the canvas) and the title says 09.21: likely filmed September 2021, before the war; inferred, not verified",
+   "starts_s": 11.9
+  },
+  {
+   "key": "XZz_788",
+   "video": "XZz7sRLnoAk",
+   "url": "https://www.youtube.com/watch?v=XZz7sRLnoAk&t=788s",
+   "t_s": 788.5,
+   "channel": "Road",
+   "published": "2023-05-14",
+   "licence": "standard YouTube licence",
+   "title": "Ukraine. Velyka Znam'yanka to Kam'yanka-Dniprovs'ka / Велика Знам'янка - Кам'янка-Дніпровська. 09.21",
+   "scope_gate": "Ukraine relevance 0.95 (min 0.5)",
+   "line_class": "35-110 kV (estimate)",
+   "size_class": "35-110",
+   "class_how": "by eye: a narrow lattice tower with a V top beyond the road; size and form as 35-110 kV lines in the region",
+   "marks": {
+    "top": [
+     763,
+     235
+    ],
+    "base": [
+     773,
+     578
+    ],
+    "base_cut": false,
+    "top_cut": false,
+    "note": "by eye, for alignment only; not evidence"
+   },
+   "transform": {
+    "matrix": [
+     [
+      2.097343,
+      -0.061147,
+      -625.902895
+     ],
+     [
+      0.061147,
+      2.097343,
+      -269.530697
+     ]
+    ],
+    "scale": 2.0982,
+    "rotation_deg": 1.67,
+    "target_height_px": 720,
+    "source_size": [
+     1920,
+     1080
+    ]
+   },
+   "crop": [
+    0,
+    0,
+    1920,
+    1025
+   ],
+   "hold_s": 0.3,
+   "why": "a lattice tower in a clearing, poplars",
+   "source_frame_sha256": "6c477bed9495125b203289beaa9b26a7932650ca82eb4236be129cc85069747e",
+   "capture_date": null,
+   "capture_note": "unknown; the publication date is only an upper bound",
+   "capture_hint": "the dashcam's own date line reads 12/09/2021 (cropped off): likely September 2021; inferred, not verified",
+   "starts_s": 12.2
+  },
+  {
+   "key": "3co_001",
+   "video": "3coe3Z-2TLg",
+   "url": "https://www.youtube.com/watch?v=3coe3Z-2TLg&t=1s",
+   "t_s": 1,
+   "channel": "Mihail Kalahnikov",
+   "published": "2022-12-24",
+   "licence": "standard YouTube licence",
+   "title": "Энергодар.Находка,,Не грибы,под ЛЭП.",
+   "scope_gate": "Ukraine relevance 0.80 (min 0.5)",
+   "line_class": "330 kV (estimate)",
+   "size_class": "330",
+   "class_how": "by eye: a large double-circuit steel lattice tower with long suspension strings (many discs), filmed from below by a walker near Enerhodar; the uploader's title says it is 'under the power line' (ЛЭП); its strings are far longer than 35-110 kV but the tower smaller than the 750 kV towers",
+   "marks": {
+    "top": [
+     907,
+     288
+    ],
+    "base": [
+     816,
+     1080
+    ],
+    "base_cut": true,
+    "top_cut": false,
+    "note": "by eye, for alignment only; not evidence"
+   },
+   "transform": {
+    "matrix": [
+     [
+      1.046787,
+      0.120275,
+      -24.074582
+     ],
+     [
+      -0.120275,
+      1.046787,
+      -42.38537
+     ]
+    ],
+    "scale": 1.0537,
+    "rotation_deg": -6.554,
+    "target_height_px": 840,
+    "source_size": [
+     1920,
+     1080
+    ]
+   },
+   "crop": null,
+   "hold_s": 0.36,
+   "why": "under a big line: a walker's view up, autumn trees",
+   "source_frame_sha256": "b3afe716d8c1d789ebdbcf13c56960f15b550926022bca717ca55be6ebb1c720",
+   "capture_date": null,
+   "capture_note": "unknown; the publication date is only an upper bound",
+   "capture_hint": null,
+   "starts_s": 12.5
+  },
+  {
+   "key": "3co_299",
+   "video": "3coe3Z-2TLg",
+   "url": "https://www.youtube.com/watch?v=3coe3Z-2TLg&t=299s",
+   "t_s": 299,
+   "channel": "Mihail Kalahnikov",
+   "published": "2022-12-24",
+   "licence": "standard YouTube licence",
+   "title": "Энергодар.Находка,,Не грибы,под ЛЭП.",
+   "scope_gate": "Ukraine relevance 0.80 (min 0.5)",
+   "line_class": "330 kV (estimate)",
+   "size_class": "330",
+   "class_how": "as above (same walk)",
+   "marks": {
+    "top": [
+     972,
+     12
+    ],
+    "base": [
+     869,
+     876
+    ],
+    "base_cut": false,
+    "top_cut": false,
+    "note": "by eye, for alignment only; not evidence"
+   },
+   "transform": {
+    "matrix": [
+     [
+      0.958599,
+      0.114277,
+      26.870566
+     ],
+     [
+      -0.114277,
+      0.958599,
+      249.574458
+     ]
+    ],
+    "scale": 0.9654,
+    "rotation_deg": -6.798,
+    "target_height_px": 840,
+    "source_size": [
+     1920,
+     1080
+    ]
+   },
+   "crop": null,
+   "hold_s": 0.48,
+   "why": "the tower's legs in autumn woods",
+   "source_frame_sha256": "1fe5d622dd23f5531c4da486340643cf06f48d5e4a132c9cdd7fd208524c3fb8",
+   "capture_date": null,
+   "capture_note": "unknown; the publication date is only an upper bound",
+   "capture_hint": null,
+   "starts_s": 12.867
+  },
+  {
+   "key": "3co_216",
+   "video": "3coe3Z-2TLg",
+   "url": "https://www.youtube.com/watch?v=3coe3Z-2TLg&t=216s",
+   "t_s": 216,
+   "channel": "Mihail Kalahnikov",
+   "published": "2022-12-24",
+   "licence": "standard YouTube licence",
+   "title": "Энергодар.Находка,,Не грибы,под ЛЭП.",
+   "scope_gate": "Ukraine relevance 0.80 (min 0.5)",
+   "line_class": "330 kV (estimate)",
+   "size_class": "330",
+   "class_how": "as above (same walk)",
+   "marks": {
+    "top": [
+     972,
+     413
+    ],
+    "base": [
+     1056,
+     1080
+    ],
+    "base_cut": true,
+    "top_cut": false,
+    "note": "by eye, for alignment only; not evidence"
+   },
+   "transform": {
+    "matrix": [
+     [
+      1.239708,
+      -0.156125,
+      -180.516833
+     ],
+     [
+      0.156125,
+      1.239708,
+      -513.753244
+     ]
+    ],
+    "scale": 1.2495,
+    "rotation_deg": 7.178,
+    "target_height_px": 840,
+    "source_size": [
+     1920,
+     1080
+    ]
+   },
+   "crop": null,
+   "hold_s": 0.6,
+   "why": "clear sky, the crossarms and strings",
+   "source_frame_sha256": "142ea8db2c8e7a40913b9a8cff05c8bc6cc1745057d2fd02c59de0a0e003dfe6",
+   "capture_date": null,
+   "capture_note": "unknown; the publication date is only an upper bound",
+   "capture_hint": null,
+   "starts_s": 13.333
+  },
+  {
+   "key": "3co_213",
+   "video": "3coe3Z-2TLg",
+   "url": "https://www.youtube.com/watch?v=3coe3Z-2TLg&t=213s",
+   "t_s": 213,
+   "channel": "Mihail Kalahnikov",
+   "published": "2022-12-24",
+   "licence": "standard YouTube licence",
+   "title": "Энергодар.Находка,,Не грибы,под ЛЭП.",
+   "scope_gate": "Ukraine relevance 0.80 (min 0.5)",
+   "line_class": "330 kV (estimate)",
+   "size_class": "330",
+   "class_how": "as above (same walk)",
+   "marks": {
+    "top": [
+     991,
+     24
+    ],
+    "base": [
+     1049,
+     1080
+    ],
+    "base_cut": true,
+    "top_cut": false,
+    "note": "by eye, for alignment only; not evidence"
+   },
+   "transform": {
+    "matrix": [
+     [
+      0.793062,
+      -0.043558,
+      175.120823
+     ],
+     [
+      0.043558,
+      0.793062,
+      87.800197
+     ]
+    ],
+    "scale": 0.7943,
+    "rotation_deg": 3.144,
+    "target_height_px": 840,
+    "source_size": [
+     1920,
+     1080
+    ]
+   },
+   "crop": null,
+   "hold_s": 0.7,
+   "why": "close under it, the tower filling the frame",
+   "source_frame_sha256": "94dacab14f691a04b21b2099d1e4d857534b9f5791c024f2b958669a3da88fe7",
+   "capture_date": null,
+   "capture_note": "unknown; the publication date is only an upper bound",
+   "capture_hint": null,
+   "starts_s": 13.933
+  },
+  {
+   "key": "t8T_118",
+   "video": "t8TkQAs8X3U",
+   "url": "https://www.youtube.com/watch?v=t8TkQAs8X3U&t=118s",
+   "t_s": 118.0,
+   "channel": "Валерий Петренко",
+   "published": "2023-06-29",
+   "licence": "standard YouTube licence",
+   "title": "ОГО! 330 и 750 кВ",
+   "scope_gate": "Ukraine relevance 0.88 (min 0.5)",
+   "line_class": "330 kV (estimate)",
+   "size_class": "330",
+   "class_how": "by eye: a double-circuit lattice tower with three crossarm levels and a phase at each end (six phases), multi-string glass insulators; the uploader's description (\"ОРУ 330 и ОРУ 750 ЗАЭС. Также переходы через Каховское водохранилище ВЛ 330 кВ и 750 кВ\") names the plant's 330 and 750 kV switchyards and lines, and this is the 330 kV type",
+   "marks": {
+    "top": [
+     680,
+     212
+    ],
+    "base": [
+     650,
+     1015
+    ],
+    "base_cut": false,
+    "top_cut": false,
+    "note": "by eye, for alignment only; not evidence"
+   },
+   "transform": {
+    "matrix": [
+     [
+      1.044619,
+      0.039027,
+      241.385268
+     ],
+     [
+      -0.039027,
+      1.044619,
+      -44.920994
+     ]
+    ],
+    "scale": 1.0453,
+    "rotation_deg": -2.14,
+    "target_height_px": 840,
+    "source_size": [
+     1440,
+     1080
+    ]
+   },
+   "crop": null,
+   "hold_s": 0.85,
+   "why": "the 330 kV towers seen whole, base to peak, three in a row, after the close views under them",
+   "source_frame_sha256": "120d3266d0bbd5d8985dbbaf044c1e06963102b9375b71de2ad85f737c6daa61",
+   "capture_date": null,
+   "capture_note": "unknown; the publication date is only an upper bound",
+   "capture_hint": "published 29 June 2023; the end card reads 'г. Одесса, июнь 2023' and thanks Bobkov Yu. B. for help gathering the material, so the footage may be his; spring growth and rapeseed in flower; the date it was filmed is not given",
+   "starts_s": 14.633
+  },
+  {
+   "key": "td0_023",
+   "video": "td0-UyyIV_8",
+   "url": "https://www.youtube.com/watch?v=td0-UyyIV_8&t=23s",
+   "t_s": 23,
+   "channel": "Media Poglyad",
+   "published": "2023-07-03",
+   "licence": "standard YouTube licence",
+   "title": "🔋ЗАЕС підключили до резервної лінії електропередач",
+   "scope_gate": "Ukraine relevance 0.95 (min 0.5)",
+   "line_class": "750 kV (Energoatom's footage of the plant's 750 kV lines)",
+   "size_class": "750",
+   "class_how": "by eye and from the video: the tall portal-headed lattice towers of the Zaporizhzhia NPP's 750 kV lines (the news item is about the plant's lines; the tower form matches 750 kV towers: very long horizontal crossarm, split-phase bundles)",
+   "marks": {
+    "top": [
+     490,
+     62
+    ],
+    "base": [
+     495,
+     795
+    ],
+    "base_cut": true,
+    "top_cut": false,
+    "note": "by eye, for alignment only; not evidence"
+   },
+   "transform": {
+    "matrix": [
+     [
+      1.227774,
+      -0.008375,
+      358.910134
+     ],
+     [
+      0.008375,
+      1.227774,
+      9.774285
+     ]
+    ],
+    "scale": 1.2278,
+    "rotation_deg": 0.391,
+    "target_height_px": 900,
+    "source_size": [
+     1920,
+     1080
+    ]
+   },
+   "crop": [
+    372,
+    0,
+    1380,
+    795
+   ],
+   "hold_s": 0.95,
+   "why": "the plant's 750 kV lines, a row of towers going away",
+   "source_frame_sha256": "8ff60fdcc291d38931155339ea3359fa7b999ea34b1275ac23c22f638284ed84",
+   "capture_date": null,
+   "capture_note": "unknown; the publication date is only an upper bound",
+   "capture_hint": "stock footage inside a 2023 news item; the date it was filmed is not given (green leaves: a spring or summer)",
+   "starts_s": 15.5
+  },
+  {
+   "key": "td0_035",
+   "video": "td0-UyyIV_8",
+   "url": "https://www.youtube.com/watch?v=td0-UyyIV_8&t=35s",
+   "t_s": 35.5,
+   "channel": "Media Poglyad",
+   "published": "2023-07-03",
+   "licence": "standard YouTube licence",
+   "title": "🔋ЗАЕС підключили до резервної лінії електропередач",
+   "scope_gate": "Ukraine relevance 0.95 (min 0.5)",
+   "line_class": "750 kV (as above)",
+   "size_class": "750",
+   "class_how": "as above",
+   "marks": {
+    "top": [
+     986,
+     112
+    ],
+    "base": [
+     986,
+     795
+    ],
+    "base_cut": true,
+    "top_cut": false,
+    "note": "by eye, for alignment only; not evidence"
+   },
+   "transform": {
+    "matrix": [
+     [
+      1.317716,
+      -0.0,
+      -339.267936
+     ],
+     [
+      0.0,
+      1.317716,
+      -57.584187
+     ]
+    ],
+    "scale": 1.3177,
+    "rotation_deg": 0.0,
+    "target_height_px": 900,
+    "source_size": [
+     1920,
+     1080
+    ]
+   },
+   "crop": [
+    400,
+    0,
+    1380,
+    795
+   ],
+   "hold_s": 1.2,
+   "why": "the last and largest: a 750 kV tower by the plant's cooling pond, held",
+   "source_frame_sha256": "92dbc910c610e0776ac90420d0d33f4f23c4071da00ea1ee9b0b61f89d53fa72",
+   "capture_date": null,
+   "capture_note": "unknown; the publication date is only an upper bound",
+   "capture_hint": "stock footage inside a 2023 news item; the date it was filmed is not given (green leaves: a spring or summer)",
+   "starts_s": 16.433
+  },
+  {
+   "key": "t8T_172",
+   "video": "t8TkQAs8X3U",
+   "url": "https://www.youtube.com/watch?v=t8TkQAs8X3U&t=172s",
+   "t_s": 172.0,
+   "channel": "Валерий Петренко",
+   "published": "2023-06-29",
+   "licence": "standard YouTube licence",
+   "title": "ОГО! 330 и 750 кВ",
+   "scope_gate": "Ukraine relevance 0.88 (min 0.5)",
+   "line_class": "750 kV crossing (estimate)",
+   "size_class": "crossing",
+   "class_how": "by eye: one long crossarm at the top carrying three phases, an earth-wire peak above, a second short arm below, standing on a caisson in open water; the 750 kV crossing towers are described with their crossbar near the top (126 m, SkyscraperPage no. 23, scene3d/towers.py). That this is the Kakhovka crossing: the uploader's description names the 330 and 750 kV crossings of the Kakhovka reservoir, and the thermal plant's chimneys stand on the far shore behind the line (the NPP's cooling towers come into view in the same pan, 180 s). Base marked where the legs meet the caisson, as for crossing_user_1",
+   "marks": {
+    "top": [
+     692,
+     257
+    ],
+    "base": [
+     692,
+     962
+    ],
+    "base_cut": false,
+    "top_cut": false,
+    "note": "by eye, for alignment only; not evidence"
+   },
+   "transform": {
+    "matrix": [
+     [
+      1.361702,
+      -0.0,
+      17.702128
+     ],
+     [
+      0.0,
+      1.361702,
+      -319.957447
+     ]
+    ],
+    "scale": 1.3617,
+    "rotation_deg": 0.0,
+    "target_height_px": 960,
+    "source_size": [
+     1440,
+     1080
+    ]
+   },
+   "crop": null,
+   "hold_s": 2.4,
+   "why": "real footage of the crossing over full water: the 750 kV tower on its caisson, the thermal plant behind",
+   "source_frame_sha256": "c15c4b6ba269f5333c1eedb9ebd7949078b5f33f460f065c0d4cfe628639c066",
+   "capture_date": null,
+   "capture_note": "unknown; the publication date is only an upper bound",
+   "capture_hint": "published 29 June 2023 (after the breach) but the reservoir is full, so filmed before 6 June 2023; the date it was filmed is not given",
+   "starts_s": 17.633
+  },
+  {
+   "key": "user_1",
+   "file": "supplied/crossing_user_1.png",
+   "file_sha256": "8f7cacc44c39c4c0067585611881e7a7ddd2e58fd6bf9e7b146a8d0c11734b96",
+   "provenance": {
+    "supplied_by": "the user",
+    "supplied_on": "2026-11-05",
+    "file_sha256": "8f7cacc44c39c4c0067585611881e7a7ddd2e58fd6bf9e7b146a8d0c11734b96",
+    "source": "unknown; possibly from Wikimapia's page of the crossing (https://wikimapia.org/18910322/Dnipro-river-crossing-powerline-750kV), which the user linked earlier: unconfirmed",
+    "date": "unknown; before 6 June 2023 (the reservoir is full)",
+    "rights": "unknown: to be cleared before any use"
+   },
+   "channel": null,
+   "published": null,
+   "licence": "unknown: to be cleared before any use",
+   "title": null,
+   "scope_gate": "not a YouTube video: the gate doesn't apply",
+   "line_class": "330 kV crossing (estimate); 750 kV crossing towers beside it",
+   "size_class": "crossing",
+   "class_how": "by eye: the tower in front has three crossarm levels with a phase at each end (six phases, a double circuit), as the 330 kV crossing towers (100 m, crossbars at 92, 81 and 70 m: SkyscraperPage no. 19; Ferosplavna's two circuits) and stands on a round caisson; the line receding left is the same type; the two towers on the right, one crossarm with three phases, are of the 750 kV crossing's type: both crossings side by side, as at the Kakhovka reservoir",
+   "marks": {
+    "top": [
+     535,
+     232
+    ],
+    "base": [
+     531,
+     965
+    ],
+    "base_cut": false,
+    "top_cut": false,
+    "note": "by eye, for alignment only; not evidence"
+   },
+   "transform": {
+    "matrix": [
+     [
+      1.309647,
+      0.007147,
+      257.680684
+     ],
+     [
+      -0.007147,
+      1.309647,
+      -270.014629
+     ]
+    ],
+    "scale": 1.3097,
+    "rotation_deg": -0.313,
+    "target_height_px": 960,
+    "source_size": [
+     1520,
+     1134
+    ]
+   },
+   "crop": null,
+   "hold_s": 4.0,
+   "why": "the ending: the two crossings side by side over full water, the 330 kV tower held",
+   "source_frame_sha256": "a18b75d85e5214b52aeaf140ddde9a9e01dae5b8cd6ecd60caac926b0920373b",
+   "capture_date": null,
+   "capture_note": "unknown; the publication date is only an upper bound",
+   "capture_hint": null,
+   "starts_s": 20.033
+  }
+ ]
+}

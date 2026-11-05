@@ -1,0 +1,184 @@
+THE CONDUCTIVE SEAM: WHAT THE ZOOM-OUT SAYS, AND WHAT TO DO NEXT
+Report, 22 October 2026, on draft 3 of the zoom-out
+(libraries/conductive-seam/satellite/networks/znpp/films/film-20261022-005221/film.mp4, 64 s).
+A report on an early draft (the film it names was a test render, since removed); the end result is now one film of at
+most 10 minutes: see THE END RESULT in docs/znpp-heart-plan.txt. Read with docs/znpp-heart-plan.txt. Facts marked [check] still need a source before they go in the film or on a slide.
+
+======================================================================================================
+1. WHAT EXISTS NOW
+======================================================================================================
+- 0-7 s: the Zaporizhzhia NPP on Sentinel-2. The six units are outlined one by one and numbered, under the plant's
+  full name.
+- 7-15 s: the camera starts pulling back. No lines yet.
+- 15-56 s: all nine lines leave together at one speed. Each lands at its own substation, so a line's length becomes
+  its arrival time (Ferosplavna at 34 km lands first, Pivdennodonbaska at 271 km last).
+- On the way out: the satellite imagery gives way to a dark map. The Great Meadow draws itself in. The rest of the
+  750/330 kV grid appears faintly, and the towns come in.
+- 56-64 s: a hold on the whole network, about 470 km wide, then a fade.
+- Look: deep blue lines, brightest at the plant and fading toward their ends. White capitals on half-black boxes.
+- Accuracy: every line is traced in OpenStreetMap to the substation the config names. Kakhovska 750 is checked
+  against its official length, and the stepped stretches against the mapped towers.
+
+What it says well: the plant is not a point. It is the knot of a network that reaches across the south and east of
+Ukraine, and that network's size is the first surprise (271 km to Pivdennodonbaska, Zaporizhzhia city 190 km away by
+wire). The opening on the units, then the pull-back, makes "the heart" literal without saying it.
+
+What it does not say yet: almost everything that makes the project an argument rather than a utility map:
+- that the network is contested;
+- that it has been cut again and again;
+- that the plant now depends on it rather than feeding it;
+- that the Great Meadow lies between the plant and the only lines still holding;
+- that the safety zone everyone talks about is the wrong shape.
+At the moment it is a beautiful explainer of a 2021 grid. The next steps below are about turning it into the project.
+
+======================================================================================================
+2. THE BIGGEST THEMATIC ISSUE: WHICH WAY DOES THE POWER FLOW?
+======================================================================================================
+The new fade (bright at the plant, dim at the ends) reads as radiance: a source pouring power out to the region.
+That was true before the war: six units of about 950 MW each, more than a fifth of Ukraine's electricity (checked 5 November 2026: 22-28% by the published figures).
+Since September 2022 the reverse is true:
+- the reactors are shut down, all six in cold shutdown since 2024 [check the date];
+- the plant draws power in through these lines to run the pumps that cool its fuel and spent-fuel pools;
+- every time the last line is cut, it falls back on diesel generators. The IAEA counted 26 such complete losses of
+  off-site power by August 2026 (already checked for the notes).
+The heart is not pumping. It is on life support, and the lines are the drip.
+
+That is the strongest idea the project has. The film can make it felt with one gesture:
+- A. Two passes. First the lines grow out with the current fade (the plant as source: "before"). Then, after a
+  caption with the date, the gradient flips: bright at the substations, dim at the plant, with a slow pulse travelling
+  inward ("after"). The same lines, the opposite meaning.
+- B. Grow them inward from the start: tips leave the substations and converge on the plant. The zoom-out becomes a
+  closing-in. It is less spectacular, but it is the true direction now.
+I'd do A: the reversal is the point, and showing both directions is more honest than choosing one.
+
+A smaller point about the fade. It is currently by share of each line's own length, so the 34 km Ferosplavna line
+fades as fast as the 271 km one. Fading by distance from the plant instead would give one field of brightness
+radiating from the heart (or converging on it), the same for every line. It reads as reach rather than as decoration.
+Worth trying; it is a one-line change.
+
+======================================================================================================
+3. TIME IS MISSING: THE LINES SHOULD GO GREY ONE BY ONE
+======================================================================================================
+The film shows one moment: today's map, 2025 imagery. But the project's subject is attrition:
+- ten lines before the war (750 kV and 330 kV);
+- one or two holding by 2026;
+- Dniprovska lost on 24 March 2026, repaired in June, its substation too damaged to reconnect (already in the plan,
+  with sources).
+
+The reference image you chose has the answer built in: among the blue lines it has grey ones. Use that grammar:
+- blue = connected, grey = disconnected.
+- After the full network is drawn, run a dated sequence from the IAEA's updates. A line turns grey on the day it is
+  lost and blue again if it is restored.
+- Show a quiet counter: the date, and "complete losses of off-site power: n".
+This stays inside the evidence rules: every change has an IAEA (or Ukrenergo or Energoatom) source with a date, and
+film.json records it. It is the cross-referenced, non-speculative version of "what if all lines go dark". It also
+makes the speculative part land harder: the audience will already have watched them go dark one at a time, for real.
+
+Work needed:
+- A table of line status changes, 2022–2026, from the IAEA's updates (they name lines by destination, as the film
+  does).
+- A `status` track in the config: line, date, state, source.
+This is the most valuable next build.
+
+======================================================================================================
+4. THE GREAT MEADOW IS THE FRONT LINE: SAY SO
+======================================================================================================
+Your studio's site is not just nearby. Since November 2022 the Dnipro, and with it the former reservoir, has been the
+line of contact between the plant (occupied, south bank) and Nikopol and Marhanets (north bank).
+- The two lines that still hold, Dniprovska 750 and Ferosplavna-1 330, are the two that cross that bed going north.
+- The lines that run south-east all run into occupied territory.
+So the Great Meadow is the gap the plant's life support has to cross. That ties the studio brief to the whole
+project in one sentence, and the film can show it:
+- Add the line of contact as its own element (a thin white dashed line, not blue), from a dated public source, with
+  the date in the caption. Check it against more than one source.
+- After the network is drawn, push in to where Dniprovska and Ferosplavna cross the drained bed. This is the deferred
+  "zoom into the two lines", and it is where the Great Meadow film (and its pylon inset at km 5.2) already lives.
+
+Representation of the meadow itself:
+- OpenStreetMap's "Великий Луг" is the whole drained reservoir down to the dam. The historical Great Meadow was the
+  upper reach, flooded when the reservoir filled in 1955–56.
+- Consider three dated outlines: the historical meadow (from a pre-1955 map [find one]), the reservoir (1956–2023)
+  and the drained bed now (2023–), with its new willow forest visible in the Sentinel-2 close-up.
+- That is the studio's site told as layers of time, without leaving the film's language.
+
+======================================================================================================
+5. THE CIRCLE AND THE LINE (THE FRAMING ARGUMENT, NOT YET IN THE FILM)
+======================================================================================================
+The plan argues that the plant's protection zone should be a line, not a circle. The film can make that argument
+without a word:
+- On the close-up, draw a thin dotted white circle round the plant: the shape of the zone that was proposed. The
+  IAEA's 2022 proposal named no radius [check], so label the radius as illustrative.
+- As the camera pulls back, the lines run straight out of it, and keep going for 100–270 km.
+- The circle protects the reactors. What actually keeps them cool is out there, on pylons in the meadow and in
+  occupied fields.
+Your reference image even has a dotted white arc with the blue lines crossing it. It is the same picture.
+
+======================================================================================================
+6. LOOK AND TASTE
+======================================================================================================
+- Hierarchy. With every text boxed, the wide frame has about 25 boxes of nearly equal weight. Rank them:
+  - line names: the strongest box;
+  - lengths: inside the same box, smaller (as now);
+  - towns: smaller type, a lighter box (around 30%), or none at all once the frame is wide. They are only there for
+    orientation.
+  - the plant's name: the only bold text in the frame.
+- Voltage. 750 vs 330 kV is now only a width difference of 2.6 vs 1.7 px, and hard to see. Two blues would make the
+  two systems readable at a glance, as two families of voices (which the Hum needs anyway): the 750 kV lines deep
+  blue, the 330 kV lines a paler, greyer blue.
+- Crowding. South-east of the plant, Zaporizka 750, Zaporizka 330, Pivdennodonbaska and Melitopolska run together
+  for the first 40 km and their labels bunch mid-film. Options: name a shared corridor once ("4 LINES") until the lines
+  part, or hold labels back until each line is clear of the others.
+- The ground. The satellite imagery fades to a flat dark map at about 50 km. The dark map is honest but empty.
+  VIIRS night light (on hold) would give that ground a meaning: where the electricity actually reaches, and where it
+  went out. When you're ready, it is the natural next layer: the lines as wires, the night lights as what they feed.
+- Tempo. 15 s on the plant before any line appears is right for a presentation (it lets you speak), but in a 5-minute
+  film the growth (40 s) is the only motion. Give each later section its own single gesture (the greying, the push in,
+  the silence) rather than more camera moves.
+- The ending. It ends on a static diagram. End on the heart again: the camera returns to the plant at the end of the
+  greying sequence, or holds on the meadow crossing.
+
+======================================================================================================
+7. SOUND: LET THE FILM PREVIEW THE HUM
+======================================================================================================
+The intervention is sound, and the film is silent. Even a rough sketch would connect them in the presentation:
+- Each line is a voice that enters as its line leaves the plant. Its pitch or timbre comes from its voltage, its
+  loudness from its brightness.
+- In the greying sequence a voice drops out when its line goes grey.
+- The base is Ukraine's 50 Hz grid (in sync with Europe's since March 2022); a transformer's hum is at 100 Hz.
+- No war sounds (as decided): only the instrument thinning out.
+- Play it on the speaker-ring layout from the plan, or binaural on headphones.
+The film then becomes the score for the Hum, and the review sees the instrument and the map as one work.
+
+======================================================================================================
+8. HONESTY: WHAT THE DRAWING CLAIMS WITHOUT MEANING TO
+======================================================================================================
+- A continuous bright line says "working". OpenStreetMap shows lines as mapped, not as live. Until the status
+  sequence exists, the end caption should say so ("the network as mapped, not as working").
+- OSM may be stale in occupied areas. There are reports of new lines planned or built to tie the plant into the
+  Russian grid [check: IAEA, Reuters]. If they're documented, they belong in the film as the contested future of the
+  network: drawn in a different style, dated and sourced. If they aren't, leave them out.
+- The "Pivdennodonbaska" name is still not found in IAEA reporting. Keep it, but take it from Bellona's map or the
+  operator's records, and say which.
+- Speculation stays visibly apart: a change of ground or a title card for "what if all the lines go dark", so the
+  audience never confuses the speculative section with the sourced sequence before it.
+
+======================================================================================================
+9. A 5-MINUTE SHAPE (FOR THE 7-MINUTE PRESENTATION)
+======================================================================================================
+  0:00-0:20  The heart: the plant, its six units outlined. (exists)
+  0:20-1:10  The arteries: the zoom-out, the lines growing to their substations. (exists)
+  1:10-1:35  The wrong shape: the dotted circle; the lines leave it. (new, small)
+  1:35-3:00  Attrition: dated, sourced; lines go grey, the flow reverses, the counter of losses. (new; the key build)
+  3:00-3:45  The seam: push in to the two lines crossing the Great Meadow, the front line. (new; reuses the meadow
+             film)
+  3:45-4:20  What if: all lines dark, visibly speculative. (new)
+  4:20-5:00  The Hum: the instrument at the heart, its voices, now silent or held. (new; sound)
+
+======================================================================================================
+10. PRIORITY
+======================================================================================================
+1. The status sequence (section 3), with the flow reversal (section 2). It turns the map into the argument.
+2. The front line and the meadow crossing (section 4). It ties the work to the studio brief.
+3. The circle (section 5). It is cheap and makes the framing argument visual.
+4. A sound sketch over the zoom-out (section 7). It previews the intervention.
+5. Look refinements (section 6): two blues, label hierarchy, the shared corridor, then VIIRS.

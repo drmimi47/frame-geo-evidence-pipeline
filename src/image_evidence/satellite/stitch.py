@@ -133,13 +133,13 @@ def tiles(grid: Grid, georef: dict[str, Any], until_m: float | None = None) -> l
     return out
 
 
-def _pieces(grid: Grid, rows: slice, cols: slice) -> list[tuple[slice, slice, tuple[float, float, float, float]]]:
-    """A tile in pieces of at most MAX_CROP_PX a side: (rows, cols within the tile, box on the pieces' pixel edges)."""
+def _pieces(grid: Grid, rows: slice, cols: slice, size: int = MAX_CROP_PX) -> list[tuple[slice, slice, tuple[float, float, float, float]]]:
+    """A tile in pieces of at most `size` a side: (rows, cols within the tile, box on the pieces' pixel edges)."""
     out = []
-    for r0 in range(rows.start, rows.stop, MAX_CROP_PX):
-        r1 = min(rows.stop, r0 + MAX_CROP_PX)
-        for c0 in range(cols.start, cols.stop, MAX_CROP_PX):
-            c1 = min(cols.stop, c0 + MAX_CROP_PX)
+    for r0 in range(rows.start, rows.stop, size):
+        r1 = min(rows.stop, r0 + size)
+        for c0 in range(cols.start, cols.stop, size):
+            c1 = min(cols.stop, c0 + size)
             w, n = grid.to_lonlat(c0, r0)
             e, s = grid.to_lonlat(c1, r1)
             out.append((slice(r0 - rows.start, r1 - rows.start), slice(c0 - cols.start, c1 - cols.start), (w, s, e, n)))
@@ -151,12 +151,12 @@ def _overlaps(a: tuple[float, ...], b: tuple[float, ...]) -> bool:
 
 
 def fetch(sensor: Sensor, items: list[dict[str, Any]], grid: Grid, http: httpx.Client,
-          rows: slice | None = None, cols: slice | None = None) -> Mosaic:
-    """One tile of the pass (the whole grid by default)."""
+          rows: slice | None = None, cols: slice | None = None, piece_px: int = MAX_CROP_PX) -> Mosaic:
+    """One tile of the pass (the whole grid by default), cropped in pieces of at most `piece_px` a side."""
     rows, cols = rows or slice(0, grid.height), cols or slice(0, grid.width)
     m = Mosaic.empty(rows.stop - rows.start, cols.stop - cols.start, with_rgb=True)
     for item in items:
-        for pr, pc, box in _pieces(grid, rows, cols):
+        for pr, pc, box in _pieces(grid, rows, cols, piece_px):
             if item.get("bbox") and not _overlaps(tuple(item["bbox"]), box):
                 continue
             ph, pw = pr.stop - pr.start, pc.stop - pc.start

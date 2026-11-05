@@ -1,0 +1,742 @@
+{
+ "what": "The v4 shot under-the-crossing (30 s, still camera): view f re-framed on Ferosplavna-1's axis, the plants mirrored about it with a young forest composed round tower 23, distant birds drawn, the flow dashes running on the lit wires. Storyboard material, not a frame of the film. Made 5 November 2026.",
+ "said_so": [
+  "The plants are modelled (procedural, representative shapes; species from the sources; tree heights sourced: willows 4-9 m, poplars 6.5-9.5 m; other heights typical).",
+  "Where they stand is composed: the left of the axis is placed by the v3 rule from the 28 August 2025 pass; the right is that side mirrored and jittered, and the forest round tower 23's caisson is composed; neither reads the pass there (their habitat in the pass is recorded below). The symmetry is a framing choice, as are the lane toward the tower and the low growth in front of it.",
+  "The birds are drawn: species recorded on or over the bed or at these crossings; shapes, sizes, wingbeats, speeds and paths representative and composed for the frame.",
+  "The light is drawn: v3's dawn (a mid-May sunrise, the fixed sun and haze warmed, a drawn gradient sky and sun glow), while the record state is 11 September 2026. The flow dashes are the film's drawing convention. The towers are modelled by type at OSM's positions; the bed's heights are inferred."
+ ],
+ "scene": {
+  "file": "libraries/conductive-seam/satellite/networks/znpp/scenes/crossing3d/animatic/ZNPP-last-two-lines-3D-south.blend (opened read-only, never saved)",
+  "frame": 4001,
+  "record_state": "11 September 2026: Ferosplavna-1 connected (lit, flow toward the plant), Dniprovska cut",
+  "lines_running": [
+   "Ferosplavna 1, 2",
+   "link 1",
+   "link 2"
+  ],
+  "flow": "each line material's keyed 'flow time' replaced by an unkeyed twin set to (4001 - 1) / 30 + K / 30 s at frame K of the shot (the film's own pace); every other key held at frame 4001"
+ },
+ "camera": {
+  "on_axis": "the vertical plane through the centres of Ferosplavna-1's towers 22 (4185, 6275) and 23 (4426.2, 7062.3), scene metres",
+  "position_m": [
+   4370.53759765625,
+   6880.63623046875,
+   10.757349014282227
+  ],
+  "behind_tower_23_m": 190.0,
+  "heading_deg": 17.03519218350297,
+  "pitch_deg": 15.0,
+  "roll_deg": 0.0,
+  "lens_mm": 18.0,
+  "sensor_mm": 36.0,
+  "eye_above_ground_m": 1.6,
+  "ground_m": 9.16,
+  "symmetry": "the tower and its conductors are symmetric about the tower's axis (phases at +-7.5 m (z 109 m), +-11 m (98 m) and +-9.5 m (87 m) on both towers, measured on the wire curves; the lattice +-12.2 m), so on the axis with zero roll tower 23 stands on the frame's vertical centre line and the wires fall away symmetrically",
+  "still": "the camera does not move in the 30 s"
+ },
+ "plants": {
+  "total": 54814,
+  "by_family": {
+   "white willow (Salix alba, S. x rubens)": 18548,
+   "black poplar (Populus nigra)": 6178,
+   "willow and poplar saplings": 1337,
+   "false indigo (Amorpha fruticosa)": 207,
+   "tamarisk (Tamarix ramosissima)": 104,
+   "common reed (Phragmites australis)": 1003,
+   "tall grasses": 3546,
+   "Xanthium, Chenopodium": 2462,
+   "wormwood (Artemisia)": 1436,
+   "flowering herbs (Lythrum, Melilotus, Epilobium)": 1591,
+   "dry stalks": 1468,
+   "low grasses": 16934
+  },
+  "by_origin": {
+   "rule": {
+    "plants": 26929,
+    "by_family": {
+     "white willow (Salix alba, S. x rubens)": 8906,
+     "black poplar (Populus nigra)": 2609,
+     "willow and poplar saplings": 689,
+     "false indigo (Amorpha fruticosa)": 86,
+     "tamarisk (Tamarix ramosissima)": 36,
+     "common reed (Phragmites australis)": 513,
+     "tall grasses": 1865,
+     "Xanthium, Chenopodium": 1281,
+     "wormwood (Artemisia)": 722,
+     "flowering herbs (Lythrum, Melilotus, Epilobium)": 804,
+     "dry stalks": 727,
+     "low grasses": 8691
+    },
+    "habitat_of_the_2025_pass_at_their_spots": {
+     "reed": 312,
+     "woody": 13428,
+     "herbs": 13158,
+     "sand": 27,
+     "bare": 4
+    }
+   },
+   "mirrored": {
+    "plants": 25579,
+    "by_family": {
+     "white willow (Salix alba, S. x rubens)": 8063,
+     "black poplar (Populus nigra)": 2905,
+     "willow and poplar saplings": 606,
+     "false indigo (Amorpha fruticosa)": 110,
+     "tamarisk (Tamarix ramosissima)": 58,
+     "common reed (Phragmites australis)": 490,
+     "tall grasses": 1681,
+     "Xanthium, Chenopodium": 1181,
+     "wormwood (Artemisia)": 714,
+     "flowering herbs (Lythrum, Melilotus, Epilobium)": 787,
+     "dry stalks": 741,
+     "low grasses": 8243
+    },
+    "habitat_of_the_2025_pass_at_their_spots": {
+     "water": 452,
+     "reed": 896,
+     "woody": 13787,
+     "herbs": 10152,
+     "sand": 259,
+     "bare": 33
+    }
+   },
+   "base": {
+    "plants": 2306,
+    "by_family": {
+     "white willow (Salix alba, S. x rubens)": 1579,
+     "black poplar (Populus nigra)": 664,
+     "willow and poplar saplings": 42,
+     "false indigo (Amorpha fruticosa)": 11,
+     "tamarisk (Tamarix ramosissima)": 10
+    },
+    "habitat_of_the_2025_pass_at_their_spots": {
+     "water": 61,
+     "reed": 210,
+     "woody": 1237,
+     "herbs": 687,
+     "sand": 110,
+     "bare": 1
+    }
+   }
+  },
+  "composed_trees_not_on_woody_ground": 5297,
+  "kept_after_ground_rays": 54814,
+  "caisson_clear_m": 23.5,
+  "caisson_clear_note": "nothing within this of any caisson's centre (the concrete is 22.5 m in radius, so 1 m off its widest edge; v3 kept 26 m); a plant whose ground ray meets the caisson first is dropped too",
+  "mirroring": {
+   "rule": "plants placed by the v3 rule on the left of the axis are mirrored across it; each mirrored plant is moved by a normal jitter of sigma 0.25 m + 2% of its distance (at most 3 m), given a height x0.88-1.12 within its family's range, a new rotation and variant; 12% swap to a kindred family (willow and poplar; saplings, Amorpha and Tamarix; the herbs), recomputing the height; 5% are left out",
+   "seed": 4004
+  },
+  "lane": {
+   "gap": [
+    6,
+    3,
+    150
+   ],
+   "low_wedge": [
+    20,
+    4,
+    168,
+    1.45
+   ],
+   "note": "gap [half-angle deg, from m, to m]: no trees, shrubs or reeds toward the tower; low_wedge [half-angle, from, to, max height m]: only growth under that height between the meadow's edge and the base, so the young forest at the base shows"
+  },
+  "base_forest": {
+   "r": [
+    23.5,
+    115.0
+   ],
+   "spacing_m": 3.4,
+   "p_near": 0.92,
+   "p_far": 0.6,
+   "front_low_half_m": 10.0,
+   "front_shrub_half_m": 16.0,
+   "poplar_share": 0.3
+  },
+  "lod": {
+   "trees_lod0_m": 40,
+   "trees_lod1_m": 420
+  }
+ },
+ "birds": {
+  "drawn": true,
+  "groups": {
+   "bee-eaters left": {
+    "species": "bee-eater",
+    "birds": 5,
+    "frames_in_frame": [
+     260,
+     260,
+     257,
+     260,
+     251
+    ],
+    "frames_near_wires_or_tower": 0,
+    "enters_s": 1.23,
+    "leaves_s": 12.13,
+    "distance_m": [
+     51.9,
+     81.9
+    ],
+    "size_px": [
+     5.3,
+     8.3
+    ],
+    "ends_at_px": [
+     [
+      "starts",
+      1.0,
+      -61,
+      516
+     ],
+     [
+      "ends",
+      10.62,
+      -217,
+      324
+     ],
+     [
+      "starts",
+      1.35,
+      -154,
+      527
+     ],
+     [
+      "ends",
+      10.97,
+      -105,
+      287
+     ],
+     [
+      "starts",
+      1.6,
+      -193,
+      585
+     ],
+     [
+      "ends",
+      11.22,
+      -119,
+      348
+     ],
+     [
+      "starts",
+      2.0,
+      -306,
+      563
+     ],
+     [
+      "ends",
+      11.62,
+      -5,
+      281
+     ],
+     [
+      "starts",
+      2.5,
+      -411,
+      612
+     ],
+     [
+      "ends",
+      12.12,
+      46,
+      292
+     ]
+    ]
+   },
+   "cormorants": {
+    "species": "cormorant",
+    "birds": 6,
+    "frames_in_frame": [
+     757,
+     742,
+     727,
+     712,
+     697,
+     682
+    ],
+    "frames_near_wires_or_tower": 0,
+    "enters_s": 4.77,
+    "leaves_s": 30.0,
+    "distance_m": [
+     238.6,
+     481.1
+    ],
+    "size_px": [
+     2.8,
+     5.6
+    ],
+    "ends_at_px": [
+     [
+      "starts",
+      4.0,
+      -80,
+      420
+     ],
+     [
+      "starts",
+      4.2,
+      -114,
+      412
+     ],
+     [
+      "starts",
+      4.4,
+      -147,
+      407
+     ],
+     [
+      "starts",
+      4.6,
+      -184,
+      400
+     ],
+     [
+      "starts",
+      4.8,
+      -221,
+      397
+     ],
+     [
+      "starts",
+      5.0,
+      -261,
+      385
+     ]
+    ]
+   },
+   "gull": {
+    "species": "gull",
+    "birds": 1,
+    "frames_in_frame": [
+     496
+    ],
+    "frames_near_wires_or_tower": 0,
+    "enters_s": 5.63,
+    "leaves_s": 22.17,
+    "distance_m": [
+     160.2,
+     210.0
+    ],
+    "size_px": [
+     6.5,
+     8.5
+    ],
+    "ends_at_px": [
+     [
+      "starts",
+      5.0,
+      1499,
+      -41
+     ],
+     [
+      "ends",
+      23.37,
+      1399,
+      -57
+     ]
+    ]
+   },
+   "bee-eaters right": {
+    "species": "bee-eater",
+    "birds": 3,
+    "frames_in_frame": [
+     216,
+     216,
+     216
+    ],
+    "frames_near_wires_or_tower": 0,
+    "enters_s": 16.3,
+    "leaves_s": 24.87,
+    "distance_m": [
+     55.5,
+     74.2
+    ],
+    "size_px": [
+     5.8,
+     7.8
+    ],
+    "ends_at_px": [
+     [
+      "starts",
+      16.0,
+      2001,
+      336
+     ],
+     [
+      "ends",
+      24.28,
+      2159,
+      194
+     ],
+     [
+      "starts",
+      16.4,
+      2080,
+      330
+     ],
+     [
+      "ends",
+      24.68,
+      2075,
+      168
+     ],
+     [
+      "starts",
+      16.9,
+      2165,
+      354
+     ],
+     [
+      "ends",
+      25.18,
+      2010,
+      208
+     ]
+    ]
+   },
+   "gull far": {
+    "species": "gull",
+    "birds": 1,
+    "frames_in_frame": [
+     558
+    ],
+    "frames_near_wires_or_tower": 0,
+    "enters_s": 11.4,
+    "leaves_s": 30.0,
+    "distance_m": [
+     420.3,
+     468.1
+    ],
+    "size_px": [
+     2.9,
+     3.2
+    ],
+    "ends_at_px": [
+     [
+      "starts",
+      10.0,
+      -60,
+      299
+     ]
+    ]
+   }
+  },
+  "keep_clear_px": 28,
+  "frames_near_wires_or_tower": 0,
+  "species": {
+   "bee-eater": {
+    "span": 0.45,
+    "body": 0.27,
+    "hz": 6.0,
+    "amp": 38,
+    "speed": 9.0,
+    "pattern": [
+     0.7,
+     0.9
+    ]
+   },
+   "cormorant": {
+    "span": 1.4,
+    "body": 0.85,
+    "hz": 4.2,
+    "amp": 26,
+    "speed": 14.0,
+    "pattern": null
+   },
+   "gull": {
+    "span": 1.42,
+    "body": 0.6,
+    "hz": 2.6,
+    "amp": 30,
+    "speed": 9.5,
+    "pattern": [
+     1.2,
+     4.5
+    ]
+   }
+  },
+  "paths": {
+   "bee-eaters left": {
+    "species": "bee-eater",
+    "t0_s": 1.0,
+    "birds": 5,
+    "screen_control_points_x_y_px_distance_m": [
+     [
+      -60,
+      520,
+      55
+     ],
+     [
+      250,
+      430,
+      60
+     ],
+     [
+      520,
+      380,
+      66
+     ],
+     [
+      640,
+      330,
+      72
+     ],
+     [
+      560,
+      260,
+      78
+     ],
+     [
+      380,
+      240,
+      74
+     ],
+     [
+      180,
+      280,
+      66
+     ],
+     [
+      -220,
+      330,
+      60
+     ]
+    ]
+   },
+   "cormorants": {
+    "species": "cormorant",
+    "t0_s": 4.0,
+    "birds": 6,
+    "screen_control_points_x_y_px_distance_m": [
+     [
+      -80,
+      420,
+      260
+     ],
+     [
+      300,
+      430,
+      250
+     ],
+     [
+      560,
+      470,
+      260
+     ],
+     [
+      700,
+      540,
+      300
+     ],
+     [
+      640,
+      640,
+      420
+     ],
+     [
+      570,
+      745,
+      600
+     ],
+     [
+      540,
+      800,
+      800
+     ]
+    ]
+   },
+   "gull": {
+    "species": "gull",
+    "t0_s": 5.0,
+    "birds": 1,
+    "screen_control_points_x_y_px_distance_m": [
+     [
+      1500,
+      -40,
+      170
+     ],
+     [
+      1420,
+      120,
+      160
+     ],
+     [
+      1330,
+      260,
+      165
+     ],
+     [
+      1360,
+      360,
+      175
+     ],
+     [
+      1480,
+      380,
+      185
+     ],
+     [
+      1560,
+      300,
+      190
+     ],
+     [
+      1530,
+      180,
+      195
+     ],
+     [
+      1450,
+      60,
+      200
+     ],
+     [
+      1400,
+      -60,
+      210
+     ]
+    ]
+   },
+   "bee-eaters right": {
+    "species": "bee-eater",
+    "t0_s": 16.0,
+    "birds": 3,
+    "screen_control_points_x_y_px_distance_m": [
+     [
+      2000,
+      330,
+      58
+     ],
+     [
+      1700,
+      300,
+      62
+     ],
+     [
+      1450,
+      280,
+      66
+     ],
+     [
+      1300,
+      230,
+      70
+     ],
+     [
+      1380,
+      170,
+      72
+     ],
+     [
+      1600,
+      160,
+      68
+     ],
+     [
+      2160,
+      200,
+      62
+     ]
+    ]
+   },
+   "gull far": {
+    "species": "gull",
+    "t0_s": 10.0,
+    "birds": 1,
+    "screen_control_points_x_y_px_distance_m": [
+     [
+      -60,
+      300,
+      420
+     ],
+     [
+      200,
+      290,
+      430
+     ],
+     [
+      420,
+      300,
+      450
+     ],
+     [
+      560,
+      250,
+      470
+     ],
+     [
+      600,
+      180,
+      480
+     ],
+     [
+      520,
+      80,
+      500
+     ],
+     [
+      420,
+      -60,
+      520
+     ]
+    ]
+   }
+  },
+  "sources": {
+   "bee-eater": [
+    "iNaturalist observation 361466739 (Merops apiaster, European bee-eater), Oleksii Vasyliuk, Mar'ianske, on the drained bed, 14 May 2026, CC BY: https://www.inaturalist.org/observations/361466739 (heard in the soundscape's reeds layer, sound 1950258)"
+   ],
+   "cormorant": [
+    "Sidorenko & Siokhin 2016, Biosystems Diversity: 1,240 great cormorant nests on six towers of the Enerhodar crossings in 2012 (https://cyberleninka.ru/article/n/nesting-of-great-cormorants-phalacrocorax-carbo-on-man-made-structures-in-ukraine); nothing counted since the drainage (reports/Kakhovka bed nature sounds.md). Drawn far off, flying away, never at a tower: no colony is shown or implied"
+   ],
+   "gull": [
+    "Sidorenko & Siokhin 2016 (the same survey): Caspian gulls nested on the crossing in 2012; Rostyslav Romanyshyn's winter gulls on the Dnipro at Zaporizhzhia, xeno-canto, Jan-Feb 2025 (reports/Kakhovka bed nature sounds.md)"
+   ]
+  },
+  "shading": "flat emission silhouettes, tinted toward the dawn haze with distance (a drawn aerial haze: 10% + 45% x (1 - exp(-d / 900 m)))"
+ },
+ "render": {
+  "engine": "EEVEE (Blender 5.2.2)",
+  "size": [
+   1920,
+   1080
+  ],
+  "fps": 30,
+  "frames": 900,
+  "samples": 32,
+  "test": "30 fps, a test as the project's rules say; the final would be 60",
+  "method": "the static picture once (static.exr: everything that does not move), the moving parts per frame alone (the lit wires, their glow and fittings, the birds) in one animation render, and a matte once (the moving wires' footprint with every other object as a holdout, over the same alone); composite_v4.py lays moving x matte over static over the sky, the birds occluded by the static plate's alpha",
+  "sky": "v3's dawn world evaluated per pixel in float (composite_v4.py), its colour ramp made C1 (a monotone cubic through v3's stops, level at both ends): Blender's linear ramp has kinks at its stops that showed as faint curved bands across the wide lens's sky; a triangular dither of one 8-bit step",
+  "times_s": {
+   "static": 13.08,
+   "matte": [
+    7.42,
+    0.37
+   ],
+   "moving_per_frame": 1.39,
+   "moving_total": 1254.9,
+   "full_check_frames": {
+    "render_full_0_s": 19.55,
+    "render_full_450_s": 19.69,
+    "render_full_899_s": 19.43
+   }
+  },
+  "composite_vs_full_render": {
+   "max": 75.98,
+   "mean": 0.012,
+   "px_over_2": 2121,
+   "px_over_8": 1077,
+   "px_over_32": 73
+  },
+  "encode": {
+   "frames": 900,
+   "fps": 30,
+   "codec": "H.264 (libx264, preset slow, CRF 14, yuv420p)",
+   "audio": "research_notes/Speculative crossing soundscape/under_the_crossing.wav (AAC 256 kb/s)",
+   "encode_s": 134.5
+  }
+ }
+}

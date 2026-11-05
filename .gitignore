@@ -7,3 +7,37 @@ library/
 .DS_Store
 .playwright-mcp/
 libraries/
+
+# Third-party copyrighted reference (Taylor & Francis paper pages): private, never committed
+research_notes/Understanding the ZNPP site/Vyshnevskyi and Shevchuk 2024 pages/
+
+# third-party videos used as sound proxies (storyboard only; their licences in research_notes/Line sound proxies/README.md)
+research_notes/Line sound proxies/raw/
+# the tower cut's downloaded third-party videos and its scratch library (17 GB; research_notes/Tower cut opener/README.md)
+research_notes/Tower cut opener/downloads/
+research_notes/Tower cut opener/library/
+
+# Kept on this Mac only: the repository is public (5 November 2026). Each note links its source.
+# Third-party documents and media: Bellona's report; the tower opener's YouTube frames, render, contact sheets and
+# the user's two photographs (standard licence or rights unknown); the frame scores from those videos; the sound
+# proxies' clips; the downloaded recordings and the mixes and renders that carry them; saved web pages.
+/ZNPP-restart-eng.pdf
+research_notes/Tower cut opener/frames/
+research_notes/Tower cut opener/supplied/
+research_notes/Tower cut opener/scan/
+research_notes/Tower cut opener/tower_cut.mp4
+research_notes/Tower cut opener/candidates.jpg
+research_notes/Tower cut opener/tower_cut_contact*.jpg
+research_notes/Line sound proxies/proxy-*.mp4
+research_notes/Line sound proxies/soundscape-nightingale.mp4
+research_notes/Speculative crossing soundscape/raw/*/
+research_notes/Speculative crossing soundscape/under_the_crossing.wav
+research_notes/Speculative crossing soundscape/under_the_crossing.mp4
+research_notes/Under the crossing still/v4/*.mp4
+research_notes/Under the crossing still/v5/*.mp4
+research_notes/Kakhovka bed nature sounds/raw/inat/audio/
+research_notes/Kakhovka bed nature sounds/raw/**/*.html
+research_notes/Kakhovka bed nature sounds/raw/freesound/geobox.bin
+# Safety (CLAUDE.md): the trench site's note gives its coordinates
+research_notes/ZNPP microcosm case studies/trench_site_north_shore.md
+research_notes/Under the crossing still/v5/*.wav

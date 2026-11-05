@@ -1,0 +1,1065 @@
+{
+ "what": "v5 (5 November 2026): the shot under-the-crossing again as v3's view f by day (the user: 'i prefer the composition of the original \"f day\" still ... re-render the video so it is like the original \"f day\" proposal ... during the day'), 30 s, and a separate short, waterline-reprise: the same view held with the proposed refilled level drawn as a line where the scene's surfaces cross it. Storyboard material, not frames of the film.",
+ "said_so": [
+  "The plants are modelled (procedural, representative shapes), placed by v3's rule from the 28 August 2025 Sentinel-2 pass (v3/plants/plants_f.npz, unchanged); the lane toward the tower is kept open, a framing choice (v3's gap).",
+  "The towers, wires and fittings are the flight south's scene (positions OpenStreetMap's, shapes representative); the flow dashes are a drawing convention, held at the record's state of 11 September 2026 (Ferosplavna-1 connected, Dniprovska cut).",
+  "The birds are drawn: species recorded on or over the bed and at these crossings, shapes and flight representative, paths composed for the frame.",
+  "The sound is a montage (the speculative soundscape): nothing was recorded at the crossing; the line is synthesized.",
+  "The waterline is inferred x proposed: the level is a proposal (Vyshnevskyi & Shevchuk 2024, p. 286), the bed's heights it is drawn on are inferred (FABDEM's bare earth over the old reservoir is flat water: the drained bed's relief in the scene is the waterline method's, scene3d/bed.py), and the plants it crosses are modelled. It is a line, not water: no surface, fill or tint."
+ ],
+ "camera": {
+  "view": {
+   "id": "f",
+   "what": "v3's view f, unchanged (further out on the bed, in a meadow lane through the willows 190 m south of tower 23, under the lit span), by day: the film's own light",
+   "cam": [
+    4355.0,
+    6870.0
+   ],
+   "heading": 22.0,
+   "pitch": 14.0,
+   "lens": 18.0,
+   "eye": 1.6,
+   "cone_deg": 75,
+   "far_m": 1500,
+   "clear_m": 1.0,
+   "clear_tall_m": 2.5,
+   "gap": [
+    7,
+    3,
+    200
+   ],
+   "light": "day"
+  },
+  "location_m": [
+   4355.0,
+   6870.0,
+   10.854730606079102
+  ],
+  "ground_m": 9.25,
+  "on": "land",
+  "heading_deg": 22.0,
+  "pitch_deg": 14.0,
+  "roll_deg": 0,
+  "lens_mm": 18.0,
+  "sensor_mm": 36,
+  "eye_m": 1.6,
+  "still": true,
+  "note": "exactly v3's view f (scripts/views.json), the scene's frame 4001"
+ },
+ "light": {
+  "what": "the film's day: its fixed sun (0.35, -0.61, 0.71), its haze (linear 0.62, 0.66, 0.70) and its overcast world, one flat colour (EEVEE's world render: sRGB 207, 213, 218); as v3's f_day.png",
+  "first_frame_vs_v3_f_day": {
+   "what": "the v5 full render of frame 0 over the day sky against v3/f_day.png, 8-bit levels (both dithered)",
+   "mean": 1.091,
+   "max": 20.0,
+   "px_over_4": 2955,
+   "px_over_8": 150,
+   "px_over_32": 0
+  }
+ },
+ "plants": {
+  "file": "v3/plants/plants_f.npz (v3's, unchanged)",
+  "count": 56053,
+  "by_layer": {
+   "canopy lod0": 23,
+   "canopy lod1": 1195,
+   "canopy lod2": 23916,
+   "understorey lod0": 171,
+   "understorey lod1": 2045,
+   "marsh lod0": 53,
+   "marsh lod1": 540,
+   "herbs lod0": 5026,
+   "herbs lod1": 7007,
+   "grass lod0": 10942,
+   "grass lod1": 5135
+  },
+  "by_family": {
+   "white willow (Salix alba, S. x rubens)": 19633,
+   "black poplar (Populus nigra)": 5501,
+   "willow and poplar saplings": 1927,
+   "false indigo (Amorpha fruticosa)": 205,
+   "tamarisk (Tamarix ramosissima)": 84,
+   "common reed (Phragmites australis)": 1204,
+   "tall grasses": 3975,
+   "Xanthium, Chenopodium": 2565,
+   "wormwood (Artemisia)": 1748,
+   "flowering herbs (Lythrum, Melilotus, Epilobium)": 1692,
+   "dry stalks": 1442,
+   "low grasses": 16077
+  },
+  "note": "laid on the scene's ground as v3; the scatter named 'plants f' as v3 named it, since the name seeds each plant's Object Info random brightness"
+ },
+ "birds": {
+  "module": "scripts/birds_v5.py (birds_v4's species and flight, paths composed again for this framing, all in the open sky right of the span)",
+  "groups": [
+   {
+    "id": "bee-eaters",
+    "species": "bee-eater",
+    "t0_s": 1.0,
+    "birds": 4,
+    "screen_path_px_m": [
+     [
+      2000,
+      380,
+      55
+     ],
+     [
+      1720,
+      330,
+      60
+     ],
+     [
+      1480,
+      290,
+      66
+     ],
+     [
+      1330,
+      220,
+      70
+     ],
+     [
+      1400,
+      140,
+      72
+     ],
+     [
+      1620,
+      120,
+      68
+     ],
+     [
+      2350,
+      200,
+      62
+     ]
+    ]
+   },
+   {
+    "id": "gull",
+    "species": "gull",
+    "t0_s": 3.0,
+    "birds": 1,
+    "screen_path_px_m": [
+     [
+      1560,
+      -40,
+      170
+     ],
+     [
+      1480,
+      100,
+      160
+     ],
+     [
+      1400,
+      230,
+      165
+     ],
+     [
+      1450,
+      330,
+      175
+     ],
+     [
+      1600,
+      350,
+      185
+     ],
+     [
+      1700,
+      260,
+      190
+     ],
+     [
+      1660,
+      140,
+      195
+     ],
+     [
+      1580,
+      40,
+      200
+     ],
+     [
+      1540,
+      -60,
+      210
+     ]
+    ]
+   },
+   {
+    "id": "cormorants",
+    "species": "cormorant",
+    "t0_s": 6.0,
+    "birds": 5,
+    "screen_path_px_m": [
+     [
+      2020,
+      420,
+      280
+     ],
+     [
+      1760,
+      400,
+      300
+     ],
+     [
+      1570,
+      370,
+      330
+     ],
+     [
+      1470,
+      320,
+      380
+     ],
+     [
+      1520,
+      250,
+      440
+     ],
+     [
+      1720,
+      210,
+      500
+     ],
+     [
+      2080,
+      190,
+      560
+     ]
+    ]
+   },
+   {
+    "id": "gull far",
+    "species": "gull",
+    "t0_s": 11.0,
+    "birds": 1,
+    "screen_path_px_m": [
+     [
+      2000,
+      60,
+      420
+     ],
+     [
+      1800,
+      90,
+      430
+     ],
+     [
+      1600,
+      140,
+      450
+     ],
+     [
+      1460,
+      170,
+      470
+     ],
+     [
+      1330,
+      120,
+      480
+     ],
+     [
+      1290,
+      -60,
+      500
+     ]
+    ]
+   },
+   {
+    "id": "bee-eaters later",
+    "species": "bee-eater",
+    "t0_s": 16.0,
+    "birds": 3,
+    "screen_path_px_m": [
+     [
+      2000,
+      140,
+      58
+     ],
+     [
+      1760,
+      90,
+      62
+     ],
+     [
+      1520,
+      110,
+      66
+     ],
+     [
+      1420,
+      180,
+      70
+     ],
+     [
+      1540,
+      250,
+      72
+     ],
+     [
+      1800,
+      240,
+      68
+     ],
+     [
+      2100,
+      260,
+      62
+     ]
+    ]
+   }
+  ],
+  "species": {
+   "bee-eater": {
+    "span": 0.45,
+    "body": 0.27,
+    "chord": 0.075,
+    "hz": 6.0,
+    "amp": 38,
+    "dihedral": 4,
+    "speed": 9.0,
+    "pattern": [
+     0.7,
+     0.9
+    ],
+    "neck": 0.02,
+    "tail": 0.09,
+    "rgb": [
+     64,
+     60,
+     50
+    ],
+    "hand": 0.55,
+    "sweep": 0.35,
+    "source": [
+     "iNaturalist observation 361466739 (Merops apiaster, European bee-eater), Oleksii Vasyliuk, Mar'ianske, on the drained bed, 14 May 2026, CC BY: https://www.inaturalist.org/observations/361466739 (heard in the soundscape's reeds layer, sound 1950258)"
+    ]
+   },
+   "cormorant": {
+    "span": 1.4,
+    "body": 0.85,
+    "chord": 0.22,
+    "hz": 4.2,
+    "amp": 26,
+    "dihedral": 0,
+    "speed": 14.0,
+    "pattern": null,
+    "neck": 0.28,
+    "tail": 0.12,
+    "rgb": [
+     38,
+     38,
+     40
+    ],
+    "hand": 0.5,
+    "sweep": 0.12,
+    "source": [
+     "Sidorenko & Siokhin 2016, Biosystems Diversity: 1,240 great cormorant nests on six towers of the Enerhodar crossings in 2012 (https://cyberleninka.ru/article/n/nesting-of-great-cormorants-phalacrocorax-carbo-on-man-made-structures-in-ukraine); nothing counted since the drainage (reports/Kakhovka bed nature sounds.md). Drawn far off, flying away, never at a tower: no colony is shown or implied"
+    ]
+   },
+   "gull": {
+    "span": 1.42,
+    "body": 0.6,
+    "chord": 0.19,
+    "hz": 2.6,
+    "amp": 30,
+    "dihedral": 6,
+    "speed": 9.5,
+    "pattern": [
+     1.2,
+     4.5
+    ],
+    "neck": 0.08,
+    "tail": 0.1,
+    "rgb": [
+     118,
+     118,
+     122
+    ],
+    "hand": 0.55,
+    "sweep": 0.45,
+    "source": [
+     "Sidorenko & Siokhin 2016 (the same survey): Caspian gulls nested on the crossing in 2012; Rostyslav Romanyshyn's winter gulls on the Dnipro at Zaporizhzhia, xeno-canto, Jan-Feb 2025 (reports/Kakhovka bed nature sounds.md)"
+    ]
+   }
+  },
+  "haze_srgb": [
+   206,
+   212,
+   218
+  ],
+  "check": {
+   "pad_px": 28,
+   "groups": {
+    "bee-eaters": {
+     "species": "bee-eater",
+     "birds": 4,
+     "frames_in_frame": [
+      214,
+      216,
+      208,
+      215
+     ],
+     "frames_near_wires_or_tower": 0,
+     "enters_s": 1.27,
+     "leaves_s": 10.13,
+     "distance_m": [
+      52.8,
+      75.1
+     ],
+     "size_px": [
+      5.7,
+      8.2
+     ],
+     "ends_at_px": [
+      [
+       "starts",
+       1.0,
+       1994,
+       379
+      ],
+      [
+       "ends",
+       9.75,
+       2347,
+       195
+      ],
+      [
+       "starts",
+       1.35,
+       2063,
+       368
+      ],
+      [
+       "ends",
+       10.1,
+       2234,
+       197
+      ],
+      [
+       "starts",
+       1.6,
+       2184,
+       433
+      ],
+      [
+       "ends",
+       10.35,
+       2201,
+       181
+      ],
+      [
+       "starts",
+       2.0,
+       2230,
+       375
+      ],
+      [
+       "ends",
+       10.75,
+       2087,
+       153
+      ]
+     ]
+    },
+    "gull": {
+     "species": "gull",
+     "birds": 1,
+     "frames_in_frame": [
+      463
+     ],
+     "frames_near_wires_or_tower": 0,
+     "enters_s": 3.63,
+     "leaves_s": 19.07,
+     "distance_m": [
+      159.4,
+      209.8
+     ],
+     "size_px": [
+      6.5,
+      8.6
+     ],
+     "ends_at_px": [
+      [
+       "starts",
+       3.0,
+       1560,
+       -40
+      ],
+      [
+       "ends",
+       20.32,
+       1541,
+       -61
+      ]
+     ]
+    },
+    "cormorants": {
+     "species": "cormorant",
+     "birds": 5,
+     "frames_in_frame": [
+      687,
+      671,
+      655,
+      640,
+      624
+     ],
+     "frames_near_wires_or_tower": 0,
+     "enters_s": 7.1,
+     "leaves_s": 30.0,
+     "distance_m": [
+      279.5,
+      510.9
+     ],
+     "size_px": [
+      2.6,
+      4.8
+     ],
+     "ends_at_px": [
+      [
+       "starts",
+       6.0,
+       2019,
+       420
+      ],
+      [
+       "starts",
+       6.2,
+       2050,
+       424
+      ],
+      [
+       "starts",
+       6.4,
+       2083,
+       425
+      ],
+      [
+       "starts",
+       6.6,
+       2113,
+       429
+      ],
+      [
+       "starts",
+       6.8,
+       2148,
+       432
+      ]
+     ]
+    },
+    "gull far": {
+     "species": "gull",
+     "birds": 1,
+     "frames_in_frame": [
+      517
+     ],
+     "frames_near_wires_or_tower": 0,
+     "enters_s": 12.77,
+     "leaves_s": 30.0,
+     "distance_m": [
+      420.2,
+      474.3
+     ],
+     "size_px": [
+      2.9,
+      3.2
+     ],
+     "ends_at_px": [
+      [
+       "starts",
+       11.0,
+       2000,
+       61
+      ]
+     ]
+    },
+    "bee-eaters later": {
+     "species": "bee-eater",
+     "birds": 3,
+     "frames_in_frame": [
+      172,
+      176,
+      171
+     ],
+     "frames_near_wires_or_tower": 0,
+     "enters_s": 16.37,
+     "leaves_s": 23.43,
+     "distance_m": [
+      55.5,
+      74.0
+     ],
+     "size_px": [
+      5.8,
+      7.8
+     ],
+     "ends_at_px": [
+      [
+       "starts",
+       16.0,
+       2003,
+       148
+      ],
+      [
+       "ends",
+       22.82,
+       2096,
+       253
+      ],
+      [
+       "starts",
+       16.4,
+       2077,
+       164
+      ],
+      [
+       "ends",
+       23.22,
+       2000,
+       232
+      ],
+      [
+       "starts",
+       16.9,
+       2144,
+       163
+      ],
+      [
+       "ends",
+       23.72,
+       1987,
+       268
+      ]
+     ]
+    }
+   },
+   "frames_near_wires_or_tower": 0
+  }
+ },
+ "render": {
+  "engine": "EEVEE (Blender 5.2.2), 32 samples, 1920x1080, 30 fps (a test; the final would be 60)",
+  "method": "still_v4.py's passes (run by still_v5.py): the static picture once, the moving parts (lit wires, glow, fittings, birds) per frame over nothing, the wires' matte once (A/B), composited over the flat day sky (composite_v5.py, composite_v4's maths) with a one-step triangular dither",
+  "logs": {
+   "mask": {
+    "mode": "mask",
+    "camera": {
+     "location": [
+      4355.0,
+      6870.0,
+      10.854730606079102
+     ],
+     "heading": 22.0,
+     "pitch": 14.0,
+     "lens": 18.0,
+     "ground_m": 9.25,
+     "on": "land"
+    },
+    "running": [
+     "Ferosplavna 1, 2",
+     "link 1",
+     "link 2"
+    ],
+    "protos_tris": 2515814,
+    "mask_px": 108318
+   },
+   "static": {
+    "mode": "static",
+    "camera": {
+     "location": [
+      4355.0,
+      6870.0,
+      10.854730606079102
+     ],
+     "heading": 22.0,
+     "pitch": 14.0,
+     "lens": 18.0,
+     "ground_m": 9.25,
+     "on": "land"
+    },
+    "running": [
+     "Ferosplavna 1, 2",
+     "link 1",
+     "link 2"
+    ],
+    "protos_tris": 2515814,
+    "plants": {
+     "plants": 56053,
+     "left_out": 0,
+     "met_first": {},
+     "by_origin": {
+      "rule": 56053,
+      "mirrored": 0,
+      "base": 0
+     },
+     "lay_s": 4.7
+    },
+    "moving": [
+     "fittings",
+     "glow Ferosplavna 1, 2",
+     "glow link 1",
+     "glow link 2",
+     "wire Ferosplavna 1, 2",
+     "wire link 1",
+     "wire link 2"
+    ],
+    "prepare_s": 10.4,
+    "render_static_s": 22.26,
+    "total_s": 32.6
+   },
+   "matte": {
+    "mode": "matte",
+    "camera": {
+     "location": [
+      4355.0,
+      6870.0,
+      10.854730606079102
+     ],
+     "heading": 22.0,
+     "pitch": 14.0,
+     "lens": 18.0,
+     "ground_m": 9.25,
+     "on": "land"
+    },
+    "running": [
+     "Ferosplavna 1, 2",
+     "link 1",
+     "link 2"
+    ],
+    "protos_tris": 2515814,
+    "plants": {
+     "plants": 56053,
+     "left_out": 0,
+     "met_first": {},
+     "by_origin": {
+      "rule": 56053,
+      "mirrored": 0,
+      "base": 0
+     },
+     "lay_s": 4.4
+    },
+    "moving": [
+     "fittings",
+     "glow Ferosplavna 1, 2",
+     "glow link 1",
+     "glow link 2",
+     "wire Ferosplavna 1, 2",
+     "wire link 1",
+     "wire link 2"
+    ],
+    "prepare_s": 9.5,
+    "render_matte_A_s": 5.91,
+    "render_matte_B_s": 0.36,
+    "total_s": 15.8
+   },
+   "full": {
+    "mode": "full",
+    "camera": {
+     "location": [
+      4355.0,
+      6870.0,
+      10.854730606079102
+     ],
+     "heading": 22.0,
+     "pitch": 14.0,
+     "lens": 18.0,
+     "ground_m": 9.25,
+     "on": "land"
+    },
+    "running": [
+     "Ferosplavna 1, 2",
+     "link 1",
+     "link 2"
+    ],
+    "protos_tris": 2515814,
+    "plants": {
+     "plants": 56053,
+     "left_out": 0,
+     "met_first": {},
+     "by_origin": {
+      "rule": 56053,
+      "mirrored": 0,
+      "base": 0
+     },
+     "lay_s": 5.2
+    },
+    "moving": [
+     "fittings",
+     "glow Ferosplavna 1, 2",
+     "glow link 1",
+     "glow link 2",
+     "wire Ferosplavna 1, 2",
+     "wire link 1",
+     "wire link 2"
+    ],
+    "prepare_s": 11.4,
+    "render_full_0_s": 27.29,
+    "render_full_450_s": 29.71,
+    "render_full_899_s": 34.57,
+    "total_s": 103.0
+   },
+   "anim_0-900": {
+    "mode": "anim",
+    "camera": {
+     "location": [
+      4355.0,
+      6870.0,
+      10.854730606079102
+     ],
+     "heading": 22.0,
+     "pitch": 14.0,
+     "lens": 18.0,
+     "ground_m": 9.25,
+     "on": "land"
+    },
+    "running": [
+     "Ferosplavna 1, 2",
+     "link 1",
+     "link 2"
+    ],
+    "protos_tris": 2515814,
+    "moving": [
+     "fittings",
+     "glow Ferosplavna 1, 2",
+     "glow link 1",
+     "glow link 2",
+     "wire Ferosplavna 1, 2",
+     "wire link 1",
+     "wire link 2"
+    ],
+    "prepare_s": 5.1,
+    "frozen_ids": 61,
+    "render_anim_s": {
+     "frames": [
+      0,
+      900
+     ],
+     "mean": 1.72,
+     "total": 1546.7
+    },
+    "total_s": 1551.9
+   },
+   "contour": {
+    "mode": "contour",
+    "level_baltic_m": 12.7,
+    "baltic_to_egm2008_m": 0.4,
+    "level_scene_m": 13.1,
+    "line_px": 7.0,
+    "min_slope_sin": 0.15,
+    "floor_half_m": 0.001,
+    "camera": {
+     "location": [
+      4355.0,
+      6870.0,
+      10.854730606079102
+     ],
+     "ground_m": 9.25,
+     "eye_m": 10.85,
+     "eye_below_level_m": 2.25
+    },
+    "hidden": [
+     "glow Dniprovska",
+     "glow feed 1",
+     "glow feed 2",
+     "glow feed 3",
+     "glow feed 4",
+     "glow feed 5",
+     "glow feed 6",
+     "glow Ferosplavna 1, 2",
+     "glow Kakhovska 330",
+     "glow Kakhovska 750",
+     "glow link 1",
+     "glow link 2",
+     "glow Melitopolska 330",
+     "glow Molochanska 330",
+     "glow Pivdennodonbaska 750",
+     "glow Zaporizka 330",
+     "glow Zaporizka 750"
+    ],
+    "plants": {
+     "plants": 56053,
+     "left_out": 0,
+     "met_first": {},
+     "by_origin": {
+      "rule": 56053,
+      "mirrored": 0,
+      "base": 0
+     },
+     "lay_s": 4.4
+    },
+    "prepare_s": 9.8,
+    "render_s": 7.54
+   },
+   "world": {
+    "mode": "world",
+    "camera": {
+     "location": [
+      4355.0,
+      6870.0,
+      10.854730606079102
+     ],
+     "heading": 22.0,
+     "pitch": 14.0,
+     "lens": 18.0,
+     "ground_m": 9.25,
+     "on": "land"
+    },
+    "running": [
+     "Ferosplavna 1, 2",
+     "link 1",
+     "link 2"
+    ],
+    "protos_tris": 2515814,
+    "render_s": 0.28
+   }
+  },
+  "composite_vs_full": {
+   "0000": {
+    "max": 110.6,
+    "mean": 0.0157,
+    "px_over_2": 2546,
+    "px_over_8": 1450,
+    "px_over_32": 123
+   },
+   "0450": {
+    "max": 53.6,
+    "mean": 0.0154,
+    "px_over_2": 2561,
+    "px_over_8": 1436,
+    "px_over_32": 118
+   },
+   "0899": {
+    "max": 80.81,
+    "mean": 0.0155,
+    "px_over_2": 2562,
+    "px_over_8": 1447,
+    "px_over_32": 133
+   }
+  },
+  "encode": {
+   "under_the_crossing_f_day": {
+    "frames": 900,
+    "fps": 30,
+    "codec": "H.264 (libx264, preset slow, CRF 14, yuv420p)",
+    "audio": "research_notes/Speculative crossing soundscape/under_the_crossing.wav (AAC 256 kb/s)",
+    "encode_s": 121.5
+   },
+   "waterline_reprise": {
+    "frames": 270,
+    "fps": 30,
+    "codec": "H.264 (libx264, preset slow, CRF 14, yuv420p)",
+    "audio": "research_notes/Under the crossing still/v5/waterline_reprise.wav (AAC 256 kb/s)",
+    "encode_s": 51.7,
+    "anim_frames": [
+     630,
+     900
+    ],
+    "line_at_s": 2.0,
+    "line_fade_s": 2.0,
+    "line_srgb": [
+     40,
+     110,
+     230
+    ],
+    "edge_srgb": [
+     12,
+     34,
+     80
+    ],
+    "edge_px": 1,
+    "line_a": 1.0,
+    "label": "PROPOSED LEVEL · 12.7 M · VYSHNEVSKYI & SHEVCHUK 2024 · THE BED'S HEIGHTS INFERRED",
+    "label_box_px": [
+     18,
+     1034,
+     775,
+     1058
+    ],
+    "line_px": 15043
+   }
+  }
+ },
+ "waterline": {
+  "level": {
+   "value_m": 12.7,
+   "datum": "Baltic (the Ukrainian levels' system)",
+   "what": "the dead-volume level, proposed for a temporary dam (refilling the reservoir to it)",
+   "source": "Vyshnevskyi & Shevchuk 2024, p. 286 (reports/ZNPP speculative ending and ecology.md)",
+   "note": "the reports also give 12.7 m as IAEA Update 162's reservoir figure; the project config cites Update 163 for a measured level of about 12.7 m at the plant on 8 June 2023 (Update 162: 14.03 m on 7 June). Not checked again here."
+  },
+  "datum_conversion": {
+   "baltic_to_egm2008_m": 0.4,
+   "source": "config/conductive-seam.yaml crossing3d.bed baltic_m (Baltic +0.4 m to EGM2008); the scene's z is FABDEM's metres above EGM2008",
+   "level_scene_m": 13.1
+  },
+  "eye": {
+   "ground_m": 9.25,
+   "eye_m": 10.85,
+   "eye_below_level_m": 2.25,
+   "note": "the camera stands 2.25 m below the proposed level: at that level the view would be under water. The camera is not moved; so the level's plane lies above the eye and the line falls above the horizon, on whatever stands taller than it."
+  },
+  "drawn_on": [
+   "the caisson of tower 23: a clean line round its foot, about 0.5 m above the ground there",
+   "the reeds, tall grasses and young willows of the meadow in the distance: a broken line of dashes across their stems near the horizon (the level's plane seen from below)",
+   "the willow crown at the top left (near): patches across the leaves that lie at the level",
+   "not on tower 23 or the wires (they stand above it on the caisson), not on the sky"
+  ],
+  "how": {
+   "pass": "still_v5.py contour: every surface drawn flat black (view_layer material override) but a band where |world z - 13.1| is under h, h = the eye distance x (36 mm / 18 mm / 1920 px) x 3.5 px x max(sin(slope), 0.15), at least 1 mm: about 7 px wide on screen; the glows left out; film-transparent; the band's red channel is the line's matte",
+   "px": 7.0,
+   "min_slope_sin": 0.15,
+   "floor_half_m": 0.001,
+   "composite": "a saturated mid blue, sRGB (40, 110, 230), opaque, over a 1 px darker edge, sRGB (12, 34, 80) (the matte grown by 1 px), laid on the static plate, under the moving wires (they pass in front of it where nearer); plain for 2 s, faded in over 2 s (smoothstep), held. Blue at the user's request (5 November 2026: 'thicker and blue so it stands out'); a first version was white, about 2 px wide, at 0.9",
+   "render_s": 7.54
+  },
+  "label": "PROPOSED LEVEL · 12.7 M · VYSHNEVSKYI & SHEVCHUK 2024 · THE BED'S HEIGHTS INFERRED (white capitals, Helvetica Neue 16 px, a black box at half opacity, bottom left, fading in with the line; a short stroke of the line's blue before the text, its key)",
+  "tier": "inferred x proposed"
+ },
+ "reprise_sound": {
+  "title": "The waterline reprise's sound (a stretch of the speculative soundscape)",
+  "seconds": 9.0,
+  "sample_rate": 48000,
+  "sha256": "50331771f0021f47d71c98dc2518699ceed49e39b22cee7c34070c009080e17b",
+  "from": "Speculative crossing soundscape/under_the_crossing.wav (mix.py), seconds 13.5-22.5 of its 30 s, only the line and the near nightingale",
+  "rerun_matches_original": true,
+  "master_gain_db": 4.15,
+  "line": "Ferosplavna-1 as mix.py synthesizes it (seed 330, the 30 s synthesized and the same window cut; -30 dBFS RMS before the master)",
+  "nightingale": {
+   "recording": "iNat sound 1950271 (observation 361637893)",
+   "recordist": "Oleksii Vasyliuk",
+   "licence": "CC BY",
+   "date": "2026-05-14",
+   "place": "Mar'ianske, on the drained bed",
+   "recording_seconds": [
+    14.5,
+    23.5
+   ],
+   "level_dbfs_rms": -20,
+   "pan": 0.2
+  },
+  "fades_s": [
+   1.0,
+   1.5
+  ],
+  "limit": "-1 dBFS (mix.py's limiter)",
+  "statement": "No new recordings: cut from the shot's own montage; never pitched, looped or stretched. The line is synthesized, not recorded.",
+  "peak_dbfs": -6.0,
+  "rms_dbfs": -21.7
+ },
+ "files": {
+  "under_the_crossing_f_day.mp4": "30 s, 900 frames, the soundscape (../Speculative crossing soundscape/under_the_crossing.wav)",
+  "waterline_reprise.mp4": "9 s, 270 frames (the moving pass of the 30 s shot, its frames 630-899: the far cormorants and gull only, checked clear of the line), waterline_reprise.wav (waterline_reprise_sound.json)",
+  "stills": [
+   "f_day_v5_first.png",
+   "f_day_v5_last.png",
+   "f_day_v5_mid.png",
+   "waterline_reprise_fading.png",
+   "waterline_reprise_held.png",
+   "waterline_reprise_held_detail.png",
+   "waterline_reprise_plain.png"
+  ]
+ }
+}

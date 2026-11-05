@@ -1,5 +1,46 @@
 THE CONDUCTIVE SEAM: NEXT DIRECTION (draft, still being refined)
-Started 21 October 2026, after presentation feedback. Last updated 21 October 2026 (the instrument at the heart).
+Started 21 October 2026, after presentation feedback. Last updated 25 October 2026 (the end result: one film).
+
+======================================================================================================
+THE END RESULT: ONE FILM, AT MOST 10 MINUTES (decided with the user, 25 October 2026)
+======================================================================================================
+The project ends in one developed film of at most 10 minutes: a high-quality video exploration in the manner of
+computational design visualisation, showing the project's intricate parts. Narrative and storytelling, graphics,
+data and cinematography carry equal weight. The collection, the satellite passes, the corridor and zoom-out films,
+the Scene Viewer and the site are its research and its sequences, not the deliverable.
+- 10 minutes is a ceiling, not a target: every sequence earns its time; a draft that runs long is cut, not sped up.
+- Story first: what each sequence tells and where it sits (chapters, turns, held moments, silence), then how it looks.
+- Cinematography on purpose: camera moves, holds, pacing, sound and type decided and recorded, never defaults.
+- The evidence rules hold on screen (HONESTY RULES below): every drawn fact sourced in film.json, nothing inferred
+  shown as observed, no generated imagery, the synthesized and the drawn said to be so.
+- Quality: final renders at 60 fps (tests at 30), 1920x1080 or larger, sound mixed with the picture; end credits for
+  the imagery (Copernicus), OpenStreetMap (ODbL), GeoNames and the record's sources.
+
+Working outline (5 November 2026, the storyboard's cut `storyboard`; still to decide with the user, NEXT.md N1)
+Story A, the margin: "what the lines carry is time". Structure from research_notes/Forensic film structures/ (a cold
+open on one exact moment, sound first, the method stated once, chapters that say what happens, the turn as a change of
+axis, a bookend, a held present-tense end). The brief's stanzas are the intertitles.
+Prologue  Black; one line's voice of the Hum; "11 September 2026. One of the ten power lines ... is connected." The
+          title. The method once (the brief's last stanza: observed, drawn, inferred).
+I.    Ten lines: the units and the ten lines to their substations, the full chord heard (the baseline every later
+      silence is measured against); more than a fifth of Ukraine's electricity; the first cut on camera (to find); the record
+      from 24 February 2022 to island mode; the protection zone, proposed and never agreed.
+II.   Power in: the inversion (occupied, shut down, still cooled; the flow reversed, a graphic to make); the flight
+      south along the last two lines, with the power, the water draining under it, to the plant; "what they bring is
+      time"; the margin (a graphic to make).
+III.  The water (the turn, from the lines to the ground): the dam heard below hearing (the infrasound trace); the
+      crossing tower, the dam's stanza, its foot under the old water; the towers seen at 0.5 m (the inset), against
+      the model; the region opened in section; the cooling pond falling toward 12 m.
+IV.   The countdown: twenty-six losses, seven truces for a single span (the unrolled lines); a span's fittings; one
+      truce hour by hour (to make); Dniprovska repaired and not reconnected; eighteen days on diesel; "repaired by:
+      technicians"; the whole record at once.
+V.    At night: every night-light moment together: September 2021, September 2022 in island mode, the town dark and
+      the plant lit (8-9 September 2022), the two banks month by month, September 2026 both banks dark.
+Coda  The meadow: the forest on the bed, the meadow on foot, point 12 (the plant tied to the dam), the forest or the
+      reactor. "By September 2026, one line of ten remained" (the rhyme with the prologue); credits and sources.
+Prototype length about 11:30 (not flagged while prototyping). Parked, not dropped: the flight north, the zoom-out's
+later record, the research figures, the second section, the triptych, the sound ideas (fog, earwitness, Nikopol).
+Sequences rendered so far are drafts toward this film.
 
 ======================================================================================================
 FEEDBACK WE ARE ANSWERING
@@ -169,7 +210,7 @@ FRAMING ARGUMENT (chosen earlier on 21 October 2026; may frame the Hum): THE PRO
 - In the film: red is only ever what is real (the OSM lines); proposals in a second colour (e.g. dashed white).
 
 ======================================================================================================
-FILM OUTLINE (rough)
+FILM OUTLINE (rough; earlier, superseded by THE END RESULT above)
 ======================================================================================================
 1. Open on the plant, its lines drawn out (exists).
 2. Zoom out to all of Ukraine. Daylight imagery turns into night (VIIRS Black Marble).
@@ -185,7 +226,108 @@ FILM OUTLINE (rough)
 Possible: the Hum as the film's soundtrack (sourced recordings, labelled).
 
 ======================================================================================================
-VIDEO PLAN, DRAFT 2 (21 October 2026): at most 5 minutes (the presentation is 7)
+NOW: THE ZOOM OUT ONLY (decided 21 October 2026; the push in to the surviving lines is put off)
+======================================================================================================
+The plant at the centre; zoom out while every line from it grows outward and is named; then a switch to VIIRS Black
+Marble at the wide frame for a timelapse of the places affected as lines go off and on.
+
+STATUS (22 October 2026): tenth draft rendered, about 206 s, tested at 30 fps (the final at 60), with sound:
+libraries/conductive-seam/satellite/networks/znpp/films/<newest>/ZNPP-ten-lines-zoom-out.mp4 (`evidence satellite network --network znpp`).
+Done so far:
+- Opens close on the six reactor units (2.2 km wide, centred on them), outlined one by one and numbered. Then out to
+  both switchyards: each unit's own 750 kV line drawn into the plant's 750 kV switchyard (south-west), the two 330 kV
+  links into the thermal plant's 330 kV switchyard (north-east), each switchyard outlined as they arrive, in white
+  (all OpenStreetMap ways). Only then do the yellow lines leave, from the switchyards (about 15 s in).
+- Sentinel-2 all the way out (no dark ground), a 10 m close-up over a 60 m wide crop, in two eras: 8 September 2021
+  (pre-war, the reservoir full) until the record reaches 6 June 2023, then a 3 s dissolve to 28 August 2025. The
+  imagery dimmed to 80% so the lines stand out.
+- Line names ride their tips until the tip nears the frame's edge, then stay at that point of the line while the tip
+  goes on, so no name ends up off screen.
+- The camera eases into a 172 km frame (the Dnipro and the Great Meadow at its centre) and stays there; the lines
+  grow on past its edges.
+- Two yellows (the blues read as rivers): 750 kV (255, 214, 0), 330 kV deeper (240, 156, 0); lighter cores and a faint glow; brightest where they leave the plant, fading to about a third
+  at their end substation.
+- Smooth: 60 fps, the growth eased with no jumps, labels and marks moving at sub-pixel positions.
+- Every text in white capitals, Helvetica Neue, on a black box at 50% opacity.
+- The Great Meadow outlined as the frame takes it in (its outer shore only: the channels of today's drained bed are
+  closed, so the same outline holds for the reservoir and for the river before it), named GREAT MEADOW / ВЕЛИКИЙ ЛУГ, then a faint fill. Source:
+  OSM relation 1600087 (natural=wetland, old_name Каховське водосховище). Caveat: OSM draws it as the whole drained
+  reservoir bed down to the dam, wider than the historical Great Meadow (the upper reach between Zaporizhzhia and
+  Nikopol); say so in the presentation, or trim it to the historical extent from a historical map.
+- Staircase stretches checked: real. Л-241 has 648 mapped towers (median span 282 m, traced from Bing imagery);
+  Kakhovska 750 has a tower at every corner (median span 401 m) and its traced length matches the official 186 km.
+- Plant label: a large name over the units on the close-up, a white mark named to the west at the wide frame.
+- Towns keep off labels and lines.
+- Close-up sharper: Sentinel-2 over a wider Landsat pass, crossfaded.
+- The record (from 51 s, about 155 s): the date runs from 24 February 2022 to 11 September 2026 and each line goes
+  dark when cut off (unlit: a thin steel-grey hairline, no glow, it dims in 0.25 s; a dark red thread until 2 November
+  2026) and glows when reconnected (white-hot core, swelling back over 0.6 s), unlit and dotted while the reports don't
+  say which lines (March-August 2022). 67
+  dated events with sources in the config's `record:` (IAEA updates via the WNA and OECD-NEA chronologies, Energoatom,
+  news); the IAEA's count of complete losses of off-site power (1 to 26), "on diesel generators" while one lasts, and a
+  caption for 16 key events. Ends on one line of ten: Ferosplavna-1 (Dniprovska cut since 24 March 2026). The date
+  shown steps from one reported change to the next (days with nothing reported are skipped); each state held at
+  least 0.7 s, a cut restored within the day blinks 0.8 s, a complete loss is held 1.8 s (one lasting days 2.4 s +
+  0.12 s a day, up to 6 s for the month on diesel), silent, the imagery dimmed a little more; the rest shared by how
+  long each state lasted (147 s in all).
+- The crossing: once the imagery has dissolved to the drained bed, the camera closes in over 18 s on the Dnipro
+  crossing (25 km frame, a 10 m crop of the 2025 pass) and stays: Dniprovska and Ferosplavna-1 named where they cross
+  the bed, with their state, the plant at the bottom, Nikopol bank at the top.
+- The IAEA's protection zone (6 September 2022 to 30 March 2023 in the record): no size was ever published (AP:
+  "including the radius" still being explored; Grossi: "the perimeter and the plant itself"), so a dashed circle
+  round the plant's site (1.6 km across), labelled "proposed, never agreed". At the 172 km frame it is a ring round
+  the plant's mark: the zone was the size of the plant, the cuts happened tens of km out along the lines. A held
+  moment on its day (9 s, the date held): the camera closes in to an 11 km frame (the circle at its true size, faintly
+  filled, "the plant's lines reach 214 km from it"), holds, and pulls back out while a ring of white light spreads
+  from the plant (along every line until 2 November 2026: it read as power through cut lines).
+- The Hum, first sketch (hum.py): synthesized from the record. All ten lines fade in once the camera stops pulling
+  back (about 40 s); the date runs 10 s after the chord is full (the off-screen growth sped up in between). A voice per line on the 100 Hz hum and its
+  harmonics (line n stresses one harmonic), corona crackle, panned by the line's bearing; silent when cut, a swell
+  when reconnected, muffled where the reports don't say which lines; silence during complete losses (the diesel
+  generators removed by the user). Levels: all ten lines -10 dBFS RMS, one line about -18. No sound credit on screen.
+- Bottom left: only the imagery's credit, faint, no box. Credit OpenStreetMap (ODbL), GeoNames and the record's
+  sources wherever the film is shown (description or end credits).
+  To replace with labelled field recordings of real 750/330 kV lines and a diesel generator.
+- Rendered in parallel (6 parts on the 8-core M3, layers blended only where they touch): 4.5 min at 30 fps, against
+  14.5 min before; the final 60 fps render about 9 min.
+Still to do: VIIRS Black Marble (on hold); better-than-10 m imagery for the close-up later; the mid-zoom label bunch
+south-east of the plant (Zaporizka, Pivdennodonbaska, Melitopolska) while those lines run together.
+
+The ten lines, traced in OpenStreetMap to their end substations (21 October 2026; now `networks: znpp` in
+config/conductive-seam.yaml, traced again on every render; a line ending elsewhere is refused). Names by destination, as the IAEA and the user's reference image name them.
+  750 kV  Dniprovska          130 km  -> Дніпровська-750       north, straight across the river
+  750 kV  Zaporizka           191 km  -> Запорізька-750        south-east, east, then north round to Zaporizhzhia
+  750 kV  Pivdennodonbaska    272 km  -> Південнодонбаська-750  east (the longest)
+  750 kV  Kakhovska           186 km  -> Каховська-750         south-west
+  330 kV  Ferosplavna 1, 2     34 km  -> Феросплавна-330       north-west to Nikopol, across the river
+  330 kV  Zaporizka Л-242     177 km  -> Запорізька-330        with Zaporizka 750 most of the way
+  330 kV  Molochanska Л-246   104 km  -> Молочанська-330       south-east
+  330 kV  Melitopolska Л-247  115 km  -> Мелітопольська-330    south
+  330 kV  Kakhovska Л-241     ~190 km -> Каховська-330         south-west (shares towers with Л-247 at first)
+  plus the two 330 kV links between the plant and the thermal plant's switchyard (4-5 km).
+Cross-checks so far:
+- Kakhovska 750: official length 186 km (opened 23 December 2020, UNIAN); OSM trace 185.8 km. Agrees.
+- End substations match the user's reference image (Dneprovskaya, Zaporozhye, South Donbass, Kakhovka 750;
+  Ferrosplavnaya 1 and 2, Zaporizhzhia, Molochansk, Melitopol, Kakhovskaya 330). Find who made that image.
+- Dniprovska (main) and Ferosplavna-1 (backup) named by the IAEA; 24 March 2026 Dniprovska lost; June 2026
+  repaired but its substation too damaged to reconnect (Ukrainska Pravda, Reuters via IAEA).
+- Step-shaped stretches of Kakhovska 750 / Л-241: real (towers at every corner; see STATUS).
+- Still to check: the Pivdennodonbaska name in IAEA updates; the long loop of the Zaporizka pair on imagery; OSM may
+  be stale in occupied areas.
+Composition notes (draft frame: 464 km wide, the plant at the centre; all ten ends inside):
+- The lines don't spread evenly N/E/S/W: most run south-east through occupied ground and bend round; only
+  Dniprovska and Ferosplavna go straight north across the river, and they are the two that survived. Keep the real
+  asymmetry (check against a dated front-line map before saying so).
+- All lines start together and grow at one speed (km a second), so length becomes arrival time: Ferosplavna lands
+  first, Pivdennodonbaska last. The zoom follows the farthest tip, so growth and zoom are one gesture.
+- Labels ride the tips, then settle at the end substation ("Dniprovska 750 kV · 130 km"); placed without
+  collisions (the two Kakhovka ends are about 5 km apart). Shared corridors drawn as parallel strands at wide scale
+  (a display choice, recorded).
+- The daylight imagery fades to a dark ground once the frame passes about 50 km; VIIRS (500 m, about 2 px at this
+  frame) takes over on it. VIIRS belongs at the wide frame only.
+
+======================================================================================================
+VIDEO PLAN, DRAFT 2 (21 October 2026): at most 5 minutes (the presentation is 7); superseded by THE END RESULT above
 ======================================================================================================
 Not one line: it starts on the ZNPP and zooms out as the major lines spreading from it are traced. Low-resolution
 imagery is fine: this draft tests framing and composition.

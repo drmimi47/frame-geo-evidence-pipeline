@@ -1,0 +1,48 @@
+# Tower cut opener, second round (5 November 2026): YouTube Data API searches for the missing towers.
+# 17 text searches + 3 geotag searches round the crossing = 20 searches, ~2,000 units. A dry run (`evidence discover`):
+# candidates only; each is then gated (scope.check_scope) before anything is downloaded (scripts/gate_download.py).
+library_dir: "research_notes/Tower cut opener/library"
+
+discovery:
+  api_key_env: YOUTUBE_API_KEY
+  published_after: 2022-01-01
+  published_before: 2026-12-31
+  split_by_year: false
+  locations: []
+  categories: []
+  extra_queries:
+    - "переход ЛЕП через Днепр"
+    - "опори ЛЕП в Каховському водосховищі"
+    - "ЛЕП 750 Енергодар"
+    - "рыбалка Каменка-Днепровская опоры ЛЕП"
+    - "Нікополь дрон опори ЛЕП"
+    - "дно Каховського водосховища ЛЕП"
+    - "Kakhovka reservoir power line towers drone"
+    - "опоры ЛЭП в Каховском водохранилище рыбалка"
+    - "Водяне Каховське водосховище дрон"
+    - "Марганець опори ЛЕП"
+    - "Энергодар ЛЭП 750 кВ"
+    - "высоковольтная линия зима Запорожская область"
+    - "лінія 330 кВ опора"
+    - "ЛЭП 110 кВ опора поле Запорожье"
+    - "Каменка-Днепровская водохранилище лодка"
+    - "Нікополь Великий Луг дрон"
+    - "переходные опоры ЛЭП Днепр Никополь"
+  focus:
+    places: [Енергодар, Кам'янка-Дніпровська, Водяне, Нікополь, Марганець]
+    radius_km: 10
+    geotagged_terms: ["ЛЕП", "дрон", "рибалка"]   # videos the uploader geotagged round the crossing
+    topic_terms: [лэп, леп, опор, електропередач, электропередач, "750", "330", перехід, переход, водосховищ,
+                  водохранилищ, дно, дрон, рибалк, рыбалк, power line, pylon, tower]
+    min_score: 0
+  max_results_per_query: 50
+  max_videos_total: 1000
+  max_ingest: 1000
+  order: relevance
+  video_license: any
+  video_duration: any
+  relevance_language: uk
+  safe_search: none
+
+scope:
+  min_confidence: 0.5

@@ -1,0 +1,21 @@
+{
+ "view": {
+  "centre": [
+   34.6,
+   47.5
+  ],
+  "width_m": 56000.0,
+  "m_per_px": 29.17,
+  "bbox": [
+   34.22769,
+   47.35756,
+   34.97231,
+   47.64244
+  ]
+ },
+ "drawn_km2": {
+  "enerhodar_strip": 10.8
+ },
+ "shore": "OSM relation 1600087's outer edge (zoomout._shoreline, inlets under 1 km closed): our reading of 'the shore', no source defines it",
+ "sources": "research_notes/Shore bans overlay/restrictions.md"
+}

@@ -1,0 +1,516 @@
+{
+ "7HKmMDUzFcw": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.94 (min 0.5)",
+  "title": "Каховское водохранилище сегодня, полное обмеление. Шок, боль... 6 августа 2023 г.",
+  "channel": "Yurii Fedorov",
+  "channel_id": "UCsmVHe5bJymv2g9IXn3pOWA",
+  "published": "2023-08-06",
+  "license": "standard YouTube licence",
+  "duration_s": 31,
+  "url": "https://www.youtube.com/watch?v=7HKmMDUzFcw",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.94,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховск -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Каховк -> Kakhovka",
+     "weight": 0.7
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:19:21Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "xWge7n43LEM": {
+  "accepted": false,
+  "reason": "no metadata (unavailable)"
+ },
+ "JdMl5uvKLO8": {
+  "accepted": false,
+  "reason": "published 2020-02-02 outside hard range 2022-01-01..2026-12-31",
+  "title": "Никополь. Каховское водохранилище.",
+  "channel": "Bieliaev Oleksandr",
+  "channel_id": "UCxGzabyWOcWdgYprS4hbP5w",
+  "published": "2020-02-02",
+  "license": "standard YouTube licence",
+  "duration_s": 30,
+  "url": "https://www.youtube.com/watch?v=JdMl5uvKLO8",
+  "scope_check": null
+ },
+ "ESZqVE_caTo": {
+  "accepted": false,
+  "reason": "published 2013-04-21 outside hard range 2022-01-01..2026-12-31",
+  "title": "Каховское Водохранилище в Никополе",
+  "channel": "A S.",
+  "channel_id": "UCjSIoMYvfcGeTiiYd-HZgXg",
+  "published": "2013-04-21",
+  "license": "standard YouTube licence",
+  "duration_s": 53,
+  "url": "https://www.youtube.com/watch?v=ESZqVE_caTo",
+  "scope_check": null
+ },
+ "b8q_cxKHC0s": {
+  "accepted": false,
+  "reason": "published 2016-08-28 outside hard range 2022-01-01..2026-12-31",
+  "title": "Каховское водохранилище. Никополь.",
+  "channel": "Halyna Koval",
+  "channel_id": "UCrP22dFaHmvcimdDxaXxYAg",
+  "published": "2016-08-28",
+  "license": "standard YouTube licence",
+  "duration_s": 91,
+  "url": "https://www.youtube.com/watch?v=b8q_cxKHC0s",
+  "scope_check": null
+ },
+ "47B2rgE-Ixs": {
+  "accepted": false,
+  "reason": "published 2019-12-07 outside hard range 2022-01-01..2026-12-31",
+  "title": "Никополь с другой стороны Каховского водохранилища !",
+  "channel": "7 КОПЕЕК В ПОЛЕ",
+  "channel_id": "UC-sx77Hw1Ofrxa6BvUC4Gtw",
+  "published": "2019-12-07",
+  "license": "standard YouTube licence",
+  "duration_s": 40,
+  "url": "https://www.youtube.com/watch?v=47B2rgE-Ixs",
+  "scope_check": null
+ },
+ "UYfx16Vju1g": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.94 (min 0.5)",
+  "title": "Катастрофа на Каховском водохранилище .09.06.2023",
+  "channel": "Ярик Важничий",
+  "channel_id": "UCmq2YSamgtniCcYsL3xkfDg",
+  "published": "2023-06-10",
+  "license": "standard YouTube licence",
+  "duration_s": 242,
+  "url": "https://www.youtube.com/watch?v=UYfx16Vju1g",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.94,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховск -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Каховск -> Kakhovka",
+     "weight": 0.7
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:19:33Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "xYW0h3uW3vE": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "ЭНЕРГОДАР В ПРОШЛОМ КАКИМ БЫЛ УРОВЕНЬ ВОДЫ В КАХОВСКОМ ВОДОХРАНИЛИЩЕ",
+  "channel": "ANDRUHA_SMILE PRODUCTION",
+  "channel_id": "UCvZI4P6Pe0oIqfFFn6hcoiw",
+  "published": "2023-07-07",
+  "license": "Creative Commons Attribution license (reuse allowed)",
+  "duration_s": 30,
+  "url": "https://www.youtube.com/watch?v=xYW0h3uW3vE",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "ЭНЕРГОДАР -> Enerhodar",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "КАХОВСК -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "украин -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "энергодар -> Enerhodar",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховск -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "днепр -> Dnipro",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "энергодар -> Enerhodar",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "каховск -> Kakhovka",
+     "weight": 0.6
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:19:46Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "2RXudxbjzMA": {
+  "accepted": false,
+  "reason": "published 2021-02-22 outside hard range 2022-01-01..2026-12-31",
+  "title": "В Никополе используют деревья в качестве электроопор",
+  "channel": "ПРИХИСТ Нікополь",
+  "channel_id": "UCAelUK06P_EeLwHWTWHCchQ",
+  "published": "2021-02-22",
+  "license": "standard YouTube licence",
+  "duration_s": 170,
+  "url": "https://www.youtube.com/watch?v=2RXudxbjzMA",
+  "scope_check": null
+ },
+ "F_xZ8cbaFEI": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Каховская ГЭС и затопленные сёла. Вид на водохранилище 8 июня 2023",
+  "channel": "WOW Channel",
+  "channel_id": "UC7hu3JEtwR3b0zni-KQd4bA",
+  "published": "2023-06-08",
+  "license": "standard YouTube licence",
+  "duration_s": 68,
+  "url": "https://www.youtube.com/watch?v=F_xZ8cbaFEI",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховск -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Ukraine -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Каховск -> Kakhovka",
+     "weight": 0.7
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:19:52Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "6gnryUEB5SE": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.80 (min 0.5)",
+  "title": "Как выглядит Каховское водохранилище",
+  "channel": "WOW Channel",
+  "channel_id": "UC7hu3JEtwR3b0zni-KQd4bA",
+  "published": "2023-07-23",
+  "license": "standard YouTube licence",
+  "duration_s": 47,
+  "url": "https://www.youtube.com/watch?v=6gnryUEB5SE",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.8,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховск -> Kakhovka",
+     "weight": 0.8
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:19:55Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "KO6FNzCDjxA": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.80 (min 0.5)",
+  "title": "КАХОВСКОЕ водохранилище",
+  "channel": "Руки в ноги и ЧИСЛО ПИ",
+  "channel_id": "UCxyhBwxVlch8IcK7B8_PDNQ",
+  "published": "2023-06-10",
+  "license": "standard YouTube licence",
+  "duration_s": 256,
+  "url": "https://www.youtube.com/watch?v=KO6FNzCDjxA",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.8,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "КАХОВСК -> Kakhovka",
+     "weight": 0.8
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:20:00Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "W764wO0l8T0": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.80 (min 0.5)",
+  "title": "КАХОВСКОЕ водохранилище экологическая ситуация",
+  "channel": "Руки в ноги и ЧИСЛО ПИ",
+  "channel_id": "UCxyhBwxVlch8IcK7B8_PDNQ",
+  "published": "2023-07-02",
+  "license": "standard YouTube licence",
+  "duration_s": 308,
+  "url": "https://www.youtube.com/watch?v=W764wO0l8T0",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.8,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "КАХОВСК -> Kakhovka",
+     "weight": 0.8
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:20:08Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "GuO-_RVek7c": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.80 (min 0.5)",
+  "title": "КАХОВСКОЕ водохранилище часть 2",
+  "channel": "Руки в ноги и ЧИСЛО ПИ",
+  "channel_id": "UCxyhBwxVlch8IcK7B8_PDNQ",
+  "published": "2023-06-16",
+  "license": "standard YouTube licence",
+  "duration_s": 425,
+  "url": "https://www.youtube.com/watch?v=GuO-_RVek7c",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.8,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "КАХОВСК -> Kakhovka",
+     "weight": 0.8
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:20:22Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "_UC2ZHR5PBQ": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Каховское водохранилище?",
+  "channel": "Дядя Тритон",
+  "channel_id": "UCGY9WFFhlUXKQLhRK-GmV1A",
+  "published": "2022-12-14",
+  "license": "standard YouTube licence",
+  "duration_s": 115,
+  "url": "https://www.youtube.com/watch?v=_UC2ZHR5PBQ",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховск -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Украин -> Ukraine",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Херсон -> Kherson Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "Каховск -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Херсон -> Kherson Oblast",
+     "weight": 0.6
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:20:49Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "5GNBOzaSnSg": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "В Каховском водохранилище исчезает вода",
+  "channel": "Kherson, Ukraine",
+  "channel_id": "UCnljfb2FVLGx2JAHn1AJCcw",
+  "published": "2023-06-28",
+  "license": "standard YouTube licence",
+  "duration_s": 97,
+  "url": "https://www.youtube.com/watch?v=5GNBOzaSnSg",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховск -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "херсон -> Kherson Oblast",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "никопол -> Nikopol",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "tags",
+     "match": "каховск -> Kakhovka",
+     "weight": 0.7
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Україн -> Ukraine",
+     "weight": 0.6
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Херсон -> Kherson Oblast",
+     "weight": 0.6
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:20:58Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "gw3Anc5iRaQ": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.92 (min 0.5)",
+  "title": "Уровень воды Каховского водохранилища тогда и сейчас.",
+  "channel": "Жизнь в Украине",
+  "channel_id": "UCAiZc96a82Orce4ilk3prtw",
+  "published": "2023-06-18",
+  "license": "standard YouTube licence",
+  "duration_s": 6,
+  "url": "https://www.youtube.com/watch?v=gw3Anc5iRaQ",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.92,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Каховск -> Kakhovka",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "description",
+     "match": "Украин -> Ukraine",
+     "weight": 0.6
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:21:05Z",
+   "scope_name": "Ukraine"
+  }
+ },
+ "7C1Ex2_xFi0": {
+  "accepted": true,
+  "reason": "Ukraine relevance 0.95 (min 0.5)",
+  "title": "Ukraine. Kam'yanka-Dniprovs'ka / Кам'янка-Дніпровська. 09.21",
+  "channel": "Road",
+  "channel_id": "UC0UT8fkO90Tiamxk1lLiBfQ",
+  "published": "2023-05-17",
+  "license": "standard YouTube licence",
+  "duration_s": 845,
+  "url": "https://www.youtube.com/watch?v=7C1Ex2_xFi0",
+  "scope_check": {
+   "in_scope": true,
+   "confidence": 0.95,
+   "signals": [
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Ukraine -> Ukraine",
+     "weight": 0.8
+    },
+    {
+     "kind": "gazetteer",
+     "field": "title",
+     "match": "Дніпро -> Dnipro",
+     "weight": 0.8
+    },
+    {
+     "kind": "language",
+     "field": "language/title",
+     "match": "en",
+     "weight": 0.4
+    }
+   ],
+   "rules_version": "1",
+   "checked_at": "2026-11-05T07:21:07Z",
+   "scope_name": "Ukraine"
+  }
+ }
+}

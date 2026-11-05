@@ -1,0 +1,12 @@
+{
+ "f": {
+  "plants": 56053,
+  "left_out": 0,
+  "met_first": {},
+  "camera_ground_m": 9.25,
+  "camera_on": "land",
+  "prepare_s": 68.3,
+  "render_dawn_s": 38.1,
+  "render_day_s": 33.1
+ }
+}
