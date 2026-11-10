@@ -1,0 +1,167 @@
+{
+ "palettes": {
+  "ice": {
+   "dome": "#BDF1F5",
+   "paz": "#9BE7EC",
+   "upz": "#5FCBD6",
+   "obs": "#C3A6F5",
+   "why": "IAEA a pale ice cyan, Ukraine a soft violet"
+  },
+  "lavender": {
+   "dome": "#DCCBFF",
+   "paz": "#C9B6FF",
+   "upz": "#A08BF2",
+   "obs": "#86E3BE",
+   "why": "IAEA lavender, Ukraine mint"
+  },
+  "mint": {
+   "dome": "#BEF5DC",
+   "paz": "#93ECC8",
+   "upz": "#52D0A2",
+   "obs": "#E7A9CE",
+   "why": "IAEA mint teal, Ukraine a desaturated rose"
+  },
+  "rose": {
+   "dome": "#F8C8E2",
+   "paz": "#F2AFD3",
+   "upz": "#D886B8",
+   "obs": "#86DDE8",
+   "why": "IAEA a desaturated rose, Ukraine ice cyan"
+  }
+ },
+ "reserved": {
+  "line 750 kV": "#FFD600",
+  "line 330 kV": "#F09C00",
+  "old amber": "#FADEB2",
+  "water label": "#ACCAE0",
+  "red (front line)": "#DC2828"
+ },
+ "ground": "#5E5E58",
+ "check": {
+  "ice": {
+   "iaea_vs_ukraine": {
+    "normal": 56.3,
+    "protan": 35.5,
+    "deutan": 25.8,
+    "tritan": 41.3
+   },
+   "per_colour": {
+    "dome": {
+     "closest_reserved": "water label (deutan)",
+     "delta_e": 13.3,
+     "contrast_on_ground": 5.3
+    },
+    "paz": {
+     "closest_reserved": "water label (deutan)",
+     "delta_e": 7.2,
+     "contrast_on_ground": 4.67
+    },
+    "upz": {
+     "closest_reserved": "water label (protan)",
+     "delta_e": 3.2,
+     "contrast_on_ground": 3.42
+    },
+    "obs": {
+     "closest_reserved": "water label (deutan)",
+     "delta_e": 20.5,
+     "contrast_on_ground": 3.14
+    }
+   },
+   "min_iaea_vs_ukraine": 25.8
+  },
+  "lavender": {
+   "iaea_vs_ukraine": {
+    "normal": 71.9,
+    "protan": 49.1,
+    "deutan": 40.2,
+    "tritan": 38.6
+   },
+   "per_colour": {
+    "dome": {
+     "closest_reserved": "water label (deutan)",
+     "delta_e": 9.4,
+     "contrast_on_ground": 4.36
+    },
+    "paz": {
+     "closest_reserved": "water label (tritan)",
+     "delta_e": 17.7,
+     "contrast_on_ground": 3.61
+    },
+    "upz": {
+     "closest_reserved": "water label (tritan)",
+     "delta_e": 21.9,
+     "contrast_on_ground": 2.32
+    },
+    "obs": {
+     "closest_reserved": "old amber (protan)",
+     "delta_e": 10.3,
+     "contrast_on_ground": 4.27
+    }
+   },
+   "min_iaea_vs_ukraine": 38.6
+  },
+  "mint": {
+   "iaea_vs_ukraine": {
+    "normal": 66.7,
+    "protan": 32.3,
+    "deutan": 16.0,
+    "tritan": 63.8
+   },
+   "per_colour": {
+    "dome": {
+     "closest_reserved": "water label (tritan)",
+     "delta_e": 14.1,
+     "contrast_on_ground": 5.37
+    },
+    "paz": {
+     "closest_reserved": "old amber (protan)",
+     "delta_e": 10.7,
+     "contrast_on_ground": 4.68
+    },
+    "upz": {
+     "closest_reserved": "old amber (protan)",
+     "delta_e": 11.3,
+     "contrast_on_ground": 3.39
+    },
+    "obs": {
+     "closest_reserved": "water label (protan)",
+     "delta_e": 7.3,
+     "contrast_on_ground": 3.41
+    }
+   },
+   "min_iaea_vs_ukraine": 16.0
+  },
+  "rose": {
+   "iaea_vs_ukraine": {
+    "normal": 53.7,
+    "protan": 10.2,
+    "deutan": 10.6,
+    "tritan": 69.2
+   },
+   "per_colour": {
+    "dome": {
+     "closest_reserved": "water label (protan)",
+     "delta_e": 4.2,
+     "contrast_on_ground": 4.46
+    },
+    "paz": {
+     "closest_reserved": "water label (protan)",
+     "delta_e": 4.8,
+     "contrast_on_ground": 3.68
+    },
+    "upz": {
+     "closest_reserved": "water label (deutan)",
+     "delta_e": 12.7,
+     "contrast_on_ground": 2.49
+    },
+    "obs": {
+     "closest_reserved": "water label (deutan)",
+     "delta_e": 2.6,
+     "contrast_on_ground": 4.2
+    }
+   },
+   "min_iaea_vs_ukraine": 10.2
+  }
+ },
+ "method": "Each palette: the IAEA zones in one hue family (the dome its lightest and most luminous, then the precautionary band, then the planning band) and Ukraine's observation zone in another hue. Kept away from the lines' two yellows, the old amber, the water label's muted blue and red (reserved for the front line). The check: CIE76 colour difference (Lab) between the IAEA zones' middle colour and Ukraine's, and from each reserved colour, with normal vision and simulated protanopia, deuteranopia and tritanopia (Machado, Oliveira & Fernandes 2009, severity 1.0, in linear RGB); and each colour's contrast ratio on the slate-graded ground."
+}

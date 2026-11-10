@@ -1,0 +1,84 @@
+{
+ "old": {
+  "rms_dbfs": -11.8,
+  "peak_dbfs": -0.5,
+  "lufs_integrated": -9.2,
+  "crackle_over_hum_db_median": {
+   "left (Dniprovska, 750 kV)": -28.4,
+   "right (Ferosplavna-1, 330 kV)": -29.0
+  }
+ },
+ "new": {
+  "rms_dbfs": -13.8,
+  "peak_dbfs": -0.1,
+  "lufs_integrated": -9.0,
+  "crackle_over_hum_db_median": {
+   "left (Dniprovska, 750 kV)": -5.6,
+   "right (Ferosplavna-1, 330 kV)": -8.2
+  }
+ },
+ "wet_dates_shown": 12,
+ "full_swell_dates": 6,
+ "dates": [
+  {
+   "date": "2022-03-04",
+   "wet_hours": 6,
+   "film_s": 8.3
+  },
+  {
+   "date": "2022-09-05",
+   "wet_hours": 2,
+   "film_s": 12.6
+  },
+  {
+   "date": "2022-09-16",
+   "wet_hours": 6,
+   "film_s": 16.9
+  },
+  {
+   "date": "2023-01-17",
+   "wet_hours": 3,
+   "film_s": 22.1
+  },
+  {
+   "date": "2023-06-08",
+   "wet_hours": 1,
+   "film_s": 32.7
+  },
+  {
+   "date": "2023-06-10",
+   "wet_hours": 4,
+   "film_s": 34.5
+  },
+  {
+   "date": "2023-06-11",
+   "wet_hours": 18,
+   "film_s": 35.4
+  },
+  {
+   "date": "2023-06-17",
+   "wet_hours": 1,
+   "film_s": 37.5
+  },
+  {
+   "date": "2023-07-01",
+   "wet_hours": 1,
+   "film_s": 42.5
+  },
+  {
+   "date": "2024-11-21",
+   "wet_hours": 8,
+   "film_s": 48.5
+  },
+  {
+   "date": "2025-05-07",
+   "wet_hours": 9,
+   "film_s": 53.5
+  },
+  {
+   "date": "2026-03-24",
+   "wet_hours": 14,
+   "film_s": 72.5
+  }
+ ]
+}

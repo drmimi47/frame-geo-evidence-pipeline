@@ -1,0 +1,127 @@
+{
+ "title": "1,661 days of war, a square for each; a dot for each repair",
+ "file": "repair_days_waffle.mp4",
+ "sha256": "cfe167a35dd3afe9f3ebc371565f3312d50325fd61ec59c287a68fef91bb4937",
+ "fps": 30,
+ "size": [
+  1920,
+  1080
+ ],
+ "frames": 641,
+ "sound": null,
+ "timeline": {
+  "duration_s": 21.35,
+  "fps_test": 30,
+  "title": {
+   "text": "1,661 days of war, a square for each; a dot for each repair",
+   "fade_s": [
+    0,
+    0.8
+   ]
+  },
+  "fill": {
+   "start_s": 2.2,
+   "end_s": 14.7,
+   "squares": 1661,
+   "squares_per_s": 132.88,
+   "square_fade_s": 0.15,
+   "mark_pop_s": 0.25
+  },
+  "groups": [
+   {
+    "label": "ALL TEN LINES",
+    "days": 7,
+    "first_day": "2022-02-24",
+    "last_day": "2022-03-02",
+    "repairs": 0,
+    "start_s": 2.2,
+    "end_s": 2.253
+   },
+   {
+    "label": "LINES CUT, THE REPORTS DON'T SAY WHICH",
+    "days": 292,
+    "first_day": "2022-03-03",
+    "last_day": "2022-12-28",
+    "repairs": 12,
+    "start_s": 2.253,
+    "end_s": 4.45
+   },
+   {
+    "label": "TWO LINES",
+    "days": 747,
+    "first_day": "2023-01-17",
+    "last_day": "2026-03-23",
+    "repairs": 16,
+    "start_s": 4.45,
+    "end_s": 10.072
+   },
+   {
+    "label": "ONE LINE",
+    "days": 555,
+    "first_day": "2022-12-29",
+    "last_day": "2026-09-11",
+    "repairs": 10,
+    "start_s": 10.072,
+    "end_s": 14.248
+   },
+   {
+    "label": "NO LINES: POWER LOST OR ISLAND MODE",
+    "days": 60,
+    "first_day": "2022-09-05",
+    "last_day": "2026-09-06",
+    "repairs": 3,
+    "start_s": 14.248,
+    "end_s": 14.7
+   }
+  ],
+  "key": {
+   "fade_s": [
+    0.9,
+    1.85
+   ],
+   "item_step_s": 0.15,
+   "where": "under the title, above the squares"
+  },
+  "hold": {
+   "from_s": 14.85,
+   "s": 6.5
+  },
+  "marks": 41,
+  "layout": {
+   "block": [
+    -4.4,
+    99,
+    1857.2,
+    873
+   ],
+   "align": "the squares centred in the frame; the title fitted to their width and the key spread across it; the dates in the gutter left of them, the counts right of them on each group's first row",
+   "grid_x": [
+    392,
+    1529
+   ],
+   "title_px": 44.15,
+   "pitch_px": 19,
+   "square_px": 16
+  }
+ },
+ "sheet": {
+  "file": "repair_days_waffle_sheet.jpg",
+  "moments_s": [
+   0.6,
+   2.1,
+   3.067,
+   5.467,
+   9.567,
+   12.067,
+   14.433,
+   15.0,
+   21.333
+  ]
+ },
+ "drawn": "every day of the record (24 February 2022 to 11 September 2026) a square, grouped by how many of the plant's ten lines were connected at the end of the day (white ten, light grey two, dark grey one, black none; hatched where the reports don't say which lines were cut), in date order within each group, a row of 60 days with its first day's date on the left; a dot on the day of each repair, by who did it (white Ukrainian crews, grey Russian crews, half and half both, black ringed white unspecified). R48 (23 October 2026) falls after the record's last report and has no square. No places shown: none of the repairs is placed, so the safety rule holds by itself. The squares appear one by one at a constant rate, group after group, so a group's time on screen is its share of the days: a drawing convention.",
+ "sources": {
+  "record": "config/conductive-seam.yaml networks.znpp.record (the zoom-out's: IAEA updates, WNA and OECD-NEA chronologies, Energoatom, news), each line's state at the end of each day",
+  "repairs": "research_notes/Repair regions still/repairs.yaml (each repair's sources there)",
+  "data": "time/data.json (repair_time.build())"
+ }
+}

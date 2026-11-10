@@ -84,6 +84,11 @@ STATUS (26 October 2026)
   the camera 340 m from the shore). 77 m/s instead of 80 so the last change (Ferosplavna-1 reconnected, 7 September
   2026) comes at 85 s, as the camera reaches the north shore and lifts; held through the lift and the fade. 1:44.
   The user is still deciding the hums' pacing and number (the within-day outages could come back as quick dips).
+  The truer Hum (the user, 9 November 2026; hum.py `CORONA`, `HUM_SHAPE`, `wet_days`): each connected line's crackle at
+  full strength, 750 kV and 330 kV voices apart, swelling on the dates shown with wet hours in ERA5 at the crossing
+  (the network's `weather`); the films' sound made again without re-rendering: `--pass sound` (animatic.sound: the
+  same record and frame timings, the picture copied, `<title>.sound.json` beside it). Done for south_look3 (the cut's
+  flight); the approved flight north and the flight south's first render can be done the same way.
 - Pass 4's towers done (25 October 2026; the user: "as accurate/detailed as the real things ... they come in different
   sizes"), ahead of passes 2-3. scene3d/towers.py: each OSM tower drawn as the type it is (towers.npz: one mesh per
   type, placed and turned to its line; scene.json `towers`: types, sources, statement). Research (sources in
@@ -252,6 +257,39 @@ STATUS (26 October 2026)
     2022 and cut from 29 December 2022. The feeds lit with Dniprovska, the links with Ferosplavna-1 (the power
     reaching the plant through them is inferred, said so). No context grid (the user: only the plant's lines).
   Next, the user's review of the new render; then possibly the switchyards' gantries and sharper imagery near the plant.
+  - Look pass 1 (7 November 2026, decided with the user; rendered overnight): `south_look1`, a copy of
+    `south_record` with a `look:` (build.py LOOK, every option off by default so the approved films render as before:
+    checked pixel for pixel on two frames; look.py; animatic `_grade`, raw frames in <variant>/raw/). A drawn overcast
+    sky with a faint cloud deck, a light haze by distance (Koschmieder, 100 km visibility), a plain beyond the box; the
+    water uniform per pass (the median, not the 2021 pixels, which drew the caissons as pale halos), darker and bluer,
+    fine wind ripples, full-resolution screen-space reflections (a planar probe cost 4 s a frame and showed nothing),
+    its colour by depth over the bed (a drawn bottom tone in the shallows); a wet band on the bed just exposed; the
+    caissons' own concrete, darker at the water's line; cut wires dark steel; towers, caissons and plant lit by the sky
+    and a soft sun, no shadows (13 s a frame); AgX, tint, vignette, light grain, bloom, motion blur; 64 samples (about
+    5.3 s a frame). The land dissolves to the 5 June 2023 pass between 15 December 2022 and 20 May 2023, so at the breach
+    only the water changes; every pass colour-matched to the 2021 one on stable land (look.py `fit`). Notes, stills and
+    how to resume: research_notes/Flight south look pass 1/. `--resume` renders what a stopped render left.
+  - Look pass 2 (7 November 2026, decided with the user; geometry): `south_look2`, south_look1 plus `look.vegetation`
+    (vegetation.py, plants.py: the drained bed's plants placed by the under-the-crossing habitat rule on the passes of
+    August 2023, 2024 and 2025, growing by the date shown through the sourced heights; OSM woods on the banks where the
+    2025 pass is green; none at the plant or the cooling pond; instanced with three levels of detail,
+    thinned far off, culled out of view; modelled and representative, placement inferred, said in scene.json) and
+    `look.detail` (towers.build_types/fittings `detail`: built-up legs, sub-bracing, plan bracing, gussets, walkways,
+    ladders, the bracket on the 750 kV suspension towers, ribbed discs, spacer-damper hubs, bell dampers, from
+    Novoklimov's photographs; no aviation markers, none photographed; the same attachment points, refused otherwise).
+    About 4.5 s a frame. Notes, stills and how to resume: research_notes/Flight south look pass 2/.
+  - Look pass 3 (7 November 2026, plan approved by the user): `south_look3`, 93 s. Cruise 95 m/s, the same opening,
+    no curve: straight on down the axis and a lift from 3.2 km north, a 5 s fade (camera.frames_track with no
+    `end_xy_m`; the curve toward the units kept for a separate short render, the cooling chapter). The record on
+    selected dates (`record.select`, states.Selected): 14 dates from 24 February 2022 to 11 September 2026 (the dam
+    pinned at along 2508 m, stepping 6-11 June with the gauges; the complete loss of 23 September 2025 held 8 s); on
+    each both lines show the state the network record gives that day, checked in code (refused otherwise; all match),
+    the changes between left out and said so. Flow out to the grid before the war (the variant's `flow_periods`,
+    sourced). The Hum's swell 1.2 s, fall 0.6 s. Look: look2's "flat olive river" was look1's far plain over the
+    lower bed (`far_plain.hole`); the water drawn (current streaks, chop, gusts, Fresnel sky) on each pass's own colour
+    variation; the river's edge smoothed sub-pixel (Gaussian 0.5 px, within 0.53 px of the mask's pixel edges,
+    measured per pass); plants toned (desaturated, pulled to the ground under them, olive and dry by clump, darker at
+    the base); motion blur 0.2. Notes, stills, the date table and how to resume: research_notes/Flight south look pass 3/.
 - Blender 5.2.2 LTS installed (/Applications/Blender.app). `blender` on PATH via a wrapper script in ~/.local/bin (a
   symlink breaks Blender's bundled Python). Headless EEVEE renders on the GPU (Metal): about 4 s for a 960x540 test.
 - MCP for Blender (blender-mcp) 2.0.0: the add-on is installed and enabled in Blender with telemetry off (saved in the

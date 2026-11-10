@@ -1,0 +1,7 @@
+{
+ "frames": 450,
+ "fps": 30,
+ "codec": "H.264 (libx264, preset slow, CRF 16, yuv420p)",
+ "audio": "research_notes/Under the crossing still/v11/drowning.wav (AAC 256 kb/s)",
+ "encode_s": 13.8
+}

@@ -1,0 +1,584 @@
+{
+ "title": "The establishing shot, tilt-shift (third pass: render once, push in afterwards)",
+ "asked": "the user, 9 November 2026: a tilt-shift effect at the start of the film framing the nuclear power plant with the Enerhodar crossing, city and place names shown; the next shot zooms in and rotates",
+ "file": "tilt_shift_opening.mp4",
+ "sha256": "1d0084d2d784f22cbe6cc6f86cbbb5b148b8eb8c85780b24dd7090a8ae9254b7",
+ "fps": 30,
+ "size": [
+  1920,
+  1080
+ ],
+ "frames": 270,
+ "seconds": 9.0,
+ "sound": null,
+ "method": {
+  "mode": "render once, push in afterwards",
+  "render_s": null,
+  "post_s": 71,
+  "total_s": 71,
+  "render_size": [
+   2400,
+   1350
+  ],
+  "overscan": 1.25,
+  "names_faded_out": {
+   "Kamianka-Dniprovska": "by 7.33 s, before the zoom takes it past the frame's edge"
+  },
+  "push": "a zoom into one render: the first frame rendered 1.25x each side, then each frame its centre crop resampled (Lanczos), 4.5% of the look-at distance's dolly as a zoom of up to 1.0471x, eased in and out (cosine); the last frame's crop is still 1.194x the frame, so nothing is upscaled",
+  "statement": "a drawing convention: the push is a zoom into one rendered still, so it has no parallax (the dolly it stands for would grow the nearer ground a few per cent more than the far); pixels only resampled, never generated or interpolated between frames"
+ },
+ "scene": {
+  "from": "the crossing's 3D scene as south_look3 builds it (scene.json, camera_south_look3.json's look, extras plant, land_south, others); only the camera is new",
+  "build": "src/image_evidence/satellite/scene3d/build.py --no-render, then scripts/ts_render.py"
+ },
+ "date_state": {
+  "date": "2026-09-11",
+  "pass_shown": "sentinel-2_2025-08-28",
+  "lines": "the last reported state (11 September 2026): Ferosplavna-1 connected, Dniprovska cut; the plant's other lines cut; the units' links to the thermal plant lit with the line feeding them",
+  "from_frame": "camera_south_look3.json frame 2400 (0-based): its imagery weights, water level and colour, wet band, plants' growth and every line's state, held"
+ },
+ "camera": {
+  "vantage": "A2",
+  "target": [
+   2431.0,
+   565.0,
+   15.0
+  ],
+  "heading": -40.0,
+  "pitch": -30.0,
+  "dist": 10000.0,
+  "lens": 22.0,
+  "why": "A's view, slid sideways so the plant and the crossing sit about the frame's centre (the plant at x ~720, the lines' landing on the south shore ~1190, the north bank's landing ~1650 of 1920)",
+  "first": {
+   "phase": "establish",
+   "location": [
+    7997.704,
+    -6069.139,
+    5015.0
+   ],
+   "rotation": [
+    1.0471975511965976,
+    0.0,
+    0.6981317007977318
+   ],
+   "lens": 22.0,
+   "dist": 14000.0,
+   "along_m": 7225.6,
+   "lines": {
+    "Ferosplavna 1, 2": [
+     1.0,
+     0.0
+    ],
+    "Dniprovska": [
+     0.0,
+     0.0
+    ]
+   },
+   "date": "2026-09-11",
+   "level_m": 2.94,
+   "water_slope": 0.0001003,
+   "textures": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "water_rgb": [
+    0.0176,
+    0.0252,
+    0.0176
+   ],
+   "others": {
+    "Zaporizka 750": [
+     0.0,
+     0.0
+    ],
+    "Pivdennodonbaska 750": [
+     0.0,
+     0.0
+    ],
+    "Kakhovska 750": [
+     0.0,
+     0.0
+    ],
+    "Kakhovska 330": [
+     0.0,
+     0.0
+    ],
+    "Melitopolska 330": [
+     0.0,
+     0.0
+    ],
+    "Zaporizka 330": [
+     0.0,
+     0.0
+    ],
+    "Molochanska 330": [
+     0.0,
+     0.0
+    ],
+    "feed 1": [
+     0.0,
+     0.0
+    ],
+    "feed 2": [
+     0.0,
+     0.0
+    ],
+    "feed 3": [
+     0.0,
+     0.0
+    ],
+    "feed 4": [
+     0.0,
+     0.0
+    ],
+    "feed 5": [
+     0.0,
+     0.0
+    ],
+    "feed 6": [
+     0.0,
+     0.0
+    ],
+    "link 1": [
+     1.0,
+     0.0
+    ],
+    "link 2": [
+     1.0,
+     0.0
+    ]
+   },
+   "flow": 1,
+   "veg_day": 1148.6667,
+   "pre_breach": 1.0,
+   "wet": [
+    8.138,
+    8.155,
+    0.0
+   ],
+   "t": 0.0,
+   "zoom": 1.0
+  },
+  "last": {
+   "phase": "establish",
+   "location": [
+    7997.704,
+    -6069.139,
+    5015.0
+   ],
+   "rotation": [
+    1.0471975511965976,
+    0.0,
+    0.6981317007977318
+   ],
+   "lens": 23.036649214659686,
+   "dist": 14000.0,
+   "along_m": 7225.6,
+   "lines": {
+    "Ferosplavna 1, 2": [
+     1.0,
+     0.0
+    ],
+    "Dniprovska": [
+     0.0,
+     0.0
+    ]
+   },
+   "date": "2026-09-11",
+   "level_m": 2.94,
+   "water_slope": 0.0001003,
+   "textures": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "water_rgb": [
+    0.0176,
+    0.0252,
+    0.0176
+   ],
+   "others": {
+    "Zaporizka 750": [
+     0.0,
+     0.0
+    ],
+    "Pivdennodonbaska 750": [
+     0.0,
+     0.0
+    ],
+    "Kakhovska 750": [
+     0.0,
+     0.0
+    ],
+    "Kakhovska 330": [
+     0.0,
+     0.0
+    ],
+    "Melitopolska 330": [
+     0.0,
+     0.0
+    ],
+    "Zaporizka 330": [
+     0.0,
+     0.0
+    ],
+    "Molochanska 330": [
+     0.0,
+     0.0
+    ],
+    "feed 1": [
+     0.0,
+     0.0
+    ],
+    "feed 2": [
+     0.0,
+     0.0
+    ],
+    "feed 3": [
+     0.0,
+     0.0
+    ],
+    "feed 4": [
+     0.0,
+     0.0
+    ],
+    "feed 5": [
+     0.0,
+     0.0
+    ],
+    "feed 6": [
+     0.0,
+     0.0
+    ],
+    "link 1": [
+     1.0,
+     0.0
+    ],
+    "link 2": [
+     1.0,
+     0.0
+    ]
+   },
+   "flow": 1,
+   "veg_day": 1148.6667,
+   "pre_breach": 1.0,
+   "wet": [
+    8.138,
+    8.155,
+    0.0
+   ],
+   "t": 8.9667,
+   "zoom": 1.0471204188481675
+  },
+  "statement": "A viewing point and path, designed; not an observation."
+ },
+ "tilt_shift": {
+  "method": "a focal plane, vertical, through the plant and the lines' landing on the north bank; each pixel blurred by k * |1/t_focus - 1/t| (t: the distance Blender rendered for what the pixel shows; t_focus: where the pixel's own ray meets the plane), less a dead zone, eased (tanh) into a ceiling, smoothed, then a stack of Gaussian blurs in linear light, each pixel between the two nearest",
+  "plane_point": [
+   0.0,
+   0.0,
+   20.0
+  ],
+  "plane_normal": [
+   -0.8592,
+   0.5117,
+   0.0
+  ],
+  "k": 100000.0,
+  "dead_px": 0.6,
+  "max_px": 3.0,
+  "levels_px": [
+   0.0,
+   0.5,
+   1.0,
+   1.5,
+   2.0,
+   2.5,
+   3.0
+  ],
+  "px_at": "the frame's 1920 width (an oversized render blurred by as many more pixels)",
+  "grade": {
+   "name": "slate",
+   "wb": [
+    0.92,
+    0.98,
+    1.1
+   ],
+   "contrast": 1.08,
+   "sat": 0.74,
+   "split": [
+    [
+     -0.01,
+     0.004,
+     0.016
+    ],
+    [
+     0.006,
+     0.003,
+     -0.004
+    ]
+   ],
+   "why": "desaturated, cool slate-teal shadows and faintly warm highlights: an editorial map look",
+   "then": "the look's vignette x0.7 and grain, on each frame",
+   "variants": [
+    "neutral",
+    "slate",
+    "daylight"
+   ],
+   "statement": "a grade (white balance, contrast, saturation, split tone): no colour painted"
+  },
+  "statement": "A drawn effect, a lens's depth of field imitated; the scene is at its true size. Blur hides detail, it adds none."
+ },
+ "names": {
+  "style": "as the maps set them: SF Pro, mixed case, light text with a soft dark halo, no boxes; a small dot on each place with its name beside it; the water in italic, letter-spaced, a muted blue, set along its course; the crossing's name along the lines; never blurred or scaled, drawn at each frame's place; fading in one after another from 1.6 s over 1.2 s, 0.3 s apart",
+  "styles": {
+   "plant": {
+    "weight": "Semibold",
+    "size": 20,
+    "rgb": [
+     255,
+     255,
+     255
+    ],
+    "halo": 0.62
+   },
+   "site": {
+    "weight": "Medium",
+    "size": 16,
+    "rgb": [
+     238,
+     240,
+     242
+    ],
+    "halo": 0.6
+   },
+   "town": {
+    "weight": "Medium",
+    "size": 18,
+    "rgb": [
+     250,
+     250,
+     250
+    ],
+    "halo": 0.6,
+    "tracking": 0.3
+   },
+   "lines": {
+    "weight": "Medium",
+    "size": 15,
+    "rgb": [
+     246,
+     232,
+     196
+    ],
+    "halo": 0.6,
+    "tracking": 0.6
+   },
+   "water": {
+    "weight": "Medium Italic",
+    "size": 17,
+    "rgb": [
+     172,
+     202,
+     224
+    ],
+    "halo": 0.42,
+    "tracking": 3.2,
+    "italic": true
+   }
+  },
+  "halo": {
+   "rgb": [
+    14,
+    18,
+    22
+   ],
+   "dilate_px": 1,
+   "sigma_px": 1.6
+  },
+  "shown_last_frame": [
+   {
+    "text": "Zaporizhzhia Nuclear Power Plant",
+    "style": "plant",
+    "at_px": [
+     716.1,
+     462.7,
+     304.0
+    ]
+   },
+   {
+    "text": "Zaporizhzhia Thermal Power Plant",
+    "style": "site",
+    "at_px": [
+     944.8,
+     559.5,
+     249.0
+    ]
+   },
+   {
+    "text": "Enerhodar",
+    "style": "town",
+    "at_px": [
+     1111.7,
+     896.7,
+     85.4
+    ]
+   },
+   {
+    "text": "Nikopol",
+    "style": "town",
+    "at_px": [
+     484.1,
+     112.9,
+     60.8
+    ]
+   },
+   {
+    "text": "Marhanets",
+    "style": "town",
+    "at_px": [
+     1542.4,
+     197.0,
+     89.4
+    ]
+   },
+   {
+    "text": "Vodiane",
+    "style": "town",
+    "at_px": [
+     144.5,
+     362.4,
+     68.8
+    ]
+   },
+   {
+    "text": "Kamianka-Dniprovska",
+    "style": "town",
+    "at_px": [
+     34.3,
+     219.9,
+     182.4
+    ]
+   },
+   {
+    "text": "Power lines to the north bank",
+    "style": "lines",
+    "at_px": [
+     1209.9,
+     429.9,
+     213.8
+    ]
+   },
+   {
+    "text": "Former Kakhovka Reservoir",
+    "style": "water",
+    "at_px": [
+     300.8,
+     200.2,
+     279.8
+    ]
+   }
+  ],
+  "places": [
+   {
+    "text": "Zaporizhzhia Nuclear Power Plant",
+    "xy_m": [
+     24.7,
+     -69.2
+    ],
+    "source": "OpenStreetMap (ODbL), raw/osm_plant.json, the way's polygon's mean vertex: way 28877213 (Запорізька АЕС)"
+   },
+   {
+    "text": "Zaporizhzhia Thermal Power Plant",
+    "xy_m": [
+     2631.0,
+     28.1
+    ],
+    "source": "OpenStreetMap (ODbL), raw/osm_plant.json, the way's polygon's mean vertex: way 28877239 (Запорізька ТЕС)"
+   },
+   {
+    "text": "Enerhodar",
+    "xy_m": [
+     5571.1,
+     -1998.7
+    ],
+    "source": "GeoNames (CC BY 4.0), the project's gazetteer src/image_evidence/data/ua_places.tsv.gz: 709276"
+   },
+   {
+    "text": "Nikopol",
+    "xy_m": [
+     -14786.3,
+     6601.8
+    ],
+    "source": "GeoNames (CC BY 4.0), the project's gazetteer src/image_evidence/data/ua_places.tsv.gz: 700051"
+   },
+   {
+    "text": "Marhanets",
+    "xy_m": [
+     2752.0,
+     13525.9
+    ],
+    "source": "GeoNames (CC BY 4.0), the project's gazetteer src/image_evidence/data/ua_places.tsv.gz: 701855"
+   },
+   {
+    "text": "Vodiane",
+    "xy_m": [
+     -6424.7,
+     -2412.2
+    ],
+    "source": "GeoNames (CC BY 4.0), the project's gazetteer src/image_evidence/data/ua_places.tsv.gz: 689321"
+   },
+   {
+    "text": "Kamianka-Dniprovska",
+    "xy_m": [
+     -13357.6,
+     -1356.3
+    ],
+    "source": "GeoNames (CC BY 4.0), the project's gazetteer src/image_evidence/data/ua_places.tsv.gz: 707026"
+   },
+   {
+    "text": "Power lines to the north bank",
+    "path_m": [
+     [
+      2900,
+      3760
+     ],
+     [
+      3530,
+      6320
+     ],
+     [
+      4320,
+      9550
+     ]
+    ],
+    "source": "a course over the water about 600 m west of the two lines (scene.json `lines`: OSM's towers), between and beside the spans: the crossing named in general"
+   },
+   {
+    "text": "Former Kakhovka Reservoir",
+    "path_m": [
+     [
+      -12331,
+      2098
+     ],
+     [
+      -6672,
+      4230
+     ],
+     [
+      -1444,
+      5604
+     ]
+    ],
+    "source": "the reservoir drained after the Kakhovka dam's destruction on 6 June 2023; the name set along the drained bed as the 2025 pass shows it"
+   }
+  ],
+  "safety": "names sit on towns, the two plants, the water and a course beside the lines' spans; no tower, repair or damage site, crew position, substation or trench site is named or marked"
+ },
+ "statement": "The crossing's 3D scene (modelled from OSM's footprints and towers, FABDEM heights, Sentinel-2 passes; massing and towers representative, said in scene.json) seen from a designed viewpoint, its depth of field drawn. Contains modified Copernicus Sentinel data; © OpenStreetMap contributors (ODbL); GeoNames (CC BY 4.0)."
+}

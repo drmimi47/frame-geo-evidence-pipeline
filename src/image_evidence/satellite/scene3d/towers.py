@@ -81,6 +81,16 @@ EARTH_R = 0.0055
 DISC = {750: (0.30, 0.17), 330: (0.28, 0.17)}   # a glass disc's diameter and pitch (ПС-120/ПС-210 class)
 SPACER_M = {750: 55.0, 330: 65.0}                # spacers along a span (typical)
 CROSS_EASE_M = 150.0   # the flow drawn fullest over the water, easing to its land strength within this beyond its shores
+_D = False             # the look's `detail` (look pass 2): set while build_types(detail=True) builds the meshes
+DETAIL_STATEMENT = (
+    "Look pass 2's towers (towers.build_types(detail=True)): the same types, heights, positions and attachment points "
+    "(so the same wires), with more of what Novoklimov's 2011 photographs of these crossings show (b13, b15, b16, b29, "
+    "b30, b38-b40, b46): built-up legs (two angles back to back), a redundant horizontal and short sub-diagonals in "
+    "each face's panels, square-in-square plan bracing at the girts, gusset plates at the legs' joints, a walkway deck "
+    "on the railed crossarms, a ladder up one leg of the crossing towers, the small railed bracket on one side below "
+    "the 750 kV suspension towers' main arm (photographed on shore tower no. 26; its use isn't known); glass discs with "
+    "their ribbed skirts; 750 kV spacer-dampers with a hub and arms; Stockbridge dampers with bell weights. No aviation "
+    "warning markers: none show on the photographs of these crossings. Member sizes, counts and spacing representative.")
 
 
 def _basis(u: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
@@ -130,13 +140,16 @@ class Mesh:
         r = w / 2 / (math.cos(math.pi / n) if n == 4 else 1.0)
         self._rings([(a, r), (b, r)], (b - a) / L, mat, n, 0.5)
 
-    def angle(self, a, b, w: float, mat: int = STEEL) -> None:
-        """A steel angle from a to b: an L section, flanges `w` wide and a tenth of that thick."""
+    def angle(self, a, b, w: float, mat: int = STEEL, turn: bool = False) -> None:
+        """A steel angle from a to b: an L section, flanges `w` wide and a tenth of that thick (`turn`: the same turned
+        half round, so two make a built-up cross-section)."""
         a, b = np.asarray(a, float), np.asarray(b, float)
         L = float(np.linalg.norm(b - a))
         if L < 1e-6:
             return
         p, q = _basis((b - a) / L)
+        if turn:
+            p, q = -p, -q
         t = max(0.012, 0.1 * w)
         sec = [(0, 0), (w, 0), (w, t), (t, t), (t, w), (0, w)]
         k0 = len(self.v)
@@ -148,8 +161,13 @@ class Mesh:
             self._face([k0 + k, k0 + (k + 1) % n, k0 + n + (k + 1) % n, k0 + n + k], mat)
 
     def disc(self, c, u, r: float, mat: int = GLASS, n: int = 8) -> None:
-        """A cap-and-pin glass disc on the axis u, its skirt opening toward +u."""
+        """A cap-and-pin glass disc on the axis u, its skirt opening toward +u (in detail: the shell, the rim and the
+        ribbed skirt under it)."""
         c = np.asarray(c, float)
+        if _D:
+            self._rings([(c - 0.06 * u, 0.2 * r), (c - 0.01 * u, 0.62 * r), (c + 0.012 * u, r), (c + 0.026 * u, 0.86 * r),
+                         (c + 0.03 * u, 0.62 * r), (c + 0.045 * u, 0.5 * r)], u, mat, 10)
+            return
         self._rings([(c - 0.05 * u, 0.22 * r), (c + 0.015 * u, r), (c + 0.04 * u, 0.55 * r)], u, mat, n)
 
     def ring(self, c, u, R: float, w: float, mat: int = ALU, n: int = 14) -> None:
@@ -224,6 +242,8 @@ def lattice(m: Mesh, profile, at=(0.0, 0.0), leg=0.5, brace=0.22, band=None, pan
         for c in range(4):
             a, b, a2, b2 = pts[i][c], pts[i][(c + 1) % 4], pts[i + 1][c], pts[i + 1][(c + 1) % 4]
             m.angle(a, a2, leg, mat)
+            if _D and leg >= 0.2:   # built-up legs: two angles back to back (b31, b40)
+                m.angle(a, a2, leg * 0.8, mat, turn=True)
             if open_ and c in (0, 2):
                 continue
             m.angle(a, b2, brace, mat)
@@ -231,6 +251,13 @@ def lattice(m: Mesh, profile, at=(0.0, 0.0), leg=0.5, brace=0.22, band=None, pan
             mid = (a + b + a2 + b2) / 4   # a redundant member across the X, as on the photos' heavier panels
             if np.linalg.norm(b - a) > 6:
                 m.angle((a + b) / 2, mid, brace * 0.7, mat)
+            if _D and np.linalg.norm(b - a) > 2.5:   # a redundant horizontal through the X, short sub-diagonals
+                la, lb = (a + a2) / 2, (b + b2) / 2   # from the legs to the braces (b29, b40)
+                m.angle(la, lb, brace * 0.6, mat)
+                for p0, p1, q in ((a, b2, la), (b, a2, lb)):
+                    m.angle(q, p0 + 0.25 * (p1 - p0), brace * 0.5, mat)
+                for p0, p1, q in ((b, a2, la), (a, b2, lb)):
+                    m.angle(q, p0 + 0.75 * (p1 - p0), brace * 0.5, mat)
     for i, z in enumerate(zs):
         mat = _paint(z, band, base)
         for c in range(4):
@@ -239,6 +266,14 @@ def lattice(m: Mesh, profile, at=(0.0, 0.0), leg=0.5, brace=0.22, band=None, pan
             m.angle(pts[i][c], pts[i][(c + 1) % 4], brace * 1.2, mat)
         if i % 3 == 0 and _hw(profile, z) > 2.5:   # a horizontal diaphragm now and then
             m.angle(pts[i][0], pts[i][2], brace * 0.8, mat)
+        if _D and _hw(profile, z) > 1.5:   # square-in-square plan bracing (b38, b39) and gussets at the legs (b15)
+            sm = [(pts[i][c] + pts[i][(c + 1) % 4]) / 2 for c in range(4)]
+            for c in range(4):
+                m.angle(sm[c], sm[(c + 1) % 4], brace * 0.7, mat)
+            for c in range(4):
+                for o in (pts[i][(c + 1) % 4], pts[i][(c + 3) % 4]):
+                    dvec = _unit(o - pts[i][c])
+                    m.block(pts[i][c] + dvec * 0.35 + (0.0, 0.0, 0.15), dvec, (0.0, 0.0, 1.0), (0.6, 0.45, 0.02), mat)
 
 
 def arm(m: Mesh, z_top: float, depth: float, x_in: float, reach: float, side: int, half_in: float,
@@ -273,6 +308,11 @@ def arm(m: Mesh, z_top: float, depth: float, x_in: float, reach: float, side: in
         m.angle(*rows[n][s], w, mat)
     m.angle(rows[n][0][0], rows[n][1][0], w, mat)
     m.angle(rows[n][0][1], rows[n][1][1], w, mat)
+    if rail and _D:   # the walkway's deck along the top (b16)
+        c0 = (rows[0][0][1] + rows[0][1][1]) / 2
+        c1 = (rows[n][0][1] + rows[n][1][1]) / 2
+        m.block((c0 + c1) / 2 + (0.0, 0.0, 0.03), c1 - c0, (0.0, 1.0, 0.0),
+                (float(np.linalg.norm(c1 - c0)), 0.8, 0.03), STEEL)
     if rail:
         for s in range(2):
             posts = [rows[k][s][1] for k in range(n + 1)]
@@ -395,6 +435,19 @@ def footings(m: Mesh, profile, at=(0.0, 0.0), size=3.0) -> None:
         m.box((at[0] + sx * hw, at[1] + sy * hw, -0.5), (size, size, 1.6), CONCRETE)
 
 
+def ladder(m: Mesh, profile, z1: float, mat: int = STEEL) -> None:
+    """A ladder up the inside of one leg's face (detail; b32, b33): two rails 0.45 m apart and rungs every 0.4 m."""
+    z, rails = np.linspace(0.5, z1, 24), []
+    for s in (-0.225, 0.225):
+        rails.append([np.array([_hw(profile, zz) - 0.7, s - _hw(profile, zz) + 0.9, zz]) for zz in z])
+    for r in rails:
+        for a, b in zip(r, r[1:]):
+            m.rod(a, b, 0.05, mat)
+    for zz in np.arange(0.8, z1, 0.4):
+        x, y = _hw(profile, zz) - 0.7, 0.9 - _hw(profile, zz)
+        m.rod((x, y - 0.225, zz), (x, y + 0.225, zz), 0.025, mat)
+
+
 # ------------------------------------------------------------------ the types
 
 def crossing750(height: float) -> tuple[Mesh, dict[str, Any]]:
@@ -425,6 +478,12 @@ def crossing750(height: float) -> tuple[Mesh, dict[str, Any]]:
         phases = [suspend(m, tips[0], 7.0, 750, n=2), suspend(m, (0.0, 0.0, beam), 6.0, 750, n=8, across=(1, 0, 0), gap=0.26),
                   suspend(m, tips[1], 7.0, 750, n=2)]
     earth = [earth_clamp(m, (sx * 11.0, 0.0, height - 0.6)) for sx in (-1, 1)]
+    if _D:
+        ladder(m, prof, zt, _paint(zt / 2, None))
+        if not anchor:   # the railed bracket on one side below the main arm (b29, b30, b46; no. 26)
+            zb = za - 9.0 * s
+            arm(m, zb, 2.4, _hw(prof, zb), _hw(prof, zb) + 7.0, 1, _hw(prof, zb), half_tip=0.6, tip_depth=1.2,
+                band=band, w=0.14, rail=True)
     return m, {"kv": 750, "circuits": [phases], "earth": earth, "base_hw": prof[0][1]}
 
 
@@ -450,6 +509,8 @@ def crossing330() -> tuple[Mesh, dict[str, Any]]:
     for side in (-1, 1):
         arm(m, h, 1.2, 1.1, 3.5, side, 1.1, half_tip=0.3, tip_depth=0.5, band=band, w=0.12)
     earth = [earth_clamp(m, (sx * 3.5, 0.0, h - 0.5)) for sx in (-1, 1)]
+    if _D:
+        ladder(m, prof, 92.0)
     return m, {"kv": 330, "circuits": circuits, "earth": earth, "base_hw": 9.5}
 
 
@@ -591,7 +652,18 @@ def caisson(r_base: float, r_top: float) -> tuple[Mesh, dict[str, Any]]:
     return m, {"circuits": [], "earth": [], "base_hw": r_base}
 
 
-def build_types() -> dict[str, tuple[Mesh, dict[str, Any]]]:
+def build_types(detail: bool = False) -> dict[str, tuple[Mesh, dict[str, Any]]]:
+    """Every type's mesh and attachment points; `detail` (look pass 2): more members and finer fittings, the same
+    attachment points."""
+    global _D
+    _D = detail
+    try:
+        return _build_types()
+    finally:
+        _D = False
+
+
+def _build_types() -> dict[str, tuple[Mesh, dict[str, Any]]]:
     return {"crossing750_p": crossing750(126.0), "crossing750_a": crossing750(100.0), "crossing330": crossing330(),
             "pp750": pp750(), "triple750": triple750(), "triple330": triple330(), "pvs330": pvs330(),
             "gantry750": gantry(19.0, 20.0, 750), "gantry330": gantry(8.5, 17.0, 330),
@@ -795,18 +867,33 @@ def _at(pts: np.ndarray, s: np.ndarray, d: float) -> tuple[np.ndarray, np.ndarra
 
 
 def _damper(m: Mesh, p: np.ndarray, u: np.ndarray) -> None:
-    """A Stockbridge damper: its clamp on the wire, the messenger cable below along it, a weight at each end."""
+    """A Stockbridge damper: its clamp on the wire, the messenger cable below along it, a weight at each end (in
+    detail: bell-shaped weights)."""
     q = p - (0.0, 0.0, 0.13)
     m.rod(p, q, 0.035, ALU)
     m.rod(q - 0.32 * u, q + 0.32 * u, 0.02, GUY, n=4)
     for sgn in (-1, 1):
-        m.rod(q + sgn * 0.2 * u, q + sgn * 0.42 * u, 0.085, GUY, n=6)
+        if _D:
+            m._rings([(q + sgn * 0.2 * u, 0.025), (q + sgn * 0.26 * u, 0.045), (q + sgn * 0.4 * u, 0.05),
+                      (q + sgn * 0.44 * u, 0.02)], sgn * u, GUY, 8)
+        else:
+            m.rod(q + sgn * 0.2 * u, q + sgn * 0.42 * u, 0.085, GUY, n=6)
 
 
-def fittings(ws: list[dict[str, Any]], kvs: list[int]) -> Mesh:
+def fittings(ws: list[dict[str, Any]], kvs: list[int], detail: bool = False) -> Mesh:
     """The fittings along the spans, in the world's frame: spacers holding each bundle's sub-conductors apart every
     SPACER_M (none within 25 m of a clamp), and Stockbridge dampers 2 m out from every clamp on each sub-conductor and
-    earth wire. Spans under 150 m (the jumpers) get none."""
+    earth wire. Spans under 150 m (the jumpers) get none. `detail` (look pass 2): 750 kV spacer-dampers with a hub
+    and an arm to each sub-conductor's clamp, bell-weighted dampers."""
+    global _D
+    _D = detail
+    try:
+        return _fittings(ws, kvs)
+    finally:
+        _D = False
+
+
+def _fittings(ws: list[dict[str, Any]], kvs: list[int]) -> Mesh:
     m = Mesh()
     groups: dict[int, list[np.ndarray]] = {}
     for w in ws:
@@ -832,4 +919,9 @@ def fittings(ws: list[dict[str, Any]], kvs: list[int]) -> Mesh:
                 m.rod(a, b, 0.045, ALU, n=4)
             for a, u in pts:
                 m.rod(a - 0.09 * u, a + 0.09 * u, 0.06, ALU, n=6)
+            if _D and len(pts) > 2:   # the spacer-damper's hub and arms
+                hub = sum(a for a, _ in pts) / len(pts)
+                m.rod(hub - 0.06 * pts[0][1], hub + 0.06 * pts[0][1], 0.14, ALU, n=8)
+                for a, _ in pts:
+                    m.rod(hub, a, 0.035, ALU, n=4)
     return m

@@ -6,9 +6,12 @@
 Nothing here was recorded at the crossing: no one has recorded there since the breach (reports/Kakhovka bed nature
 sounds.md). It is a montage, said to be one:
 - The line: Ferosplavna-1 (330 kV), the one line the record has connected since 24 March 2026, synthesized as the
-  Hum synthesizes a line (hum.py: the 100 Hz hum and its harmonics, its own partial stressed, corona hiss pulsing
-  twice a cycle and sparse cracks). Heard from under the span, so centred; the crackle a little denser than the Hum's
-  (a dewy morning: corona is loudest wet), a design choice. It never reacts to the birds or they to it.
+  Hum synthesizes a 330 kV line (hum.py: the 100 Hz hum and its harmonics in the 330 kV's shape, its own partial
+  stressed; corona at full strength, the 330 kV's: a smoother hiss pulsing twice a cycle, sparse cracks, rolling off
+  above 8 kHz; since 9 November 2026, `HUM_SHAPE`, `CORONA`). Heard from under the span, so centred. A May morning
+  "now" is no dated day, so no weather swell: the dry level (until 9 November the crackle was a little denser than the
+  Hum's, for a dewy morning; dropped so the line sounds as the Hum's own 330 kV voice). It never reacts to the birds or
+  they to it.
 - The birds: Oleksii Vasyliuk's recordings on the drained bed at Mar'ianske, 13-14 May 2026, about 50 km downstream
   of the crossing (iNaturalist, CC BY); one thrush nightingale by Ekaterina Kormina near Marhanets, 16 April 2025,
   the north bank opposite (xeno-canto XC1016141, CC0). The marsh frog: W.D. Keeper, 28 April 2024, about 90 km
@@ -26,7 +29,7 @@ import sys
 
 import numpy as np
 
-from image_evidence.satellite.hum import HARMONICS, SR, _conv, _filtered, _noise, write_wav
+from image_evidence.satellite.hum import CORONA, HARMONICS, HUM_SHAPE, SR, _conv, _filtered, _noise, write_wav
 
 TOTAL = 30.0
 CROSSING = (34.60, 47.53)    # where the two lines cross the bed, for the distances only
@@ -70,30 +73,36 @@ def ss(x):
 
 
 def line(n, seed=330):
-    """Ferosplavna-1 alone, as hum.py voices a 330 kV line (its own partial the 6th, 600 Hz), stereo."""
+    """Ferosplavna-1 alone, as hum.py voices a 330 kV line (its shape, its own partial the 6th, 600 Hz; its corona at
+    full strength, dry), stereo."""
     rng = np.random.default_rng(seed)
     nc = int(math.ceil(n / SR * 1000)) + 2
     tc, ta = np.arange(nc) / 1000, np.arange(n) / SR
     f0 = 100 * (1 + 0.00015 * np.interp(ta, tc, _noise(rng, nc, None, 0.08, 1000)))
     phase = 2 * np.pi * np.cumsum(f0) / SR
     hs = np.arange(1, HARMONICS + 1)
-    a = 0.45 / hs ** 1.1 + np.exp(-((hs - 6) / 0.6) ** 2) * 0.5
+    shape = np.array(HUM_SHAPE[330])
+    a = 0.45 * shape / np.sqrt((shape ** 2).sum()) + np.exp(-((hs - 6) / 0.6) ** 2) * 0.5
     a = a / np.sqrt((a ** 2).sum()) * 0.7
     hum = np.zeros(n, np.float32)
     for h in hs:
         wob = 1 + 0.12 * _noise(rng, nc, None, 0.9, 1000)
         hum += np.interp(ta, tc, a[h - 1] * wob).astype(np.float32) * np.sin(h * phase + rng.uniform(0, 2 * np.pi)).astype(np.float32)
-    pulse = (0.3 + 0.7 * np.abs(np.sin(phase / 2)) ** 6).astype(np.float32)
+    cv = CORONA[330]
+    pulse = (0.3 + 0.7 * np.abs(np.sin(phase / 2)) ** 6).astype(np.float32)   # twice a cycle, as the Hum's 330 kV
     tk = np.arange(int(0.006 * SR)) / SR
     out = []
     for side in range(2):     # the span runs across overhead: its crackle a little apart in each ear
-        hiss = _noise(rng, n, 1800, 11000) * pulse
+        hiss = _noise(rng, n, *cv["hiss_band"]) * pulse
+        hiss /= max(float(hiss.std()), 1e-9)
         cracks = np.zeros(n, np.float32)
-        at = rng.random(n) < 6.0 / SR          # the Hum's 330 kV rate is 3.5 a second; a dewy morning, more
-        cracks[at] = rng.lognormal(0, 0.6, int(at.sum()))
+        at = rng.random(n) < cv["cracks_per_s"][0] * pulse / pulse.mean() / SR
+        cracks[at] = rng.lognormal(0, cv["crack_sigma"], int(at.sum()))
         cracks = _filtered(_conv(cracks, (rng.standard_normal(len(tk)) * np.exp(-tk / 0.0012)).astype(np.float32)),
-                           900, 12000)
-        out.append(hum + (0.07 * hiss + 0.08 * cracks) * 0.65)
+                           *cv["band"])
+        cracks /= max(float(cracks.std()), 1e-9)
+        c = math.sqrt(cv["crack_share"]) * cracks + math.sqrt(1 - cv["crack_share"]) * hiss
+        out.append(hum + c * (10 ** (cv["dry_db"] / 20) / math.sqrt(2)))   # against a 750 kV line's hum, as hum.py
     return np.stack(out, 1)
 
 

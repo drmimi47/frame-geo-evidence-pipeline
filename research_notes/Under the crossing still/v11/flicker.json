@@ -1,0 +1,26 @@
+{
+ "method": "mean absolute luminance step between consecutive frames at 480x270",
+ "largest": [
+  [
+   1.077,
+   281
+  ],
+  [
+   1.076,
+   89
+  ],
+  [
+   1.072,
+   185
+  ],
+  [
+   1.071,
+   137
+  ],
+  [
+   1.069,
+   100
+  ]
+ ],
+ "median": 1.028
+}

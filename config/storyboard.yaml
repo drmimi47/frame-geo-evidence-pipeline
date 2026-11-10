@@ -14,12 +14,14 @@
 
 fps: 30                   # the storyboard's (tests); the final film 60
 size: [1920, 1080]
+end_at_s: 600             # the END and PARKED markers at 10:00, the film's ceiling (the user, 9 November 2026); the parked shots right after
 labels: true              # each shot's id and status burned into the animatic, top left
 
 sources:
   ZNPP-ten-lines-zoom-out: {network: znpp}          # the newest zoom-out with the record (films/<id>/ZNPP-ten-lines-zoom-out.mp4, 3:26)
   ZNPP-last-two-lines-3D: {crossing3d: ZNPP-last-two-lines-3D}   # the crossing in 3D with the two lines' record (animatic/ZNPP-last-two-lines-3D.mp4, 1:44)
   ZNPP-last-two-lines-3D-south: {crossing3d: ZNPP-last-two-lines-3D-south}   # NEXT.md S6, the flight south toward the plant (the re-render of 5 Nov 2026, 960x540, the record re-pinned: 2:33)
+  ZNPP-last-two-lines-3D-south-look3: {crossing3d: ZNPP-last-two-lines-3D-south-look3}   # S6's look pass 3 (7 Nov 2026): straight at 95 m/s, selected dates, the pre-war outward flow; the river, edges, plants (research_notes/Flight south look pass 3/, 1:33)
   ZNPP-last-two-lines-unrolled: {file: libraries/conductive-seam/satellite/networks/znpp/unrolled/ZNPP-last-two-lines-unrolled.mp4}   # NEXT.md I5, test at 30 fps (1:24)
   fig-cooling-shadows: {file: "research_notes/Cooling tower height check/shadows-2022-11-15-and-2024-12-24.jpg"}
   great-meadow: {corridor: great-meadow}  # the corridor film along the north bank (5:28)
@@ -31,13 +33,15 @@ sources:
   S1-section-ferosplavna: {file: reports/S1-section/S1-section-ferosplavna.mp4}   # NEXT.md S1, test at 30 fps (18.7 s)
   S1-block-opening: {file: reports/S1-section/S1-block-opening.mp4}               # NEXT.md S1, test at 30 fps (35.5 s)
   S1-section-still: {file: reports/S1-section/stills/G0_offset_C.png}
+  SB2-A: {file: "research_notes/Section block pass 2/A2-trace-and-split-continuous.mp4"}         # section block pass 2 (7 Nov 2026), prototype A, block into section, no line at the split (8 Nov; 34.4 s)
   S2-monument: {file: reports/S2-tower/S2_monument_with_text.png}
   S2-turntable: {file: reports/S2-tower/S2_turntable_test_10s.mp4}                # NEXT.md S2, test (10 s)
   S2-elevation: {file: reports/S2-tower/S2_elevation_dimensioned.png}
+  S2-elevation-zoom3c: {file: reports/S2-tower/S2_elevation_zoom3c.mp4}   # third pass, fixes c (9 Nov 2026): the same crane from the person to the 750 kV tower, then the line's towers over the water stacked behind it, Ferosplavna's five beside, heights and widths at the end (scripts/zoom3c.py; S2_elevation_zoom3c.json), test at 30 fps (30 s)
   S2-head: {file: reports/S2-tower/S2_head.png}
   S2-foot: {file: reports/S2-tower/S2_foot.png}
   nl-triptych: {file: "research_notes/Night lights test/frame172_triptych.png"}
-  nl-monthly-chart: {file: "research_notes/Night lights test/monthly_chart.png"}
+  nl-monthly-chart: {file: "research_notes/Night lights test/monthly_chart_film.png"}   # redrawn full frame, dark, little text (scripts/chart_film.py, 5 Nov 2026); monthly_chart.png the research version
   nl-monthly-maps: {file: "research_notes/Night lights test/monthly_maps.png"}
   nl-sep2022: {file: "research_notes/Night lights test/sep2022_enerhodar_blackout.png"}
   fig-front-2026: {file: "research_notes/Front line overlay test/front_2026-11-04.jpg"}
@@ -50,10 +54,20 @@ sources:
   fig-weather: {file: "research_notes/Line sound proxies/weather_2022-2026.jpg"}
   soundscape: {file: "research_notes/Line sound proxies/soundscape-nightingale.mp4"}  # NEXT.md S4/I9, the still with XC1016141 (CC0)
   fig-shore-bans: {file: "research_notes/Shore bans overlay/shore_bans.jpg"}
+  fig-repair-regions: {file: "research_notes/Repair regions still/repair_regions_1920.jpg"}   # the user, 5 November 2026: where crews were sent, accumulated (3840 PNG beside it)
+  repair-regions-v5: {file: "research_notes/Repair regions still/v5/repair_regions_v5.mp4"}   # pass 5 (the user, 8 November 2026): v4 with no outlines on the map, fills only, the tones closer (8 s, silent)
+  repair-days-waffle: {file: "research_notes/Repair regions still/time/repair_days_waffle.mp4"}   # the user, 9 November 2026: the days counted (black-and-white waffle, animated, grid centred; 21.4 s, silent)
   under-crossing: {file: "research_notes/Speculative crossing soundscape/under_the_crossing.mp4"}   # sound only, black
   under-crossing-f4: {file: "research_notes/Under the crossing still/v4/under_the_crossing_f.mp4"}   # v4: view f on the line's axis, the soundscape under it, test at 30 fps (30 s)
   under-crossing-f-day: {file: "research_notes/Under the crossing still/v5/under_the_crossing_f_day.mp4"}   # v5: v3's view f by day, the soundscape under it, test at 30 fps (30 s)
   waterline-reprise: {file: "research_notes/Under the crossing still/v5/waterline_reprise.mp4"}   # v5: the same view, the proposed 12.7 m level drawn as a line, a stretch of the soundscape (9 s)
+  under-crossing-f-day-continuous: {file: "research_notes/Under the crossing still/v7/alt/under_the_crossing_f_day_continuous.mp4"}   # v5's picture with the soundscape run 45 s and cut at 30 s, no end fade: the hum runs on into the drowning (the user, 6 November 2026: the cut seamless)
+  tilt-shift-opening: {file: "research_notes/Tilt-shift opening/tilt_shift_opening.mp4"}   # pass 2 (the user, 10 November 2026): the plant and the crossing centred, gentle blur, maps-style names, slate grade (9 s, silent)
+  zones-animation: {file: "research_notes/Tilt-shift opening/zones/zones_animation.mp4"}   # the user, 10 November 2026: the white zone stills animated, in place of zo-zone (24.5 s, silent)
+  under-crossing-edges: {file: "research_notes/Under the crossing still/edges/under_the_crossing_f_day_edges.mp4"}   # the same picture and soundscape with the nature sounds there from the first frame to the last, no fades (the user, 9 November 2026); the line still runs on into the drowning
+  drowning-continuous: {file: "research_notes/Under the crossing still/v7/alt/drowning_continuous.mp4"}   # v7's picture with the same 45 s run's seconds 30-45: the hum unbroken from under-the-crossing-continuous
+  drowning-v8-continuous: {file: "research_notes/Under the crossing still/v8/alt/drowning_continuous.mp4"}   # v8 (8 Nov 2026): v7 with the plants dying as the water reaches them, cleared by about 12.6 s; v7's continuous sound unchanged
+  drowning-v11: {file: "research_notes/Under the crossing still/v11/drowning.mp4"}   # v11 (9 Nov 2026): the cut straight to under the water at the proposed level, the trees dead and bare, the water drawn round the stems where they pierce the surface; v9's sound (muffled, sample-continuous with under-crossing-f-day-continuous)
   tower-cut: {file: "research_notes/Tower cut opener/tower_cut.mp4"}   # found footage and one supplied photograph, aligned, silent (24.0 s); rights to clear
 
 shots:
@@ -160,6 +174,16 @@ shots:
     out: 152.5
     tells: Off toward the six units and the cooling pond (modelled from OSM footprints and published heights, said so), the last state held, a slow rise and the fade.
     tags: [plant, ending, south]
+
+
+  3d-south-look3:
+    title: The flight south, look pass 3 (whole, faster, selected dates)
+    status: new
+    source: ZNPP-last-two-lines-3D-south-look3
+    in: 0
+    out: 93.0
+    tells: "The flight re-paced (the user, 7 November 2026): level and straight at 95 m/s, no turn to the plant, lift and fade; 16 selected dates, each line in the state reported that day (the changes between left out and said so), from 24 February 2022 with the power flowing out, through island mode, to 11 September 2026 with only Ferosplavna-1 on; 23 September 2025 held 8 s in silence. The river drawn as water where look 1-2 showed a flat plain, smoothed water edges, plants toned to the sand. In the cut (the user, 8 November 2026); looks 1 and 2 deleted."
+    tags: [crossing, record, south, look]
 
   # ---- the lines unrolled (NEXT.md I5, draft test at 30 fps, 4 November 2026): the two lines straightened left to
   # right, their record along them, the truces by region (at least 3 km, never a tower)
@@ -280,7 +304,7 @@ shots:
     status: still
     source: fig-front-2022
     duration: 6
-    tells: "The record's frame of 3 September 2022 with DeepStateMAP's map of the same day: the occupied south and the plant, the front on the reservoir. The overlay as it would run with the record's dates in zo-war, off again before the night lights."
+    tells: "The record's frame of 3 September 2022 with DeepStateMAP's map of the same day: the occupied south and the plant, the front on the reservoir. The overlay as it would run with the record's dates in zo-war, off again before the night lights. In the cut after zo-war, the occupation's map shown after the seizure (the user, 5 November 2026; front-today, a 2026 map over the pre-war chord, parked). The red is DeepStateMAP's polygon, not the whole south bank: along the reservoir the river is the front, but the left bank round Zaporizhzhia stays Ukrainian-held, and in 2022 part of the right bank to the west was occupied too."
     needs: "DeepStateMAP's history starts 3 April 2022: the first weeks (the plant seized 4 March) need another dated source or stay unmapped; its credit on screen (an assessment from open sources); its licence for a public screening."
     from: research_notes/Front line overlay test
     tags: [front, record]
@@ -350,6 +374,16 @@ shots:
     out: 228.8
     tells: "The date stopped on 11 September 2026, one line of ten; the camera pulls back out from the crossing to the region at night, September 2026 (night lights): the occupied bank dark too, strikes on its substations (Moscow Times, July 2026); held, then the fade. The after of the night lights' before, during, after (the user, 2 November 2026)."
     tags: [record, night, ending]
+  repair-regions:
+    title: The days counted, a square a day and a dot a repair
+    status: new
+    source: repair-days-waffle   # the user, 9 November 2026: in place of the map (repair-regions-v5, kept as a source); v1's still fig-repair-regions kept too
+    in: 0
+    out: 21.366
+    tells: "The waffle (the user, 9 November 2026, in place of the map): every day of the record, 24 February 2022 to 11 September 2026, a square, grouped by how many of the plant's ten lines were connected at the day's end (ten, cut but unreported which, two, one, none), a row of 60 days with its first date on the left, each group's count on its first row; a dot on the day of each repair by who did it (Ukrainian crews, Russian crews, both, unspecified); the key under the title before the squares fill one by one (2.2-14.7 s), then held. No places shown. R48 (23 October 2026) falls after the record's last report and has no square: to be said in the narration or credits (research_notes/Repair regions still/time/repair_days_waffle.json). The map it replaces: Pass 5 (the user, 8 November 2026): pass 4 with no outlines on the map, only fills, the land and the hatched river closer in tone (research_notes/Repair regions still/v5/). Pass 4 (the user, 8 November 2026): pass 3 with the map in two colours, no tint for the occupied side: the land one colour, the Dnipro as the reservoir held it on 5 June 2023 another, hatched, its north and south shores outlined, today's channels solid near-black inside it, the sides named on their banks (research_notes/Repair regions still/v4/). Pass 3: pass 2 restyled after Forensic Architecture's Air Pressure: a near-black map, every ring white and thin (each in at full white, decaying toward a white floor, so the newest are brightest), the lines red, one large sentence counting up ('41 repairs to the plant's power lines since March 2022'), small bold labels on solid black boxes with the count in brackets, the timeline and the note in a black bar (research_notes/Repair regions still/v3/). Pass 2: v1 below with one ring per repair (the area's own outline its first, each later one inside it), the occupied side faintly tinted with the river taken as the front, a timeline of every repair along the foot (grey where no place was published, the labels without their dates), the switchyards in blue, the frame 38 km wide; the rings appear in date order as a playhead runs 2022-2026 (0.6-6 s), then hold (research_notes/Repair regions still/v2/). v1: One still, north up, 40 km wide, stylized (the user, 5 November 2026): a plain grey ground, only the river as Sentinel-2 saw it on 28 August 2025, and hatched, where the reservoir was on 5 June 2023, no date, legend or captions: every repair whose place was published, 2022-2026, on any of the plant's lines, as the area its source names (a side of the front, a bank, the crossing, the switchyards), each area outlined in its own colour with no fill, a + at its centre, its label listing each repair's date. 20 placed in 6 areas: 7 on Ferosplavna-1 north of the Dnipro, 6 at the plant's and the thermal plant's switchyards, 3 on Dniprovska north of the river, 2 on Ferosplavna-1's south bank, 1 on Dniprovska's occupied side, 1 at the crossing; 21 more with no place published, counted, not drawn. Asked for by the user at about 5:18, beside zo-night-after (5 November 2026)."
+    needs: "The key quotes checked on iaea.org itself (read through mirrors); whether it holds as a still or the layers build up by date; the IAEA's ceasefire numbering against the unrolled film's truces (its 4th and 5th have places the unrolled config calls unpublished). Areas at least 3 km, never finer than the source; never a tower, pin or crew; the Dniprovska substation outside the frame."
+    from: "research_notes/Repair regions still (repairs.yaml, regions.json); reports/Ceasefire for one span.md"
+    tags: [record, repairs, ending]
 
   # ---- the corridor film along the north bank (draft)
   gm-drain:
@@ -433,6 +467,7 @@ shots:
     tells: "The pond's north dike, a break, then Dniprovska's crossing, all at one scale (x10), on three days with no line: 2022 the reservoir full; 2025 and 2026 the towers on the dry bed, the river a channel, the pond falling to 12.34 m against the pumps' 12 m. Both margins at once: the lines cut, the water going."
     needs: "The IAEA's wording of the 12 m limit; pond levels inside the 2025 and 2026 windows (C's is from after the day, unverified); final at 60 fps."
     from: NEXT.md S1 (third pass)
+    masks: [[40, 95, 1260, 185], [1000, 290, 1565, 340], [40, 620, 300, 645], [40, 712, 700, 738], [990, 760, 1780, 790], [40, 995, 1600, 1060]]   # its notes hidden (the user, 5 November 2026: "way too much text"); the method and sources in the credits
     tags: [water, section, cooling-pond, buying-time]
   section-ferosplavna:
     title: In section, the 330 kV backup line and the pond
@@ -453,6 +488,16 @@ shots:
     tells: "The block at true size, heights grown to x25, opened along the pond's cut 3 km west of the plant; the same three days dissolving, the reservoir gone and the pond's water shrinking (98, 85, 70% as the passes read it). The overture to the sections (the user liked it, 4 November 2026): the region in 3D first, then the same days cut open in profile."
     needs: "Its three days repeat in the sections after it: later, it could be trimmed to the opening (about 11 s, ending as the block stands open on 2022)."
     from: NEXT.md S1 (third pass)
+    tags: [water, section, cooling-pond]
+  section-block2-a:
+    title: The block cut on the section's line, split (prototype A)
+    status: new
+    source: SB2-A
+    in: 0
+    out: 34.4
+    tells: "Section block pass 2 (7 November 2026): the block at x3 from its first frame (towers and wires true size), the 2D section's own cut traced on it (the pond's north dike, the jog dashed, Dniprovska's crossing), the rest dropped away; the frame splits at the seam into two square-on views, nothing moving, landing on the section's first frame with no dissolve, then the section without its key plan (x3 eased to x10), its labels, then the detail growing out of its dashed frame, then the detail's labels (8 November 2026: the split's jump fixed, less text). research_notes/Section block pass 2/."
+    needs: "Chosen by the user (8 November 2026) over B and C (deleted, with A's first version with the line); seepage-paper placed before it; final at 60 fps."
+    from: Section block pass 2 (the user, 7 November 2026)
     tags: [water, section, cooling-pond]
 
   # ---- the brief as a wall text (the user's, D6, 3 November 2026), one stanza a card, placed by the beat it tells.
@@ -533,6 +578,17 @@ shots:
     tells: "Powerlines follows the ten through four years of occupation, / in satellite imagery by day and by night, maps, public reports and footage. / It marks what is observed, what is drawn and what is inferred."
     from: NEXT.md D6 (the brief)
     tags: [brief, method, ending]
+  research-question:
+    title: The research question
+    card: |
+      What can ten power lines tell us
+      about a place we cannot reach?
+    status: idea
+    duration: 6
+    tells: "The question the film asks, between the background (the plant, its lines, the inversion) and the method (brief-8 answers it: satellite imagery, maps, public reports and footage). The wording is a proposal (5 November 2026), the user's to settle."
+    needs: the user's wording
+    from: the storyboard's rearrangement toward 7 minutes (5 November 2026)
+    tags: [brief, question]
 
   # ---- the crossing tower as an object (NEXT.md S2, test stills and turntable, 3 November 2026): the 3D film's own
   # model of the 750 kV crossing tower on its caisson, alone on black; representative of the type, said so.
@@ -555,11 +611,13 @@ shots:
     from: NEXT.md S2
     tags: [towers]
   tower-elevation:
-    title: The tower to scale, its foot under the old water
-    status: still
-    source: S2-elevation
-    duration: 6
-    tells: "Dimensioned: 126 m, the lower crossarm at 113 m, the caisson 41 m across, its base 12.8 m below the old water; the reservoir's 16 m until 6 June 2023 and the bed today, about 8 m (inferred, dashed)."
+    title: The tower to scale, and every tower over the old water
+    status: draft
+    source: S2-elevation-zoom3c   # was S2-elevation-zoom (zoom2, 8.6 s)
+    in: 0
+    out: 30
+    tells: "The third pass (the user, 8-9 November 2026: longer, not rushed): close on a drawn person on the bed in front of the caisson, the crane pull-back (0-13 s) flattening into an elevation of the 126 m Dniprovska tower centred; DNIPROVSKA · 750 KV under it, its other two towers in the old reservoir (100 m anchor, 126 m) sliding out behind it, 3 TOWERS OVER WATER; the stack slides left as Ferosplavna 1 and 2's five come in, 5 TOWERS OVER WATER; a hold on all eight; then each group's height (126 m, 100 m) and base width (40 m, 43.6 m across). To scale, seen along each line from the south, spread sideways to be seen."
+    needs: "To be said elsewhere (off the picture; S2_elevation_zoom3c.json): the towers are representative models of each type; the 330 kV towers are published at 90-100 m and all drawn at 100 m; the bases and the bed drawn at one level (the bed inferred, the base depth unconfirmed); the person drawn. The final at 60 fps needs the 3D move rendered again at 60. No sound yet."
     from: NEXT.md S2
     tags: [towers, water, section]
   tower-foot:
@@ -626,6 +684,26 @@ shots:
     tags: [night, island, record]
 
   # ---- to make or find (cards in the animatic)
+  tilt-shift-opening:
+    title: The plant and the crossing, seen whole (tilt-shift)
+    status: new
+    source: tilt-shift-opening
+    in: 0
+    out: 9
+    tells: "The area before the lines (the user, 9-10 November 2026: the film jumped too fast into the lines): a high oblique view from the south bank looking north-west, the plant and its pond, the thermal plant and Enerhodar in front, the lines across the drained bed to the north bank, Nikopol and Marhanets beyond; a slow push, no turn; a tilt-shift (a true tilted focal plane, gentle, drawn) and the names in a maps style fading in from 1.6 s; 11 September 2026 on the 28 August 2025 imagery, only Ferosplavna-1 lit. Silent for now. research_notes/Tilt-shift opening/ (README, json)."
+    needs: "The next shot from its last frame (a zoom in and turn, more specific names); the zone stills over this frame (the dome and the rings) under review."
+    from: research_notes/Tilt-shift opening/
+    tags: [opening, context]
+  zones:
+    title: "The zones round the plant: one never sized, three with a distance"
+    status: new
+    source: zones-animation
+    in: 0
+    out: 24.5
+    tells: "In place of zo-zone (the user, 10 November 2026: the white stills animated): close on the plant, the IAEA protection zone as a translucent dome on the plant's site, most opaque at the ground and fading to nothing toward its top (proposed 6 September 2022, never agreed, no size published: its shape and height are ours, and the label says so); a dissolve to a wide view easing back while the zones with a distance come one at a time, each with only its own label: the IAEA's precautionary action zone (3-5 km), its urgent protective action planning zone (15-30 km), Ukraine's 30 km observation zone, dashed. Render once, push afterwards; silent. research_notes/Tilt-shift opening/zones/ (zones_animation.json, README)."
+    needs: "'Planning distances, not barriers' said somewhere (narration likely); a 60 fps render for the final; sound, if any."
+    from: research_notes/Tilt-shift opening/zones/
+    tags: [zone, hinge]
   title:
     title: Title
     card: |
@@ -694,11 +772,12 @@ shots:
     tags: [truce]
     needs: "Its date and source on screen (the record's June 2026 report)."
   the-gap:
-    title: "Repaired by: 'technicians'"
+    title: Repaired by specialist crews from both sides, under ceasefires the IAEA brokered
     card: |
-      Repaired by: “technicians”
+      Repaired by specialist crews from both sides of the front,
+      under ceasefires the IAEA brokered.
 
-      (IAEA, 8 November 2025)
+      No report names any of them.
     status: draft
     duration: 8
     tells: Nobody who mends the lines, or lives under them, has spoken; the record names no one (IAEA, 8 November 2025).
@@ -800,10 +879,10 @@ shots:
   under-the-crossing:
     title: Under the crossing, a May morning now (speculative)
     status: draft
-    source: under-crossing-f-day
+    source: under-crossing-edges   # was under-crossing-f-day-continuous (the birds fading in over 2-4 s and out by 27.5 s), before it under-crossing-f-day
     in: 0
     out: 30
-    tells: "Picture (v5, 5 November 2026): v3's f composition by day, as the user preferred it: still, in a meadow lane through the willows 190 m south of tower 23, under the lit span, the flow dashes running toward it, the film's overcast day; the plants modelled (placed from the August 2025 pass) and the distant birds drawn, said so. What the bed under the crossing might sound like now: Ferosplavna-1, the one line connected, humming overhead (synthesized as the Hum voices it), alone first and last, and between, the rewilded bed's May chorus: one near thrush nightingale throughout, and behind it in turn the reeds (great reed warblers, coots), a marsh frog and a far nightingale, the chorus with a cuckoo and one hoopoe: never more than three at once. A montage said to be one: no one has recorded at the crossing since the breach; the birds were recorded on the bed about 50 km downstream (Vasyliuk, May 2026, CC BY) and on the north bank opposite (Kormina, CC0); the frog about 97 km away (a guess: none recorded on the bed)."
+    tells: "Picture (v5, 5 November 2026): v3's f composition by day, as the user preferred it: still, in a meadow lane through the willows 190 m south of tower 23, under the lit span, the flow dashes running toward it, the film's overcast day; the plants modelled (placed from the August 2025 pass) and the distant birds drawn, said so. What the bed under the crossing might sound like now: Ferosplavna-1, the one line connected, humming overhead (synthesized as the Hum voices it), and with it from the first frame to the last (no fades, the user, 9 November 2026) the rewilded bed's May chorus: one near thrush nightingale throughout, and behind it in turn the reeds (great reed warblers, coots), a marsh frog and a far nightingale, the chorus with a cuckoo and one hoopoe: never more than three at once. A montage said to be one: no one has recorded at the crossing since the breach; the birds were recorded on the bed about 50 km downstream (Vasyliuk, May 2026, CC BY) and on the north bank opposite (Kormina, CC0); the frog about 97 km away (a guess: none recorded on the bed)."
     needs: "Its picture (to speculate on with the user); captions naming each recording's place and date; Vasyliuk asked before screening (CC BY needs only credit, but he holds longer, drone-free takes)."
     from: research_notes/Speculative crossing soundscape; Kakhovka bed nature sounds
     tags: [sound, nature, great-meadow, ending, speculative]
@@ -871,8 +950,7 @@ shots:
 
       To run again, the plant would need the river:
       a pumping station of up to 18,000 cubic metres an hour,
-      as Russia described one to the IAEA in May 2024,
-      enough for one reactor in summer, Bellona estimates,
+      as Russia proposed, perhaps enough for one reactor in summer,
       or the reservoir back.
     status: draft
     duration: 15
@@ -887,9 +965,9 @@ shots:
       Its surface, in metres above sea level:
       16.65 in June 2023, when the dam was destroyed,
       14.34 in September 2024,
-      12.27 in October 2026, as Ukraine's military intelligence reports it.
+      12.27 reported in October 2026.
 
-      At about 12 m, by the IAEA's figures, its pumps would stop.
+      At about 12 m its pumps would stop.
     status: draft
     duration: 13
     tells: "16.65 m, Energoatom's June 2023 monthly average (Bellona 2024, fig. 5, p. 19); levels are heights above sea level (Baltic), not depths. 14.34 m (Sep 2024) from OECD-NEA; 12.27 m (12 Oct 2026) is HUR's, a party's figure, via Euromaidan Press. The ~12 m pump cut-off is implied by the IAEA's 2025 reporting (the isolation dam holds the channel at ~14 m, 'two metres above' where the pumps stop; WNN). Not the reservoir's 12.7 m: two water bodies, never one line. In cold shutdown the wells and sprinkler ponds still cool the fuel, so 12 m is a margin, not a deadline."
@@ -901,7 +979,7 @@ shots:
     card: |
       Hydrologists propose a temporary dam
       to raise the water to 12.7 m.
-      At that level, they write,
+      At that level,
       “both Zaporizhzhya power stations” could run again.
 
       Ukraine's hydropower company plans the same first step,
@@ -930,7 +1008,7 @@ shots:
   restart-watch:
     title: Three things before a restart
     card: |
-      Before a reactor runs again, Bellona wrote in 2024,
+      Before a reactor runs again,
       three things would have to happen.
 
       A pumping station on the river.
@@ -972,6 +1050,36 @@ shots:
     from: research_notes/Under the crossing still (v5); ZNPP speculative ending and ecology
     needs: "Whether the line reads at full size (it is about 2 px); the level's datum (Baltic assumed) checked against the paper's page."
     tags: [ending, forest-or-reactor, great-meadow, water, speculative]
+  drowning:
+    title: The proposed level, rising under the crossing (speculative)
+    status: draft
+    source: drowning-continuous   # the hum unbroken from under-the-crossing (v7's `drowning`, rising from silence, deleted 9 November 2026)
+    in: 0
+    out: 15
+    tells: "The drowning, to replace waterline-reprise straight after under-the-crossing: the same view running on from its last frame (the flow dashes and the far birds continue; frame 0 is the frame after under-the-crossing's last), then months compressed into seconds as a flat water surface (drawn) climbs to the proposed 12.7 m (13.1 m in the scene) through the scene's own inferred ground: first between the stems where the lane is lowest (about 1.5 s), the shortest plants going under first, the willows' crowns staying above. At 4.2 s the waterline sweeps up over the lens; under it the bottom is dark and silty, the drowned plants dulled and greyed toward silt the longer they are under, while the tower and the lit wires waver faintly through the surface; held from 10 s to the end. No line, no caption. Sound: under-the-crossing ends with the line alone fading to silence (its birds gone by 27.5 s), so the drowning keeps that state: the synthesized line rising back from silence over 2.5 s (the soundscape run on past 30 s), muffled once the lens is under."
+    from: research_notes/Under the crossing still (v7); ZNPP speculative ending and ecology
+    needs: "The statement has to be said elsewhere in the film (this shot's caption field, a card or the credits; the user decides): PROPOSED LEVEL · 12.7 M · VYSHNEVSKYI & SHEVCHUK 2024 · REACHED OVER MONTHS · THE BED'S HEIGHTS INFERRED · DRAWN, and that the view under the water and its silt are a drawn convention. For the hum to run unbroken through the cut, under-the-crossing's sound would be replaced by v7/alt/under_the_crossing_f_day_continuous.mp4 and this shot by v7/alt/drowning_continuous.mp4 (the user decides; as it stands the hum dips to silence across the cut). The level's datum (Baltic assumed) checked against the paper's page."
+    tags: [ending, forest-or-reactor, great-meadow, water, speculative]
+  drowning-v11:
+    title: The water back at the proposed level, the trees dead (speculative)
+    status: new
+    source: drowning-v11
+    in: 0
+    out: 15
+    tells: "A hard cut from under-the-crossing straight to under the water, already back at the proposed 12.7 m (13.1 m in the scene) (the user, 8-9 November 2026, v9-v11): the camera where it was, 2.25 m under the surface. The herbs and grasses gone, a few taller shrubs and reeds as bare stems, every tree standing dead and bare with only its thickest branches; where trunks and branches pierce the surface, a churning pale collar and short broken wakes drifting downstream, so the waterline on the trees reads. The 750 kV tower and the lit wires waver through the surface (less murk than v7/v8); the surface's pattern evolves rather than slides. Sound: the line muffled from the first frame, going on from under-the-crossing's last sample."
+    from: research_notes/Under the crossing still (v9-v11)
+    needs: "The statement said elsewhere: PROPOSED LEVEL · 12.7 M · VYSHNEVSKYI & SHEVCHUK 2024 · THE TREES DEAD AND STANDING, THE BED'S HEIGHTS INFERRED · DRAWN; and that the view under the water (seeing the tower through the surface: Snell's window not drawn), the foam and the dead state are drawn. The dead state's timescale (drowned trunks standing for years) to check against a source."
+    tags: [ending, forest-or-reactor, great-meadow, water, speculative]
+  drowning-v8:
+    title: The proposed level, the plants dying under it (speculative)
+    status: new
+    source: drowning-v8-continuous
+    in: 0
+    out: 15
+    tells: "The drowning with the plants dying off (the user, 8 November 2026: the plants die as the water rises, so at the end only the tower and the lines show): v7's fixed camera, water and sound, frame 0 the same (the join with under-the-crossing unchanged). Each plant turns brown as the drawn water reaches its base, then by kind loses its leaves, slumps, falls and settles into the bed: herbs by 5.4-7.7 s, reeds by 9.4 s, shrubs by 10.7 s, willows and poplars bare and settled by 12.6 s, their crowns dying above the surface too. The lens goes under at 4.2 s; it ends in murky water over a dark floor, the tower and the lit wires wavering through the surface. Years compressed into seconds (drowned willows die over one to a few seasons, trunks can stand for decades). Parked beside drowning (v7) to compare."
+    from: research_notes/Under the crossing still (v8)
+    needs: "The statement said elsewhere: PROPOSED LEVEL · 12.7 M · VYSHNEVSKYI & SHEVCHUK 2024 · THE PLANTS' DYING COMPRESSED FROM YEARS · THE BED'S HEIGHTS INFERRED · DRAWN. The view reads clear from about 9.5 s, so about 5 s of empty hold: trim the out to about 12.5 s, or slow the trees and render again. The die-off's timescales to check against a source."
+    tags: [ending, forest-or-reactor, great-meadow, water, speculative]
   water-voices:
     title: Who wants the water back
     card: |
@@ -1002,6 +1110,37 @@ shots:
     tells: "A Ukrainian engineer's 'do not restore' option, with new pumping stations 'including for supplying the cooling reservoir at the Zaporizhzhia nuclear plant' (Hydropower & Dams); Moisiienko's August 2026 compromise, ~200,000 of the former 215,000 ha left wild, ~15,000 ha of small reservoirs on tributaries, 'we won't block the main channel' (Intent). So the forest and a restart are not strictly exclusive."
     from: ZNPP speculative ending and ecology (Against refilling)
     tags: [ending, forest-or-reactor, great-meadow, water]
+  water-cooling:
+    title: Kept cool, not able to run
+    card: |
+      Since April 2024 the six reactors have been in cold shutdown.
+      Wells on the site keep the fuel cool. To run again, the plant would need the river.
+
+      Without the reservoir, its cooling pond is sinking:
+      16.65 m above sea level in June 2023, 12.27 m reported in October 2026.
+      At about 12 m its pumps would stop.
+    status: draft
+    duration: 15
+    tells: water-wells and water-pond in one card (the storyboard review, 5 November 2026), their sources as theirs; the pumping station's figures left to restart-watch.
+    needs: The pond's 2026 figure against the section's (12.34 m on its own day); the IAEA's wording of the 12 m limit.
+    from: reports/Powerlines storyboard review.md (item 4)
+    tags: [water, cooling-pond, buying-time]
+  water-choice:
+    title: Who wants the water back, and another way
+    card: |
+      “To flood this place again would be another crime,” says an ecologist.
+      “I just want there to be water again,” says a village head on the old shore.
+
+      Engineers propose leaving the dam unbuilt and pumping from the river;
+      ecologists, small reservoirs on the tributaries and the main channel left open.
+
+      The choice has not been made.
+    status: draft
+    duration: 14
+    tells: water-voices and water-river in one card (the storyboard review, 5 November 2026), their sources as theirs; the willows and the silt's metals left out.
+    needs: The ecologist's and the village head's full names and the village head's source checked before naming either on screen.
+    from: reports/Powerlines storyboard review.md (item 4)
+    tags: [ending, forest-or-reactor, water]
   water-last:
     title: Tied to the water
     card: |
@@ -1015,6 +1154,156 @@ shots:
     tells: "The film's own reflection, not a source's: the lines built to carry gigawatts out carry 11-50 MW in for the plant's own needs (Energoatom via Interfax-Ukraine, Ukrainska Pravda); the plant's water and the forest's ground are the same water. Then 'One line of ten' returns to the observed."
     from: ZNPP speculative ending and ecology (Conclusion)
     tags: [ending, forest-or-reactor, water]
+  water-last-a:
+    title: "Tied to the water (A: the trade)"
+    card: |
+      The lines once carried the plant's power out.
+      Now they carry a trickle in, to keep it cool.
+
+      To run again, it would need the water back,
+      over the forest that grew where the water was.
+    status: draft
+    duration: 9
+    tells: "An option for water-last at 8:14 (the user, 5 November 2026: 'prototype more options for the text ... reads a bit awkward'); swap it in for water-last in Blender."
+    tags: [ending, water, option]
+  water-last-b:
+    title: "Tied to the water (B: waiting)"
+    card: |
+      Power still comes in on the lines,
+      enough to keep the fuel cool.
+
+      Whether it ever goes out again
+      waits on the water, and on the forest.
+    status: draft
+    duration: 8
+    tells: "An option for water-last at 8:14 (the user, 5 November 2026: 'prototype more options for the text ... reads a bit awkward'); swap it in for water-last in Blender."
+    tags: [ending, water, option]
+  water-last-c:
+    title: "Tied to the water (C: three lines)"
+    card: |
+      Kept cool by the lines.
+      Waiting on the water.
+
+      The forest grows in the meantime.
+    status: draft
+    duration: 6
+    tells: "An option for water-last at 8:14 (the user, 5 November 2026: 'prototype more options for the text ... reads a bit awkward'); swap it in for water-last in Blender."
+    tags: [ending, water, option]
+  water-last-d:
+    title: "Tied to the water (D: the same ground)"
+    card: |
+      The plant needs the river back.
+      The river's bed is a forest now.
+
+      Below 12.7 m, the same ground cannot hold both.
+    status: draft
+    duration: 7
+    tells: "An option for water-last at 8:14 (the user, 5 November 2026: 'prototype more options for the text ... reads a bit awkward'); swap it in for water-last in Blender."
+    tags: [ending, water, option]
+  water-last-e:
+    title: "Tied to the water (E: with one line of ten)"
+    card: |
+      By September 2026, one line of ten remained,
+      carrying power in, not out.
+
+      For power to go out again,
+      the plant would need the water back.
+    status: draft
+    duration: 9
+    tells: "An option for water-last at 8:14 (the user, 5 November 2026: 'prototype more options for the text ... reads a bit awkward'); swap it in for water-last in Blender. Replaces brief-7 too: the count and the coda in one card."
+    tags: [ending, water, option]
+  end-tower-water:
+    title: "Ending: the crossing over full water, again"
+    source: tower-cut
+    in: 20.5
+    out: 24.03
+    status: draft
+    tells: "An ending prototype (the user, 5 November 2026: 'it doesnt have to be that style of text. should just be a good ending'): in place of water-last and brief-7. The opening's last image returns: the 750 kV crossing towers standing in the full reservoir (found footage, before June 2023). Cut straight to end-under: the same towers, the water gone, a forest round them."
+    tags: [ending, option, rhyme]
+  end-under:
+    title: "Ending: under the one line, the forest now"
+    source: under-crossing-f-day
+    in: 14
+    out: 30
+    status: draft
+    tells: "An ending prototype (the user, 5 November 2026: 'it doesnt have to be that style of text. should just be a good ending'): in place of water-last and brief-7. The speculative scene under the crossing (said so) as the last picture after end-tower-water: the towers that stood in water now stand in willows, the one lit line overhead, its flow running toward the plant; fade to black on the bed's sound."
+    tags: [ending, option, rhyme]
+  end-chord:
+    title: "Ending: ten lines, the full chord (again)"
+    source: ZNPP-ten-lines-zoom-out
+    in: 40
+    out: 44.2
+    status: draft
+    tells: "An ending prototype (the user, 5 November 2026: 'it doesnt have to be that style of text. should just be a good ending'): in place of water-last and brief-7. The zoom-out's 172 km frame before the war: all ten lines lit and heard together (the same frames as zo-chord at 1:09), cut straight to end-one-line."
+    tags: [ending, option, rhyme]
+  end-one-line:
+    title: "Ending: the same frame, one line"
+    source: ZNPP-ten-lines-zoom-out
+    in: 224
+    out: 228.8
+    status: draft
+    tells: "An ending prototype (the user, 5 November 2026: 'it doesnt have to be that style of text. should just be a good ending'): in place of water-last and brief-7. The zoom-out's last hold: the same 172 km frame, 11 September 2026, one line of ten lit and heard, the rest dark; the record's own caption says it ('one line of ten'), so no card follows. The same frames end zo-night-after at 5:24: if this ending is taken, that shot ends earlier."
+    needs: "The frame's text thinned for the ending (the night-lights notes off, the date and 'one line of ten' kept)."
+    tags: [ending, option, rhyme]
+  end-card-a:
+    title: "Final card A: built to carry out"
+    card: |
+      Ten lines were built to carry its power out.
+      One is left, carrying power in.
+    status: draft
+    duration: 6
+    tells: "A final card (the user, 5 November 2026: 'i want text as the final card ... inspired by' the picture endings: the towers in water then the forest, ten lines then one); before the byline."
+    tags: [ending, option, final-card]
+  end-card-b:
+    title: "The towers stood in water; now in a forest"
+    card: |
+      The towers stood in water.
+      Now they stand in a forest.
+    status: draft
+    duration: 7
+    tells: "Chosen by the user (5 November 2026) for the card right after the nature video (under-the-crossing, then the proposed level drawn there): the crossing towers stood in the full reservoir until June 2023 (the opening's last image) and stand in the willows of the drained bed now. Then end-final."
+    tags: [ending, final-card]
+  end-card-c:
+    title: "Final card C: three beats"
+    card: |
+      Ten lines, then one.
+      Water, then a forest.
+
+      Whether the water comes back
+      has not been decided.
+    status: draft
+    duration: 7
+    tells: "An option for the final card (5 November 2026; in the cut for a while, then the user chose end-card-b and end-final)."
+    tags: [ending, option, final-card]
+  end-card-d:
+    title: "Final card D: a fifth of a country"
+    card: |
+      It once made a fifth of a country's electricity.
+      Now one line keeps it cool.
+    status: draft
+    duration: 6
+    tells: "A final card (the user, 5 November 2026: 'i want text as the final card ... inspired by' the picture endings: the towers in water then the forest, ten lines then one); before the byline."
+    tags: [ending, option, final-card]
+  end-card-e:
+    title: "Final card E: the last entry"
+    card: |
+      11 September 2026
+
+      One line of ten.
+      A forest where the water was.
+    status: draft
+    duration: 6
+    tells: "A final card (the user, 5 November 2026: 'i want text as the final card ... inspired by' the picture endings: the towers in water then the forest, ten lines then one); before the byline."
+    tags: [ending, option, final-card]
+  end-final:
+    title: "The last words: not decided yet"
+    card: |
+      Whether the water comes back
+      has not been decided yet.
+    status: draft
+    duration: 5
+    tells: "The film's last card before the credits (the user, 5 November 2026: 'whether the water comes back has not been decided yet'), after end-card-b: the question the water chapter leaves open (water-dam, forest-or-reactor, water-choice: the choice has not been made). Earlier 'Until then, one line keeps it cool.'"
+    tags: [ending, final-card]
   ice-pools:
     title: The Great Meadow on foot, the ice pools
     status: draft
@@ -1041,9 +1330,92 @@ shots:
     tells: The grid's hum dates recordings in forensic practice (ENF); why this film's Hum is synthesized, not recorded (S12).
     from: Enerhodar crossing voices and sound, S12
     tags: [sound, method]
+  byline:
+    title: By Patrick Rodriguez
+    card: |
+      by Patrick Rodriguez
+    status: draft
+    duration: 5
+    tells: The byline, after the last shot and before the credits; the start of the end titles (the user, 5 November 2026).
+    end_titles: true
+    from: the user, 5 November 2026
+    tags: [end-titles]
+  credits-studio:
+    title: Credits, the studio
+    card: |
+      ADVANCED STUDIO V
+      Soil Histories: The Great Meadow
+
+      Studio critics
+      Maksym Rokmaniko
+      Lucia Rebolino
+
+      Columbia University
+      Graduate School of Architecture, Planning and Preservation
+      Fall 2026
+    status: draft
+    duration: 7
+    tells: The studio the film was made in, after the byline and before the credits (the user, 9 November 2026). GSAPP's own word for studio faculty is critic.
+    end_titles: true
+    from: the user, 9 November 2026
+    tags: [end-titles]
   credits:
-    title: Credits and sources
-    status: missing
+    title: Credits, imagery and data
+    card: |
+      IMAGERY AND DATA
+
+      Contains modified Copernicus Sentinel data, 2021–2026
+      NASA Black Marble (VIIRS VNP46A3), LAADS DAAC: good-quality pixels only, never gap-filled
+      Lines, towers and buildings: © OpenStreetMap contributors (ODbL)
+      Towns: GeoNames (CC BY 4.0)
+      The bed's heights: FABDEM, ICESat-2 ATL08 (Lehnigk et al. 2026), SWOT,
+      Ukrhydroenergo's gauges, the 1941 map sheet
+      Occupied area: DeepStateMAP, an assessment from open sources
+      Figure 11: Vyshnevskyi & Shevchuk 2024, Taylor & Francis
+      The sections: heights ×10, lengths true; the drained bed's heights inferred
+    status: draft
     duration: 12
-    tells: Copernicus, OpenStreetMap (ODbL), the IAEA's updates, Esri/Vantor; the Hum synthesized.
-    tags: [ending, credits]
+    tells: What the pictures are made from, as the films' own records give it (film.json, scene.json, bed.json, the figures' provenance). Esri/Vantor left out while the Great Meadow film isn't in the cut.
+    needs: Every name and licence checked against film.json and the reports before a screening; FABDEM's licence (non-commercial) and DeepStateMAP's for a public one.
+    end_titles: true
+    from: the user, 5 November 2026
+    tags: [end-titles, credits]
+  credits-record:
+    title: Credits, the record and the texts
+    card: |
+      THE RECORD
+
+      The IAEA's updates on Ukraine, 2022–2026, and the chronologies
+      of the World Nuclear Association and the OECD Nuclear Energy Agency
+      Energoatom · Ukrhydroenergo · World Nuclear News
+      Bellona (Gorchakov & Nikitin 2024) · Vyshnevskyi & Shevchuk 2024
+      Interfax-Ukraine · Ukrinform · Ukrainska Pravda · TASS
+      Ukraine's military intelligence (HUR), via Euromaidan Press
+      Kherson Online · Hmarochos · The Irish Times · Hydropower & Dams · Intent
+    status: draft
+    duration: 12
+    tells: The sources of the record (record.py's events) and of the cards' words, as each shot's tells give them.
+    needs: The list checked against the cards in the final cut (a card cut, its source goes).
+    end_titles: true
+    from: the user, 5 November 2026
+    tags: [end-titles, credits]
+  credits-footage:
+    title: Credits, footage and sound
+    card: |
+      FOOTAGE AND SOUND
+
+      The region's lines filmed by Valerii Petrenko, Media Poglyad
+      (Energoatom's footage) and others on YouTube
+      A 750 kV line in fog: Ted3871
+      Birds on the drained bed: Oleksii Vasyliuk (CC BY), Ekaterina Kormina (CC0)
+      A marsh frog: W.D. Keeper (CC BY), via iNaturalist and xeno-canto
+      The Hum, the lines' sound, is synthesized
+
+      Made with Blender, D3 and FFmpeg
+    status: draft
+    duration: 10
+    tells: Whose footage and recordings are in the film, and that the Hum is synthesized (the soundscape's notes give the credit line).
+    needs: Rights cleared before any screening (tower-cut's clips, Ted3871's recording); every uploader in tower-cut named.
+    end_titles: true
+    from: the user, 5 November 2026
+    tags: [end-titles, credits]

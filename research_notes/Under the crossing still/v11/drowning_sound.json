@@ -1,0 +1,40 @@
+{
+ "title": "The drowning's sound, v9 (under the water from the first frame)",
+ "seconds": 15.0,
+ "sample_rate": 48000,
+ "sha256": "97c0968b9755b80d5e54c161ec12b0978e7984655c9be8c7aa15e33ae176fcd9",
+ "from": "mix.py with TOTAL = 45, seconds 30-45 (the line alone, Ferosplavna-1, synthesized, seed 330), as v7's drowning_sound_v7.py; muffled from the first sample",
+ "muffle": {
+  "low_pass_hz": 380.0,
+  "below_open_line_db": 3.0,
+  "gain_db": 3.4,
+  "open_line_dbfs_rms": -25.5
+ },
+ "start": "sample-continuous with v7/alt/under_the_crossing_continuous.wav (the cut's under-the-crossing), muffled from the first sample (the filter warmed over the 2 s before the cut)",
+ "join": {
+  "under_the_crossing_continuous_last_50ms_dbfs": -25.9,
+  "drowning_first_50ms_dbfs": -30.1,
+  "largest_step_at_the_cut": 0.01084
+ },
+ "dbfs_rms_per_second": [
+  -28.6,
+  -28.6,
+  -28.7,
+  -29.1,
+  -27.7,
+  -28.7,
+  -29.1,
+  -28.0,
+  -28.4,
+  -28.4,
+  -29.1,
+  -28.5,
+  -28.2,
+  -31.4,
+  -43.2
+ ],
+ "limit": "-1 dBFS (mix.py's limiter)",
+ "peak_dbfs": -20.2,
+ "rms_dbfs": -29.0,
+ "statement": "A montage, not a recording: nothing was recorded at the crossing. No new recordings; nothing pitched, looped or stretched. The line is synthesized, not recorded; its muffling under water is drawn."
+}

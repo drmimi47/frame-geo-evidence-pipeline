@@ -670,3 +670,26 @@ def test_a_line_with_no_crossing_scheme_gets_land_types_and_refuses_crossing_tow
     bad = {"name": "Z", "kv": 750, "towers": [_tower(0, 0, "portal", None), _tower(0, 400, "crossing", 2)]}
     with pytest.raises(ValueError, match="no crossing scheme"):
         towers.assign([bad], {})
+
+
+def test_a_track_with_no_end_runs_straight_down_the_axis_and_refuses_curve_keys():
+    xy, gap = _corridor()
+    v = {"fade_in_s": 1, "fade_out_s": 1, "flight": {"altitude_m": 70, "pitch_deg": -7, "lens_mm": 35, "speed_mps": 95},
+         "track": {"start_north_km": 8.5, "start": {"altitude_m": 300, "speed_mps": 45},
+                   "rise": {"from": {"north_km": 4.0}, "to": {"north_km": 3.0}, "altitude_m": [70, 320],
+                            "pitch_deg": [-7, -9]}},
+         "route": [{"north_km": 7.5, "speed_mps": 95, "altitude_m": 70}, {"north_km": 4.0, "speed_mps": 95},
+                   {"north_km": 3.0, "speed_mps": 95}]}
+    o = {**_OPEN, "variants": {"s": v}}
+    fr = camera.frames_track("s", o, xy, gap, 30)
+    c, d, _ = camera.axis(xy, gap)
+    pos = np.array([f["location"][:2] for f in fr])
+    head = np.array([-np.degrees(f["rotation"][2]) for f in fr]) % 360
+    assert np.abs((pos - c) @ np.array([-d[1], d[0]])).max() < 1.0      # never off the axis
+    assert head == pytest.approx((camera.heading_of(d) + 180) % 360, abs=0.01)   # never turning
+    z = np.array([f["location"][2] for f in fr])
+    assert z[-1] == pytest.approx(320 + o["ground_m"])                    # the lift
+    assert fr[-1].get("fade") == 1
+    bad = {**v, "route": v["route"] + [{"curve": 1.0, "speed_mps": 12}]}
+    with pytest.raises(ValueError, match="straight track"):
+        camera.frames_track("s", {**_OPEN, "variants": {"s": bad}}, xy, gap, 30)

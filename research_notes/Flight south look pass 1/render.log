@@ -1,0 +1,39 @@
+[ WARN:0@1.367] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 33550 (0x830e) encountered
+[ WARN:0@1.367] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 33922 (0x8482) encountered
+[ WARN:0@1.367] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 34735 (0x87af) encountered
+[ WARN:0@1.367] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 34736 (0x87b0) encountered
+[ WARN:0@1.367] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 34737 (0x87b1) encountered
+[ WARN:0@1.367] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 42112 (0xa480) encountered
+[ WARN:0@1.367] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 42113 (0xa481) encountered
+[ WARN:0@4.984] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 33550 (0x830e) encountered
+[ WARN:0@4.984] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 33922 (0x8482) encountered
+[ WARN:0@4.984] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 34735 (0x87af) encountered
+[ WARN:0@4.984] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 34736 (0x87b0) encountered
+[ WARN:0@4.984] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 34737 (0x87b1) encountered
+[ WARN:0@4.984] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 42112 (0xa480) encountered
+[ WARN:0@4.984] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 42113 (0xa481) encountered
+[ WARN:0@5.114] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 33550 (0x830e) encountered
+[ WARN:0@5.114] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 33922 (0x8482) encountered
+[ WARN:0@5.114] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 34735 (0x87af) encountered
+[ WARN:0@5.114] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 34736 (0x87b0) encountered
+[ WARN:0@5.114] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 34737 (0x87b1) encountered
+[ WARN:0@5.114] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 42112 (0xa480) encountered
+[ WARN:0@5.114] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 42113 (0xa481) encountered
+[ WARN:0@8.442] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 33550 (0x830e) encountered
+[ WARN:0@8.442] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 33922 (0x8482) encountered
+[ WARN:0@8.442] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 34735 (0x87af) encountered
+[ WARN:0@8.442] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 34736 (0x87b0) encountered
+[ WARN:0@8.442] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 34737 (0x87b1) encountered
+[ WARN:0@8.442] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 42112 (0xa480) encountered
+[ WARN:0@8.442] global grfmt_tiff.cpp:123 TIFF_Warning TIFFReadDirectory: Unknown field with tag 42113 (0xa481) encountered
+02:03:57 I Rendering south_look1: frames 1-4577
+/Users/patrickrodriguez/dev/sandbox/frame-geo-evidence-pipeline/src/image_evidence/satellite/scene3d/build.py:291: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True
+/Users/patrickrodriguez/dev/sandbox/frame-geo-evidence-pipeline/src/image_evidence/satellite/scene3d/build.py:637: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True
+/Users/patrickrodriguez/dev/sandbox/frame-geo-evidence-pipeline/src/image_evidence/satellite/scene3d/build.py:232: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat.use_nodes = True
+/Users/patrickrodriguez/dev/sandbox/frame-geo-evidence-pipeline/src/image_evidence/satellite/scene3d/build.py:1105: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  world.use_nodes = True
+  south_look1: 4577 frames in 17425 s → /Users/patrickrodriguez/dev/sandbox/frame-geo-evidence-pipeline/libraries/conductive-seam/satellite/networks/znpp/scenes/crossing3d/animatic/ZNPP-last-two-lines-3D-south-look1.mp4
+  /Users/patrickrodriguez/dev/sandbox/frame-geo-evidence-pipeline/libraries/conductive-seam/satellite/networks/znpp/scenes/crossing3d/animatic

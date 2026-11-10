@@ -1,0 +1,235 @@
+{
+ "title": "The plant's zones: the protection zone never sized, three zones with a distance",
+ "asked": "the user, 10 November 2026: 'please add these to the storyboard instead of the zo-zone in an animation with appropriate length', from the white stills (zones.json)",
+ "file": "zones_animation.mp4",
+ "sha256": "4f1ee74ec2b25a8118254a48b418acf0b918a50e4eb5f3c28dc2dc34163f49a1",
+ "fps": 30,
+ "size": [
+  1920,
+  1080
+ ],
+ "frames": 735,
+ "seconds": 24.5,
+ "sound": null,
+ "palette": {
+  "white": {
+   "dome": "#F0F7FF",
+   "paz": "#ECF0F4",
+   "upz": "#DCE4EC",
+   "obs": "#FADEB2",
+   "why": "IAEA near-white, Ukraine a pale amber (the first design)"
+  }
+ },
+ "timeline": {
+  "fade_in_s": [
+   0.0,
+   0.6
+  ],
+  "close_zoom": {
+   "from": 1.0,
+   "to": 1.05,
+   "s": [
+    0.0,
+    7.6
+   ]
+  },
+  "dissolve_s": [
+   7.6,
+   8.8
+  ],
+  "wide_zoom": {
+   "from": 1.2,
+   "to": 1.0,
+   "s": [
+    7.6,
+    20.0
+   ]
+  },
+  "dome": {
+   "in_s": [
+    1.0,
+    2.5
+   ],
+   "label_s": [
+    2.5,
+    3.3,
+    6.8,
+    7.4
+   ]
+  },
+  "zones": {
+   "paz": {
+    "band_s": [
+     9.0,
+     10.0,
+     13.6,
+     14.6
+    ],
+    "label_s": [
+     9.4,
+     10.2,
+     13.3,
+     13.9
+    ],
+    "label_bearing_deg": 150
+   },
+   "upz": {
+    "band_s": [
+     13.6,
+     14.6,
+     19.2,
+     20.2
+    ],
+    "label_s": [
+     14.3,
+     15.1,
+     18.9,
+     19.5
+    ],
+    "label_bearing_deg": 352
+   },
+   "obs": {
+    "band_s": [
+     19.2,
+     20.2,
+     null,
+     null
+    ],
+    "label_s": [
+     19.9,
+     20.7,
+     null,
+     null
+    ],
+    "label_bearing_deg": 302
+   }
+  },
+  "note": "each fade eased (cosine); a zone shown alone with its own label, a band fading out as the next fades in; no other text on the map"
+ },
+ "method": {
+  "mode": "render once, push afterwards (establish.py push)",
+  "render_size": [
+   2400,
+   1350
+  ],
+  "overscan": 1.25,
+  "render_s": {
+   "close": 48.44311809539795,
+   "wide": 57.46705102920532
+  },
+  "post_s": 180,
+  "total_s": 304,
+  "statement": "a drawing convention: the moves are zooms into one rendered still per camera (no parallax), the dissolve and the zones' fades mixes of rendered and drawn pictures; pixels only resampled or mixed, never generated or interpolated between frames"
+ },
+ "cameras": {
+  "close": {
+   "target": [
+    -60.0,
+    250.0,
+    20.0
+   ],
+   "heading": -40.0,
+   "pitch": -30.0,
+   "dist": 4200.0,
+   "lens": 30.0,
+   "why": "the shot's direction, closer on the plant, so the dome and its words read"
+  },
+  "wide": {
+   "target": [
+    -3.8,
+    151.2,
+    15.0
+   ],
+   "heading": -40.0,
+   "pitch": -45.0,
+   "dist": 42500.0,
+   "lens": 28.0,
+   "haze_visibility_km": 1500.0,
+   "why": "the whole 15 km ring on the ground, Nikopol and Marhanets at its edge, Enerhodar near the centre; as much of the 30 km ring as the frame holds"
+  }
+ },
+ "centre": {
+  "m": [
+   -3.8,
+   151.2
+  ],
+  "lonlat": [
+   34.587851,
+   47.509923
+  ],
+  "how": "the centre of the smallest circle round OSM way 28877213 (the plant's site), for the rings and the dome alike; the six units' centroid (OSM power=generator ways 1572378821-30) lies 233 m from it, well under the guidance's precision (3-5 km, 15-30 km)"
+ },
+ "dome": {
+  "footprint": "the smallest circle round OSM way 28877213, as the zoom-out's zone",
+  "radius_m": 824.9,
+  "height_m": 824.9,
+  "opacity": {
+   "max": 0.55,
+   "fades_to_nothing_at_height": "92% of the radius",
+   "height_gamma": 1.3,
+   "ground_soft_m": 200.0,
+   "foot_m": 25.0,
+   "square_on": 0.38,
+   "obliqueness_power": 2.0,
+   "rim": 0.55
+  },
+  "label": [
+   "IAEA protection zone",
+   "proposed 6 Sep 2022, never agreed",
+   "no size published: “limited to the perimeter and the plant itself”",
+   "drawn on the plant’s site: its shape and height are ours"
+  ],
+  "statement": "drawn: no size was ever published (Grossi: 'limited to the perimeter and the plant itself'); its shape and height are the film's; it fades to nothing toward its top, so it never closes: it was never agreed"
+ },
+ "rings": {
+  "paz": {
+   "band": [
+    3000,
+    5000
+   ],
+   "fill": 0.14,
+   "edge": 0.8,
+   "label": "Precautionary action zone  ·  out to 3–5 km  ·  IAEA",
+   "label_at_deg": 150,
+   "label_r": 5300,
+   "source": "IAEA, EPR-NPP Public Protective Actions (2013), Table 3: suggested maximum radius"
+  },
+  "upz": {
+   "band": [
+    15000,
+    30000
+   ],
+   "fill": 0.13,
+   "edge": 0.55,
+   "outer": 0.3,
+   "fade_out": true,
+   "label": "Urgent protective action planning zone  ·  out to 15–30 km  ·  IAEA",
+   "label_at_deg": 352,
+   "label_r": 14300,
+   "source": "IAEA, EPR-NPP Public Protective Actions (2013), Table 3: suggested maximum radius"
+  },
+  "obs": {
+   "ring": 30000,
+   "dash_m": 900,
+   "edge": 0.9,
+   "label": "Observation zone  ·  30 km  ·  Ukraine",
+   "label_at_deg": 302,
+   "label_r": 29000,
+   "source": "Ukrainian norms as reported; Ukrhydromet's daily radiological bulletin draws 30 km dashed round each plant (secondary sources, as the report says)"
+  }
+ },
+ "unsized": {
+  "facts": [
+   "the UN Secretary-General's 'demilitarised perimeter' (August 2022)",
+   "Additional Protocol I, Art. 56(5): 'the vicinity' (undefined)",
+   "seven IAEA-brokered repair truces (2025-26): no distances published"
+  ],
+  "status": "research only: no size, so not drawn (the user, 10 November 2026)"
+ },
+ "note": "planning distances, not barriers: said here and in the README; no foot line on these previews (the user: no other text while the zones are shown one by one)",
+ "far_plain": "beyond the land's box (17 km W, 23 km E, 19.5 km S, 28.5 km N of the plant) the ground is the look's far plain, a flat drawn ground in the land's mean colour; the rings run on over it",
+ "depth": "Blender's depth pass is half float underneath: past 65,504 m the rays are met with the terrain (zones.py terrain_z)",
+ "report": "reports/ZNPP as a military shield.md",
+ "stills": "zones.json (white)",
+ "safety": "no tower, substation, repair site or firing position marked; no claimed firing region"
+}

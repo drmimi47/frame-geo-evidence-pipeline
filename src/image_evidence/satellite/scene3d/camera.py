@@ -260,19 +260,27 @@ def frames_track(variant: str, o: dict[str, Any], flight_xy: np.ndarray, gaps: n
     z0 = float(o["ground_m"])
     c, d, _ = axis(flight_xy, gaps)
     p0 = on_axis(c, d, float(t["start_north_km"]) * 1000)
-    a = on_axis(c, d, float(t["leave_north_km"]) * 1000)
-    e = np.asarray(t["end_xy_m"], float)
-    h = math.radians(float(t["end_heading_deg"]))
-    u = np.array([math.sin(h), math.cos(h)])
-    span = float(np.hypot(*(e - a)))
-    curve = hermite5(a, e, -d * span, u * span)
-    straight = float(np.hypot(*(a - p0)))
-    track = Path(np.vstack([p0, curve, e + u * 3000]))
-    s_curve = Path(np.vstack([a, curve[1:]])).length
+    if t.get("end_xy_m") is None:
+        # straight down the axis to the end (look pass 3, the user, 7 November 2026: ending over the south bank, the
+        # curve toward the units kept for a separate shot): no curve, the keys by km north only
+        straight, s_curve = math.inf, 0.0
+        track = Path(np.vstack([p0, p0 - d * 40000.0]))
+    else:
+        a = on_axis(c, d, float(t["leave_north_km"]) * 1000)
+        e = np.asarray(t["end_xy_m"], float)
+        h = math.radians(float(t["end_heading_deg"]))
+        u = np.array([math.sin(h), math.cos(h)])
+        span = float(np.hypot(*(e - a)))
+        curve = hermite5(a, e, -d * span, u * span)
+        straight = float(np.hypot(*(a - p0)))
+        track = Path(np.vstack([p0, curve, e + u * 3000]))
+        s_curve = Path(np.vstack([a, curve[1:]])).length
 
     def s_of(k):
         if "north_km" in k:
             return (float(t["start_north_km"]) - float(k["north_km"])) * 1000 / d[1]
+        if math.isinf(straight) and ("curve" in k or "beyond_m" in k):
+            raise ValueError(f"{variant}: a straight track has no curve: key {k} by `north_km` only")
         if "curve" in k:
             return straight + float(k["curve"]) * s_curve
         if "beyond_m" in k:

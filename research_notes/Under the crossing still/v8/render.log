@@ -1,0 +1,890 @@
+Sun Nov  8 02:44:51 EST 2026
+passes 25..402
+PREPARED 9.7
+FRAME 25 {"state_s": 0.02, "static_s": 17.76, "static_scale": 2, "pos_s": 1.53, "matte_s": 21.09, "total_s": 40.4}
+FRAME 26 {"state_s": 0.02, "static_s": 17.83, "static_scale": 2, "pos_s": 1.4, "total_s": 19.24}
+FRAME 27 {"state_s": 0.02, "static_s": 18.38, "static_scale": 2, "pos_s": 1.43, "total_s": 19.82}
+FRAME 28 {"state_s": 0.02, "static_s": 18.29, "static_scale": 2, "pos_s": 1.4, "total_s": 19.71}
+FRAME 29 {"state_s": 0.02, "static_s": 18.41, "static_scale": 2, "pos_s": 1.31, "total_s": 19.74}
+FRAME 30 {"state_s": 0.02, "static_s": 18.37, "static_scale": 2, "pos_s": 1.39, "matte_s": 21.03, "total_s": 40.8}
+FRAME 31 {"state_s": 0.02, "static_s": 17.77, "static_scale": 2, "pos_s": 1.45, "total_s": 19.24}
+FRAME 32 {"state_s": 0.02, "static_s": 18.32, "static_scale": 2, "pos_s": 1.35, "total_s": 19.69}
+FRAME 33 {"state_s": 0.02, "static_s": 18.35, "static_scale": 2, "pos_s": 1.36, "total_s": 19.73}
+FRAME 34 {"state_s": 0.02, "static_s": 18.28, "static_scale": 2, "pos_s": 1.37, "total_s": 19.67}
+FRAME 35 {"state_s": 0.02, "static_s": 18.39, "static_scale": 2, "pos_s": 1.36, "matte_s": 20.9, "total_s": 40.67}
+FRAME 36 {"state_s": 0.02, "static_s": 17.8, "static_scale": 2, "pos_s": 1.36, "total_s": 19.18}
+FRAME 37 {"state_s": 0.02, "static_s": 18.28, "static_scale": 2, "pos_s": 1.33, "total_s": 19.63}
+FRAME 38 {"state_s": 0.02, "static_s": 18.37, "static_scale": 2, "pos_s": 1.36, "total_s": 19.74}
+FRAME 39 {"state_s": 0.02, "static_s": 18.13, "static_scale": 2, "pos_s": 1.3, "total_s": 19.44}
+FRAME 40 {"state_s": 0.02, "static_s": 18.23, "static_scale": 2, "pos_s": 1.39, "matte_s": 20.93, "total_s": 40.56}
+FRAME 41 {"state_s": 0.02, "static_s": 17.76, "static_scale": 2, "pos_s": 1.28, "total_s": 19.05}
+FRAME 42 {"state_s": 0.02, "static_s": 18.26, "static_scale": 2, "pos_s": 1.32, "total_s": 19.6}
+FRAME 43 {"state_s": 0.02, "static_s": 18.36, "static_scale": 2, "pos_s": 1.49, "total_s": 19.88}
+FRAME 44 {"state_s": 0.02, "static_s": 18.5, "static_scale": 2, "pos_s": 1.6, "total_s": 20.12}
+FRAME 45 {"state_s": 0.02, "static_s": 18.41, "static_scale": 2, "pos_s": 1.45, "matte_s": 20.96, "total_s": 40.84}
+FRAME 46 {"state_s": 0.02, "static_s": 17.79, "static_scale": 2, "pos_s": 1.31, "total_s": 19.11}
+FRAME 47 {"state_s": 0.02, "static_s": 18.39, "static_scale": 2, "pos_s": 1.35, "total_s": 19.76}
+FRAME 48 {"state_s": 0.02, "static_s": 18.33, "static_scale": 2, "pos_s": 1.39, "total_s": 19.74}
+FRAME 49 {"state_s": 0.02, "static_s": 18.3, "static_scale": 2, "pos_s": 1.38, "total_s": 19.7}
+FRAME 50 {"state_s": 0.02, "static_s": 18.29, "static_scale": 2, "pos_s": 1.33, "matte_s": 20.91, "total_s": 40.56}
+FRAME 51 {"state_s": 0.02, "static_s": 17.78, "static_scale": 2, "pos_s": 1.36, "total_s": 19.17}
+FRAME 52 {"state_s": 0.02, "static_s": 18.35, "static_scale": 2, "pos_s": 1.31, "total_s": 19.68}
+FRAME 53 {"state_s": 0.02, "static_s": 18.31, "static_scale": 2, "pos_s": 1.38, "total_s": 19.71}
+FRAME 54 {"state_s": 0.02, "static_s": 18.15, "static_scale": 2, "pos_s": 1.31, "total_s": 19.48}
+FRAME 55 {"state_s": 0.02, "static_s": 18.36, "static_scale": 2, "pos_s": 1.34, "matte_s": 20.93, "total_s": 40.65}
+FRAME 56 {"state_s": 0.02, "static_s": 17.72, "static_scale": 2, "pos_s": 1.28, "total_s": 19.02}
+FRAME 57 {"state_s": 0.02, "static_s": 18.33, "static_scale": 2, "pos_s": 1.3, "total_s": 19.65}
+FRAME 58 {"state_s": 0.02, "static_s": 18.33, "static_scale": 2, "pos_s": 1.41, "total_s": 19.75}
+FRAME 59 {"state_s": 0.02, "static_s": 18.18, "static_scale": 2, "pos_s": 1.44, "total_s": 19.64}
+FRAME 60 {"state_s": 0.02, "static_s": 18.44, "static_scale": 2, "pos_s": 1.74, "matte_s": 21.23, "total_s": 41.42}
+FRAME 61 {"state_s": 0.02, "static_s": 17.96, "static_scale": 2, "pos_s": 1.42, "total_s": 19.4}
+FRAME 62 {"state_s": 0.02, "static_s": 18.47, "static_scale": 2, "pos_s": 1.36, "total_s": 19.85}
+FRAME 63 {"state_s": 0.02, "static_s": 18.31, "static_scale": 2, "pos_s": 1.34, "total_s": 19.66}
+FRAME 64 {"state_s": 0.02, "static_s": 18.16, "static_scale": 2, "pos_s": 1.34, "total_s": 19.52}
+FRAME 65 {"state_s": 0.02, "static_s": 18.46, "static_scale": 2, "pos_s": 1.39, "matte_s": 20.91, "total_s": 40.77}
+FRAME 66 {"state_s": 0.02, "static_s": 17.88, "static_scale": 2, "pos_s": 1.37, "total_s": 19.27}
+FRAME 67 {"state_s": 0.02, "static_s": 18.27, "static_scale": 2, "pos_s": 1.37, "total_s": 19.66}
+FRAME 68 {"state_s": 0.02, "static_s": 18.31, "static_scale": 2, "pos_s": 1.33, "total_s": 19.66}
+FRAME 69 {"state_s": 0.02, "static_s": 18.55, "static_scale": 2, "pos_s": 1.56, "total_s": 20.13}
+FRAME 70 {"state_s": 0.02, "static_s": 18.61, "static_scale": 2, "pos_s": 1.53, "matte_s": 20.94, "total_s": 41.11}
+FRAME 71 {"state_s": 0.02, "static_s": 17.74, "static_scale": 2, "pos_s": 1.4, "total_s": 19.16}
+FRAME 72 {"state_s": 0.02, "static_s": 18.19, "static_scale": 2, "pos_s": 1.33, "total_s": 19.54}
+FRAME 73 {"state_s": 0.02, "static_s": 18.26, "static_scale": 2, "pos_s": 1.59, "total_s": 19.86}
+FRAME 74 {"state_s": 0.03, "static_s": 22.15, "static_scale": 2, "pos_s": 1.72, "total_s": 23.89}
+FRAME 75 {"state_s": 0.03, "static_s": 21.07, "static_scale": 2, "pos_s": 1.59, "matte_s": 22.27, "total_s": 44.96}
+FRAME 76 {"state_s": 0.03, "static_s": 20.01, "static_scale": 2, "pos_s": 1.61, "total_s": 21.65}
+FRAME 77 {"state_s": 0.02, "static_s": 19.29, "static_scale": 2, "pos_s": 1.67, "total_s": 20.98}
+FRAME 78 {"state_s": 0.02, "static_s": 19.11, "static_scale": 2, "pos_s": 1.6, "total_s": 20.74}
+FRAME 79 {"state_s": 0.02, "static_s": 19.18, "static_scale": 2, "pos_s": 1.56, "total_s": 20.76}
+FRAME 80 {"state_s": 0.02, "static_s": 19.06, "static_scale": 2, "pos_s": 1.53, "matte_s": 21.55, "total_s": 42.17}
+FRAME 81 {"state_s": 0.02, "static_s": 18.11, "static_scale": 2, "pos_s": 1.44, "total_s": 19.57}
+FRAME 82 {"state_s": 0.02, "static_s": 19.04, "static_scale": 2, "pos_s": 1.62, "total_s": 20.68}
+FRAME 83 {"state_s": 0.02, "static_s": 19.15, "static_scale": 2, "pos_s": 1.55, "total_s": 20.72}
+FRAME 84 {"state_s": 0.02, "static_s": 23.24, "static_scale": 2, "pos_s": 2.32, "total_s": 25.59}
+FRAME 85 {"state_s": 0.03, "static_s": 20.54, "static_scale": 2, "pos_s": 1.93, "matte_s": 24.72, "total_s": 47.22}
+FRAME 86 {"state_s": 0.02, "static_s": 20.49, "static_scale": 2, "pos_s": 1.88, "total_s": 22.39}
+FRAME 87 {"state_s": 0.02, "static_s": 20.04, "static_scale": 2, "pos_s": 1.76, "total_s": 21.83}
+FRAME 88 {"state_s": 0.02, "static_s": 20.2, "static_scale": 2, "pos_s": 1.91, "total_s": 22.13}
+FRAME 89 {"state_s": 0.03, "static_s": 21.32, "static_scale": 2, "pos_s": 1.95, "total_s": 23.3}
+FRAME 90 {"state_s": 0.02, "static_s": 22.18, "static_scale": 2, "pos_s": 2.09, "matte_s": 23.3, "total_s": 47.6}
+FRAME 91 {"state_s": 0.02, "static_s": 20.29, "static_scale": 2, "pos_s": 1.78, "total_s": 22.08}
+FRAME 92 {"state_s": 0.02, "static_s": 19.39, "static_scale": 2, "pos_s": 1.6, "total_s": 21.02}
+FRAME 93 {"state_s": 0.02, "static_s": 18.61, "static_scale": 2, "pos_s": 1.38, "total_s": 20.02}
+FRAME 94 {"state_s": 0.02, "static_s": 18.19, "static_scale": 2, "pos_s": 1.31, "total_s": 19.52}
+FRAME 95 {"state_s": 0.02, "static_s": 18.23, "static_scale": 2, "pos_s": 1.39, "matte_s": 20.86, "total_s": 40.5}
+FRAME 96 {"state_s": 0.02, "static_s": 17.61, "static_scale": 2, "pos_s": 1.28, "total_s": 18.91}
+FRAME 97 {"state_s": 0.02, "static_s": 18.1, "static_scale": 2, "pos_s": 1.38, "total_s": 19.5}
+FRAME 98 {"state_s": 0.02, "static_s": 18.35, "static_scale": 2, "pos_s": 1.33, "total_s": 19.7}
+FRAME 99 {"state_s": 0.02, "static_s": 18.0, "static_scale": 2, "pos_s": 1.31, "total_s": 19.33}
+FRAME 100 {"state_s": 0.02, "static_s": 18.3, "static_scale": 2, "pos_s": 1.41, "matte_s": 20.9, "total_s": 40.62}
+FRAME 101 {"state_s": 0.02, "static_s": 17.69, "static_scale": 2, "pos_s": 1.49, "total_s": 19.19}
+FRAME 102 {"state_s": 0.02, "static_s": 18.37, "static_scale": 2, "pos_s": 1.46, "total_s": 19.84}
+FRAME 103 {"state_s": 0.02, "static_s": 18.18, "static_scale": 2, "pos_s": 1.42, "total_s": 19.61}
+FRAME 104 {"state_s": 0.02, "static_s": 18.31, "static_scale": 2, "pos_s": 1.35, "total_s": 19.68}
+FRAME 105 {"state_s": 0.02, "static_s": 18.26, "static_scale": 2, "pos_s": 1.31, "matte_s": 20.8, "total_s": 40.39}
+FRAME 106 {"state_s": 0.02, "static_s": 17.65, "static_scale": 2, "pos_s": 1.33, "total_s": 18.99}
+FRAME 107 {"state_s": 0.02, "static_s": 18.25, "static_scale": 2, "pos_s": 1.43, "total_s": 19.69}
+FRAME 108 {"state_s": 0.02, "static_s": 18.12, "static_scale": 2, "pos_s": 1.3, "total_s": 19.44}
+FRAME 109 {"state_s": 0.02, "static_s": 18.3, "static_scale": 2, "pos_s": 1.47, "total_s": 19.79}
+FRAME 110 {"state_s": 0.02, "static_s": 18.33, "static_scale": 2, "pos_s": 1.34, "matte_s": 20.84, "total_s": 40.54}
+FRAME 111 {"state_s": 0.02, "static_s": 17.82, "static_scale": 2, "pos_s": 1.39, "total_s": 19.22}
+FRAME 112 {"state_s": 0.02, "static_s": 18.25, "static_scale": 2, "pos_s": 1.35, "total_s": 19.62}
+FRAME 113 {"state_s": 0.02, "static_s": 18.24, "static_scale": 2, "pos_s": 1.42, "total_s": 19.68}
+FRAME 114 {"state_s": 0.02, "static_s": 18.14, "static_scale": 2, "pos_s": 1.31, "total_s": 19.47}
+FRAME 115 {"state_s": 0.02, "static_s": 18.5, "static_scale": 2, "pos_s": 1.37, "matte_s": 20.85, "total_s": 40.73}
+FRAME 116 {"state_s": 0.02, "static_s": 17.57, "static_scale": 2, "pos_s": 1.33, "total_s": 18.92}
+FRAME 117 {"state_s": 0.02, "static_s": 18.29, "static_scale": 2, "pos_s": 1.36, "total_s": 19.67}
+FRAME 118 {"state_s": 0.02, "static_s": 18.32, "static_scale": 2, "pos_s": 1.39, "total_s": 19.73}
+FRAME 119 {"state_s": 0.02, "static_s": 18.19, "static_scale": 2, "pos_s": 1.29, "total_s": 19.5}
+FRAME 120 {"state_s": 0.02, "static_s": 18.25, "static_scale": 2, "pos_s": 1.32, "matte_s": 20.85, "total_s": 40.44}
+FRAME 121 {"state_s": 0.02, "static_s": 17.71, "static_scale": 2, "pos_s": 1.25, "total_s": 18.97}
+FRAME 122 {"state_s": 0.02, "static_s": 18.31, "static_scale": 2, "pos_s": 1.37, "total_s": 19.7}
+FRAME 123 {"state_s": 0.02, "static_s": 18.19, "static_scale": 2, "pos_s": 1.35, "total_s": 19.56}
+FRAME 124 {"state_s": 0.02, "static_s": 18.29, "static_scale": 2, "pos_s": 1.3, "total_s": 19.61}
+FRAME 125 {"state_s": 0.02, "static_s": 18.23, "static_scale": 2, "pos_s": 1.39, "matte_s": 20.92, "total_s": 40.56}
+FRAME 126 {"state_s": 0.02, "static_s": 17.89, "static_scale": 2, "pos_s": 1.43, "total_s": 19.34}
+FRAME 127 {"state_s": 0.02, "static_s": 18.35, "static_scale": 2, "pos_s": 1.45, "total_s": 19.81}
+FRAME 128 {"state_s": 0.02, "static_s": 18.34, "static_scale": 2, "pos_s": 1.5, "total_s": 19.85}
+FRAME 129 {"state_s": 0.02, "static_s": 18.38, "static_scale": 2, "pos_s": 1.37, "total_s": 19.77}
+FRAME 130 {"state_s": 0.02, "static_s": 18.15, "static_scale": 2, "pos_s": 1.37, "matte_s": 20.8, "total_s": 40.34}
+FRAME 131 {"state_s": 0.02, "static_s": 17.77, "static_scale": 2, "pos_s": 1.26, "total_s": 19.04}
+FRAME 132 {"state_s": 0.02, "static_s": 18.29, "static_scale": 2, "pos_s": 1.29, "total_s": 19.61}
+FRAME 133 {"state_s": 0.02, "static_s": 18.36, "static_scale": 2, "pos_s": 1.36, "total_s": 19.73}
+FRAME 134 {"state_s": 0.02, "static_s": 18.18, "static_scale": 2, "pos_s": 1.29, "total_s": 19.49}
+FRAME 135 {"state_s": 0.02, "static_s": 18.4, "static_scale": 2, "pos_s": 1.36, "matte_s": 20.74, "total_s": 40.52}
+FRAME 136 {"state_s": 0.02, "static_s": 17.82, "static_scale": 2, "pos_s": 1.25, "total_s": 19.09}
+FRAME 137 {"state_s": 0.02, "static_s": 18.41, "static_scale": 2, "pos_s": 1.38, "total_s": 19.81}
+FRAME 138 {"state_s": 0.02, "static_s": 18.27, "static_scale": 2, "pos_s": 1.32, "total_s": 19.61}
+FRAME 139 {"state_s": 0.02, "static_s": 18.36, "static_scale": 2, "pos_s": 1.29, "total_s": 19.66}
+FRAME 140 {"state_s": 0.02, "static_s": 14.47, "static_scale": 1, "pos_s": 1.35, "matte_s": 20.78, "total_s": 36.62}
+FRAME 141 {"state_s": 0.02, "static_s": 13.98, "static_scale": 1, "pos_s": 1.22, "total_s": 15.22}
+FRAME 142 {"state_s": 0.02, "static_s": 14.43, "static_scale": 1, "pos_s": 1.37, "total_s": 15.82}
+FRAME 143 {"state_s": 0.02, "static_s": 14.49, "static_scale": 1, "pos_s": 1.32, "total_s": 15.83}
+FRAME 144 {"state_s": 0.02, "static_s": 14.45, "static_scale": 1, "pos_s": 1.28, "total_s": 15.75}
+FRAME 145 {"state_s": 0.02, "static_s": 14.35, "static_scale": 1, "pos_s": 1.23, "matte_s": 20.77, "total_s": 36.37}
+FRAME 146 {"state_s": 0.02, "static_s": 14.02, "static_scale": 1, "pos_s": 1.24, "total_s": 15.28}
+FRAME 147 {"state_s": 0.02, "static_s": 14.47, "static_scale": 1, "pos_s": 1.34, "total_s": 15.83}
+FRAME 148 {"state_s": 0.02, "static_s": 14.24, "static_scale": 1, "pos_s": 1.22, "total_s": 15.47}
+FRAME 149 {"state_s": 0.02, "static_s": 14.34, "static_scale": 1, "pos_s": 1.29, "total_s": 15.65}
+FRAME 150 {"state_s": 0.02, "static_s": 14.62, "static_scale": 1, "pos_s": 1.31, "matte_s": 20.84, "total_s": 36.78}
+FRAME 151 {"state_s": 0.02, "static_s": 14.2, "static_scale": 1, "pos_s": 1.78, "total_s": 15.99}
+FRAME 152 {"state_s": 0.02, "static_s": 15.14, "static_scale": 1, "pos_s": 1.39, "total_s": 16.55}
+FRAME 153 {"state_s": 0.02, "static_s": 14.21, "static_scale": 1, "pos_s": 1.17, "total_s": 15.39}
+FRAME 154 {"state_s": 0.02, "static_s": 14.28, "static_scale": 1, "pos_s": 1.17, "total_s": 15.47}
+FRAME 155 {"state_s": 0.02, "static_s": 14.33, "static_scale": 1, "pos_s": 1.19, "matte_s": 20.84, "total_s": 36.37}
+FRAME 156 {"state_s": 0.02, "static_s": 14.04, "static_scale": 1, "pos_s": 1.19, "total_s": 15.25}
+FRAME 157 {"state_s": 0.02, "static_s": 14.52, "static_scale": 1, "pos_s": 1.18, "total_s": 15.72}
+FRAME 158 {"state_s": 0.02, "static_s": 14.28, "static_scale": 1, "pos_s": 1.19, "total_s": 15.49}
+FRAME 159 {"state_s": 0.02, "static_s": 14.32, "static_scale": 1, "pos_s": 1.18, "total_s": 15.52}
+FRAME 160 {"state_s": 0.02, "static_s": 14.37, "static_scale": 1, "pos_s": 1.25, "matte_s": 20.83, "total_s": 36.47}
+FRAME 161 {"state_s": 0.02, "static_s": 14.06, "static_scale": 1, "pos_s": 1.18, "total_s": 15.26}
+FRAME 162 {"state_s": 0.02, "static_s": 14.35, "static_scale": 1, "pos_s": 1.2, "total_s": 15.57}
+FRAME 163 {"state_s": 0.02, "static_s": 14.38, "static_scale": 1, "pos_s": 1.21, "total_s": 15.62}
+FRAME 164 {"state_s": 0.02, "static_s": 14.34, "static_scale": 1, "pos_s": 1.19, "total_s": 15.55}
+FRAME 165 {"state_s": 0.02, "static_s": 14.45, "static_scale": 1, "pos_s": 1.18, "matte_s": 20.94, "total_s": 36.58}
+FRAME 166 {"state_s": 0.02, "static_s": 14.14, "static_scale": 1, "pos_s": 1.16, "total_s": 15.31}
+FRAME 167 {"state_s": 0.02, "static_s": 14.4, "static_scale": 1, "pos_s": 1.23, "total_s": 15.65}
+FRAME 168 {"state_s": 0.02, "static_s": 14.47, "static_scale": 1, "pos_s": 1.21, "total_s": 15.7}
+FRAME 169 {"state_s": 0.02, "static_s": 14.37, "static_scale": 1, "pos_s": 1.2, "total_s": 15.58}
+FRAME 170 {"state_s": 0.02, "static_s": 14.38, "static_scale": 1, "pos_s": 1.22, "matte_s": 20.87, "total_s": 36.49}
+FRAME 171 {"state_s": 0.02, "static_s": 14.12, "static_scale": 1, "pos_s": 1.19, "total_s": 15.33}
+FRAME 172 {"state_s": 0.02, "static_s": 14.49, "static_scale": 1, "pos_s": 1.2, "total_s": 15.71}
+FRAME 173 {"state_s": 0.02, "static_s": 14.51, "static_scale": 1, "pos_s": 1.17, "total_s": 15.7}
+FRAME 174 {"state_s": 0.02, "static_s": 14.59, "static_scale": 1, "pos_s": 1.18, "total_s": 15.79}
+FRAME 175 {"state_s": 0.02, "static_s": 14.52, "static_scale": 1, "pos_s": 1.19, "matte_s": 20.93, "total_s": 36.66}
+FRAME 176 {"state_s": 0.02, "static_s": 14.2, "static_scale": 1, "pos_s": 1.17, "total_s": 15.39}
+FRAME 177 {"state_s": 0.02, "static_s": 14.51, "static_scale": 1, "pos_s": 1.17, "total_s": 15.7}
+FRAME 178 {"state_s": 0.02, "static_s": 14.5, "static_scale": 1, "pos_s": 1.16, "total_s": 15.68}
+FRAME 179 {"state_s": 0.02, "static_s": 14.52, "static_scale": 1, "pos_s": 1.18, "total_s": 15.72}
+FRAME 180 {"state_s": 0.02, "static_s": 14.57, "static_scale": 1, "pos_s": 1.21, "matte_s": 20.98, "total_s": 36.78}
+FRAME 181 {"state_s": 0.02, "static_s": 14.27, "static_scale": 1, "pos_s": 1.2, "total_s": 15.48}
+FRAME 182 {"state_s": 0.02, "static_s": 14.57, "static_scale": 1, "pos_s": 1.19, "total_s": 15.78}
+FRAME 183 {"state_s": 0.02, "static_s": 14.51, "static_scale": 1, "pos_s": 1.22, "total_s": 15.74}
+FRAME 184 {"state_s": 0.02, "static_s": 14.56, "static_scale": 1, "pos_s": 1.2, "total_s": 15.77}
+FRAME 185 {"state_s": 0.02, "static_s": 14.59, "static_scale": 1, "pos_s": 1.19, "matte_s": 21.11, "total_s": 36.9}
+FRAME 186 {"state_s": 0.02, "static_s": 14.23, "static_scale": 1, "pos_s": 1.17, "total_s": 15.42}
+FRAME 187 {"state_s": 0.02, "static_s": 14.66, "static_scale": 1, "pos_s": 1.22, "total_s": 15.89}
+FRAME 188 {"state_s": 0.02, "static_s": 14.69, "static_scale": 1, "pos_s": 1.2, "total_s": 15.9}
+FRAME 189 {"state_s": 0.02, "static_s": 14.51, "static_scale": 1, "pos_s": 1.18, "total_s": 15.7}
+FRAME 190 {"state_s": 0.02, "static_s": 14.6, "static_scale": 1, "pos_s": 1.2, "matte_s": 20.98, "total_s": 36.8}
+FRAME 191 {"state_s": 0.02, "static_s": 14.33, "static_scale": 1, "pos_s": 1.16, "total_s": 15.51}
+FRAME 192 {"state_s": 0.02, "static_s": 14.62, "static_scale": 1, "pos_s": 1.21, "total_s": 15.85}
+FRAME 193 {"state_s": 0.02, "static_s": 14.61, "static_scale": 1, "pos_s": 1.24, "total_s": 15.88}
+FRAME 194 {"state_s": 0.02, "static_s": 14.54, "static_scale": 1, "pos_s": 1.23, "total_s": 15.78}
+FRAME 195 {"state_s": 0.02, "static_s": 14.74, "static_scale": 1, "pos_s": 1.16, "matte_s": 20.94, "total_s": 36.86}
+FRAME 196 {"state_s": 0.02, "static_s": 14.3, "static_scale": 1, "pos_s": 1.18, "total_s": 15.51}
+FRAME 197 {"state_s": 0.02, "static_s": 14.69, "static_scale": 1, "pos_s": 1.2, "total_s": 15.91}
+FRAME 198 {"state_s": 0.02, "static_s": 14.61, "static_scale": 1, "pos_s": 1.18, "total_s": 15.81}
+FRAME 199 {"state_s": 0.02, "static_s": 14.6, "static_scale": 1, "pos_s": 1.2, "total_s": 15.82}
+FRAME 200 {"state_s": 0.02, "static_s": 14.63, "static_scale": 1, "pos_s": 1.19, "matte_s": 20.89, "total_s": 36.73}
+FRAME 201 {"state_s": 0.02, "static_s": 14.38, "static_scale": 1, "pos_s": 1.17, "total_s": 15.57}
+FRAME 202 {"state_s": 0.02, "static_s": 14.74, "static_scale": 1, "pos_s": 1.19, "total_s": 15.96}
+FRAME 203 {"state_s": 0.02, "static_s": 14.74, "static_scale": 1, "pos_s": 1.21, "total_s": 15.97}
+FRAME 204 {"state_s": 0.02, "static_s": 14.65, "static_scale": 1, "pos_s": 1.21, "total_s": 15.88}
+FRAME 205 {"state_s": 0.02, "static_s": 14.71, "static_scale": 1, "pos_s": 1.2, "matte_s": 20.85, "total_s": 36.78}
+FRAME 206 {"state_s": 0.02, "static_s": 14.43, "static_scale": 1, "pos_s": 1.16, "total_s": 15.61}
+FRAME 207 {"state_s": 0.02, "static_s": 14.77, "static_scale": 1, "pos_s": 1.17, "total_s": 15.96}
+FRAME 208 {"state_s": 0.02, "static_s": 14.75, "static_scale": 1, "pos_s": 1.23, "total_s": 16.0}
+FRAME 209 {"state_s": 0.02, "static_s": 14.68, "static_scale": 1, "pos_s": 1.22, "total_s": 15.92}
+FRAME 210 {"state_s": 0.02, "static_s": 14.7, "static_scale": 1, "pos_s": 1.25, "matte_s": 20.8, "total_s": 36.77}
+FRAME 211 {"state_s": 0.02, "static_s": 14.35, "static_scale": 1, "pos_s": 1.18, "total_s": 15.54}
+FRAME 212 {"state_s": 0.02, "static_s": 14.75, "static_scale": 1, "pos_s": 1.18, "total_s": 15.95}
+FRAME 213 {"state_s": 0.02, "static_s": 14.72, "static_scale": 1, "pos_s": 1.25, "total_s": 15.98}
+FRAME 214 {"state_s": 0.02, "static_s": 14.78, "static_scale": 1, "pos_s": 1.22, "total_s": 16.02}
+FRAME 215 {"state_s": 0.02, "static_s": 14.76, "static_scale": 1, "pos_s": 1.17, "matte_s": 20.95, "total_s": 36.89}
+FRAME 216 {"state_s": 0.02, "static_s": 14.43, "static_scale": 1, "pos_s": 1.17, "total_s": 15.62}
+FRAME 217 {"state_s": 0.02, "static_s": 14.79, "static_scale": 1, "pos_s": 1.22, "total_s": 16.04}
+FRAME 218 {"state_s": 0.02, "static_s": 14.66, "static_scale": 1, "pos_s": 1.19, "total_s": 15.86}
+FRAME 219 {"state_s": 0.02, "static_s": 14.79, "static_scale": 1, "pos_s": 1.26, "total_s": 16.08}
+FRAME 220 {"state_s": 0.02, "static_s": 14.82, "static_scale": 1, "pos_s": 1.26, "matte_s": 20.89, "total_s": 37.0}
+FRAME 221 {"state_s": 0.02, "static_s": 14.45, "static_scale": 1, "pos_s": 1.18, "total_s": 15.65}
+FRAME 222 {"state_s": 0.02, "static_s": 14.71, "static_scale": 1, "pos_s": 1.19, "total_s": 15.93}
+FRAME 223 {"state_s": 0.02, "static_s": 14.76, "static_scale": 1, "pos_s": 1.16, "total_s": 15.94}
+FRAME 224 {"state_s": 0.02, "static_s": 14.85, "static_scale": 1, "pos_s": 1.19, "total_s": 16.06}
+FRAME 225 {"state_s": 0.02, "static_s": 14.77, "static_scale": 1, "pos_s": 1.24, "matte_s": 20.89, "total_s": 36.92}
+FRAME 226 {"state_s": 0.02, "static_s": 14.42, "static_scale": 1, "pos_s": 1.19, "total_s": 15.63}
+FRAME 227 {"state_s": 0.02, "static_s": 14.86, "static_scale": 1, "pos_s": 1.3, "total_s": 16.18}
+FRAME 228 {"state_s": 0.02, "static_s": 14.68, "static_scale": 1, "pos_s": 1.16, "total_s": 15.87}
+FRAME 229 {"state_s": 0.02, "static_s": 14.79, "static_scale": 1, "pos_s": 1.15, "total_s": 15.96}
+FRAME 230 {"state_s": 0.02, "static_s": 14.71, "static_scale": 1, "pos_s": 1.17, "matte_s": 20.87, "total_s": 36.76}
+FRAME 231 {"state_s": 0.02, "static_s": 14.55, "static_scale": 1, "pos_s": 1.17, "total_s": 15.74}
+FRAME 232 {"state_s": 0.02, "static_s": 14.91, "static_scale": 1, "pos_s": 1.21, "total_s": 16.14}
+FRAME 233 {"state_s": 0.02, "static_s": 14.82, "static_scale": 1, "pos_s": 1.2, "total_s": 16.03}
+FRAME 234 {"state_s": 0.02, "static_s": 14.85, "static_scale": 1, "pos_s": 1.23, "total_s": 16.1}
+FRAME 235 {"state_s": 0.02, "static_s": 14.82, "static_scale": 1, "pos_s": 1.19, "matte_s": 21.08, "total_s": 37.11}
+FRAME 236 {"state_s": 0.02, "static_s": 14.46, "static_scale": 1, "pos_s": 1.15, "total_s": 15.63}
+FRAME 237 {"state_s": 0.02, "static_s": 14.94, "static_scale": 1, "pos_s": 1.24, "total_s": 16.2}
+FRAME 238 {"state_s": 0.02, "static_s": 14.9, "static_scale": 1, "pos_s": 1.23, "total_s": 16.15}
+FRAME 239 {"state_s": 0.02, "static_s": 14.9, "static_scale": 1, "pos_s": 1.25, "total_s": 16.16}
+FRAME 240 {"state_s": 0.02, "static_s": 14.87, "static_scale": 1, "pos_s": 1.23, "matte_s": 20.19, "total_s": 36.32}
+FRAME 241 {"state_s": 0.02, "static_s": 14.54, "static_scale": 1, "pos_s": 1.18, "total_s": 15.74}
+FRAME 242 {"state_s": 0.02, "static_s": 14.95, "static_scale": 1, "pos_s": 1.18, "total_s": 16.15}
+FRAME 243 {"state_s": 0.02, "static_s": 14.95, "static_scale": 1, "pos_s": 1.2, "total_s": 16.17}
+FRAME 244 {"state_s": 0.02, "static_s": 14.86, "static_scale": 1, "pos_s": 1.23, "total_s": 16.11}
+FRAME 245 {"state_s": 0.02, "static_s": 15.01, "static_scale": 1, "pos_s": 1.26, "matte_s": 20.35, "total_s": 36.64}
+FRAME 246 {"state_s": 0.02, "static_s": 14.58, "static_scale": 1, "pos_s": 1.19, "total_s": 15.79}
+FRAME 247 {"state_s": 0.02, "static_s": 15.13, "static_scale": 1, "pos_s": 1.24, "total_s": 16.39}
+FRAME 248 {"state_s": 0.02, "static_s": 14.98, "static_scale": 1, "pos_s": 1.21, "total_s": 16.21}
+FRAME 249 {"state_s": 0.02, "static_s": 14.92, "static_scale": 1, "pos_s": 1.21, "total_s": 16.14}
+FRAME 250 {"state_s": 0.02, "static_s": 14.95, "static_scale": 1, "pos_s": 1.2, "matte_s": 20.16, "total_s": 36.33}
+FRAME 251 {"state_s": 0.02, "static_s": 14.56, "static_scale": 1, "pos_s": 1.16, "total_s": 15.73}
+FRAME 252 {"state_s": 0.02, "static_s": 15.11, "static_scale": 1, "pos_s": 1.25, "total_s": 16.38}
+FRAME 253 {"state_s": 0.02, "static_s": 14.89, "static_scale": 1, "pos_s": 1.17, "total_s": 16.07}
+FRAME 254 {"state_s": 0.02, "static_s": 14.94, "static_scale": 1, "pos_s": 1.19, "total_s": 16.16}
+FRAME 255 {"state_s": 0.02, "static_s": 14.83, "static_scale": 1, "pos_s": 1.21, "matte_s": 19.69, "total_s": 35.75}
+FRAME 256 {"state_s": 0.02, "static_s": 14.55, "static_scale": 1, "pos_s": 1.18, "total_s": 15.75}
+FRAME 257 {"state_s": 0.02, "static_s": 14.97, "static_scale": 1, "pos_s": 1.22, "total_s": 16.21}
+FRAME 258 {"state_s": 0.02, "static_s": 14.85, "static_scale": 1, "pos_s": 1.11, "total_s": 15.98}
+FRAME 259 {"state_s": 0.02, "static_s": 14.89, "static_scale": 1, "pos_s": 1.17, "total_s": 16.08}
+FRAME 260 {"state_s": 0.02, "static_s": 14.84, "static_scale": 1, "pos_s": 1.2, "matte_s": 19.85, "total_s": 35.9}
+FRAME 261 {"state_s": 0.02, "static_s": 14.58, "static_scale": 1, "pos_s": 1.17, "total_s": 15.76}
+FRAME 262 {"state_s": 0.02, "static_s": 15.12, "static_scale": 1, "pos_s": 1.25, "total_s": 16.39}
+FRAME 263 {"state_s": 0.02, "static_s": 14.81, "static_scale": 1, "pos_s": 1.22, "total_s": 16.05}
+FRAME 264 {"state_s": 0.02, "static_s": 14.86, "static_scale": 1, "pos_s": 1.23, "total_s": 16.1}
+FRAME 265 {"state_s": 0.02, "static_s": 14.85, "static_scale": 1, "pos_s": 1.12, "matte_s": 20.02, "total_s": 36.01}
+FRAME 266 {"state_s": 0.02, "static_s": 14.52, "static_scale": 1, "pos_s": 1.16, "total_s": 15.7}
+FRAME 267 {"state_s": 0.02, "static_s": 14.95, "static_scale": 1, "pos_s": 1.23, "total_s": 16.21}
+FRAME 268 {"state_s": 0.02, "static_s": 14.92, "static_scale": 1, "pos_s": 1.2, "total_s": 16.14}
+FRAME 269 {"state_s": 0.02, "static_s": 14.88, "static_scale": 1, "pos_s": 1.19, "total_s": 16.09}
+FRAME 270 {"state_s": 0.02, "static_s": 14.88, "static_scale": 1, "pos_s": 1.17, "matte_s": 20.03, "total_s": 36.1}
+FRAME 271 {"state_s": 0.02, "static_s": 14.51, "static_scale": 1, "pos_s": 1.17, "total_s": 15.7}
+FRAME 272 {"state_s": 0.02, "static_s": 14.91, "static_scale": 1, "pos_s": 1.17, "total_s": 16.1}
+FRAME 273 {"state_s": 0.02, "static_s": 14.8, "static_scale": 1, "pos_s": 1.17, "total_s": 15.98}
+FRAME 274 {"state_s": 0.02, "static_s": 14.9, "static_scale": 1, "pos_s": 1.19, "total_s": 16.1}
+FRAME 275 {"state_s": 0.02, "static_s": 14.83, "static_scale": 1, "pos_s": 1.17, "matte_s": 20.07, "total_s": 36.09}
+FRAME 276 {"state_s": 0.02, "static_s": 14.49, "static_scale": 1, "pos_s": 1.17, "total_s": 15.67}
+FRAME 277 {"state_s": 0.02, "static_s": 14.97, "static_scale": 1, "pos_s": 1.19, "total_s": 16.17}
+FRAME 278 {"state_s": 0.02, "static_s": 14.88, "static_scale": 1, "pos_s": 1.15, "total_s": 16.05}
+FRAME 279 {"state_s": 0.02, "static_s": 14.86, "static_scale": 1, "pos_s": 1.18, "total_s": 16.06}
+FRAME 280 {"state_s": 0.02, "static_s": 14.92, "static_scale": 1, "pos_s": 1.21, "matte_s": 19.97, "total_s": 36.11}
+FRAME 281 {"state_s": 0.02, "static_s": 14.46, "static_scale": 1, "pos_s": 1.13, "total_s": 15.61}
+FRAME 282 {"state_s": 0.02, "static_s": 14.88, "static_scale": 1, "pos_s": 1.21, "total_s": 16.11}
+FRAME 283 {"state_s": 0.02, "static_s": 14.72, "static_scale": 1, "pos_s": 1.16, "total_s": 15.89}
+FRAME 284 {"state_s": 0.02, "static_s": 14.75, "static_scale": 1, "pos_s": 1.15, "total_s": 15.92}
+FRAME 285 {"state_s": 0.02, "static_s": 14.84, "static_scale": 1, "pos_s": 1.21, "matte_s": 19.79, "total_s": 35.86}
+FRAME 286 {"state_s": 0.02, "static_s": 14.39, "static_scale": 1, "pos_s": 1.16, "total_s": 15.57}
+FRAME 287 {"state_s": 0.02, "static_s": 14.81, "static_scale": 1, "pos_s": 1.2, "total_s": 16.03}
+FRAME 288 {"state_s": 0.02, "static_s": 14.63, "static_scale": 1, "pos_s": 1.12, "total_s": 15.77}
+FRAME 289 {"state_s": 0.02, "static_s": 14.62, "static_scale": 1, "pos_s": 1.15, "total_s": 15.79}
+FRAME 290 {"state_s": 0.02, "static_s": 14.66, "static_scale": 1, "pos_s": 1.17, "matte_s": 19.63, "total_s": 35.47}
+FRAME 291 {"state_s": 0.02, "static_s": 14.36, "static_scale": 1, "pos_s": 1.14, "total_s": 15.52}
+FRAME 292 {"state_s": 0.02, "static_s": 14.8, "static_scale": 1, "pos_s": 1.22, "total_s": 16.04}
+FRAME 293 {"state_s": 0.02, "static_s": 14.57, "static_scale": 1, "pos_s": 1.16, "total_s": 15.75}
+FRAME 294 {"state_s": 0.02, "static_s": 14.72, "static_scale": 1, "pos_s": 1.17, "total_s": 15.91}
+FRAME 295 {"state_s": 0.02, "static_s": 14.63, "static_scale": 1, "pos_s": 1.16, "matte_s": 19.47, "total_s": 35.28}
+FRAME 296 {"state_s": 0.02, "static_s": 14.27, "static_scale": 1, "pos_s": 1.12, "total_s": 15.41}
+FRAME 297 {"state_s": 0.02, "static_s": 14.71, "static_scale": 1, "pos_s": 1.17, "total_s": 15.9}
+FRAME 298 {"state_s": 0.02, "static_s": 14.52, "static_scale": 1, "pos_s": 1.13, "total_s": 15.67}
+FRAME 299 {"state_s": 0.02, "static_s": 14.56, "static_scale": 1, "pos_s": 1.1, "total_s": 15.68}
+FRAME 300 {"state_s": 0.02, "static_s": 14.58, "static_scale": 1, "pos_s": 1.18, "matte_s": 19.3, "total_s": 35.08}
+FRAME 301 {"state_s": 0.02, "static_s": 14.2, "static_scale": 1, "pos_s": 1.13, "total_s": 15.34}
+FRAME 302 {"state_s": 0.02, "static_s": 14.64, "static_scale": 1, "pos_s": 1.28, "total_s": 15.94}
+FRAME 303 {"state_s": 0.02, "static_s": 14.77, "static_scale": 1, "pos_s": 1.15, "total_s": 15.93}
+FRAME 304 {"state_s": 0.02, "static_s": 14.5, "static_scale": 1, "pos_s": 1.22, "total_s": 15.73}
+FRAME 305 {"state_s": 0.02, "static_s": 14.61, "static_scale": 1, "pos_s": 1.19, "matte_s": 19.24, "total_s": 35.06}
+FRAME 306 {"state_s": 0.02, "static_s": 14.17, "static_scale": 1, "pos_s": 1.14, "total_s": 15.33}
+FRAME 307 {"state_s": 0.02, "static_s": 14.57, "static_scale": 1, "pos_s": 1.19, "total_s": 15.78}
+FRAME 308 {"state_s": 0.02, "static_s": 14.33, "static_scale": 1, "pos_s": 1.14, "total_s": 15.49}
+FRAME 309 {"state_s": 0.02, "static_s": 14.44, "static_scale": 1, "pos_s": 1.15, "total_s": 15.6}
+FRAME 310 {"state_s": 0.02, "static_s": 14.23, "static_scale": 1, "pos_s": 1.1, "matte_s": 18.93, "total_s": 34.28}
+FRAME 311 {"state_s": 0.02, "static_s": 13.94, "static_scale": 1, "pos_s": 1.11, "total_s": 15.06}
+FRAME 312 {"state_s": 0.02, "static_s": 14.31, "static_scale": 1, "pos_s": 1.16, "total_s": 15.49}
+FRAME 313 {"state_s": 0.02, "static_s": 14.38, "static_scale": 1, "pos_s": 1.12, "total_s": 15.52}
+FRAME 314 {"state_s": 0.02, "static_s": 14.35, "static_scale": 1, "pos_s": 1.16, "total_s": 15.52}
+FRAME 315 {"state_s": 0.02, "static_s": 14.21, "static_scale": 1, "pos_s": 1.18, "matte_s": 18.86, "total_s": 34.27}
+FRAME 316 {"state_s": 0.02, "static_s": 13.92, "static_scale": 1, "pos_s": 1.1, "total_s": 15.04}
+FRAME 317 {"state_s": 0.02, "static_s": 14.44, "static_scale": 1, "pos_s": 1.19, "total_s": 15.65}
+FRAME 318 {"state_s": 0.02, "static_s": 14.21, "static_scale": 1, "pos_s": 1.13, "total_s": 15.36}
+FRAME 319 {"state_s": 0.02, "static_s": 14.24, "static_scale": 1, "pos_s": 1.12, "total_s": 15.39}
+FRAME 320 {"state_s": 0.02, "static_s": 14.08, "static_scale": 1, "pos_s": 1.14, "matte_s": 18.88, "total_s": 34.12}
+FRAME 321 {"state_s": 0.02, "static_s": 13.88, "static_scale": 1, "pos_s": 1.15, "total_s": 15.05}
+FRAME 322 {"state_s": 0.02, "static_s": 14.22, "static_scale": 1, "pos_s": 1.2, "total_s": 15.44}
+FRAME 323 {"state_s": 0.02, "static_s": 13.98, "static_scale": 1, "pos_s": 1.13, "total_s": 15.13}
+FRAME 324 {"state_s": 0.02, "static_s": 13.82, "static_scale": 1, "pos_s": 1.18, "total_s": 15.02}
+FRAME 325 {"state_s": 0.02, "static_s": 13.92, "static_scale": 1, "pos_s": 1.19, "matte_s": 18.71, "total_s": 33.84}
+FRAME 326 {"state_s": 0.02, "static_s": 13.47, "static_scale": 1, "pos_s": 1.09, "total_s": 14.58}
+FRAME 327 {"state_s": 0.02, "static_s": 13.89, "static_scale": 1, "pos_s": 1.22, "total_s": 15.13}
+FRAME 328 {"state_s": 0.02, "static_s": 13.83, "static_scale": 1, "pos_s": 1.12, "total_s": 14.97}
+FRAME 329 {"state_s": 0.02, "static_s": 13.77, "static_scale": 1, "pos_s": 1.09, "total_s": 14.88}
+FRAME 330 {"state_s": 0.02, "static_s": 13.76, "static_scale": 1, "pos_s": 1.12, "matte_s": 18.7, "total_s": 33.6}
+FRAME 331 {"state_s": 0.02, "static_s": 13.48, "static_scale": 1, "pos_s": 1.1, "total_s": 14.59}
+FRAME 332 {"state_s": 0.02, "static_s": 13.87, "static_scale": 1, "pos_s": 1.21, "total_s": 15.1}
+FRAME 333 {"state_s": 0.02, "static_s": 13.82, "static_scale": 1, "pos_s": 1.16, "total_s": 15.0}
+FRAME 334 {"state_s": 0.02, "static_s": 13.89, "static_scale": 1, "pos_s": 1.18, "total_s": 15.09}
+FRAME 335 {"state_s": 0.02, "static_s": 13.83, "static_scale": 1, "pos_s": 1.14, "matte_s": 18.67, "total_s": 33.67}
+FRAME 336 {"state_s": 0.02, "static_s": 13.42, "static_scale": 1, "pos_s": 1.12, "total_s": 14.57}
+FRAME 337 {"state_s": 0.02, "static_s": 14.05, "static_scale": 1, "pos_s": 1.27, "total_s": 15.33}
+FRAME 338 {"state_s": 0.02, "static_s": 13.82, "static_scale": 1, "pos_s": 1.19, "total_s": 15.03}
+FRAME 339 {"state_s": 0.02, "static_s": 13.72, "static_scale": 1, "pos_s": 1.21, "total_s": 14.96}
+FRAME 340 {"state_s": 0.02, "static_s": 13.7, "static_scale": 1, "pos_s": 1.14, "matte_s": 18.85, "total_s": 33.71}
+FRAME 341 {"state_s": 0.02, "static_s": 13.36, "static_scale": 1, "pos_s": 1.12, "total_s": 14.49}
+FRAME 342 {"state_s": 0.02, "static_s": 13.8, "static_scale": 1, "pos_s": 1.16, "total_s": 14.98}
+FRAME 343 {"state_s": 0.02, "static_s": 13.64, "static_scale": 1, "pos_s": 1.13, "total_s": 14.79}
+FRAME 344 {"state_s": 0.02, "static_s": 13.71, "static_scale": 1, "pos_s": 1.19, "total_s": 14.92}
+FRAME 345 {"state_s": 0.02, "static_s": 13.74, "static_scale": 1, "pos_s": 1.14, "matte_s": 18.67, "total_s": 33.57}
+FRAME 346 {"state_s": 0.02, "static_s": 13.33, "static_scale": 1, "pos_s": 1.12, "total_s": 14.48}
+FRAME 347 {"state_s": 0.02, "static_s": 13.89, "static_scale": 1, "pos_s": 1.18, "total_s": 15.09}
+FRAME 348 {"state_s": 0.02, "static_s": 13.67, "static_scale": 1, "pos_s": 1.13, "total_s": 14.82}
+FRAME 349 {"state_s": 0.02, "static_s": 13.73, "static_scale": 1, "pos_s": 1.16, "total_s": 14.91}
+FRAME 350 {"state_s": 0.02, "static_s": 13.62, "static_scale": 1, "pos_s": 1.14, "matte_s": 18.73, "total_s": 33.52}
+FRAME 351 {"state_s": 0.02, "static_s": 13.35, "static_scale": 1, "pos_s": 1.1, "total_s": 14.47}
+FRAME 352 {"state_s": 0.02, "static_s": 13.87, "static_scale": 1, "pos_s": 1.21, "total_s": 15.1}
+FRAME 353 {"state_s": 0.02, "static_s": 13.64, "static_scale": 1, "pos_s": 1.15, "total_s": 14.82}
+FRAME 354 {"state_s": 0.02, "static_s": 13.72, "static_scale": 1, "pos_s": 1.16, "total_s": 14.9}
+FRAME 355 {"state_s": 0.02, "static_s": 13.67, "static_scale": 1, "pos_s": 1.15, "matte_s": 18.67, "total_s": 33.51}
+FRAME 356 {"state_s": 0.02, "static_s": 13.33, "static_scale": 1, "pos_s": 1.15, "total_s": 14.5}
+FRAME 357 {"state_s": 0.02, "static_s": 13.97, "static_scale": 1, "pos_s": 1.14, "total_s": 15.13}
+FRAME 358 {"state_s": 0.02, "static_s": 13.67, "static_scale": 1, "pos_s": 1.13, "total_s": 14.82}
+FRAME 359 {"state_s": 0.02, "static_s": 13.76, "static_scale": 1, "pos_s": 1.12, "total_s": 14.9}
+FRAME 360 {"state_s": 0.02, "static_s": 13.81, "static_scale": 1, "pos_s": 1.09, "matte_s": 18.74, "total_s": 33.67}
+FRAME 361 {"state_s": 0.02, "static_s": 13.36, "static_scale": 1, "pos_s": 1.09, "total_s": 14.47}
+FRAME 362 {"state_s": 0.02, "static_s": 13.71, "static_scale": 1, "pos_s": 1.16, "total_s": 14.88}
+FRAME 363 {"state_s": 0.02, "static_s": 13.65, "static_scale": 1, "pos_s": 1.13, "total_s": 14.8}
+FRAME 364 {"state_s": 0.02, "static_s": 13.66, "static_scale": 1, "pos_s": 1.12, "total_s": 14.8}
+FRAME 365 {"state_s": 0.02, "static_s": 13.66, "static_scale": 1, "pos_s": 1.12, "matte_s": 18.69, "total_s": 33.49}
+FRAME 366 {"state_s": 0.02, "static_s": 13.34, "static_scale": 1, "pos_s": 1.1, "total_s": 14.45}
+FRAME 367 {"state_s": 0.02, "static_s": 13.8, "static_scale": 1, "pos_s": 1.19, "total_s": 15.01}
+FRAME 368 {"state_s": 0.02, "static_s": 13.56, "static_scale": 1, "pos_s": 1.12, "total_s": 14.7}
+FRAME 369 {"state_s": 0.02, "static_s": 13.65, "static_scale": 1, "pos_s": 1.18, "total_s": 14.85}
+FRAME 370 {"state_s": 0.02, "static_s": 13.79, "static_scale": 1, "pos_s": 1.18, "matte_s": 18.65, "total_s": 33.64}
+FRAME 371 {"state_s": 0.02, "static_s": 13.3, "static_scale": 1, "pos_s": 1.08, "total_s": 14.4}
+FRAME 372 {"state_s": 0.02, "static_s": 13.84, "static_scale": 1, "pos_s": 1.18, "total_s": 15.04}
+FRAME 373 {"state_s": 0.02, "static_s": 13.65, "static_scale": 1, "pos_s": 1.09, "total_s": 14.76}
+FRAME 374 {"state_s": 0.02, "static_s": 13.73, "static_scale": 1, "pos_s": 1.16, "total_s": 14.91}
+FRAME 375 {"state_s": 0.02, "static_s": 13.72, "static_scale": 1, "pos_s": 1.15, "matte_s": 18.74, "total_s": 33.63}
+FRAME 376 {"state_s": 0.02, "static_s": 13.31, "static_scale": 1, "pos_s": 1.1, "total_s": 14.43}
+FRAME 377 {"state_s": 0.02, "static_s": 13.85, "static_scale": 1, "pos_s": 1.16, "total_s": 15.03}
+FRAME 378 {"state_s": 0.02, "static_s": 13.65, "static_scale": 1, "pos_s": 1.15, "total_s": 14.82}
+FRAME 379 {"state_s": 0.02, "static_s": 13.71, "static_scale": 1, "pos_s": 1.17, "total_s": 14.9}
+FRAME 380 {"state_s": 0.02, "static_s": 13.66, "static_scale": 1, "pos_s": 1.11, "matte_s": 18.69, "total_s": 33.48}
+FRAME 381 {"state_s": 0.02, "static_s": 13.3, "static_scale": 1, "pos_s": 1.1, "total_s": 14.41}
+FRAME 382 {"state_s": 0.02, "static_s": 13.82, "static_scale": 1, "pos_s": 1.21, "total_s": 15.05}
+FRAME 383 {"state_s": 0.02, "static_s": 13.66, "static_scale": 1, "pos_s": 1.14, "total_s": 14.82}
+FRAME 384 {"state_s": 0.02, "static_s": 13.71, "static_scale": 1, "pos_s": 1.17, "total_s": 14.9}
+FRAME 385 {"state_s": 0.02, "static_s": 13.77, "static_scale": 1, "pos_s": 1.15, "matte_s": 18.76, "total_s": 33.7}
+FRAME 386 {"state_s": 0.02, "static_s": 13.34, "static_scale": 1, "pos_s": 1.11, "total_s": 14.47}
+FRAME 387 {"state_s": 0.02, "static_s": 13.83, "static_scale": 1, "pos_s": 1.19, "total_s": 15.03}
+FRAME 388 {"state_s": 0.02, "static_s": 13.65, "static_scale": 1, "pos_s": 1.22, "total_s": 14.89}
+FRAME 389 {"state_s": 0.02, "static_s": 13.8, "static_scale": 1, "pos_s": 1.19, "total_s": 15.01}
+FRAME 390 {"state_s": 0.02, "static_s": 13.7, "static_scale": 1, "pos_s": 1.12, "matte_s": 18.64, "total_s": 33.48}
+FRAME 391 {"state_s": 0.02, "static_s": 13.31, "static_scale": 1, "pos_s": 1.12, "total_s": 14.45}
+FRAME 392 {"state_s": 0.02, "static_s": 13.87, "static_scale": 1, "pos_s": 1.14, "total_s": 15.03}
+FRAME 393 {"state_s": 0.02, "static_s": 13.75, "static_scale": 1, "pos_s": 1.19, "total_s": 14.96}
+FRAME 394 {"state_s": 0.02, "static_s": 13.69, "static_scale": 1, "pos_s": 1.16, "total_s": 14.86}
+FRAME 395 {"state_s": 0.02, "static_s": 13.73, "static_scale": 1, "pos_s": 1.17, "matte_s": 18.74, "total_s": 33.66}
+FRAME 396 {"state_s": 0.02, "static_s": 13.32, "static_scale": 1, "pos_s": 1.1, "total_s": 14.44}
+FRAME 397 {"state_s": 0.02, "static_s": 13.84, "static_scale": 1, "pos_s": 1.18, "total_s": 15.04}
+FRAME 398 {"state_s": 0.02, "static_s": 13.62, "static_scale": 1, "pos_s": 1.13, "total_s": 14.77}
+FRAME 399 {"state_s": 0.02, "static_s": 13.7, "static_scale": 1, "pos_s": 1.19, "total_s": 14.9}
+FRAME 400 {"state_s": 0.02, "static_s": 13.65, "static_scale": 1, "pos_s": 1.11, "matte_s": 18.67, "total_s": 33.44}
+FRAME 401 {"state_s": 0.02, "static_s": 13.33, "static_scale": 1, "pos_s": 1.12, "total_s": 14.47}
+FRAME 402 {"state_s": 0.02, "static_s": 13.87, "static_scale": 1, "pos_s": 1.19, "matte_s": 19.11, "total_s": 34.2}
+DONE frames 378
+Sun Nov  8 04:57:21 EST 2026
+passes on disk: 379
+todo 450
+todo 300
+frame 0 level 9.0 s 0.7
+todo 150
+frame 1 level 9.0 s 0.7
+frame 2 level 9.0 s 0.7
+frame 150 level 11.343 s 1.9
+frame 3 level 9.0 s 0.7
+frame 4 level 9.0 s 0.7
+frame 300 level 13.1 s 1.9
+frame 5 level 9.001 s 0.7
+frame 151 level 11.362 s 1.9
+frame 6 level 9.001 s 0.7
+frame 7 level 9.002 s 0.7
+frame 301 level 13.1 s 2.0
+frame 8 level 9.002 s 0.7
+frame 152 level 11.382 s 2.0
+frame 9 level 9.003 s 0.7
+frame 10 level 9.004 s 0.7
+frame 302 level 13.1 s 2.1
+frame 11 level 9.006 s 0.7
+frame 153 level 11.401 s 2.1
+frame 12 level 9.008 s 0.7
+frame 303 level 13.1 s 2.0
+frame 13 level 9.01 s 0.7
+frame 154 level 11.421 s 2.0
+frame 14 level 9.012 s 0.7
+frame 15 level 9.015 s 0.7
+frame 304 level 13.1 s 1.9
+frame 16 level 9.018 s 0.8
+frame 155 level 11.44 s 1.9
+frame 17 level 9.021 s 0.7
+frame 18 level 9.025 s 0.8
+frame 305 level 13.1 s 2.1
+frame 19 level 9.029 s 0.8
+frame 156 level 11.46 s 2.6
+frame 20 level 9.034 s 0.7
+frame 21 level 9.039 s 0.8
+frame 306 level 13.1 s 2.5
+frame 22 level 9.044 s 0.8
+frame 23 level 9.05 s 0.8
+frame 157 level 11.48 s 2.7
+frame 24 level 9.057 s 0.8
+frame 307 level 13.1 s 2.5
+frame 25 level 9.064 s 1.4
+frame 158 level 11.499 s 2.2
+frame 308 level 13.1 s 2.4
+frame 26 level 9.071 s 1.5
+frame 159 level 11.519 s 2.6
+frame 27 level 9.079 s 1.7
+frame 309 level 13.1 s 2.8
+frame 28 level 9.088 s 1.6
+frame 160 level 11.538 s 2.8
+frame 29 level 9.097 s 1.5
+frame 310 level 13.1 s 2.7
+frame 30 level 9.106 s 1.7
+frame 161 level 11.558 s 2.9
+frame 31 level 9.116 s 1.5
+frame 311 level 13.1 s 2.7
+frame 32 level 9.127 s 1.5
+frame 162 level 11.577 s 2.9
+frame 312 level 13.1 s 2.7
+frame 33 level 9.138 s 1.9
+frame 34 level 9.15 s 1.4
+frame 163 level 11.597 s 2.9
+frame 313 level 13.1 s 2.6
+frame 35 level 9.162 s 1.6
+frame 164 level 11.616 s 2.9
+frame 36 level 9.174 s 1.6
+frame 314 level 13.1 s 2.7
+frame 37 level 9.187 s 1.5
+frame 165 level 11.636 s 2.7
+frame 38 level 9.201 s 1.5
+frame 315 level 13.1 s 2.7
+frame 39 level 9.215 s 1.5
+frame 166 level 11.655 s 3.4
+frame 316 level 13.1 s 3.0
+frame 40 level 9.229 s 1.7
+frame 41 level 9.244 s 1.5
+frame 167 level 11.675 s 2.6
+frame 317 level 13.1 s 2.4
+frame 42 level 9.259 s 1.3
+frame 43 level 9.275 s 1.4
+frame 168 level 11.694 s 2.3
+frame 318 level 13.1 s 2.3
+frame 44 level 9.291 s 1.4
+frame 45 level 9.307 s 1.7
+frame 319 level 13.1 s 2.7
+frame 169 level 11.714 s 2.9
+frame 46 level 9.324 s 1.6
+frame 320 level 13.1 s 2.5
+frame 170 level 11.733 s 2.6
+frame 47 level 9.341 s 1.4
+frame 48 level 9.359 s 1.4
+frame 321 level 13.1 s 2.3
+frame 171 level 11.753 s 2.2
+frame 49 level 9.377 s 1.7
+frame 322 level 13.1 s 2.7
+frame 50 level 9.395 s 1.5
+frame 172 level 11.772 s 2.8
+frame 51 level 9.413 s 1.6
+frame 323 level 13.1 s 2.8
+frame 173 level 11.792 s 2.8
+frame 52 level 9.432 s 1.6
+frame 53 level 9.451 s 1.5
+frame 324 level 13.1 s 2.8
+frame 174 level 11.811 s 2.8
+frame 54 level 9.47 s 1.4
+frame 55 level 9.489 s 1.6
+frame 325 level 13.1 s 2.7
+frame 175 level 11.831 s 2.9
+frame 56 level 9.508 s 1.4
+frame 57 level 9.527 s 1.7
+frame 326 level 13.1 s 2.8
+frame 176 level 11.85 s 2.8
+frame 58 level 9.547 s 1.4
+frame 59 level 9.566 s 1.6
+frame 327 level 13.1 s 2.9
+frame 177 level 11.87 s 3.1
+frame 60 level 9.586 s 1.6
+frame 328 level 13.1 s 2.8
+frame 61 level 9.605 s 1.5
+frame 178 level 11.89 s 2.8
+frame 62 level 9.625 s 1.7
+frame 329 level 13.1 s 2.7
+frame 179 level 11.909 s 2.8
+frame 63 level 9.644 s 1.4
+frame 64 level 9.664 s 1.6
+frame 330 level 13.1 s 2.3
+frame 180 level 11.929 s 2.8
+frame 65 level 9.683 s 1.7
+frame 331 level 13.1 s 2.8
+frame 66 level 9.703 s 1.4
+frame 181 level 11.948 s 3.1
+frame 67 level 9.722 s 1.8
+frame 332 level 13.1 s 2.9
+frame 68 level 9.742 s 1.5
+frame 182 level 11.968 s 2.8
+frame 69 level 9.761 s 1.6
+frame 333 level 13.1 s 2.9
+frame 183 level 11.987 s 2.6
+frame 70 level 9.781 s 1.5
+frame 71 level 9.8 s 1.7
+frame 334 level 13.1 s 3.0
+frame 184 level 12.007 s 2.9
+frame 72 level 9.82 s 1.5
+frame 73 level 9.84 s 1.7
+frame 335 level 13.1 s 3.0
+frame 185 level 12.026 s 3.2
+frame 74 level 9.859 s 2.0
+frame 336 level 13.1 s 2.8
+frame 75 level 9.879 s 1.5
+frame 186 level 12.045 s 2.6
+frame 76 level 9.898 s 1.3
+frame 337 level 13.1 s 2.3
+frame 187 level 12.065 s 2.2
+frame 77 level 9.918 s 1.4
+frame 78 level 9.937 s 1.7
+frame 338 level 13.1 s 2.7
+frame 188 level 12.084 s 3.2
+frame 79 level 9.957 s 1.7
+frame 339 level 13.1 s 2.8
+frame 80 level 9.976 s 1.5
+frame 189 level 12.103 s 2.6
+frame 81 level 9.996 s 1.3
+frame 340 level 13.1 s 2.1
+frame 190 level 12.123 s 2.0
+frame 82 level 10.015 s 1.3
+frame 341 level 13.1 s 2.5
+frame 83 level 10.035 s 1.9
+frame 191 level 12.142 s 2.9
+frame 84 level 10.054 s 1.8
+frame 342 level 13.1 s 2.9
+frame 85 level 10.074 s 1.5
+frame 192 level 12.161 s 2.8
+frame 86 level 10.093 s 1.7
+frame 343 level 13.1 s 2.9
+frame 87 level 10.113 s 1.5
+frame 193 level 12.18 s 2.8
+frame 88 level 10.132 s 1.9
+frame 344 level 13.1 s 2.9
+frame 194 level 12.199 s 3.1
+frame 89 level 10.152 s 1.8
+frame 345 level 13.1 s 3.0
+frame 90 level 10.171 s 1.7
+frame 195 level 12.218 s 2.8
+frame 91 level 10.191 s 1.5
+frame 346 level 13.1 s 2.9
+frame 92 level 10.21 s 1.9
+frame 196 level 12.236 s 3.1
+frame 93 level 10.23 s 1.9
+frame 347 level 13.1 s 2.9
+frame 197 level 12.255 s 2.7
+frame 94 level 10.25 s 1.4
+frame 348 level 13.1 s 2.4
+frame 95 level 10.269 s 1.4
+frame 198 level 12.274 s 2.6
+frame 96 level 10.289 s 1.6
+frame 349 level 13.1 s 2.6
+frame 97 level 10.308 s 1.7
+frame 199 level 12.292 s 2.9
+frame 98 level 10.328 s 1.7
+frame 350 level 13.1 s 2.9
+frame 99 level 10.347 s 1.8
+frame 200 level 12.31 s 3.4
+frame 351 level 13.1 s 2.9
+frame 100 level 10.367 s 1.6
+frame 201 level 12.328 s 2.3
+frame 101 level 10.386 s 1.3
+frame 352 level 13.1 s 2.2
+frame 102 level 10.406 s 1.5
+frame 202 level 12.346 s 2.4
+frame 103 level 10.425 s 1.7
+frame 353 level 13.1 s 2.5
+frame 104 level 10.445 s 1.7
+frame 203 level 12.364 s 3.3
+frame 354 level 13.1 s 3.0
+frame 105 level 10.464 s 1.8
+frame 106 level 10.484 s 1.5
+frame 204 level 12.382 s 2.7
+frame 355 level 13.1 s 2.8
+frame 107 level 10.503 s 1.7
+frame 205 level 12.4 s 3.1
+frame 108 level 10.523 s 1.9
+frame 356 level 13.1 s 3.1
+frame 109 level 10.542 s 1.7
+frame 206 level 12.417 s 2.7
+frame 357 level 13.1 s 2.9
+frame 110 level 10.562 s 1.5
+frame 111 level 10.581 s 1.9
+frame 207 level 12.434 s 2.9
+frame 358 level 13.1 s 2.9
+frame 112 level 10.601 s 1.7
+frame 208 level 12.451 s 3.1
+frame 113 level 10.62 s 1.8
+frame 359 level 13.1 s 2.8
+frame 114 level 10.64 s 1.8
+frame 209 level 12.468 s 3.1
+frame 360 level 13.1 s 3.1
+frame 115 level 10.66 s 1.8
+frame 210 level 12.485 s 2.7
+frame 116 level 10.679 s 2.1
+frame 361 level 13.1 s 2.9
+frame 117 level 10.699 s 1.7
+frame 211 level 12.502 s 2.9
+frame 362 level 13.1 s 3.0
+frame 212 level 12.518 s 2.9
+frame 118 level 10.718 s 4.0
+frame 363 level 13.1 s 3.0
+frame 213 level 12.534 s 3.1
+frame 364 level 13.1 s 3.1
+frame 119 level 10.738 s 4.7
+frame 214 level 12.55 s 2.7
+frame 365 level 13.1 s 2.6
+frame 215 level 12.566 s 2.9
+frame 120 level 10.757 s 4.6
+frame 366 level 13.1 s 3.2
+frame 216 level 12.582 s 3.2
+frame 367 level 13.1 s 3.0
+frame 121 level 10.777 s 4.3
+frame 217 level 12.597 s 3.0
+frame 368 level 13.1 s 2.9
+frame 218 level 12.612 s 3.1
+frame 122 level 10.796 s 4.7
+frame 369 level 13.1 s 3.1
+frame 219 level 12.627 s 3.2
+frame 370 level 13.1 s 3.1
+frame 123 level 10.816 s 4.8
+frame 220 level 12.642 s 3.2
+frame 371 level 13.1 s 3.4
+frame 221 level 12.657 s 3.1
+frame 124 level 10.835 s 4.6
+frame 372 level 13.1 s 2.8
+frame 222 level 12.671 s 3.2
+frame 373 level 13.1 s 3.1
+frame 125 level 10.855 s 4.2
+frame 223 level 12.685 s 3.1
+frame 374 level 13.1 s 3.1
+frame 126 level 10.874 s 3.9
+frame 224 level 12.699 s 2.8
+frame 375 level 13.1 s 2.6
+frame 225 level 12.712 s 2.9
+frame 376 level 13.1 s 2.9
+frame 127 level 10.894 s 4.2
+frame 226 level 12.726 s 3.1
+frame 377 level 13.1 s 3.0
+frame 128 level 10.913 s 4.1
+frame 227 level 12.739 s 3.0
+frame 378 level 13.1 s 3.0
+frame 129 level 10.933 s 4.2
+frame 228 level 12.752 s 3.1
+frame 379 level 13.1 s 3.1
+frame 380 level 13.1 s 3.0
+frame 229 level 12.764 s 3.0
+frame 130 level 10.952 s 3.9
+frame 230 level 12.777 s 3.0
+frame 381 level 13.1 s 3.0
+frame 131 level 10.972 s 3.8
+frame 382 level 13.1 s 2.9
+frame 231 level 12.789 s 3.0
+frame 132 level 10.991 s 4.1
+frame 383 level 13.1 s 2.9
+frame 232 level 12.801 s 3.1
+frame 133 level 11.011 s 3.2
+frame 384 level 13.1 s 3.1
+frame 233 level 12.813 s 3.1
+frame 385 level 13.1 s 3.1
+frame 134 level 11.03 s 3.5
+frame 234 level 12.824 s 3.2
+frame 386 level 13.1 s 3.0
+frame 135 level 11.05 s 3.4
+frame 235 level 12.835 s 3.0
+frame 387 level 13.1 s 3.1
+frame 236 level 12.846 s 3.0
+frame 136 level 11.07 s 3.2
+frame 388 level 13.1 s 2.9
+frame 237 level 12.857 s 2.9
+frame 137 level 11.089 s 3.2
+frame 389 level 13.1 s 2.8
+frame 238 level 12.867 s 2.8
+frame 138 level 11.109 s 3.6
+frame 390 level 13.1 s 2.9
+frame 239 level 12.877 s 2.9
+frame 139 level 11.128 s 3.6
+frame 391 level 13.1 s 3.1
+frame 240 level 12.887 s 3.1
+frame 140 level 11.148 s 3.2
+frame 392 level 13.1 s 3.0
+frame 241 level 12.897 s 2.9
+frame 141 level 11.167 s 3.0
+frame 393 level 13.1 s 2.9
+frame 242 level 12.906 s 3.0
+frame 142 level 11.187 s 3.0
+frame 394 level 13.1 s 2.8
+frame 243 level 12.915 s 3.1
+frame 143 level 11.206 s 3.2
+frame 395 level 13.1 s 2.9
+frame 244 level 12.924 s 3.1
+frame 144 level 11.226 s 3.1
+frame 396 level 13.1 s 3.1
+frame 245 level 12.933 s 2.9
+frame 145 level 11.245 s 3.0
+frame 397 level 13.1 s 2.9
+frame 246 level 12.941 s 3.0
+frame 398 level 13.1 s 2.8
+frame 146 level 11.265 s 2.9
+frame 247 level 12.949 s 3.1
+frame 399 level 13.1 s 2.7
+frame 147 level 11.284 s 3.0
+frame 248 level 12.957 s 3.0
+frame 400 level 13.1 s 2.4
+frame 148 level 11.304 s 3.1
+frame 249 level 12.965 s 3.0
+frame 401 level 13.1 s 2.6
+frame 149 level 11.323 s 2.9
+frame 250 level 12.972 s 2.8
+frame 402 level 13.1 s 2.5
+frame 250 level 12.972 s 2.8
+frame 403 level 13.1 s 2.5
+frame 251 level 12.979 s 3.1
+frame 251 level 12.979 s 3.0
+frame 404 level 13.1 s 2.4
+frame 252 level 12.986 s 3.2
+frame 405 level 13.1 s 2.3
+frame 252 level 12.986 s 2.9
+frame 253 level 12.993 s 2.9
+frame 406 level 13.1 s 2.4
+frame 253 level 12.993 s 2.5
+frame 254 level 12.999 s 2.9
+frame 407 level 13.1 s 2.5
+frame 254 level 12.999 s 2.4
+frame 255 level 13.005 s 2.4
+frame 408 level 13.1 s 2.6
+frame 255 level 13.005 s 2.5
+frame 256 level 13.011 s 2.6
+frame 409 level 13.1 s 3.0
+frame 256 level 13.011 s 2.8
+frame 257 level 13.017 s 3.0
+frame 410 level 13.1 s 3.1
+frame 257 level 13.017 s 3.1
+frame 258 level 13.022 s 2.9
+frame 411 level 13.1 s 3.0
+frame 258 level 13.022 s 3.3
+frame 259 level 13.027 s 3.4
+frame 412 level 13.1 s 3.0
+frame 259 level 13.027 s 2.9
+frame 260 level 13.032 s 2.7
+frame 260 level 13.032 s 2.8
+frame 413 level 13.1 s 3.1
+frame 261 level 13.037 s 3.3
+frame 261 level 13.037 s 3.1
+frame 414 level 13.1 s 3.1
+frame 262 level 13.042 s 3.1
+frame 262 level 13.042 s 3.4
+frame 415 level 13.1 s 3.3
+frame 263 level 13.046 s 3.2
+frame 416 level 13.1 s 3.1
+frame 263 level 13.046 s 3.2
+frame 264 level 13.05 s 3.3
+frame 417 level 13.1 s 2.8
+frame 264 level 13.05 s 3.1
+frame 265 level 13.054 s 3.2
+frame 418 level 13.1 s 2.9
+frame 265 level 13.054 s 3.2
+frame 266 level 13.058 s 3.5
+frame 419 level 13.1 s 3.2
+frame 266 level 13.058 s 3.4
+frame 420 level 13.1 s 3.0
+frame 267 level 13.061 s 3.1
+frame 267 level 13.061 s 2.9
+frame 421 level 13.1 s 2.9
+frame 268 level 13.065 s 3.3
+frame 268 level 13.065 s 3.3
+frame 422 level 13.1 s 3.0
+frame 269 level 13.068 s 3.3
+frame 269 level 13.068 s 3.1
+frame 423 level 13.1 s 2.8
+frame 270 level 13.071 s 3.3
+frame 270 level 13.071 s 3.2
+frame 424 level 13.1 s 3.5
+frame 271 level 13.074 s 3.0
+frame 271 level 13.074 s 3.0
+frame 425 level 13.1 s 2.6
+frame 272 level 13.076 s 3.1
+frame 272 level 13.076 s 2.7
+frame 426 level 13.1 s 3.0
+frame 273 level 13.079 s 3.6
+frame 273 level 13.079 s 3.7
+frame 427 level 13.1 s 3.1
+frame 274 level 13.081 s 3.3
+frame 274 level 13.081 s 3.3
+frame 428 level 13.1 s 3.4
+frame 275 level 13.083 s 3.3
+frame 275 level 13.083 s 3.3
+frame 429 level 13.1 s 3.2
+frame 276 level 13.085 s 3.1
+frame 276 level 13.085 s 3.2
+frame 430 level 13.1 s 3.3
+frame 277 level 13.087 s 3.6
+frame 277 level 13.087 s 3.4
+frame 431 level 13.1 s 3.3
+frame 278 level 13.088 s 3.0
+frame 278 level 13.088 s 3.2
+frame 432 level 13.1 s 3.6
+frame 279 level 13.09 s 3.4
+frame 279 level 13.09 s 3.2
+frame 433 level 13.1 s 3.2
+frame 280 level 13.091 s 3.0
+frame 280 level 13.091 s 3.0
+frame 434 level 13.1 s 3.5
+frame 281 level 13.092 s 3.6
+frame 281 level 13.092 s 3.5
+frame 435 level 13.1 s 3.0
+frame 282 level 13.094 s 3.2
+frame 282 level 13.094 s 3.3
+frame 436 level 13.1 s 3.2
+frame 283 level 13.095 s 3.3
+frame 283 level 13.095 s 3.4
+frame 437 level 13.1 s 3.3
+frame 284 level 13.095 s 3.1
+frame 284 level 13.095 s 3.2
+frame 438 level 13.1 s 3.3
+frame 285 level 13.096 s 3.2
+frame 285 level 13.096 s 3.1
+frame 439 level 13.1 s 2.9
+frame 286 level 13.097 s 3.2
+frame 286 level 13.097 s 3.1
+frame 440 level 13.1 s 3.2
+frame 287 level 13.098 s 3.0
+frame 287 level 13.098 s 3.1
+frame 441 level 13.1 s 2.8
+frame 288 level 13.098 s 3.3
+frame 288 level 13.098 s 3.5
+frame 442 level 13.1 s 2.9
+frame 289 level 13.099 s 2.9
+frame 289 level 13.099 s 3.5
+frame 443 level 13.1 s 3.4
+frame 290 level 13.099 s 3.0
+frame 290 level 13.099 s 2.8
+frame 444 level 13.1 s 2.6
+frame 291 level 13.099 s 3.2
+frame 291 level 13.099 s 3.3
+frame 445 level 13.1 s 3.3
+frame 292 level 13.099 s 2.9
+frame 292 level 13.099 s 3.2
+frame 446 level 13.1 s 3.1
+frame 293 level 13.1 s 3.0
+frame 293 level 13.1 s 3.5
+frame 447 level 13.1 s 3.3
+frame 294 level 13.1 s 3.4
+frame 294 level 13.1 s 3.1
+frame 448 level 13.1 s 3.1
+frame 295 level 13.1 s 3.2
+frame 295 level 13.1 s 3.3
+frame 449 level 13.1 s 3.5
+frame 296 level 13.1 s 2.7
+frame 296 level 13.1 s 2.3
+frame 297 level 13.1 s 1.9
+frame 297 level 13.1 s 2.0
+frame 298 level 13.1 s 2.4
+frame 298 level 13.1 s 2.7
+frame 299 level 13.1 s 2.1
+frame 299 level 13.1 s 1.9
+todo 0
+Sun Nov  8 05:04:41 EST 2026
+done: 450 of 450 frames in /private/tmp/claude-501/-Users-patrickrodriguez-dev-sandbox-frame-geo-evidence-pipeline/1a0b7111-211b-446e-85aa-40a4418b76a9/scratchpad/v8/frames

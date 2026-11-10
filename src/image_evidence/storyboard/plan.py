@@ -6,10 +6,13 @@
   needs, where it comes from in the research, tags, and either a source with `in`/`out` seconds or a `duration`.
   A card may carry the film's own words (`card`: the text as it would read on screen, an intertitle) and a `chapter`
   (its number, drawn small above); without them a card is a placeholder of what is still to make.
-  A shot is never deleted by a read-back: taken out of a cut, it is parked; deleted from the parked shots, it is hidden.
+  A shot is never deleted by a read-back: moved past END or muted, it is parked; deleted in Blender, it is hidden.
 - The cuts (`config/storyboard-cuts.yaml`, rewritten by `sync`): each a list of shot ids in order; an entry may carry
-  its own `in`, `out` or `duration` (a trim in Blender), or a whole shot of its own (one made in Blender); `hidden`
-  lists the pool's shots left out of the parked ones (take an id off it to park the shot again).
+  its own `in`, `out` or `duration` (a trim in Blender), a `gap` (seconds of black left before it in Blender), or a whole shot of its own (one made in Blender); `hidden`
+  lists the pool's shots left out of the parked ones (take an id off it to park the shot again); `lanes` the parked
+  shots kept on another channel than the first, by channel, in order (the rest are parked on the first); `colors`
+  the strip colours set by hand in Blender (shot id: Blender's colour tag), kept over the status's colour until set
+  back to it.
 - On disk (The Conductive Seam's `storyboard/`): `<cut>.blend`, `<cut>.built.json` (what the .blend was built from,
   so a rebuild never overwrites a rearrangement that hasn't been read back), and `media/` (the films at the
   storyboard's frame rate and preview size, made once per source version).
@@ -36,13 +39,19 @@ log = logging.getLogger(__name__)
 
 POOL = Path("config/storyboard.yaml")
 CUTS = Path("config/storyboard-cuts.yaml")
+NARRATION = Path("config/narration.yaml")   # the voice-over's lines; rendered into the storyboard's narration/
 BLEND = Path(__file__).with_name("blend.py")
 STATUSES = ("good", "draft", "still", "missing", "idea", "new")
 IMAGE_SUFFIXES = (".png", ".jpg", ".jpeg", ".webp", ".tif", ".tiff")
 PREVIEW_H = 720            # the films' preview height (the storyboard is laid out at the pool's `size`)
-PARK_GAP_S = 3             # black between the cut's END and the parked shots
+PARK_GAP_S = 3             # black between the cut's END and the parked shots (when the pool sets no `end_at_s`)
 ID = re.compile(r"^[a-z0-9][a-z0-9-]{0,47}$")
 DUPLICATE = re.compile(r"\.\d{3}$")   # Blender's suffix on a copied strip: the same shot used again
+VO_PREFIX = "vo "                     # a narration line's sound strip (blend.py), never a shot
+TAGS = {"good": "COLOR_04", "draft": "COLOR_03", "still": "COLOR_05", "missing": "COLOR_01", "idea": "COLOR_08",
+        "new": "COLOR_07"}
+CARD_TAG = "COLOR_06"   # an intertitle (the film's own words), whatever its status: purple, to tell text from footage
+END_TAG = "COLOR_01"    # the end titles (the byline, the credits; `end_titles`): red, where the film ends
 CUTS_HEADER = """\
 # The storyboard's cuts (src/image_evidence/storyboard; the shots are in config/storyboard.yaml). Rewritten by
 # `evidence storyboard sync` from the cut's .blend: the order as arranged in Blender, trims as `in`/`out`/`duration`,
@@ -84,6 +93,15 @@ def shot(pool: dict[str, Any], e: dict[str, Any]) -> dict[str, Any]:
     """A cut's entry as a whole shot: the pool's (by id, a copy's suffix dropped) with the entry's own on top."""
     base = pool["shots"].get(DUPLICATE.sub("", e["shot"]), {})
     return {**base, **{k: v for k, v in e.items() if k != "shot"}, "id": e["shot"]}
+
+
+def color_of(sh: dict[str, Any], card: bool) -> str:
+    """A shot's strip colour by what it is (`card`: an intertitle with the film's own words), before any set by hand."""
+    return END_TAG if sh.get("end_titles") else CARD_TAG if card and sh.get("card") else TAGS.get(sh["status"], "NONE")
+
+
+def _is_card(sh: dict[str, Any]) -> bool:
+    return not sh.get("source") and not sh.get("file")
 
 
 def parked(pool: dict[str, Any], cut: dict[str, Any]) -> list[str]:
@@ -166,15 +184,16 @@ def out_dir(root: Path) -> Path:
 # ------------------------------------------------------------------ layout
 
 def layout(pool: dict[str, Any], name: str, cut: dict[str, Any], resolve) -> dict[str, Any]:
-    """The cut's shots end to end from frame 1, then the parked ones after its END. `resolve(shot)` gives a shot's
-    media (`media()`), or None for a card."""
+    """The cut's shots end to end from frame 1, then the parked ones after its END, each channel's from the PARKED
+    marker (the cut's `lanes`: the parked shots kept on another channel in Blender, in order; the rest on channel 1 in
+    the pool's order). `resolve(shot)` gives a shot's media (`media()`), or None for a card."""
     fps = int(pool.get("fps", 30))
 
     def place(sh: dict[str, Any], at: int) -> dict[str, Any]:
         m = resolve(sh)
         p = {"id": sh["id"], "title": sh.get("title", sh["id"]), "status": sh["status"], "tells": sh.get("tells"),
-             "needs": sh.get("needs"), "card": sh.get("card"), "chapter": sh.get("chapter"),
-             "label": pool.get("labels", True), "start": at}
+             "needs": sh.get("needs"), "card": sh.get("card"), "chapter": sh.get("chapter"), "caption": sh.get("caption"), "masks": sh.get("masks"),
+             "label": pool.get("labels", True), "end_titles": bool(sh.get("end_titles")), "silent": bool(sh.get("silent")), "start": at}
         if m and m["kind"] == "movie":
             a = max(0, round(float(sh.get("in", 0)) * fps))
             b = min(m["frames"], round(float(sh["out"]) * fps) if sh.get("out") is not None else m["frames"])
@@ -185,31 +204,80 @@ def layout(pool: dict[str, Any], name: str, cut: dict[str, Any], resolve) -> dic
             p.update(kind=m["kind"] if m else "card", frames=max(1, round(float(sh["duration"]) * fps)))
             if m:
                 p["path"] = m["path"]
+        p["color"] = (cut.get("colors") or {}).get(sh["id"]) or color_of(sh, p["kind"] == "card")
         return p
 
     shots, at = [], 1
     for e in entries(cut):
+        if e.get("over") and shots:   # laid over the shot before, from where it starts, on the channel above
+            under = shots[-1]
+            shots.append({**place(shot(pool, e), under["start"]), "channel": under.get("channel", 1) + 1})
+            at = max(at, shots[-1]["start"] + shots[-1]["frames"])
+            continue
+        at += round(float(e.get("gap") or 0) * fps)   # black left before it in Blender
         shots.append(place(shot(pool, e), at))
         at += shots[-1]["frames"]
+    # END at the pool's `end_at_s` (the film's ceiling, the parked shots right after it), or where the cut ends if
+    # it runs past that; without one, at the cut's end with a gap before the parked shots
     end, rest = at, []
-    at += PARK_GAP_S * fps
-    for sid in parked(pool, cut):
-        rest.append(place({**pool["shots"][sid], "id": sid}, at))
-        at += rest[-1]["frames"]
-    return {"cut": name, "fps": fps, "size": list(pool.get("size", [1920, 1080])), "end": end, "shots": shots,
+    park = at + PARK_GAP_S * fps
+    if pool.get("end_at_s") is not None and round(float(pool["end_at_s"]) * fps) + 1 >= at:
+        end = park = round(float(pool["end_at_s"]) * fps) + 1
+    lanes = {sid: int(ch) for ch, ids in (cut.get("lanes") or {}).items() for sid in ids}
+    ahead = {}   # each channel's parked shots end to end from the PARKED marker
+    for sid in sorted(parked(pool, cut), key=lambda sid: (list(lanes).index(sid) if sid in lanes else -1)):
+        ch = lanes.get(sid, 1)
+        rest.append({**place({**pool["shots"][sid], "id": sid}, ahead.get(ch, park)), "channel": ch})
+        ahead[ch] = rest[-1]["start"] + rest[-1]["frames"]
+    return {"cut": name, "fps": fps, "size": list(pool.get("size", [1920, 1080])), "end": end, "film_end": at, "shots": shots,
             "parked": rest}
+
+
+def narrate(spec: dict[str, Any], cfg: dict[str, Any], rendered: dict[str, Any], folder: Path) -> list[str]:
+    """The narration's lines (config/narration.yaml) laid on the cut as `spec["narration"]`: each from its shot's
+    start plus its `at`, on the narration's channel, with its rendered file (narration.json's `lines`). A line whose
+    shot isn't in the cut, or that isn't rendered yet, is left out; one running into the next is said. Returns a
+    report."""
+    fps, report, laid = spec["fps"], [], []
+    starts = {}
+    for s in spec["shots"]:
+        starts.setdefault(s["id"], s["start"])
+    for ln in cfg.get("lines") or []:
+        r = rendered.get(ln["id"])
+        if ln["shot"] not in starts:
+            report.append(f"narration: {ln['id']} left out ({ln['shot']} isn't in the cut)")
+        elif not r or not (folder / r["file"]).exists():
+            report.append(f"narration: {ln['id']} left out (not rendered: scripts/narration_kokoro.py)")
+        else:
+            laid.append({"id": ln["id"], "path": str((folder / r["file"]).resolve()),
+                         "start": starts[ln["shot"]] + round(float(ln.get("at", 0)) * fps),
+                         "frames": max(1, round(float(r["seconds"]) * fps))})
+    laid.sort(key=lambda v: v["start"])
+    for a, b in zip(laid, laid[1:]):
+        if a["start"] + a["frames"] > b["start"]:
+            report.append(f"narration: {a['id']} runs {(a['start'] + a['frames'] - b['start']) / fps:.1f} s into "
+                          f"{b['id']}")
+    spec["narration"], spec["narration_channel"] = laid, int(cfg.get("channel", 10))
+    return report
 
 
 # ------------------------------------------------------------------ reading a rearrangement back
 
-def merge(pool: dict[str, Any], cut: dict[str, Any], rb: dict[str, Any]) -> tuple[dict[str, Any], list[str]]:
+def merge(pool: dict[str, Any], cut: dict[str, Any], rb: dict[str, Any],
+          built: list[str] | None = None) -> tuple[dict[str, Any], list[str]]:
     """The cut as arranged in Blender (read by blend.py `read`): its order by where each shot starts (before the END
-    marker, not muted), trims as `in`/`out`/`duration`, strips added in Blender as shots of their own (status new).
+    marker, not muted), trims as `in`/`out`/`duration`, strips added in Blender as shots of their own (status new), the
+    parked shots moved to another channel as `lanes`. `built`: the shots the file held when last built or read back
+    (its .built.json), so a shot added to the pool since isn't taken for one deleted in Blender.
     Returns the new cut and a report of what changed."""
     fps = float(rb["fps"])
     end = rb["markers"].get("END", rb["frame_end"] + 1)
     own = {e["shot"]: e for e in entries(cut) if DUPLICATE.sub("", e["shot"]) not in pool["shots"]}
-    report, taken, used_ids = [], [], set(pool["shots"]) | set(own)
+    report, taken, lanes, used_ids = [], [], [], set(pool["shots"]) | set(own)
+    present_ids = {st["name"] for st in rb["strips"]}
+    was_colors = dict(cut.get("colors") or {})
+    old_gaps = {e["shot"]: e.get("gap") for e in entries(cut)}
+    colors = {k: v for k, v in was_colors.items() if k not in present_ids}   # a hidden shot keeps its colour
 
     def fresh(name: str) -> str:
         base = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")[:40] or "new-shot"
@@ -220,6 +288,8 @@ def merge(pool: dict[str, Any], cut: dict[str, Any], rb: dict[str, Any]) -> tupl
         return sid
 
     for st in rb["strips"]:
+        if st["type"] == "SOUND" and st["name"].startswith(VO_PREFIX):   # the narration: laid by each build
+            continue
         if st["type"] == "SOUND":
             report.append(f"left out: a sound strip on its own ({st['name']}); sound comes with its shot for now")
             continue
@@ -252,29 +322,65 @@ def merge(pool: dict[str, Any], cut: dict[str, Any], rb: dict[str, Any]) -> tupl
                 e["duration"] = round(dur, 2)
         if known and sid in own:   # a shot made in Blender earlier keeps what it carried
             e = {**own[sid], **e}
+            e.pop("gap", None)   # read again below
+        if st.get("silent"):   # its sound muted in Blender
+            e["silent"] = True
+        if st.get("color_tag"):   # a colour set by hand, kept while it differs from the status's
+            colors[e["shot"]] = st["color_tag"]
+            if st["color_tag"] == color_of(sh, _is_card(sh)):
+                del colors[e["shot"]]
         in_cut = st["left"] < end and not st["mute"]
         if st["mute"] and st["left"] < end:
             report.append(f"parked (muted): {e['shot']}")
         if in_cut:
-            taken.append((st["left"], st["channel"], e))
+            taken.append((st["left"], st["channel"], e, st["right"]))
+        elif st["left"] >= end and st["channel"] != 1 and sid in pool["shots"]:
+            lanes.append((st["channel"], st["left"], sid))
     taken.sort(key=lambda x: (x[0], x[1]))
-    new_cut = {k: v for k, v in cut.items() if k not in ("shots", "hidden")}
-    new_cut["shots"] = [e["shot"] if len(e) == 1 else e for _, _, e in taken]
-    # a parked shot deleted in Blender is hidden from the parked ones (kept in the pool); one put back shows again
+    for i, (left, ch, e, _) in enumerate(taken):   # a shot starting inside the one before, on a higher channel: over it
+        if i and ch > taken[i - 1][1] and taken[i - 1][0] <= left < taken[i - 1][3]:
+            e["over"] = True
+    t = 1   # black left before a shot (not one laid over another): its `gap`, kept by every build
+    for left, ch, e, right in taken:
+        if not e.get("over") and left - t >= 1:
+            e["gap"] = round((left - t) / fps, 2)
+            if e["gap"] != (old_gaps.get(e["shot"]) or 0):
+                report.append(f"gap: {e['gap']} s before {e['shot']}")
+        t = max(t, right)
+    for sid, g in old_gaps.items():
+        if g and sid in {e["shot"] for _, _, e, _ in taken if "gap" not in e}:
+            report.append(f"gap: closed before {sid}")
+    new_cut = {k: v for k, v in cut.items() if k not in ("shots", "hidden", "lanes", "colors")}
+    new_cut["shots"] = [e["shot"] if len(e) == 1 else e for _, _, e, _ in taken]
+    in_cut_ids = {DUPLICATE.sub("", e["shot"]) for _, _, e, _ in taken}
+    by_ch: dict[str, list[str]] = {}
+    for ch, _, sid in sorted(lanes):   # parked shots kept on their own channel (a shot also in the cut stays there)
+        if sid not in in_cut_ids:
+            by_ch.setdefault(str(ch), []).append(sid)
+    if by_ch:
+        new_cut["lanes"] = by_ch
+    if colors:
+        new_cut["colors"] = dict(sorted(colors.items()))
+    report += [f"colour: {k} {v}" for k, v in sorted(colors.items()) if was_colors.get(k) != v]
+    report += [f"colour: {k} back to its status's" for k in sorted(was_colors) if k not in colors]
+    # a shot deleted in Blender, from the cut or the parked ones, is hidden (kept in the pool, never parked again by a
+    # build); one put back shows again. A shot added to the pool since the last build isn't in the file yet: parked.
     present = {DUPLICATE.sub("", st["name"]) for st in rb["strips"]}
     was_hidden, was_parked = set(cut.get("hidden") or []), set(parked(pool, cut))
-    hidden = [sid for sid in pool["shots"] if sid not in present and (sid in was_hidden or sid in was_parked)]
+    was_in = {DUPLICATE.sub("", e["shot"]) for e in entries(cut)}
+    if built is not None:
+        was_parked &= set(built)
+    hidden = [sid for sid in pool["shots"] if sid not in present and sid in was_hidden | was_parked | was_in]
     if hidden:
         new_cut["hidden"] = hidden
-    report += [f"hidden: {sid} (deleted from the parked shots; kept in the pool)" for sid in hidden
-               if sid not in was_hidden]
+    report += [f"hidden: {sid} (deleted in Blender; kept in the pool)" for sid in hidden if sid not in was_hidden]
 
     before = [e["shot"] for e in entries(cut)]
     after = [e["shot"] if isinstance(e, dict) else e for e in new_cut["shots"]]
     if before != after:
         report.append("order: " + " → ".join(after))
     for sid in before:
-        if sid not in after:
+        if sid not in after and DUPLICATE.sub("", sid) not in hidden:
             report.append(f"parked: {sid}")
     for sid in after:
         if sid not in before:
@@ -314,9 +420,9 @@ def _built(path: Path) -> dict[str, Any] | None:
     return json.loads(b.read_text()) if b.exists() else None
 
 
-def _mark(path: Path, cut: dict[str, Any]) -> None:
+def _mark(path: Path, cut: dict[str, Any], shots: list[str]) -> None:
     path.with_suffix(".built.json").write_text(json.dumps({"blend_mtime_ns": path.stat().st_mtime_ns,
-                                                           "cut_sha256": _hash(cut)}, indent=1))
+                                                           "cut_sha256": _hash(cut), "shots": shots}, indent=1))
 
 
 def edited(path: Path) -> bool:
@@ -330,17 +436,19 @@ def sync(root: Path, name: str, pool_path: Path = POOL, cuts_path: Path = CUTS) 
     path = out_dir(root) / f"{name}.blend"
     if not path.exists():
         raise FileNotFoundError(f"no storyboard for {name} yet: `evidence storyboard build --cut {name}`")
-    new, report = merge(pool, cuts.get(name, {}), _read(path))
+    rb = _read(path)
+    new, report = merge(pool, cuts.get(name, {}), rb, (_built(path) or {}).get("shots"))
     cuts[name] = new
     write_cuts(pool, cuts, cuts_path)
-    _mark(path, new)
+    _mark(path, new, sorted({DUPLICATE.sub("", st["name"]) for st in rb["strips"]}))
     return report
 
 
 def build(root: Path, name: str, discard_edits: bool = False, pool_path: Path = POOL,
-          cuts_path: Path = CUTS) -> dict[str, Any]:
-    """The cut's .blend made again from the pool and the cut. A rearrangement saved in Blender since the last build or
-    sync is read back first; if the cut was also changed in the file, nothing is overwritten unless `discard_edits`."""
+          cuts_path: Path = CUTS, narration_path: Path = NARRATION) -> dict[str, Any]:
+    """The cut's .blend made again from the pool and the cut, with the narration's rendered lines (`narrate`). A
+    rearrangement saved in Blender since the last build or sync is read back first; if the cut was also changed in
+    the file, nothing is overwritten unless `discard_edits`."""
     pool, cuts = load(pool_path, cuts_path)
     if name not in cuts:
         raise KeyError(f"no cut {name!r} in {cuts_path} (cuts: {', '.join(cuts)})")
@@ -367,7 +475,14 @@ def build(root: Path, name: str, discard_edits: bool = False, pool_path: Path = 
         return None
 
     spec = layout(pool, name, cuts[name], resolve)
-    used = {Path(s["path"]).stem for s in spec["shots"] + spec["parked"] if s["kind"] == "movie"}
+    vo, said = d / "narration", []
+    if Path(narration_path).exists():
+        rendered = json.loads((vo / "narration.json").read_text())["lines"] if (vo / "narration.json").exists() else {}
+        said = narrate(spec, (yaml.safe_load(Path(narration_path).read_text()) or {}).get("narration") or {},
+                          rendered, vo)
+    used ={Path(s["path"]).stem for c in cuts   # every cut's, so building one never takes another's previews
+            for sp_ in ([spec] if c == name else [layout(pool, c, cuts[c], resolve)])
+            for s in sp_["shots"] + sp_["parked"] if s["kind"] == "movie"}
     for f in (d / "media").glob("*"):   # previews of sources renamed or gone
         if f.stem not in used:
             log.info("Removing unused preview %s", f.name)
@@ -380,13 +495,13 @@ def build(root: Path, name: str, discard_edits: bool = False, pool_path: Path = 
                    stdout=subprocess.DEVNULL)
     tmp.replace(path)
     sp.unlink()
-    _mark(path, cuts[name])
+    _mark(path, cuts[name], sorted({DUPLICATE.sub("", s["id"]) for s in spec["shots"] + spec["parked"]}))
     for f in [*d.glob("*.blend1"), *(f for f in d.glob("*.blend") if f.stem not in cuts)]:
         log.info("Removing old storyboard file %s", f.name)
         f.unlink()
         if f.suffix == ".blend":  # (a .blend1's with_suffix would name the current cut's record)
             f.with_suffix(".built.json").unlink(missing_ok=True)
-    return {"path": str(path), "spec": spec, "synced": report}
+    return {"path": str(path), "spec": spec, "synced": report, "narration": said}
 
 
 def show(pool: dict[str, Any], name: str, cut: dict[str, Any]) -> list[str]:
@@ -400,14 +515,21 @@ def show(pool: dict[str, Any], name: str, cut: dict[str, Any]) -> list[str]:
             return float("nan")
         return float(sh["out"]) - float(sh.get("in", 0))
 
-    lines, t, by = [], 0.0, {}
+    def mmss(x: float) -> str:
+        x = round(x, 1)   # so 599.96 s reads 10:00.0, not 9:60.0
+        return f"{int(x // 60)}:{x % 60:04.1f}"
+
+    lines, t, by, start = [], 0.0, {}, 0.0
     for e in entries(cut):
         sh = shot(pool, e)
         s = secs(sh)
-        lines.append(f"  {int(t // 60)}:{t % 60:04.1f}  {s:5.1f} s  {sh['status']:<7}  {sh['id']:<24} {sh.get('title', '')}")
-        t += 0 if s != s else s
-        by[sh["status"]] = by.get(sh["status"], 0.0) + (0 if s != s else s)
-    lines.append(f"  {name}: {int(t // 60)}:{t % 60:04.1f} in all · "
+        at = start if e.get("over") else t + float(e.get("gap") or 0)   # one laid over the one before starts with it
+        lines.append(f"  {mmss(at)}  {s:5.1f} s  {sh['status']:<7}  {sh['id']:<24} "
+                     f"{sh.get('title', '')}{' (over the shot before)' if e.get('over') else ''}")
+        start, t = at, max(t, at + (0 if s != s else s))
+        if not e.get("over"):
+            by[sh["status"]] = by.get(sh["status"], 0.0) + (0 if s != s else s)
+    lines.append(f"  {name}: {mmss(t)} in all · "
                  + " · ".join(f"{k} {v:.0f} s" for k, v in sorted(by.items(), key=lambda x: STATUSES.index(x[0]))))
     rest = parked(pool, cut)
     if rest:

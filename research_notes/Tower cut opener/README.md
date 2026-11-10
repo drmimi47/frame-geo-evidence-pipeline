@@ -316,5 +316,5 @@ These are listed in `marks.json` (`left_out`) and struck through in `candidates.
     the window's size and shape changes with each cut. That is the rule (black where the frame doesn't reach).
   - The 750 kV frames come from news footage, softer than the rest.
 - **Sound.** Left silent as asked. One option is the Hum entering on the crossing.
-- **Downloads.** About 19 GB in `downloads/` (98 folders), kept to re-render. Delete them once the frames are settled
-  (`frames/` keeps the source frames used).
+- **Downloads.** Deleted (the last 8 videos, 2.9 GB, 9 November 2026, at the user's request). `frames/` keeps the source
+  frames used; re-cutting from the footage means downloading the videos again.

@@ -1,0 +1,93 @@
+{
+ "title": "The drowning's sound (from the speculative soundscape's own material)",
+ "seconds": 15.0,
+ "sample_rate": 48000,
+ "sha256": "e483e0676837876e8b1afaa4402aa54cd092ce7672897bfb4c6d2dfacb4c78b5",
+ "from": "Speculative crossing soundscape (mix.py): its synthesized line and three of its recordings, each cut, high-passed at 250 Hz, faded and levelled exactly as mix.py does, panned as there",
+ "line": {
+  "name": "Ferosplavna-1",
+  "kv": 330,
+  "made": "synthesized by mix.py's line() (hum.py's 330 kV voice: 100 Hz and its harmonics, the 6th stressed, corona hiss and cracks), seed 330, the first 15 s of its 30 s, -30 dBFS RMS before the master",
+  "under": "from the lens crossing (5.17 s) low-passed at 380 Hz and -6 dB, crossfaded over 0.3 s: a drawn convention for hearing from under the water"
+ },
+ "layers": [
+  {
+   "layer": "reeds",
+   "holds": "great reed warbler (361639437), Eurasian coot (361639473), European bee-eater (361466739)",
+   "recording": "1950258.wav",
+   "observations": [
+    "https://www.inaturalist.org/observations/361639437",
+    "https://www.inaturalist.org/observations/361639473",
+    "https://www.inaturalist.org/observations/361466739"
+   ],
+   "recordist": "(c) Oleksii Vasyliuk, some rights reserved (CC BY)",
+   "licence": "cc-by",
+   "date": "2026-05-14",
+   "place": "Mar'ianske, on the drained bed, about 50 km downstream",
+   "recording_seconds_used": [
+    62,
+    65.58
+   ],
+   "level_dbfs_rms": -29,
+   "pan": -0.55,
+   "drops_at_level_m": 9.4,
+   "gone_by_s": 3.58,
+   "drop": "faded out over 0.9 s once the drawn water reaches 9.4 m"
+  },
+  {
+   "layer": "frog",
+   "holds": "marsh frog (211010127)",
+   "recording": "997953.wav",
+   "observations": [
+    "https://www.inaturalist.org/observations/211010127"
+   ],
+   "recordist": "(c) W.D. Keeper, some rights reserved (CC BY)",
+   "licence": "cc-by",
+   "date": "2024-04-28",
+   "place": "near Kryvyi Rih, not on the bed (no frog has been recorded or described on the bed: the frog is a guess)",
+   "recording_seconds_used": [
+    0,
+    4.35
+   ],
+   "level_dbfs_rms": -31,
+   "pan": -0.3,
+   "drops_at_level_m": 9.85,
+   "gone_by_s": 4.35,
+   "drop": "faded out over 0.9 s once the drawn water reaches 9.85 m"
+  },
+  {
+   "layer": "nightingale-near",
+   "holds": "thrush nightingale (361637893)",
+   "recording": "1950271.wav",
+   "observations": [
+    "https://www.inaturalist.org/observations/361637893"
+   ],
+   "recordist": "(c) Oleksii Vasyliuk, some rights reserved (CC BY)",
+   "licence": "cc-by",
+   "date": "2026-05-14",
+   "place": "Mar'ianske, on the drained bed, about 50 km downstream",
+   "recording_seconds_used": [
+    5,
+    10.27
+   ],
+   "level_dbfs_rms": -20,
+   "pan": 0.2,
+   "drops_at_level_m": null,
+   "gone_by_s": 5.27,
+   "drop": "faded out over 0.9 s as the lens goes under"
+  }
+ ],
+ "order": "the reed birds first, then the frog, then the near nightingale (with the lens); the hum throughout (the user, 6 November 2026)",
+ "master_gain_db": 4.15,
+ "mix_rerun_matches_original": true,
+ "fades_s": {
+  "in": 0.5,
+  "birds_in": 1.0,
+  "out": 1.5
+ },
+ "limit": "the birds' bus at -12 dBFS, the whole at -1 dBFS (mix.py's limiter)",
+ "statement": "A montage, not a recording: nothing was recorded at the crossing. No new recordings; nothing pitched, looped or stretched. The line is synthesized, not recorded; its muffling under water is drawn.",
+ "credit": "Oleksii Vasyliuk (CC BY), W.D. Keeper (CC BY), via iNaturalist; the line synthesized",
+ "peak_dbfs": -5.3,
+ "rms_dbfs": -25.0
+}

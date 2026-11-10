@@ -1,0 +1,173 @@
+{
+ "what": "Tower elevation, fourth pass with the user's fixes (9 November 2026): zoom3b's marks and type, the stack only sliding left (the picture's 46 px rise done during the pull-back's last 1.8 s), the hold after the pull-back cut, a longer hold on all eight towers before the dimensions, Ferosplavna's height on its left. Storyboard material, not frames of the film.",
+ "video": {
+  "file": "S2_elevation_zoom3c.mp4",
+  "sha256": "b0930070eb89ab95a354c57cdec7297c4ac83abe9972979ba46b1c20e4bea961",
+  "seconds": 30.0,
+  "fps": 30,
+  "size": [
+   1920,
+   1080
+  ],
+  "codec": "H.264 (libx264, CRF 16, yuv420p), no sound"
+ },
+ "made_by": "scripts/zoom3c.py on zoom3.py's renders as they were (the move's 390 frames and the three sprites, reused, not rendered again; nothing re-rendered in Blender); only the composite, the marks' places and the timing are new. zoom3.py, zoom3b.py and their files unchanged.",
+ "timeline_s": {
+  "fade_in": [
+   0,
+   0.8
+  ],
+  "hold_on_the_person": [
+   0,
+   1.8
+  ],
+  "pull_back": [
+   1.8,
+   13.0
+  ],
+  "picture_rises_46px_during_the_pull_back": [
+   11.2,
+   13.0
+  ],
+  "short_hold": [
+   13.0,
+   13.8
+  ],
+  "dniprovska_named": 13.8,
+  "towers_behind_slide_out": [
+   [
+    14.8,
+    16.2
+   ],
+   [
+    15.7,
+    17.1
+   ]
+  ],
+  "dniprovska_count": 16.6,
+  "stack_slides_left": [
+   18.0,
+   21.0
+  ],
+  "ferosplavna_in": [
+   18.8,
+   21.66
+  ],
+  "ferosplavna_named_with_count": 21.6,
+  "hold_on_all_eight_with_both_captions": [
+   22.3,
+   25.0
+  ],
+  "dimensions_both_groups": [
+   25.0,
+   25.8
+  ],
+  "hold_to_end": [
+   25.8,
+   30.0
+  ],
+  "end": 30.0
+ },
+ "the_tower": {
+  "type": "crossing750_p on caisson750 (towers.npz, the 3D film's model)",
+  "line": "Dniprovska (750 kV, ZNPP - Dniprovska): the only 750 kV line crossing here; towers.py assigns the crossing750 types only to it (scheme К-П-П-А-П-П-К, Novoklimov 2011)",
+  "height_m": 126,
+  "caisson_m": 40,
+  "which": "one of its two 126 m suspension towers in the reservoir (drawn as the nearest from the south); the type, not a numbered tower",
+  "caisson_note": "40 m across as published (ssp_63206) and as modelled; zoom3's label said 41 m, the drawn width including the ribs, about 0.5 m proud of the drum"
+ },
+ "towers_in_the_old_reservoir": {
+  "rule": "towers.py assign(): the crossing scheme's inner towers stand on caissons, the two shore towers on land; the same towers lie in the survey's water of 5 June 2023 (survey.json, Sentinel-2A 2023-06-05)",
+  "Dniprovska": {
+   "count": 3,
+   "of_crossing_towers": 5,
+   "south_to_north": [
+    "crossing750_p 126 m",
+    "crossing750_a 100 m (the anchor)",
+    "crossing750_p 126 m"
+   ],
+   "sources": [
+    "novoklimov",
+    "ssp_63206 (126 m, 2nd crossbar 113 m, caisson 40 m)",
+    "ukwiki (126 and 100 m)",
+    "osm (positions, tower:type=crossing)"
+   ]
+  },
+  "Ferosplavna 1, 2": {
+   "count": 5,
+   "of_crossing_towers": 7,
+   "type": "crossing330, double-circuit anchor (one row of towers for both circuits, Л-243/Л-244)",
+   "height_m": "90 and 100 m published (ukwiki: 90 m, the central 100 m; ssp_94005: no. 19 at 100 m); which is which isn't settled in the 3D film, so all drawn at 100 m, as there, and the caption says so",
+   "sources": [
+    "novoklimov",
+    "ssp_94005",
+    "ukwiki",
+    "osm"
+   ]
+  }
+ },
+ "dimensions": {
+  "width_measure": "the same for both groups: the front tower's caisson across at its base, its widest part. The labels give the published figures; the lines span the caissons as drawn (750 kV: 263 px = 41.1 m at 6.4 px/m, 330 kV: 285 px = 44.6 m, both including the ribs, about 0.5 m proud of the drum).",
+  "Dniprovska": {
+   "height": "126 M: the front tower (crossing750_p), caisson top to tower top; published (ssp_63206, ukwiki)",
+   "width": "40 M ACROSS: ssp_63206, \"caisson 40 m across\""
+  },
+  "Ferosplavna 1, 2": {
+   "height": "100 M: the front tower, caisson top to tower top; drawn at 100 m as all five are (published 90 and 100 m: ukwiki; ssp_94005 no. 19 at 100 m)",
+   "width": "43.6 M ACROSS: ssp_94005, \"caisson 43.6 m across at its base and 29 m at its top\""
+  },
+  "placed": "heights left of each group's front tower (Dniprovska's and Ferosplavna's alike: the farther towers stand to the right), widths under each front caisson's base, the captions under them"
+ },
+ "drawn_not_observed": [
+  "The shapes are representative models of each type (towers.py: from photographs of these towers and published heights).",
+  "In line along each line as seen from the south, the nearest in front, each further one spread sideways (750 kV 12 m, 330 kV 10 m) and fainter so all can be seen: a drawing; in line they would hide each other. True sizes relative to each other (one scale, flat view).",
+  "The bases at 12.8 m under the old water (no. 19's, the only published depth) and the bed (inferred, about 8.4 m under the old water at the 750 kV caissons) drawn at one level for every tower.",
+  "The person, 1.75 m, drawn.",
+  "No coordinates, numbers or states of individual towers; no damage or repairs shown."
+ ],
+ "to_be_said_elsewhere": {
+  "why": "taken off the screen at the user's request (9 November 2026); still true of the picture, so said in the narration, the notes or the credits",
+  "items": [
+   "The shapes are representative models of each type, drawn from photographs of these towers and published heights (the removed title: \"THE 750 KV CROSSING TOWER OVER THE DNIPRO / A REPRESENTATIVE MODEL OF THE TYPE, DRAWN FROM PHOTOGRAPHS AND PUBLISHED HEIGHTS; THE PERSON DRAWN.\").",
+   "Seen along each line from the south, the nearest in front, the others spread sideways to be seen; to scale (the removed note, first line).",
+   "Ferosplavna's towers: 90 and 100 m published, all drawn at 100 m (the removed caption).",
+   "Dniprovska's three: 126, 100 and 126 m (the removed caption); the anchor in the middle is 100 m.",
+   "The bases (12.8 m under the old water, tower no. 19's, the only published depth) and the bed (inferred) drawn at one level for every tower (the removed note, second line).",
+   "The person, 1.75 m, is drawn (still in the picture; no longer said on it)."
+  ]
+ },
+ "on_screen_text": {
+  "captions": {
+   "d_name": "DNIPROVSKA · 750 KV",
+   "d_count": "3 TOWERS OVER WATER",
+   "f_name": "FEROSPLAVNA 1 AND 2 · 330 KV",
+   "f_count": "5 TOWERS OVER WATER"
+  },
+  "dimensions": [
+   "126 M",
+   "40 M ACROSS",
+   "100 M",
+   "43.6 M ACROSS"
+  ],
+  "removed": [
+   "the title top left (13.9-21 s)",
+   "the note top right (26.6 s on)",
+   "126 M / 41 M ACROSS at the end of the move (13.4 s)"
+  ]
+ },
+ "checks": {
+  "handover_move_to_sprites": "frame 389 -> 390: mean step 0.22 levels (0-255, 480x270 grey), as zoom3 and zoom3b; the towers' tops at 42 -> 43 px (zoom3's render against its sprites, 1 px); 0.00 after",
+  "rise": "11.2-13.0 s: steps 0.28-0.39 levels, smooth with the camera's own settling, eased to 0.04 just before the hand-over",
+  "vertical_after_handover": "the towers' tops at 43 px in every frame from 390 to 899",
+  "slide": "18.0-21.0 s eased, steps from 0.08 rising and back under 0.5 by 21.3 s; no jump",
+  "dimensions_in": "25.0-25.8 s, a fade; steps at most 0.03 levels",
+  "largest_steps": "10.7 levels at 3.7-4.0 s, zoom3's pull-back past the concrete, unchanged",
+  "stills": "S2_elevation_zoom3c_sheet.png (12 moments, 11-30 s): labels clear of each other and of the towers; Ferosplavna's 100 M line about 230 px right of Dniprovska's farthest crossarm and 90 px left of its own; the end frame S2_elevation_zoom3c_last.png"
+ },
+ "user_asked": "move the \"100M\" and its line measurement to the left of the FEROSPLAVNA towers. When sliding the towers to the left to make room for the FEROSPLAVNA towers do not do the slide left and move up move. i jsut want them to be slid to the left. re-accomodate the towers so that the text can appropriatly remain the same size and general placement without having to do the awkard shift left and slide up. also the time between 12-18 seconds is wasted time. rmeove and ensure the flow of things makes sense since there should be more time seeing all 8 towers on the page before the dimensions show up.",
+ "layout": {
+  "rise": "the 46 px the picture rises (room under the bases for the widths, the captions under them) is eased in over 11.2-13.0 s while the camera is still settling, as a vertical shift of zoom3's frames and the ground cut; zoom3's frames are black at the bottom from about 11.4 s, so the rows uncovered are black as in zoom3b's end. From the hand-over (13.0 s) the picture stays at that height: nothing moves up or down after it",
+  "captions": "at zoom3b's final place from the first (48 and 78 px under the bases), never stepping down; same size",
+  "slide": "the stack only slides left, 476 px, eased over 3 s, as Ferosplavna's five come in from the right"
+ }
+}

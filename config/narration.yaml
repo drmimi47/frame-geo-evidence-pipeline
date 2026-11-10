@@ -1,0 +1,55 @@
+# The film's narration, a draft voice-over to test the cut with (the user, 6 November 2026): Kokoro's bf_emma for now,
+# ElevenLabs Eleven v4 near the end (English, with parts in Ukrainian; research_notes/Voice-over options/findings.md).
+# Each line has a stable id, the shot it is spoken over and when in that shot (`at`, seconds from the shot's start),
+# and its words. `scripts/narration_kokoro.py` renders each line to libraries/conductive-seam/storyboard/narration/
+# (only lines whose words or voice changed); `evidence storyboard build` lays them in the cut on their own channel,
+# from their shot's start, so they follow a rearranged cut on the next build. A line whose shot isn't in the cut is
+# left out and said so. The words are the cards' and the shots' own (their sources in config/storyboard.yaml), spoken.
+# A synthesized voice, to be credited as such.
+
+narration:
+  voice: {engine: kokoro, voice: bf_emma, speed: 0.9, lang: b}
+  channel: 3
+  # how the place names are said (Ukrainian stress), as phonemes for Kokoro; the same list goes to ElevenLabs'
+  # pronunciation dictionary later. To check with a Ukrainian speaker (Ferosplavna's stress is unsure).
+  pronounce:
+    Zaporizhzhia: "zˌɑpəɹˈiʒə"
+    Enerhodar: "ˌɛnəɹhədˈɑɹ"
+    Nikopol: "nˈikəpəl"
+    Dniprovska: "dnipɹˈɔvskə"
+    Ferosplavna: "fˌɛɹəsplˈɑvnə"
+    Kakhovka: "kɑhˈɔvkə"
+    Dnipro: "dnipɹˈɔ"
+    IAEA: "ˌaɪˌeɪˌiˈeɪ"
+  lines:
+    - {id: tower-1, shot: tower-cut, at: 13.0, text: "People along the Dnipro film the power lines they live under."}
+    - {id: plant-1, shot: zo-plant, at: 3.0, text: "The Zaporizhzhia nuclear power plant. Six reactors, on the south bank of the Dnipro."}
+    - {id: plant-2, shot: zo-plant, at: 21.0, text: "Its power leaves by ten lines: four at seven hundred and fifty kilovolts, six at three hundred and thirty."}
+    - {id: fifth-1, shot: one-fifth, at: 0.3, text: "Before the war, its six reactors made more than a fifth of Ukraine's electricity."}
+    - {id: war-1, shot: zo-war, at: 1.0, text: "Russia invades. In March 2022, its troops take the plant."}
+    - {id: war-2, shot: zo-war, at: 8.0, text: "One by one, the lines are cut."}
+    - {id: front-1, shot: front-2022, at: 0.5, text: "By September, the front runs along the reservoir."}
+    - {id: zone-1, shot: zones, at: 1.0, text: "The IAEA proposes a protection zone. It is never agreed."}
+    - {id: brief2-1, shot: brief-2, at: 0.5, text: "Occupied since March 2022, the plant has made no power since that September. Its six reactors are shut down, but their fuel must still be cooled, and the cooling runs on power drawn back from the grid it once fed."}
+    - {id: fog-1, shot: fog-crackle, at: 6.0, text: "A line of this kind, recorded elsewhere, in fog. Carrying almost nothing, it sings as loud as at full load."}
+    - {id: brief3-1, shot: brief-3, at: 0.1, text: "The lines that carried its power out now carry power in. What they bring is time."}
+    - {id: brief4-1, shot: brief-4, at: 0.9, text: "When the last line is cut, diesel generators start, and a countdown begins. Twenty-six times, every line was lost. The longest loss lasted a month."}
+    - {id: south-1, shot: 3d-south-look3, at: 0.3, text: "The crossing. The last two lines, Dniprovska and Ferosplavna one, span the reservoir on towers standing in the water."}
+    - {id: drain-1, shot: 3d-south-look3, at: 29.8, text: "On the sixth of June 2023, the Kakhovka dam downstream is destroyed. The reservoir drains."}
+    - {id: bed-1, shot: 3d-south-look3, at: 43.4, text: "The towers that stood in the reservoir now stand on its dry bed."}
+    - {id: plant-3, shot: 3d-south-look3, at: 73.0, text: "In March 2026, Dniprovska is cut. Since then, one line of ten has kept the plant cool."}
+    - {id: brief5-1, shot: brief-5, at: 0.3, text: "Since October 2025, the war has paused seven times, for hours or days, so that a crew could mend a single span of wire."}
+    - {id: gap-1, shot: the-gap, at: 3.5, text: "Repaired by specialist crews from both sides of the front, under ceasefires the IAEA brokered. No report names any of them."}
+    - {id: night-1, shot: zo-night-after, at: 3.0, text: "September 2026, at night. Both banks are dark."}
+    - {id: night-2, shot: zo-night-2021, at: 0.5, text: "Before the war, September 2021."}
+    - {id: night-3, shot: zo-night-2022, at: 0.5, text: "September 2022. Nikopol's bank is dark. The satellite shows where it was dark, not why."}
+    - {id: chart-1, shot: nl-monthly-chart, at: 0.5, text: "By the end, the plant outshines its own town."}
+    - {id: cool-1, shot: water-cooling, at: 0.5, text: "Since April 2024, the six reactors have been in cold shutdown. Wells on the site keep the fuel cool. To run again, the plant would need the river."}
+    - {id: seep-1, shot: seepage-paper, at: 0.5, text: "A 2024 paper says the satellite images show water seeping through the pond's dike."}
+    - {id: section-1, shot: section-block2-a, at: 9.5, text: "In section: the last seven hundred and fifty kilovolt line, the river now a channel, and the pond falling toward its pumps."}
+    - {id: cool-2, shot: section-block2-a, at: 18.0, text: "Without the reservoir, its cooling pond is sinking: sixteen point six five metres above sea level in June 2023, twelve point two seven in October 2026. At about twelve metres, its pumps would stop."}
+    - {id: dam-1, shot: water-dam, at: 0.5, text: "Hydrologists propose a temporary dam, to raise the water to twelve point seven metres. At that level, both Zaporizhzhia power stations could run again. A new dam would take five to six years to build."}
+    - {id: forest-1, shot: forest-or-reactor, at: 3.2, text: "Since June 2023, a forest has grown on the bed: willows and poplars up to nine metres tall. Raised to twelve point seven metres, the water would cover it, wherever the bed lies below that level."}
+    - {id: choice-1, shot: water-choice, at: 6.0, text: "To flood this place again would be another crime, says an ecologist. I just want there to be water again, says a village head on the old shore. The choice has not been made."}
+    - {id: end-1, shot: end-card-b, at: 0.8, text: "The towers stood in water. Now they stand in a forest."}
+    - {id: end-2, shot: end-final, at: 0.3, text: "Whether the water comes back has not been decided yet."}

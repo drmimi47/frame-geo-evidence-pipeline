@@ -242,6 +242,24 @@ def _sheets(out: Path, surfaces: list[np.ndarray], ll: np.ndarray, z: np.ndarray
     return {"sheet_region": region, "sheet_z": np.stack(zs).astype(np.float32)}
 
 
+def _sheets_edge(out: Path, surfaces: list[np.ndarray], ll: np.ndarray, z: np.ndarray) -> dict[str, np.ndarray]:
+    """As `_sheets`, for a look with `water.smooth_edge` (look pass 3): the sheet at the water's surface over the water
+    and two vertices beyond it (the renderer cuts it at the sub-pixel contour, look.water_edge), then a metre under
+    the ground, hidden; so the shore is drawn where the contour is, not where a 20 m quad meets the ground."""
+    from . import bed
+    wets, hs = [], []
+    for h in surfaces:
+        wet = np.isfinite(h)
+        wets.append(bed.on_grid(out, wet.astype(np.float32), ll).reshape(z.shape) >= 0.5)
+        hs.append(bed.on_grid(out, _nearest(np.nan_to_num(h, nan=0.0), wet), ll).reshape(z.shape))
+    region = cv2.dilate(np.any(wets, 0).astype(np.uint8), np.ones((7, 7), np.uint8)).astype(bool)
+    zs = []
+    for wet, h in zip(wets, hs):
+        near = cv2.dilate(wet.astype(np.uint8), np.ones((5, 5), np.uint8)).astype(bool)
+        zs.append(np.where(near, h, z - 1.0)[region])
+    return {"sheet_region": region, "sheet_z": np.stack(zs).astype(np.float32)}
+
+
 def _nearest(a: np.ndarray, have: np.ndarray) -> np.ndarray:
     """a everywhere from its nearest pixel where `have` is (a as it is where none)."""
     if not have.any():
@@ -601,6 +619,63 @@ def _sheet(path, lines, names, net, txy, towers, mid, pcross, passes, grid, pl, 
 
 # ------------------------------------------------------------------ pass 1: the grey-box scene
 
+LOOK_STATEMENT = (
+    "A look pass (the variant's `look`): drawn, not observed: the overcast sky and its clouds (noise), the sun and the "
+    "sky's light on the towers, caissons and plant (Blender lamps), the light haze of the air by distance "
+    "(Koschmieder, at the visibility given), the plain beyond the land's box (the land's mean colour), the water's "
+    "darker, bluer tint, its ripples and reflections (a planar mirror where asked), its colour by depth over the "
+    "inferred bed (a neutral bottom tone in the shallows, never a later pass's pixels), the wet band on the bed just "
+    "left by the water (darker and glossier, drying over the days given, by height between the levels then and now), "
+    "the caissons' concrete (darker at the water's line), the cut wires' colour, the grade (view transform, saturation, "
+    "tint, grain, vignette), bloom and motion blur. Positions, heights, levels, dates and the passes' pixels stay as "
+    "sourced; the passes colour-matched as said in `match_statement`.")
+
+
+VEGETATION_VERSION = 2
+
+
+def _vegetation(root: Path, cfg: dict[str, Any], out: Path, vc: dict[str, Any], track: np.ndarray,
+                plane: dict[str, Any], tower_xy: np.ndarray) -> dict[str, Any]:
+    """vegetation.npz and its doc (vegetation.py), made again only when its options, the camera's track or the
+    version change (vegetation.json keeps the doc and what it was made from)."""
+    import hashlib
+    from . import vegetation
+    key = hashlib.sha256(json.dumps([VEGETATION_VERSION, {k: vc.get(k) for k in ("seed", "spacing")}], sort_keys=True).encode()
+                         + np.round(track, 1).tobytes() + np.round(tower_xy, 1).tobytes()).hexdigest()[:16]
+    cache = out / "vegetation.json"
+    if cache.is_file() and (out / "vegetation.npz").is_file():
+        doc = json.loads(cache.read_text())
+        if doc.get("key") == key:
+            return {k: v for k, v in doc.items() if k != "key"}
+    log.info("Vegetation: placing the plants (vegetation.py)")
+    doc = vegetation.build(root, cfg, out, vc, track, plane, tower_xy)
+    write_json(cache, {**doc, "key": key})
+    return doc
+
+
+def _detail(out: Path, types: dict[str, Any], ws: list[dict[str, Any]], lines: list[dict[str, Any]],
+            tcfg: dict[str, Any]) -> dict[str, Any]:
+    """towers_detail.npz: towers.npz with the detailed meshes and fittings (the same attachment points, so the same
+    wires; refused if any differs)."""
+    from . import towers
+    base = towers.build_types()
+    def flat(v: Any) -> list[float]:
+        return [x for e in v for x in flat(e)] if isinstance(v, (list, tuple)) else list(np.ravel(np.asarray(v, float)))
+
+    for k, (_, a) in types.items():
+        b = base[k][1]
+        if a.keys() != b.keys() or any(len(flat(a[n])) != len(flat(b[n])) or
+                                       not np.allclose(flat(a[n]), flat(b[n])) for n in a if n != "kv"):
+            raise ValueError(f"{k}: the detailed tower's attachment points differ from the approved one's")
+    arrays = {f"{k}__{n}": arr for k, (m, _) in types.items() for n, arr in m.arrays().items()}
+    arrays |= {f"fittings__{n}": arr for n, arr in towers.fittings(ws, [ln["kv"] for ln in lines], detail=True).arrays().items()}
+    old = np.load(out / "towers.npz")
+    arrays |= {k: old[k] for k in old.files if k.startswith("wire_")}
+    np.savez_compressed(out / "towers_detail.npz", **arrays)
+    return {"file": "towers_detail.npz", "types": {k: int(len(m.counts)) for k, (m, _) in types.items()},
+            "statement": towers.DETAIL_STATEMENT}
+
+
 def scene(root: Path, cfg: dict[str, Any]) -> dict[str, Any]:
     """The animatic's scene (scene.json + terrain.npz) and the camera of each opening (camera_<variant>.json), from the
     survey (made first if missing)."""
@@ -657,6 +732,8 @@ def scene(root: Path, cfg: dict[str, Any]) -> dict[str, Any]:
         x_at = (float(bdoc["river_slope"]["at_lon"]) - pl.lon0) * pl.kx   # the surface tilts about the crossing
         sheet = _sheets(out, surfaces, ll, z)
         np.savez_compressed(out / "water.npz", mask=wet, pivot_x=x_at, **sheet)
+        if any(((v.get("look") or {}).get("water") or {}).get("smooth_edge") for v in c3["animatic"]["variants"].values()):
+            np.savez_compressed(out / "water_edge.npz", **_sheets_edge(out, surfaces, ll, z))   # look pass 3
         water_rgb = _water_colours(root, cfg, out, layers, bdoc)
     np.savez_compressed(out / "terrain.npz", x=xs.astype(np.float32), y=ys.astype(np.float32), z=z, u=u, v=v)
 
@@ -717,6 +794,8 @@ def scene(root: Path, cfg: dict[str, Any]) -> dict[str, Any]:
                              types, {k: float(v) for k, v in tcfg["catenary_m"].items()}, south)
 
     o = c3["animatic"]
+    types_detail = (towers.build_types(detail=True)
+                    if any((v.get("look") or {}).get("detail") for v in o["variants"].values()) else None)
     zone = (cfg.get("record") or {}).get("zone")
     centre, _ = zoomout._site_circle(network_dir(root, cfg["id"]), zone["around"], pl) if zone else (np.zeros(2), 0.0)
     flight = np.array([p["xy_m"] for p in sv["flight"]["points"]])
@@ -724,7 +803,7 @@ def scene(root: Path, cfg: dict[str, Any]) -> dict[str, Any]:
     cross = float(sv["lines_cross_at"]["xy_m"][1])
     land = cross + float(o.get("land_after_m", 0))
     _, _, off = camera.axis(flight, gaps)
-    cams = {}
+    cams, looks, tracks = {}, {}, {}
     for variant, v in o["variants"].items():
         at = cross + float(v.get("land_after_m", o.get("land_after_m", 0)))
         if v.get("track"):   # a track of its own: south toward the plant (the user, 4 November 2026)
@@ -733,9 +812,19 @@ def scene(root: Path, cfg: dict[str, Any]) -> dict[str, Any]:
             fr = camera.frames(variant, o, centre, flight, gaps, at, int(o["fps"]))
         doc = {"variant": variant, "fps": int(o["fps"]), "frames": fr, "extras": list(v.get("extras") or []),
                "statement": "A viewing path, designed; not an observation."}
+        tracks[variant] = np.array([f["location"][:2] for f in fr])
         if v.get("record"):  # the two lines' record: each frame's line states, date and drain (pinned to its date)
             ro = states.options(c3, v)
             rec, rdoc = states.record(cfg["record"], ro)
+            for x in ro.get("select") or []:   # look pass 3: a date placed by where the camera is, checked
+                if x.get("along_m") is not None:
+                    got = fr[min(len(fr) - 1, round(float(x["s"]) * int(o["fps"])))]["along_m"]
+                    if abs(got - float(x["along_m"])) > float(x.get("along_tol_m", 100)):
+                        raise ValueError(f"{variant}: {x['at']} at {x['s']} s finds the camera {got:.0f} m along, "
+                                         f"not {x['along_m']} m: move its `s`")
+                    for dd in rdoc.get("dates", []):
+                        if dd["date"] == str(x["at"]):
+                            dd["camera_along_m"] = {"placed_at": float(x["along_m"]), "found": got}
             for f, x in zip(fr, states.per_frame(rec, ro, len(fr), int(o["fps"]))):
                 f.update(x)
             if bdoc:   # the water's level and the bed's imagery by the record's day (fractional) at each frame
@@ -750,10 +839,40 @@ def scene(root: Path, cfg: dict[str, Any]) -> dict[str, Any]:
                 for f, x in zip(fr, states.others_per_frame(cfg["record"], ro, others_doc["lines"], rec, fr, int(o["fps"]))):
                     f["others"] = x
             if c3.get("flow"):  # which way the power runs (states.flow_toward), drawn along the connected lines
+                fo = states.flow_config(c3["flow"], v)
                 for f in fr:
-                    f["flow"] = states.flow_toward(c3["flow"], f.get("date"))
-                doc["flow"] = states.flow_doc(c3["flow"])
+                    f["flow"] = states.flow_toward(fo, f.get("date"))
+                doc["flow"] = states.flow_doc(fo)
             doc["record"] = rdoc
+            if v.get("look"):   # a look pass (look.py): its options for build.py, the pass before the breach, the wet band
+                from . import look as look_mod
+                south_layers = ([network._layer(root, cfg, ly, None) for ly in c3["land_south"]["layers"]]
+                                if c3.get("land_south") else [])
+                looks[variant] = look_mod.prepare(root, cfg, out, v["look"], layers or [tex], south_layers)
+                look_mod.per_frame(v["look"], fr, [rec.days(i / int(o["fps"])) for i in range(len(fr))], bdoc)
+                if v["look"].get("vegetation"):   # look pass 2: the plants, placed by rule from the dated passes
+                    tw = np.array([t["xy"] for ln in lines + (others_doc["lines"] if others_doc else [])
+                                   for t in ln["towers"] if t.get("type")], float)
+                    # placed along this variant's track, or another's (`track_from`: look pass 3 keeps look 2's
+                    # placement, so the cache is shared and neither moves a plant)
+                    tf = v["look"]["vegetation"].get("track_from")
+                    if tf and tf not in tracks:
+                        raise ValueError(f"{variant}: vegetation track_from {tf!r} must be a variant listed before it")
+                    looks[variant]["vegetation"] = _vegetation(root, cfg, out, v["look"]["vegetation"],
+                                                               tracks[tf] if tf else tracks[variant], sv["plane"], tw)
+                if v["look"].get("detail"):   # look pass 2: the towers and fittings in more detail
+                    looks[variant]["detail"] = _detail(out, types_detail, ws, lines, tcfg)
+                lw = v["look"].get("water") or {}
+                if lw.get("smooth_edge") and bdoc:   # look pass 3: the river sheet's edge drawn sub-pixel
+                    looks[variant]["water_edge"] = {"sheet": "water_edge.npz", **look_mod.water_edge(
+                        out, [ly["acquired"][:10] for ly in layers[1:]], pl, float(lw["smooth_edge"].get("sigma_px", 0.35)))}
+                if lw.get("detail") and bdoc:   # look pass 3: the passes' own colour variation over their water
+                    pbl = (v["look"].get("pre_breach") or {}).get("land")
+                    vd = lw["detail"].get("variation") or {}
+                    looks[variant]["water_variation"] = look_mod.water_variation(
+                        root, cfg, out, layers, looks[variant], network._layer(root, cfg, pbl, None) if pbl else None,
+                        tuple(vd.get("clamp", (0.75, 1.3))), float(vd.get("sigma_px", 1.0)))
+                doc["look"] = v["look"]
         write_json(out / f"camera_{variant}.json", doc)
         cams[variant] = len(fr)
 
@@ -815,6 +934,7 @@ def scene(root: Path, cfg: dict[str, Any]) -> dict[str, Any]:
         **({"others": others_doc} if others_doc else {}),
         "render": {"size": o["size"], "fps": int(o["fps"]), "haze_m": [float(k) * 1000 for k in o["haze_km"]]},
         "cameras": cams,
+        **({"look": {k: {**x, "statement": LOOK_STATEMENT} for k, x in looks.items()}} if looks else {}),
         "camera_axis": {"max_off_midline_m": round(off, 1), "lands_north_m": round(land),
                         "statement": "The camera flies the straight axis of the stretch where the two lines run parallel "
                                      "(the midline between them there, within the figure given); a viewing path."},

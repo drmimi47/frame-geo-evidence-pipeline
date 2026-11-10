@@ -1,0 +1,1205 @@
+{
+ "schema": "repair-regions/1",
+ "made_at": "2026-11-08T22:20:35+00:00",
+ "made_by": "research_notes/Repair regions still/scripts/repair_regions_v4.py",
+ "asked": "The user, 5 November 2026, at about 5:18 of the storyboard (zo-night-after): the same map background, circles in the soundscape's style for where crews were sent to fix the lines, accumulated, all the lines, one still frame, zoomed out if need be",
+ "image": {
+  "png": "repair_regions_v4_3840.png",
+  "jpg": "repair_regions_v4_1920.jpg",
+  "video": "repair_regions_v4.mp4",
+  "size": [
+   3840,
+   2160
+  ],
+  "png_sha256": "901ce0691b128b82742bd06d1e9fd6efa1ef526782aa3d5885297f4ffde7eb77",
+  "video_fps": 30,
+  "video_seconds": 8.0,
+  "drawn_at": 3840,
+  "still": "the video's last frame (7.967 s)"
+ },
+ "view": {
+  "centre_km_east_north_of_plant": [
+   2.0,
+   4.9
+  ],
+  "width_km": 38.0,
+  "north_up": true,
+  "as": "v1's frame 2 km narrower from the east (empty there); its west edge stays on the old water's mask box"
+ },
+ "ground": {
+  "plain": "grey, no imagery",
+  "credit": "WATER: SENTINEL-2 · 28 AUGUST 2025 · CONTAINS MODIFIED COPERNICUS SENTINEL DATA 2025 · HATCHED, THE RESERVOIR ON 5 JUNE 2023 · LINES: OPENSTREETMAP CONTRIBUTORS",
+  "water": {
+   "mask": "libraries/conductive-seam/satellite/networks/znpp/imagery/c3d_2025_08/water.png",
+   "rule": "water: clear pixels with MNDWI over 0.2 (green against SWIR) and NIR reflectance under 15%; or SWIR under 11% and under 0.6 of the median round it (31 px), MNDWI over -0.25 (water in a pixel shared with plants: the narrow channels); runs under 6 px dropped, inside the bed's footprint; the edge softened (1.2 px)",
+   "items": [
+    "S2B_MSIL2A_20250828T083559_R064_T36UXU_20250828T105658",
+    "S2B_MSIL2A_20250828T083559_R064_T36UWU_20250828T105658",
+    "S2B_MSIL2A_20250828T083559_R064_T36TXT_20250828T105658",
+    "S2B_MSIL2A_20250828T083559_R064_T36TWT_20250828T105658"
+   ],
+   "share": 0.0208,
+   "drawn": "resampled onto the frame (bilinear), filled a shade darker and outlined"
+  },
+  "old_water": {
+   "mask": "libraries/conductive-seam/satellite/networks/znpp/scenes/crossing3d/bed/bed.npz",
+   "what": "the 3D bed's footprint: the water on the last clear pass before the dam was destroyed (Sentinel-2, 5 June 2023; bed.json `reference`)",
+   "drawn": "hatched light at 45 degrees (18 px apart at 3840 px, 0.42 strong), its shore outlined faintly"
+  }
+ },
+ "areas_drawn": "white rings, 1.0 px (at 1920), 4.0 px apart inward, the first repair the area's own outline; each ring comes in at full white and decays toward 0.72 (exp, 1.6 s), so the newest are brightest and none goes grey; a dot at the area's centre ends its label's leader (an area, never a place of work)",
+ "centres": {
+  "drawn": "a small cross at each area's centre (of the area as drawn; on the area when a bent band's centre falls outside it): marks the area, so overlapping areas can be told apart and counted; never a place of work, a tower or a crew"
+ },
+ "lines": {
+  "source": "OpenStreetMap power=line ways traced in network.json (ODbL)",
+  "drawn": "plain, in the zoom-out's two yellows (750 kV the brighter), fading toward their ends; no state: the still has no date"
+ },
+ "rule": {
+  "min_km": 3.0,
+  "text": "Where lines were damaged or repaired, or crews sent, only as a general region: a stretch of line or an area at least about 3 km across, never finer than the source; never a tower, a pin, coordinates or a crew's position; never the Dniprovska substation's place or the trench site (CLAUDE.md; NEXT.md I5)"
+ },
+ "how_drawn": "Each repair whose place was published lays one translucent white layer over the area its source names, so the areas where crews went again and again are brighter: accumulated. An area along a line is the line's stretch (OpenStreetMap, network.json) widened to a band 3 km wide with rounded ends; its sides and banks are those the unrolled film uses (the shores of 5 June 2023 and the channel of September 2023, from the 3D survey's water masks: the channel taken as the front). The area round the switchyards is a circle round both switchyards' OpenStreetMap outlines, widened by 0.6 km. Every edge is dashed: an area, not a point. Drawn, not observed; never a tower, a pin or a crew.",
+ "safety_check": {
+  "smallest_km": 3.0,
+  "each": {
+   "fe-north": {
+    "length_km": 29.6,
+    "width_km": 3.0,
+    "extent_km": [
+     22.18,
+     14.58
+    ]
+   },
+   "fe-south": {
+    "length_km": 4.28,
+    "width_km": 3.0,
+    "extent_km": [
+     3.87,
+     6.71
+    ]
+   },
+   "switchyards": {
+    "length_km": 5.66,
+    "width_km": 5.66,
+    "extent_km": [
+     5.66,
+     5.66
+    ]
+   },
+   "dn-occupied": {
+    "length_km": 7.46,
+    "width_km": 3.0,
+    "extent_km": [
+     7.05,
+     8.21
+    ]
+   },
+   "dn-crossing": {
+    "length_km": 4.52,
+    "width_km": 3.0,
+    "extent_km": [
+     4.31,
+     7.33
+    ]
+   },
+   "dn-north": {
+    "length_km": 121.95,
+    "width_km": 3.0,
+    "extent_km": [
+     53.33,
+     100.9
+    ]
+   }
+  },
+  "dniprovska_substation_in_frame": false
+ },
+ "regions": [
+  {
+   "id": "fe-north",
+   "line": "Ferosplavna-1",
+   "stretch": "held",
+   "name": "Ferosplavna-1, north of the Dnipro, on the Ukrainian-controlled side",
+   "granularity": "bank / side of the front",
+   "from_m": 4790.0,
+   "to_m": 34387.8,
+   "length_km": 29.6,
+   "width_km": 3.0,
+   "extent_km": [
+    22.18,
+    14.58
+   ],
+   "area_km2": 95.9,
+   "shape": "a band along the line's stretch, rounded at its ends",
+   "why": "The sources' 'the other side of the Dnipro River', 'the right bank', 'the northern bank', 'Ukrainian-controlled territory': the line from the channel (the front) to its substation by Nikopol",
+   "repairs": [
+    "R13",
+    "R15",
+    "R21",
+    "R27",
+    "R35f",
+    "R40",
+    "R46"
+   ]
+  },
+  {
+   "id": "fe-south",
+   "line": "Ferosplavna-1",
+   "stretch": "south_bank",
+   "name": "Ferosplavna-1, the south bank: the thermal plant to the shore",
+   "granularity": "bank (the sources' distances, never a point)",
+   "from_m": 0.0,
+   "to_m": 4280.0,
+   "length_km": 4.28,
+   "width_km": 3.0,
+   "extent_km": [
+    3.87,
+    6.71
+   ],
+   "area_km2": 19.9,
+   "shape": "a band along the line's stretch, rounded at its ends",
+   "why": "'about 1.8 kilometres from the ZTPP's switchyard', 'around three kilometres from the ZNPP's site perimeter', 'near the ZTPP switchyard': drawn as the whole stretch from the thermal plant's switchyard to the shore of 5 June 2023",
+   "repairs": [
+    "R36",
+    "R44"
+   ]
+  },
+  {
+   "id": "switchyards",
+   "around": [
+    "npp750",
+    "tpp330"
+   ],
+   "name": "The plant's 750 kV switchyard, the thermal plant's 330 kV switchyard and the lines between them",
+   "granularity": "facility (drawn as an area round both)",
+   "length_km": 5.66,
+   "width_km": 5.66,
+   "extent_km": [
+    5.66,
+    5.66
+   ],
+   "area_km2": 25.2,
+   "shape": "a circle round the switchyards' OpenStreetMap outlines, widened",
+   "why": "Repairs at the thermal plant's switchyard and on the link between it and the plant's autotransformer: facilities, drawn as one area round both switchyards",
+   "repairs": [
+    "R05b",
+    "R10",
+    "R33",
+    "R39",
+    "R41",
+    "R45b"
+   ]
+  },
+  {
+   "id": "dn-occupied",
+   "line": "Dniprovska",
+   "stretch": "occupied",
+   "name": "Dniprovska, the occupied side",
+   "granularity": "side of the front",
+   "from_m": 0.0,
+   "to_m": 7460.0,
+   "length_km": 7.46,
+   "width_km": 3.0,
+   "extent_km": [
+    7.05,
+    8.21
+   ],
+   "area_km2": 29.4,
+   "shape": "a band along the line's stretch, rounded at its ends",
+   "why": "'damaged in an area under Russian control' (Al Jazeera/AP), 'on the other side of the frontline' (IAEA): the line from the plant's switchyard to the channel (the front)",
+   "repairs": [
+    "R35d"
+   ]
+  },
+  {
+   "id": "dn-crossing",
+   "line": "Dniprovska",
+   "stretch": "crossing",
+   "name": "Dniprovska, the crossing: the tall towers across the Dnipro",
+   "granularity": "the crossing",
+   "from_m": 7020.0,
+   "to_m": 11540.0,
+   "length_km": 4.52,
+   "width_km": 3.0,
+   "extent_km": [
+    4.31,
+    7.33
+   ],
+   "area_km2": 20.6,
+   "shape": "a band along the line's stretch, rounded at its ends",
+   "why": "'the damaged section of the power line crosses high above the river' (IAEA), 'high pylons across the Dnipro River' (WNN): the line between the shores of 5 June 2023",
+   "repairs": [
+    "R45"
+   ]
+  },
+  {
+   "id": "dn-north",
+   "line": "Dniprovska",
+   "stretch": "held",
+   "name": "Dniprovska, north of the Dnipro, on the Ukrainian-controlled side (it runs on beyond the frame)",
+   "granularity": "side of the front",
+   "from_m": 7460.0,
+   "to_m": 129412.2,
+   "length_km": 121.95,
+   "width_km": 3.0,
+   "extent_km": [
+    53.33,
+    100.9
+   ],
+   "area_km2": 372.9,
+   "shape": "a band along the line's stretch, rounded at its ends",
+   "beyond_frame": true,
+   "why": "'on Ukrainian-controlled territory in Dnipropetrovsk oblast' (Energoatom), 'in Ukrainian-controlled territory' (IAEA): the line from the channel on; it leaves the frame 21 km out, and its far end, the Dniprovska substation, is never shown",
+   "repairs": [
+    "R07",
+    "R11",
+    "R37"
+   ]
+  }
+ ],
+ "repairs": [
+  {
+   "id": "R07",
+   "line": "Dniprovska",
+   "region": "dn-north",
+   "when": "2022-10-09",
+   "what": "Dniprovska damaged at 00:59 on 8 October (the second complete loss), repaired and reconnected on the evening of 9 October",
+   "who": "the grid operator (IAEA); 'Ukrainian engineers' (Update 115); Energoatom: specialists",
+   "place": "'The location of the damage to the 750 kV power line has been identified outside the ZNPP site and it will be repaired by the grid operator' (IAEA Update 114); «на підконтрольній Україні території в Дніпропетровській області» ('on Ukrainian-controlled territory in Dnipropetrovsk oblast', Energoatom via Espreso)",
+   "granularity": "side of the front, oblast",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2022/10/ukraine-221008-iaea01.htm (IAEA Update 114, 8 Oct 2022)",
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2022/10/ukraine-221009-iaea01.htm (IAEA Update 115, 9 Oct 2022)",
+    "https://espreso.tv/fakhivtsi-polagodili-visokovoltnu-liniyu-elektroperedachi-zaes-dniprovska-poshkodzhenu-rosiyanami (Espreso, Energoatom, 9 Oct 2022)"
+   ]
+  },
+  {
+   "id": "R11",
+   "line": "Dniprovska",
+   "region": "dn-north",
+   "when": "2022-11-04",
+   "what": "The 750 kV line and the 330 kV back-up line cut by shelling on 2-3 November (the fourth complete loss); both repaired, reconnection from the afternoon of 4 November",
+   "who": "not stated",
+   "place": "'both sustaining physical damage around 50-60 kilometres from the plant in Ukrainian-controlled territory' (IAEA Update 124)",
+   "granularity": "side of the front, a distance",
+   "note": "Drawn for the 750 kV line only, in its whole Ukrainian-controlled stretch (beyond the frame there), never at 50-60 km. The 330 kV line's repair is left unplaced: the plant's own 330 kV lines end nearer than 50 km, so it was further out on the grid (R11b).",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2022/11/ukraine-221103-iaea03.htm (IAEA, 3 Nov 2022)",
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2022/11/ukraine-221105-iaea01.htm (IAEA Update 124, 5 Nov 2022)"
+   ]
+  },
+  {
+   "id": "R13",
+   "line": "Ferosplavna-1",
+   "region": "fe-north",
+   "when": "2023-01-06",
+   "what": "Ferosplavna-1 cut at 21:35 on 29 December 2022; repairs from 30 December; back-up power restored on the evening of 6 January 2023 'after repairs' (cut again, back by 13-17 January)",
+   "who": "not stated",
+   "place": "'as a result of damage on the other side of the Dnipro River, some distance away from the plant itself' (IAEA Update 138)",
+   "granularity": "bank",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2022/12/ukraine-221230-iaea01.htm (IAEA Update 138, 30 Dec 2022)",
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2023/01/ukraine-230107-iaea01.htm (IAEA Update 140, 7 Jan 2023)"
+   ]
+  },
+  {
+   "id": "R15",
+   "line": "Ferosplavna-1",
+   "region": "fe-north",
+   "when": "2023-07-01",
+   "what": "The last 330 kV back-up line, damaged on 1 March 2023, out four months ('military action is preventing its experts from safely accessing the location'), restored on the evening of 1 July",
+   "who": "Ukraine's experts (implied)",
+   "place": "'damaged on the right bank of the Dnipro River on 1 March' (IAEA Update 157); 'damage sustained on the other side of the Dnipro River' (Update 169)",
+   "granularity": "bank",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2023/04/ukraine-230413-iaea01.htm (IAEA Update 153, 13 Apr 2023)",
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2023/05/ukraine-230512-iaea01.htm (IAEA Update 157, 12 May 2023)",
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2023/07/ukraine-230703-iaea01.htm (IAEA Update 169, 3 Jul 2023)"
+   ]
+  },
+  {
+   "id": "R21",
+   "line": "Ferosplavna-1",
+   "region": "fe-north",
+   "when": "2024-03-14",
+   "what": "The 330 kV line disconnected at 14:04 on 20 February 2024; Ukrenergo crews worked under fire ('We waited a long time for the enemy to stop firing artillery'); restored after 18:00 on 14 March (Ukrenergo reported it repaired on 24-25 February: the dates disagree)",
+   "who": "Ukrenergo repair crews",
+   "place": "'a problem which occurred on the other side of the Dnipro river, some 13.5 kilometres away from the 330 kV switchyard' (IAEA Update 212); 'a place where there are constant hostilities' (Ukrenergo)",
+   "granularity": "bank (and a distance, not used)",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2024/02/ukraine-240221-iaea02.htm (IAEA Update 212, 21 Feb 2024)",
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2024/03/ukraine-240315-iaea01.htm (IAEA Update 216, 15 Mar 2024)",
+    "https://ukrinform.net/rubric-economy/3831789-ukrenergo-restores-znpp-power-supply-reliability.html (Ukrinform, 24 Feb 2024)",
+    "https://espreso.tv/ekonomika-energetiki-povernuli-v-robotu-liniyu-yaka-zhivit-zaes-na-remont-znadobivsya-mayzhe-misyats (Espreso, 15 Mar 2024)"
+   ]
+  },
+  {
+   "id": "R27",
+   "line": "Ferosplavna-1",
+   "region": "fe-north",
+   "when": "2024-10-22",
+   "what": "The 330 kV line disconnected for more than 26 hours on 21-22 October 2024; repaired by Ukrenergo's crews",
+   "who": "Ukrenergo",
+   "place": "'due to unspecified damage on the other side of the Dnipro River' (IAEA Update 256)",
+   "granularity": "bank",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2024/10/ukraine-241024-iaea01.htm (IAEA Update 256, 24 Oct 2024)",
+    "https://www.ukrinform.ua/rubric-economy/3918910-energetiki-vidnovili-robotu-linii-zivlenna-zaes-minenergo.html (Ukrinform, 22 Oct 2024)"
+   ]
+  },
+  {
+   "id": "R35f",
+   "line": "Ferosplavna-1",
+   "region": "fe-north",
+   "when": "2025-10-18",
+   "what": "Ferosplavna-1, cut since May 2025: under the first IAEA-brokered local ceasefire, work started on 18 October on 'two cables' (the line was reconnected only on 8 November, after further damage nearer the plant was mended: R36)",
+   "who": "'technicians - on both sides of the frontline' (IAEA)",
+   "place": "'in early May due to damage sustained on the Ukrainian side of the frontline' (IAEA Update 318); Ferosplavna-1 'lies in Ukrainian-controlled territory' (Al Jazeera/AP)",
+   "granularity": "side of the front",
+   "sources": [
+    "https://reliefweb.int/report/ukraine/update-318-iaea-director-general-statement-situation-ukraine (IAEA Update 318, 3 Oct 2025)",
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2025/10/ukraine-251018-iaea01.htm (IAEA Update 322, 18 Oct 2025)",
+    "https://www.aljazeera.com/news/2025/10/18/zaporizhzhia-nuclear-plant-repairs-begin-in-ukraine-as-ceasefire-zones-set (Al Jazeera/AP, 18 Oct 2025)"
+   ]
+  },
+  {
+   "id": "R40",
+   "line": "Ferosplavna-1",
+   "region": "fe-north",
+   "when": "2026-01-19",
+   "what": "Ferosplavna-1 cut on 2 January 2026; under a local ceasefire (the IAEA's fourth), repaired on 18-19 January and reconnected on 19 January",
+   "who": "'Ukrainian technicians' (IAEA); 'technicians from Ukraine's electrical grid operator'",
+   "place": "'a temporary ceasefire zone at a location approximately 10 kilometres from the Zaporizhzhya Thermal Power Plant 330 kV open switchyard, to enable Ukrainian technicians to safely perform the necessary repairs' (IAEA Update 336); 'the repairs conducted on the frontline by Ukrainian technicians' (Update 338)",
+   "granularity": "a distance, the front",
+   "inferred": "Placed on the line's north side, never at 10 km: Ukrainian technicians work on the Ukrainian-controlled side, and 10 km from the thermal plant along this line or as the crow flies is north of the river (the line's course, network.json)",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2026/01/ukraine-260109-iaea01.htm (IAEA Update 336, 9 Jan 2026)",
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2026/01/ukraine-260122-iaea01.htm (IAEA Update 338, 22 Jan 2026)",
+    "https://kyivindependent.com/ukrainian-crew-begins-crucial-repairs-on-zaporizhzhia-nuclear-plant-backup-line (Kyiv Independent, 18 Jan 2026)"
+   ]
+  },
+  {
+   "id": "R46",
+   "line": "Ferosplavna-1",
+   "region": "fe-north",
+   "when": "2026-09-07",
+   "what": "Ferosplavna-1 cut on 20 August 2026 (18 days on diesel); repaired under the seventh local ceasefire, 5-7 September; reconnected 7 September",
+   "who": "'Ukrainian technicians' (IAEA); 'Ukrainian power engineers' (Energoatom)",
+   "place": "'The location of the damage to the line was preliminarily assessed to be on the northern bank of the Dnipro River' (IAEA Update 363); 'a localized ceasefire ... around a damaged power line north of the Dnipro River' (Update 365)",
+   "granularity": "bank",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2026/08/ukraine-260820-iaea01.htm (IAEA Update 363, 20 Aug 2026)",
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2026/09/ukraine-260905-iaea01.htm (IAEA Update 365, 5 Sep 2026)",
+    "https://www.world-nuclear-news.org/articles/zaporizhzhia-reconnected-to-external-power-after-18-days (WNN, 8 Sep 2026)"
+   ]
+  },
+  {
+   "id": "R36",
+   "line": "Ferosplavna-1",
+   "region": "fe-south",
+   "when": "2025-11-08",
+   "what": "Further damage to Ferosplavna-1 found during the October repairs; demined on 7 November, repaired on the morning of 8 November ('a damaged cable between two pylons', WNN), reconnected at 19:43",
+   "who": "'Technicians' (WNN); «техніки» (Mind.ua); affiliation not stated",
+   "place": "'additional damage to the back-up Ferosplavna-1 line located about 1.8 kilometres from the Zaporizhzhya Thermal Power Plant's switchyard' (IAEA Update 324); 'around three kilometres from the ZNPP's site perimeter' (Update 327)",
+   "granularity": "distances from two facilities (never a point: drawn as the whole south-bank stretch)",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2025/10/ukraine-251030-iaea01.htm (IAEA Update 324, 30 Oct 2025)",
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2025/11/ukraine-251108-iaea01.htm (IAEA Update 327, 8 Nov 2025)",
+    "https://mind.ua/news/20297101-zaes-znovu-pidklyuchili-do-rezervnogo-zhivlennya (Mind.ua, 9 Nov 2025)"
+   ]
+  },
+  {
+   "id": "R44",
+   "line": "Ferosplavna-1",
+   "region": "fe-south",
+   "when": "2026-06-13",
+   "what": "Ferosplavna-1 damaged on 10 June 2026; 'An IAEA team observed the repair activities on 13 June'; reconnected the same day",
+   "who": "not stated",
+   "place": "'Ferosplavna-1 was disconnected on 10 June after military activity damaged it near the Zaporizhzhya Thermal Power Plant (ZTPP) switchyard' (IAEA Update 354). OECD-NEA instead: 'an attack on an electrical substation on the northern side of the Dnipro River'",
+   "granularity": "near a facility",
+   "note": "The sources disagree on where; the IAEA's (it watched the repair) is drawn",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2026/06/ukraine-260619-iaea01.htm (IAEA Update 354, 19 Jun 2026)",
+    "https://oecd-nea.org/jcms/pl_66130/ukraine-current-status-of-nuclear-power-installations (OECD-NEA, entry of 10 Jun 2026)"
+   ]
+  },
+  {
+   "id": "R05b",
+   "line": "the plant's 150 kV back-up line",
+   "region": "switchyards",
+   "when": "2022-09-13",
+   "what": "The 150 kV back-up line available again 'after the repair of an electrical switchyard at a nearby thermal power plant', a few days after shelling",
+   "who": "not stated",
+   "place": "'after the repair of an electrical switchyard at a nearby thermal power plant' (IAEA Update 102)",
+   "granularity": "facility",
+   "note": "A 150 kV back-up line, not one of the ten lines drawn; counted because the crews were sent to the thermal plant's switchyard",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2022/09/ukraine-220913-iaea01.htm (IAEA Update 102, 13 Sep 2022)"
+   ]
+  },
+  {
+   "id": "R10",
+   "line": "the links between the plant and the thermal plant's switchyard",
+   "region": "switchyards",
+   "when": "2022-10-14",
+   "what": "'two of the ZNPP's back-up power lines - connecting it to the thermal power plant switchyards - have been repaired'",
+   "who": "not stated",
+   "place": "'connecting it to the thermal power plant switchyards' (IAEA Update 118): the lines between the two switchyards",
+   "granularity": "facility",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2022/10/ukraine-221014-iaea01.htm (IAEA Update 118, 14 Oct 2022)",
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2022/10/ukraine-221027-iaea01.htm (IAEA Update 121, 27 Oct 2022)"
+   ]
+  },
+  {
+   "id": "R33",
+   "line": "the link between the thermal plant's 330 kV switchyard and the plant's 750 kV switchyard",
+   "region": "switchyards",
+   "when": "2025-03-21",
+   "what": "The connection cut in early February 2025 'as a result of damage to the ZTPP switchyard', reconnected about 21 March",
+   "who": "not stated",
+   "place": "'the 330 kilovolt (kV) switchyard of the nearby Zaporizhzhya Thermal Power Plant (ZTPP) was reconnected to the ZNPP's 750 kV switchyard ... after the connection was cut as a result of damage to the ZTPP switchyard' (IAEA Update 282)",
+   "granularity": "facility",
+   "note": "A repair implied by the reconnection after damage, not described",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2025/03/ukraine-250327-iaea01.htm (IAEA Update 282, 27 Mar 2025)"
+   ]
+  },
+  {
+   "id": "R39",
+   "line": "the link between the thermal plant's 330 kV switchyard and the plant's autotransformer",
+   "region": "switchyards",
+   "when": "2025-12-29",
+   "what": "Damage found on the link (cut mid-December); repaired 28-29 December under a local ceasefire (the IAEA's third)",
+   "who": "'Technicians' (IAEA)",
+   "place": "'damage to the transmission line was detected between the autotransformer and the ZTPP switchyard' (IAEA Update 333); 'the restoration of power transmission between the electrical switchyards of the ZNPP and the nearby Zaporizhzhya Thermal Power Plant' (Update 335)",
+   "granularity": "facility",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2025/12/ukraine-251219-iaea01.htm (IAEA Update 333, 19 Dec 2025)",
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2025/12/ukraine-251230-iaea01.htm (IAEA Update 335, 30 Dec 2025)"
+   ]
+  },
+  {
+   "id": "R41",
+   "line": "the link between the thermal plant's 330 kV switchyard and the plant's autotransformer (for Ferosplavna-1)",
+   "region": "switchyards",
+   "when": "2026-03-05",
+   "what": "Ferosplavna-1 disconnected on 10 February 2026 after military activity at the thermal plant's switchyard; under a local ceasefire (the IAEA's fifth) the link was repaired 'reusing other parts of the switchyard', reconnected 5 March",
+   "who": "not stated by the IAEA; «Ремонтные бригады «Росатома»» ('Rosatom's repair crews', www1.ru, a Russian outlet)",
+   "place": "'military activity near the 330 kV switchyard operated by the Zaporizhzhya Thermal Power Plant (ZTPP)' (IAEA Update 341); 'restoring the line that connects the 330 kV ZTPP switchyard to the ZNPP autotransformer in the 750 kV switchyard' (Update 343)",
+   "granularity": "facility",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2026/02/ukraine-260219-iaea01.htm (IAEA Update 341, 19 Feb 2026)",
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2026/03/ukraine-260306-iaea01.htm (IAEA Update 343, 6 Mar 2026)",
+    "https://www1.ru/news/2026/03/06/liniiu-ferrosplavnaia-1-u-zaporozskoi-aes-vosstanovili-ranse-sroka.amp.html (www1.ru, 6 Mar 2026)"
+   ]
+  },
+  {
+   "id": "R45b",
+   "line": "the thermal plant's switchyard and the back-up link for Ferosplavna-1",
+   "region": "switchyards",
+   "when": "2026-06-26",
+   "what": "Alongside the Dniprovska repair (R45), a second work site",
+   "who": "not stated",
+   "place": "'At the ZTPP, repairs were completed both on switchyard equipment and on a back-up transmission line connecting the Ferosplavna-1 line to the plant' (IAEA Update 355)",
+   "granularity": "facility",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2026/06/ukraine-260626-iaea01.htm (IAEA Update 355, 26 Jun 2026)",
+    "https://theprint.in/world/iaea-says-repairs-completed-on-key-power-line-at-zaporizhzhya-nuclear-plant/2970279/ (Reuters, 26 Jun 2026)"
+   ]
+  },
+  {
+   "id": "R35d",
+   "line": "Dniprovska",
+   "region": "dn-occupied",
+   "when": "2025-10-23",
+   "what": "Dniprovska cut on 23 September 2025 (a month on diesel); repaired under the first local ceasefire, 18-23 October; energised 'by the Ukrainian grid operator' at 09:30 on 23 October",
+   "who": "'technicians - on both sides of the frontline' (IAEA); who worked on this side not stated",
+   "place": "'the sole remaining 750 kV line was disconnected as a result of damage on the other side of the frontline' (IAEA Update 318); Dniprovska 'damaged in an area under Russian control' (Al Jazeera/AP); 'at locations several kilometres from the site itself' (Update 321)",
+   "granularity": "side of the front",
+   "sources": [
+    "https://reliefweb.int/report/ukraine/update-318-iaea-director-general-statement-situation-ukraine (IAEA Update 318, 3 Oct 2025)",
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2025/10/ukraine-251015-iaea01.htm (IAEA Update 321, 15 Oct 2025)",
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2025/10/ukraine-251023-iaea01.htm (IAEA Update 323, 23 Oct 2025)",
+    "https://www.aljazeera.com/news/2025/10/18/zaporizhzhia-nuclear-plant-repairs-begin-in-ukraine-as-ceasefire-zones-set (Al Jazeera/AP, 18 Oct 2025)"
+   ]
+  },
+  {
+   "id": "R45",
+   "line": "Dniprovska",
+   "region": "dn-crossing",
+   "when": "2026-06-26",
+   "what": "Dniprovska, cut since 24 March 2026: demined and repaired under the sixth local ceasefire, 5-26 June; repaired but not reconnected (its substation, far to the north-west, too damaged)",
+   "who": "'technical specialists from both Ukraine and Russia' (Ukrinform)",
+   "place": "'the damaged section of the power line crosses high above the river, and the area requiring mine clearance was large, including parts of the old riverbed that still contain water' (IAEA Update 354); 'high pylons across the Dnipro River' (WNN); 'at the top of tall towers near the demarcation line on the Dnipro River' (Ukrinform)",
+   "granularity": "the crossing",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2026/06/ukraine-260619-iaea01.htm (IAEA Update 354, 19 Jun 2026)",
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2026/06/ukraine-260626-iaea01.htm (IAEA Update 355, 26 Jun 2026)",
+    "https://world-nuclear-news.org/articles/substation-damage-stopping-zaporizhzhia-power-line-reconnection-says-iaea (WNN, 26 Jun 2026)",
+    "https://ukrinform.net/rubric-economy/4130748-iaea-secures-ceasefire-for-repairs-to-power-line-supplying-znpp.html (Ukrinform, 5 Jun 2026)"
+   ]
+  },
+  {
+   "id": "R37",
+   "line": "Dniprovska",
+   "region": "dn-north",
+   "when": "2025-11-19",
+   "what": "Dniprovska cut on 14 November 2025, repaired (no ceasefire reported) and restored on the morning of 19 November",
+   "who": "not stated",
+   "place": "'Following repairs carried out approximately 16 kilometres from the plant, the line was restored this morning' (IAEA Update 329)",
+   "granularity": "a distance from the plant",
+   "inferred": "Placed on the line's whole north side, never at 16 km: 16 km from the plant along this line or as the crow flies is north of the river (the line's course, network.json)",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2025/11/ukraine-251119-iaea01.htm (IAEA Update 329, 19 Nov 2025)"
+   ]
+  },
+  {
+   "id": "R01",
+   "line": "one of three 750 kV lines (not named)",
+   "region": null,
+   "when": "2022-03-18",
+   "what": "Repaired and reconnected on the evening of 18 March by 'Ukrainian engineers'",
+   "place": "none published",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2022/03/ukraine-220318-iaea01.htm (IAEA Update 25)",
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2022/03/ukraine-220319-iaea01.htm (IAEA Update 26)"
+   ]
+  },
+  {
+   "id": "R02",
+   "line": "a line from the thermal plant",
+   "region": null,
+   "when": "2022-08-10",
+   "what": "'restoration of a power line that can be used to supply the ZNPP with electricity from a nearby thermal power plant'",
+   "place": "none published",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2022/08/ukraine-220810-iaea01.htm (IAEA Update 90)"
+   ]
+  },
+  {
+   "id": "R03",
+   "line": "the line to the thermal plant",
+   "region": null,
+   "when": "2022-08-22",
+   "what": "Cut and 'restored later the same day' (the thermal plant's transformers damaged)",
+   "place": "none published for the line",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2022/08/ukraine-220823-iaea01.htm (IAEA Update 93)"
+   ]
+  },
+  {
+   "id": "R04",
+   "line": "Dniprovska",
+   "region": null,
+   "when": "2022-08-25",
+   "what": "The last 750 kV line 'restored yesterday afternoon' after the first complete loss; Ukrenergo restored 'two damaged main power lines'",
+   "place": "none published (search snippets only: fires at the thermal plant's ash pits; 'the security zone of the 750 kV overhead line caught fire')",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2022/08/ukraine-220826-iaea01.htm (IAEA Update 95)",
+    "https://interfax.com.ua/news/economic/854657.html (Interfax-Ukraine, 26 Aug 2022)"
+   ]
+  },
+  {
+   "id": "R05a",
+   "line": "a 330 kV reserve line; a 750/330 kV line",
+   "region": null,
+   "when": "2022-09-10",
+   "what": "A 330 kV reserve line restored on the evening of 10 September (ending island mode) and a 750/330 kV line on 12 September",
+   "place": "none published for the damage",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2022/09/ukraine-220911-iaea01.htm (IAEA Update 100)",
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2022/09/ukraine-220912-iaea01.htm (IAEA Update 101)"
+   ]
+  },
+  {
+   "id": "R06",
+   "line": "Dniprovska",
+   "region": null,
+   "when": "2022-09-16",
+   "what": "Repaired by 'engineers' with spare parts from Energoatom and reconnected on the afternoon of 16 September",
+   "place": "none published",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2022/09/ukraine-220917-iaea01.htm (IAEA Update 103)"
+   ]
+  },
+  {
+   "id": "R08",
+   "line": "Dniprovska",
+   "region": null,
+   "when": "2022-10-12",
+   "what": "Its substation shelled ('located far from the plant itself'); back at 13:40",
+   "place": "the Dniprovska substation: never shown",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2022/10/ukraine-221012-iaea01.htm (IAEA Update 117)"
+   ]
+  },
+  {
+   "id": "R09",
+   "line": "Dniprovska",
+   "region": null,
+   "when": "2022-10-18",
+   "what": "The same substation shelled again, back on 18 October",
+   "place": "the Dniprovska substation: never shown",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2022/10/ukraine-221017-iaea01.htm (IAEA Update 119)",
+    "https://world-nuclear.org/information-library/country-profiles/countries-t-z/ukraine-russia-war-and-nuclear-energy (WNA)"
+   ]
+  },
+  {
+   "id": "R11b",
+   "line": "the 330 kV back-up line",
+   "region": null,
+   "when": "2022-11-04",
+   "what": "Repaired with the 750 kV line (R11)",
+   "place": "'around 50-60 kilometres from the plant in Ukrainian-controlled territory' (IAEA Update 124): beyond the plant's own 330 kV lines, so not on a line drawn",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2022/11/ukraine-221105-iaea01.htm (IAEA Update 124)"
+   ]
+  },
+  {
+   "id": "R12",
+   "line": "the 330 kV line",
+   "region": null,
+   "when": "2022-12-14",
+   "what": "Cut by shelling and 'now restored'",
+   "place": "none published",
+   "sources": [
+    "https://oecd-nea.org/jcms/pl_66130/ukraine-current-status-of-nuclear-power-installations (OECD-NEA, entry of 14 Dec 2022)"
+   ]
+  },
+  {
+   "id": "R16",
+   "line": "Dniprovska",
+   "region": null,
+   "when": "2023-03-09",
+   "what": "Down about 11 hours in the sixth complete loss, then reconnected; Ukrenergo to repair «Щойно буде можливість і дозвіл військових» ('as soon as there is an opportunity and the military's permission')",
+   "place": "none published",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2023/03/ukraine-230309-iaea01.htm (IAEA Update 150)",
+    "https://mind.ua/news/20254503-ukrenergo-rozpochne-vidnovlennya-perebitoyi-rosiyanami-lep-do-zaes-za-pershoyi-mozhlivosti (Mind.ua, 9 Mar 2023)"
+   ]
+  },
+  {
+   "id": "R17",
+   "line": "Dniprovska",
+   "region": null,
+   "when": "2023-05-22",
+   "what": "Cut at 05:26 in the seventh complete loss, restored by Ukrenergo the same day",
+   "place": "none for the line («у Дніпровському регіоні було пошкоджено високовольтні лінії 330-750 кВ», '330-750 kV lines were damaged in the Dnipro region', not tied to this line)",
+   "sources": [
+    "https://focus.ua/uk/voennye-novosti/567846-zhivlennya-vidnovleno-v-ukrenergo-rozkrili-podrobici-pro-poshkodzhennya-na-zaes (Focus, 22 May 2023)",
+    "https://ukrinform.net/rubric-ato/3712540-ukrenergo-restores-power-line-supplying-znpp.html (Ukrinform, 22 May 2023)"
+   ]
+  },
+  {
+   "id": "R19",
+   "line": "Dniprovska",
+   "region": null,
+   "when": "2023-11-26",
+   "what": "A short circuit; repaired at 20:52 the same day by «українські фахівці» ('Ukrainian specialists')",
+   "place": "'around 100 kilometres north of the plant' (IAEA Update 197): near the line's far end, where the Dniprovska substation is, never shown: counted, not drawn",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2023/11/ukraine-231126-iaea01.htm (IAEA Update 197)",
+    "https://interfax.com.ua/news/general/950384.html (Interfax-Ukraine, 27 Nov 2023)"
+   ]
+  },
+  {
+   "id": "R20",
+   "line": "the 330 kV line",
+   "region": null,
+   "when": "2023-12-15",
+   "what": "Cut on 1 December 'due to an external grid fault' (Ukrenergo: a missile attack on Dnipropetrovsk region), 'repaired and restored this week'",
+   "place": "none for the line (only the oblast attacked)",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2023/12/ukraine-231215-iaea01.htm (IAEA Update 202)",
+    "https://ukrinform.net/rubric-economy/3794856-ukrenergo-restores-highvoltage-line-supplying-electricity-to-zaporizhzhia-npp.html (Ukrinform, 2 Dec 2023)"
+   ]
+  },
+  {
+   "id": "R23",
+   "line": "the 330 kV back-up line",
+   "region": null,
+   "when": "2024-04-06",
+   "what": "Damaged 4 April, repaired by 'Ukrenergo repair crews'",
+   "place": "none published",
+   "sources": [
+    "https://www.pravda.com.ua/eng/news/2024/04/7/7450094/ (Ukrainska Pravda, 7 Apr 2024)"
+   ]
+  },
+  {
+   "id": "R25",
+   "line": "Ferosplavna-1",
+   "region": null,
+   "when": "2024-08-23",
+   "what": "A short circuit; Ukrenergo crews repaired it after waiting for military permission",
+   "place": "none published",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2024/08/ukraine-240823-iaea01.htm (IAEA Update 246)",
+    "https://www.pravda.com.ua/eng/news/2024/08/23/7471595/ (Ukrainska Pravda, 23 Aug 2024)"
+   ]
+  },
+  {
+   "id": "R26",
+   "line": "the 330 kV line",
+   "region": null,
+   "when": "2024-10-02",
+   "what": "Hit in an attack on «магістральну підстанцію» (an unnamed main substation); Ukrenergo crews waited more than a day for permission",
+   "place": "none published (an unnamed substation)",
+   "sources": [
+    "https://www.pravda.com.ua/eng/news/2024/10/2/7477879/ (Ukrainska Pravda, 2 Oct 2024)",
+    "https://espreso.tv/viyna-z-rosiyeyu-energetiki-ukrenergo-vidnovili-liniyu-zhivlennya-zaes (Espreso, 2 Oct 2024)"
+   ]
+  },
+  {
+   "id": "R29",
+   "line": "the 330 kV line",
+   "region": null,
+   "when": "2024-12-01",
+   "what": "Repaired by Ukrenergo crews",
+   "place": "none published",
+   "sources": [
+    "https://ukrinform.net/rubric-economy/3933316-power-engineers-restore-damaged-power-line-to-zaporizhzhia-npp.html (Ukrinform, 1 Dec 2024)",
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2024/12/ukraine-241205-iaea01.htm (IAEA Update 263)"
+   ]
+  },
+  {
+   "id": "R30",
+   "line": "the 750 kV line's voltage stabiliser",
+   "region": null,
+   "when": "2024-12-31",
+   "what": "Equipment 'located in an open switchyard outside the plant' repaired and reconnected",
+   "place": "'an open switchyard outside the plant' (which one not said)",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2024/12/ukraine-241205-iaea01.htm (IAEA Update 263)",
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2025/01/ukraine-250117-iaea01.htm (IAEA Update 270)"
+   ]
+  },
+  {
+   "id": "R32",
+   "line": "the 330 kV line",
+   "region": null,
+   "when": "2025-02-27",
+   "what": "Cut by 'unspecified military activities', reconnected",
+   "place": "none published",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2025/02/ukraine-250227-iaea01.htm (IAEA Update 278)"
+   ]
+  },
+  {
+   "id": "R34",
+   "line": "Dniprovska",
+   "region": null,
+   "when": "2025-07-04",
+   "what": "Cut at 17:37 (the ninth complete loss), restored at 21:11 by Ukrenergo's specialists",
+   "place": "none published",
+   "sources": [
+    "https://www.pravda.com.ua/eng/news/2025/07/04/7520247/ (Ukrainska Pravda, 4 Jul 2025)"
+   ]
+  }
+ ],
+ "unplaced": {
+  "count": 21,
+  "ids": [
+   "R01",
+   "R02",
+   "R03",
+   "R04",
+   "R05a",
+   "R06",
+   "R08",
+   "R09",
+   "R11b",
+   "R12",
+   "R16",
+   "R17",
+   "R19",
+   "R20",
+   "R23",
+   "R25",
+   "R26",
+   "R29",
+   "R30",
+   "R32",
+   "R34"
+  ],
+  "why": "no place published for the work (or only the substation, never shown); counted, not drawn"
+ },
+ "not_counted": [
+  {
+   "id": "R14",
+   "why": "Rosatom's plans and work in progress on the other 330 and 750 kV lines into Russian-held territory (December 2022 to June 2025), and a new line under construction: no completed repair or reconnection found",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2023/03/ukraine-230322-iaea01.htm (IAEA Update 151)",
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2023/04/ukraine-230428-iaea01.htm (IAEA Update 155)"
+   ]
+  },
+  {
+   "id": "R18",
+   "why": "10 August 2023, Dniprovska: the IAEA says 'the disconnection occurred 5.5 km from the open switchyard on the southern bank of the river due to the activation of an overcurrent protection system'; the Ministry of Energy says shelling damaged it 'a few kilometres from the station' and energy workers reconnected it. Whether a crew repaired anything is not clear",
+   "sources": [
+    "https://reliefweb.int/report/ukraine/update-179-iaea-director-general-statement-situation-ukraine (IAEA Update 179)",
+    "https://mind.ua/en/news/20261216-energy-workers-reconnect-zaporizhzhia-npp-to-the-main-750-kv-power-line-ministry-of-energy (Mind.ua, 11 Aug 2023)"
+   ]
+  },
+  {
+   "id": "R22",
+   "why": "22 March 2024, Dniprovska: 'As no physical damage to the 750 kV line was identified, it was reconnected' (IAEA Update 217)",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2024/03/ukraine-240322-iaea01.htm (IAEA Update 217)"
+   ]
+  },
+  {
+   "id": "R24",
+   "why": "23 May 2024, Dniprovska: a short circuit 'around six kilometres away from the ZNPP's 750 kV open switchyard, in Russian-controlled territory', reconnected at 16:49; no repair reported",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2024/05/ukraine-240523-iaea01.htm (IAEA Update 229)"
+   ]
+  },
+  {
+   "id": "R28",
+   "why": "21-23 November 2024, Dniprovska: cut and back; no report of a repair found",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2024/11/ukraine-241121-iaea01.htm (IAEA Update 261)"
+   ]
+  },
+  {
+   "id": "R31",
+   "why": "29 January to 1 February 2025, Dniprovska: a protection system acted; no repair reported",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2025/01/ukraine-250130-iaea01.htm (IAEA Update 272)"
+   ]
+  },
+  {
+   "id": "R38",
+   "why": "6 and 13 December 2025: both lines tripped and came back within hours",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2025/12/ukraine-251211-iaea01.htm (IAEA Update 332)"
+   ]
+  },
+  {
+   "id": "R42",
+   "why": "14-26 April 2026: repeated trips on the link between the thermal plant's switchyard and the plant's autotransformer; no repair described",
+   "sources": [
+    "https://www.globalsecurity.org/wmd/library/news/ukraine/2026/04/ukraine-260417-iaea01.htm (IAEA Update 347)"
+   ]
+  },
+  {
+   "id": "R43",
+   "why": "2-6 June 2026: Ferosplavna-1 off after 'a drone strike on the Nikopolska substation on the other side of the Dnipro river from the plant'; restored, by the Russian-installed management's account, without a repair described",
+   "sources": [
+    "https://oecd-nea.org/jcms/pl_66130/ukraine-current-status-of-nuclear-power-installations (OECD-NEA, entry of 2 Jun 2026)",
+    "https://www.thestar.com.my/news/world/2026/06/06/russian-run-zaporizhzhia-nuclear-plant-says-power-supply-has-been-restored (Reuters, 6 Jun 2026)"
+   ]
+  }
+ ],
+ "caveats": [
+  "Accumulated only as far as the sources go: 21 repairs or restorations had no place published, and others may not have been reported at all. An area with fewer layers is not one with fewer repairs, only fewer whose place was published. Most published places are for Ferosplavna-1 and the switchyards because the IAEA began giving places from late 2022 and named them often only for the ceasefires (from October 2025).",
+  "The other seven lines (Zaporizka, Pivdennodonbaska and Kakhovska 750 kV; Zaporizka, Molochanska, Melitopolska and Kakhovska 330 kV): no completed repair found after they were cut in 2022, only Rosatom's plans and work in progress (R14). They are drawn, without areas, because none were placed, not because none were tried.",
+  "The IAEA's own ceasefire numbering differs from the unrolled film's (config networks.znpp.unrolled.truces): its third is the December 2025 repair of the plant-to-thermal-plant link (R39), its fourth Ferosplavna-1 in January 2026 at 'approximately 10 kilometres from the ZTPP 330 kV open switchyard' (R40, the unrolled film says no place published), its fifth the link at the thermal plant's switchyard in February-March 2026 (R41, which the unrolled film draws as Ferosplavna-1 with no place). Left for the user: the unrolled config is unchanged.",
+  "R21's dates disagree (Ukrenergo: repaired 24-25 February 2024; the IAEA and the ministry: restored 14 March). R44's place disagrees (the IAEA: near the thermal plant's switchyard; OECD-NEA: a substation north of the river).",
+  "Who repaired on the Russian-held side is mostly unpublished (R35d, R36, R39, R44, R45b); R41 is credited to Rosatom by a Russian outlet only."
+ ],
+ "asked_v2": "The user, 8 November 2026: ideas 1 (a ring per repair), 4 (the front), 6 (a timeline strip), 7 (the footnote, the switchyards' colour, the frame tightened), 8 (the rings appearing in date order)",
+ "palette": {
+  "ground": "#262627",
+  "river": "#0f0f10",
+  "channels": "#050506",
+  "rings": "#ffffff",
+  "lines_750": "#e8342e",
+  "lines_330": "#c42c28",
+  "bar": "#000000"
+ },
+ "front": {
+  "drawn": "the land joined to the plant without crossing the water of 28 August 2025 (the river and its channels in the drained bed, the 3D survey's mask) tinted faintly and named occupied; the far bank named Ukrainian-controlled; islands between the channels untinted",
+  "taken_as": "the river taken as the front (as the unrolled film; on this stretch the Dnipro has separated the occupied south bank, Enerhodar and the plant from March 2022, from Ukrainian-held Nikopol and Marhanets); a drawing convention, not a surveyed line",
+  "grow_px": 0,
+  "occupied_km2": 364.0,
+  "held_km2": 407.6
+ },
+ "timeline": {
+  "axis": [
+   "2022-02-24",
+   "2026-09-30"
+  ],
+  "ticks": "a tick per repair at its date (`when`), its area's colour, grey and shorter where no place was published; the same week side by side"
+ },
+ "animation": {
+  "seconds": 8.0,
+  "fps": 30,
+  "playhead": [
+   0.6,
+   6.0
+  ],
+  "how": "the playhead runs linearly in time over the axis; each repair's tick, and for a placed repair its ring (brighter for a moment, then settled), appear as it passes; an area's label and cross appear with its first repair; the count counts up; held from 6 s; the last frame is the still",
+  "events": [
+   {
+    "id": "R01",
+    "date": "2022-03-18",
+    "t": 0.671,
+    "region": null
+   },
+   {
+    "id": "R02",
+    "date": "2022-08-10",
+    "t": 1.137,
+    "region": null
+   },
+   {
+    "id": "R03",
+    "date": "2022-08-22",
+    "t": 1.176,
+    "region": null
+   },
+   {
+    "id": "R04",
+    "date": "2022-08-25",
+    "t": 1.185,
+    "region": null
+   },
+   {
+    "id": "R05a",
+    "date": "2022-09-10",
+    "t": 1.237,
+    "region": null
+   },
+   {
+    "id": "R05b",
+    "date": "2022-09-13",
+    "t": 1.246,
+    "region": "switchyards"
+   },
+   {
+    "id": "R06",
+    "date": "2022-09-16",
+    "t": 1.256,
+    "region": null
+   },
+   {
+    "id": "R07",
+    "date": "2022-10-09",
+    "t": 1.33,
+    "region": "dn-north"
+   },
+   {
+    "id": "R08",
+    "date": "2022-10-12",
+    "t": 1.34,
+    "region": null
+   },
+   {
+    "id": "R10",
+    "date": "2022-10-14",
+    "t": 1.346,
+    "region": "switchyards"
+   },
+   {
+    "id": "R09",
+    "date": "2022-10-18",
+    "t": 1.359,
+    "region": null
+   },
+   {
+    "id": "R11",
+    "date": "2022-11-04",
+    "t": 1.414,
+    "region": "dn-north"
+   },
+   {
+    "id": "R11b",
+    "date": "2022-11-04",
+    "t": 1.414,
+    "region": null
+   },
+   {
+    "id": "R12",
+    "date": "2022-12-14",
+    "t": 1.542,
+    "region": null
+   },
+   {
+    "id": "R13",
+    "date": "2023-01-06",
+    "t": 1.616,
+    "region": "fe-north"
+   },
+   {
+    "id": "R16",
+    "date": "2023-03-09",
+    "t": 1.816,
+    "region": null
+   },
+   {
+    "id": "R17",
+    "date": "2023-05-22",
+    "t": 2.054,
+    "region": null
+   },
+   {
+    "id": "R15",
+    "date": "2023-07-01",
+    "t": 2.182,
+    "region": "fe-north"
+   },
+   {
+    "id": "R19",
+    "date": "2023-11-26",
+    "t": 2.658,
+    "region": null
+   },
+   {
+    "id": "R20",
+    "date": "2023-12-15",
+    "t": 2.719,
+    "region": null
+   },
+   {
+    "id": "R21",
+    "date": "2024-03-14",
+    "t": 3.009,
+    "region": "fe-north"
+   },
+   {
+    "id": "R23",
+    "date": "2024-04-06",
+    "t": 3.083,
+    "region": null
+   },
+   {
+    "id": "R25",
+    "date": "2024-08-23",
+    "t": 3.53,
+    "region": null
+   },
+   {
+    "id": "R26",
+    "date": "2024-10-02",
+    "t": 3.659,
+    "region": null
+   },
+   {
+    "id": "R27",
+    "date": "2024-10-22",
+    "t": 3.723,
+    "region": "fe-north"
+   },
+   {
+    "id": "R29",
+    "date": "2024-12-01",
+    "t": 3.852,
+    "region": null
+   },
+   {
+    "id": "R30",
+    "date": "2024-12-31",
+    "t": 3.948,
+    "region": null
+   },
+   {
+    "id": "R32",
+    "date": "2025-02-27",
+    "t": 4.135,
+    "region": null
+   },
+   {
+    "id": "R33",
+    "date": "2025-03-21",
+    "t": 4.205,
+    "region": "switchyards"
+   },
+   {
+    "id": "R34",
+    "date": "2025-07-04",
+    "t": 4.543,
+    "region": null
+   },
+   {
+    "id": "R35f",
+    "date": "2025-10-18",
+    "t": 4.884,
+    "region": "fe-north"
+   },
+   {
+    "id": "R35d",
+    "date": "2025-10-23",
+    "t": 4.9,
+    "region": "dn-occupied"
+   },
+   {
+    "id": "R36",
+    "date": "2025-11-08",
+    "t": 4.952,
+    "region": "fe-south"
+   },
+   {
+    "id": "R37",
+    "date": "2025-11-19",
+    "t": 4.987,
+    "region": "dn-north"
+   },
+   {
+    "id": "R39",
+    "date": "2025-12-29",
+    "t": 5.116,
+    "region": "switchyards"
+   },
+   {
+    "id": "R40",
+    "date": "2026-01-19",
+    "t": 5.183,
+    "region": "fe-north"
+   },
+   {
+    "id": "R41",
+    "date": "2026-03-05",
+    "t": 5.328,
+    "region": "switchyards"
+   },
+   {
+    "id": "R44",
+    "date": "2026-06-13",
+    "t": 5.649,
+    "region": "fe-south"
+   },
+   {
+    "id": "R45",
+    "date": "2026-06-26",
+    "t": 5.691,
+    "region": "dn-crossing"
+   },
+   {
+    "id": "R45b",
+    "date": "2026-06-26",
+    "t": 5.691,
+    "region": "switchyards"
+   },
+   {
+    "id": "R46",
+    "date": "2026-09-07",
+    "t": 5.926,
+    "region": "fe-north"
+   }
+  ]
+ },
+ "key_note": "AREAS DRAWN, NOT OBSERVED, EACH AS WIDE AS ITS SOURCE SAYS · ONE RING PER REPAIR · A DOT MARKS AN AREA, NOT A PLACE OF WORK · THE RIVER TAKEN AS THE FRONT",
+ "asked_v4": "The user, 8 November 2026: no different colour for the occupied area; the land one colour, the Dnipro another, hatched, so the north and south shores show clearly",
+ "map": "the land #262627; the Dnipro as the reservoir held it on 5 June 2023 (the 3D bed's footprint) #0f0f10, hatched at 45 degrees, its shores outlined; today's channels (28 August 2025) solid near-black inside it, unhatched",
+ "asked_v3": "The user, 8 November 2026: more stylized after Lawrence Abu Hamdan's Air Pressure (Earshot): its near-black map, the rings all white and thinner, the newest brightest (a decay capped so they stay white), the text and boxes improved, the power lines red, unnecessary text removed",
+ "text": {
+  "sentence": "the count of every repair found, counting up with the playhead",
+  "labels": {
+   "fe-north": "FEROSPLAVNA-1, NORTH OF THE DNIPRO",
+   "fe-south": "FEROSPLAVNA-1, SOUTH BANK",
+   "switchyards": "THE NUCLEAR AND THERMAL PLANTS’ SWITCHYARDS",
+   "dn-occupied": "DNIPROVSKA, OCCUPIED SIDE",
+   "dn-crossing": "DNIPROVSKA, THE CROSSING",
+   "dn-north": "DNIPROVSKA, NORTH OF THE DNIPRO AND BEYOND"
+  },
+  "removed": [
+   "the river's label",
+   "Marhanets",
+   "the count box (now the sentence)",
+   "the centres' crosses (now a dot)"
+  ]
+ }
+}

@@ -1,0 +1,120 @@
+{
+ "what": "Tower elevation, third pass (the user, 9 November 2026): longer (about 30 s; the second pass felt rushed); the person's, the 113 m crossarm's, the levels' and the base's captions removed; the line named under the tower; its towers in the old reservoir in line behind it; then the stack moved left and the other line's towers beside it, flat. Storyboard material, not frames of the film.",
+ "video": {
+  "file": "S2_elevation_zoom3.mp4",
+  "sha256": "a3160435744fd51835e9dc2e55bfe6a974d1a5cf984b5cb8d5969b7b4c302950",
+  "seconds": 31.0,
+  "fps": 30,
+  "size": [
+   1920,
+   1080
+  ],
+  "codec": "H.264 (libx264, CRF 16, yuv420p), no sound"
+ },
+ "made_by": "scripts/zoom3.py (zoom2.py's move, imported, its keys' times stretched) and scripts/tower3.py (tower.py with the crane view's models chosen, the person optional, the film transparent); tower.py, zoom.py and zoom2.py unchanged",
+ "timeline_s": {
+  "fade_in": [
+   0,
+   0.8
+  ],
+  "hold_on_the_person": [
+   0,
+   1.8
+  ],
+  "pull_back": [
+   1.8,
+   13.0
+  ],
+  "dimensions_126m_41m": 13.4,
+  "title": [
+   13.9,
+   21.0
+  ],
+  "line_named": 16.4,
+  "towers_behind_slide_out": [
+   [
+    18.6,
+    20.0
+   ],
+   [
+    19.5,
+    20.9
+   ]
+  ],
+  "caption_count": 20.4,
+  "stack_moves_left": [
+   22.4,
+   25.4
+  ],
+  "ferosplavna_in": 23.2,
+  "ferosplavna_named": 25.8,
+  "note": 26.6,
+  "end": 31.0
+ },
+ "the_tower": {
+  "type": "crossing750_p on caisson750 (towers.npz, the 3D film's model)",
+  "line": "Dniprovska (750 kV, ZNPP - Dniprovska): the only 750 kV line crossing here; towers.py assigns the crossing750 types only to it (scheme К-П-П-А-П-П-К, Novoklimov 2011)",
+  "height_m": 126,
+  "caisson_m": 41,
+  "which": "one of its two 126 m suspension towers in the reservoir (drawn as the nearest from the south); the type, not a numbered tower"
+ },
+ "towers_in_the_old_reservoir": {
+  "rule": "towers.py assign(): the crossing scheme's inner towers stand on caissons, the two shore towers on land; the same towers lie in the survey's water of 5 June 2023 (survey.json, Sentinel-2A 2023-06-05)",
+  "Dniprovska": {
+   "count": 3,
+   "of_crossing_towers": 5,
+   "south_to_north": [
+    "crossing750_p 126 m",
+    "crossing750_a 100 m (the anchor)",
+    "crossing750_p 126 m"
+   ],
+   "sources": [
+    "novoklimov",
+    "ssp_63206 (126 m, 2nd crossbar 113 m, caisson 40 m)",
+    "ukwiki (126 and 100 m)",
+    "osm (positions, tower:type=crossing)"
+   ]
+  },
+  "Ferosplavna 1, 2": {
+   "count": 5,
+   "of_crossing_towers": 7,
+   "type": "crossing330, double-circuit anchor (one row of towers for both circuits, Л-243/Л-244)",
+   "height_m": "90 and 100 m published (ukwiki: 90 m, the central 100 m; ssp_94005: no. 19 at 100 m); which is which isn't settled in the 3D film, so all drawn at 100 m, as there, and the caption says so",
+   "sources": [
+    "novoklimov",
+    "ssp_94005",
+    "ukwiki",
+    "osm"
+   ]
+  }
+ },
+ "drawn_not_observed": [
+  "The shapes are representative models of each type (towers.py: from photographs of these towers and published heights).",
+  "In line along each line as seen from the south, the nearest in front, each further one spread sideways (750 kV 12 m, 330 kV 10 m) and fainter so all can be seen: a drawing; in line they would hide each other. True sizes relative to each other (one scale, flat view).",
+  "The bases at 12.8 m under the old water (no. 19's, the only published depth) and the bed (inferred, about 8.4 m under the old water at the 750 kV caissons) drawn at one level for every tower.",
+  "The person, 1.75 m, drawn.",
+  "No coordinates, numbers or states of individual towers; no damage or repairs shown."
+ ],
+ "on_screen_text": {
+  "title": "THE 750 KV CROSSING TOWER / OVER THE DNIPRO (with: a representative model of the type, drawn from photographs and published heights; the person drawn)",
+  "dimensions": [
+   "126 M",
+   "41 M ACROSS"
+  ],
+  "captions": {
+   "d_name": "DNIPROVSKA · 750 KV",
+   "d_one": "ONE OF ITS THREE TOWERS IN THE OLD RESERVOIR",
+   "d_all": "ITS THREE TOWERS IN THE OLD RESERVOIR: 126, 100 AND 126 M",
+   "f_name": "FEROSPLAVNA 1 AND 2 · 330 KV",
+   "f_all": "ITS FIVE TOWERS IN THE OLD RESERVOIR: 90-100 M, ALL DRAWN AT 100 M"
+  },
+  "note": [
+   "SEEN ALONG EACH LINE FROM THE SOUTH, THE NEAREST IN FRONT, SPREAD SIDEWAYS TO BE SEEN. TO SCALE.",
+   "REPRESENTATIVE MODELS OF EACH TYPE; THE BASES AND THE BED DRAWN AT ONE LEVEL; THE PERSON DRAWN."
+  ]
+ },
+ "checks": {
+  "handover_move_to_sprites": "frame 389 -> 390: mean step 0.22 levels (0-255, 480x270 grey), against 0.0-0.03 either side",
+  "largest_steps": "10.7 levels at 3.7-4.0 s, the pull-back past the concrete (zoom2: 15.9); no flicker found"
+ }
+}

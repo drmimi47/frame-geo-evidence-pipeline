@@ -33,7 +33,9 @@ FONTS = ("/System/Library/Fonts/HelveticaNeue.ttc", "/System/Library/Fonts/Helve
 
 
 def render(root: Path, cfg: dict[str, Any], variants: list[str] | None = None,
-           seconds: tuple[float, float] | None = None) -> dict[str, Any]:
+           seconds: tuple[float, float] | None = None, resume: bool = False) -> dict[str, Any]:
+    """`resume`: keep the frames a stopped render left (the last one may be cut short: delete it first) and render the
+    rest, then make the film as usual."""
     sc = export.scene(root, cfg)
     base = export.scene_dir(root, cfg["id"])
     out = base / "animatic"
@@ -48,22 +50,26 @@ def render(root: Path, cfg: dict[str, Any], variants: list[str] | None = None,
         first, last = (max(1, round(seconds[0] * fps) + 1), min(n, round(seconds[1] * fps))) if seconds else (1, n)
         name = f"{v}_{seconds[0]:g}-{seconds[1]:g}s" if seconds else v
         d = out / name
-        if d.exists():
+        if d.exists() and not resume:
             shutil.rmtree(d)
         t0 = time.time()
         log.info("Rendering %s: frames %d-%d", name, first, last)
         subprocess.run([blender, "-b", "--factory-startup", "-P", str(BUILD), "--",
                         str(base / "scene.json"), str(base / f"camera_{v}.json"), str(d),
-                        *([str(first), str(last)] if seconds else ["--blend", str(_blend_path(out, o, v))])],
+                        *([str(first), str(last)] if seconds else ["--blend", str(_blend_path(out, o, v))]),
+                        *(["--keep-existing"] if resume else [])],
                        check=True, stdout=subprocess.DEVNULL)
-        frames = json.loads((base / f"camera_{v}.json").read_text())["frames"]
+        cdoc = json.loads((base / f"camera_{v}.json").read_text())
+        frames = cdoc["frames"]
+        if (cdoc.get("look") or {}).get("grade"):   # the look's grade first, under the date and names
+            _grade(d, frames, cdoc["look"]["grade"])
         title = name if seconds else o["variants"][v].get("title", v)   # the whole film under its own name, if it has one
         sound = []
         if o["variants"][v].get("record"):  # the two lines' record: the date and their names on screen, the Hum heard
             ro = states.options(cfg["crossing3d"], o["variants"][v])
             _overlay(d, frames, ro, fps)
             wav = out / f"{title}.wav"   # the Hum beside the film, under its name
-            _hum(cfg, ro, frames, fps, wav, float(o["variants"][v].get("fade_out_s", o["fade_out_s"])))
+            _hum(cfg, ro, frames, fps, wav, float(o["variants"][v].get("fade_out_s", o["fade_out_s"])), root)
             cut = ["-ss", f"{(first - 1) / fps:.3f}", "-t", f"{(last - first + 1) / fps:.3f}"] if seconds else []
             sound = [*cut, "-i", str(wav), "-c:a", "aac", "-b:a", "192k", "-shortest"]
         _fade(d, frames)
@@ -170,9 +176,11 @@ def _overlay(d: Path, frames: list[dict[str, Any]], ro: dict[str, Any], fps: int
 
 
 def _hum(cfg: dict[str, Any], ro: dict[str, Any], frames: list[dict[str, Any]], fps: int, wav: Path,
-         fade_out_s: float) -> None:
-    """The Hum for the two lines (hum.py), each panned to its side, fading in and out with the picture."""
+         fade_out_s: float, root: Path) -> dict[str, Any]:
+    """The Hum for the two lines (hum.py), each panned to its side, fading in and out with the picture, the crackle
+    swelling with the weather on the date shown (the network's `weather`). Returns what was made (hum.py's doc)."""
     from .. import hum
+    from ..network import network_dir
 
     rec, _ = states.record(cfg["record"], ro)
     so = ro["sound"]
@@ -183,10 +191,90 @@ def _hum(cfg: dict[str, Any], ro: dict[str, Any], frames: list[dict[str, Any]], 
     ts = np.arange(float(so["start_s"]) + float(so["fade_in_s"]), total, 0.1)
     both = np.all([rec.states(k, ts) == "on" for k in ro["lines"]], axis=0)
     i = next(j for j in range(len(ts) - 10) if both[j:j + 10].all())
-    x, _ = hum.score(rec, pans, kvs, total, fade_out_s,
-                     start_s=float(so["start_s"]), fade_in_s=float(so["fade_in_s"]),
-                     follow=(float(so["swell_s"]), float(so["fall_s"])), ref_s=(ts[i], ts[i] + 1.0))
-    hum.write_wav(wav, x)
+    wet, wdoc = hum.weather(cfg.get("weather"), network_dir(root, cfg["id"]))
+    x, doc = hum.score(rec, pans, kvs, total, fade_out_s,
+                       start_s=float(so["start_s"]), fade_in_s=float(so["fade_in_s"]),
+                       follow=(float(so["swell_s"]), float(so["fall_s"])), ref_s=(ts[i], ts[i] + 1.0),
+                       island_level=so.get("island_level"), wet=wet, weather_doc=wdoc)
+    doc["sha256"] = hum.write_wav(wav, x)
+    doc["file"] = wav.name
+    return doc
+
+
+def sound(root: Path, cfg: dict[str, Any], variants: list[str] | None = None,
+          backup: Path | None = None) -> dict[str, Any]:
+    """The Hum made again and laid under each variant's film already rendered (default: those with a record and a
+    `title`), the picture copied, not re-encoded: for a change to the sound alone. The film's length must match its
+    camera's frames. The old .wav and .mp4 are copied to `backup` first, if given; `<title>.sound.json` says what the
+    sound is."""
+    base = export.scene_dir(root, cfg["id"])
+    out = base / "animatic"
+    o = cfg["crossing3d"]["animatic"]
+    fps = int(o["fps"])
+    done = {}
+    for v in variants or [v for v, x in o["variants"].items() if x.get("record") and x.get("title")]:
+        vo = o["variants"][v]
+        if not vo.get("record"):
+            raise ValueError(f"{v}: no record, so no Hum")
+        title = vo.get("title", v)
+        mp4, wav = out / f"{title}.mp4", out / f"{title}.wav"
+        if not mp4.exists():
+            raise FileNotFoundError(f"{mp4.name}: not rendered yet")
+        frames = json.loads((base / f"camera_{v}.json").read_text())["frames"]
+        dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0",
+                                    str(mp4)], capture_output=True, text=True, check=True).stdout)
+        if abs(dur - len(frames) / fps) > 2.0 / fps:
+            raise RuntimeError(f"{mp4.name}: {dur:.2f} s against its camera's {len(frames) / fps:.2f} s: render it again")
+        if backup:
+            backup.mkdir(parents=True, exist_ok=True)
+            for f in (wav, mp4):
+                if f.exists():
+                    shutil.copy2(f, backup / f.name)
+        ro = states.options(cfg["crossing3d"], vo)
+        doc = _hum(cfg, ro, frames, fps, wav, float(vo.get("fade_out_s", o["fade_out_s"])), root)
+        tmp = out / f".{title}.sound.mp4"
+        subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", str(mp4), "-i", str(wav), "-map", "0:v", "-map", "1:a",
+                        "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", str(tmp)], check=True)
+        tmp.replace(mp4)
+        (out / f"{title}.sound.json").write_text(json.dumps({**doc, "film": mp4.name, "remade": "the sound alone, laid "
+                                                             "under the same picture (copied, not re-encoded)"}, indent=1,
+                                                            ensure_ascii=False))
+        done[v] = {"mp4": str(mp4), "wav": str(wav)}
+    return done
+
+
+def grade_image(im: Image.Image, g: dict[str, Any], i: int) -> Image.Image:
+    """The look's grade on a rendered frame (`look.grade`, drawn, said in scene.json): saturation, a tint, a faint
+    vignette and a light film grain (a fixed seed per frame, so a re-render grades alike)."""
+    a = np.asarray(im.convert("RGB")).astype(np.float32) / 255.0
+    if g.get("saturation") is not None:
+        luma = (a * np.array([0.2126, 0.7152, 0.0722], np.float32)).sum(-1, keepdims=True)
+        a = luma + (a - luma) * float(g["saturation"])
+    if g.get("tint"):
+        a = a * np.array(g["tint"], np.float32)
+    h, w = a.shape[:2]
+    if g.get("vignette"):
+        yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+        r2 = ((xx - w / 2) / (w / 2)) ** 2 * 0.6 + ((yy - h / 2) / (h / 2)) ** 2 * 0.4
+        a = a * (1.0 - float(g["vignette"]) * np.clip(r2, 0, 1.5)[..., None] ** 1.5)
+    if g.get("grain"):
+        n = np.random.default_rng(1000 + i).normal(0.0, float(g["grain"]), (h, w, 1)).astype(np.float32)
+        a = a + n * (0.35 + 0.65 * np.sqrt(np.clip(a, 0, 1)))   # less in the shadows, as film
+    return Image.fromarray((np.clip(a, 0, 1) * 255 + 0.5).astype(np.uint8))
+
+
+def _grade(d: Path, frames: list[dict[str, Any]], g: dict[str, Any]) -> None:
+    """The look's grade on every rendered frame, the raw render kept in <d>/raw/ (to grade again without rendering)."""
+    raw = d / "raw"
+    raw.mkdir(exist_ok=True)
+    for i in range(1, len(frames) + 1):
+        p = d / f"f_{i:04d}.png"
+        if not p.exists():
+            continue
+        r = raw / p.name
+        if not r.exists():
+            shutil.copy2(p, r)
+        grade_image(Image.open(r), g, i).save(p)
 
 
 def _fade(d: Path, frames: list[dict[str, Any]], rgb=(255, 255, 255)) -> None:

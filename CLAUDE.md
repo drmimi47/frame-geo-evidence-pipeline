@@ -17,7 +17,8 @@ of computational design visualisation, showing the project's intricate parts (th
 the war, the Great Meadow, the crossing, the Hum). Narrative and storytelling, graphics, data and cinematography carry
 equal weight. Everything else serves it: the collection, the satellite passes, the corridor and zoom-out films, the
 Scene Viewer and the site are its research and its sequences, not the deliverable.
-- The 10 minutes is a ceiling, not a target. Every sequence has to earn its time; a draft that runs long is cut, not
+- The 10 minutes is a ceiling, not a target, counted up to the credits (about 7 preferred, 10 fine; the credits may run
+  past: the user, 5 November 2026). Every sequence has to earn its time; a draft that runs long is cut, not
   sped up. That is for the final film: while prototyping, the storyboard may run past 7 or 10 minutes, and its
   length isn't flagged until the story settles (the user, 4 November 2026).
 - Story first: a sequence is planned by what it tells and where it sits in the whole (chapters, turns, held moments,
@@ -61,7 +62,10 @@ Scene Viewer and the site are its research and its sequences, not the deliverabl
   modelled (scene3d/plant.py: OSM footprints, the published heights, else storeys or a representative height, said
   so), the land on south of the box, and the plant's other lines (`others`: the other three 750 kV and four 330 kV
   lines south into the distance, the units' feeds and the NPP-TPP links, at OSM's towers, cut at the box; states by
-  the date shown; the feeds and links lit with the line feeding them, inferred and said so; no context grid).
+  the date shown; the feeds and links lit with the line feeding them, inferred and said so; no context grid). A look pass beside it
+  (`south_look1`, `ZNPP-last-two-lines-3D-south-look1`, 7 November 2026): a variant's `look:` (build.py, look.py; every option off by default, so
+  approved films render unchanged): drawn sky, light haze, water and wet band, lit towers, grade; the banks swapped to the 5 June 2023 pass before the
+  breach and every pass colour-matched; all said in scene.json `look` (research_notes/Flight south look pass 1/).
   Scene files (the user, 2 November 2026): a whole render saves its scene as `animatic/<title>.blend` (`ZNPP-last-two-lines-3D.blend`,
   the picture only: the date, names, fade and Hum are added after Blender); `--pass blend` saves it without rendering.
   Only the configured variants' .blend files are kept and never a .blend1: prototypes come and go.
@@ -83,15 +87,21 @@ Scene Viewer and the site are its research and its sequences, not the deliverabl
   what it tells, what it needs, where it is in `reports/`, tags; a source film or figure with `in`/`out`, else a card's
   `duration`) and cuts of it in order (`config/storyboard-cuts.yaml`, rewritten by `sync`). `evidence storyboard build`
   lays a cut out in Blender's Video Sequence Editor (`libraries/conductive-seam/storyboard/<cut>.blend`): one meta
-  strip per shot named by its id and coloured by status (the films as 720p previews at 30 fps in `storyboard/media/`,
-  figures as they are, cards for the rest, a label top right), the cut up to the END marker, the other shots parked
-  after it (PARKED). The user rearranges by hand (drag, trim, park past END, mute, Shift-D to reuse, add a text strip
-  for a new idea) and saves; `evidence storyboard sync` reads it back (order by where each starts, trims, new strips as
+  strip per shot named by its id and coloured by status, an intertitle purple, the end titles red (`end_titles`: the byline, the credits), or a colour set by hand in Blender, read back by sync and kept (the cut's `colors`, until set back to the status's) (the films as 720p previews at 30 fps in `storyboard/media/`,
+  figures as they are, cards for the rest, a label top right, a shot's `caption` at its foot: words planned for the picture), the cut up to the END marker, the other shots parked
+  after it (PARKED); both markers at the pool's `end_at_s` (10:00, the film's ceiling; the user, 9 November 2026), the parked
+  shots right after. The user rearranges by hand (drag, trim, park past END, mute, Shift-D to reuse, add a text strip
+  for a new idea) and saves; `evidence storyboard sync` reads it back (order by where each starts, trims, black left before a shot as its `gap`, new strips as
   shots of their own) and says what changed. A build reads back a saved rearrangement first and refuses if the cut
-  file changed too (`--discard-edits` to overwrite); it never deletes a shot from the pool (a parked shot deleted in Blender is only hidden: the cut's `hidden`). Known good (the user):
+  file changed too (`--discard-edits` to overwrite); it never deletes a shot from the pool (a shot deleted in Blender, from the cut or the parked ones, is only hidden: the cut's `hidden`; parked shots keep their channel, the cut's `lanes`). Known good (the user):
   the 3D film and the zoom-out to about a minute in (to the zone, where the 3D takes over). Target about 7 minutes
   for the final; the prototype cut holds everything made so far (the user, 4 November 2026) and may run longer.
   Storyboard shots are planning, not evidence: the evidence rules apply when a shot is made.
+  The narration (the user, 6 November 2026): a draft voice-over in `config/narration.yaml` (lines with stable ids, each
+  over a shot at `at` seconds), rendered by `scripts/narration_kokoro.py` (Kokoro bf_emma, its own env in
+  `~/.cache/kokoro-vo/`; only changed lines) into the storyboard's `narration/`; each build lays them as "vo <id>"
+  sound strips on their channel from their shot's start, and sync leaves them out. ElevenLabs Eleven v4 near the end
+  (English with parts in Ukrainian), the same ids; a synthesized voice is credited as such.
 
 ## Collection scope (hard rules, never relax silently)
 
@@ -231,7 +241,7 @@ bank were looked at and not taken).
   point of the line while the tip goes on (decided with the user: no names off screen or in odd spots). 60 fps; the
   growth is smoothed looking back only (never ahead of the frame, no jumps), and labels and marks move at sub-pixel
   positions (`_Overlay`). The lines are two yellows (`line_rgb` by kV, decided with the user: the blues read as rivers;
-  750 kV the brighter), with a lighter core and a faint glow,
+  750 kV the brighter; colouring them by the power's direction was declined, the user, 9 November 2026), with a lighter core and a faint glow,
   brightest where they leave the plant and fading toward their end substation (`FADE_TO` of the start, by share of
   each line's length). Every text is white capitals in Helvetica Neue on a black box at half opacity (`_boxed`,
   `BOX_A`); the plant's full name over its units gives way to a small mark before the mark appears. Sentinel-2 all
@@ -292,7 +302,15 @@ bank were looked at and not taken).
   once the camera stops pulling back (about 40 s), so the full chord is heard before the war; then a voice per line
   on the 100 Hz hum and its harmonics with corona crackle, panned by the line's bearing, silent when cut, muffled
   where unreported, silence during complete losses (no diesel generators, removed by the user); no sounds of
-  fighting. Synthesized: said in film.json `sound` and the statement, never passed off as recordings (no line on
+  fighting. The crackle (the user, 9 November 2026; reports/Enerhodar crossing voices and sound.md) follows voltage and
+  weather, never load: every connected line at full strength, the 750 kV louder, denser, impulsive and bright to
+  16 kHz, the 330 kV 11 dB quieter, a smoother hiss rolling off above 8 kHz, each hum in its own shape (`CORONA`,
+  `HUM_SHAPE`, shaped on two recordings of lines of those classes: research_notes/Line sound proxies/kv/), swelling on
+  the dates shown that have wet hours at the crossing in ERA5 (rain, or fog inferred from humidity 97%+ and wind under
+  3 m/s; the network's `weather`, the series in its `weather/`; 6+ hours a full swell, eased in 0.5 s, out 1.5 s): a
+  drawing convention from modelled weather, said in the sound statement. The level is set on the dry full chord,
+  K-weighted (`REF_DB`), so the films are about as loud as before. A change to the sound alone is laid under a film
+  already drawn, its picture copied: `evidence satellite network --sound-only`, `crossing3d --pass sound`. Synthesized: said in film.json `sound` and the statement, never passed off as recordings (no line on
   screen: removed by the user). The Hum beside the film as `<title>.wav` (`ZNPP-ten-lines-zoom-out.wav`). It ends on the last reported state (11 September 2026): only Ferosplavna-1 connected (Dniprovska cut
   since 24 March 2026, repaired in June, its substation too damaged to reconnect). Test renders at 30 fps
   (`--fps 30`); the final at the config's 60. The file is named by the film's `title`

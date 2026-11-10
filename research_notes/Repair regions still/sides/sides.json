@@ -1,0 +1,222 @@
+{
+ "made_at": "2026-11-09T01:22:40+00:00",
+ "made_by": "research_notes/Repair regions still/scripts/repair_sides.py",
+ "asked": "The user, 8 November 2026: options A-E for who repaired, as stills, before the animation",
+ "counts": {
+  "ukrainian": 27,
+  "unknown": 7,
+  "russian": 7,
+  "both": 1
+ },
+ "tally": "27 BY UKRAINIAN CREWS · 7 BY THE RUSSIAN SIDE · 1 BY BOTH · 7 NOT SAID",
+ "under_ceasefires": 11,
+ "data": "repairs.yaml side / side_basis / worked_on / arranged_by (sides/who_repaired.md)",
+ "safety": "no link starts at a place: the sides are nodes of a diagram with no map (C); the areas are pass 5's",
+ "options": {
+  "C": {
+   "jpg": "sides_C_1920.jpg",
+   "actors": [
+    "ukrainian",
+    "russian"
+   ],
+   "places": [
+    "dn-north",
+    "fe-north",
+    "dn-crossing",
+    "dn-occupied",
+    "fe-south",
+    "switchyards",
+    "none"
+   ]
+  },
+  "E": {
+   "jpg": "sides_E_1920.jpg",
+   "rings": "styled by side"
+  }
+ },
+ "options_c": {
+  "C1": {
+   "jpg": "sides_C1_1920.jpg",
+   "axes": "one per line, its shape laid left to right; x = date"
+  },
+  "C2": {
+   "jpg": "sides_C2_1920.jpg",
+   "timelines": "each line from the plant out, 2022 to November 2026"
+  }
+ },
+ "options_c_asked": "The user, 8 November 2026: option C, with the power lines' own shapes in place of the horizontal axis; stills first",
+ "line_of": {
+  "R01": "kakh",
+  "R02": "yards",
+  "R03": "yards",
+  "R04": "dnip",
+  "R05a": "yards",
+  "R05b": "yards",
+  "R06": "dnip",
+  "R07": "dnip",
+  "R08": "dnip",
+  "R10": "yards",
+  "R09": "dnip",
+  "R11": "dnip",
+  "R11b": "fero",
+  "R12": "fero",
+  "R13": "fero",
+  "R16": "dnip",
+  "R17": "dnip",
+  "R15": "fero",
+  "R19": "dnip",
+  "R20": "fero",
+  "R21": "fero",
+  "R23": "fero",
+  "R25": "fero",
+  "R26": "fero",
+  "R27": "fero",
+  "R29": "fero",
+  "R30": "dnip",
+  "R32": "fero",
+  "R33": "yards",
+  "R34": "dnip",
+  "R35f": "fero",
+  "R35d": "dnip",
+  "R36": "fero",
+  "R37": "dnip",
+  "R39": "yards",
+  "R40": "fero",
+  "R41": "yards",
+  "R44": "fero",
+  "R45": "dnip",
+  "R45b": "yards",
+  "R46": "fero",
+  "R48": "yards"
+ },
+ "deleted": "A, B, D, C3 and C4, by the user, 8 November 2026 (stills, code and records removed)",
+ "prototypes": {
+  "E2": "sides_E2_1920.jpg",
+  "E3": "sides_E3_1920.jpg",
+  "E4": "sides_E4_1920.jpg",
+  "W": "proto_waiting_bars_1920.jpg",
+  "ST": "proto_spacetime_stack_1920.jpg",
+  "U": "proto_unit_chart_1920.jpg",
+  "Q": "proto_sources_words_1920.jpg",
+  "P": "proto_punch_card_1920.jpg"
+ },
+ "prototypes_asked": "The user, 8 November 2026: test the new ideas as still prototypes",
+ "cut_dates": {
+  "R03": {
+   "date": "2022-08-22",
+   "month_only": false
+  },
+  "R04": {
+   "date": "2022-08-25",
+   "month_only": false
+  },
+  "R05a": {
+   "date": "2022-09-05",
+   "month_only": false
+  },
+  "R07": {
+   "date": "2022-10-08",
+   "month_only": false
+  },
+  "R08": {
+   "date": "2022-10-12",
+   "month_only": false
+  },
+  "R11": {
+   "date": "2022-11-02",
+   "month_only": false
+  },
+  "R11b": {
+   "date": "2022-11-02",
+   "month_only": false
+  },
+  "R13": {
+   "date": "2022-12-29",
+   "month_only": false
+  },
+  "R15": {
+   "date": "2023-03-01",
+   "month_only": false
+  },
+  "R16": {
+   "date": "2023-03-09",
+   "month_only": false
+  },
+  "R17": {
+   "date": "2023-05-22",
+   "month_only": false
+  },
+  "R19": {
+   "date": "2023-11-26",
+   "month_only": false
+  },
+  "R20": {
+   "date": "2023-12-01",
+   "month_only": false
+  },
+  "R21": {
+   "date": "2024-02-20",
+   "month_only": false
+  },
+  "R23": {
+   "date": "2024-04-04",
+   "month_only": false
+  },
+  "R27": {
+   "date": "2024-10-21",
+   "month_only": false
+  },
+  "R33": {
+   "date": "2025-02-01",
+   "month_only": true
+  },
+  "R34": {
+   "date": "2025-07-04",
+   "month_only": false
+  },
+  "R35f": {
+   "date": "2025-05-01",
+   "month_only": true
+  },
+  "R35d": {
+   "date": "2025-09-23",
+   "month_only": false
+  },
+  "R36": {
+   "date": "2025-10-30",
+   "month_only": true
+  },
+  "R37": {
+   "date": "2025-11-14",
+   "month_only": false
+  },
+  "R39": {
+   "date": "2025-12-15",
+   "month_only": true
+  },
+  "R40": {
+   "date": "2026-01-02",
+   "month_only": false
+  },
+  "R41": {
+   "date": "2026-02-10",
+   "month_only": false
+  },
+  "R44": {
+   "date": "2026-06-10",
+   "month_only": false
+  },
+  "R45": {
+   "date": "2026-03-24",
+   "month_only": false
+  },
+  "R46": {
+   "date": "2026-08-20",
+   "month_only": false
+  },
+  "R48": {
+   "date": "2026-09-19",
+   "month_only": false
+  }
+ }
+}

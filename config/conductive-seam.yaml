@@ -292,6 +292,9 @@ networks:
     origins: {npp750: 28877226, tpp330: 28877449}               # the plant's 750 kV switchyard; the thermal plant's 330 kV
     bbox: [32.0, 45.9, 38.6, 49.2]                              # where the lines are looked for (Overpass)
     voltages_kv: [750, 330]
+    # the weather at the crossing, for the Hum's wet swell (hum.py `weather`, the user, 9 November 2026): ERA5 hourly from
+    # Open-Meteo's archive, saved verbatim (weather/provenance.json); relative to the network's folder
+    weather: {era5: weather/era5_crossing_2022-02-24_2026-09-11.json, cell: [47.5, 34.5], source: "ERA5 reanalysis (Copernicus C3S) via Open-Meteo's archive, the 0.25 degree cell at 47.5 N 34.5 E, hourly"}
     # Each line: the ways it starts with (out of its switchyard, or the shared towers before it branches), then traced
     # to the substation it must reach (`to`, the OSM name; anything else is refused). Names by destination, as the
     # IAEA and the user's reference image name them. Checked 21 October 2026: Kakhovska 750 is 186 km officially
@@ -629,6 +632,248 @@ networks:
               - {curve: 0.7, speed_mps: 40}
               - {curve: 1.0, speed_mps: 12}
               - {beyond_m: 40, speed_mps: 6}
+          # S6's look pass 1 (decided with the user, 7 November 2026: rendered overnight beside south_record, which
+          # stays as approved; research_notes/Flight south look pass 1/): the same camera, record, timing and sound, a
+          # new look (build.py `look`, look.py): a drawn overcast sky, light haze by distance, the water darker and
+          # bluer with fine ripples and a planar mirror, its colour by depth over the bed, a wet band drying on the bed,
+          # the caissons' concrete, darker cut wires, a soft sun and the sky's light, AgX and a grade, bloom, motion
+          # blur; the banks dissolved to the last clear pass before the breach while the reservoir is full, and every
+          # pass colour-matched to the pre-war one on stable land
+          south_look1:
+            record:
+              at_s: 5
+              names_at_s: 12
+              names_until_s: 92
+              run_s: 95           # the record ends about 101.5 s, as the rise begins; the last state held to the fade
+              pins:               # placed by where the camera is (the user, 4 November 2026): the dam at 7.2 km, about
+                                  # 1.2 km into the full reservoir (about 15 s over it first), so the drain, the wet bed
+                                  # of 2023 and the dry bed of 2024-25 (its passes pinned) come in ahead as it flies on;
+                                  # each pin as near the record's minimum holds allows (17 June to August 2024 at least
+                                  # 7.8 s, a year to August 2025 at least 13 s); at 45 s the bed was crossed still wet
+                - {at: 2023-06-06, s: 35, min_hold_s: 0.9}
+                - {at: 2023-06-17, s: 42.5}
+                - {at: 2024-08-23, s: 51}
+                - {at: 2025-08-28, s: 65}
+              sound: {start_s: 0.5, fade_in_s: 4, swell_s: 0.6, fall_s: 0.3}
+              lines:
+                Ferosplavna-1: {pan: 0.85}
+                Dniprovska: {pan: -0.85}
+            title: ZNPP-last-two-lines-3D-south-look1
+            look:
+              samples: 64
+              ray_scale: "1"
+              sky: {horizon_rgb: [0.62, 0.64, 0.67], cloud_dark_rgb: [0.36, 0.38, 0.42], cloud_light_rgb: [0.6, 0.62, 0.65],
+                    height_m: 1500, cloud_m: 5000, cloud_range: [0.3, 0.75], horizon_band: [0.0, 0.14], drift_mps: 3}
+              haze: {visibility_km: 100, max: 0.9}
+              far_plain: {rgb: [0.1, 0.1, 0.07], z_m: 8}
+              water: {uniform: true, tint: [1.3, 1.2, 1.9], shallow_m: 1.5, bottom_rgb: [0.05, 0.048, 0.04], ripple_m: 2.5,
+                      ripple_stretch: 4, ripple_bump: 0.12, ripple_far_m: [300, 2500], rough: 0.02, reflect: 1.0,
+                      reflect_rgb: [0.75, 0.75, 0.75]}
+              caisson: {concrete_rgb: [0.2, 0.2, 0.19], stained_rgb: [0.1, 0.095, 0.08], band_m: 0.8, band_darken: 0.45}
+              cut_rgb: [62, 66, 72]
+              cut_gap_rgb: [150, 155, 160]
+              light: {lit: true, sun_strength: 1.2, sun_angle_deg: 25, sun_deg: [55, 150], shadows: false}
+              grade: {view: AgX, look: AgX - Medium High Contrast, exposure: 0.0, saturation: 1.0, tint: [0.98, 1.0, 1.03],
+                      grain: 0.006, vignette: 0.15}
+              bloom: {threshold: 1.0, strength: 0.4, size: 7}
+              motion_blur: 0.35
+              pre_breach:
+                land: {name: c3d_2023_06_05, era: before, sensor: sentinel-2, start: 2023-06-05, end: 2023-06-05, max_cloud: 10, box_km: [40, 36], centre_km: [3, 10.5], m_per_px: 10}
+                south: {name: c3s_2023_06_05, era: before, sensor: sentinel-2, start: 2023-06-05, end: 2023-06-05, max_cloud: 10, box_km: [40, 12], centre_km: [3, -13.5], m_per_px: 10}
+                from: 2022-12-15
+                until: 2023-05-20
+              match: {reference: c3d_2021_09}
+              wet: {days: 4, fade_days: 3, darken: 0.45, gloss: 0.6}
+            extras: [plant, land_south, others]
+            fade_in_s: 4
+            fade_out_s: 5
+            flight: {altitude_m: 70, pitch_deg: -7, lens_mm: 35, speed_mps: 80}
+            track:
+              start_north_km: 9.6        # just north of where both lines turn onto the crossing (9.0-9.2)
+              leave_north_km: 3.2        # off the axis 0.6 km before the lines cross
+              end_xy_m: [1600, 1500]     # the rise ends here, 2.1 km north-east of the units
+              end_heading_deg: 253       # the units and the cooling towers both in the frame
+              start: {altitude_m: 300, speed_mps: 45}
+              rise: {from: {curve: 0.0}, to: {curve: 1.0}, altitude_m: [70, 320], pitch_deg: [-7, -9]}   # one climb from where the lines part
+            route:
+              - {north_km: 8.6, speed_mps: 80, altitude_m: 70, phase: descend}
+              - {north_km: 3.2, speed_mps: 80}
+              - {curve: 0.35, speed_mps: 65}
+              - {curve: 0.7, speed_mps: 40}
+              - {curve: 1.0, speed_mps: 12}
+              - {beyond_m: 40, speed_mps: 6}
+          south_look2:
+            record:
+              at_s: 5
+              names_at_s: 12
+              names_until_s: 92
+              run_s: 95           # the record ends about 101.5 s, as the rise begins; the last state held to the fade
+              pins:               # placed by where the camera is (the user, 4 November 2026): the dam at 7.2 km, about
+                                  # 1.2 km into the full reservoir (about 15 s over it first), so the drain, the wet bed
+                                  # of 2023 and the dry bed of 2024-25 (its passes pinned) come in ahead as it flies on;
+                                  # each pin as near the record's minimum holds allows (17 June to August 2024 at least
+                                  # 7.8 s, a year to August 2025 at least 13 s); at 45 s the bed was crossed still wet
+                - {at: 2023-06-06, s: 35, min_hold_s: 0.9}
+                - {at: 2023-06-17, s: 42.5}
+                - {at: 2024-08-23, s: 51}
+                - {at: 2025-08-28, s: 65}
+              sound: {start_s: 0.5, fade_in_s: 4, swell_s: 0.6, fall_s: 0.3}
+              lines:
+                Ferosplavna-1: {pan: 0.85}
+                Dniprovska: {pan: -0.85}
+            title: ZNPP-last-two-lines-3D-south-look2
+            look:
+              samples: 64
+              ray_scale: "1"
+              sky: {horizon_rgb: [0.62, 0.64, 0.67], cloud_dark_rgb: [0.36, 0.38, 0.42], cloud_light_rgb: [0.6, 0.62, 0.65],
+                    height_m: 1500, cloud_m: 5000, cloud_range: [0.3, 0.75], horizon_band: [0.0, 0.14], drift_mps: 3}
+              haze: {visibility_km: 100, max: 0.9}
+              far_plain: {rgb: [0.1, 0.1, 0.07], z_m: 8}
+              water: {uniform: true, tint: [1.3, 1.2, 1.9], shallow_m: 1.5, bottom_rgb: [0.05, 0.048, 0.04], ripple_m: 2.5,
+                      ripple_stretch: 4, ripple_bump: 0.12, ripple_far_m: [300, 2500], rough: 0.02, reflect: 1.0,
+                      reflect_rgb: [0.75, 0.75, 0.75]}
+              caisson: {concrete_rgb: [0.2, 0.2, 0.19], stained_rgb: [0.1, 0.095, 0.08], band_m: 0.8, band_darken: 0.45}
+              cut_rgb: [62, 66, 72]
+              cut_gap_rgb: [150, 155, 160]
+              light: {lit: true, sun_strength: 1.2, sun_angle_deg: 25, sun_deg: [55, 150], shadows: false}
+              grade: {view: AgX, look: AgX - Medium High Contrast, exposure: 0.0, saturation: 1.0, tint: [0.98, 1.0, 1.03],
+                      grain: 0.006, vignette: 0.15}
+              bloom: {threshold: 1.0, strength: 0.4, size: 7}
+              motion_blur: 0.35
+              pre_breach:
+                land: {name: c3d_2023_06_05, era: before, sensor: sentinel-2, start: 2023-06-05, end: 2023-06-05, max_cloud: 10, box_km: [40, 36], centre_km: [3, 10.5], m_per_px: 10}
+                south: {name: c3s_2023_06_05, era: before, sensor: sentinel-2, start: 2023-06-05, end: 2023-06-05, max_cloud: 10, box_km: [40, 12], centre_km: [3, -13.5], m_per_px: 10}
+                from: 2022-12-15
+                until: 2023-05-20
+              match: {reference: c3d_2021_09}
+              wet: {days: 4, fade_days: 3, darken: 0.45, gloss: 0.6}
+              # look pass 2 (decided with the user, 7 November 2026): geometry. The plants placed by rule from the dated passes
+              # and OSM, grown with the date (vegetation.py); the towers and fittings in more detail (towers.build_types(detail=True))
+              vegetation: {seed: 7, spacing: 1.0, gain: 0.8, lod_m: [350, 1200], thin_m: [1500, 4500, 0.35], cone_cos: 0.6, min_scale: 0.03}
+              detail: true
+            extras: [plant, land_south, others]
+            fade_in_s: 4
+            fade_out_s: 5
+            flight: {altitude_m: 70, pitch_deg: -7, lens_mm: 35, speed_mps: 80}
+            track:
+              start_north_km: 9.6        # just north of where both lines turn onto the crossing (9.0-9.2)
+              leave_north_km: 3.2        # off the axis 0.6 km before the lines cross
+              end_xy_m: [1600, 1500]     # the rise ends here, 2.1 km north-east of the units
+              end_heading_deg: 253       # the units and the cooling towers both in the frame
+              start: {altitude_m: 300, speed_mps: 45}
+              rise: {from: {curve: 0.0}, to: {curve: 1.0}, altitude_m: [70, 320], pitch_deg: [-7, -9]}   # one climb from where the lines part
+            route:
+              - {north_km: 8.6, speed_mps: 80, altitude_m: 70, phase: descend}
+              - {north_km: 3.2, speed_mps: 80}
+              - {curve: 0.35, speed_mps: 65}
+              - {curve: 0.7, speed_mps: 40}
+              - {curve: 1.0, speed_mps: 12}
+              - {beyond_m: 40, speed_mps: 6}
+          # look pass 3 (decided with the user, 7 November 2026; research_notes/Flight south look pass 3/): shorter and
+          # re-paced. Faster (95 m/s), straight down the axis to the south bank and a lift and fade there (the curve
+          # toward the units kept for a separate short shot for the cooling chapter); the record on selected dates (the
+          # date jumps between them, each date's states exactly the record's for that day, checked against `expect`;
+          # the changes between left out, said so; the full record in the zoom-out); the flow out to the grid before
+          # the war (`flow_periods`, this variant only); the hum's swell and fall slower, island mode's note faint;
+          # look fixes: the river's surface drawn (ripples, current streaks, Fresnel sky, the pass's own colour
+          # variation), its edge smoothed to sub-pixel contours, the plants toned to the ground under them, shorter
+          # motion blur
+          south_look3:
+            record:
+              start: 2022-02-24
+              at_s: 3.5
+              names_at_s: 12
+              names_until_s: 77   # the lines cross ahead at about 81 s (2.6 km north) and swap sides: names off before
+              ramp_s: 1.5         # what changes with the date (water, passes, plants) eases to a new date this fast
+              select:             # placed by where the camera is; the dam pinned to its place (along_m, checked)
+                - {at: 2022-02-24, s: 3.5, expect: {Dniprovska: on, Ferosplavna-1: on}, why: "before the war: the full chord, power out to the grid"}
+                - {at: 2022-03-04, s: 8.3, expect: {Dniprovska: unknown, Ferosplavna-1: unknown}, why: "the plant seized: lines cut, the reports don't say which"}
+                - {at: 2022-09-05, s: 12.6, expect: {Dniprovska: off, Ferosplavna-1: off}, island: true, why: "island mode: every line cut, one reactor powers the plant"}
+                - {at: 2022-09-16, s: 16.9, expect: {Dniprovska: on, Ferosplavna-1: unknown}, why: "Dniprovska back: power now flows in, the plant shut down"}
+                - {at: 2023-01-17, s: 22.1, expect: {Dniprovska: on, Ferosplavna-1: on}}
+                - {at: 2023-03-01, s: 26.2, expect: {Dniprovska: on, Ferosplavna-1: off}}
+                - {at: 2023-06-06, s: 30.3, along_m: 2508, run: true, expect: {Dniprovska: on, Ferosplavna-1: off}, why: "the Kakhovka dam destroyed: the reservoir drains"}
+                - {at: 2023-06-07, s: 31.8, run: true, expect: {Dniprovska: on, Ferosplavna-1: off}}
+                - {at: 2023-06-08, s: 32.7, run: true, expect: {Dniprovska: on, Ferosplavna-1: off}}
+                - {at: 2023-06-09, s: 33.6, run: true, expect: {Dniprovska: on, Ferosplavna-1: off}}
+                - {at: 2023-06-10, s: 34.5, run: true, expect: {Dniprovska: on, Ferosplavna-1: off}}
+                - {at: 2023-06-11, s: 35.4, run: true, expect: {Dniprovska: on, Ferosplavna-1: off}}
+                - {at: 2023-06-17, s: 37.5, expect: {Dniprovska: on, Ferosplavna-1: off}}
+                - {at: 2023-07-01, s: 42.5, expect: {Dniprovska: on, Ferosplavna-1: on}}
+                - {at: 2024-11-21, s: 48.5, expect: {Dniprovska: off, Ferosplavna-1: on}, why: "the 330 kV alone"}
+                - {at: 2025-05-07, s: 53.5, expect: {Dniprovska: on, Ferosplavna-1: off}}
+                - {at: 2025-09-23, s: 58.5, expect: {Dniprovska: off, Ferosplavna-1: off}, loss: true, why: "the longest complete loss: a month on diesel generators"}
+                - {at: 2025-11-08, s: 66.5, expect: {Dniprovska: on, Ferosplavna-1: on}, why: "both back after the repair truces"}
+                - {at: 2026-03-24, s: 72.5, expect: {Dniprovska: off, Ferosplavna-1: on}, why: "Dniprovska cut: the plant on its backup alone"}
+                - {at: 2026-09-11, s: 79.0, expect: {Dniprovska: off, Ferosplavna-1: on}, why: "the last report"}
+              sound: {start_s: 0.5, fade_in_s: 4, swell_s: 1.2, fall_s: 0.6, island_level: 0.07}
+              lines:
+                Ferosplavna-1: {pan: 0.85}
+                Dniprovska: {pan: -0.85}
+            # before the war the plant fed the grid: dashes out along the lines (this variant only; the approved films
+            # keep the shared periods, which begin on 6 September 2022)
+            flow_periods:
+              - from: 2021-09-01
+                until: 2022-09-11
+                toward: grid
+                note: "Before the war the plant's six units (about 5,700 MW) made more than a fifth of Ukraine's electricity, sent out to the grid; the last reactor was disconnected at 03:41 on 11 September 2022 (Energoatom). Where this overlaps the shared period from 6 September (island mode, every line cut) the later one is drawn: no line is connected then, so no dashes either way."
+                sources:
+                  - {title: "Wikipedia, Zaporizhzhia Nuclear Power Plant (more than a fifth of Ukraine's electricity, 2020)", url: "https://en.wikipedia.org/wiki/Zaporizhzhia_Nuclear_Power_Plant"}
+                  - {title: "World Nuclear Association, Ukraine: Russia-Ukraine war and nuclear energy (chronology from the IAEA's updates)", url: "https://world-nuclear.org/information-library/country-profiles/countries-t-z/ukraine-russia-war-and-nuclear-energy"}
+                  - {title: "Babel (Energoatom), 11 September 2022: unit 6 in island mode three days (114-140 MW, the plant's own needs); a line restored the evening before; unit 6 disconnected at 03:41", url: "https://babel.ua/en/news/84092-energoatom-zaporizhzhia-npp-is-completely-stopped"}
+            title: ZNPP-last-two-lines-3D-south-look3
+            look:
+              samples: 64
+              ray_scale: "1"
+              sky: {horizon_rgb: [0.62, 0.64, 0.67], cloud_dark_rgb: [0.36, 0.38, 0.42], cloud_light_rgb: [0.6, 0.62, 0.65],
+                    height_m: 1500, cloud_m: 5000, cloud_range: [0.3, 0.75], horizon_band: [0.0, 0.14], drift_mps: 3}
+              haze: {visibility_km: 100, max: 0.9}
+              # the plain only beyond the land: at 8 m it lay over the drained bed (lower) as a flat olive sheet in
+              # look passes 1-2, the "river with no detail" and its stair-stepped edges
+              far_plain: {rgb: [0.1, 0.1, 0.07], z_m: 8, hole: true, inset_m: 60}
+              water: {uniform: true, tint: [1.3, 1.2, 1.9], shallow_m: 1.5, bottom_rgb: [0.05, 0.048, 0.04], ripple_m: 2.5,
+                      ripple_stretch: 4, ripple_bump: 0.12, ripple_far_m: [300, 2500], rough: 0.02, reflect: 1.0,
+                      reflect_rgb: [0.75, 0.75, 0.75],
+                      # look pass 3: the surface drawn (current streaks, chop, gusts) and the passes' own colour
+                      # variation over the water; the sheet's edge cut at a sub-pixel contour
+                      detail: {current_deg: 255, drift_mps: 0.6, streak_m: [70, 5], streak_band: [0.52, 0.68],
+                               patch_m: 160, chop_m: 12, chop_bump: 0.25, chop_far_m: [900, 5000], rough: [0.015, 0.08],
+                               scum: 0.08, variation: {share: 0.8, clamp: [0.75, 1.3], sigma_px: 1.0}},
+                      smooth_edge: {sigma_px: 0.5, band: [0.3, 0.7]}}
+              caisson: {concrete_rgb: [0.2, 0.2, 0.19], stained_rgb: [0.1, 0.095, 0.08], band_m: 0.8, band_darken: 0.45}
+              cut_rgb: [62, 66, 72]
+              cut_gap_rgb: [150, 155, 160]
+              light: {lit: true, sun_strength: 1.2, sun_angle_deg: 25, sun_deg: [55, 150], shadows: false}
+              grade: {view: AgX, look: AgX - Medium High Contrast, exposure: 0.0, saturation: 1.0, tint: [0.98, 1.0, 1.03],
+                      grain: 0.006, vignette: 0.15}
+              bloom: {threshold: 1.0, strength: 0.4, size: 7}
+              motion_blur: 0.2
+              rays: {thickness: 0.02, quality: 0.5, backface: false}   # screen-traced reflections: no dark rim mirrored under the sheet's edge
+              pre_breach:
+                land: {name: c3d_2023_06_05, era: before, sensor: sentinel-2, start: 2023-06-05, end: 2023-06-05, max_cloud: 10, box_km: [40, 36], centre_km: [3, 10.5], m_per_px: 10}
+                south: {name: c3s_2023_06_05, era: before, sensor: sentinel-2, start: 2023-06-05, end: 2023-06-05, max_cloud: 10, box_km: [40, 12], centre_km: [3, -13.5], m_per_px: 10}
+                from: 2022-12-15
+                until: 2023-05-20
+              match: {reference: c3d_2021_09}
+              wet: {days: 4, fade_days: 3, darken: 0.45, gloss: 0.6}
+              vegetation: {seed: 7, spacing: 1.0, gain: 0.8, lod_m: [350, 1200], thin_m: [1500, 4500, 0.35], cone_cos: 0.6, min_scale: 0.03,
+                           track_from: south_look2,
+                           tone: {sat: 0.55, pull: 0.4, ground_k: 0.85, clump_m: 60, clump_size: 0.15,
+                                  olive_rgb: [0.92, 0.95, 0.72], dry_rgb: [1.08, 1.0, 0.72], ao: [0.5, 0.3]}}
+              detail: true
+            extras: [plant, land_south, others]
+            fade_in_s: 4
+            fade_out_s: 5
+            flight: {altitude_m: 70, pitch_deg: -7, lens_mm: 35, speed_mps: 95}
+            track:
+              start_north_km: 9.6        # just north of where both lines turn onto the crossing (9.0-9.2)
+              start: {altitude_m: 300, speed_mps: 45}
+              # straight on down the axis (no `end_xy_m`): a lift as the lines come ashore, climbing as look 2's rise
+              rise: {from: {north_km: 3.2}, to: {north_km: 1.5}, altitude_m: [70, 320], pitch_deg: [-7, -9]}
+            route:
+              - {north_km: 8.6, speed_mps: 95, altitude_m: 70, phase: descend}
+              - {north_km: 3.2, speed_mps: 95}
+              - {north_km: 1.5, speed_mps: 95}
         land_after_m: 0          # the camera lands on the axis this far north of where the lines cross
         flight: {altitude_m: 120, pitch_deg: -12, lens_mm: 28, speed_mps: 80}
         flight_s: 15              # without a route: this long on along the axis

@@ -1,0 +1,55 @@
+{
+ "title": "Under the crossing, a May morning now (speculative): the nature sounds edge to edge",
+ "asked": "the user, 9 November 2026: the nature sounds heard at once when the shot begins and until it ends",
+ "picture": "research_notes/Under the crossing still/v7/alt/under_the_crossing_f_day_continuous.mp4 (v5's, copied unchanged)",
+ "sound": "under_the_crossing_edges.wav",
+ "sha256": "2dd2b12d273a11c72161103503d283915ef9c4c2db20a95eab2dacde899f216f",
+ "seconds": 30.0,
+ "from": "mix.py's soundscape run 45 s (the cut's under-the-crossing), its first 30 s, with the changes below",
+ "changes": {
+  "birds_bus": "no fades (was in over 2-4 s, out over 25.5-27.5 s)",
+  "layers": {
+   "nightingale-near": {
+    "segment_s": [
+     1,
+     31
+    ],
+    "placed_s": 0.0,
+    "fade_in_s": 0.02,
+    "fade_out_s": 0.02
+   },
+   "reeds": {
+    "segment_s": [
+     59.5,
+     72
+    ],
+    "placed_s": 0.0,
+    "fade_in_s": 0.02,
+    "fade_out_s": 3.0
+   },
+   "chorus": {
+    "segment_s": [
+     40,
+     50
+    ],
+    "placed_s": 20.0,
+    "fade_in_s": 2.0,
+    "fade_out_s": 0.02
+   }
+  },
+  "line": "in over 0.02 s (was 2.5 s); no fade-out (runs on into the drowning)",
+  "levels": "each layer at its gain in mix.py's run; the master gain of the 45 s run, unchanged"
+ },
+ "screened": "every second used is clean in check_screen.json (no broadband transient)",
+ "at_most_three_at_once": true,
+ "first_500ms_dbfs_rms": -18.7,
+ "last_500ms_dbfs_rms": -19.7,
+ "join": {
+  "line_alone_last_50ms_dbfs": -25.9,
+  "note": "the line here is the 45 s run's line at its gain, so the drowning (v9's sound, the same run from 30 s) goes on from it; the birds stop at the cut"
+ },
+ "peak_dbfs": -1.7,
+ "statement": "A speculative montage, not a recording (as under_the_crossing.json says): the line synthesized, the birds recorded on the drained bed about 50 km downstream and on the north bank opposite, the frog about 90 km away. Cut, high-passed, levelled, panned; never pitched, stretched, looped or reverberated. No sounds of fighting.",
+ "mp4": "under_the_crossing_f_day_edges.mp4",
+ "mp4_sha256": "1af76da67bec12fd69662405c28581f15057de9e75ff816fed5bf4a2f2f7acb9"
+}

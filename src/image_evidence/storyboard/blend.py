@@ -4,11 +4,13 @@
     blender -b <cut.blend> -P blend.py -- read <out.json>
 
 Each shot is one meta strip named by its id (dragging it moves its picture, sound and label together; its handles trim
-it), coloured by status. Inside: the clip (its sound beside it) or the figure, else a card: an intertitle when the
-shot has the film's own words (`card`, centred in white on black as the film's type, its chapter number above, what
-it still needs faint at the foot), or a placeholder (the shot's title, what it tells, what it needs); a small label
-of the id and status, top right. The cut runs from frame 1 to the END marker; the
-shots not in it are parked after it, from the PARKED marker. Only bpy (Blender's own Python), so no package imports.
+it), coloured as the spec says (plan.py `color_of`: by status, an intertitle purple, the end titles red, or the colour
+set by hand in Blender, read back by sync). Inside: the clip (its sound beside it) or the figure, else a card: an intertitle when the
+shot has the film's own words (`card`, centred in white on black as the film's type, its chapter number above; what
+it still needs only in the pool), or a placeholder (the shot's title, what it tells, what it needs); a small label
+of the id and status, top right; a shot's `caption`, the words planned for its picture, at its foot. The cut runs from frame 1 to the END marker; the
+shots not in it are parked after it, from the PARKED marker, each on its channel. The narration's lines are sound
+strips of their own ("vo <line>"), on their channel; a read-back leaves them out (each build lays them). Only bpy (Blender's own Python), so no package imports.
 """
 
 import json
@@ -17,8 +19,6 @@ import sys
 
 import bpy
 
-TAGS = {"good": "COLOR_04", "draft": "COLOR_03", "still": "COLOR_05", "missing": "COLOR_01", "idea": "COLOR_06",
-        "new": "COLOR_07"}
 CARD_RGB = {"missing": (0.09, 0.05, 0.05), "idea": (0.05, 0.06, 0.09), "new": (0.08, 0.08, 0.08)}
 INK = (1.0, 1.0, 1.0, 1.0)
 FAINT = (1.0, 1.0, 1.0, 0.7)
@@ -47,10 +47,27 @@ def _text(strips, name, text, channel, start, frames, size, y, wrap=0.8, rgba=IN
     return t
 
 
+FADE_IN_S, RISE_S, RISE_PX, FADE_OUT_S = 0.8, 1.6, 12, 0.6   # a card's words: in, rising a little, and out
+
+
+def _animate(t):
+    """A card's words, slightly animated (the user, 5 November 2026): they fade in while rising RISE_PX into place,
+    hold, and fade out at the end. Keyframed on the strip, so they move with its meta when it is dragged."""
+    fps = bpy.context.scene.render.fps / bpy.context.scene.render.fps_base
+    a, b = t.frame_final_start, t.frame_final_end
+    fi, ri, fo = (max(1, round(s * fps)) for s in (FADE_IN_S, RISE_S, FADE_OUT_S))
+    for f, v in ((a, 0.0), (a + fi, 1.0), (b - fo, 1.0), (b, 0.0)):
+        t.blend_alpha = v
+        t.keyframe_insert("blend_alpha", frame=f)
+    for f, v in ((a, -RISE_PX), (a + ri, 0.0)):
+        t.transform.offset_y = v
+        t.transform.keyframe_insert("offset_y", frame=f)
+
+
 def _shot(ed, sh):
     a, n = sh["start"], sh["frames"]
     b = a + n
-    m = ed.strips.new_meta(sh["id"], 1, a)
+    m = ed.strips.new_meta(sh["id"], sh.get("channel", 1), a)
     if sh["kind"] == "movie":
         at = a - sh["in"]   # where the clip's first frame would sit; the handles cut it to the shot
         clip = m.strips.new_movie(f"{sh['id']} picture", sh["path"], 1, at, fit_method="FIT")
@@ -58,6 +75,7 @@ def _shot(ed, sh):
         if sh.get("audio"):
             snd = m.strips.new_sound(f"{sh['id']} sound", sh["path"], 2, at)
             snd.right_handle, snd.left_handle = b, a
+            snd.mute = bool(sh.get("silent"))   # kept, muted, so it can be turned back on in Blender
     elif sh["kind"] == "image":
         im = m.strips.new_image(f"{sh['id']} picture", sh["path"], 1, a, fit_method="FIT")
         im.right_handle = b
@@ -65,13 +83,10 @@ def _shot(ed, sh):
         c = m.strips.new_effect(name=f"{sh['id']} card", type="COLOR", channel=1, frame_start=a, length=n)
         c.color = (0.0, 0.0, 0.0)
         if sh.get("chapter"):
-            _text(m.strips, f"{sh['id']} chapter", str(sh["chapter"]), 2, a, n, 26, 0.62, rgba=FAINT, centre=True,
-                  anchor_y="BOTTOM")
-        _text(m.strips, f"{sh['id']} title", sh["card"].strip(), 3, a, n, 42, 0.5, 0.86, centre=True,
-              anchor_y="CENTER")
-        if sh.get("needs"):
-            _text(m.strips, f"{sh['id']} body", f"STILL TO DO: {sh['needs']}", 4, a, n, 20, 0.08, 0.8, rgba=DIM,
-                  centre=True, anchor_y="BOTTOM")
+            _animate(_text(m.strips, f"{sh['id']} chapter", str(sh["chapter"]), 2, a, n, 26, 0.62, rgba=FAINT,
+                           centre=True, anchor_y="BOTTOM"))
+        _animate(_text(m.strips, f"{sh['id']} title", sh["card"].strip(), 3, a, n, 42, 0.5, 0.86, centre=True,
+                       anchor_y="CENTER"))
     else:
         c = m.strips.new_effect(name=f"{sh['id']} card", type="COLOR", channel=1, frame_start=a, length=n)
         c.color = CARD_RGB.get(sh["status"], CARD_RGB["missing"])   # tinted: a picture still to make, not words
@@ -82,11 +97,19 @@ def _shot(ed, sh):
         if sh.get("needs"):
             _text(m.strips, f"{sh['id']} needs", f"NEEDS: {sh['needs']}", 4, a, n, 20, 0.08, 0.8, rgba=DIM,
                   centre=True, anchor_y="BOTTOM")
+    for k, (x0, y0, x1, y1) in enumerate(sh.get("masks") or []):   # black bars over a picture's text, in px of 1920x1080
+        c = m.strips.new_effect(name=f"{sh['id']} mask {k}", type="COLOR", channel=7 + k, frame_start=a, length=n)
+        c.color = (0.0, 0.0, 0.0)
+        c.transform.scale_x, c.transform.scale_y = (x1 - x0) / 1920, (y1 - y0) / 1080
+        c.transform.offset_x, c.transform.offset_y = (x0 + x1) / 2 - 960, 540 - (y0 + y1) / 2
+    if sh.get("caption") and sh["kind"] in ("movie", "image"):   # words to go on the picture, as the films' captions
+        _text(m.strips, f"{sh['id']} caption", sh["caption"], 5, a, n, 24, 0.07, 0.8, box=True, centre=True,
+              anchor_y="BOTTOM")
     if sh.get("label", True):
         _text(m.strips, f"{sh['id']} label", f"{sh['id']}  ·  {sh['status'].upper()}", 6, a, n, 22, 0.97, wrap=1.0,
               rgba=FAINT, box=True, right=True)   # top right: the films keep their own date and legend top left
     m.right_handle, m.left_handle = b, a
-    m.color_tag = TAGS.get(sh["status"], "NONE")
+    m.color_tag = sh.get("color") or "NONE"
     return m
 
 
@@ -113,10 +136,12 @@ def build(spec_path):
     ed = s.sequence_editor_create()
     for sh in sp["shots"] + sp["parked"]:
         _shot(ed, sh)
+    for vo in sp.get("narration") or []:   # the voice-over, a strip per line on its own channel (plan.py `narrate`)
+        ed.strips.new_sound(f"vo {vo['id']}", vo["path"], sp.get("narration_channel", 10), vo["start"])
     s.timeline_markers.new("END", frame=sp["end"])
     if sp["parked"]:
-        s.timeline_markers.new("PARKED", frame=sp["parked"][0]["start"])
-    s.frame_start, s.frame_end = 1, max(1, sp["end"] - 1)
+        s.timeline_markers.new("PARKED", frame=min(p["start"] for p in sp["parked"]))
+    s.frame_start, s.frame_end = 1, max(1, sp["end"] - 1)   # to END (10:00 with `end_at_s`): scrubbed and played to it
     s.frame_current = 1
     _video_editing(s)
     bpy.context.preferences.filepaths.save_version = 0   # no .blend1: one file per cut, replaced each build
@@ -139,7 +164,10 @@ def read(out_path):
         d = {"name": st.name, "type": st.type, "left": st.left_handle, "right": st.right_handle, "channel": st.channel,
              "mute": st.mute}
         if st.type == "META":
+            d["color_tag"] = st.color_tag
             pic = next((c for c in st.strips if c.type in ("MOVIE", "IMAGE")), None)
+            snd = [c for c in st.strips if c.type == "SOUND"]
+            d["silent"] = bool(snd) and all(c.mute for c in snd)
             if pic:
                 d["picture"] = {"type": pic.type, "content_start": pic.content_start, "left": pic.left_handle,
                                 "right": pic.right_handle, "path": _path(pic)}

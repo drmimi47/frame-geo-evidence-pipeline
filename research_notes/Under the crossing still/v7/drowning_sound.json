@@ -1,0 +1,65 @@
+{
+ "title": "The drowning's sound, v7 (the soundscape continued past its 30 s end)",
+ "seconds": 15.0,
+ "sample_rate": 48000,
+ "what_plays_at_under_the_crossing_end": "the birds gone by 27.5 s (the bus faded over 25.5-27.5 s); the line alone, fading to silence over 27.5-30 s; silence at 30 s",
+ "decision": "the drowning keeps that state, the line alone, muffled once the lens is under: the chorus has already gone at the cut, and bringing birds back would be a jump in content (and would change under-the-crossing's own end). The soundscape is continued by running mix.py 45 s long and taking seconds 30-45.",
+ "from": "mix.py with TOTAL = 45 (nothing else changed); seconds 30-45 hold only the line (Ferosplavna-1, synthesized, seed 330); first 27 s compared with under_the_crossing.wav: {\"first_27s_difference_dbfs_rms\": -21.9, \"original_first_27s_dbfs_rms\": -20.6}",
+ "files": {
+  "drowning.wav": {
+   "sha256": "1d75bc37474f447542f6ca58e3ce86f9b25155d64bc05f2b2bba508923f3bc67",
+   "for": "the cut as it stands (v5's clip, ending in silence)",
+   "shape": "rising from silence over 2.5 s, the line alone, muffled from the lens crossing (4.17 s)"
+  },
+  "alt/drowning_continuous.wav": {
+   "sha256": "a3e42dd48176dd7e9e7a0c43b2b4d6a18a093470880e148f63ab6bdf404cd8de",
+   "for": "with alt/under_the_crossing_continuous.wav: the hum unbroken through the cut"
+  },
+  "alt/under_the_crossing_continuous.wav": {
+   "sha256": "4dc6042d5aa80773197a773b0ba332b7e837bd1367b1913c4285e544ab860bcf",
+   "what": "the 45 s run's first 30 s: as under_the_crossing.wav but with no fade at its end (and its line a new draw of the same synthesis)"
+  }
+ },
+ "muffle": {
+  "low_pass_hz": 380.0,
+  "crossfade_s": 0.3,
+  "gain_db": 0.6,
+  "below_open_line_db": 3.0,
+  "open_line_dbfs_rms": -25.5,
+  "note": "louder than v6's (about -35 dBFS RMS there; the user: too quiet). Drawn: hearing from under the water, not a recording of it."
+ },
+ "join": {
+  "cut_as_it_stands": {
+   "under_the_crossing_last_50ms_dbfs": -89.6,
+   "drowning_first_50ms_dbfs": -91.7
+  },
+  "continuous_pair": {
+   "under_the_crossing_continuous_last_50ms_dbfs": -26.1,
+   "drowning_continuous_first_50ms_dbfs": -26.2,
+   "largest_step_at_the_cut": 0.00699,
+   "largest_step_between_neighbouring_samples_near_the_cut": 0.01938
+  }
+ },
+ "dbfs_rms_per_second": [
+  -41.0,
+  -29.4,
+  -25.6,
+  -25.4,
+  -27.6,
+  -29.8,
+  -28.4,
+  -28.2,
+  -28.2,
+  -27.8,
+  -29.3,
+  -28.5,
+  -28.4,
+  -31.2,
+  -44.2
+ ],
+ "limit": "-1 dBFS (mix.py's limiter)",
+ "statement": "A montage, not a recording: nothing was recorded at the crossing. No new recordings; nothing pitched, looped or stretched. The line is synthesized, not recorded; its muffling under water is drawn.",
+ "credit": "the line synthesized (the soundscape's recordings, Oleksii Vasyliuk CC BY, Ekaterina Kormina CC0, W.D. Keeper CC BY, are silent in these 15 s)",
+ "peak_dbfs": -18.0,
+ "rms_dbfs": -28.6
+}

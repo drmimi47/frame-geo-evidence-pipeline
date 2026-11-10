@@ -353,6 +353,10 @@ def cmd_satellite(args: argparse.Namespace) -> int:
         cfg = network.config(args.network, args.seam_config)
         if args.fps:  # e.g. 30 to test; the config's rate for the final render
             cfg["film"] = {**cfg["film"], "fps": args.fps}
+        if args.sound_only:  # the Hum alone, under the film already drawn
+            r = zoomout.sound_only(root, cfg)
+            print(f"  {r['film_id']}: the Hum made again → {r['video']}")
+            return 0
         net = network.build(root, cfg)
         for ln in net["lines"]:
             print(f"  {ln['kv']:>4} kV  {ln['name']:<18} {ln.get('ref', ''):<11} {ln['length_m'] / 1000:6.1f} km  → {ln['to']}")
@@ -391,6 +395,12 @@ def cmd_satellite(args: argparse.Namespace) -> int:
             print(f"  {len(d['observations'])} passes read, {len(d['left_out'])} left out · "
                   f"{bed.bed_dir(export.scene_dir(root, cfg['id'])) / 'bed.json'}")
             return 0
+        if args.crossing_pass == "sound":  # the Hum alone, under the films already rendered (picture copied)
+            from .satellite.scene3d import animatic
+
+            for v, r in animatic.sound(root, cfg, args.variant or None).items():
+                print(f"  {v}: the Hum made again → {r['mp4']}")
+            return 0
         if args.crossing_pass == "blend":  # each segment's scene saved to open in Blender, not rendered
             from .satellite.scene3d import animatic
 
@@ -401,7 +411,7 @@ def cmd_satellite(args: argparse.Namespace) -> int:
             from .satellite.scene3d import animatic
 
             secs = tuple(float(x) for x in args.seconds.split(":")) if args.seconds else None
-            for v, r in animatic.render(root, cfg, args.variant or None, secs).items():
+            for v, r in animatic.render(root, cfg, args.variant or None, secs, resume=args.resume).items():
                 print(f"  {v}: {r['frames']} frames in {r['seconds']} s → {r['mp4']}")
             print(f"  {export.scene_dir(root, cfg['id']) / 'animatic'}")
             return 0
@@ -455,6 +465,8 @@ def cmd_storyboard(args: argparse.Namespace) -> int:
         r = plan.build(root, name, args.discard_edits, args.pool, args.cuts)
         for line in r["synced"]:
             print(f"  read back first: {line}")
+        for line in r["narration"]:
+            print(f"  {line}")
         print(f"  {r['path']}")
         pool, cuts = plan.load(args.pool, args.cuts)
     for line in plan.show(pool, name, cuts[name]):
@@ -595,13 +607,18 @@ def build_parser() -> argparse.ArgumentParser:
                    "(pass 0: the survey of its lines, towers, water and flight path); unrolled: the two last lines "
                    "straightened, their record and the repair truces")
     s.add_argument("--network", default="znpp", help="network: a network of the seam config")
-    s.add_argument("--pass", dest="crossing_pass", choices=["survey", "bed", "animatic", "blend"], default="survey",
+    s.add_argument("--pass", dest="crossing_pass", choices=["survey", "bed", "animatic", "blend", "sound"], default="survey",
                    help="crossing3d: survey (pass 0), the drained bed (pass 3), the camera animatic (pass 1) or "
-                        "blend (each segment's scene saved as a .blend to open in Blender, not rendered)")
+                        "blend (each segment's scene saved as a .blend to open in Blender, not rendered) or sound (the "
+                        "Hum made again under the films already rendered, the picture copied)")
     s.add_argument("--variant", action="append", help="crossing3d animatic: only this opening (repeatable)")
     s.add_argument("--seconds", help="crossing3d animatic, unrolled: only this stretch, A:B seconds (to test; its own mp4)")
+    s.add_argument("--resume", action="store_true", help="crossing3d animatic: keep the frames a stopped render left "
+                   "and render the rest (delete the last, possibly cut short, first)")
     s.add_argument("--stills", help="unrolled: only these moments, comma-separated seconds, as PNGs")
     s.add_argument("--trace-only", action="store_true", help="network: trace the lines only, no imagery or film")
+    s.add_argument("--sound-only", action="store_true", help="network: the Hum made again under the newest zoom-out film "
+                   "(its picture copied, not re-encoded)")
     s.add_argument("--fps", type=int, help="network, unrolled: frame rate (default: the config's)")
     s.add_argument("--workers", type=int, help="network: parts of the zoom-out drawn at once (default: three in four cores)")
     s.add_argument("--area", default="enerhodar-crossing", help="an area of the seam config (or an existing corridor)")

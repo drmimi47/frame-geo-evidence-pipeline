@@ -1276,6 +1276,60 @@ def _part(root: Path, cfg: dict[str, Any], path: Path, i0: int, i1: int, st: dic
     return keep
 
 
+def _score(film: _Film, cfg: dict[str, Any]) -> tuple[np.ndarray, dict[str, Any]]:
+    """The Hum under the film (hum.py): each line panned by where it ends, its crackle swelling with the weather on the
+    date shown (the network's `weather`). The full chord fades in once the camera has stopped pulling back (decided
+    with the user)."""
+    pans, kvs = {}, {}
+    for j, ln in enumerate(film.lines):
+        end = ln.xy[-1]
+        for key, strand in film.circuits[j]:
+            pans[key] = float(np.clip(end[0] / max(np.hypot(*end), 1.0), -1, 1)) * 0.8 + \
+                        (0.0 if strand is None else (strand - 0.5) * 0.12)
+            kvs[key] = ln.kv
+    wet, wdoc = hum.weather(cfg.get("weather"), film.base)
+    return hum.score(film.rec, pans, kvs, film.total, film.fade_out, start_s=film.settled,
+                     fade_in_s=float(film.hum.get("fade_in_s", 4.0)), seed=int(film.hum.get("seed", 50)), wet=wet,
+                     weather_doc=wdoc)
+
+
+def sound_only(root: Path, cfg: dict[str, Any], film_id: str | None = None, backup: Path | None = None) -> dict[str, Any]:
+    """The Hum made again and laid under a film already drawn (default: the newest), its picture copied, not
+    re-encoded: for a change to the sound alone. Refused if the config no longer gives the film's own timing (its
+    length or the record's span). The old sound is copied to `backup` first, if given; film.json's `sound` updated."""
+    film = _Film(root, cfg)
+    films = sorted((json.loads(p.read_text())["made_at"], p.parent) for p in (film.base / "films").glob("*/film.json"))
+    if not films:
+        raise FileNotFoundError("no zoom-out film yet")
+    out = film.base / "films" / film_id if film_id else films[-1][1]
+    doc = json.loads((out / "film.json").read_text())
+    rd = doc.get("record") or {}
+    if abs(doc["duration_s"] - round(film.total, 2)) > 0.011 or not film.rec or (
+            rd.get("film_s") and rd["film_s"] != film.rec.doc()["film_s"]):
+        raise RuntimeError(f"{out.name}: the config no longer gives this film's timing ({doc['duration_s']} s against "
+                           f"{film.total:.2f} s, or the record's span): render it again instead")
+    video = out / doc["files"]["video"]
+    x, sound = _score(film, cfg)
+    sound["file"] = f"{film.o.get('title', 'hum')}.wav"
+    if backup:
+        backup.mkdir(parents=True, exist_ok=True)
+        for f in (out / sound["file"], video):
+            if f.exists():
+                shutil.copy2(f, backup / f.name)
+    sound["sha256"] = hum.write_wav(out / sound["file"], x)
+    tmp = out / f".{video.stem}.sound.mp4"
+    subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", str(video), "-i", str(out / sound["file"]),
+                    "-map", "0:v", "-map", "1:a", "-c:v", "copy", "-c:a", "aac", "-b:a", "256k", "-movflags", "+faststart",
+                    str(tmp)], check=True)
+    tmp.replace(video)
+    doc["sound"] = {**sound, "remade_at": datetime.now().astimezone().isoformat(timespec="seconds"),
+                    "remade": "the sound alone, laid under the same picture (copied, not re-encoded)"}
+    doc["files"]["sound"] = sound["file"]
+    doc["sha256"] = hashlib.sha256(video.read_bytes()).hexdigest()
+    write_json(out / "film.json", doc)
+    return {"film_id": out.name, "video": str(video), "wav": str(out / sound["file"])}
+
+
 def render(root: Path, cfg: dict[str, Any], workers: int | None = None) -> dict[str, Any]:
     """The film, drawn in parts at once (one process a core): a quick layout pass works out what carries from frame to
     frame (labels easing, names parked, towns fading) and starts each part from it, so the frames are those of one
@@ -1311,16 +1365,7 @@ def render(root: Path, cfg: dict[str, Any], workers: int | None = None) -> dict[
         log.info("Zoom-out: layout done in %.0f s; the parts are drawing", time.monotonic() - started)
         sound = None
         if film.hum and rec:
-            pans, kvs = {}, {}
-            for j, ln in enumerate(lines):
-                end = ln.xy[-1]
-                for key, strand in film.circuits[j]:
-                    pans[key] = float(np.clip(end[0] / max(np.hypot(*end), 1.0), -1, 1)) * 0.8 + \
-                                (0.0 if strand is None else (strand - 0.5) * 0.12)
-                    kvs[key] = ln.kv
-            # the full chord fades in once the camera has stopped pulling back (decided with the user)
-            x, sound = hum.score(rec, pans, kvs, film.total, film.fade_out, start_s=film.settled,
-                                 fade_in_s=float(film.hum.get("fade_in_s", 4.0)), seed=int(film.hum.get("seed", 50)))
+            x, sound = _score(film, cfg)
             sound["file"] = f"{o.get('title', 'hum')}.wav"   # the Hum under the film's name, beside it
             sound["sha256"] = hum.write_wav(out / sound["file"], x)
         for f in as_completed(futures):

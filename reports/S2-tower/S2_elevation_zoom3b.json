@@ -1,0 +1,146 @@
+{
+ "what": "Tower elevation, third pass with the user's fixes (9 November 2026): zoom3's picture unchanged; no title top left, no note top right and no 126 m / 41 m dimensions at the end of the move; each line's caption only its count of towers over water; once both groups are in place, each group's height and width drawn. Storyboard material, not frames of the film.",
+ "video": {
+  "file": "S2_elevation_zoom3b.mp4",
+  "sha256": "e09616ad9daac00fdbdfc0a75e4b1a2a1e4913b40be75a1c7456d1c8c1c279b3",
+  "seconds": 32.0,
+  "fps": 30,
+  "size": [
+   1920,
+   1080
+  ],
+  "codec": "H.264 (libx264, CRF 16, yuv420p), no sound"
+ },
+ "made_by": "scripts/zoom3b.py on zoom3.py's renders as they were (the move's 390 frames and the three sprites, reused, not rendered again); only the drawn marks and the type are new. zoom3.py and its files unchanged.",
+ "timeline_s": {
+  "fade_in": [
+   0,
+   0.8
+  ],
+  "hold_on_the_person": [
+   0,
+   1.8
+  ],
+  "pull_back": [
+   1.8,
+   13.0
+  ],
+  "line_named": 16.4,
+  "towers_behind_slide_out": [
+   [
+    18.6,
+    20.0
+   ],
+   [
+    19.5,
+    20.9
+   ]
+  ],
+  "dniprovska_count": 20.4,
+  "stack_moves_left_and_picture_rises_46px": [
+   22.4,
+   25.4
+  ],
+  "ferosplavna_in": 23.2,
+  "ferosplavna_named_with_count": 25.8,
+  "dimensions_both_groups": [
+   26.8,
+   27.6
+  ],
+  "end": 32.0
+ },
+ "the_tower": {
+  "type": "crossing750_p on caisson750 (towers.npz, the 3D film's model)",
+  "line": "Dniprovska (750 kV, ZNPP - Dniprovska): the only 750 kV line crossing here; towers.py assigns the crossing750 types only to it (scheme К-П-П-А-П-П-К, Novoklimov 2011)",
+  "height_m": 126,
+  "caisson_m": 40,
+  "which": "one of its two 126 m suspension towers in the reservoir (drawn as the nearest from the south); the type, not a numbered tower",
+  "caisson_note": "40 m across as published (ssp_63206) and as modelled; zoom3's label said 41 m, the drawn width including the ribs, about 0.5 m proud of the drum"
+ },
+ "towers_in_the_old_reservoir": {
+  "rule": "towers.py assign(): the crossing scheme's inner towers stand on caissons, the two shore towers on land; the same towers lie in the survey's water of 5 June 2023 (survey.json, Sentinel-2A 2023-06-05)",
+  "Dniprovska": {
+   "count": 3,
+   "of_crossing_towers": 5,
+   "south_to_north": [
+    "crossing750_p 126 m",
+    "crossing750_a 100 m (the anchor)",
+    "crossing750_p 126 m"
+   ],
+   "sources": [
+    "novoklimov",
+    "ssp_63206 (126 m, 2nd crossbar 113 m, caisson 40 m)",
+    "ukwiki (126 and 100 m)",
+    "osm (positions, tower:type=crossing)"
+   ]
+  },
+  "Ferosplavna 1, 2": {
+   "count": 5,
+   "of_crossing_towers": 7,
+   "type": "crossing330, double-circuit anchor (one row of towers for both circuits, Л-243/Л-244)",
+   "height_m": "90 and 100 m published (ukwiki: 90 m, the central 100 m; ssp_94005: no. 19 at 100 m); which is which isn't settled in the 3D film, so all drawn at 100 m, as there, and the caption says so",
+   "sources": [
+    "novoklimov",
+    "ssp_94005",
+    "ukwiki",
+    "osm"
+   ]
+  }
+ },
+ "dimensions": {
+  "width_measure": "the same for both groups: the front tower's caisson across at its base, its widest part. The labels give the published figures; the lines span the caissons as drawn (750 kV: 263 px = 41.1 m at 6.4 px/m, 330 kV: 285 px = 44.6 m, both including the ribs, about 0.5 m proud of the drum).",
+  "Dniprovska": {
+   "height": "126 M: the front tower (crossing750_p), caisson top to tower top; published (ssp_63206, ukwiki)",
+   "width": "40 M ACROSS: ssp_63206, \"caisson 40 m across\""
+  },
+  "Ferosplavna 1, 2": {
+   "height": "100 M: the front tower, caisson top to tower top; drawn at 100 m as all five are (published 90 and 100 m: ukwiki; ssp_94005 no. 19 at 100 m)",
+   "width": "43.6 M ACROSS: ssp_94005, \"caisson 43.6 m across at its base and 29 m at its top\""
+  },
+  "placed": "heights beside each group (left of Dniprovska, right of Ferosplavna's farthest tower), widths under each front caisson's base, the captions stepped down under them"
+ },
+ "drawn_not_observed": [
+  "The shapes are representative models of each type (towers.py: from photographs of these towers and published heights).",
+  "In line along each line as seen from the south, the nearest in front, each further one spread sideways (750 kV 12 m, 330 kV 10 m) and fainter so all can be seen: a drawing; in line they would hide each other. True sizes relative to each other (one scale, flat view).",
+  "The bases at 12.8 m under the old water (no. 19's, the only published depth) and the bed (inferred, about 8.4 m under the old water at the 750 kV caissons) drawn at one level for every tower.",
+  "The person, 1.75 m, drawn.",
+  "No coordinates, numbers or states of individual towers; no damage or repairs shown."
+ ],
+ "to_be_said_elsewhere": {
+  "why": "taken off the screen at the user's request (9 November 2026); still true of the picture, so said in the narration, the notes or the credits",
+  "items": [
+   "The shapes are representative models of each type, drawn from photographs of these towers and published heights (the removed title: \"THE 750 KV CROSSING TOWER OVER THE DNIPRO / A REPRESENTATIVE MODEL OF THE TYPE, DRAWN FROM PHOTOGRAPHS AND PUBLISHED HEIGHTS; THE PERSON DRAWN.\").",
+   "Seen along each line from the south, the nearest in front, the others spread sideways to be seen; to scale (the removed note, first line).",
+   "Ferosplavna's towers: 90 and 100 m published, all drawn at 100 m (the removed caption).",
+   "Dniprovska's three: 126, 100 and 126 m (the removed caption); the anchor in the middle is 100 m.",
+   "The bases (12.8 m under the old water, tower no. 19's, the only published depth) and the bed (inferred) drawn at one level for every tower (the removed note, second line).",
+   "The person, 1.75 m, is drawn (still in the picture; no longer said on it)."
+  ]
+ },
+ "on_screen_text": {
+  "captions": {
+   "d_name": "DNIPROVSKA · 750 KV",
+   "d_count": "3 TOWERS OVER WATER",
+   "f_name": "FEROSPLAVNA 1 AND 2 · 330 KV",
+   "f_count": "5 TOWERS OVER WATER"
+  },
+  "dimensions": [
+   "126 M",
+   "40 M ACROSS",
+   "100 M",
+   "43.6 M ACROSS"
+  ],
+  "removed": [
+   "the title top left (13.9-21 s)",
+   "the note top right (26.6 s on)",
+   "126 M / 41 M ACROSS at the end of the move (13.4 s)"
+  ]
+ },
+ "checks": {
+  "handover_move_to_sprites": "frame 389 -> 390: mean step 0.22 levels (0-255, 480x270 grey), against 0.00-0.01 either side (as zoom3)",
+  "lift": "22.4-25.4 s eased, steps rising to 3.4 levels and back to 0 by 26.2 s; no jump at its start or end",
+  "dimensions_in": "26.8-27.6 s, a fade; steps at most 0.03 levels",
+  "largest_steps": "10.7 levels at 3.7-4.0 s, zoom3's pull-back past the concrete, unchanged",
+  "stills": "S2_elevation_zoom3b_sheet.png (12 moments): labels clear of each other and of the towers; the end frame S2_elevation_zoom3b_last.png"
+ }
+}

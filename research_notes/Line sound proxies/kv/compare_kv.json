@@ -1,0 +1,49 @@
+{
+ "750": {
+  "file": "proxy-750kV-fog.mp4",
+  "from_s": 0,
+  "to_s": 24,
+  "seconds": 24.0,
+  "rms_dbfs": -42.5,
+  "50_hz_over_neighbours_db": 2.0,
+  "100_hz_over_neighbours_db": 15.8,
+  "200_hz_over_neighbours_db": 14.6,
+  "300_hz_over_neighbours_db": 7.3,
+  "400_hz_over_neighbours_db": -0.3,
+  "600_hz_over_neighbours_db": 0.1,
+  "high_1500_8000_over_hum_80_420_db": 6.4,
+  "high_centroid_500_12000_hz": 5462,
+  "octaves_against_high_band_db": {
+   "500-1000": -7.3,
+   "1000-2000": -4.3,
+   "2000-4000": -4.4,
+   "4000-8000": -3.4,
+   "8000-16000": -0.7
+  },
+  "cracks_per_s": 0.12
+ },
+ "330": {
+  "file": "proxy-330kV-crossing.mp4",
+  "from_s": 0,
+  "to_s": 16,
+  "seconds": 16.0,
+  "rms_dbfs": -33.6,
+  "50_hz_over_neighbours_db": 17.4,
+  "100_hz_over_neighbours_db": 13.0,
+  "200_hz_over_neighbours_db": 20.7,
+  "300_hz_over_neighbours_db": 11.4,
+  "400_hz_over_neighbours_db": 10.0,
+  "600_hz_over_neighbours_db": 9.3,
+  "high_1500_8000_over_hum_80_420_db": 8.7,
+  "high_centroid_500_12000_hz": 3798,
+  "octaves_against_high_band_db": {
+   "500-1000": -9.0,
+   "1000-2000": -5.7,
+   "2000-4000": -4.3,
+   "4000-8000": -3.1,
+   "8000-16000": -10.5
+  },
+  "cracks_per_s": 0.0
+ },
+ "note": "Two recordings, different microphones, distances and weather (the 750 kV in fog, the 330 kV in dry spring air with wind): a direction and rough sizes for the Hum's two voices, never a calibration."
+}

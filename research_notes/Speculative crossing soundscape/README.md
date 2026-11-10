@@ -40,3 +40,12 @@ nature sounds.md), so nothing here is the crossing's own sound.
 - The downloads are in `raw/` (one folder per sound, `clips.tsv` with each observation's credit and URL).
 - To credit on screen or in the credits: "Oleksii Vasyliuk (CC BY), Ekaterina Kormina (CC0), W.D. Keeper (CC BY), via
   iNaturalist and xeno-canto; the line synthesized".
+
+## The line made truer (9 November 2026)
+
+`scripts/mix.py` `line()` now voices Ferosplavna-1 as hum.py's own 330 kV line (`HUM_SHAPE[330]`, `CORONA[330]`): the
+hum's 200 Hz above its 100 Hz with 300-600 Hz present, the corona a smoother hiss pulsing twice a cycle with sparse
+cracks, rolling off above 8 kHz, at full strength and dry (no weather swell: a May morning now is no dated day; the
+earlier denser "dewy morning" crackle is dropped). The cut uses it through `research_notes/Under the crossing
+still/edges/` and the drowning (v11); this folder's own `under_the_crossing.wav` and `.mp4` (5 November) are the old
+line and were not made again.

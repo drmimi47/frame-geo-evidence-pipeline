@@ -1,0 +1,99 @@
+{
+ "frames": {
+  "v5_frame_899_vs_v8_frame_0": {
+   "mean": 1.087,
+   "max": 142,
+   "px_over_8": 10924,
+   "px_over_32": 5872
+  },
+  "reference_v5_898_vs_899": {
+   "mean": 1.066,
+   "max": 149,
+   "px_over_8": 9391,
+   "px_over_32": 5345
+  },
+  "reference_v8_0_vs_1": {
+   "mean": 1.098,
+   "max": 147,
+   "px_over_8": 11968,
+   "px_over_32": 5953
+  },
+  "mp4_last_frame_vs_v8_frame_0": {
+   "mean": 3.659,
+   "max": 128,
+   "px_over_8": 168120,
+   "px_over_32": 6008
+  },
+  "mp4_last_frame_vs_v5_frame_899_png": {
+   "mean": 3.66,
+   "max": 147,
+   "px_over_8": 167582,
+   "px_over_32": 6016
+  },
+  "v8_frame_0_vs_v7_frame_0": {
+   "mean": 0.0,
+   "max": 0,
+   "px_over_8": 0,
+   "px_over_32": 0
+  },
+  "v8_frame_24_vs_v7_frame_24 (the last before any plant changes)": {
+   "mean": 0.0,
+   "max": 0,
+   "px_over_8": 0,
+   "px_over_32": 0
+  },
+  "note": "v5's frame 899 and v8's frame 0 differ by one frame's motion (the flow dashes, a far bird), as neighbouring frames do; the mp4 differs from the PNGs by its encoding"
+ },
+ "joins": {
+  "as_it_stands": {
+   "file": "join_test.mp4",
+   "levels_dbfs_every_50ms_2_5_to_3_5_s": [
+    -42.8,
+    -44.5,
+    -46.5,
+    -48.9,
+    -51.6,
+    -55.1,
+    -59.3,
+    -64.9,
+    -73.1,
+    -87.2,
+    -88.0,
+    -74.0,
+    -65.8,
+    -60.2,
+    -55.9,
+    -52.6,
+    -49.7,
+    -47.5,
+    -45.3,
+    -43.3
+   ]
+  },
+  "continuous": {
+   "file": "alt/join_test_continuous.mp4",
+   "levels_dbfs_every_50ms_2_5_to_3_5_s": [
+    -22.7,
+    -22.6,
+    -22.7,
+    -22.7,
+    -22.7,
+    -22.8,
+    -22.8,
+    -23.0,
+    -23.1,
+    -23.1,
+    -23.2,
+    -23.2,
+    -23.3,
+    -23.3,
+    -23.3,
+    -23.2,
+    -23.1,
+    -23.0,
+    -22.9,
+    -22.8
+   ]
+  }
+ }
+}

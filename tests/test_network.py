@@ -1,6 +1,7 @@
 """A plant's lines traced through a stubbed Overpass reply (Ukrainian names), and the zoom-out's schedule."""
 
 import ast
+import json
 from datetime import date
 from pathlib import Path
 
@@ -230,3 +231,49 @@ def test_both_films_draw_a_cut_line_unlit_in_steel_grey_not_red():
     for kv in (750, 330):
         assert np.array_equal(zoomout.STATE_RGB["off"][kv], zoomout.STATE_RGB["unknown"][kv])  # told apart by the dots
     assert all(v == 0 for k, v in zoomout.STATE_GLOW.items() if k != "on")
+
+
+def _bands(x, a, b, ch):
+    from image_evidence.satellite import hum
+
+    y = x[int(a * hum.SR):int(b * hum.SR), ch].astype(np.float64)
+    X, f = np.fft.rfft(y), np.fft.rfftfreq(len(y), 1 / hum.SR)
+    band = lambda lo, hi: np.fft.irfft(X * ((f >= lo) & (f < hi)), len(y))
+    db = lambda z: 20 * np.log10(np.sqrt((z ** 2).mean()) + 1e-12)
+    hb = band(2000, 8000)
+    return {"crackle": db(hb), "top": db(band(9000, 16000)), "kurtosis": float(((hb - hb.mean()) ** 4).mean() / hb.var() ** 2)}
+
+
+def test_the_crackle_sets_750_kv_apart_from_330_kv_and_swells_on_wet_dates():
+    from image_evidence.satellite import hum
+    from image_evidence.satellite.record import Record
+
+    rec = Record(_rec_cfg(), 2.0)
+    t = lambda d: rec.t(date.fromisoformat(d).toordinal())
+    wet = {date(2022, 10, 20).toordinal(): 12}   # the day the lines come back: 12 wet hours; every other day dry
+    pans, kvs = {"Дніпровська": 1.0, "Феросплавна-1": -1.0}, {"Дніпровська": 750, "Феросплавна-1": 330}
+    x, doc = hum.score(rec, pans, kvs, rec.end, 1.0, start_s=0.5, fade_in_s=1.0, wet=wet,
+                       weather_doc={"source": "test"})
+    dry = t("2022-06-01")
+    r, l = _bands(x, dry, dry + 0.6, 1), _bands(x, dry, dry + 0.6, 0)   # Dniprovska alone right, Ferosplavna-1 left
+    assert r["crackle"] > l["crackle"] + 4    # the 750 kV louder
+    assert r["top"] > l["top"] + 15           # and brighter: it reaches 16 kHz, the 330 kV rolls off above 8
+    assert r["kurtosis"] > 2 * l["kurtosis"]  # and cracks where the 330 kV hisses
+    w = t("2022-10-20") + 0.8                 # (the swell eased in)
+    assert _bands(x, w, w + 0.6, 1)["crackle"] > r["crackle"] + 5
+    assert _bands(x, w, w + 0.6, 0)["crackle"] > l["crackle"] + 3
+    assert doc["weather"]["dates"] == [{"date": "2022-10-20", "wet_hours": 12, "film_s": doc["weather"]["dates"][0]["film_s"]}]
+    assert np.abs(x).max() < 1.0
+    x2, doc2 = hum.score(rec, pans, kvs, rec.end, 1.0, start_s=0.5, fade_in_s=1.0)
+    assert doc2["weather"].startswith("none") and abs(_bands(x2, dry, dry + 0.6, 1)["crackle"] - r["crackle"]) < 0.5
+
+
+def test_wet_days_counts_rain_and_inferred_fog(tmp_path: Path):
+    from image_evidence.satellite import hum
+
+    h = {"time": ["2023-06-11T00:00", "2023-06-11T01:00", "2023-06-11T02:00", "2023-06-12T00:00"],
+         "precipitation": [0.0, 0.2, 0.0, None], "relative_humidity_2m": [98, 80, 98, 99],
+         "wind_speed_10m": [1.0, 2.0, 5.0, None]}
+    f = tmp_path / "era5.json"
+    f.write_text(json.dumps({"hourly": h}))
+    assert hum.wet_days(f) == {date(2023, 6, 11).toordinal(): 2, date(2023, 6, 12).toordinal(): 0}   # fog, rain; windy; no wind value

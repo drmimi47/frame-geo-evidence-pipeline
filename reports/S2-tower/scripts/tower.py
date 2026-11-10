@@ -1,7 +1,11 @@
 """S2 test: the 750 kV crossing tower (suspension, 126 m) on its caisson, as modelled for the 3D film (towers.npz),
 alone in an empty space, for stills and a slow turntable behind text. Not the film.
-blender -b --factory-startup -P tower.py -- TOWERS_NPZ SCENE_JSON VIEW OUT [FRAMES SECONDS]
-VIEW: monument | elevation | head | foot      (FRAMES > 1: a turntable, OUT a folder of PNGs)"""
+blender -b --factory-startup -P tower.py -- TOWERS_NPZ SCENE_JSON VIEW OUT [FRAMES SECONDS | CAMS_JSON]
+VIEW: monument | elevation | head | foot      (FRAMES > 1: a turntable, OUT a folder of PNGs)
+      zoom: the elevation, its orthographic camera moving as CAMS_JSON says (zoom.py), no figure (drawn after)
+      crane: a perspective camera per frame as CAMS_JSON says (zoom2.py): from the person on the drained bed up the tower
+             and back until the view is flat; lit grey, the caisson darker below the old water, the bed a dark ground,
+             the person a flat silhouette standing on it"""
 import json, math, sys
 
 import bpy
@@ -10,8 +14,10 @@ from mathutils import Euler, Vector
 
 a = sys.argv[sys.argv.index("--") + 1:]
 T = np.load(a[0]); SC = json.load(open(a[1])); VIEW, OUT = a[2], a[3]
-FRAMES = int(a[4]) if len(a) > 4 else 1
-SECONDS = float(a[5]) if len(a) > 5 else 10.0
+CJ = json.load(open(a[4])) if VIEW in ("zoom", "crane") else None
+CAMS = CJ["frames"] if CJ else None   # zoom: [[centre x, centre z, width m], ...]; crane: [[eye xyz, target xyz, lens], ...]
+FRAMES = len(CAMS) if CAMS else int(a[4]) if len(a) > 4 else 1
+SECONDS = float(a[5]) if len(a) > 5 and not CAMS else 10.0
 DEG_PER_S = 3.6      # a full turn in 100 s: slow enough to read text over
 s = bpy.context.scene
 for ob in list(bpy.data.objects):
@@ -28,11 +34,14 @@ def material(name, rgb, metal=0.0, rough=0.75, emit=None):
     return m
 
 
-FLAT = VIEW == "elevation"   # an elevation drawing: every member one flat grey, no light
+FLAT = VIEW in ("elevation", "zoom")   # an elevation drawing: every member one flat grey, no light
 mats = []
 for k in range(len(SC["towers"]["materials"])):
     name, rgb = SC["towers"]["materials"][str(k)]
-    if FLAT:
+    if VIEW == "crane":   # the drawing's grey, lit: the stained concrete under the old water darker (its line reads)
+        g = 0.15 if k == 8 else 0.08 if k == 5 else 0.45
+        mats.append(material(name, (g, g, g), rough=0.9, emit=(g * 0.22, g * 0.22, g * 0.22)))
+    elif FLAT:
         mats.append(material(name, (0, 0, 0), emit=(0.55, 0.55, 0.55)))
     else:
         mats.append(material(name, tuple(rgb), metal=0.35 if k in (0, 6) else 0.0, rough=0.6 if k in (0, 6) else 0.8))
@@ -89,7 +98,7 @@ def spot(name, power, loc, at, size, rgb):
     s.collection.objects.link(o)
 
 
-if not FLAT:   # a studio: one warm key pooling on a dark floor, a cold rim behind, the rest falling away to black
+if not FLAT and VIEW != "crane":   # a studio: one warm key pooling on a dark floor, a cold rim behind, the rest black
     spot("key", 5.5e6, (-210, -240, 250), (0, 0, 55), 44, (1.0, 0.93, 0.84))
     spot("rim", 4.0e6, (170, 280, 190), (0, 0, 70), 40, (0.70, 0.82, 1.0))
     light("fill", "SUN", 0.12, (0, 0, 0), (40, 0, 60))
@@ -109,6 +118,37 @@ if VIEW == "monument":      # long lens from far off, a little below the head: n
 elif VIEW == "elevation":   # orthographic, side on to the line: the crossarms' width
     cam.type = "ORTHO"; cam.ortho_scale = 290; cam.shift_x = -0.24
     co.location = (0, -500, H / 2 + 2); co.rotation_euler = Euler((math.radians(90), 0, 0))
+elif VIEW == "zoom":        # the elevation drawing's camera, each frame placed by zoom.py; the figure is drawn over it
+    cam.type = "ORTHO"
+    co.rotation_euler = Euler((math.radians(90), 0, 0))
+    for o in (body, head):
+        o.hide_render = True
+elif VIEW == "crane":       # the person a flat silhouette facing the camera; the drained bed a dark ground; a frontal sun
+    for o in (body, head):
+        o.hide_render = True
+    fg = CJ["figure"]; fx, fy, fz = fg["at"]
+    me = bpy.data.meshes.new("person")
+    me.from_pydata([(fx + x, fy, fz + zz) for x, zz in fg["outline"]], [], [list(range(len(fg["outline"])))])
+    me.materials.append(material("person", (0, 0, 0), emit=(0.95, 0.95, 0.95)))
+    s.collection.objects.link(bpy.data.objects.new("person", me))
+    # the ground: dark, fading out with distance from the tower (no horizon), and away altogether as the view goes flat
+    # (zoom2.py draws the cut there), so the drum's buried part shows
+    ground = material("bed", (0.03, 0.03, 0.032), rough=1.0); gn = ground.node_tree.nodes; gl = ground.node_tree.links
+    bsdf = next(n for n in gn if n.type == "BSDF_PRINCIPLED"); out_n = next(n for n in gn if n.type == "OUTPUT_MATERIAL")
+    pos = gn.new("ShaderNodeNewGeometry"); flat = gn.new("ShaderNodeVectorMath"); flat.operation = "MULTIPLY"
+    flat.inputs[1].default_value = (1, 1, 0); ln = gn.new("ShaderNodeVectorMath"); ln.operation = "LENGTH"
+    rng = gn.new("ShaderNodeMapRange"); rng.inputs["From Min"].default_value = 40; rng.inputs["From Max"].default_value = 420
+    rng.inputs["To Min"].default_value = 1; rng.inputs["To Max"].default_value = 0
+    fade = gn.new("ShaderNodeMath"); fade.operation = "MULTIPLY"; fade.name = "ground_alpha"; fade.inputs[1].default_value = 1
+    tr = gn.new("ShaderNodeBsdfTransparent"); mix = gn.new("ShaderNodeMixShader")
+    gl.new(pos.outputs["Position"], flat.inputs[0]); gl.new(flat.outputs[0], ln.inputs[0])
+    gl.new(ln.outputs["Value"], rng.inputs["Value"]); gl.new(rng.outputs["Result"], fade.inputs[0])
+    gl.new(fade.outputs[0], mix.inputs["Fac"]); gl.new(tr.outputs[0], mix.inputs[1]); gl.new(bsdf.outputs[0], mix.inputs[2])
+    gl.new(mix.outputs[0], out_n.inputs["Surface"])
+    bpy.ops.mesh.primitive_plane_add(size=900, location=(0, 0, CJ["bed"])); bpy.context.object.data.materials.append(ground)
+    bpy.context.object.name = "bed"
+    light("sun", "SUN", 1.6, (0, 0, 0), (52, 0, -28))
+    light("fill", "SUN", 0.25, (0, 0, 0), (75, 0, 150))
 elif VIEW == "head":        # the head: crossarms, glass strings, yokes
     cam.lens = 135; cam.dof.use_dof = False
     co.location = (-62, -150, 103); co.rotation_euler = Euler((math.radians(97), 0, math.radians(-22)))
@@ -136,7 +176,26 @@ try:
     s.view_settings.view_transform = "Standard"
 except TypeError:
     pass
-if FRAMES <= 1:
+if CAMS and VIEW == "crane":
+    s.eevee.taa_render_samples = 48
+    g_alpha = bpy.data.materials["bed"].node_tree.nodes["ground_alpha"].inputs[1]
+    for f, (ex, ey, ez, tx, ty, tz, lens, ga) in enumerate(CAMS, 1):
+        g_alpha.default_value = ga
+        bpy.data.objects["bed"].hide_render = ga < 0.002   # a transparent plane still leaves a faint band
+        eye = Vector((ex, ey, ez)); co.location = eye
+        co.rotation_euler = (Vector((tx, ty, tz)) - eye).to_track_quat("-Z", "Y").to_euler()
+        d = (Vector((tx, ty, tz)) - eye).length
+        cam.lens = lens; cam.sensor_fit = "HORIZONTAL"; cam.sensor_width = 36
+        cam.clip_start = max(0.05, d * 0.01); cam.clip_end = d + 7000
+        s.render.filepath = OUT.rstrip("/") + f"/f_{f:04d}.png"
+        bpy.ops.render.render(write_still=True)
+elif CAMS:   # one still per camera: the frames are the zoom's, not a turntable
+    s.eevee.taa_render_samples = 32
+    for f, (cx, cz, w) in enumerate(CAMS, 1):
+        co.location = (cx, -500, cz); cam.ortho_scale = w
+        s.render.filepath = OUT.rstrip("/") + f"/f_{f:04d}.png"
+        bpy.ops.render.render(write_still=True)
+elif FRAMES <= 1:
     s.render.filepath = OUT
     bpy.ops.render.render(write_still=True)
 else:

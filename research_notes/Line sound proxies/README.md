@@ -75,3 +75,18 @@ only scaled and dimmed by the film's 0.8).
   Xeno-canto's API v2 is retired (v3 needs a key); the page gave the metadata.
 - CC BY-NC (iNaturalist's) is non-commercial: fine for a festival or academic screening, to be asked about for anything
   else.
+
+## 6. The two classes measured, for the Hum (9 November 2026)
+
+`kv/compare_kv.json` (`scripts/compare_kv.py`): the 750 kV proxy as the cut plays it (0-24 s) and the 330 kV proxy as
+its parked shot plays it (0-16 s), side by side. Two recordings, different microphones, distances and weather (fog
+against dry spring air with wind): a direction and rough sizes, never a calibration.
+- The hum: the 750 kV's tone at 100 Hz (15.8 dB over its neighbours) and 200 Hz (14.6), 300 Hz weaker (7.3), nothing
+  above; the 330 kV's 200 Hz (20.7) over its 100 Hz (13.0), with 300, 400 and 600 Hz clearly there (11.4, 10.0, 9.3).
+- The crackle (2-8 kHz): the 750 kV's impulsive (kurtosis 11, 19 at 8-16 kHz; a Gaussian hiss is 3), reaching 16 kHz
+  (8-16 kHz only 0.7 dB under the 1.5-8 kHz band), its envelope pulsing once a cycle (50 Hz) more than twice; the
+  330 kV's a smoother hiss (kurtosis about 4, partly wind), falling 10.5 dB above 8 kHz, pulsing at 100 Hz.
+These set the shapes of hum.py's two voices (`HUM_SHAPE`, `CORONA`); the levels are the literature's and design
+choices (said there). `kv/zoomout/`: the zoom-out's Hum before and after (spectrograms, zoomout_check.json: -14.0
+LUFS integrated, was -14.1; picture copied, byte-identical; 41 dates shown with wet hours, 19 of them a full swell).
+The ERA5 series used by the Hum is copied to the network's `weather/` folder (provenance.json there).

@@ -41,3 +41,11 @@ research_notes/Kakhovka bed nature sounds/raw/freesound/geobox.bin
 # Safety (CLAUDE.md): the trench site's note gives its coordinates
 research_notes/ZNPP microcosm case studies/trench_site_north_shore.md
 research_notes/Under the crossing still/v5/*.wav
+# the crossing's mixes and renders that carry the downloaded recordings (birds): kept on this Mac
+research_notes/Under the crossing still/v[6-9]/**/*.mp4
+research_notes/Under the crossing still/v[6-9]/**/*.wav
+research_notes/Under the crossing still/v1[0-9]/**/*.mp4
+research_notes/Under the crossing still/v1[0-9]/**/*.wav
+research_notes/Under the crossing still/edges/*.mp4
+research_notes/Under the crossing still/edges/*.wav
+**/render.pid
